@@ -100,22 +100,22 @@ posture_basis:
     - 2026-05-27-gemini-auto-modes-merged-and-policy-engine-in-acp
 stance:
   use_for: "Teams that want to review what an agent remembered before it sticks; operators moving sessions between machines or running unattended in CI, where workspace trust now actually enforces in headless mode."
-  avoid_for: "Production multi-agent fan-out that needs a real remote backend. The remote subagent protocol ships with tests but no observed target — assume in-process today, plan for remote later."
-  watch_next: "Where the remote subagent infrastructure actually lands — Google-hosted or operator-controlled — and how aggressively the shell-validation allowlist tightens past pattern-matching."
+  avoid_for: "Production multi-agent fan-out that needs a real remote backend. The remote subagent protocol ships with tests but no observed target: assume in-process today, plan for remote later."
+  watch_next: "Where the remote subagent infrastructure actually lands (Google-hosted or operator-controlled), and how aggressively the shell-validation allowlist tightens past pattern-matching."
 ---
 
 # Gemini CLI
 
-## Operator Read
+## Operator read
 
 Gemini CLI is turning agent state into explicit, reviewable operating
 material: memory, trust, sessions, output contracts, and subagent
 boundaries are becoming things an operator can inspect, move, and police,
 while remote delegation and long-horizon intent remain unproven. The
-direction is consistent — make hidden context into named state — and
+direction is consistent (make hidden context into named state), and
 the gap is where that state lives once it leaves the local process.
 
-## State Becomes Reviewable
+## State becomes reviewable
 
 Read what an agent wants to remember before it sticks. The
 [Auto Memory](https://github.com/google-gemini/gemini-cli/commit/a7beb890d093e2cf66ed1ac8debff690b75e1f6d)
@@ -126,7 +126,7 @@ sit behind a [tightened allowlist](https://github.com/google-gemini/gemini-cli/c
 separating personal-scope memory from project-scope.
 
 Move sessions between machines as data, not state. An operator can
-[export a session to a file and import it via flag](https://github.com/google-gemini/gemini-cli/commit/3805640530a9) —
+[export a session to a file and import it via flag](https://github.com/google-gemini/gemini-cli/commit/3805640530a9):
 session state is a serializable artifact, not ambient context. Session
 resume is now
 [reliable for legacy session formats](https://github.com/google-gemini/gemini-cli/pull/26577):
@@ -141,14 +141,14 @@ end-of-run signal. `AgentExecutionStopped` emits as
 [structured JSON](https://github.com/google-gemini/gemini-cli/commit/469092a72cbe368b69df25c0caeefbc911b6d6fd),
 giving callers a stable parse target instead of free-form output.
 
-## Authority Follows Headless And Delegated Runs
+## Authority follows headless and delegated runs
 
 Non-interactive contexts no longer bypass workspace trust by being
 non-interactive.
 [Workspace trust enforces in headless mode](https://github.com/google-gemini/gemini-cli/commit/dba9b9a0ff5a43a5d40d554b944db3e2ce99d5b6)
 through a new trust-utility module and CI-workflow integration. If you've
 been relying on `--non-interactive` to silently skip the trust prompt,
-that path is closed — run the trust grant explicitly or fail loudly.
+that path is closed: run the trust grant explicitly or fail loudly.
 [Trust state is also visible](https://github.com/google-gemini/gemini-cli/commit/a38f393af77c0ccf50da10d73c84cfb594dd8175)
 in the MCP listing UX so the boundary is inspectable, not implicit.
 
@@ -156,13 +156,13 @@ Shell command execution carries
 [safety evals](https://github.com/google-gemini/gemini-cli/commit/82f6ea5b61a6321748d81a62d34c62bf7d2c9fa2)
 on the path between the agent and the host, and shell validation now uses
 a [core-tools allowlist](https://github.com/google-gemini/gemini-cli/commit/27927c55e5b4947df0f2e853971c170000429dec)
-in the policy engine — explicit allowed-tool mapping in addition to
+in the policy engine: explicit allowed-tool mapping in addition to
 pattern-based evals.
 
-## Subagents Are A Boundary, And Now Have A Stable Remote Surface
+## Subagents are a boundary, and now have a stable remote surface
 
 Subagents are
-[approval-mode aware](https://github.com/google-gemini/gemini-cli/commit/40b384de2c1d251c9d13a6359216a9e6cff5a254) —
+[approval-mode aware](https://github.com/google-gemini/gemini-cli/commit/40b384de2c1d251c9d13a6359216a9e6cff5a254):
 delegated work inherits the active approval posture rather than escaping
 it. As of
 [v0.44.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.44.0)
@@ -172,14 +172,14 @@ state of the abstraction. The "tests but no observed remote target" gap
 from the 2026-05-11 finding closed at the protocol layer; **where the
 remote target actually runs** (Google-hosted, operator-hosted, both)
 remains undocumented. Agent registration also moves to first-wins
-prioritize-project — when the same agent name is defined at multiple
+prioritize-project: when the same agent name is defined at multiple
 scopes, project wins.
 
 Treat delegated workflows as testable against v0.44.0 stable; do not
 yet depend on the remote path for production until Google documents
 where remote invocations run.
 
-## Default-On Autonomy
+## Default-on autonomy
 
 [v0.44.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.44.0)
 collapses the prior fan of Auto variants into a single Auto mode
@@ -187,7 +187,7 @@ and adds shell-redirect auto-approval in `AUTO_EDIT`. PolicyEngine
 integrates into ACP sessions (framed as a deadlock fix; the
 structural effect is that enforcement reaches the protocol-session
 layer). Operators on previous Auto variants must re-audit what the
-consolidated Auto mode treats as safe — the release notes do not
+consolidated Auto mode treats as safe: the release notes do not
 enumerate which prior-mode constraint survived the merger.
 `AUTO_EDIT` users should explicitly decide whether shell-redirect
 auto-approval is acceptable for their environment; redirects are a
@@ -199,11 +199,11 @@ write surface if the agent is steered toward sensitive paths.
 `2026-05-27-gemini-session-invocation-protocols-stable`,
 `2026-05-27-gemini-auto-modes-merged-and-policy-engine-in-acp`.*
 
-## Open Questions
+## Open questions
 
 - Where do remote session invocations actually run? `RemoteSessionInvocation`
-  is stable in v0.44.0 as a protocol but the runtime target —
-  Google-hosted, operator-hosted, or both — is undocumented. Until
+  is stable in v0.44.0 as a protocol but the runtime target
+  (Google-hosted, operator-hosted, or both) is undocumented. Until
   Google names a destination, production callers cannot adopt the
   remote path with confidence.
 - What is the PolicyEngine-in-ACP default posture? Per-session
@@ -227,7 +227,7 @@ write surface if the agent is steered toward sensitive paths.
 For research-lens-level open questions (preview/nightly harvest treatment,
 security advisory handling), see `sources/gemini-cli.yml#discovery`.
 
-## What To Watch Next
+## What to watch next
 
 - The actual remote runtime target of `RemoteSessionInvocation` once
   one ships or is named.
@@ -247,7 +247,7 @@ security advisory handling), see `sources/gemini-cli.yml#discovery`.
 - Policy-engine work that changes how operators express trust beyond
   workspace-level grants.
 
-## Profile Hygiene
+## Profile hygiene
 
 This profile follows the discipline in `METHOD.md`:
 every concrete claim has an inline source link and an entry in the

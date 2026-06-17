@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        The watchlist is **deliberately small** — each entry is a per-cycle
+        The watchlist is **deliberately small**: each entry is a per-cycle
         harvest commitment, so a new watchlist source is an editorial decision,
         not an auto-merge. An `adjacent.yml` referent (a tool watched providers
         compose with, but that we do not editorialize) is lighter. Pick the
@@ -16,8 +16,8 @@ body:
     attributes:
       label: Which kind?
       options:
-        - Watchlist source (we harvest it every cycle — needs a source contract)
-        - Adjacent referent (sources/adjacent.yml — named, not harvested)
+        - Watchlist source (we harvest it every cycle, needs a source contract)
+        - Adjacent referent (sources/adjacent.yml, named, not harvested)
     validations:
       required: true
   - type: input
@@ -53,7 +53,7 @@ body:
     id: primary_surfaces
     attributes:
       label: Primary source surfaces
-      description: Where the truth lives — repo, changelog, release feed, docs. Give URLs. (Watchlist sources only; for an adjacent referent, the canonical URL above is enough.)
+      description: "Where the truth lives: repo, changelog, release feed, docs. Give URLs. (Watchlist sources only; for an adjacent referent, the canonical URL above is enough.)"
       placeholder: |
         - repo: https://github.com/<owner>/<repo> (releases, tags, commits, PRs, docs)
         - changelog: https://.../changelog
@@ -62,8 +62,8 @@ body:
   - type: input
     id: first_seen_finding
     attributes:
-      label: For an adjacent referent — the finding that already references it
-      description: Required for adjacent entries. The integrity checker enforces a no-orphan rule — an active adjacent entry must be referenced by at least one finding's `composes:` array. Give the finding_id.
+      label: "For an adjacent referent: the finding that already references it"
+      description: Required for adjacent entries. The integrity checker enforces a no-orphan rule. An active adjacent entry must be referenced by at least one finding's `composes:` array. Give the finding_id.
       placeholder: "2026-05-27-hermes-v0.14.0-foundation-release"
     validations:
       required: false
@@ -71,7 +71,7 @@ body:
     id: why_frontier
     attributes:
       label: Why this belongs on the frontier we cover
-      description: What operator-relevant question does this source answer that the current watchlist does not? Bitter Frontier is not generic AI news — argue the frontier relevance (capability, control-plane, runtime, accessibility, or a calibration facet).
+      description: What operator-relevant question does this source answer that the current watchlist does not? Bitter Frontier is not generic AI news. Argue the frontier relevance (capability, control-plane, runtime, accessibility, or a calibration facet).
     validations:
       required: true
   - type: textarea
@@ -88,5 +88,5 @@ body:
       options:
         - label: I understand a watchlist source is a maintainer decision (per-cycle harvest commitment), and an adjacent entry only lands together with a finding that references it.
           required: true
-        - label: This is a real, current tool with public primary sources — not a roadmap, an announcement, or model memory.
+        - label: This is a real, current tool with public primary sources, not a roadmap, an announcement, or model memory.
           required: true

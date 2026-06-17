@@ -48,7 +48,7 @@ posture_basis:
   governance:
     - 2026-05-12-flue-initial-profile-and-observability-wave
 stance:
-  use_for: "Operators building their own agent surface who want a small, programmable harness — not a full platform. Deployments where 'no container' is the feature: Workers, Node bundles, CI runners where the explicit Model+Harness split makes ownership obvious."
+  use_for: "Operators building their own agent surface who want a small, programmable harness, not a full platform. Deployments where 'no container' is the feature: Workers, Node bundles, CI runners where the explicit Model+Harness split makes ownership obvious."
   avoid_for: "Production deployments that need stability guarantees. Pre-1.0 with self-described experimental APIs; expect breaking changes on minor versions until that lifts."
   watch_next: "Whether Flue's observability run history becomes consumable by external monitoring tools, and how the connector ecosystem develops past the initial observability wave."
 ---
@@ -72,9 +72,9 @@ framework own, and how does evidence of agent work get surfaced?
 > **Status**: APIs are self-described as experimental. Pre-1.0; expect
 > breaking changes on minor versions.
 
-## Current Capability State
+## Current capability state
 
-### Sandbox Architecture
+### Sandbox architecture
 
 - Flue defaults to a
   [virtual sandbox](https://github.com/withastro/flue/blob/main/README.md)
@@ -84,10 +84,10 @@ framework own, and how does evidence of agent work get surfaced?
   environments.
 - [`sandbox: 'local'`](https://github.com/withastro/flue/commit/c7d278eb)
   (v0.4.0) gives the agent direct access to the host filesystem and shell
-  on Node.js -- no just-bash wrapper. The CI runner or host is the isolation
+  on Node.js, with no just-bash wrapper. The CI runner or host is the isolation
   boundary. Use when `gh`, `git`, `npm` must be available to the agent.
 
-### Model + Harness Separation
+### Model + Harness separation
 
 - The [harness](https://github.com/withastro/flue/blob/main/README.md)
   (`init()` return value) is a first-class API object: configure sandbox,
@@ -99,7 +99,7 @@ framework own, and how does evidence of agent work get surfaced?
   gateway credentials. Relevant for operators routing agent traffic through
   enterprise API gateways.
 
-### Headless Deployment
+### Headless deployment
 
 - Flue builds to
   [Node.js](https://github.com/withastro/flue/blob/main/README.md) (single
@@ -112,7 +112,7 @@ framework own, and how does evidence of agent work get surfaced?
   is enabled by default on the Cloudflare target (v0.5.2), routing model
   calls through the gateway for logging, caching, and cost management.
 
-### Skills and Logic in Markdown
+### Skills and logic in Markdown
 
 - Agent logic lives in
   [Markdown skills](https://github.com/withastro/flue/blob/main/README.md)
@@ -123,7 +123,7 @@ framework own, and how does evidence of agent work get surfaced?
 - [`AGENTS.md` discovery](https://github.com/withastro/flue/blob/main/README.md)
   is built in: the harness loads `AGENTS.md` from the working directory.
 
-### Run Observability
+### Run observability
 
 - [Run IDs, `flue logs`, run history endpoints, and SSE streaming with
   Last-Event-ID resume](https://github.com/withastro/flue/commit/cc432b4f)
@@ -133,7 +133,7 @@ framework own, and how does evidence of agent work get surfaced?
   (v0.5.3) exposes isolate-global event subscriptions for programmatic
   monitoring of run events.
 
-### Connector System
+### Connector system
 
 - [Connectors](https://github.com/withastro/flue/blob/main/README.md)
   adapt third-party services (sandboxes, providers) into Flue. Install via
@@ -150,12 +150,12 @@ framework own, and how does evidence of agent work get surfaced?
 
 ## Posture
 
-### Capability Lens
+### Capability lens
 
 Flue's capabilities are narrow and sharp. It is not trying to be a
 full-stack agent platform or a GUI tool. Its investment is in one thing:
-the harness API. `init()` is the surface. Everything -- sandbox, model,
-sessions, skills, tools -- resolves through the harness. This means the
+the harness API. `init()` is the surface. Everything (sandbox, model,
+sessions, skills, tools) resolves through the harness. This means the
 operator who wants to customize deeply can, and the operator who wants a
 thin default (virtual sandbox + Markdown skills) can run with three lines.
 
@@ -165,7 +165,7 @@ to "agent that ran, and here is the structured record."
 
 *Findings: `2026-05-12-flue-initial-profile-and-observability-wave`.*
 
-### Accessibility Lens
+### Accessibility lens
 
 Flue's accessibility ceiling is TypeScript development fluency. There is
 no GUI, no TUI, no managed cloud service. "Write once, deploy anywhere"
@@ -180,15 +180,15 @@ lines of TypeScript.
 
 The connector system offloads installation complexity to a coding agent:
 `flue add daytona | claude` writes the adapter for you. This is an
-interesting accessibility pattern -- using AI to install AI infrastructure.
+interesting accessibility pattern: using AI to install AI infrastructure.
 It works if you have a coding agent available; it is opaque if you don't.
 
 *Findings: `2026-05-12-flue-initial-profile-and-observability-wave`.*
 
-### Governance Lens
+### Governance lens
 
 Flue's governance surface is thin. The only explicit safety signal in the
-window is the v0.4.1 shell env redaction -- a security fix, not a designed
+window is the v0.4.1 shell env redaction: a security fix, not a designed
 governance primitive. There are no permission surfaces, no audit approvals,
 no operator-configurable restrictions on agent scope.
 
@@ -205,7 +205,7 @@ Flue approaches 1.0.
 
 *Findings: `2026-05-12-flue-initial-profile-and-observability-wave`.*
 
-## Open Questions
+## Open questions
 
 - No formal security advisory channel exists. The v0.4.1 redaction fix
   landed as a regular commit. How should operators monitor Flue for
@@ -223,7 +223,7 @@ Flue approaches 1.0.
   What data does the gateway retain, and how does that interact with
   session history stored in Durable Objects?
 
-## What To Watch Next
+## What to watch next
 
 - Whether Flue adds governance primitives (permission surfaces, audit
   approvals, secret vaults) as the framework approaches 1.0.
@@ -236,7 +236,7 @@ Flue approaches 1.0.
 - Whether Flue ships a managed cloud path (hosted sessions, managed
   sandboxes) or stays infrastructure-first.
 
-## Profile Hygiene
+## Profile hygiene
 
 This profile follows the discipline in `METHOD.md`:
 every concrete claim in the prose has an inline source link and an entry

@@ -98,31 +98,31 @@ posture_basis:
     - 2026-05-12-hermes-mistralai-quarantine-response
     - 2026-05-27-hermes-v0.14.0-foundation-release
 stance:
-  use_for: "Use Hermes when worker completion needs independent verification — the Kanban gate blocks phantom card claims before a worker can move state. Also when chat or voice bridging is a primary surface, not an afterthought."
-  avoid_for: "Avoid it if your log pipelines depend on unredacted agent output — v0.13.0 makes redaction default-on. Skip if you need centralized identity tooling: Hermes governs through allowlists, not SSO or role services."
+  use_for: "Use Hermes when worker completion needs independent verification: the Kanban gate blocks phantom card claims before a worker can move state. Also when chat or voice bridging is a primary surface, not an afterthought."
+  avoid_for: "Avoid it if your log pipelines depend on unredacted agent output: v0.13.0 makes redaction default-on. Skip if you need centralized identity tooling: Hermes governs through allowlists, not SSO or role services."
   watch_next: "How the Kanban hallucination gate behaves under real multi-agent load, and whether the Curator process handles long-running skill libraries past its default cycle."
 ---
 
 # Hermes Agent
 
-## Operator Read
+## Operator read
 
-Hermes is a broad-surface personal agent — twenty-plus messaging
-platforms, voice, browser, mobile — and as of v0.14.0
+Hermes is a broad-surface personal agent (twenty-plus messaging
+platforms, voice, browser, mobile), and as of v0.14.0
 ("Foundation Release", 2026-05-16) it has also become an *installable
 provider router with identity / isolation primitives*. The release
 ships PyPI distribution (`pip install hermes-agent`), lazy adapter
 install with a supply-chain advisory checker, a native Windows beta,
-Zed ACP Registry listing, and `hermes proxy` — a local
+Zed ACP Registry listing, and `hermes proxy`: a local
 OpenAI-compatible endpoint that lets a bounded set of wire-compatible
 clients (Codex CLI, Aider, Cline, Continue, custom scripts) route
 through whichever OAuth provider the operator is signed into. The
-"broad-surface personal agent" framing is still load-bearing — Hermes
-did not stop being that — but the installable surface and adjacency
+"broad-surface personal agent" framing is still load-bearing (Hermes
+did not stop being that), but the installable surface and adjacency
 to other tools changed substantially in this window. The serious bet
 is still durable coordination with receipts.
 
-## Coordination Claims
+## Coordination claims
 
 The [Kanban board](https://github.com/NousResearch/hermes-agent/pull/17805)
 is the production claim to watch. Hermes is trying to make worker handoffs
@@ -135,7 +135,7 @@ The
 (v2026.5.7) tightens this further: the kernel checks `created_cards` IDs,
 blocks phantom and cross-worker claims, and records an audit event before a
 worker can move state. Phantom card references are rejected before state
-moves. The gate is an integrity check on card references — not a verifier
+moves. The gate is an integrity check on card references, not a verifier
 of work quality or completeness, but a structural answer to "did this worker
 actually produce what it claims?"
 
@@ -145,7 +145,7 @@ context compression and turn budget management. Pair it with the Kanban gate
 when running multi-worker sessions where individual workers should not be
 able to abandon their assigned target.
 
-## Distribution And Provider Routing (v0.14.0)
+## Distribution and provider routing (v0.14.0)
 
 The 2026-05-16 v0.14.0 "Foundation Release" shipped 808 commits and
 633 merged PRs since v0.13.0. Several distinct vectors:
@@ -196,7 +196,7 @@ post-commit invariant checks. The Kanban primitive the prior digest
 named as load-bearing is still settling; the post-v0.14.0 line is
 the integrity-floor baseline.
 
-## Access Surfaces and Setup Burden
+## Access surfaces and setup burden
 
 Use [Curator](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.4.30)
 only if you are willing to let Hermes maintain its own tool layer: it grades,
@@ -207,7 +207,7 @@ operator's job shifts from hand-cleaning skills to reviewing Curator outputs.
 
 Manual Curator operations are now synchronous (`hermes curator run`) with
 `archive`, `prune`, and `list-archived`
-[subcommands](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.7) —
+[subcommands](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.7):
 useful when you want to inspect rather than wait on the scheduled run. A
 [background review loop](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.4.30)
 applies the same grading to agent-created skills outside the scheduled cycle.
@@ -225,21 +225,21 @@ without touching core.
 
 [`allowed_channels`/`allowed_chats`/`allowed_rooms`](https://github.com/NousResearch/hermes-agent/pull/21251)
 limit which Slack, Telegram, Mattermost, Matrix, or DingTalk channels the
-agent responds in — scope narrowing without disabling platforms. Cron
+agent responds in: scope narrowing without disabling platforms. Cron
 [`no_agent` mode](https://github.com/NousResearch/hermes-agent/pull/19709) lets
 operators run a script directly with non-empty stdout delivered verbatim to
 the home channel, skipping LLM cost or non-determinism for pure-automation
 watchdog patterns.
 
-## Security Defaults
+## Security defaults
 
 After v0.13.0, assume logs are redacted unless you have explicitly designed
 around that default;
 [redaction is on by default](https://github.com/NousResearch/hermes-agent/pull/21193)
 where it was previously opt-in. Pipelines that depended on raw agent output
 need a migration plan. Discord `DISCORD_ALLOWED_ROLES` is now
-[scoped to the originating guild](https://github.com/NousResearch/hermes-agent/pull/21241)
-— the CVSS 8.1 cross-guild DM bypass (issue #12136) is closed. MCP OAuth and
+[scoped to the originating guild](https://github.com/NousResearch/hermes-agent/pull/21241):
+the CVSS 8.1 cross-guild DM bypass (issue #12136) is closed. MCP OAuth and
 `auth.json` credential writers
 [close TOCTOU windows](https://github.com/NousResearch/hermes-agent/pull/21176),
 and cron
@@ -254,12 +254,12 @@ disabled" status rather than importing the cached package. The `[mistral]`
 extra is preserved for explicit opt-in once PyPI restores the package. Not yet
 in a tagged release.
 
-## Known Limits
+## Known limits
 
 The Kanban gate is structural, not semantic: it does not verify result
 quality, work completeness, or its own false-positive rate under concurrent
-multi-worker workloads. The PR #20232 mechanism — what is checked, what
-audit events are recorded, how operators read them — is not yet fully
+multi-worker workloads. The PR #20232 mechanism (what is checked, what
+audit events are recorded, how operators read them) is not yet fully
 documented in official docs. `/goal` survival semantics under compression are
 not specified. The governance map (which controls fail-closed vs.
 empty-until-configured vs. explicit opt-in) is not documented in one place,
@@ -272,7 +272,7 @@ described as defense-in-depth without published rules.
 `2026-05-12-hermes-mistralai-quarantine-response`,
 `2026-05-27-hermes-v0.14.0-foundation-release`.*
 
-## Open Questions
+## Open questions
 
 - `hermes proxy` provider scope: the PR ships Nous Portal as the
   initial routing provider with "more providers later" framed. Which
@@ -284,7 +284,7 @@ described as defense-in-depth without published rules.
   before upstream credential attach. The operator-side question is
   what protection model exists when the bind is changed (a recommended
   reverse-proxy / mTLS pattern, an option to require a shared bearer
-  before strip, etc.) — the PR does not specify a non-loopback
+  before strip, etc.). The PR does not specify a non-loopback
   posture.
 - Lazy adapter install under fail-closed credential doctrine: could
   a missing-backend state at runtime silently degrade a
@@ -309,7 +309,7 @@ described as defense-in-depth without published rules.
   defense-in-depth. What are the tiers, and can a malicious skill attempt to
   bypass protection by claiming hub status in its frontmatter?
 
-## What To Watch Next
+## What to watch next
 
 - Kanban hallucination gate documentation: the mechanism is not yet fully
   described in official docs.
@@ -323,7 +323,7 @@ described as defense-in-depth without published rules.
   ecosystem, and whether those providers follow the same security patterns as
   core.
 
-## Profile Hygiene
+## Profile hygiene
 
 This profile follows the discipline in `METHOD.md`: every
 concrete claim in the prose has an inline source link and an entry in the

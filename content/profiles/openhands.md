@@ -67,15 +67,15 @@ posture_basis:
     - 2026-05-27-openhands-acp-ui-and-org-llm-profiles
 stance:
   use_for: "Teams that want the platform to own sandboxing, evaluation, and sub-agent posture, and are willing to take the platform's defaults rather than build their own. Ops shops needing parity across GUI, CLI, and SDK from a single tool."
-  avoid_for: "Operators who want governance to live in their own codebase — OpenHands ships sub-agent delegation, critic scoring, and sandbox grouping as platform decisions, not knobs you bolt on."
+  avoid_for: "Operators who want governance to live in their own codebase: OpenHands ships sub-agent delegation, critic scoring, and sandbox grouping as platform decisions, not knobs you bolt on."
   watch_next: "Whether the critic score correlates with operational outcomes anyone actually measures, and whether sub-agent delegation gets adopted enough to justify the new orchestration surface."
 ---
 
 # OpenHands
 
-## Operator Read
+## Operator read
 
-OpenHands is an operating environment, not a harness — and as of the
+OpenHands is an operating environment, not a harness, and as of the
 2026-05-13 → 2026-05-27 window, an environment that explicitly fronts
 *other harnesses*. The Settings → Agent ACP page lets an operator point
 OpenHands at Claude Code, Codex, Gemini CLI, or a custom command as the
@@ -86,11 +86,11 @@ choosing between owning the agent surface yourself (built-in agent) or
 shelling out to a third-party agent under OpenHands' RBAC, sandboxing,
 and integrations.
 
-## The ACP Front-End Move
+## The ACP front-end move
 
 [PR #14401](https://github.com/OpenHands/OpenHands/pull/14401) (merged
 2026-05-15) ships a Settings → Agent page that wires OpenHands to
-external Agent Client Protocol agents — Claude Code, Codex, Gemini
+external Agent Client Protocol agents: Claude Code, Codex, Gemini
 CLI, or a custom command. While ACP is active, LLM / Condenser / MCP
 settings grey out and route loaders redirect to `/settings/agent`. The
 SDK bumps to v1.22.1 with a unified `/api/conversations` endpoint
@@ -105,7 +105,7 @@ Migration 116 adds an encrypted `llm_profiles` JSON column on the org
 table; six CRUD endpoints under `/api/organizations/{org_id}/profiles`
 expose them with two-tier permissions (`VIEW_ORG_SETTINGS` to read,
 `EDIT_ORG_SETTINGS` to create/update/delete/rename/activate). Activate
-is the load-bearing operation — the same transaction updates the org's
+is the load-bearing operation: the same transaction updates the org's
 active profile and the acting member's settings diff with
 `SELECT ... FOR UPDATE` serializing concurrent writes. Team-org UI is
 gated on a follow-up PR not in window.
@@ -118,13 +118,13 @@ fix splits agent settings into shared and private halves and strips
 legacy leaked values on read. Operators on pre-2026-05-22 deployments
 should rotate MCP credentials added by individual org members.
 
-## Platform Ownership Surfaces
+## Platform ownership surfaces
 
 Sub-agent delegation is OpenHands' clearest "platform owns the routing"
 move. Behind
 [`enable_sub_agents`](https://github.com/OpenHands/OpenHands/pull/14122)
-(default off), work is routed to specialized built-in agents — `bash-runner`,
-`code-explorer`, `general-purpose`, `web-researcher` — each with tool surfaces
+(default off), work is routed to specialized built-in agents (`bash-runner`,
+`code-explorer`, `general-purpose`, `web-researcher`), each with tool surfaces
 defined by `TaskToolSet` in its config. Custom sub-agents live in
 `.agents/agents/*.md`. Whether tool restrictions are runtime-enforced or
 instruction-level is not yet confirmed by public evidence and remains an open
@@ -132,49 +132,49 @@ question to investigate before relying on the boundary.
 
 Treat critic scoring as an opt-in evaluation surface, not a verdict. The
 [`CriticResult`](https://github.com/OpenHands/OpenHands/pull/14133) GUI
-displays a 0–1 score, 0–5 stars, and color-coded bands (green ≥60%, yellow
+displays a 0-1 score, 0-5 stars, and color-coded bands (green ≥60%, yellow
 ≥40%, red <40%) across `agent_behavioral_issues`, `user_followup_patterns`,
 and `infrastructure_issues`. Turn it on only if you can route the extra
 model spend separately (`CRITIC_API_KEY`) and test whether the score
 predicts outcomes your team already cares about. Whether it shows at all
-is deployment-controlled — `OH_ENABLE_CRITIC_BY_DEFAULT` defaults disabled;
+is deployment-controlled: `OH_ENABLE_CRITIC_BY_DEFAULT` defaults disabled;
 per-instance disable is `verification.critic_enabled = false`.
 
 The sandbox grouping strategy is now a
 [user-configurable UI option](https://github.com/OpenHands/OpenHands/commit/90cf5f8003c247597481bcbef9a5aa73eb899e10);
 operators select grouping policy without editing config files. KVM
 acceleration via `SANDBOX_KVM_ENABLED` (v1.7.0) cuts sandbox startup latency
-on hosts that support it — opt-in flag.
+on hosts that support it: opt-in flag.
 
-## Security Posture
+## Security posture
 
 Credential handling shows active maintenance, not assumed defaults. The
 [log redaction commit](https://github.com/OpenHands/OpenHands/commit/61e3dc2cadbefd4e0649b7c141ac2335c021ad2b)
 scrubs credential patterns from logs before write. ACP subprocesses
 [receive injected secrets](https://github.com/OpenHands/OpenHands/commit/cf156b0073350ca8e93067bc2f4ae18b90537a0a)
-without the primary agent context carrying those secrets — useful for tools
+without the primary agent context carrying those secrets: useful for tools
 that need credentials the agent itself should not see. Debug logging of hook
 configuration secrets has been
 [removed](https://github.com/OpenHands/OpenHands/commit/0c6c461555f8651347ed140f1c555ff8a88ddf56).
 Track these in commit history rather than docs; the pattern is fixes-as-they-
 ship rather than a published security policy.
 
-## Integration Reach
+## Integration reach
 
 OpenHands runs on
 [self-hosted GitLab](https://github.com/OpenHands/OpenHands/commit/4e63531fa6595ec55102f08ef129845931fcd8ff),
-not just cloud — operators on private GitLab can connect without a
+not just cloud: operators on private GitLab can connect without a
 cloud-GitLab account. The platform ships GUI, CLI, SDK, and a hosted cloud
 deployment path with built-in Slack, Jira, Linear, and GitHub integrations.
 The reach is real; so is the deployment dependency: Docker and container
 support are required for the sandbox model.
 
-## What You're Trading
+## What you're trading
 
 Adopt OpenHands when you want the platform to own sandboxing, evaluation, and
 sub-agent posture, and when feature parity across GUI / CLI / SDK matters
 more than building your own thin layer. Skip it when you want governance to
-live in your own codebase — OpenHands ships those decisions as platform
+live in your own codebase: OpenHands ships those decisions as platform
 defaults, not knobs you bolt on. The trade is real and intentional: less
 ownership of the agent surface in exchange for less integration work.
 
@@ -182,7 +182,7 @@ ownership of the agent surface in exchange for less integration work.
 `2026-05-12-openhands-subagent-delegation-and-critic-evaluation`,
 `2026-05-27-openhands-acp-ui-and-org-llm-profiles`.*
 
-## Open Questions
+## Open questions
 
 - When OpenHands is fronting Claude Code, Codex, or Gemini CLI via ACP,
   how do the org-level LLM profile model and the back-end agent's own
@@ -194,7 +194,7 @@ ownership of the agent surface in exchange for less integration work.
 - Have multi-tenant operators rotated MCP credentials that may have
   been cross-contaminated pre-2026-05-22? There is no advisory page;
   the leak is fixed but the audit step is operator-owned.
-- No tagged release in window — when does the next 1.x consolidate
+- No tagged release in window: when does the next 1.x consolidate
   the ACP UI, org-level LLM profiles, MCP/ACP env scoping, and
   enterprise DC integrations? Operators on the release channel see
   none of this until then.
@@ -204,12 +204,12 @@ ownership of the agent surface in exchange for less integration work.
 - What constraints govern custom sub-agents defined in `.agents/agents/*.md`?
   Which tools can a custom sub-agent access, and how is its tool surface declared
   or restricted?
-- How is the critic score (0--1) calibrated across session types? What separates
+- How is the critic score (0-1) calibrated across session types? What separates
   `agent_behavioral_issues` from `user_followup_patterns` in practice?
 - Does the KVM sandbox acceleration path (`SANDBOX_KVM_ENABLED`) change the
   security boundary of the sandbox, or only its startup latency?
 
-## What To Watch Next
+## What to watch next
 
 - The next 1.x release consolidating the in-window work: ACP UI,
   org-level LLM profiles, MCP/ACP env scoping, Azure DevOps via Entra
@@ -238,7 +238,7 @@ ownership of the agent surface in exchange for less integration work.
 - Sub-agent delegation documentation: currently available via PR #14122 but
   not in main docs. Watch for official docs coverage.
 
-## Profile Hygiene
+## Profile hygiene
 
 This profile follows the discipline in `METHOD.md`: every
 concrete claim in the prose has an inline source link and an entry in the

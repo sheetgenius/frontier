@@ -86,7 +86,7 @@ body:
   - type: input
     id: channel_check
     attributes:
-      label: For a channel-mismatch — how did you verify ancestry?
+      label: "For a channel-mismatch: how did you verify ancestry?"
       description: Paste the check. e.g. `git merge-base --is-ancestor <sha> <tag>` result, or `git tag --contains <sha>`. Leave blank if not a channel correction.
       placeholder: "git tag --contains bca5667fc  ->  (no output: not in any tag)"
     validations:
@@ -103,7 +103,7 @@ body:
     attributes:
       label: Before you submit
       options:
-        - label: This corrects a fact, not an editorial reading (synthesis / promotion / voice are owned — see CONTRIBUTING.md).
+        - label: This corrects a fact, not an editorial reading (synthesis / promotion / voice are owned; see CONTRIBUTING.md).
           required: true
         - label: The receipt is a public primary source at or above the artifact's evidence_floor.
           required: true

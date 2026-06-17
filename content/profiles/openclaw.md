@@ -102,12 +102,12 @@ posture_basis:
 stance:
   use_for: "Teams running their own bridge between chat or voice platforms and an agent, where the data has to stay on-prem. Operators who need to scope what any individual agent can say back, in which thread, in which channel."
   avoid_for: "Cloud-first teams who already standardized on a hosted control plane. Workflows that depend on uploaded skill archives until OpenClaw documents its signing and sandbox-isolation model."
-  watch_next: "How the skill-archive trust model lands — signing, sandbox, signed catalog — and whether voice-channel allowlists mature past the initial permission shape."
+  watch_next: "How the skill-archive trust model lands (signing, sandbox, signed catalog), and whether voice-channel allowlists mature past the initial permission shape."
 ---
 
 # OpenClaw
 
-## Operator Read
+## Operator read
 
 OpenClaw's real frontier signal is familiar access with visible authority:
 chat, voice, mobile, and gateway setup make agents easier to reach, but the
@@ -115,7 +115,7 @@ operator still needs clear permission, skill-install, and multi-channel trust
 boundaries. The thesis it's testing: agentic work belongs in the surfaces
 people already use, without hiding what the agent can do.
 
-## Reach Operators Where They Already Work
+## Reach operators where they already work
 
 The [`openclaw onboard --install-daemon`](https://docs.openclaw.ai/start/getting-started)
 wizard takes operators through provider selection, API key entry, and
@@ -123,7 +123,7 @@ gateway configuration in roughly two minutes. The gateway starts on port
 18789 with a browser Control UI at `openclaw dashboard`. CLI setup,
 onboarding, configure, and channel commands now explain the next useful
 command at each step rather than leaving operators with
-[terse setup labels](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5) —
+[terse setup labels](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5):
 first-run operators are told what to run next at each stage.
 
 The accessibility ceiling is breadth, not first install. Ten-plus messaging
@@ -132,7 +132,7 @@ to setup complexity once you're past the first connection. The onboarding
 wizard handles a single channel cleanly; the second and third require more
 operator knowledge.
 
-## Authority At The Gateway Edge
+## Authority at the gateway edge
 
 The 2026-05-12 baseline pushed authority control to the agent level. The
 [v2026.5.12-beta.3 release](https://github.com/openclaw/openclaw/releases/tag/v2026.5.12-beta.3)
@@ -148,7 +148,7 @@ without modifying the global tool surface or relying on per-agent guards.
 The earlier per-agent layer remains. Use per-agent
 [`tools.message.crossContext`](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5)
 overrides when you want to deploy a sandboxed or public-facing agent that
-can only reply in the conversation it was addressed in — without modifying
+can only reply in the conversation it was addressed in, without modifying
 global policy. Pair with
 [`tools.message.actions.allow`](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5)
 to expose and enforce send-only message tools. The per-sender layer
@@ -165,10 +165,10 @@ are documented per session scope.
 Skill archive upload is gated behind
 [`skills.install.allowUploadedArchives`](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5)
 with default closed. Do not enable this surface until OpenClaw documents
-its signing and sandbox-isolation model — the gate is correct, the trust
+its signing and sandbox-isolation model: the gate is correct, the trust
 model behind it is not yet public.
 
-## Content Boundaries Pre-Dispatch
+## Content boundaries pre-dispatch
 
 The 2026-05-13 → 2026-05-27 window pushed the authority story from
 "who can ask?" (per-sender tool policies, per-agent restrictions) to
@@ -190,7 +190,7 @@ prompt-like-text reject matches the auto-capture filter (#87142).
 
 Gateway auth rate-limiter defaults on for remote non-browser/HTTP
 auth failures when `gateway.auth.rateLimit` is unset (#87148).
-Operators should verify whether their config left this unset — the
+Operators should verify whether their config left this unset: the
 on-by-default ratelimit changes observable behavior for non-browser
 auth flows.
 
@@ -200,13 +200,13 @@ Denying unauthorized senders the chance to influence agent behavior
 versus blocking specific actions after the agent has already been
 biased.
 
-## Reliability As Accessibility
+## Reliability as accessibility
 
 Predictable surfaces are safer than capable-but-mysterious ones. When a
 channel plugin configuration goes stale, the gateway
 [attempts recovery](https://github.com/openclaw/openclaw/commit/329580c64d13657592c3fabb97ff567c2e292bb6)
 by reinstalling from a trusted catalog while preserving explicit
-disabled-channel guards — stale configuration is treated as recoverable
+disabled-channel guards: stale configuration is treated as recoverable
 state, not a fatal failure. Live agent execution output events are
 [bounded](https://github.com/openclaw/openclaw/commit/3ee7c02bcacfdf6327747c1fe24dd6d11de8612a)
 so runaway processes can't drown the gateway in event floods.
@@ -220,11 +220,11 @@ Long-running agents stop silently accumulating unlimited memory.
 Compaction itself is also more careful now.
 [PR #79307](https://github.com/openclaw/openclaw/pull/79307) preserves
 scoped background `exec` and `process` session references across
-embedded compaction and after-turn runtime contexts — without exposing
+embedded compaction and after-turn runtime contexts, without exposing
 sessions from unrelated scopes. Multi-step background work survives
 compaction with cleaner scope boundaries.
 
-## Where Accessibility Still Leaks Complexity
+## Where accessibility still leaks complexity
 
 The gateway's authority model (permissions, approvals, channel
 restrictions, skill gates) is correct but not yet simple. Per-agent
@@ -236,7 +236,7 @@ ingest, "write scope" for Obsidian search per
 [PR #80904](https://github.com/openclaw/openclaw/pull/80904)) reference
 a scope hierarchy that is not formally documented either. Multi-channel
 setup complexity grows linearly with the number of platforms. The release-
-note evidence floor — appropriate for OpenClaw's commit volume — means
+note evidence floor, appropriate for OpenClaw's commit volume, means
 some operator-relevant intermediate-beta changes likely don't surface
 until the consolidated release notes ship.
 
@@ -251,7 +251,7 @@ needs to be checked.
 `2026-05-13-openclaw-per-sender-tool-policies`,
 `2026-05-27-openclaw-content-boundary-hardening-suite`.*
 
-## Open Questions
+## Open questions
 
 - The 2026.5.22 change "remove the old sender-owner tool gating
   path so configured tools stay visible for trusted sessions"
@@ -282,7 +282,7 @@ needs to be checked.
   intermediate beta releases may have additional operator-relevant changes not
   consolidated into the final notes.
 
-## What To Watch Next
+## What to watch next
 
 - Stable 2026.5.10 release: the beta series changes may adjust before stable.
   Specifically, the per-agent message restriction API surface is still beta.
@@ -294,7 +294,7 @@ needs to be checked.
 - Memory dreaming semantics: what counts as "user-authored" vs. auto-promoted,
   and whether the compaction priority is stable across versions.
 
-## Profile Hygiene
+## Profile hygiene
 
 This profile follows the discipline in `METHOD.md`: every
 concrete claim in the prose has an inline source link and an entry in the

@@ -80,19 +80,19 @@ posture_basis:
     - 2026-05-27-claude-code-powershell-and-worktree-sandbox-fixes
 stance:
   use_for: "Use Claude Code when you need to supervise several sessions from one screen, or set a completion condition on work that should keep moving after you leave the terminal."
-  avoid_for: "Avoid procuring on the assumption that Console / API auth unlocks the highest-leverage cloud-control surfaces. Under API-key or token auth (`ANTHROPIC_API_KEY`, `apiKeyHelper`, `ANTHROPIC_AUTH_TOKEN`), Remote Control, `/schedule`, and claude.ai MCP connectors disable themselves; those surfaces require Claude.ai subscription identity, often with admin policy / SSO settings on top. API-key auth is not 'fully offline' — it is an online API path that disables cloud-account control surfaces."
+  avoid_for: "Avoid procuring on the assumption that Console / API auth unlocks the highest-leverage cloud-control surfaces. Under API-key or token auth (`ANTHROPIC_API_KEY`, `apiKeyHelper`, `ANTHROPIC_AUTH_TOKEN`), Remote Control, `/schedule`, and claude.ai MCP connectors disable themselves; those surfaces require Claude.ai subscription identity, often with admin policy / SSO settings on top. API-key auth is not 'fully offline': it is an online API path that disables cloud-account control surfaces."
   watch_next: "Whether autonomous-completion and cloud-review surfaces stabilize output schemas a CI pipeline can ingest, and how aggressively cloud-only features keep expanding past local-only auth."
 ---
 
 # Claude Code
 
-## Operator Read
+## Operator read
 
 Claude Code is becoming a supervised background-work system with cloud-auth
-boundaries — and as of v2.1.152, an autonomy-default system. Baseline
+boundaries, and as of v2.1.152, an autonomy-default system. Baseline
 consent for Auto mode moved out of the opt-in runtime ceremony and into
 managed policy plus classifier behavior; the runtime consent dialog is
-gone, but the *governance* of what auto-runs has not vanished — it moved.
+gone, but the *governance* of what auto-runs has not vanished. It moved.
 The shape this window: a multi-session supervisor, a persistent goal
 primitive, a verification fleet that runs in the provider's cloud, and
 Auto-mode-default-on as the new permission posture across the install
@@ -101,11 +101,11 @@ surfaces* (Remote Control, `/schedule`, claude.ai MCP connectors) require
 Claude.ai subscription identity and, in team contexts, admin toggles;
 API-key-only auth disables them, and Console/API procurement does not by
 itself unlock them. And the runtime consent ceremony that some admins
-relied on as a posture-visibility surface no longer fires — equivalent
+relied on as a posture-visibility surface no longer fires. Equivalent
 visibility now lives in managed-settings policy and classifier behavior,
 not in a runtime prompt.
 
-## Run It Differently
+## Run it differently
 
 Use [`claude agents`](https://code.claude.com/docs/en/agent-view) (v2.1.139,
 Research Preview) when terminal juggling is the bottleneck. It turns scattered
@@ -130,10 +130,10 @@ When you return to a terminal that was unfocused, expect an automatic
 when you attach to a backgrounded session via agent view, Claude posts a short
 recap of what happened while you were away.
 
-## Governance Boundaries
+## Governance boundaries
 
 As of [v2.1.152](https://code.claude.com/docs/en/changelog#2-1-152)
-(2026-05-27), Auto mode is the default permission posture — it no longer
+(2026-05-27), Auto mode is the default permission posture. It no longer
 requires opt-in consent. Operators with managed Claude Code deployments
 should re-audit what Auto mode classifies as safe by default and where
 the equivalent visibility check now lives in their environment (managed
@@ -144,7 +144,7 @@ while active), and a `MessageDisplay` hook that can transform or hide
 assistant message text on the output path.
 
 [`settings.autoMode.hard_deny`](https://code.claude.com/docs/en/changelog#2-1-136)
-(v2.1.136) defines auto-mode rules that block unconditionally — no allow rule
+(v2.1.136) defines auto-mode rules that block unconditionally: no allow rule
 overrides them. Treat this as the unconditional-refusal layer of auto-mode
 policy.
 
@@ -177,7 +177,7 @@ attributes. Parentage no longer has to be inferred from surrounding logs.
 Windows operators with PowerShell allowlists, git worktree workflows,
 or enterprise login pinning should upgrade past
 [v2.1.149](https://code.claude.com/docs/en/changelog#2-1-149)
-(2026-05-22). The 2.1.147–2.1.149 cluster closed three sandbox /
+(2026-05-22). The 2.1.147-2.1.149 cluster closed three sandbox /
 enforcement regressions that ship as ordinary changelog entries
 rather than a separate advisory: PowerShell built-in `cd` functions
 defeating the workspace boundary, sandbox write allowlist
@@ -192,7 +192,7 @@ surface; Anthropic does not publish a separate one.
 `2026-05-27-claude-code-auto-mode-default-on`,
 `2026-05-27-claude-code-powershell-and-worktree-sandbox-fixes`.*
 
-## Open Questions
+## Open questions
 
 - What does Auto mode classify as "safe" by default? The v2.1.152
   changelog does not enumerate the runtime classification; deployments
@@ -220,10 +220,10 @@ surface; Anthropic does not publish a separate one.
   the official docs as of the council run). A refresh harvest is owed
   before the next digest cycle, with particular attention to dynamic
   workflow handling, auto-mode classifier fixes, and reduced startup
-  permission ceremony — all of which reinforce the "consent moved, not
+  permission ceremony, all of which reinforce the "consent moved, not
   vanished" framing rather than refuting it.
 
-## What To Watch Next
+## What to watch next
 
 - Whether Auto-mode-default-on is reversed or refined under operator
   pushback, or extended further (e.g. is `disallowed-tools` adoption
@@ -243,7 +243,7 @@ surface; Anthropic does not publish a separate one.
   becomes a CI-bound surface or remains interactive-only is a real
   authority decision.
 - `parentSettingsBehavior` (v2.1.133): admin-tier key for SDK managedSettings
-  policy merge -- how it interacts with enterprise policy deployment at scale.
+  policy merge: how it interacts with enterprise policy deployment at scale.
 - The `worktree.baseRef: "fresh"` default change (v2.1.133): watch for operator
   reports of unexpected worktree base behavior, especially in CI or automated
   Bitter runs that create worktrees programmatically.
@@ -251,7 +251,7 @@ surface; Anthropic does not publish a separate one.
   continues to use `official_changelog` for advisory-grade content
   (per `sources/claude-code.notes.md`).
 
-## Profile Hygiene
+## Profile hygiene
 
 This profile follows the discipline in `METHOD.md`: every
 concrete claim in the prose has an inline source link and an entry in the
