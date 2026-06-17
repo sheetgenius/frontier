@@ -103,7 +103,7 @@ operator_questions:
   - Does this make agentic work more approachable to ordinary developers or everyday users?
   - Does this reduce setup, terminal fluency, or coordination burden?
   - Does it simplify the surface while preserving visible authority and control?
-  - Does this change whether Bitter should expose a more humane surface over its rigorous internals?
+  - Does this demonstrate a more humane surface over rigorous internals that teams could adopt?
   - Does this suggest a new distribution surface beyond terminal-only agent work?
 default_actionability:
   release: test

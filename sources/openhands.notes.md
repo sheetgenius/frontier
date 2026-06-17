@@ -27,8 +27,9 @@ Do not over-weight:
 
 Editorial stance:
 
-OpenHands teaches the platformization question. Bitter should study which
-surfaces make agentic software work adoptable by teams, then decide what to
-wrap, what to adapt, and what to refuse. The danger is becoming every surface
-at once. The lesson is how a serious agent platform packages runtime,
-collaboration, sandboxing, evaluation, and enterprise governance.
+OpenHands is where the frontier asks the platformization question. The reading
+worth taking from it is which surfaces make agentic software work adoptable by
+teams, and which of those a team should wrap, adapt, or refuse. The danger for
+any operator is becoming every surface at once. The lesson is how a serious
+agent platform packages runtime, collaboration, sandboxing, evaluation, and
+enterprise governance.

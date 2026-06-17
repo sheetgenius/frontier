@@ -102,8 +102,8 @@ high_signal_patterns:
 operator_questions:
   - Does this validate or challenge the "model + harness" framing as a durable public category?
   - Which harness primitives (sandbox, filesystem, skills, memory, sessions, credentials) are stabilizing vs. still experimental?
-  - Does this suggest integration surfaces Bitter should expose, wrap, or treat as precedent?
-  - Does any API change affect how Bitter thinks about its own receipt layer or deployment membrane?
+  - Does this suggest integration surfaces teams should expose, wrap, or treat as precedent?
+  - Does any API change affect how operators should think about their own receipt layer or deployment membrane?
   - Is the project gaining enough traction to treat as architectural reference rather than just category evidence?
 default_actionability:
   release: observe
@@ -117,18 +117,16 @@ discovery:
   verified_by: harvest_run
   confidence: medium
   open_questions:
-    - Confirm GitHub repo is github.com/withastro/flue (withastro org is unusual for an agent harness project — verify ownership).
+    - Confirm GitHub repo is github.com/withastro/flue (withastro org is unusual for an agent harness project; verify ownership).
     - Is the Apache-2.0 license confirmed in the repo?
     - What is the actual star count and commit velocity at time of first harvest?
     - Are APIs stable enough to treat individual primitives as architectural precedent, or watch-only for now?
 notes: >
   Watch Flue as the programmable harness / headless agent calibration source.
-  Its core framing — "Agent = Model + Harness" — explicitly separates the model
+  Its core framing, "Agent = Model + Harness," explicitly separates the model
   from the harness, filesystem, sandbox, skills, memory, sessions, and deployment
-  surface, which directly validates Bitter's thesis that the valuable layer is
-  the shaped environment around the model, not just the model call itself.
-  Treat it as category evidence and possible integration reference, not stable
+  surface. That is evidence for the thesis that the valuable layer is the shaped
+  environment around the model, not just the model call itself. Treat it as
+  category evidence and possible integration reference, not stable
   infrastructure. APIs are self-described as experimental; monitor direction
-  before treating any primitive as architectural precedent. Bitter is the
-  operating loop / receipt layer / local actuation membrane; Flue is an agent
-  framework — they are adjacent, not the same thing.
+  before treating any primitive as architectural precedent.

@@ -100,8 +100,8 @@ high_signal_patterns:
 operator_questions:
   - Does this change how an operator should govern Claude Code sessions?
   - Does this affect agent lifecycle, resume behavior, planning, permissions, or hooks?
-  - Does this change whether Bitter should defer to Claude Code-native capability?
-  - Does this create a new adapter, eval, receipt, or capability-profile need?
+  - Does this change whether teams should defer to Claude Code-native capability?
+  - Does this create a new adapter, eval, receipt, or capability-profile need for teams running it in production?
   - Does this make serious agent work easier to start, inspect, or control without hiding authority?
 default_actionability:
   release: test

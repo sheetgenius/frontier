@@ -4,7 +4,7 @@ description: >
   Referent-only index of tools that watched providers compose with but
   that are not on the editorial watchlist. Entries here resolve in
   finding `composes:` arrays alongside `sources/index.yml` ids. No
-  source contract, no profile, no harvest cadence — these are named
+  source contract, no profile, no harvest cadence. These are named
   existing tools, not editorial subjects. Per ratified amendment 006.
 adjacent_tools:
   - id: aider

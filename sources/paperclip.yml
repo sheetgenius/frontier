@@ -76,7 +76,7 @@ research_lenses:
   - economic_governance
   - accountability
   - multi_agent_operations
-  - factory_analogue
+  - operating_state_legibility
 high_signal_patterns:
   - company
   - org chart
@@ -100,7 +100,7 @@ operator_questions:
   - Does this make multi-agent labor more legible as operating state?
   - Does this expose goals, budgets, roles, approvals, and accountability in a way a human can govern?
   - Does this produce real control over agent work or only a company-themed dashboard?
-  - Does this change how Bitter Factory should model run contracts, allocation, budgets, or property operations?
+  - Does this change how a control plane should model run contracts, allocation, or budgets for agent work?
   - Does this make coordination easier without hiding who approved what and why?
 default_actionability:
   release: test
@@ -118,7 +118,7 @@ discovery:
     - How much of the company/control-plane metaphor is backed by durable operating state versus UI framing?
     - Which governance and budget primitives are enforceable rather than descriptive?
 notes: >
-  Watch Paperclip as the coordination and economic-control-plane source. Its
-  relevance to Bitter is the Factory question: can agent work be organized
-  into goals, roles, budgets, accountability, approvals, and operating state
-  without becoming theater?
+  Watch Paperclip as the coordination and economic-control-plane source. It
+  poses the control-plane question: can agent work be organized into goals,
+  roles, budgets, accountability, approvals, and operating state without
+  becoming theater?

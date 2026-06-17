@@ -112,8 +112,8 @@ high_signal_patterns:
 operator_questions:
   - Does this change how an operator should trust Gemini CLI in a repo?
   - Does this affect checkpointing, context files, sandboxing, tools, auth, or output contracts?
-  - Does this change Bitter adapter, receipt, eval, or run-contract assumptions?
-  - Does the release-channel cadence change how Bitter should test stable versus preview behavior?
+  - Does this change adapter, receipt, eval, or run-contract assumptions for teams running it in production?
+  - Does the release-channel cadence change how operators should test stable versus preview behavior?
   - Does this make serious agent work easier to start, inspect, or control without hiding authority?
 default_actionability:
   release: test

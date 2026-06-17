@@ -28,7 +28,7 @@ Do not over-weight:
 
 Editorial stance:
 
-Agent Zero teaches the BitterGrid question. Bitter does not need to copy its
-surface. Bitter needs to understand the product pressure: agents want real
+Agent Zero is where the frontier asks the workcell question. The point is not to
+copy its surface but to read the product pressure it exposes: agents want real
 computers, not toy tool loops. The hard part is making that computer leased,
 bounded, logged, inspectable, resumable, and disposable.

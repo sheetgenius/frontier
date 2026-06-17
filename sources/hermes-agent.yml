@@ -99,8 +99,8 @@ high_signal_patterns:
 operator_questions:
   - Does this change how an operator should think about self-improving agents?
   - Does this affect long-horizon work, memory, skills, subagents, runtime portability, or messaging gateways?
-  - Does this change whether Bitter should wrap Hermes as an agent engine, compare it, or adopt an adapter assumption?
-  - Does this expose a governance, permission, receipt, or replay gap that Bitter can own?
+  - Does this change whether teams should wrap Hermes as an agent engine, compare it, or adopt an adapter assumption?
+  - Does this expose a governance, permission, receipt, or replay gap for teams running it in production?
   - Does this make serious agent work easier to start, inspect, or control without hiding authority?
 default_actionability:
   release: test
@@ -120,6 +120,6 @@ notes: >
   Hermes should be watched as a broad self-improving agent platform, not just
   as a coding CLI. Pay special attention to memory, skills, automations,
   messaging surfaces, subagents, sandboxing, runtime portability, and research
-  trajectory generation. Bitter's opening is the project workflow around tools
-  like this: permissions, evidence, review, memory, and what the next run
-  should know.
+  trajectory generation. The operator question around tools like this is the
+  project workflow that surrounds them: permissions, evidence, review, memory,
+  and what the next run should know.

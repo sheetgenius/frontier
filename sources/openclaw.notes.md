@@ -29,7 +29,7 @@ Do not over-weight:
 
 Editorial stance:
 
-OpenClaw is useful to Bitter Frontier because it asks whether agent harnesses
-can become approachable. A tool can be less doctrinal than Bitter and still
-teach Bitter something existential: rigor only matters if the market can reach
-it.
+OpenClaw matters on the frontier because it asks whether agent harnesses can
+become approachable. A tool can be lighter on doctrine than the rigorous
+harnesses and still surface something existential about the whole category:
+rigor only matters if the people who need the tool can actually reach it.

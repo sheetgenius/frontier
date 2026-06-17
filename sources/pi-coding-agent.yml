@@ -112,8 +112,8 @@ high_signal_patterns:
 operator_questions:
   - Does this change how an operator can adapt the harness to their workflow?
   - Does this affect session portability, context shaping, extension design, package distribution, RPC, or SDK embedding?
-  - Does Pi intentionally refusing a built-in feature create a Bitter product opening?
-  - Does this change whether Bitter should wrap Pi as an agent adapter or borrow an extension-contract idea?
+  - Does Pi intentionally refusing a built-in feature force operators to supply it themselves at the extension or workflow layer?
+  - Does this change whether teams should wrap Pi as an agent adapter or borrow an extension-contract idea?
   - Does this make serious agent work easier to start, inspect, or control without hiding authority?
 default_actionability:
   release: test
@@ -137,5 +137,5 @@ notes: >
   Watch Pi as a minimal, extensible terminal coding harness. It is important
   partly because of what it chooses not to include by default: subagents, plan
   mode, permission popups, MCP, and other governance features. That deliberate
-  minimalism clarifies Bitter's wedge as the project workflow around coding
-  agents: durable goals, permissions, evidence, verification, and memory.
+  minimalism throws into relief the project workflow operators must build around
+  a coding agent: durable goals, permissions, evidence, verification, and memory.

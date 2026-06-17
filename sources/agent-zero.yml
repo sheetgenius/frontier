@@ -104,7 +104,7 @@ operator_questions:
   - How is the environment isolated, inspected, persisted, reset, or cleaned up?
   - What state is visible to the human while the agent acts?
   - What happens when the agent creates tools or subagents during a long run?
-  - Does this change how BitterGrid should model containers, workcells, or full machines?
+  - Does this change how operators should model containers, workcells, or full machines?
 default_actionability:
   release: test
   docs_change: observe
@@ -118,11 +118,11 @@ discovery:
   confidence: high
   open_questions:
     - Which release or docs surface best describes the current runtime isolation model?
-    - Which parts of Agent Zero's tool creation are safe to compare against Bitter-owned tool and receipt boundaries?
-    - What should Bitter test locally versus only study as product posture?
+    - Which parts of Agent Zero's tool creation are safe to compare against an operator's own tool and receipt boundaries?
+    - Which behaviors should operators test locally versus only study as product posture?
 notes: >
-  Watch Agent Zero as the workcell-autonomy source. Its relevance to Bitter is
-  the Grid question: what happens when an agent gets a real computer
-  environment, can use terminal/browser/files, and can grow tools or subagents
-  inside that environment? Pay special attention to isolation, persistence,
-  cleanup, visibility, and whether power remains governable.
+  Watch Agent Zero as the workcell-autonomy source. It raises the question of
+  what happens when an agent gets a real computer environment, can use
+  terminal/browser/files, and can grow tools or subagents inside that
+  environment. Pay special attention to isolation, persistence, cleanup,
+  visibility, and whether power remains governable.

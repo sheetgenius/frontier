@@ -17,5 +17,5 @@ Do not over-weight:
 
 - package demos that do not affect the core contract or operator workflow
 - community packages without maintainer signal or usage evidence
-- features Pi explicitly delegates to extensions unless that delegation exposes a Bitter opening
+- features Pi explicitly delegates to extensions unless that delegation forces operators to own the capability themselves
 - generic comparisons to Claude Code/Codex without a concrete source-backed change

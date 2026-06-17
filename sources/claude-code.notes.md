@@ -1,7 +1,7 @@
 # Claude Code Source Notes
 
 Watch Claude Code as a provider-native coding environment whose native
-capabilities may dissolve work Bitter should not clone.
+capabilities may dissolve work that operators would otherwise build around it.
 
 High-signal areas:
 
@@ -14,7 +14,7 @@ High-signal areas:
 
 Do not over-weight:
 
-- tiny TUI fixes unless they affect Bitter terminal UX or adapter robustness
+- tiny TUI fixes unless they affect terminal UX or adapter robustness for teams running it in production
 - bug-fix lists without a clear operator consequence
 - social summaries that do not link to official docs or changelog entries
 - claims about model quality without method, window, and reproducible context
@@ -24,7 +24,7 @@ Do not over-weight:
 Anthropic does **not** publish a separate security advisory page or feed
 for Claude Code. Security-grade fixes (sandbox bypasses, permission
 enforcement gaps, auth-pinning regressions) ship as ordinary entries
-in `official_changelog`. Examples documented in the 2026-05-13 → 2026-05-27
+in `official_changelog`. Examples documented in the 2026-05-13 to 2026-05-27
 window:
 
 - v2.1.149 (2026-05-22): PowerShell built-in `cd` functions defeating
@@ -43,7 +43,7 @@ changelog is the de-facto advisory surface; the source contract names
 advisory weight even when Anthropic does not separately mark the entry.
 
 Harvesters running this provider should not block on a separate
-advisory feed appearing — none is planned at time of writing. If a
+advisory feed appearing; none is planned at time of writing. If a
 separate advisory surface emerges in the future, update this notes
 file and the source contract `primary_surfaces` accordingly.
 

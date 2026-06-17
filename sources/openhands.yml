@@ -116,7 +116,7 @@ operator_questions:
   - What happens when an agent harness becomes a full software-development platform?
   - Which surfaces are SDK, CLI, GUI, cloud, enterprise, or integration-specific?
   - How does OpenHands package sandboxing, permissions, collaboration, and evaluation for real teams?
-  - Which parts should Bitter wrap, which parts should Bitter learn from, and which parts should Bitter refuse to become?
+  - Which parts should teams wrap, which parts should they learn from, and which parts should they refuse to adopt wholesale?
   - Does this make agentic software work easier to adopt without hiding evidence or authority?
 default_actionability:
   release: test
@@ -134,8 +134,8 @@ discovery:
     - Which evaluation and sandboxing claims can be probed locally?
     - Which integrations change operator behavior enough to become signals?
 notes: >
-  Watch OpenHands as the productized software-agent platform source. Its
-  relevance to Bitter is breadth: SDK, CLI, GUI, cloud, enterprise,
-  integrations, sandboxing, collaboration, and evaluation in one system.
-  Study what a full platform makes easier, and where Bitter should stay a
-  wrapper/control layer instead of becoming the whole platform.
+  Watch OpenHands as the productized software-agent platform source. What it
+  signals is breadth: SDK, CLI, GUI, cloud, enterprise, integrations,
+  sandboxing, collaboration, and evaluation in one system. Study what a full
+  platform makes easier, and where operators are better served by a thin
+  control layer than by adopting the whole platform.

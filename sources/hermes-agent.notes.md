@@ -18,4 +18,4 @@ Do not over-weight:
 - generic "agent that grows with you" positioning without a concrete changed surface
 - social hype without a primary repo, release, or docs link
 - benchmark or usage claims without method and reproducible context
-- features that are impressive but do not affect operator leverage, governance, receipts, or Bitter adapter posture
+- features that are impressive but do not affect operator leverage, governance, receipts, or adapter posture

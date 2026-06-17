@@ -114,7 +114,7 @@ operator_questions:
   - Does this change how an operator should run, trust, or govern Codex?
   - Does this affect long-horizon autonomous software work?
   - Does this affect verification, replay, resume, permissions, memory, or receipts?
-  - Does this change whether Bitter should wrap, test, adapt, or ignore Codex capability?
+  - Does this change whether teams should wrap, test, adapt, or ignore Codex capability?
   - Does this make serious agent work easier to start, inspect, or control without hiding authority?
 default_actionability:
   release: test
@@ -129,10 +129,10 @@ discovery:
   confidence: high
   open_questions:
     - Which GitHub releases, tags, and npm package versions should be treated as canonical when they disagree with the official Codex changelog?
-    - Which provider-native long-horizon features should Bitter explicitly detect through local probes rather than relying on release notes?
+    - Which provider-native long-horizon features should be detected through local probes rather than relying on release notes?
 notes: >
   Watch Codex as provider-native frontier capability, not just as an open-source
-  CLI. Pay special attention to features that change Bitter's wrapper posture:
+  CLI. Pay special attention to features that change how operators run it:
   long-horizon work, goals, subagents, workflows, sandboxing, permissions,
   AGENTS.md behavior, skills, plugins, MCP, browser/computer-use surfaces,
   non-interactive execution, SDKs, cost reporting, and enterprise governance.

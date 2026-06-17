@@ -1,7 +1,7 @@
 # Paperclip Source Notes
 
-Paperclip should be watched as a Factory analogue, not merely as another
-multi-agent app.
+Paperclip should be watched as a coordination and economic-control-plane
+source, not merely as another multi-agent app.
 
 The important question is:
 
@@ -28,7 +28,8 @@ Do not over-weight:
 
 Editorial stance:
 
-Paperclip teaches the Factory question. The lesson is not "copy the company
-metaphor." The lesson is to ask what makes agent labor economically legible:
-what was asked, who or what did it, what budget it consumed, what evidence it
-left, what remains blocked, and what a human can approve or redirect.
+Paperclip is where the frontier asks the control-plane question. The lesson is
+not "copy the company metaphor." The lesson is to ask what makes agent labor
+economically legible: what was asked, who or what did it, what budget it
+consumed, what evidence it left, what remains blocked, and what a human can
+approve or redirect.

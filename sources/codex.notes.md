@@ -1,7 +1,7 @@
 # Codex Source Notes
 
 Watch Codex as provider-native frontier capability. The key question is not
-"did OpenAI ship a feature?" The key question is whether Bitter should route
+"did OpenAI ship a feature?" The key question is whether operators should route
 through, constrain, receipt, test, or stop mirroring that capability.
 
 High-signal areas:
@@ -19,4 +19,4 @@ Do not over-weight:
 - generic model announcements without Codex operator impact
 - third-party commentary without a primary Codex source
 - benchmark claims unless they include method and reproducible context
-- provider marketing copy that does not change Bitter action
+- provider marketing copy that does not change operator action
