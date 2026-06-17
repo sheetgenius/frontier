@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: medium
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: high
 actionability: test
 evidence:
   - label: "Adapters declare runtime command spec for remote provisioning"

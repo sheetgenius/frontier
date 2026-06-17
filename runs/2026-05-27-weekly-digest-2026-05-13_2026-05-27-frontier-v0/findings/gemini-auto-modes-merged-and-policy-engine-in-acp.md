@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: medium
 operator_relevance: high
-bitter_relevance: medium
-factory_relevance: medium
 actionability: test
 evidence:
   - label: "v0.44.0-preview.0: merge Auto modes into a single Auto mode (#26714); PolicyEngine in ACP (#27252) — 2026-05-22"

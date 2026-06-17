@@ -6,7 +6,6 @@ source_contract: sources/hermes-agent.yml
 window: 2026-04-22..2026-05-06
 status: accepted_signal
 confidence: high
-factory_relevance: medium
 receipts:
   - https://github.com/NousResearch/hermes-agent/releases/tag/v2026.4.23
   - https://github.com/NousResearch/hermes-agent/releases/tag/v2026.4.30

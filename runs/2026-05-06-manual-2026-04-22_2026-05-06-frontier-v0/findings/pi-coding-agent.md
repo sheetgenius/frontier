@@ -6,7 +6,6 @@ source_contract: sources/pi-coding-agent.yml
 window: 2026-04-22..2026-05-06
 status: accepted_signal
 confidence: high
-factory_relevance: medium
 receipts:
   - https://github.com/badlogic/pi-mono/releases/tag/v0.69.0
   - https://github.com/badlogic/pi-mono/releases/tag/v0.70.0

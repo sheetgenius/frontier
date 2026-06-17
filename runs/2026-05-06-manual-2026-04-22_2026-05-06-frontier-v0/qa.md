@@ -115,8 +115,6 @@ frontier_area:
   - worker_goals
   - autonomous_development
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: medium
 actionability: test
 ```
 

@@ -15,8 +15,6 @@ signals:
       - findings/codex.md
     confidence: high
     operator_relevance: high
-    bitter_relevance: high
-    factory_relevance: medium
     actionability: test
     summary: >
       Codex /goal is a worker-native objective register, not merely a memory
@@ -26,14 +24,6 @@ signals:
       Operators now need to ask which durable objective the worker is pursuing,
       whether it is still aligned with the operator's charter, and how it maps
       to the current run mandate.
-    bitter_implication: >
-      Treat worker goals as first-class receipt fields: goal id, goal text,
-      creation source, last update, status, scope, originating run, mapped
-      charter, mapped mandate, and settlement status.
-    factory_implication: >
-      Factory may eventually consider worker-native goal support when selecting
-      a worker for long-horizon hosted runs, but the run contract must preserve
-      the operator-owned charter and mandate above the worker goal.
     next_actions:
       - Probe Codex /goal as a dedicated long-horizon autonomy primitive.
       - Define worker_goal receipt fields and settlement statuses.
@@ -51,8 +41,6 @@ signals:
       - findings/hermes-agent.md
     confidence: high
     operator_relevance: high
-    bitter_relevance: high
-    factory_relevance: medium
     actionability: adapt
     summary: >
       Worker tools are adding native mechanisms for carrying context forward,
@@ -62,12 +50,6 @@ signals:
       Recaps, memory patches, skill curators, and task state are moving into
       worker tools. Operators should use them, but should preserve an
       operator-owned record of what state governed each run.
-    bitter_implication: >
-      Add worker-native state fields to adapter receipts: recap handles, memory
-      patch ids, curator reports, skill reports, and resume state.
-    factory_implication: >
-      Factory may need to record worker-native state surfaces as part of
-      run-contract context when selecting or dispatching workers.
     next_actions:
       - Define a worker_native_state section in the adapter receipt sketch.
       - Probe Claude recaps, Gemini Auto Memory, and Hermes Curator.
@@ -85,8 +67,6 @@ signals:
       - findings/pi-coding-agent.md
     confidence: high
     operator_relevance: high
-    bitter_relevance: high
-    factory_relevance: medium
     actionability: adapt
     summary: >
       Workers increasingly expose permission, trust, environment, hook, MCP,
@@ -94,13 +74,6 @@ signals:
     operator_consequence: >
       Permission profiles, workspace trust, env loading, hooks, MCP behavior,
       extension schemas, and provider transports differ by worker and release.
-    bitter_implication: >
-      Bitter capability profiles should record worker-native permission and
-      trust semantics instead of assuming a uniform authorization model.
-    factory_implication: >
-      Factory run contracts should not dispatch a worker without versioned
-      authority assumptions when credentials, network, runtime, or hosted state
-      matter.
     next_actions:
       - Add a permission/trust probe for each initial worker.
       - Include exact worker version, release channel, env policy, and active
@@ -119,8 +92,6 @@ signals:
       - findings/hermes-agent.md
     confidence: high
     operator_relevance: high
-    bitter_relevance: high
-    factory_relevance: medium
     actionability: test
     summary: >
       Worker tools are adding review, multi-agent, eval, and curator-style
@@ -130,13 +101,6 @@ signals:
       Provider-native review, multi-agent execution, subagent evals, curator
       reports, and QA-like cloud fleets can catch useful issues, but their
       verdicts are not automatically the operator's truth.
-    bitter_implication: >
-      Treat worker verification as evidence inputs. BitterQA or the run contract
-      should still own the final evidence standard and settlement.
-    factory_implication: >
-      Factory can use worker verification as one allocation input, but should
-      require source attribution and avoid treating provider verdicts as
-      portfolio truth.
     next_actions:
       - Create a comparison fixture for Claude ultrareview, Codex multi-agent
         review, and local verification receipts.
@@ -156,8 +120,6 @@ signals:
       - findings/pi-coding-agent.md
     confidence: high
     operator_relevance: medium
-    bitter_relevance: high
-    factory_relevance: low
     actionability: adapt
     summary: >
       The practical power of worker CLIs is moving into plugins, hooks,
@@ -165,10 +127,6 @@ signals:
     operator_consequence: >
       The practical power of worker CLIs increasingly depends on plugins, hooks,
       extensions, skills, and transport modules, not just the base model.
-    bitter_implication: >
-      Adapter receipts should include enabled plugin/extension/skill surfaces
-      and should distinguish worker-local skills from Bitter-owned memory.
-    factory_implication: none
     next_actions:
       - Add plugin_surface fields to the adapter receipt vocabulary.
       - Do not ingest worker skills as Bitter memory without a settlement step.
@@ -185,8 +143,6 @@ signals:
       - findings/codex.md
     confidence: high
     operator_relevance: medium
-    bitter_relevance: high
-    factory_relevance: low
     actionability: observe
     summary: >
       Provider lists, release channels, app-server surfaces, and built-in
@@ -196,10 +152,6 @@ signals:
       Pi removed built-in Gemini CLI and Antigravity support while adding many
       providers; Gemini preview/nightly channels differ materially; Codex alpha
       releases and app-server surfaces move quickly.
-    bitter_implication: >
-      Keep worker adapters thin, versioned, source-contracted, and replaceable.
-      The stable Bitter asset is the run contract and receipt chain.
-    factory_implication: none
     next_actions:
       - Create a small adapter capability matrix before deeper integration.
       - Track release channel and source-contract verification date per worker.

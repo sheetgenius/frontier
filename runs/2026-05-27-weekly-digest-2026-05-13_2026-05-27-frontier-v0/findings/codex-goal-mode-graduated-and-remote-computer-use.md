@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: high
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: medium
 actionability: test
 evidence:
   - label: "Codex product changelog: Appshots, goal mode, and more 26.519 (2026-05-21)"

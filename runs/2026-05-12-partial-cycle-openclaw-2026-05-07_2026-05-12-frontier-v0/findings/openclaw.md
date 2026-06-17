@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: medium
 accessibility_impact: medium
 operator_relevance: high
-bitter_relevance: medium
-factory_relevance: low
 actionability: observe
 evidence:
   - label: "v2026.5.10-beta.5 release notes (primary)"

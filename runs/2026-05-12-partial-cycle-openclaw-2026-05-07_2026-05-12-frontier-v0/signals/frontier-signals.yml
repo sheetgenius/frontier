@@ -23,4 +23,3 @@ signals:
         onboarding wayfinding: setup, onboarding, configure, and channel
         commands now explain the next useful command at each step."
     accessibility_impact: medium
-    factory_relevance: low

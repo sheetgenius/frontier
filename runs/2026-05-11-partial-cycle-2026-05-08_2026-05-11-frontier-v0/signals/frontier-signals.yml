@@ -18,4 +18,3 @@ signals:
       - Session export/import gives operators and Bitter a stable serialization
         point.
     accessibility_impact: medium
-    factory_relevance: medium

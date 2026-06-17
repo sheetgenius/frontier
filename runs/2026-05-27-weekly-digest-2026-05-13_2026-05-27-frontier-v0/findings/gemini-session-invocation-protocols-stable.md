@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: medium
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: medium
 actionability: test
 evidence:
   - label: "Gemini CLI v0.44.0 stable release (2026-05-27)"

@@ -27,4 +27,3 @@ signals:
         connectors; operators using API key should audit reliance on these
         surfaces before upgrading."
     accessibility_impact: high
-    factory_relevance: medium

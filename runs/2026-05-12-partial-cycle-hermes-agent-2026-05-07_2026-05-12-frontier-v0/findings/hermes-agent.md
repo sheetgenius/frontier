@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: medium
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: high
 actionability: test
 evidence:
   - label: "v0.13.0 release notes (v2026.5.7) — The Tenacity Release"

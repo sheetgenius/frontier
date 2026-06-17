@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: low
 operator_relevance: medium
-bitter_relevance: low
-factory_relevance: low
 actionability: test
 evidence:
   - label: "PR #26577 — fix(cli): restore resume for legacy sessions"

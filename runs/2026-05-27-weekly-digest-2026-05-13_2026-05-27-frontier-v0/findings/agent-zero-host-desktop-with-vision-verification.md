@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: medium
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: medium
 actionability: study
 evidence:
   - label: "Agent Zero v1.17 release notes — host desktop control with vision verification (2026-05-23)"

@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: high
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: medium
 actionability: test
 evidence:
   - label: "v2.1.139 changelog (agent view, /goal, continueOnBlock, subagent headers, API key boundary)"

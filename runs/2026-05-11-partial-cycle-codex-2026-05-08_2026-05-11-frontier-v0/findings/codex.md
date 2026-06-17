@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: medium
 operator_relevance: high
-bitter_relevance: medium
-factory_relevance: low
 actionability: test
 evidence:
   - label: "Permissions and approval mode visible in TUI status line (PR #21677)"

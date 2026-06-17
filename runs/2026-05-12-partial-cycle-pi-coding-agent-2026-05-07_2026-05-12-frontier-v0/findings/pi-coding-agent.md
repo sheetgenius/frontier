@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: low
 operator_relevance: high
-bitter_relevance: medium
-factory_relevance: low
 actionability: adapt
 evidence:
   - label: "v0.74.0 release notes — package scope migration"

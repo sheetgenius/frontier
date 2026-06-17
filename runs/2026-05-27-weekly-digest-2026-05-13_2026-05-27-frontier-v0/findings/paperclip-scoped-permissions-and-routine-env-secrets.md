@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: medium
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: high
 actionability: study
 evidence:
   - label: "Paperclip v2026.525.0 release (scoped agent permissions, routine env secrets, Modal sandbox)"

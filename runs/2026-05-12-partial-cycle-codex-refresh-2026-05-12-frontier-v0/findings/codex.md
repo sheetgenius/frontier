@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: low
 operator_relevance: high
-bitter_relevance: medium
-factory_relevance: low
 actionability: adapt
 evidence:
   - label: "PR #20527 — Support PreToolUse updatedInput rewrites"

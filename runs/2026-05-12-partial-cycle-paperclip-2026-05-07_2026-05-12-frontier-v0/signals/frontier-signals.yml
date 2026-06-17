@@ -22,4 +22,3 @@ signals:
         `cursor_cloud` adapter for cloud-hosted Cursor routing with session
         reuse, streaming, and cancellation."
     accessibility_impact: medium
-    factory_relevance: high

@@ -24,4 +24,3 @@ signals:
       - "Operators using cron should evaluate `no_agent` mode for script-only
         automation that does not require LLM invocation."
     accessibility_impact: medium
-    factory_relevance: high

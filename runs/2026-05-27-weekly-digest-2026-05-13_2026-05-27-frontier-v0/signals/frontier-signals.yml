@@ -51,7 +51,6 @@ signals:
       residual: "Auto mode's runtime classification of 'safe' is not
         enumerated in the changelog; deployments must consult the
         runtime, not the docs."
-    factory_relevance: medium
 
   - id: 2026-05-27-claude-code-powershell-and-worktree-sandbox-fixes
     section: runtime
@@ -98,7 +97,6 @@ signals:
         advisory page. Operators relying on advisory feeds to drive
         upgrade discipline will not catch these — they appear only in
         the changelog."
-    factory_relevance: low
 
   - id: 2026-05-27-codex-goal-mode-graduated-and-remote-computer-use
     section: control-plane
@@ -154,7 +152,6 @@ signals:
         per-domain gating for the locked-host path. Operators should
         confirm whether the safeguards can be narrowed beyond the
         documented ones."
-    factory_relevance: medium
 
   - id: 2026-05-27-codex-permission-profile-inheritance-and-managed-requirements
     section: control-plane
@@ -200,7 +197,6 @@ signals:
       residual: "The distribution and signing model for
         `requirements.toml` is unspecified. Runtime profile-refresh
         consistency under in-flight tool calls is also unspecified."
-    factory_relevance: high
 
   - id: 2026-05-27-gemini-session-invocation-protocols-stable
     section: runtime
@@ -229,7 +225,6 @@ signals:
         documented. Resolution is rule-based, not implementation-
         defined."
     security_impact: none
-    factory_relevance: medium
 
   - id: 2026-05-27-gemini-auto-modes-merged-and-policy-engine-in-acp
     section: control-plane
@@ -279,7 +274,6 @@ signals:
         (per-session enforcement by default vs only when configured).
         Interaction with workspace trust on shell-redirect
         auto-approval is not in release notes."
-    factory_relevance: medium
 
   - id: 2026-05-27-openhands-acp-ui-and-org-llm-profiles
     section: platform
@@ -332,7 +326,6 @@ signals:
         follow-up PR not in window. The composition pattern (OpenHands
         ACP fronting Claude Code) raises a schema-doctrine question
         recorded in audit."
-    factory_relevance: high
 
   - id: 2026-05-27-agent-zero-host-desktop-with-vision-verification
     section: runtime
@@ -386,7 +379,6 @@ signals:
         (prompt vs runtime return-shape) is partially ambiguous.
         Host-vs-container routing under conflict relies on ranking,
         not enforcement."
-    factory_relevance: medium
 
   - id: 2026-05-27-openclaw-content-boundary-hardening-suite
     section: runtime
@@ -436,7 +428,6 @@ signals:
       residual: "Browser snapshot SSRF policy default and interaction
         with operator-configured allow-domains is not documented.
         Typed-plugin-author signing/trust model still open."
-    factory_relevance: low
 
   # Hermes Foundation Release decomposed into 4 consequence-shaped signals
   # at amendment-005 ratification (2026-05-27). Single composite replaced.
@@ -478,7 +469,6 @@ signals:
         behavior must verify the lazy path preserves it."
       residual: "Lazy-install interaction with fail-closed credential
         doctrine is unverified."
-    factory_relevance: low
 
   - id: 2026-05-27-hermes-proxy-credential-router
     section: control-plane
@@ -530,7 +520,6 @@ signals:
         posture (reverse-proxy + shared bearer, mTLS, etc.). Operators
         exposing the proxy beyond loopback are choosing their own auth
         story, not following one Nous Research documented."
-    factory_relevance: low
 
   - id: 2026-05-27-hermes-honcho-identity-and-credential-isolation
     section: control-plane
@@ -570,7 +559,6 @@ signals:
       residual: "Honcho identity-mapping resolver ladder canonicality —
         is this the Hermes identity layer or a Honcho integration? — is
         open and may evolve."
-    factory_relevance: low
 
   - id: 2026-05-27-hermes-kanban-corruption-hardening
     section: runtime
@@ -596,7 +584,6 @@ signals:
         hardening is internal."
       residual: "Kanban gate's false-positive rate under real
         multi-agent load remains undocumented (existing open question)."
-    factory_relevance: low
 
   - id: 2026-05-27-paperclip-scoped-permissions-and-routine-env-secrets
     section: control-plane
@@ -654,4 +641,3 @@ signals:
         with agent-owned permission files
         (`~/.claude/settings.json`) is undocumented — schema
         doctrine question in audit."
-    factory_relevance: high

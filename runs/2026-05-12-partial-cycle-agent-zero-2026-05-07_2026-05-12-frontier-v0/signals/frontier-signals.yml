@@ -19,4 +19,3 @@ signals:
         navigation. Accumulated desktop state (open apps, browser sessions)
         persists until explicitly shut down."
     accessibility_impact: medium
-    factory_relevance: medium

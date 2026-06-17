@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: medium
 accessibility_impact: high
 operator_relevance: high
-bitter_relevance: medium
-factory_relevance: medium
 actionability: observe
 evidence:
   - label: "Systemd restart readiness for gateway"

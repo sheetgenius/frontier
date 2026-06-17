@@ -5,7 +5,6 @@ source_contract: sources/codex.yml
 window: 2026-04-22..2026-05-06
 status: accepted_signal
 confidence: high
-factory_relevance: medium
 receipts:
   - https://developers.openai.com/codex/changelog/#github-release-315916672
   - https://github.com/openai/codex/releases/tag/rust-v0.128.0

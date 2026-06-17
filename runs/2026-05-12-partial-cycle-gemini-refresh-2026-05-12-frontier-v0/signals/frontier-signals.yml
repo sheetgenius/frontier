@@ -14,4 +14,3 @@ signals:
         prior to this fix, resume failures silently started new sessions. Verify
         the behavior after upgrade."
     accessibility_impact: low
-    factory_relevance: low

@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: medium
 accessibility_impact: medium
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: medium
 actionability: test
 evidence:
   - label: "Add sub-agent task tool set (PR #14122)"

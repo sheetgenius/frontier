@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: high
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: medium
 actionability: upgrade
 evidence:
   - label: "v2.1.152 changelog: Auto mode no longer requires opt-in consent (2026-05-27)"

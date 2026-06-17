@@ -22,4 +22,3 @@ signals:
         want it enabled should set that flag; per-deployment toggle is
         `verification.critic_enabled`."
     accessibility_impact: medium
-    factory_relevance: medium

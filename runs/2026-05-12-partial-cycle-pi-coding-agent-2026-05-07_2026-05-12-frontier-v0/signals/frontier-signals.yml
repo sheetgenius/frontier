@@ -17,4 +17,3 @@ signals:
         @mariozechner/pi-coding-agent name should update their references to
         @earendil-works/pi-coding-agent."
     accessibility_impact: low
-    factory_relevance: low

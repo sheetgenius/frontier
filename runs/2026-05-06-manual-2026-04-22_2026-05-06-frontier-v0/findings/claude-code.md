@@ -6,7 +6,6 @@ source_contract: sources/claude-code.yml
 window: 2026-04-22..2026-05-06
 status: accepted_signal
 confidence: high
-factory_relevance: medium
 receipts:
   - https://code.claude.com/docs/en/whats-new/2026-w17
   - https://code.claude.com/docs/en/changelog

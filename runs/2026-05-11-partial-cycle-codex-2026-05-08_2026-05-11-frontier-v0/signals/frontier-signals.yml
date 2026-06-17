@@ -17,4 +17,3 @@ signals:
       - Authority visibility in the TUI is a worked example of governance
         ergonomics worth borrowing.
     accessibility_impact: medium
-    factory_relevance: low

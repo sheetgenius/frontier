@@ -17,4 +17,3 @@ signals:
         hermes-agent[mistral] install; it no longer ships in [all] while
         quarantine is active."
     accessibility_impact: low
-    factory_relevance: low

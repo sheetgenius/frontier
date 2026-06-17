@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: high
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: low
 actionability: test
 composes:
   - codex

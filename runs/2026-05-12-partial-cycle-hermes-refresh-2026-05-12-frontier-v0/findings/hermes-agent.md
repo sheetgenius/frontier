@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: low
 operator_relevance: high
-bitter_relevance: low
-factory_relevance: low
 actionability: observe
 evidence:
   - label: "PR #24205 — fix(deps): unbreak [all] install — drop mistralai while PyPI quarantined"

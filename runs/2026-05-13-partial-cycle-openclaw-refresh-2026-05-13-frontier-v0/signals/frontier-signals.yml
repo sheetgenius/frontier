@@ -25,4 +25,3 @@ signals:
         login (API-key setup is now behind `--method api-key`). Setup scripts
         assuming read-only or API-key-first paths need to be updated."
     accessibility_impact: medium
-    factory_relevance: low

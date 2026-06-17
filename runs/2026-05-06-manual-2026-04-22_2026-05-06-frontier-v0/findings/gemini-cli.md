@@ -5,7 +5,6 @@ source_contract: sources/gemini-cli.yml
 window: 2026-04-22..2026-05-06
 status: accepted_signal
 confidence: high
-factory_relevance: medium
 receipts:
   - https://github.com/google-gemini/gemini-cli/releases/tag/v0.41.0
   - https://github.com/google-gemini/gemini-cli/releases/tag/v0.42.0-preview.0

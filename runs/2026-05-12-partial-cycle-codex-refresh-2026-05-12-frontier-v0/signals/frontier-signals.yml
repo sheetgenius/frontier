@@ -18,4 +18,3 @@ signals:
         tool arguments before dispatch -- path normalization, argument masking,
         destination redirection."
     accessibility_impact: low
-    factory_relevance: low

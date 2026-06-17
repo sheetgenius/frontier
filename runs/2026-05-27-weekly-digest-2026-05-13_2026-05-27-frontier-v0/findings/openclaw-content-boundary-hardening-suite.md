@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: medium
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: low
 actionability: study
 evidence:
   - label: "OpenClaw v2026.5.26 release notes (2026-05-27)"

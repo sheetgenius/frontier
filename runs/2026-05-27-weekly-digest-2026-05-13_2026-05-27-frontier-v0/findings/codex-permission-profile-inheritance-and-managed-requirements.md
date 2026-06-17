@@ -11,8 +11,6 @@ status: accepted_signal
 confidence: high
 accessibility_impact: medium
 operator_relevance: high
-bitter_relevance: high
-factory_relevance: high
 actionability: study
 evidence:
   - label: "Codex CLI v0.133.0 release: permission profile inheritance + managed requirements.toml (2026-05-21)"
