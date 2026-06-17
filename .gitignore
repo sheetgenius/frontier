@@ -12,3 +12,5 @@ site/test-results/
 .claude/
 tmp/
 /package-lock.json
+ROUNDS.md
+.rounds/
