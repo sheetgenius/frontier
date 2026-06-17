@@ -200,7 +200,7 @@ responsibility: `flue logs` streams; what you keep is up to you.
 
 This is coherent for a headless CI/deployment-first framework, but it is
 the opposite of the governance-first posture visible in Hermes, Paperclip,
-and OpenClaw. Bitter should track whether governance primitives emerge as
+and OpenClaw. It is worth watching whether governance primitives emerge as
 Flue approaches 1.0.
 
 *Findings: `2026-05-12-flue-initial-profile-and-observability-wave`.*

@@ -257,7 +257,7 @@ not yet receipt-backed and should not be made.
 - Carried from the source contract: which GitHub releases, tags, and
   npm package versions should be treated as canonical when they
   disagree with the official Codex changelog? Which provider-native
-  long-horizon features should Bitter detect through local probes
+  long-horizon features should operators detect through local probes
   rather than relying on release notes? See
   `sources/codex.yml#discovery`.
 - `surface_class` migration trigger: Codex is currently classified

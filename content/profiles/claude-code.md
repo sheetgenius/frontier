@@ -246,7 +246,7 @@ surface; Anthropic does not publish a separate one.
   policy merge: how it interacts with enterprise policy deployment at scale.
 - The `worktree.baseRef: "fresh"` default change (v2.1.133): watch for operator
   reports of unexpected worktree base behavior, especially in CI or automated
-  Bitter runs that create worktrees programmatically.
+  runs that create worktrees programmatically.
 - Whether Anthropic adds a separate security advisory surface or
   continues to use `official_changelog` for advisory-grade content
   (per `sources/claude-code.notes.md`).
