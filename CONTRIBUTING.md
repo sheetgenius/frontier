@@ -286,9 +286,9 @@ verification gate, not a deploy.
 - No scraping dumps. Contribute the specific receipted claim, not a bulk re-host
   of a provider's changelog.
 - Licensing. By contributing you agree your contribution may be published as
-  part of Bitter Frontier under the repository's license. (If no `LICENSE` file
-  is present yet, that is a known gap; a contribution license will be added
-  before this repository solicits wide outside contribution.)
+  part of Bitter Frontier under the repository's licenses: code under the MIT
+  License, editorial content under Creative Commons Attribution 4.0 (CC BY 4.0).
+  See [LICENSE](./LICENSE).
 - Conduct. Be precise, be civil, argue the evidence. Bad-faith vendor astroturf,
   meaning unsourced capability claims dressed as corrections, will be closed and,
   if repeated, blocked.
