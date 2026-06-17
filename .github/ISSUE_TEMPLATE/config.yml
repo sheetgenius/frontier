@@ -1,0 +1,20 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Editorial disagreement (a reading, not a fact)
+    url: https://github.com/sheetgenius/frontier/discussions
+    about: >
+      Disagree with how a digest read the week, what got promoted to a signal,
+      or the editorial voice? Open a Discussion. The synthesis and what-becomes-
+      a-signal are owned editorial calls; we welcome the argument as a Discussion,
+      not as an issue or a PR. Wrong FACTS go through the Correction template
+      instead.
+  - name: Method or scope change (how the publication works)
+    url: https://github.com/sheetgenius/frontier/issues/new
+    about: >
+      METHOD.md defines how Bitter Frontier works: the rules and the object
+      grammar. It is not edited by drive-by PR. Open an issue describing the gap
+      or contradiction with a concrete example; a maintainer decides in a
+      separate pass.
+  - name: Security issue in the site or tooling
+    url: https://github.com/sheetgenius/frontier/security/advisories/new
+    about: Report a vulnerability in the static site or the checker scripts privately, not as a public issue.

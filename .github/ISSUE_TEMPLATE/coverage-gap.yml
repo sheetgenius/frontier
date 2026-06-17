@@ -1,0 +1,105 @@
+name: Coverage gap
+description: A real, dated, source-backed change inside a published window that a digest / signals / profile missed.
+title: "[coverage-gap] <provider>: <what was missed>"
+labels: ["coverage-gap", "needs-verify"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is **recall feedback** — the machine is scored on what it failed
+        to find, and a receipted miss is valuable. You supply the receipt and
+        the window-anchoring; the maintainers decide whether it rises to a
+        finding and whether that finding becomes a signal. Please do NOT open
+        a PR that writes the finding or promotes a signal — that is the
+        editorial act (see CONTRIBUTING.md).
+  - type: dropdown
+    id: provider
+    attributes:
+      label: Provider
+      description: A watchlist source, or "other" to also propose a new source.
+      options:
+        - codex
+        - claude-code
+        - gemini-cli
+        - hermes-agent
+        - pi-coding-agent
+        - openclaw
+        - paperclip
+        - agent-zero
+        - openhands
+        - flue
+        - other (also file a New source proposal)
+    validations:
+      required: true
+  - type: input
+    id: what_changed
+    attributes:
+      label: What changed (one line)
+      description: The concrete, operator-relevant change — what an operator would do or watch because of it.
+      placeholder: "Gemini CLI fixed three path-traversal bugs in skill install/link/uninstall"
+    validations:
+      required: true
+  - type: input
+    id: receipt_url
+    attributes:
+      label: Receipt URL (primary source)
+      placeholder: "https://github.com/<owner>/<repo>/commit/<sha>  or  release / changelog / docs URL"
+    validations:
+      required: true
+  - type: dropdown
+    id: precision
+    attributes:
+      label: Receipt precision
+      options:
+        - commit_diff_reviewed
+        - commit
+        - release_note
+        - official_docs
+        - observed_behavior
+    validations:
+      required: true
+  - type: input
+    id: in_window_date
+    attributes:
+      label: In-window date (full ISO, YYYY-MM-DD)
+      description: Merge-to-default date, year confirmed inside the window of the artifact that should have caught it. Trust API/changelog timestamps, not rendered HTML.
+      placeholder: "2026-06-12"
+    validations:
+      required: true
+  - type: dropdown
+    id: channel
+    attributes:
+      label: Release-channel status
+      description: Resolved by git ancestry, not date. Is the change in a released tag, only on the default branch, or preview/beta only?
+      options:
+        - tagged-release (in an installable tag)
+        - main-unreleased (merged to default branch, not in any tag)
+        - preview-beta (in a preview/beta/nightly tag only)
+        - mixed
+        - unsure
+    validations:
+      required: true
+  - type: input
+    id: which_artifact
+    attributes:
+      label: Which artifact should have caught it?
+      description: The window's digest and/or the profile. e.g. "the 2026-06-04_2026-06-16 weekly digest, and the gemini-cli profile."
+      placeholder: "2026-06-04_2026-06-16-weekly digest; gemini-cli profile"
+    validations:
+      required: true
+  - type: textarea
+    id: why_actionable
+    attributes:
+      label: Why it could change an operator's next action
+      description: Optional but persuasive. Findings are plentiful; signals are rare. What verb, for which operator, with what verification path? (Helps the maintainer judge promotion — the call is still theirs.)
+    validations:
+      required: false
+  - type: checkboxes
+    id: ack
+    attributes:
+      label: Before you submit
+      options:
+        - label: I have not opened a PR that writes the finding or promotes a signal (that is the owned editorial act).
+          required: true
+        - label: The receipt is a public primary source and the date's year is confirmed in-window.
+          required: true

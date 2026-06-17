@@ -1,0 +1,111 @@
+name: Correction
+description: Fix a receipted fact in a finding, signal, profile, or digest (date, version, channel, URL, owner).
+title: "[correction] <provider>: <what is wrong>"
+labels: ["correction", "needs-verify"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for a wrong **fact**, not a disagreement with a reading.
+        The synthesis and what-becomes-a-signal are editorial and owned; a
+        wrong date / version / channel / URL / owner is crowdsourceable and
+        welcome. Every field below maps to the receipt requirement in
+        CONTRIBUTING.md. No receipt or no in-window date = not actionable.
+  - type: input
+    id: location
+    attributes:
+      label: What does this correct?
+      description: File path and the object id. e.g. `runs/2026-06-16-.../signals/frontier-signals.yml` signal `2026-06-10-gemini-flash-ga-routing`, or `content/profiles/claude-code.md` claim `argument-aware-permissions`.
+      placeholder: "<file path> + <finding_id / signal id / claim id / digest_id>"
+    validations:
+      required: true
+  - type: input
+    id: field
+    attributes:
+      label: Which field is wrong?
+      description: The exact field, e.g. `channel`, `evidence[].precision`, `window.end`, `homepage`, a date in the prose.
+      placeholder: "channel"
+    validations:
+      required: true
+  - type: input
+    id: current_value
+    attributes:
+      label: Current (incorrect) value
+      placeholder: "tagged-release"
+    validations:
+      required: true
+  - type: input
+    id: correct_value
+    attributes:
+      label: Correct value
+      placeholder: "main-unreleased"
+    validations:
+      required: true
+  - type: input
+    id: receipt_url
+    attributes:
+      label: Receipt URL (primary source)
+      description: The primary source that proves the corrected fact. Must be a public, linkable primary source (changelog, release, commit, official docs, or a reproducible probe you can describe). Not a tweet, news article, or "I work on it."
+      placeholder: "https://github.com/<owner>/<repo>/commit/<sha>  or  https://.../changelog#<anchor>"
+    validations:
+      required: true
+  - type: dropdown
+    id: precision
+    attributes:
+      label: Receipt precision
+      description: Must be at or above the artifact's evidence_floor (see CONTRIBUTING.md). commit_diff_reviewed = you read the diff for this claim.
+      options:
+        - commit_diff_reviewed
+        - commit
+        - release_note
+        - official_docs
+        - observed_behavior
+    validations:
+      required: true
+  - type: input
+    id: in_window_date
+    attributes:
+      label: In-window date (full ISO, YYYY-MM-DD)
+      description: The merge-to-default date, full ISO with the YEAR confirmed inside the artifact's window. Trust the API/changelog timestamp, not rendered HTML (some pages render a stale year).
+      placeholder: "2026-06-12"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Correction kind
+      options:
+        - wrong-date
+        - wrong-version-or-tag
+        - channel-mismatch (called shipped, actually main-unreleased / preview-beta)
+        - wrong-or-dead-receipt-url
+        - wrong-owner-or-homepage
+        - other-fact
+    validations:
+      required: true
+  - type: input
+    id: channel_check
+    attributes:
+      label: For a channel-mismatch — how did you verify ancestry?
+      description: Paste the check. e.g. `git merge-base --is-ancestor <sha> <tag>` result, or `git tag --contains <sha>`. Leave blank if not a channel correction.
+      placeholder: "git tag --contains bca5667fc  ->  (no output: not in any tag)"
+    validations:
+      required: false
+  - type: textarea
+    id: detail
+    attributes:
+      label: Anything else
+      description: Optional. The verbatim phrase the source supports, or why the current value is wrong.
+    validations:
+      required: false
+  - type: checkboxes
+    id: ack
+    attributes:
+      label: Before you submit
+      options:
+        - label: This corrects a fact, not an editorial reading (synthesis / promotion / voice are owned — see CONTRIBUTING.md).
+          required: true
+        - label: The receipt is a public primary source at or above the artifact's evidence_floor.
+          required: true
+        - label: The date is a full ISO date with the year confirmed in-window (I trusted the API/changelog timestamp, not rendered HTML).
+          required: true

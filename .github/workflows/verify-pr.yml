@@ -1,0 +1,128 @@
+name: Verify PR
+
+# Bitter Frontier PR verification gate. This is NOT the deploy pipeline:
+# frontier.bitter.sh publishes on push to main via a webhook after a maintainer
+# merges. This workflow only verifies a PR before a human merges it.
+#
+# Job 1 (integrity-and-build) is deterministic and REQUIRED: offline integrity
+# checker + Astro build (which runs the internal link-graph check) + static
+# header tests, plus a non-blocking receipt-link-health annotation scoped to the
+# files the PR changed. Runs on every PR, including forks. No secrets, no cost.
+#
+# Job 2 (adversarial receipt verify) is OPT-IN and currently disabled. It uses an
+# Anthropic API key to re-fetch the receipts a PR changed and post a verdict
+# comment. To enable it: add an ANTHROPIC_API_KEY repository secret, then
+# uncomment the verify-receipts job at the bottom of this file. It is advisory
+# (never a required check; a maintainer owns the merge) and is gated so a fork PR
+# cannot spend the key until a maintainer adds the verify-receipts label.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-pr-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  integrity-and-build:
+    name: Integrity + build (required)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so changed-receipts can diff against the base
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install site deps
+        working-directory: site
+        run: npm ci
+
+      - name: Offline integrity check (cross-reference ids resolve)
+        run: node site/scripts/check-integrity.mjs
+
+      - name: Build site (regenerates pages + internal link-graph check)
+        working-directory: site
+        run: npm run build
+
+      - name: Static header tests
+        working-directory: site
+        run: npm run test:headers
+
+      # Receipt link health is report-only (the checker always exits 0). We run it
+      # scoped to the files this PR changed and surface broken/redirected receipts
+      # as warnings, visible but not a merge blocker (auth walls and rate limits
+      # produce false positives, per the checker's "Soft-OK Receipt Drift" note).
+      - name: Receipt link health (non-blocking, changed paths)
+        if: ${{ github.event_name == 'pull_request' }}
+        continue-on-error: true
+        run: |
+          node site/scripts/check-external-links.mjs \
+            --report-json /tmp/link-health.json \
+            --report-md /tmp/link-health.md || true
+          node .github/scripts/changed-receipts.mjs --base "origin/${{ github.base_ref }}" --head HEAD > /tmp/changed-receipts.json
+          node .github/scripts/annotate-link-health.mjs /tmp/link-health.json /tmp/changed-receipts.json || true
+
+# ---------------------------------------------------------------------------
+# OPT-IN: adversarial receipt verification (disabled until ANTHROPIC_API_KEY is
+# set as a repository secret). Re-fetches the receipts a PR changed and posts one
+# verdict comment (verified-in-window / unsupported / out-of-window /
+# channel-mismatch). Advisory only; a maintainer owns the merge. Fork PRs need a
+# `verify-receipts` label before this can spend the key. To enable: add the
+# secret, then uncomment the job below.
+# ---------------------------------------------------------------------------
+#  verify-receipts:
+#    name: Adversarial receipt verify (advisory)
+#    runs-on: ubuntu-latest
+#    if: >
+#      github.actor != 'dependabot[bot]' &&
+#      (
+#        github.event.pull_request.head.repo.full_name == github.repository ||
+#        contains(github.event.pull_request.labels.*.name, 'verify-receipts')
+#      )
+#    permissions:
+#      contents: read
+#      pull-requests: write # to post the verdict comment
+#    steps:
+#      - uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 0
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: "22"
+#      - name: Install site deps (for gray-matter / yaml)
+#        working-directory: site
+#        run: npm ci
+#      - name: Extract changed receipts
+#        id: changed
+#        run: |
+#          node .github/scripts/changed-receipts.mjs --base "origin/${{ github.base_ref }}" --head HEAD > receipts.json
+#          echo "count=$(node -e 'console.log(require(`./receipts.json`).stats.receipts_to_verify)')" >> "$GITHUB_OUTPUT"
+#      - name: Short-circuit when no receipts changed
+#        if: steps.changed.outputs.count == '0'
+#        uses: actions/github-script@v7
+#        with:
+#          script: |
+#            await github.rest.issues.createComment({
+#              owner: context.repo.owner,
+#              repo: context.repo.repo,
+#              issue_number: context.issue.number,
+#              body: "Receipt verification: this PR changed no receipts, so no adversarial re-fetch was required."
+#            });
+#      - name: Adversarial verify + comment verdict
+#        if: steps.changed.outputs.count != '0'
+#        uses: anthropics/claude-code-action@v1
+#        with:
+#          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+#          prompt_file: .github/scripts/verify-receipts.prompt.md
+#          allowed_tools: "WebFetch,WebSearch,Read,Bash(git tag --contains *),Bash(git merge-base *),mcp__github__create_issue_comment"
+#          claude_env: |
+#            PR_NUMBER=${{ github.event.pull_request.number }}
+#            RECEIPTS_FILE=receipts.json

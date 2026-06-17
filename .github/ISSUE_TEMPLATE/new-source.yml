@@ -1,0 +1,92 @@
+name: New source proposal
+description: Propose a new watchlist source contract, or an adjacent.yml referent tool.
+title: "[new-source] <tool name>"
+labels: ["new-source"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The watchlist is **deliberately small** — each entry is a per-cycle
+        harvest commitment, so a new watchlist source is an editorial decision,
+        not an auto-merge. An `adjacent.yml` referent (a tool watched providers
+        compose with, but that we do not editorialize) is lighter. Pick the
+        path below. See "Proposing a new source" in CONTRIBUTING.md.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Which kind?
+      options:
+        - Watchlist source (we harvest it every cycle — needs a source contract)
+        - Adjacent referent (sources/adjacent.yml — named, not harvested)
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Canonical project name
+      placeholder: "Hermes Agent"
+    validations:
+      required: true
+  - type: input
+    id: id
+    attributes:
+      label: Proposed id (lowercase, hyphenated)
+      description: Must match ^[a-z0-9][a-z0-9-]*$ (the schema id pattern).
+      placeholder: "hermes-agent"
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Owner / maintainer
+      placeholder: "Nous Research"
+    validations:
+      required: true
+  - type: input
+    id: homepage
+    attributes:
+      label: Homepage / canonical URL
+      placeholder: "https://hermes-agent.nousresearch.com/docs"
+    validations:
+      required: true
+  - type: textarea
+    id: primary_surfaces
+    attributes:
+      label: Primary source surfaces
+      description: Where the truth lives — repo, changelog, release feed, docs. Give URLs. (Watchlist sources only; for an adjacent referent, the canonical URL above is enough.)
+      placeholder: |
+        - repo: https://github.com/<owner>/<repo> (releases, tags, commits, PRs, docs)
+        - changelog: https://.../changelog
+    validations:
+      required: false
+  - type: input
+    id: first_seen_finding
+    attributes:
+      label: For an adjacent referent — the finding that already references it
+      description: Required for adjacent entries. The integrity checker enforces a no-orphan rule — an active adjacent entry must be referenced by at least one finding's `composes:` array. Give the finding_id.
+      placeholder: "2026-05-27-hermes-v0.14.0-foundation-release"
+    validations:
+      required: false
+  - type: textarea
+    id: why_frontier
+    attributes:
+      label: Why this belongs on the frontier we cover
+      description: What operator-relevant question does this source answer that the current watchlist does not? Bitter Frontier is not generic AI news — argue the frontier relevance (capability, control-plane, runtime, accessibility, or a calibration facet).
+    validations:
+      required: true
+  - type: textarea
+    id: evidence_shape
+    attributes:
+      label: Accepted vs rejected evidence
+      description: What counts as a receipt for this source, and what is known noise? (Helps draft the source contract; watchlist sources only.)
+    validations:
+      required: false
+  - type: checkboxes
+    id: ack
+    attributes:
+      label: Before you submit
+      options:
+        - label: I understand a watchlist source is a maintainer decision (per-cycle harvest commitment), and an adjacent entry only lands together with a finding that references it.
+          required: true
+        - label: This is a real, current tool with public primary sources — not a roadmap, an announcement, or model memory.
+          required: true
