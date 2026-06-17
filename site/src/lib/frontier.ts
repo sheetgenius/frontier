@@ -136,20 +136,6 @@ export function getDigest(slug: string): MarkdownArtifact | undefined {
   return listDigests().find((digest) => digest.slug === slug);
 }
 
-export function listBackstage(): MarkdownArtifact[] {
-  const dir = repoPath("content", "backstage");
-  if (!fs.existsSync(dir)) return [];
-  return fs
-    .readdirSync(dir)
-    .filter((file) => file.endsWith(".md") && file !== "index.md")
-    .map((file) => readMarkdown(path.join(dir, file)))
-    .sort((a, b) => digestSortKey(b) - digestSortKey(a));
-}
-
-export function getBackstage(slug: string): MarkdownArtifact | undefined {
-  return listBackstage().find((entry) => entry.slug === slug || entry.id === slug || entry.data.digest_id === slug);
-}
-
 export function listRuns(): RunVersion[] {
   const dir = repoPath("runs");
   if (!fs.existsSync(dir)) return [];
@@ -215,7 +201,6 @@ export type SignalEntry = {
   actionability?: string;
   confidence?: string;
   accessibilityImpact?: string;
-  factoryRelevance?: string;
   runId?: string;
   findingIds: string[];
   findingRefs: Array<{ runId: string; slug: string }>;
@@ -310,7 +295,6 @@ function normalizeYamlSignal(signal: any, runId: string): SignalEntry {
     actionability: signal.actionability,
     confidence: signal.confidence,
     accessibilityImpact: signal.accessibility_impact,
-    factoryRelevance: signal.factory_relevance,
     runId,
     findingIds,
     findingRefs,
@@ -334,7 +318,6 @@ function normalizeJsonlSignal(signal: any): SignalEntry {
     actionability: signal.actionability,
     confidence: signal.confidence,
     accessibilityImpact: signal.accessibility_impact,
-    factoryRelevance: signal.factory_relevance,
     runId,
     findingIds: [],
     findingRefs: runId ? refsFromSupportingFindings(supportingPaths, runId) : [],

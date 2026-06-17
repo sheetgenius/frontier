@@ -1,4 +1,4 @@
-import { listBackstage, listDigests, listFindings, listProfiles, listRuns, listSignalSourceSlugs, listSignals } from "../lib/frontier";
+import { listDigests, listFindings, listProfiles, listRuns, listSignalSourceSlugs, listSignals } from "../lib/frontier";
 import { SITE_URL } from "../lib/site";
 
 type SitemapEntry = {
@@ -40,14 +40,6 @@ export function GET() {
     entries.set(`/digests/${digest.slug}/versions/`, {
       path: `/digests/${digest.slug}/versions/`,
       priority: "0.3",
-      changefreq: "monthly",
-    });
-  }
-
-  for (const backstage of listBackstage()) {
-    entries.set(`/backstage/${backstage.slug}/`, {
-      path: `/backstage/${backstage.slug}/`,
-      priority: "0.2",
       changefreq: "monthly",
     });
   }

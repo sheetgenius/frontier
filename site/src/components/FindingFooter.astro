@@ -18,7 +18,6 @@ if (data.confidence) metaRows.push({ label: "Confidence", value: data.confidence
 if (data.actionability) metaRows.push({ label: "Actionability", value: data.actionability });
 if (data.accessibility_impact) metaRows.push({ label: "Accessibility impact", value: data.accessibility_impact });
 if (data.operator_relevance) metaRows.push({ label: "Operator relevance", value: data.operator_relevance });
-if (data.bitter_relevance) metaRows.push({ label: "Bitter relevance", value: data.bitter_relevance });
 ---
 
 {(metaRows.length > 0 || finding.runId || citingSignals.length > 0 || citingProfiles.length > 0) && (

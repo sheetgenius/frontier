@@ -4,7 +4,7 @@ import NotPromoted from "../../../components/NotPromoted.astro";
 import OperatorBrief from "../../../components/OperatorBrief.astro";
 import SourceTrail from "../../../components/SourceTrail.astro";
 import VersionList from "../../../components/VersionList.astro";
-import { canonicalRunForDigest, formatDate, getBackstage, getDigest, getSignal, listDigests, listProfiles, sourceLabel, versionsForDigest } from "../../../lib/frontier";
+import { canonicalRunForDigest, formatDate, getDigest, getSignal, listDigests, listProfiles, sourceLabel, versionsForDigest } from "../../../lib/frontier";
 
 export function getStaticPaths() {
   return listDigests().map((digest) => ({ params: { slug: digest.slug } }));
@@ -14,7 +14,6 @@ const digest = getDigest(Astro.params.slug!);
 if (!digest) throw new Error("Digest not found");
 const canonicalRun = canonicalRunForDigest(digest);
 const versions = versionsForDigest(digest.id);
-const backstage = digest.data.backstage ? getBackstage(digest.data.backstage) : undefined;
 
 const allProfiles = listProfiles();
 const profileMap = new Map(allProfiles.map((p) => [p.slug, p]));
@@ -70,13 +69,6 @@ const topSignals = topSignalIds
       </div>
     )}
 
-    {
-      backstage && (
-        <p class="rule mt-9 pt-5 font-mono text-sm text-muted">
-          Backstage: <a href={`/backstage/${backstage.slug}/`}>what this changes for Bitter</a>
-        </p>
-      )
-    }
     <p class="rule mt-9 pt-5 font-mono text-sm text-muted">
       This digest was produced by the <a class="hover:underline" href="https://bitter.sh">Bitter</a> autonomous research loop.
     </p>

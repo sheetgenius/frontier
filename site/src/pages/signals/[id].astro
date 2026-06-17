@@ -52,9 +52,7 @@ const hasMetadata =
   confidence ||
   actionability ||
   signal.accessibilityImpact ||
-  signal.factoryRelevance ||
-  primaryFinding?.data.operator_relevance ||
-  primaryFinding?.data.bitter_relevance;
+  primaryFinding?.data.operator_relevance;
 ---
 
 <Base
@@ -181,18 +179,6 @@ const hasMetadata =
             <div>
               <dt>Operator relevance</dt>
               <dd>{primaryFinding.data.operator_relevance}</dd>
-            </div>
-          )}
-          {primaryFinding?.data.bitter_relevance && (
-            <div>
-              <dt>Bitter relevance</dt>
-              <dd>{primaryFinding.data.bitter_relevance}</dd>
-            </div>
-          )}
-          {signal.factoryRelevance && (
-            <div>
-              <dt>Factory relevance</dt>
-              <dd>{signal.factoryRelevance}</dd>
             </div>
           )}
         </dl>

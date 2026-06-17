@@ -8,7 +8,6 @@ window:
 run_id: 2026-05-07-commit-harvest-2026-04-23_2026-05-07-frontier-v1
 status: published
 artifact_version: 3
-backstage: 2026-04-23_2026-05-07-frontier-rollup-expanded
 sources:
   - codex
   - gemini-cli
