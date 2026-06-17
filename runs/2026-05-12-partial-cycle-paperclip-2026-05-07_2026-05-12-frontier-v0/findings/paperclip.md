@@ -106,12 +106,12 @@ governance-relevant: previously, a model could self-transition an issue to
 `in_review` without a real review path. The fix makes review state a
 control-plane-enforced precondition, not just a convention.
 
-## Bitter Implication
+## Frontier Implication
 
 The secrets vaults addition establishes credential provenance as a
 first-class concern at the orchestration layer. Paperclip is building
-what Bitter's evidence model calls a "receipt" for credential access: which
-secret, which rotation, which agent used it, and when. This is Bitter's
+what an evidence-based loop calls a "receipt" for credential access: which
+secret, which rotation, which agent used it, and when. This is the receipt
 model applied to credentials specifically.
 
 The `in_review` enforcement (agent cannot self-transition without a real review

@@ -21,6 +21,6 @@ The next run should:
 - split Codex `/goal` into its own signal
 - introduce `long_horizon_state` as a change type
 - frame worker goals as mission registers
-- add a rule that worker goals must be reconciled against `CHARTER.md`,
-  run mandate, and wake packet
+- add a rule that worker goals must be reconciled against the operator's
+  charter and the run's stated scope
 - make the goal-weighted run canonical

@@ -519,7 +519,7 @@ signals:
     why_action_bearing:
       - "Reverses the prior ephemeral-by-default posture for computer-use screenshots, so operators who relied on screenshots being transient must now account for retained artifacts"
       - "Changes deployment storage characteristics: long-running computer-use sessions accumulate screenshots in chat context, requiring storage planning and retention/cleanup review"
-      - "Directly hits the Grid/workcell calibration concern of persistence and cleanup for real computer access"
+      - "Directly hits the workcell calibration concern of persistence and cleanup for real computer access"
     accessibility_impact: medium
     accessibility_consequence:
       what_got_easier: "Audit trails and context preservation for computer-use operations: screenshots stay available within the chat rather than vanishing, so reviewers can reconstruct what the agent saw"

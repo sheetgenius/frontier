@@ -23,12 +23,12 @@ ultra-long-horizon work but introduce a new authority question.
 ```text
 The worker may carry a goal.
 The operator owns the charter.
-Bitter receipts the mapping.
+The record maps the two.
 ```
 
 ## Remaining Work
 
 - Create a real Codex `/goal` probe.
 - Define `worker_goal` receipt fields.
-- Compare how provider-native goals differ from `CHARTER.md`, mandate, and
-  wake packets.
+- Compare how provider-native goals differ from the operator's charter and
+  the run's stated scope.

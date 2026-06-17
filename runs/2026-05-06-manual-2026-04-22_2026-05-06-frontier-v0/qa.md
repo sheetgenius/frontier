@@ -29,15 +29,15 @@ Known gaps:
 ## Editorial Backtest
 
 The digest passes the v0 editorial bar if it is useful to an operator deciding
-how Bitter should wrap frontier workers.
+how to wrap frontier workers.
 
 Pass:
 
 - Distinguishes findings from accepted action-bearing signals.
-- Avoids forcing every change into a Factory allocation story.
+- Avoids forcing every change into a resource-allocation story.
 - Preserves the main operator implication: use worker-native capability, but
   keep the durable loop operator-owned.
-- Converts source observations into concrete Bitter next actions.
+- Converts source observations into concrete operator next actions.
 
 Watch:
 
@@ -45,7 +45,7 @@ Watch:
   into clearer subtypes: goal state, recap state, memory state, skill state,
   and session/resume state.
 - "Verification is becoming a worker capability" needs probes before it should
-  drive product decisions beyond adapter receipt vocabulary.
+  drive decisions beyond adapter receipt vocabulary.
 
 ## Acceptance Gate
 
@@ -60,7 +60,7 @@ automation test.
 Each major digest signal now resolves through:
 
 ```text
-finding -> signal -> digest section -> operator/Bitter action
+finding -> signal -> digest section -> operator action
 ```
 
 Traceability map:
@@ -68,7 +68,7 @@ Traceability map:
 - `2026-05-06-worker-native-goals`
   - findings: `codex`
   - action: probe Codex `/goal`, define `worker_goal` receipt fields, and
-    settle worker goals against `CHARTER.md` and run mandates
+    settle worker goals against the operator's charter and the run's scope
 - `2026-05-06-worker-native-memory`
   - findings: `claude-code`, `gemini-cli`, `hermes-agent`
   - action: define and probe worker-native memory/state receipt fields
@@ -99,7 +99,7 @@ state. That underweighted the change.
 Future runs should treat persistent objectives as long-horizon autonomy
 primitives, not ordinary memory features. Any frontier change that introduces
 persistent objectives, cross-session mission continuity, resumable intent,
-agent-owned task memory, or long-horizon planning should be high Bitter
+agent-owned task memory, or long-horizon planning should be high operator
 relevance by default and should receive its own signal unless the evidence is
 weak.
 
@@ -123,5 +123,5 @@ Doctrine:
 ```text
 The worker may carry a goal.
 The operator owns the charter.
-Bitter receipts the mapping.
+The record maps the two.
 ```

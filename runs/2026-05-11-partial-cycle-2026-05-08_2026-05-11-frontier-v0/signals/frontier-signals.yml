@@ -15,6 +15,6 @@ signals:
       - Run-contract design should record which subagent protocol variant a run
         used.
       - Adapter work should distinguish local from remote subagent execution.
-      - Session export/import gives operators and Bitter a stable serialization
+      - Session export/import gives operators a stable serialization
         point.
     accessibility_impact: medium

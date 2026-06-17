@@ -42,7 +42,7 @@ harvest, and known caveats that should travel with the run's outputs.
 
 Three doctrine questions emerged from the harvest. Each is recorded
 here; if they recur in the next cycle, the recommended next move is a
-draft in `charter/proposed/` rather than continuing to flag them
+drafted amendment rather than continuing to flag them
 informally.
 
 ### 1. Release-as-finding vs. decompose at signal-promotion
@@ -51,7 +51,7 @@ Hermes Agent v0.14.0 ("Foundation Release") is one release with 808
 commits and 633 merged PRs touching distribution (PyPI, Windows beta,
 Zed registry), provider routing (`hermes proxy`), identity mapping
 (Honcho), supply-chain advisory checker, and Kanban corruption
-hardening. `RESEARCH_CONTRACT.md` defines a finding as a
+hardening. The method defines a finding as a
 *"source-backed observation of what changed"* — singular.
 
 This run's choice: capture v0.14.0 as one composite finding because
@@ -113,7 +113,7 @@ sandbox over-scope) entries are de-facto advisories — the kind a
 security-conscious operator must upgrade past before deployment —
 but they ship as ordinary changelog entries.
 
-This is a source-contract decision, not a charter amendment:
+This is a source-contract decision, not a doctrine amendment:
 
 - **Option A**: amend `sources/claude-code.yml` notes to document
   that the changelog carries security-advisory content explicitly,

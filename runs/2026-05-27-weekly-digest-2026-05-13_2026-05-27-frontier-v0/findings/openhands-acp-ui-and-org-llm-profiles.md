@@ -77,8 +77,8 @@ harnesses* — the SaaS-enterprise GUI shell around Claude Code, Codex,
 or Gemini CLI, with sandboxing, RBAC, integrations, and now an
 org-level policy surface.
 
-This is exactly the meta-harness shape Bitter has been thinking
-about. The current OpenHands profile names "productized platform
+This is exactly the meta-harness shape the frontier has been moving
+toward. The current OpenHands profile names "productized platform
 calibration source" as its watchlist purpose. The 2026-05-13 → 2026-05-27
 window is the moment that thesis materialized in the product.
 

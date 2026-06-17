@@ -105,12 +105,12 @@ Coordinate-based clicking is fragile (position changes between sessions) and
 hard to audit; structured actions like `cell_edit` and `app_launch` are more
 reliable and leave a clearer record of what was done.
 
-## Bitter Implication
+## Frontier Implication
 
 Agent Zero is the clearest example in the watchlist of a "visible computer"
 workcell: the agent acts in a real desktop environment, browser, and file system,
 and the human can see what it is doing (screenshots, canvas, Xpra stream). This
-is the pattern BitterGrid should study for workcell design: bounded, inspectable,
+is the pattern to study for workcell design: bounded, inspectable,
 with visible state.
 
 The "prefer structured over coordinate clicks" guidance models a useful principle

@@ -36,7 +36,7 @@ broader window.
    build cycle. This is now the highest-priority unmet condition.
 4. **Doctrine convergence**: APPROACHES MET -- zero new doctrine gaps in the
    last four cycles. Two more zero-gap cycles satisfies this condition.
-5. **External review**: NOT MET -- zero bitter council pressure-tests run.
+5. **External review**: NOT MET -- zero external pressure-tests run.
    Need >= 1 per surface_class (three runs: open_source_commits,
    mixed_official_docs, closed_source_release_notes).
 6. **Synthesis**: MET -- this digest satisfies condition 6.
@@ -53,7 +53,7 @@ profile, identify what has changed since the initial build, harvest
 only the delta, write a new finding, update the claims block, and
 revise posture only where the evidence warrants it.
 
-External review (bitter council pressure-tests) should be scheduled
+External review (external pressure-tests) should be scheduled
 in parallel with early refresh cycles.
 
 ## Zero New Doctrine Gaps

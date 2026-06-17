@@ -19,7 +19,7 @@ Confirmed:
 
 Flue has `surface_class: open_source_commits` (GitHub repo as primary surface).
 Flue does not publish formal releases, so the evidence_floor is set to `commit`
-rather than `release_note`. This is consistent with RESEARCH_CONTRACT.md
+rather than `release_note`. This is consistent with the method
 ("the floor should match the strictest precision the source can be reasonably
 harvested at"). The README constitutes `official_docs` precision for
 architectural claims.
@@ -72,7 +72,7 @@ cycles.
 4. **Doctrine convergence**: APPROACHES MET -- zero new doctrine gaps across
    five cycles. This audit surfaces two observations (governance posture
    contrast, connector trust) as commentary, not doctrine gaps.
-5. **External review**: MET -- three council runs completed in prior iteration.
+5. **External review**: MET -- three external review runs completed in prior iteration.
 6. **Synthesis**: MET -- weekly digest published.
 
 ## Next Priority

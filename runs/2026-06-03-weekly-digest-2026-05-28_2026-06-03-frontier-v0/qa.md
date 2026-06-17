@@ -78,7 +78,7 @@ published set rests on a refuted or out-of-window receipt.
 
 ## Editorial
 
-Disciplined, operator-first, no Bitter-as-protagonist problem. The cross-provider
+Disciplined, operator-first, no product-as-protagonist problem. The cross-provider
 synthesis thesis ("the policy you wrote wasn't the policy the runtime enforced")
 is concrete and earns its length; the second thread (skills/plugins becoming
 governed state) is real and threaded across four providers. Accessibility axis is

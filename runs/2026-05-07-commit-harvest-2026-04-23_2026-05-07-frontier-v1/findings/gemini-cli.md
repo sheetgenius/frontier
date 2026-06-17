@@ -45,8 +45,8 @@ The surrounding commits reinforce the same direction: workspace trust in MCP UX,
 
 Agent memory becomes safer when it is inspectable. A developer should be able to see what the agent wants to remember, why it matters, and whether the proposed memory should enter the project or remain local to the tool.
 
-## Bitter Consequence
+## Frontier Consequence
 
-Bitter should treat Gemini's memory inbox as a useful upstream evidence source. It should record the proposed patch, the approval mode, the workspace trust state, and whether anything was accepted into Bitter's own durable project memory.
+A durable loop should treat Gemini's memory inbox as a useful upstream evidence source. It should record the proposed patch, the approval mode, the workspace trust state, and whether anything was accepted into the operator's own durable project memory.
 
-This is also a good evaluation target: can Bitter distinguish reviewable memory from ambient memory?
+This is also a good evaluation target: can a loop distinguish reviewable memory from ambient memory?

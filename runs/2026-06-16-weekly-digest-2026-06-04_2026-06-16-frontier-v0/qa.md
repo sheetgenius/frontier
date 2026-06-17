@@ -58,7 +58,7 @@ self-dates "June 5" but `published_at` is 2026-06-06T00:55Z (both in-window).
 Flue 0.10.2 is CHANGELOG-documented but has no git tag (changelog-only); Flue
 ships no GitHub Releases, so CHANGELOG.md is the canonical receipt throughout.
 
-## Mandatory QA checks (per RESEARCH_CONTRACT)
+## Mandatory QA checks (per the method)
 
 1. **Signals rarer than findings.** 112 findings -> 33 curated signals (~1 signal
    per 3.4 findings). Honors the discipline; the harvest deliberately did not
@@ -90,4 +90,4 @@ not violates the house rule as badly as a missing receipt.
 ## Editorial
 
 Reviewed by Codex (xhigh) and an independent editorial pass; humanizer applied.
-Operator-first, no Bitter-as-protagonist. See audit.md for doctrine notes.
+Operator-first, no product-as-protagonist. See audit.md for doctrine notes.

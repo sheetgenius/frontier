@@ -73,13 +73,13 @@ Headless workspace-trust enforcement closes the obvious gap where CI and
 other non-interactive contexts could bypass the trust prompt by being
 non-interactive.
 
-## Bitter Consequence
+## Frontier Consequence
 
 The `AgentProtocol` abstraction is a useful test target for capability
 profiles. A profile that asserts "Gemini subagents inherit approval mode" is
 now partially correct but under-specified; adapter work should distinguish
 local from remote subagent execution and record which variant a run used.
 
-Session export/import is a clean primitive for Bitter to mirror or wrap. The
-file format is a stable thing to record as a receipt, and it gives Bitter a
+Session export/import is a clean primitive for a durable loop to mirror or wrap.
+The file format is a stable thing to record as a receipt, and it gives a loop a
 way to observe what state Gemini believes is portable.

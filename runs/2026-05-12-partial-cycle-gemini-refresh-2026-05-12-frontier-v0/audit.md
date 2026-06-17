@@ -38,4 +38,4 @@ provider and Codex are the only ones with harvestable new activity on
 
 One signal: `2026-05-12-gemini-session-resume-reliability`. Operator
 action: re-test `--resume` with legacy session formats after upgrade.
-Accessibility impact: low. Factory relevance: low.
+Accessibility impact: low. Operator-loop relevance: low.

@@ -20,7 +20,7 @@ The doctrine does not specify when to add a new claim ID vs refresh
 new claim when the surface, behavior, or operator-visible mechanism is
 materially distinct; refresh otherwise.
 
-**Proposed addition to RESEARCH_CONTRACT.md#profile under Hygiene:**
+**Proposed addition to the method's profile rules under Hygiene:**
 
 > A finding refreshes an existing claim only when it targets the same
 > surface, behavior, and operator-visible mechanism. A claim covering an
@@ -61,7 +61,7 @@ sup-tagged references. End-of-section was chosen because the `posture_basis`
 frontmatter already carries the per-lens index, and per-clause inline
 citations cluttered the prose.
 
-**Proposed addition to RESEARCH_CONTRACT.md#profile under Prose rules:**
+**Proposed addition to the method's profile rules under Prose rules:**
 
 > Finding-ID citation in posture sections takes the form of an italic
 > attribution line at the end of each lens: `*Findings: <id>, <id>.*`.

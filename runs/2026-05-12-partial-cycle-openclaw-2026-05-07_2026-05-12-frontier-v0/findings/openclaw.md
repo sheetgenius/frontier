@@ -91,20 +91,20 @@ next?" friction at setup is the single largest barrier to a new user completing
 installation. Next-step explanations at each stage are a real accessibility
 improvement.
 
-The transcript streaming optimization is relevant for Bitter: OpenClaw agents
+The transcript streaming optimization is operationally relevant: OpenClaw agents
 running long sessions no longer face a memory wall that forces session
 termination. This changes the practical ceiling for long-horizon OpenClaw runs.
 
-## Bitter Implication
+## Frontier Implication
 
 The per-agent permission overrides are a worked example of operator-controlled
-agent authority surfaces. Bitter should note: authority restriction at the agent
+agent authority surfaces. The takeaway: authority restriction at the agent
 level (not just the platform level) is a viable pattern for multi-tenant or
 public-facing deployments.
 
 The gated code-install surface (skill archive upload) models how a self-hosted
 platform should expose a potentially dangerous capability: behind a flag, default
-closed, with explicit operator opt-in. Bitter should apply the same principle to
+closed, with explicit operator opt-in. The same principle should apply to
 any surface that involves untrusted code or credential access.
 
 ## Signal

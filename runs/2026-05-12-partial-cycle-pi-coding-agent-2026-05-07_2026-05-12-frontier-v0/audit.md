@@ -2,7 +2,8 @@
 
 This run built the first Pi Coding Agent profile. Pi is the deliberately
 minimal harness source. The research question is what a thin harness refuses
-to own by design, and what that refusal reveals about Bitter's wedge.
+to own by design, and what that refusal reveals about where the durable
+operator loop sits.
 
 ## Format and Evidence Floor Assessment
 

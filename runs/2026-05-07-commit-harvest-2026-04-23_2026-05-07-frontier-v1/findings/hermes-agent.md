@@ -51,8 +51,8 @@ This is the personal-agent lesson in practical form. If an agent is going to liv
 
 Accessibility is not a veneer. Hermes is making the agent easier to live with by meeting users in ordinary surfaces and by smoothing operational failure modes: setup, restart, voice, themes, provider selection, and gateway state.
 
-## Bitter Consequence
+## Frontier Consequence
 
-Bitter should study Hermes less as a "coding agent" and more as a persistent surface system. The lesson is that an agent environment must be operationally humane before everyday users will keep it running.
+Hermes is best studied less as a "coding agent" and more as a persistent surface system. The lesson is that an agent environment must be operationally humane before everyday users will keep it running.
 
-For Bitter, the adapter implication is modest. The product implication is larger: gateway state, setup recovery, and memory scoping need receipts if they are part of serious work.
+The adapter implication is modest. The larger implication: gateway state, setup recovery, and memory scoping need receipts if they are part of serious work.

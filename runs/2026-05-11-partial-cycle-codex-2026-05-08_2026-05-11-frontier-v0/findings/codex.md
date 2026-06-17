@@ -66,11 +66,11 @@ Plugin sharing role-awareness matters for any operator with multiple
 roles or environments. Role-aware sharing makes "who can see this
 plugin" a first-class question rather than a binary access flag.
 
-## Bitter Consequence
+## Frontier Consequence
 
-Bitter should record the active permission posture and approval mode
-per run as standard receipt fields; the TUI now exposes both as
+A run should record the active permission posture and approval mode
+as standard receipt fields; the TUI now exposes both as
 glanceable strings, which is a clean adapter source.
 
 Plugin share role-awareness is something to test before assuming
-Bitter can share configurations across role boundaries.
+configurations can be shared across role boundaries.

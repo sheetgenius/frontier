@@ -1460,11 +1460,6 @@
           "source": "evidence",
           "file": "runs/2026-05-12-partial-cycle-hermes-agent-2026-05-07_2026-05-12-frontier-v0/findings/hermes-agent.md",
           "label": "Durable multi-profile Kanban board (PR #17805)"
-        },
-        {
-          "source": "markdown",
-          "file": "runs/2026-05-12-weekly-digest-2026-05-07_2026-05-12-frontier-v0/council/dossier-hermes-open-source-commits.md",
-          "label": "PR #17805"
         }
       ],
       "classes": [
@@ -1541,11 +1536,6 @@
           "source": "markdown",
           "file": "content/profiles/hermes-agent.md",
           "label": "**hallucination gate**"
-        },
-        {
-          "source": "markdown",
-          "file": "runs/2026-05-12-weekly-digest-2026-05-07_2026-05-12-frontier-v0/council/dossier-hermes-open-source-commits.md",
-          "label": "PR #20232"
         }
       ],
       "classes": [

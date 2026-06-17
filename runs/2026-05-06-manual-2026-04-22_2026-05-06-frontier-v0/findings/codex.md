@@ -45,9 +45,9 @@ surface area are all becoming normal.
 Operators should use those provider-native capabilities where they are strong,
 but should not let them become the only durable record of work.
 
-## Bitter Implication
+## Frontier Implication
 
-Bitter should not clone `/goal`. It should learn to wrap and receipt it.
+The durable move is not to clone `/goal` but to wrap and receipt it.
 
 The adapter contract should preserve:
 
@@ -56,10 +56,10 @@ The adapter contract should preserve:
 - which plugin or hook surfaces were enabled
 - which external agent session was imported
 - which multi-agent configuration was used
-- which evidence crossed back into Bitter receipts and wake packets
+- which evidence crossed back into the run's receipts and inputs
 
 ## Signal
 
-Provider-native long-horizon state is now a real worker capability. Bitter's
-durable asset is the operator-owned loop around that state: charter, authority,
+Provider-native long-horizon state is now a real worker capability. The durable
+asset is the operator-owned loop around that state: charter, authority,
 evidence, verification, memory, replay, and next action.

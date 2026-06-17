@@ -45,13 +45,13 @@ and memory changes explicit. Those are exactly the kinds of hidden assumptions
 that can make agent work dangerous or non-reproducible if they are not recorded.
 
 Release-channel behavior also matters. Stable, preview, and nightly Gemini
-surfaces may differ enough that a Bitter run receipt should not simply say
+surfaces may differ enough that a run receipt should not simply say
 "Gemini CLI"; it should record version, channel, trust state, env policy, and
 memory behavior.
 
-## Bitter Implication
+## Frontier Implication
 
-Bitter should probe and record:
+A serious run should probe and record:
 
 - workspace trust state
 - whether local `.env` values were loaded or ignored
@@ -61,11 +61,11 @@ Bitter should probe and record:
 - whether memory changes were proposed as reviewable patches
 
 Gemini's Auto Memory canonical-patch direction is especially relevant to
-BitterLearn: memory that changes future work should be reviewable, diffable,
-and settleable.
+operator-side learning: memory that changes future work should be reviewable,
+diffable, and settleable.
 
 ## Signal
 
 Authority and memory are becoming explicit in worker CLIs, but the semantics
-are fragmented. Bitter should normalize the receipts, not flatten the
+are fragmented. The durable move is to normalize the receipts, not flatten the
 differences.

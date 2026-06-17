@@ -73,8 +73,9 @@ That is why Paperclip is worth watching. Its company/control-plane metaphor
 may or may not be the final shape, but the question is exactly right: can agent
 work become operating state a human can govern?
 
-For Bitter, this maps directly to Factory. Factory should not merely dispatch
-agents. It should make agent labor economically and operationally legible.
+This maps directly to the orchestration problem. A control plane should not
+merely dispatch agents. It should make agent labor economically and
+operationally legible.
 
 What to watch:
 
@@ -98,7 +99,7 @@ The benefit is obvious: serious software work rarely fits inside a toy tool
 loop. The risk is also obvious: a real computer has files, credentials,
 network, state, cost, and cleanup.
 
-For Bitter, this is the Grid question. A workcell should give agents real
+This is the workcell question. A workcell should give agents real
 operating surface without turning the environment into mystery. The useful
 primitive is not "remote execution." It is a leased workcell: bounded,
 observable, resumable, and disposable.
@@ -122,7 +123,7 @@ That breadth matters because it shows the market direction. Teams do not only
 want a clever terminal. They want a software-agent platform that can sit inside
 existing development workflows.
 
-For Bitter, the lesson is not to become every surface. The lesson is to decide
+The lesson is not to become every surface. The lesson is to decide
 which surfaces to wrap, which to adapt, and which to refuse.
 
 What to watch:
@@ -147,9 +148,9 @@ enough to try.
 Accessibility does not mean hiding everything. It means moving the right
 complexity out of the user's way while keeping authority visible.
 
-For Bitter, this is existential. Charters, receipts, permissions, workcells,
-evidence, and memory can remain deep internally. The surface has to translate
-them into plain state:
+For any serious operator loop, this is existential. Charters, receipts,
+permissions, workcells, evidence, and memory can remain deep internally. The
+surface has to translate them into plain state:
 
 - what is the agent trying to do?
 - what can it touch?
@@ -158,21 +159,21 @@ them into plain state:
 - what needs approval?
 - what happens next?
 
-### Bitter needs a wrap, adapt, refuse decision for every frontier surface
+### A durable loop needs a wrap, adapt, refuse decision for every frontier surface
 
-The expanded watchlist makes one thing obvious: Bitter cannot compete by
-becoming every agent product.
+The expanded watchlist makes one thing obvious: a durable operator loop cannot
+compete by becoming every agent product.
 
 Paperclip, Agent Zero, OpenHands, OpenClaw, Hermes, Pi, Codex, Claude Code,
-and Gemini CLI all move along different axes. The durable Bitter posture is to
+and Gemini CLI all move along different axes. The durable posture is to
 use the frontier without surrendering the loop.
 
-For each surface, Bitter should decide:
+For each surface, a serious operator should decide:
 
 - **Wrap** when the tool is a strong worker or execution surface.
-- **Adapt** when the tool teaches a pattern Bitter should absorb.
+- **Adapt** when the tool teaches a pattern the loop should absorb.
 - **Refuse** when the tool tries to own truth that should remain with the
-  project, operator, or Bitter's receipt-bearing loop.
+  project, the operator, or the receipt-bearing loop.
 
 That is the operating question every Frontier issue should keep asking.
 
@@ -190,16 +191,16 @@ That is the operating question every Frontier issue should keep asking.
 - Treat accessibility as capability. A tool that serious users cannot reach
   will not shape the market.
 
-## What Bitter Should Test
+## What This Research Should Test
 
-1. A Paperclip-style operating view over a real Factory property: goal, role,
-   budget, run, evidence, next action.
-2. An Agent Zero-style workcell comparison: container, VM, and full Hetzner box
+1. A Paperclip-style operating view over a real orchestrated property: goal,
+   role, budget, run, evidence, next action.
+2. An Agent Zero-style workcell comparison: container, VM, and full host box
    for the same agent task, with logs and cleanup.
-3. An OpenHands-style platform boundary map: which surfaces Bitter should wrap,
-   adapt, or refuse.
-4. An OpenClaw-inspired accessibility pass over Bitter CLI: can a new user tell
-   what the agent is doing, what it can touch, and what happens next?
+3. An OpenHands-style platform boundary map: which surfaces a durable loop should
+   wrap, adapt, or refuse.
+4. An OpenClaw-inspired accessibility pass over the operator surface: can a new
+   user tell what the agent is doing, what it can touch, and what happens next?
 5. A digest QA rule that every capability signal must name its accessibility
    consequence.
 
@@ -213,7 +214,7 @@ That is the operating question every Frontier issue should keep asking.
   surface area too large for operators to reason about.
 - Whether OpenClaw-style accessibility can preserve visible authority as it
   simplifies the experience.
-- Which surfaces deserve direct Bitter adapters and which should remain only
+- Which surfaces deserve direct adapters and which should remain only
   research inputs.
 
 ## Source Anchors

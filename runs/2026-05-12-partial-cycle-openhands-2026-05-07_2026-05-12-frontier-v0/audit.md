@@ -10,7 +10,7 @@ it begins to own authority the operator should retain.
 OpenHands has `surface_class: mixed_official_docs` with github_repo, official
 site, docs, and releases as primary surfaces. The current evidence is two merged
 PRs (#14122, #14133) plus the v1.7.0 release notes. The `merged_pr` precision
-level maps above `release_note` in the RESEARCH_CONTRACT enum; the release
+level maps above `release_note` in the method's enum; the release
 notes are the weakest evidence in this cycle, so `evidence_floor: release_note`
 is accurate.
 
@@ -19,7 +19,7 @@ The prior finding (`2026-05-07-openhands-platform-hardening`) used
 (secret-injection-subprocess, api-key-redaction, sandbox-grouping-ui,
 self-hosted-gitlab) can be carried into this profile at the floor, since the
 floor is release_note and their evidence at commit precision is above the
-floor. This is consistent with RESEARCH_CONTRACT discipline.
+floor. This is consistent with the method's discipline.
 
 ## Observation: Opt-In Gating vs. Default-On Surface
 
@@ -34,8 +34,8 @@ present in OpenHands' current design:
 Neither is wrong. They reflect different risk asymmetries: a runaway sub-agent
 loop is expensive and hard to notice; a critic display showing a low score is
 visible feedback that an operator can act on. The distinction is worth naming
-in the posture commentary because it maps to a design decision Bitter will face
-when deciding what to surface by default.
+in the posture commentary because it maps to a design decision any operator loop
+will face when deciding what to surface by default.
 
 ## Observation: Platform-Level vs. Model-Level Authority
 

@@ -50,24 +50,24 @@ telemetry attribution, hooks, and MCP governance.
 
 The important operator question is no longer "can Claude review this?" It is:
 what did the provider-native review inspect, what evidence did it produce, and
-how should that verdict be composed with local tests, BitterQA, and other
+how should that verdict be composed with local tests, independent QA, and other
 worker judgments?
 
-## Bitter Implication
+## Frontier Implication
 
-Bitter should treat `/ultrareview` as a worker-native verification engine that
-can produce evidence, not as a feature to reimplement.
+A durable loop should treat `/ultrareview` as a worker-native verification
+engine that can produce evidence, not as a feature to reimplement.
 
 Adapter work should focus on:
 
 - capturing review target, provider, model, and result format
 - preserving session recaps as worker-native context receipts
 - recording plugin, MCP, hook, and permission-prompt state
-- distinguishing Claude's verdict from Bitter's final verification judgment
-- feeding review findings into wake packets only after settlement
+- distinguishing Claude's verdict from the operator's final verification judgment
+- feeding review findings into the run's inputs only after settlement
 
 ## Signal
 
-Verification is becoming a provider-native service. Bitter's role is to make
+Verification is becoming a provider-native service. The durable role is to make
 those verdicts comparable, source-attributed, replayable, and subordinate to
 operator-owned evidence standards.

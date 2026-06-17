@@ -75,16 +75,16 @@ The harness stream configuration is relevant for operators using Pi as an
 embedded SDK (via `createAgentSession` or the `@earendil-works/pi-ai` harness
 API). It is not relevant for CLI-only deployments.
 
-## Bitter Implication
+## Frontier Implication
 
-The Earendil Works transition is the signal Bitter should note. Pi is professionalizing.
+The Earendil Works transition is the signal worth noting. Pi is professionalizing.
 The package rename is administrative, but the `earendil-works` brand and the organizational
 repo move signal that Pi's maintainer is building a company or organization around this
 tool. Future versions of Pi will be produced by Earendil Works, not by a personal account.
 
 The source contract for Pi should be updated to reflect the new repo and npm scope once
-the migration completes. This is a pending source-contract update that Bitter should not
-forget: `badlogic/pi-mono` will eventually redirect or become stale.
+the migration completes. This is a pending source-contract update worth tracking:
+`badlogic/pi-mono` will eventually redirect or become stale.
 
 ## Signal
 

@@ -58,7 +58,7 @@ sub-path, is a contained-execution-environment regression. Enterprise
 login pinning that does not pin against third-party providers is a
 policy-enforcement regression.
 
-In the editorial voice of `RESEARCH_CONTRACT.md`: this is the kind of
+In the editorial voice of the method: this is the kind of
 fix that an operator must upgrade before deploying. The fact that the
 changelog does not flag it as such is the operator-relevant detail.
 

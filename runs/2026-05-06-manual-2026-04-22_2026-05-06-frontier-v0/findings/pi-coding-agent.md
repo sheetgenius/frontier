@@ -55,14 +55,15 @@ provider layer is fluid: new providers appear, built-in integrations disappear,
 transports change, and extension contracts carry much of the product's
 durability.
 
-That is a useful lesson for Bitter. Worker adapters should be thin, versioned,
-and disposable. The durable layer should not be a worker's provider list.
+That is a useful lesson for operators. Worker adapters should be thin,
+versioned, and disposable. The durable layer should not be a worker's provider
+list.
 
-## Bitter Implication
+## Frontier Implication
 
-Bitter should learn from Pi's extension discipline and terminal UX, especially
-incremental bash streaming and compact read rendering, but keep governance
-outside the worker harness.
+A durable loop can learn from Pi's extension discipline and terminal UX,
+especially incremental bash streaming and compact read rendering, but keep
+governance outside the worker harness.
 
 Adapter work should record:
 
@@ -76,6 +77,6 @@ Adapter work should record:
 
 ## Signal
 
-The harness frontier rewards extensibility and provider churn. Bitter should
-wrap harnesses through normalized run receipts instead of relying on any
+The harness frontier rewards extensibility and provider churn. The durable move
+is to wrap harnesses through normalized run receipts instead of relying on any
 worker's integrations as stable doctrine.

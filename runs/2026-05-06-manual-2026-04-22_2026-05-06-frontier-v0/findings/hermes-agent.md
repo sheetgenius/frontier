@@ -51,23 +51,24 @@ Hermes should be watched as a broad self-improving personal-agent platform, not
 just as a coding CLI. Its center of gravity is memory, skills, automations,
 messaging surfaces, runtime portability, and background worker management.
 
-That is valuable, but it is not the same product as Bitter. Hermes can be a
-powerful Bitter worker. Bitter still needs to own charter, authority, receipts,
-verification, replay, and operator-grounded memory settlement.
+That is valuable, but it is a different kind of system than a durable operator
+loop. Hermes can be a powerful worker. The operator loop still needs to own
+charter, authority, receipts, verification, replay, and operator-grounded
+memory settlement.
 
-## Bitter Implication
+## Frontier Implication
 
-Bitter should benchmark Hermes Curator against BitterLearn's own doctrine:
+A durable loop should benchmark Hermes Curator against its own memory doctrine:
 
 - What counts as an accepted skill or memory?
 - What evidence proves a skill should be kept, merged, or pruned?
 - Are curator reports actionable by future runs?
 - How are protected bundled/hub skills governed?
-- Can Curator output be imported as a Bitter evidence handle or wake-packet
-  candidate without giving Hermes durable authority over Bitter memory?
+- Can Curator output be imported as an evidence handle or candidate input
+  without giving Hermes durable authority over the operator's memory?
 
 ## Signal
 
-Self-improving worker platforms are moving quickly. Bitter's posture should be:
+Self-improving worker platforms are moving quickly. The durable posture is to
 bring Hermes as a worker when it helps, but preserve the operator-owned loop
 that decides what becomes durable memory.

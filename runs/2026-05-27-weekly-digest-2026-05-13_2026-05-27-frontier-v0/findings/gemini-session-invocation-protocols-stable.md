@@ -50,7 +50,7 @@ the operator's machine, with a documented call shape; what remains
 open is *where* the remote target actually runs (Google-hosted,
 operator-hosted, both?).
 
-For Bitter and Factory: this is the first stable cross-vendor
+For any cross-vendor operator loop: this is the first stable
 delegation primitive that has both a local and a remote target on
 the same protocol. It is also the resolution that the profile's
 `subagent-protocol-pluggable` claim anticipated.

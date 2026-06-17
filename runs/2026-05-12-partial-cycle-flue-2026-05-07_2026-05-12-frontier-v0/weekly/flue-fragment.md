@@ -18,8 +18,8 @@ note: >
 Flue is worth understanding as a category signal, not just as another
 agent tool. Its explicit thesis -- "Agent = Model + Harness" -- articulates
 what the useful layer around a model call actually is: sandbox, filesystem,
-sessions, skills, MCP tools, deployment. That framing is not new to Bitter's
-thinking, but it is useful to see it stated this explicitly by an
+sessions, skills, MCP tools, deployment. That framing is not new, but
+it is useful to see it stated this explicitly by an
 independently-developed open-source framework from the Astro organization.
 
 The harness is a first-class API object in Flue. `init()` returns a

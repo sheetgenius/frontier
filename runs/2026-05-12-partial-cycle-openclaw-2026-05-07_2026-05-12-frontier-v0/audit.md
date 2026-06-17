@@ -22,7 +22,7 @@ This cycle's approach:
 - The release notes are clearly official and cover the operator-visible changes
   coherently.
 
-This is doctrinally consistent with the RESEARCH_CONTRACT clarification (Gap 8
+This is doctrinally consistent with the method's clarification (Gap 8
 resolution): "the floor should match the strictest precision the source can be
 reasonably harvested at." No amendment needed; the doctrine already covers this.
 

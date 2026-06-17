@@ -50,8 +50,8 @@ The question is no longer only "what did I ask Codex to do in this chat?" It is 
 
 Persistent goals are particularly important because they move a coding agent toward ultra-long-horizon work. They are useful, but they should not silently become the developer's project charter.
 
-## Bitter Consequence
+## Frontier Consequence
 
-Bitter should wrap Codex goals and state, not compete with them. A Bitter adapter should record active goal text or id, session id, thread metadata, memory surface, plugin state, sandbox profile, model/reasoning effort, and cloud/local executor context.
+The durable move is to wrap Codex goals and state, not compete with them. An adapter should record active goal text or id, session id, thread metadata, memory surface, plugin state, sandbox profile, model/reasoning effort, and cloud/local executor context.
 
-The operator owns the charter. Codex may carry a goal. Bitter should receipt the mapping.
+The operator owns the charter. Codex may carry a goal. The record maps the two.

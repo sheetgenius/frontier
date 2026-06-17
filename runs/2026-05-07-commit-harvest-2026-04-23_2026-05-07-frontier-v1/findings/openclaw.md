@@ -51,10 +51,10 @@ The diff-reviewed onboarding commit is a good example. It fixes a stale-channel-
 
 The OpenClaw lesson is accessibility under real mess: chats, voice, stale config, OAuth, mobile-style identity, group permissions, plugin installs, and live progress visibility.
 
-If Bitter cannot absorb that lesson, it risks becoming too alien for the market.
+A serious operator tool that cannot absorb that lesson risks becoming too alien for the market.
 
-## Bitter Consequence
+## Frontier Consequence
 
-Bitter Frontier should track accessibility as a first-class dimension, not as product polish after "real" agent capability. For Bitter itself, the lesson is to make authority visible without making the user live inside internal vocabulary.
+Accessibility deserves tracking as a first-class dimension, not as polish after "real" agent capability. The lesson is to make authority visible without making the user live inside internal vocabulary.
 
 Plain setup recovery can be a stronger frontier signal than another clever planning feature.

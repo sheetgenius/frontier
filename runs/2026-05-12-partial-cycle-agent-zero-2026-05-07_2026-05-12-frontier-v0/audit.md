@@ -27,7 +27,7 @@ described actions (cell_edit, app_launch, form_submit) leave a clearer audit
 trail than positional actions (click(x=423, y=187)). Positional actions are also
 brittle across sessions (layout changes break them).
 
-For Bitter's receipt model, this maps directly: a receipt that describes what
+For a receipt model, this maps directly: a receipt that describes what
 was done in terms of named operations is more useful for replay, audit, and
 verification than one that records raw coordinates. This is not a new idea, but
 Agent Zero deploying it as explicit guidance in a production agent skill is
@@ -57,12 +57,12 @@ Remaining conditions to evaluate:
 3. **Doctrine convergence**: Last two cycles (Paperclip + Agent Zero) raise
    zero new doctrine gaps. Condition satisfied if the next two cycles also
    raise zero gaps.
-4. **External review**: No bitter council pressure-tests have been run yet.
+4. **External review**: No external pressure-tests have been run yet.
    Three runs minimum (one per surface_class).
 5. **Synthesis**: No cross-provider weekly digest yet. This is the next
    high-priority deliverable.
 
-The loop should address Freshness, External review, and Synthesis before
+The loop should address Freshness, external review, and Synthesis before
 declaring the Operational Target met.
 
 ## Zero New Doctrine Gaps
@@ -91,4 +91,4 @@ All nine providers now have profiles:
 - `agent-zero.md` (`open_source_commits`, release_note floor -- this cycle)
 
 Coverage condition MET. Next priority: cross-provider weekly digest (Synthesis),
-then Freshness (refresh cycles), then External review (council pressure-tests).
+then Freshness (refresh cycles), then external review (pressure-tests).

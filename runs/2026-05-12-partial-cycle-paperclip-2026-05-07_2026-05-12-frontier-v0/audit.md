@@ -25,7 +25,7 @@ evidence before state change at the orchestration layer.
 
 This is worth naming in the cross-provider weekly digest as a pattern, not just
 as two independent features. The principle -- "evidence before state transition"
--- is also what Bitter's receipt model aims to enforce at the session/claim level.
+-- is also what a receipt-based loop aims to enforce at the session/claim level.
 
 ## Observation: Secrets Vaults as Credential Provenance
 
@@ -33,7 +33,7 @@ The AWS Secrets Manager integration with access events is not just a security
 improvement. It is the first step toward credential provenance in Paperclip's
 model: which secret version was in use during which agent run, with rotation
 records. That is a more complete receipt than just "agent ran with API key X."
-Bitter should note this as a reference design.
+It is worth noting as a reference design.
 
 ## Zero New Doctrine Gaps
 

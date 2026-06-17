@@ -73,10 +73,10 @@ operator posture than evaluation that lives only in logs: it invites feedback
 loops and surfaces degraded sessions in real time. Whether deployments enable it
 is operator-controlled via `OH_ENABLE_CRITIC_BY_DEFAULT`.
 
-## Bitter Implication
+## Frontier Implication
 
-Sub-agent delegation at the platform level (not the LLM level) is the direction
-Bitter should study, not just note. OpenHands is building a routing layer where
+Sub-agent delegation at the platform level (not the LLM level) is a direction
+worth studying, not just noting. OpenHands is building a routing layer where
 the orchestrator assigns work to specialized sub-agents with constrained tool
 surfaces. The `bash-runner` sub-agent doesn't need web access; the
 `web-researcher` doesn't need bash. This is authority surface reduction as a
@@ -84,8 +84,8 @@ product pattern.
 
 The critic evaluation surface belongs in the same category as OpenClaw's
 per-agent message restrictions: explicit, operator-configurable, and visible.
-Bitter should ask whether its own evaluation posture is visible to operators in
-the same way -- or whether evaluation state is opaque by default.
+A durable loop should ask whether its own evaluation posture is visible to
+operators in the same way -- or whether evaluation state is opaque by default.
 
 ## Signal
 

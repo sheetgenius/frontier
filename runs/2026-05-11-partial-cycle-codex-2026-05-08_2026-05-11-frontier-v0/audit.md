@@ -42,7 +42,7 @@ for Codex, which admits commit URLs since they are at least as good as
 release notes. But that means the floor is doing little work — it
 admits almost any official artifact.
 
-**Proposed addition** to RESEARCH_CONTRACT.md#profile:
+**Proposed addition** to the method's profile rules:
 
 > The evidence_floor enum should be
 > `commit_diff_reviewed | commit | release_note | official_docs |
@@ -62,7 +62,7 @@ This is not a doctrine bug; it is a property of mixed-surface
 providers. Worth noting in the schema documentation so future profile
 authors do not over-tighten:
 
-**Proposed clarifying note** in RESEARCH_CONTRACT.md#profile:
+**Proposed clarifying note** in the method's profile rules:
 
 > Profiles with `surface_class: mixed_official_docs` typically set
 > `evidence_floor: release_note` because the source's primary surfaces
@@ -122,7 +122,7 @@ have profiles. The next move is either:
 - A third partial cycle on a closed-source provider (Claude Code) to
   exercise `surface_class: closed_source_release_notes`, or
 - Apply the gap-7 and gap-8 doctrine clarifications to
-  RESEARCH_CONTRACT.md before more profiles inherit the looseness.
+  the method before more profiles inherit the looseness.
 
 Recommendation: apply gap-7 first (the missing `commit` precision is
 a real enum hole), then proceed to the closed-source test.

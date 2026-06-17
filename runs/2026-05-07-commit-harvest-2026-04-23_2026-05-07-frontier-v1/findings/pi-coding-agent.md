@@ -48,8 +48,8 @@ The removal of Gemini CLI and Antigravity support is as important as the additio
 
 Thin harnesses are attractive because they are inspectable and fast-moving. They are also volatile. Operators should not treat a current integration list as durable strategy.
 
-## Bitter Consequence
+## Frontier Consequence
 
-Pi is a useful Bitter agent candidate precisely because it is a harness, not a doctrine. Bitter should record exact Pi version, provider, transport, session directory, extension state, auth source, and terminal mode.
+Pi is a useful agent candidate precisely because it is a harness, not a doctrine. A run should record exact Pi version, provider, transport, session directory, extension state, auth source, and terminal mode.
 
-The lesson for Bitter is not to become Pi. The lesson is to keep agent adapters replaceable while the operator loop stays durable.
+The lesson is not to become Pi. The lesson is to keep agent adapters replaceable while the operator loop stays durable.

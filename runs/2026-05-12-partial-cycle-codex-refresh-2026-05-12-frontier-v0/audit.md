@@ -41,4 +41,4 @@ combining with the Gemini CLI refresh in this same commit).
 One signal: `2026-05-12-codex-pretooluse-input-rewrite`. Two operator
 actions: (1) re-test existing hooks that returned `updatedInput` — behavior
 changes after upgrade; (2) new hook authoring opportunity for input
-sanitization/normalization. Accessibility impact: low. Factory relevance: low.
+sanitization/normalization. Accessibility impact: low. Operator-loop relevance: low.

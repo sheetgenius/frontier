@@ -139,7 +139,7 @@ Operators evaluating Flue in CI pipelines should note:
 - `flue logs` and run history (v0.5.0) provide the evidence trail for
   what autonomous agents did
 
-## Bitter Implication
+## Frontier Implication
 
 Flue is the purest "Model + Harness" framing in the watchlist. Where other
 tools hide harness complexity behind GUI or assume an interactive human,
@@ -148,7 +148,7 @@ configurable handle. Skills live in Markdown. Sessions are structs. Runs
 have IDs and streamable logs.
 
 The run observability wave (v0.5.0) is the most direct convergence with
-Bitter's receipt model: every agent invocation has an ID, a log stream,
+a receipt-based loop: every agent invocation has an ID, a log stream,
 and a history. The gap is the "what was the operator consequence" layer --
 Flue records what happened, but judgment about whether it was correct is
 left to the caller.

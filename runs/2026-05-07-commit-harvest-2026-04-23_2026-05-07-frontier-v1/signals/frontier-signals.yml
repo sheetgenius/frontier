@@ -14,7 +14,7 @@ signals:
       - findings/openclaw.md
     operator_consequence: "Developers need to know which goals, memory patches,
       recaps, sessions, and skill maintenance loops shaped a serious run."
-    bitter_consequence: "Bitter adapters need explicit fields for agent-side goals,
+    frontier_consequence: "Adapters need explicit fields for agent-side goals,
       memory proposals, session ids, thread metadata, skill changes, and
       settlement status."
   - id: 2026-05-07-visible-computer-workcells
@@ -31,7 +31,7 @@ signals:
     operator_consequence: "A serious agent harness increasingly needs browser,
       desktop, file, runtime, sandbox, and artifact surfaces that can be
       inspected."
-    bitter_consequence: "BitterGrid workcells should be visible, leased, bounded,
+    frontier_consequence: "Workcells should be visible, leased, bounded,
       resumable, and evidence-bearing rather than invisible remote shells."
   - id: 2026-05-07-permissions-secrets-and-sandboxes
     section: control-plane
@@ -49,8 +49,8 @@ signals:
     operator_consequence: "The harness must make trust state visible: what can be
       read, what can be changed, which credentials are exposed, and where
       execution happens."
-    bitter_consequence: "BitterPass and permission profiles should model real
-      harness state, not an idealized permission abstraction."
+    frontier_consequence: "Credential handling and permission profiles should
+      model real harness state, not an idealized permission abstraction."
   - id: 2026-05-07-accessibility-is-frontier-capability
     section: platform
     title: "Accessibility is a frontier capability, not marketing polish"
@@ -75,8 +75,8 @@ signals:
     operator_consequence: "Everyday adoption depends on setup recovery, visible
       progress, voice/chat surfaces, readable UI, OAuth clarity, and fewer dead
       ends."
-    bitter_consequence: "Bitter should not hide behind internal vocabulary. It must
-      translate authority, evidence, and memory into interfaces ordinary
+    frontier_consequence: "Tools should not hide behind internal vocabulary. They
+      must translate authority, evidence, and memory into interfaces ordinary
       builders can understand."
   - id: 2026-05-07-agent-company-control-planes
     section: control-plane
@@ -93,8 +93,8 @@ signals:
     operator_consequence: "Once agents coordinate across tasks, runtimes, gateways,
       and integrations, operators need liveness, cost, role, session, and
       recovery controls."
-    bitter_consequence: "Factory's run contract should connect charter, mandate,
-      agent, runtime, authority, cost, evidence, and recovery path."
+    frontier_consequence: "An orchestration run contract should connect charter,
+      scope, agent, runtime, authority, cost, evidence, and recovery path."
   - id: 2026-05-07-integrations-are-volatile
     section: platform
     title: "Integrations are volatile; the operating loop has to be durable"
@@ -110,6 +110,6 @@ signals:
       - findings/openhands.md
     operator_consequence: "Provider lists, plugin systems, transports, and model
       profiles will keep changing."
-    bitter_consequence: "Bitter should keep agent adapters replaceable while
-      preserving the charter, authority, evidence, verification, and memory
+    frontier_consequence: "A durable loop should keep agent adapters replaceable
+      while preserving the charter, authority, evidence, verification, and memory
       loop."

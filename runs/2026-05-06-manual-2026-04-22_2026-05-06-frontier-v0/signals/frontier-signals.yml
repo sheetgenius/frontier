@@ -23,11 +23,11 @@ signals:
     operator_consequence: >
       Operators now need to ask which durable objective the worker is pursuing,
       whether it is still aligned with the operator's charter, and how it maps
-      to the current run mandate.
+      to the current run scope.
     next_actions:
       - Probe Codex /goal as a dedicated long-horizon autonomy primitive.
       - Define worker_goal receipt fields and settlement statuses.
-      - Test mapping from CHARTER.md and run mandate into a Codex worker goal.
+      - Test mapping from the operator's charter and run scope into a Codex worker goal.
   - id: 2026-05-06-worker-native-memory
     section: control-plane
     title: Worker-native state is becoming a memory layer.
@@ -129,7 +129,7 @@ signals:
       extensions, skills, and transport modules, not just the base model.
     next_actions:
       - Add plugin_surface fields to the adapter receipt vocabulary.
-      - Do not ingest worker skills as Bitter memory without a settlement step.
+      - Do not ingest worker skills as durable memory without a settlement step.
   - id: 2026-05-06-worker-integrations-not-doctrine
     section: platform
     title: Worker integrations are not durable doctrine.

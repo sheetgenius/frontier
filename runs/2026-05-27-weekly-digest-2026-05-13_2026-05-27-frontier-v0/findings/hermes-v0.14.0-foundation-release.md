@@ -100,9 +100,9 @@ consequences split into at least three:
 2. **Provider routing.** `hermes proxy` changes Hermes's adjacency
    to other tools: it becomes a credential / OAuth router for any
    OpenAI-compatible tool, not just an agent in its own right.
-   The implication for Bitter is that the meta-harness layer is
-   now occupied by a provider — one less neighbor to wrap, one
-   more competitor to position against.
+   The implication for the frontier is that the meta-harness layer is
+   now occupied by a provider — one fewer neighbor to wrap, one
+   more occupant of that layer.
 3. **Identity mapping.** Honcho identity primitives close a quiet
    cross-user contamination risk on shared threads and a credential
    bleed on provider fallback. Anyone running multi-user gateway

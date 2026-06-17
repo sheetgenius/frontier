@@ -50,8 +50,8 @@ The frontier is leaving the chat box. For many workflows, the useful surface is 
 
 This makes agent work easier to trust because the user can see more of what the agent is doing. It also creates new authority questions around browser sessions, document runtimes, OAuth, file access, and desktop controls.
 
-## Bitter Consequence
+## Frontier Consequence
 
-Agent Zero is the clearest source for BitterGrid's workcell doctrine in this window. A workcell should not be an invisible shell. It should be a bounded, inspectable environment where browser, files, runtime, screenshots, credentials, and artifacts can be attached to receipts.
+Agent Zero is the clearest source for workcell design in this window. A workcell should not be an invisible shell. It should be a bounded, inspectable environment where browser, files, runtime, screenshots, credentials, and artifacts can be attached to receipts.
 
-Bitter should test Agent Zero as an agent engine and as a product lesson.
+It is worth testing Agent Zero both as an agent engine and as a design lesson.

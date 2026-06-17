@@ -106,23 +106,23 @@ operators can now restrict which contexts the agent operates in, at both the
 credential level (API key scoping), the platform level (allowed channels), and
 the task level (kanban ownership enforcement).
 
-## Bitter Implication
+## Frontier Implication
 
-The Kanban hallucination gate is the most directly relevant signal for Bitter.
-It is a deployed example of "evidence required before state transition" in a
-multi-agent context. The gate enforces that a worker's claimed completion is
-verified before the task moves to done. Bitter's receipt model applies the same
-principle at the session/claim level. They are solving the same problem at
+The Kanban hallucination gate is the most directly relevant signal for a
+receipt-based loop. It is a deployed example of "evidence required before state
+transition" in a multi-agent context. The gate enforces that a worker's claimed
+completion is verified before the task moves to done. A receipt model applies the
+same principle at the session/claim level. They are solving the same problem at
 different scopes.
 
 The `no_agent` cron mode deserves attention: it establishes cron as both an
 agent trigger and a pure automation runtime. An operator can use cron for
 predictable, script-only work without paying the cost and non-determinism of an
-LLM invocation. Bitter should evaluate whether its own cron/loop primitives have
-a clean no-LLM path.
+LLM invocation. A durable loop should evaluate whether its own cron/loop
+primitives have a clean no-LLM path.
 
-The redaction-default change is a model for Bitter: safety defaults should be
-active, not opt-in. Bitter's own credential handling should follow the same
+The redaction-default change is a useful model: safety defaults should be
+active, not opt-in. Operator-side credential handling should follow the same
 posture.
 
 ## Signal

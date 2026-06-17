@@ -51,8 +51,8 @@ The diff-reviewed redaction commit is small but important evidence. When an agen
 
 OpenHands is moving like a real product/platform. The interesting frontier signal is not a single new capability; it is the consolidation of auth, secrets, app server, model profiles, sandbox policy, integrations, and enterprise/self-hosting paths.
 
-## Bitter Consequence
+## Frontier Consequence
 
-Bitter should watch OpenHands as a platformized agent environment rather than a CLI harness. Its changes are relevant to Hub, Grid, Pass, and Factory because it exposes how quickly "agent UI" becomes account, integration, security, sandbox, and deployment infrastructure.
+OpenHands is best watched as a platformized agent environment rather than a CLI harness. Its changes matter for account, integration, secrets, sandbox, and deployment infrastructure, because it exposes how quickly "agent UI" becomes all of those at once.
 
 The warning is clear: once the platform grows, authority and evidence boundaries must get sharper, not softer.

@@ -10,9 +10,9 @@ signals:
     finding_ids:
       - 2026-05-11-codex-permissions-visibility-and-plugin-share-evolution
     why_action_bearing:
-      - Bitter receipts should record permission posture + approval mode as
+      - Run receipts should record permission posture + approval mode as
         standard fields.
-      - Plugin share role-awareness affects whether Bitter can share configs
+      - Plugin share role-awareness affects whether configs can be shared
         across roles.
       - Authority visibility in the TUI is a worked example of governance
         ergonomics worth borrowing.

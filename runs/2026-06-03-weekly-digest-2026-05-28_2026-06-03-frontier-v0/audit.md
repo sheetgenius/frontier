@@ -11,7 +11,7 @@ The harvest produced **100 findings and 63 raw signals for a 7-day window**
 treated individual commits as findings and promote-stage agents emitted a signal
 per consequence without enough cross-checking against the decision-bearing bar.
 
-`RESEARCH_CONTRACT.md` already says a finding is source-event-shaped (a coherent
+The method already says a finding is source-event-shaped (a coherent
 release is one finding) and signals should be *rarer* than findings. The harvest
 honored the first rule unevenly (some providers grouped releases; others split
 per commit) and the second not at all (63 signals : 100 findings is not "rarer").

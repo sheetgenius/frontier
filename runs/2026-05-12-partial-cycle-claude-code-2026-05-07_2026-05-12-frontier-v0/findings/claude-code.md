@@ -119,14 +119,14 @@ The `worktree.baseRef: "fresh"` default change is a breaking behavior change for
 operators who relied on unpushed commits being present in new worktrees. Set
 `worktree.baseRef: "head"` to restore the prior behavior.
 
-## Bitter Implication
+## Frontier Implication
 
-Bitter adapters for Claude Code should capture:
+Adapters for Claude Code should capture:
 
 - Session state from the supervisor roster (`~/.claude/daemon/roster.json`) when
   wrapping multi-session runs
 - `x-claude-code-agent-id` and `x-claude-code-parent-agent-id` headers to
-  reconstruct agent call trees in BitterLog
+  reconstruct agent call trees in the run log
 - Goal text and termination reason when `/goal` is in use, as these constitute
   operator intent evidence
 - Hook rejection reasons when `continueOnBlock` is active -- these form a
@@ -139,8 +139,8 @@ updated: the default base is now the remote default branch, not local HEAD.
 
 Agent view, `/goal`, and `continueOnBlock` together represent a structural
 expansion: Claude Code is building the surfaces an operator needs to run it
-unsupervised at scale. This changes what Bitter should test (supervisor-based
+unsupervised at scale. This changes what a durable loop should test (supervisor-based
 session wrapping), what capability profiles should assert (goal completion is
 native), and how governance hooks should be designed (advisory rejection with
 reason is now possible). Accessible enough to change operator behavior now;
-material enough to change Bitter adapter assumptions.
+material enough to change adapter assumptions.

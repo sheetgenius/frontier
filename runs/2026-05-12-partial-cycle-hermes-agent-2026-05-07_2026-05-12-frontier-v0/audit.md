@@ -25,8 +25,8 @@ addition in this window. It requires that a worker's claimed completion be
 verified before the task state transitions. This is a deployed instance of
 "evidence required before state change" in a multi-agent context.
 
-Bitter's receipt model applies the same principle at the session/claim level.
-The Hermes Kanban gate and the Bitter receipt are solving the same problem at
+A receipt-based loop applies the same principle at the session/claim level.
+The Hermes Kanban gate and a receipt-based loop are solving the same problem at
 different scopes: neither system accepts a claim without evidence. This
 convergence is worth naming in the posture section.
 
@@ -40,7 +40,7 @@ security the path of least resistance.
 This is the same pattern as OpenClaw's `skills.install.allowUploadedArchives`
 (default closed) and WhatsApp's default-reject-strangers (now explicit). The
 direction of defaults is a governance statement, not just a configuration
-detail. Bitter should apply the same principle to its own credential handling.
+detail. The same principle should apply to operator-side credential handling.
 
 ## Zero New Doctrine Gaps
 

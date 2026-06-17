@@ -40,7 +40,7 @@ evidence:
 
 ## What Changed
 
-Paperclip is the closest source in this watchlist to the Factory problem. The diff-reviewed commit on runtime command specs is direct evidence: adapters now declare how their runtime command should be detected and installed on remote sandbox targets. Instead of requiring the operator to hand-write provisioning scripts for every agent CLI, the adapter carries its own install recipe.
+Paperclip is the closest source in this watchlist to the agent-orchestration problem. The diff-reviewed commit on runtime command specs is direct evidence: adapters now declare how their runtime command should be detected and installed on remote sandbox targets. Instead of requiring the operator to hand-write provisioning scripts for every agent CLI, the adapter carries its own install recipe.
 
 The rest of the window rhymes with that: remote workspace environment shaping, model probes on execution targets, E2B sandbox providers, sandbox callback bridges, pause/resume controls, issue cost summaries, security roles, liveness recovery, stale heartbeat cancellation, and ordered sub-issue workflows.
 
@@ -48,8 +48,8 @@ The rest of the window rhymes with that: remote workspace environment shaping, m
 
 Once agents become a company-like system, the hard parts are not only task assignment. The hard parts are runtime provisioning, stale sessions, costs, role boundaries, liveness, and recoverability.
 
-## Bitter Consequence
+## Frontier Consequence
 
-Paperclip is useful frontier evidence for Factory, BitterGrid, and BitterPass at once. It shows why agent orchestration needs a run contract: which agent, which adapter, which runtime, which install/provisioning path, which cost surface, which role, which liveness controls, and which recovery path.
+Paperclip is useful frontier evidence for agent orchestration, workcell design, and credential handling at once. It shows why agent orchestration needs a run contract: which agent, which adapter, which runtime, which install/provisioning path, which cost surface, which role, which liveness controls, and which recovery path.
 
-This should feed Bitter's charter-gated autonomy work and Grid workcell design.
+This is direct input to charter-gated autonomy work and workcell design.
