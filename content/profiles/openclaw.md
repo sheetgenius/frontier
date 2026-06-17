@@ -296,7 +296,7 @@ needs to be checked.
 
 ## Profile Hygiene
 
-This profile follows the discipline in `RESEARCH_CONTRACT.md#profile`: every
+This profile follows the discipline in `METHOD.md`: every
 concrete claim in the prose has an inline source link and an entry in the
 `claims:` block; posture sections may interpret freely but must cite finding IDs
 when naming a specific feature, behavior change, or cross-provider comparison.
@@ -307,7 +307,7 @@ Note on evidence_floor: this profile uses `evidence_floor: release_note` despite
 `surface_class: open_source_commits`. OpenClaw's commit volume (8000+ per harvest
 window) makes individual commit diff review impractical as the primary harvest
 method. Release notes are the highest-precision evidence consistently available
-at scale. This is consistent with the RESEARCH_CONTRACT clarification that the
+at scale. This is consistent with the method clarification that the
 floor should match the strictest precision the source can be reasonably harvested
 at. A future cycle with more focused scope could upgrade specific claims to
 `commit_diff_reviewed`.

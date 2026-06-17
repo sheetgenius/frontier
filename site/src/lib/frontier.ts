@@ -281,7 +281,7 @@ function normalizeYamlSignal(signal: any, runId: string): SignalEntry {
   const supportingPaths = Array.isArray(signal.supporting_findings) ? signal.supporting_findings : [];
   const findingRefs = supportingPaths.length > 0 ? refsFromSupportingFindings(supportingPaths, runId) : [];
   const whyActionBearing = signal.why_action_bearing
-    ?? [signal.operator_consequence, signal.bitter_implication].filter(Boolean);
+    ?? [signal.operator_consequence].filter(Boolean);
   const sections = readSections(signal);
   return {
     id: signal.id,
@@ -314,7 +314,7 @@ function normalizeJsonlSignal(signal: any): SignalEntry {
     sections,
     tracks: sections,
     summary: signal.summary,
-    whyActionBearing: [signal.operator_consequence, signal.bitter_implication].filter(Boolean),
+    whyActionBearing: [signal.operator_consequence].filter(Boolean),
     actionability: signal.actionability,
     confidence: signal.confidence,
     accessibilityImpact: signal.accessibility_impact,
