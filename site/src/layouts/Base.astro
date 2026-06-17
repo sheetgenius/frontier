@@ -79,6 +79,7 @@ const jsonLd = {
     ></script>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
     <header class="wide-measure site-header">
       <a class="small-caps whitespace-nowrap no-underline" href="/">Bitter Frontier</a>
       <nav class="site-nav">
@@ -98,6 +99,8 @@ const jsonLd = {
           id="theme-toggle"
           class="text-inherit bg-transparent border-0 p-0 cursor-pointer hover:underline"
           type="button"
+          aria-label="Switch color theme"
+          aria-pressed="false"
         >
           Theme
         </button>
@@ -109,7 +112,7 @@ const jsonLd = {
     <div class="measure checkout-status checkout-status-cancelled" role="status">
       Checkout cancelled.
     </div>
-    <main>
+    <main id="main">
       <slot />
     </main>
     <footer class="measure rule mt-20 py-8 text-sm text-muted">
@@ -117,11 +120,17 @@ const jsonLd = {
       <p class="mt-3 font-mono">Bitter Frontier is produced by <a class="hover:underline" href="https://bitter.sh">Bitter</a>.</p>
     </footer>
     <script is:inline>
-      document.getElementById("theme-toggle")?.addEventListener("click", () => {
+      (() => {
         const root = document.documentElement;
-        root.classList.toggle("dark");
-        localStorage.setItem("theme", root.classList.contains("dark") ? "dark" : "light");
-      });
+        const toggle = document.getElementById("theme-toggle");
+        const sync = () => toggle?.setAttribute("aria-pressed", root.classList.contains("dark") ? "true" : "false");
+        sync();
+        toggle?.addEventListener("click", () => {
+          root.classList.toggle("dark");
+          localStorage.setItem("theme", root.classList.contains("dark") ? "dark" : "light");
+          sync();
+        });
+      })();
     </script>
   </body>
 </html>

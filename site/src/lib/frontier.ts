@@ -755,9 +755,17 @@ function stripInternalSections(markdown: string): string {
   return markdown.slice(0, match.index).trimEnd();
 }
 
+// Profile pages render the label as the page <h1> in the template. The profile
+// markdown body opens with a duplicate `# <Label>` heading, which would produce
+// a second <h1> on the page. Drop that leading body heading so each profile page
+// has exactly one <h1> (matches how runs/[runId].astro strips the digest's h1).
+function stripLeadingTitle(markdown: string): string {
+  return markdown.replace(/^#\s+.*(?:\r?\n)+/, "");
+}
+
 function readProfile(file: string): MarkdownArtifact {
   const artifact = readMarkdown(file);
-  const stripped = stripInternalSections(artifact.body);
+  const stripped = stripLeadingTitle(stripInternalSections(artifact.body));
   return { ...artifact, body: stripped, html: marked.parse(stripped) as string };
 }
 
