@@ -44,12 +44,3 @@ signals:
     confidence: medium
     actionability: adapt
     accessibility_impact: high
-  - id: 2026-05-07-bitter-must-separate-wrap-adapt-refuse
-    title: Bitter needs a wrap, adapt, refuse decision for every frontier surface.
-    signal_class: bitter_product_intake
-    change_type: [ philosophy, workflow, governance ]
-    frontier_area: [ operator_loop, adapter_strategy ]
-    sources: [ paperclip, agent-zero, openhands, openclaw ]
-    confidence: high
-    actionability: adapt
-    accessibility_impact: medium

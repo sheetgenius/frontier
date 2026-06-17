@@ -20,13 +20,12 @@ sources:
   - agent-zero
   - openhands
 finding_count: 0
-signal_count: 5
+signal_count: 4
 top_signal_ids:
   - 2026-05-07-agent-labor-needs-operating-state
   - 2026-05-07-real-computers-become-agent-workcells
   - 2026-05-07-platforms-package-the-harness
   - 2026-05-07-accessibility-is-a-capability
-  - 2026-05-07-bitter-must-separate-wrap-adapt-refuse
 ---
 
 # Agents Are Getting Companies, Computers, And Consumer Surfaces
