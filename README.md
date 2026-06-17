@@ -1,14 +1,14 @@
 # Bitter Frontier
 
-**A weekly, receipted brief on the agentic-coding frontier, and the one that
-checks whether a fix is actually in the binary you run.**
+**A weekly, receipted brief on the AI coding agents and the harnesses around
+them, written for the people who run them in production.**
 
-Every week, Bitter Frontier reads what changed across the major AI coding agents
-and the harnesses around them, and turns it into what it costs the people who run
-them: what to upgrade, what to re-audit, what to try, what to watch, what to
-ignore. Every claim links to a primary source you can open and check.
+Every week, Bitter Frontier reads what changed across the major coding agents and
+their harnesses and turns it into what it costs you: what to upgrade, what to
+re-audit, what to try, what to watch, what to ignore. Every claim links to a
+primary source you can open and check.
 
-**Read the latest issue: https://frontier.bitter.sh** — free to read.
+**Read the latest issue: https://frontier.bitter.sh**
 
 ---
 
@@ -16,9 +16,9 @@ ignore. Every claim links to a primary source you can open and check.
 
 **Released is not merged.** A fix on a default branch is not a fix in the release
 you run. Most write-ups blur the two. We resolve the channel of every
-security-relevant change, *shipped in version X* or *on `main`, unreleased*,
-because telling an operator they are protected when they are not is the one error
-this brief refuses to make.
+security-relevant change, *shipped in version X* or *on `main`, unreleased*. An
+operator who thinks a hole is patched when it is only merged is the reader this
+brief is built for.
 
 **No claim without a receipt.** Every statement of fact links to a changelog
 entry, commit, release, or pull request. If you cannot open it and check it, we
@@ -30,8 +30,7 @@ if it changes what you should do. We do not paraphrase release notes.
 **Independent, on purpose.** Bitter Frontier is published by
 [Bitter](https://bitter.sh), which builds infrastructure for running AI agents in
 production. Bitter is never a subject of the analysis: no provider ranking, no
-"Bitter vs. them," no product pitch. The neutrality is the point, and it is what
-makes the brief worth reading.
+"Bitter vs. them," no product pitch.
 
 ### One claim, start to finish
 
@@ -47,7 +46,8 @@ This is what every line in a digest looks like underneath:
 > is on `main`, not in the v0.16.0 release binary. Run `main` or wait for the
 > next tag.
 
-Claim, receipt, consequence, channel. Open the link; check us.
+Every claim has that shape: the change, the receipt, the consequence, and the
+channel it shipped on. The links are there so you can check us.
 
 ---
 
@@ -80,14 +80,14 @@ checked-in **source contracts** in [`sources/`](./sources/).
 A digest has a fixed shape. You can read the first block in a minute and go deep
 only where it touches your stack:
 
-1. **Operator brief** — the thesis in two sentences, plus the upgrade/check,
-   try, watch, and uncertain lists. If you read one thing, read this.
-2. **The cross-provider pattern** — the synthesis no single changelog can show
+1. **Operator brief**: the thesis in two sentences, plus the upgrade/check, try,
+   watch, and uncertain lists. If you read one thing, read this.
+2. **The cross-provider pattern**: the synthesis no single changelog can show
    you (for example, "nine of ten providers spent the fortnight deciding who is
-   allowed to say yes"). This is the part you come back for.
-3. **Security advisories** — what to patch now, and what is fixed but unreleased.
-4. **Provider notes** — per provider; skim for the ones you run.
-5. **Try / watch / uncertain** — concrete next actions and open questions.
+   allowed to say yes").
+3. **Security advisories**: what to patch now, and what is fixed but unreleased.
+4. **Provider notes**: per provider; skim for the ones you run.
+5. **Try / watch / uncertain**: concrete next actions and open questions.
 
 Start with the [latest issue](https://frontier.bitter.sh). The archive is in
 [`content/digests/`](./content/digests/).
@@ -99,20 +99,20 @@ Start with the [latest issue](https://frontier.bitter.sh). The archive is in
 Bitter Frontier is file-backed: the publication *is* the repository. Nothing is
 hidden in a database.
 
-- [`content/digests/`](./content/digests/) — the weekly briefs.
-- [`content/profiles/`](./content/profiles/) — an evergreen register per
-  provider: "what is this tool right now."
-- [`sources/`](./sources/) — source contracts: where we watch, what counts as
+- [`content/digests/`](./content/digests/): the weekly briefs.
+- [`content/profiles/`](./content/profiles/): an evergreen register per provider,
+  "what is this tool right now."
+- [`sources/`](./sources/): source contracts, where we watch and what counts as
   evidence.
-- [`runs/`](./runs/) — the reproducible record of how each cycle was produced:
-  what was read, what was found, what was accepted, how receipts were verified.
-- [`METHOD.md`](./METHOD.md) — the three rules and the object grammar.
-- [`CONTRIBUTING.md`](./CONTRIBUTING.md) — how to send a correction.
+- [`runs/`](./runs/): the reproducible record of how each cycle was produced.
+  What was read, what was found, what was accepted, how receipts were verified.
+- [`METHOD.md`](./METHOD.md): the three rules and the object grammar.
+- [`CONTRIBUTING.md`](./CONTRIBUTING.md): how to send a correction.
 
 The object chain is `source -> finding -> signal -> digest -> profile`. A
 **finding** is one sourced observation. A **signal** is a finding that should
 change what an operator does. A **digest** is the weekly synthesis. The
-distinctions are load-bearing; [`METHOD.md`](./METHOD.md) explains why.
+distinctions are deliberate, and [`METHOD.md`](./METHOD.md) explains why.
 
 ---
 

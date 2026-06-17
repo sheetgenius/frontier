@@ -19,7 +19,7 @@ const providerList = allButLast.join(", ") + (lastProvider ? `, and ${lastProvid
 
     <div class="prose-frontier mt-8">
       <p>
-        Bitter Frontier watches {profiles.length} frontier coding agent harnesses — {providerList} — and publishes
+        Bitter Frontier watches {profiles.length} frontier coding agent harnesses ({providerList}) and publishes
         what changes enough to matter for teams running agents in production.
       </p>
       <p>
@@ -30,10 +30,10 @@ const providerList = allButLast.join(", ") + (lastProvider ? `, and ${lastProvid
       <p>
         The research loop runs autonomously. An agent reads primary sources (repositories, release tags, changelogs),
         produces structured findings, and puts each one through adversarial review before it can publish: independent
-        subagents and a separate model try to break the claim, and it survives only if its receipt holds.
+        subagents and a separate model re-check every claim against its source, and overstatements get caught and walked back.
         Human editors set doctrine and decide what becomes a signal. The loop handles coverage. A
         <a href="/runs/">run artifact</a> is produced for every research cycle, showing exactly what was read,
-        what was found, and what was accepted as signal.
+        what was found, what was accepted as signal, and what the review caught.
       </p>
       <p>
         Bitter Frontier is published by <a href="https://bitter.sh">Bitter</a>, which builds infrastructure for
@@ -63,7 +63,7 @@ const providerList = allButLast.join(", ") + (lastProvider ? `, and ${lastProvid
         </div>
         <div>
           <dt><a href="/sources/">Sources</a></dt>
-          <dd>The primary sources under contract — repositories, changelogs, and release feeds we watch.</dd>
+          <dd>The primary sources under contract: repositories, changelogs, and release feeds we watch.</dd>
         </div>
       </dl>
     </div>

@@ -18,8 +18,8 @@ Three commitments shape everything published here.
   it), held to the same receipt discipline.
 - **Released is not merged.** A fix on a default branch is not a fix in the
   binary you run. We resolve and state the release-channel status of every
-  security-relevant change, because telling you that you are protected when you
-  are not is the worst thing this publication could do.
+  security-relevant change, because the gap between merged and released is exactly
+  where an operator gets a false sense of safety.
 
 ## The objects
 
