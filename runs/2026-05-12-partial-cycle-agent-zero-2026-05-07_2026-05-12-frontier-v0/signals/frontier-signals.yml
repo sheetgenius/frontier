@@ -1,0 +1,22 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+signals:
+  - id: 2026-05-12-agent-zero-browser-multitab-and-document-formats
+    section: runtime
+    title: "ODF-first document defaults, persistent desktop lifecycle, multi-tab
+      browser fanout"
+    source: agent-zero
+    finding_ids:
+      - 2026-05-12-agent-zero-browser-multitab-and-document-formats
+    why_action_bearing:
+      - "Operators running Agent Zero should verify that downstream workflows
+        handle ODT/ODS/ODP output from v1.13+. OOXML output now requires
+        explicit configuration."
+      - "Operators running long-horizon desktop sessions should plan for
+        persistent desktop state: the Xpra Desktop no longer resets on canvas
+        navigation. Accumulated desktop state (open apps, browser sessions)
+        persists until explicitly shut down."
+    accessibility_impact: medium
+    factory_relevance: medium

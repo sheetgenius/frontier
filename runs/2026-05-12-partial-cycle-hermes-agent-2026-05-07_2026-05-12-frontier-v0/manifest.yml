@@ -1,0 +1,20 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-12-partial-cycle-hermes-agent-2026-05-07_2026-05-12-frontier-v0
+mode: partial_cycle
+provider: hermes-agent
+model: claude-sonnet-4-6
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+artifacts:
+  - findings/hermes-agent.md
+  - signals/frontier-signals.yml
+  - weekly/hermes-agent-fragment.md
+  - audit.md
+profile_updated: content/profiles/hermes-agent.md
+notes: >
+  First Hermes Agent profile build. source_class: open_source_commits,
+  evidence_floor: release_note. Primary evidence: v0.13.0 release notes
+  (v2026.5.7, "The Tenacity Release"). Also fixes missing finding_id in the
+  prior manual finding (2026-05-06-hermes-curator-and-service-surfaces).
+  Prior cycle findings seed five claims; this cycle adds four more.

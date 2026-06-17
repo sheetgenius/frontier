@@ -1,0 +1,46 @@
+schema_version: bitter.frontier_run_manifest.v0
+id: 2026-05-06-goal-weighted-2026-04-22_2026-05-06-frontier-v2
+title: Coding Agents Are Becoming Working Environments
+mode: editorial_rerun
+status: published
+window:
+  from: 2026-04-22
+  to: 2026-05-06
+generated_at: 2026-05-06
+generated_by: codex
+contract:
+  id: frontier-contract
+  version: v0.1
+artifact_version: 2
+supersedes: 2026-05-06-candidate-2026-04-22_2026-05-06-frontier-v1
+revision_reason: >
+  Elevates Codex /goal from generic agent memory to a first-class long-horizon
+  development signal.
+source_policy:
+  accepted_evidence_only: true
+  primary_sources_preferred: true
+sources:
+  - id: codex
+    contract: sources/codex.yml
+  - id: claude-code
+    contract: sources/claude-code.yml
+  - id: gemini-cli
+    contract: sources/gemini-cli.yml
+  - id: hermes-agent
+    contract: sources/hermes-agent.yml
+  - id: pi-coding-agent
+    contract: sources/pi-coding-agent.yml
+outputs:
+  digest:
+    - weekly/2026-04-22_2026-05-06.md
+  signals:
+    - signals/frontier-signals.yml
+  qa:
+    - qa.md
+top_signal_ids:
+  - 2026-05-06-worker-native-goals
+  - 2026-05-06-worker-native-memory
+  - 2026-05-06-fragmented-authority-semantics
+  - 2026-05-06-worker-verification
+  - 2026-05-06-plugin-extension-skill-surface
+  - 2026-05-06-worker-integrations-not-doctrine

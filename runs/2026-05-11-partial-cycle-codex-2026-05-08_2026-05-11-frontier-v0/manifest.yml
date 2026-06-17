@@ -1,0 +1,51 @@
+schema_version: bitter.frontier_run_manifest.v0
+id: 2026-05-11-partial-cycle-codex-2026-05-08_2026-05-11-frontier-v0
+title: "Partial cycle: testing Profile doctrine on Codex (mixed_official_docs)"
+status: draft
+artifact_version: 1
+mode: partial_profile_cycle_test
+created_at: 2026-05-11T13:00:00+08:00
+window:
+  start: 2026-05-08
+  end: 2026-05-11
+contract:
+  id: bitter-frontier-research-contract
+  version: v0
+  notes: >
+    Second test of the experimental Profile durable object. Stresses the
+    format on a `mixed_official_docs` surface (changelog + docs +
+    commits), contrasting with the pure-commits Gemini cycle.
+source_contracts:
+  - sources/codex.yml
+excluded_sources:
+  - id: all-other-providers
+    reason: Doctrine test, single-provider scope.
+harvest:
+  method: "GitHub commits API via gh + official changelog via WebFetch"
+  since: 2026-05-08T00:00:00Z
+  until: 2026-05-12T00:00:00Z
+  commit_counts:
+    codex: 71
+  changelog_entries_in_window: 1
+  notes: >
+    71 commits across 2026-05-08 to 2026-05-10. Changelog entry on
+    2026-05-08 (CLI 0.130.0). Earlier changelog entries (CLI 0.129.0,
+    Codex for Chrome launch) sit on 2026-05-07 — technically before
+    the window per the merge-to-default anchoring rule (gap 2 fix), so
+    Codex for Chrome is tracked as a What-To-Watch item rather than a
+    claim.
+profiles_read:
+  - none (Codex profile did not exist; this cycle establishes it)
+novelty_pass: >
+  No prior Codex profile to dedupe against. The cycle folds the
+  2026-05-07 codex finding's seven claims into the new profile as the
+  established baseline and adds three new claims from this window.
+quality_gates:
+  require_primary_sources: true
+  cite_commit_urls: true
+outputs:
+  findings: 1
+  signals: 1
+  digest_fragment: weekly/codex-fragment.md
+  profile_creation: content/profiles/codex.md
+  audit: audit.md

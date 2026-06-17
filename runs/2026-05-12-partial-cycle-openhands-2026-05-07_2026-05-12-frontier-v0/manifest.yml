@@ -1,0 +1,20 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-12-partial-cycle-openhands-2026-05-07_2026-05-12-frontier-v0
+mode: partial_cycle
+provider: openhands
+model: claude-sonnet-4-6
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+artifacts:
+  - findings/openhands.md
+  - signals/frontier-signals.yml
+  - weekly/openhands-fragment.md
+  - audit.md
+profile_updated: content/profiles/openhands.md
+notes: >
+  First OpenHands profile build. Source_class: mixed_official_docs.
+  Primary evidence: merged PRs (#14122 sub-agent delegation, #14133 critic
+  GUI) plus v1.7.0 release notes. Evidence floor: release_note.
+  Prior cycle finding (2026-05-07-openhands-platform-hardening) seeded
+  four claims; this cycle adds two more.

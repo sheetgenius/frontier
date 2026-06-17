@@ -1,0 +1,46 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-12-weekly-digest-2026-05-07_2026-05-12-frontier-v0
+mode: weekly_digest
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+model: claude-sonnet-4-6
+sources:
+  - codex
+  - claude-code
+  - gemini-cli
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+input_fragments:
+  - runs/2026-05-11-partial-cycle-codex-2026-05-08_2026-05-11-frontier-v0/weekly/codex-fragment.md
+  - runs/2026-05-11-partial-cycle-2026-05-08_2026-05-11-frontier-v0/weekly/gemini-fragment.md
+  - runs/2026-05-12-partial-cycle-claude-code-2026-05-07_2026-05-12-frontier-v0/weekly/claude-code-fragment.md
+  - runs/2026-05-12-partial-cycle-openclaw-2026-05-07_2026-05-12-frontier-v0/weekly/openclaw-fragment.md
+  - runs/2026-05-12-partial-cycle-openhands-2026-05-07_2026-05-12-frontier-v0/weekly/openhands-fragment.md
+  - runs/2026-05-12-partial-cycle-hermes-agent-2026-05-07_2026-05-12-frontier-v0/weekly/hermes-agent-fragment.md
+  - runs/2026-05-12-partial-cycle-pi-coding-agent-2026-05-07_2026-05-12-frontier-v0/weekly/pi-coding-agent-fragment.md
+  - runs/2026-05-12-partial-cycle-paperclip-2026-05-07_2026-05-12-frontier-v0/weekly/paperclip-fragment.md
+  - runs/2026-05-12-partial-cycle-agent-zero-2026-05-07_2026-05-12-frontier-v0/weekly/agent-zero-fragment.md
+input_signals:
+  - 2026-05-11-codex-permissions-visibility-and-plugin-share-evolution
+  - 2026-05-11-gemini-subagent-protocol-and-session-portability
+  - 2026-05-12-claude-code-agent-view-goal-and-governance
+  - 2026-05-12-openclaw-agent-permissions-and-onboarding
+  - 2026-05-12-openhands-subagent-delegation-and-critic-evaluation
+  - 2026-05-12-hermes-tenacity-kanban-and-security
+  - 2026-05-12-pi-earendil-migration-and-harness-sdk
+  - 2026-05-12-paperclip-secrets-vaults-and-cursor-cloud
+  - 2026-05-12-agent-zero-browser-multitab-and-document-formats
+outputs:
+  - content/digests/2026-05-12-weekly.md
+status: complete
+note: >
+  Synthesis condition for the autonomous-loop Operational Target.
+  This digest covers the full watchlist for the 2026-05-07 to 2026-05-12
+  window, synthesizing signals from nine partial-cycle runs.
+  Codex and Gemini fragments cover 2026-05-08..2026-05-11, within this
+  window.

@@ -1,0 +1,69 @@
+---
+import Base from "../../layouts/Base.astro";
+import SignalList from "../../components/SignalList.astro";
+import {
+  SECTION_FRAMINGS,
+  SECTION_LABELS,
+  SECTION_SCOPES,
+  listProfiles,
+  listSectionSlugs,
+  signalsForSection,
+} from "../../lib/frontier";
+
+export function getStaticPaths() {
+  // Always emit pages for the canonical three even if a section has no signals yet.
+  const canonical = ["control-plane", "runtime", "platform"];
+  const present = new Set(listSectionSlugs());
+  const slugs = Array.from(new Set([...canonical, ...present]));
+  return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const slug = Astro.params.slug!;
+const label = SECTION_LABELS[slug] ?? slug;
+const framing = SECTION_FRAMINGS[slug];
+const scope = SECTION_SCOPES[slug];
+const signals = signalsForSection(slug);
+const profiles = listProfiles();
+const profileSlugs = new Set(profiles.map((p) => p.slug));
+---
+
+<Base
+  title={`${label} · Bitter Frontier`}
+  description={framing ?? `Signals tagged ${label}.`}
+>
+  <section class="measure py-10">
+    <p class="small-caps text-muted">Section</p>
+    <h1 class="issue-title">{label}</h1>
+    {framing && (
+      <p class="signal-intro" style="font-family: var(--font-serif); font-style: italic; font-size: 1.1rem;">
+        {framing}
+      </p>
+    )}
+    {scope && (
+      <p class="signal-intro mt-4">
+        {scope}
+      </p>
+    )}
+
+    <div class="rule mt-8 pt-5">
+      <p class="small-caps text-muted">Other sections</p>
+      <ul class="signal-source-filter">
+        {["control-plane", "runtime", "platform"].filter((s) => s !== slug).map((s) => (
+          <li>
+            <a href={`/sections/${s}/`} class="signal-source-chip">{SECTION_LABELS[s] ?? s}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {signals.length === 0 ? (
+      <p class="mt-9 text-muted">No accepted signals carry this section yet.</p>
+    ) : (
+      <SignalList signals={signals} profileSlugs={profileSlugs} />
+    )}
+
+    <p class="rule mt-10 pt-5 font-mono text-sm text-muted">
+      <a href="/signals/" class="hover:underline">← All signals</a>
+    </p>
+  </section>
+</Base>

@@ -1,0 +1,54 @@
+---
+import Base from "../../layouts/Base.astro";
+import SignalList from "../../components/SignalList.astro";
+import { composesLabel, listComposesFacets, listProfiles, listSignalSourceSlugs, listSignals, sourceLabel } from "../../lib/frontier";
+
+const signals = listSignals();
+const profiles = listProfiles();
+const profileSlugs = new Set(profiles.map((p) => p.slug));
+const sourceSlugs = listSignalSourceSlugs();
+const composesFacets = listComposesFacets();
+---
+
+<Base title="Signals · Bitter Frontier">
+  <section class="measure py-10">
+    <p class="small-caps text-muted">Signals</p>
+    <h1 class="issue-title">What changed enough to matter.</h1>
+    <p class="signal-intro">
+      A signal is a finding that should change what a serious operator does next — how they configure an agent,
+      what they test, or what they stop relying on. Each entry links to the run that produced it.
+    </p>
+
+    {sourceSlugs.length > 0 && (
+      <div class="rule mt-8 pt-5">
+        <p class="small-caps text-muted">Filter by source</p>
+        <ul class="signal-source-filter">
+          {sourceSlugs.map((slug) => (
+            <li>
+              <a href={`/signals/source/${slug}/`} class="signal-source-chip">
+                {sourceLabel(slug)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {composesFacets.length > 0 && (
+      <div class="rule mt-6 pt-5">
+        <p class="small-caps text-muted">Filter by composition</p>
+        <ul class="signal-source-filter">
+          {composesFacets.map((id) => (
+            <li>
+              <a href={`/signals/composes-with/${id}/`} class="signal-source-chip">
+                {composesLabel(id)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <SignalList signals={signals} profileSlugs={profileSlugs} />
+  </section>
+</Base>

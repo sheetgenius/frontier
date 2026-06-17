@@ -1,0 +1,60 @@
+schema_version: bitter.frontier_signal_set.v0
+run: 2026-05-06-goal-weighted-2026-04-22_2026-05-06-frontier-v2
+window:
+  start: 2026-04-22
+  end: 2026-05-06
+signals:
+  - id: 2026-05-06-worker-native-goals
+    section: control-plane
+    title: Persistent goals move coding agents beyond single sessions.
+    signal_class: agent_frontier
+    change_type: [ capability, workflow, long_horizon_state ]
+    frontier_area: [ coding_agent, worker_goals, autonomous_development ]
+    sources: [ codex ]
+    confidence: high
+    actionability: test
+  - id: 2026-05-06-worker-native-memory
+    section: control-plane
+    title: Agent memory is becoming a product surface.
+    signal_class: agent_frontier
+    change_type: [ capability, memory, workflow ]
+    frontier_area: [ coding_agent, worker_state ]
+    sources: [ claude-code, gemini-cli, hermes-agent ]
+    confidence: high
+    actionability: adapt
+  - id: 2026-05-06-fragmented-authority-semantics
+    section: control-plane
+    title: Permissions are getting clearer, but every agent does them differently.
+    signal_class: agent_frontier
+    change_type: [ security, workflow, runtime ]
+    frontier_area: [ authority, credentials, sandboxing ]
+    sources: [ codex, claude-code, gemini-cli, pi-coding-agent ]
+    confidence: high
+    actionability: adapt
+  - id: 2026-05-06-worker-verification
+    section: control-plane
+    title: Review is moving inside the agent tools.
+    signal_class: agent_frontier
+    change_type: [ evaluation, reliability, workflow ]
+    frontier_area: [ verification, multi_agent, qa ]
+    sources: [ claude-code, codex, gemini-cli, hermes-agent ]
+    confidence: high
+    actionability: test
+  - id: 2026-05-06-plugin-extension-skill-surface
+    section: platform
+    title: Plugins and skills are becoming the new agent interface.
+    signal_class: agent_frontier
+    change_type: [ ecosystem, protocol, workflow ]
+    frontier_area: [ plugins, extensions, skills, mcp ]
+    sources: [ codex, claude-code, gemini-cli, hermes-agent, pi-coding-agent ]
+    confidence: high
+    actionability: adapt
+  - id: 2026-05-06-worker-integrations-not-doctrine
+    section: platform
+    title: Do not build your workflow around one agent's current integration list.
+    signal_class: agent_frontier
+    change_type: [ ecosystem, reliability, economics ]
+    frontier_area: [ adapters, providers, release_channels ]
+    sources: [ pi-coding-agent, gemini-cli, codex ]
+    confidence: high
+    actionability: observe

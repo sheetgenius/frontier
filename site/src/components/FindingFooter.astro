@@ -1,0 +1,82 @@
+---
+import {
+  formatDate,
+  profilesCitingFinding,
+  signalsCitingFinding,
+  sourceLabel,
+  type FindingEntry,
+} from "../lib/frontier";
+
+const { finding } = Astro.props as { finding: FindingEntry };
+
+const data = finding.data;
+const citingSignals = signalsCitingFinding(finding);
+const citingProfiles = profilesCitingFinding(finding);
+
+const metaRows: Array<{ label: string; value: string }> = [];
+if (data.confidence) metaRows.push({ label: "Confidence", value: data.confidence });
+if (data.actionability) metaRows.push({ label: "Actionability", value: data.actionability });
+if (data.accessibility_impact) metaRows.push({ label: "Accessibility impact", value: data.accessibility_impact });
+if (data.operator_relevance) metaRows.push({ label: "Operator relevance", value: data.operator_relevance });
+if (data.bitter_relevance) metaRows.push({ label: "Bitter relevance", value: data.bitter_relevance });
+---
+
+{(metaRows.length > 0 || finding.runId || citingSignals.length > 0 || citingProfiles.length > 0) && (
+  <section class="rule mt-9 pt-6">
+    <p class="small-caps text-muted">Finding metadata</p>
+
+    {metaRows.length > 0 && (
+      <dl class="signal-metadata mt-3">
+        {metaRows.map((row) => (
+          <div>
+            <dt>{row.label}</dt>
+            <dd>{row.value}</dd>
+          </div>
+        ))}
+      </dl>
+    )}
+
+    {finding.runId && (
+      <p class="mt-4 font-mono text-sm">
+        <span class="text-muted">Run: </span>
+        <a href={`/runs/${finding.runId}/`} class="hover:underline">{finding.runId}</a>
+      </p>
+    )}
+
+    {finding.data.finding_id && (
+      <p class="mt-2 font-mono text-sm text-muted">
+        Finding ID: <code>{finding.data.finding_id}</code>
+      </p>
+    )}
+
+    {citingSignals.length > 0 && (
+      <div class="mt-5">
+        <p class="small-caps text-muted">Accepted signals</p>
+        <ul class="mt-2 space-y-2">
+          {citingSignals.map((signal: any) => (
+            <li class="font-mono text-sm">
+              <a href={`/signals/${signal.id}/`} class="hover:underline">{signal.title}</a>
+              <span class="text-muted"> · {formatDate(signal.date)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {citingProfiles.length > 0 && (
+      <div class="mt-5">
+        <p class="small-caps text-muted">Profile citations</p>
+        <ul class="mt-2 space-y-2">
+          {citingProfiles.map((citation: any) => (
+            <li class="font-mono text-sm">
+              <a href={`/profiles/${citation.profile.slug}/`} class="hover:underline">
+                {sourceLabel(citation.profile.slug)}
+              </a>
+              <span class="text-muted"> · {citation.context}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </section>
+)}

@@ -1,0 +1,104 @@
+---
+import { composesHref, composesLabel, formatDate, sectionLabel, sourceLabel, type SignalEntry } from "../lib/frontier";
+
+const { signals, profileSlugs } = Astro.props as {
+  signals: SignalEntry[];
+  profileSlugs: Set<string>;
+};
+
+function monthKey(date: string): string {
+  return date.slice(0, 7); // YYYY-MM
+}
+
+function monthLabel(key: string): string {
+  if (key === "unknown") return "Undated";
+  const [y, m] = key.split("-");
+  const months = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+  const mi = parseInt(m, 10) - 1;
+  if (Number.isNaN(mi) || mi < 0 || mi > 11) return key;
+  return `${months[mi]} ${y}`;
+}
+
+const grouped: Array<{ month: string; entries: SignalEntry[] }> = [];
+for (const signal of signals) {
+  const key = monthKey(signal.date);
+  const last = grouped[grouped.length - 1];
+  if (last && last.month === key) {
+    last.entries.push(signal);
+  } else {
+    grouped.push({ month: key, entries: [signal] });
+  }
+}
+---
+
+<div class="signal-grouped-list">
+  {grouped.map((group) => (
+    <section class="signal-month">
+      <p class="signal-month-label small-caps text-muted">{monthLabel(group.month)}</p>
+      <ol class="signal-list mt-3">
+        {group.entries.map((signal) => (
+          <li>
+            <div class="signal-meta small-caps text-muted">
+              {formatDate(signal.date)}
+              {signal.sources.map((src) => (
+                <span>
+                  {" · "}
+                  {profileSlugs.has(src) ? (
+                    <a href={`/profiles/${src}/`} class="text-[var(--color-bitter)] no-underline hover:underline">
+                      {sourceLabel(src)}
+                    </a>
+                  ) : (
+                    <span>{sourceLabel(src)}</span>
+                  )}
+                </span>
+              ))}
+            </div>
+            <h2 class="signal-title">
+              <a href={`/signals/${signal.id}/`} class="no-underline hover:underline">{signal.title}</a>
+            </h2>
+            {signal.sections.length > 0 && (
+              <div class="signal-tracks">
+                {signal.sections.map((section) => (
+                  <a href={`/sections/${section}/`} class={`signal-track track-${section}`}>{sectionLabel(section)}</a>
+                ))}
+              </div>
+            )}
+            {signal.composes.length > 0 && (
+              <p class="signal-composes small-caps text-muted">
+                composes with{" "}
+                {signal.composes.map((id, i) => {
+                  const href = composesHref(id, profileSlugs);
+                  return (
+                    <span>
+                      {i > 0 && ", "}
+                      {href ? (
+                        <a href={href} class="composes-link">{composesLabel(id)}</a>
+                      ) : (
+                        <span>{composesLabel(id)}</span>
+                      )}
+                    </span>
+                  );
+                })}
+              </p>
+            )}
+            {signal.whyActionBearing.length > 0 ? (
+              <ul class="signal-actions">
+                {signal.whyActionBearing.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            ) : signal.summary ? (
+              <p class="signal-summary">{signal.summary}</p>
+            ) : null}
+            {signal.runId && (
+              <p class="signal-run-link font-mono text-sm text-muted mt-2">
+                <a href={`/runs/${signal.runId}/`} class="hover:underline">Run: {signal.runId}</a>
+              </p>
+            )}
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))}
+</div>

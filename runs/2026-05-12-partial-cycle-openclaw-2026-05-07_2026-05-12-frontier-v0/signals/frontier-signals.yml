@@ -1,0 +1,26 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+signals:
+  - id: 2026-05-12-openclaw-agent-permissions-and-onboarding
+    sections: [ control-plane, platform ]
+    title: "Per-agent message restrictions, gated code install, and onboarding
+      wayfinding"
+    source: openclaw
+    finding_ids:
+      - 2026-05-12-openclaw-agent-permissions-and-onboarding
+    why_action_bearing:
+      - "Operators deploying public-facing or sandboxed agents should evaluate
+        `tools.message.crossContext` and `tools.message.actions.allow` overrides
+        to restrict agent message sends to the current conversation without
+        changing the global bot policy."
+      - "Operators running long-horizon OpenClaw sessions should know that
+        session memory is now bounded: the memory dreaming promotion cap
+        compacts oldest auto-promoted sections while preserving user-authored
+        notes. Unbounded auto-memory growth is no longer the default behavior."
+      - "Operators deploying OpenClaw for new users should test the improved CLI
+        onboarding wayfinding: setup, onboarding, configure, and channel
+        commands now explain the next useful command at each step."
+    accessibility_impact: medium
+    factory_relevance: low

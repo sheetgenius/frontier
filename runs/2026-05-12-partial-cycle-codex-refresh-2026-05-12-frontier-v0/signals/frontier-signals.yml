@@ -1,0 +1,21 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-12
+  end: 2026-05-12
+signals:
+  - id: 2026-05-12-codex-pretooluse-input-rewrite
+    section: control-plane
+    title: "PreToolUse hooks can now rewrite tool inputs before execution"
+    source: codex
+    finding_ids:
+      - 2026-05-12-codex-pretooluse-input-rewrite
+    why_action_bearing:
+      - "Hook authors who returned updatedInput in PreToolUse hooks expecting
+        rewrites to apply should re-test: prior to this fix, the original input
+        was used; after this fix, the rewritten input is used. Verify existing
+        hooks behave as intended after upgrade."
+      - "Operators can now build input-sanitizing PreToolUse hooks that modify
+        tool arguments before dispatch -- path normalization, argument masking,
+        destination redirection."
+    accessibility_impact: low
+    factory_relevance: low

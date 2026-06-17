@@ -1,0 +1,20 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-12-partial-cycle-pi-coding-agent-2026-05-07_2026-05-12-frontier-v0
+mode: partial_cycle
+provider: pi-coding-agent
+model: claude-sonnet-4-6
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+artifacts:
+  - findings/pi-coding-agent.md
+  - signals/frontier-signals.yml
+  - weekly/pi-coding-agent-fragment.md
+  - audit.md
+profile_updated: content/profiles/pi-coding-agent.md
+notes: >
+  First Pi Coding Agent profile build. surface_class: open_source_commits,
+  evidence_floor: release_note. Primary evidence: v0.74.0 and v0.73.1 release
+  notes. Notable: repo/npm scope migration from badlogic/mariozechner to
+  earendil-works. Also fixes missing finding_id in the prior manual finding
+  (2026-05-06-pi-thin-harness-provider-churn).

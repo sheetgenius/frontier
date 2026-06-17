@@ -1,0 +1,71 @@
+---
+import Base from "../../layouts/Base.astro";
+import { listProfiles, sourceLabel } from "../../lib/frontier";
+
+const profiles = listProfiles();
+const providerNames = profiles.map((p) => sourceLabel(p.slug));
+const lastProvider = providerNames.at(-1);
+const allButLast = providerNames.slice(0, -1);
+const providerList = allButLast.join(", ") + (lastProvider ? `, and ${lastProvider}` : "");
+---
+
+<Base
+  title="About · Bitter Frontier"
+  description="Bitter Frontier is a research publication for software operators building with coding agents. Every claim is source-backed. Every signal should change what you do next."
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">About</p>
+    <h1 class="issue-title">Built for operators who need to know what's actually changing.</h1>
+
+    <div class="prose-frontier mt-8">
+      <p>
+        Bitter Frontier watches {profiles.length} frontier coding agent harnesses — {providerList} — and publishes
+        what changes enough to matter for teams running agents in production.
+      </p>
+      <p>
+        This is not a newsletter summarizing blog posts. Every claim in every digest traces back to a source commit,
+        release note, or changelog entry. Every signal is a finding that should change how you configure an agent,
+        what you test, or what you stop relying on. The evidence chain is public and auditable.
+      </p>
+      <p>
+        The research loop runs autonomously. An agent reads primary sources — repositories, release tags, changelogs —
+        produces structured findings, and submits them for council review before anything publishes.
+        Human editors set doctrine and review policy. The loop handles coverage. A
+        <a href="/runs/">run artifact</a> is produced for every research cycle, showing exactly what was read,
+        what was found, and what was accepted as signal.
+      </p>
+      <p>
+        Bitter Frontier is published by <a href="https://bitter.sh">Bitter</a>, an operator product for teams running
+        coding agents in production. The publication has its own research contract: claims need receipts, and signals
+        need operator consequences. Bitter-specific implications stay in backstage notes unless they help a public
+        reader act.
+      </p>
+    </div>
+
+    <div class="mt-10 rule pt-6">
+      <p class="small-caps text-muted">How to read this publication</p>
+      <dl class="about-dl mt-4">
+        <div>
+          <dt><a href="/digests/">Digests</a></dt>
+          <dd>Weekly synthesis across all sources. Start here to see what changed in the last cycle.</dd>
+        </div>
+        <div>
+          <dt><a href="/signals/">Signals</a></dt>
+          <dd>Findings that should change what operators do next. Browseable by date and source.</dd>
+        </div>
+        <div>
+          <dt><a href="/profiles/">Profiles</a></dt>
+          <dd>Evergreen per-agent registers. The current state of each harness with active claims and open questions.</dd>
+        </div>
+        <div>
+          <dt><a href="/runs/">Evidence</a></dt>
+          <dd>The full evidence trail. Every research cycle as a versioned artifact you can audit.</dd>
+        </div>
+        <div>
+          <dt><a href="/sources/">Sources</a></dt>
+          <dd>The primary sources under contract — repositories, changelogs, and release feeds we watch.</dd>
+        </div>
+      </dl>
+    </div>
+  </article>
+</Base>

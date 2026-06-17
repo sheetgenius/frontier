@@ -1,0 +1,183 @@
+---
+import Base from "../../layouts/Base.astro";
+import { listProfiles, listSignalSourceSlugs, listSources, sourceLabel } from "../../lib/frontier";
+import { GH_BLOB_BASE } from "../../lib/site";
+
+const sources = listSources();
+const profileSlugs = new Set(listProfiles().map((p) => p.slug));
+const signalSourceSlugs = new Set(listSignalSourceSlugs());
+
+function humanize(value: string): string {
+  return value.replaceAll("_", " ");
+}
+
+function sortedSurfaces(surfaces: any[]): any[] {
+  if (!Array.isArray(surfaces)) return [];
+  return [...surfaces].sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99));
+}
+---
+
+<Base title="Sources · Bitter Frontier">
+  <section class="measure py-10">
+    <p class="small-caps text-muted">Watched Sources</p>
+    <h1 class="issue-title">The intake promise.</h1>
+    <p class="signal-intro">
+      A source contract is the public commitment that defines where the loop looks for evidence, what
+      it accepts as a finding, and what it refuses before a profile or digest can carry the claim.
+      Each card below shows the contract as the loop sees it. Every field is rendered from
+      <code>sources/[id].yml</code> as-is — no editorial overlay.
+    </p>
+
+    <div class="mt-9 source-cards">
+      {sources.map((source) => {
+        const contract = source.contract ?? {};
+        const surfaces = sortedSurfaces(contract.primary_surfaces ?? []);
+        const accepted: string[] = contract.accepted_evidence ?? [];
+        const rejected: string[] = contract.rejected_evidence ?? [];
+        const lenses: string[] = contract.research_lenses ?? [];
+        const patterns: string[] = contract.high_signal_patterns ?? [];
+        const defaultAct = contract.default_actionability ?? {};
+        const defaultActKeys = Object.keys(defaultAct);
+        const discovery = contract.discovery ?? {};
+        const openQuestions: string[] = discovery.open_questions ?? [];
+        const hasProfile = profileSlugs.has(source.id);
+        const hasSignals = signalSourceSlugs.has(source.id);
+        return (
+          <article class="source-card">
+            <p class="source-eyebrow small-caps">
+              {source.id} · {source.status}
+              {source.tier ? ` · tier ${source.tier}` : ""}
+              {source.cadence ? ` · ${source.cadence}` : ""}
+            </p>
+            <h2 class="source-title">
+              {contract.label ?? source.id}
+              {contract.owner && <span class="source-owner text-muted"> · {contract.owner}</span>}
+            </h2>
+
+            {contract.notes && (
+              <p class="source-notes">{contract.notes}</p>
+            )}
+
+            {surfaces.length > 0 && (
+              <div class="source-section">
+                <p class="small-caps text-muted">Primary surfaces</p>
+                <ul class="source-surfaces mt-3">
+                  {contract.homepage && (
+                    <li>
+                      <div class="source-surface-head">
+                        <span class="source-surface-id">homepage</span>
+                        <a href={contract.homepage} class="source-surface-url">{contract.homepage}</a>
+                      </div>
+                    </li>
+                  )}
+                  {surfaces.map((surface: any) => (
+                    <li>
+                      <div class="source-surface-head">
+                        <span class="source-surface-id">{surface.id}</span>
+                        <span class="source-surface-kind text-muted">{humanize(surface.kind ?? "")}</span>
+                        <a href={surface.url} class="source-surface-url">{surface.url}</a>
+                      </div>
+                      {Array.isArray(surface.watch) && surface.watch.length > 0 && (
+                        <div class="source-surface-watch text-muted">
+                          watch: {surface.watch.map(humanize).join(" · ")}
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {accepted.length > 0 && (
+              <div class="source-section">
+                <p class="small-caps text-muted">Accepts as evidence</p>
+                <ul class="source-tag-list mt-2">
+                  {accepted.map((item) => <li>{humanize(item)}</li>)}
+                </ul>
+              </div>
+            )}
+
+            {rejected.length > 0 && (
+              <div class="source-section">
+                <p class="small-caps text-muted">Refuses to promote</p>
+                <ul class="source-tag-list source-tag-list-rejected mt-2">
+                  {rejected.map((item) => <li>{humanize(item)}</li>)}
+                </ul>
+              </div>
+            )}
+
+            {defaultActKeys.length > 0 && (
+              <div class="source-section">
+                <p class="small-caps text-muted">Default actionability</p>
+                <dl class="source-default-act mt-2">
+                  {defaultActKeys.map((key) => (
+                    <div>
+                      <dt>{humanize(key)}</dt>
+                      <dd>{String(defaultAct[key])}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            )}
+
+            {lenses.length > 0 && (
+              <div class="source-section">
+                <p class="small-caps text-muted">Research lenses</p>
+                <ul class="source-tag-list mt-2">
+                  {lenses.map((item) => <li>{humanize(item)}</li>)}
+                </ul>
+              </div>
+            )}
+
+            {patterns.length > 0 && (
+              <div class="source-section">
+                <p class="small-caps text-muted">High-signal patterns</p>
+                <p class="source-patterns mt-2">{patterns.join(" · ")}</p>
+              </div>
+            )}
+
+            {(discovery.last_verified || openQuestions.length > 0) && (
+              <div class="source-section">
+                <p class="small-caps text-muted">Discovery state</p>
+                {discovery.last_verified && (
+                  <p class="font-mono text-sm text-muted mt-2">
+                    last verified: {discovery.last_verified}
+                    {discovery.verified_by ? ` · ${humanize(discovery.verified_by)}` : ""}
+                    {discovery.confidence ? ` · ${discovery.confidence} confidence` : ""}
+                  </p>
+                )}
+                {openQuestions.length > 0 && (
+                  <ul class="source-open-questions mt-2">
+                    {openQuestions.map((q) => <li>{q}</li>)}
+                  </ul>
+                )}
+              </div>
+            )}
+
+            <div class="source-footer rule mt-5 pt-4">
+              <a href={`${GH_BLOB_BASE}/${source.contract_path ?? `sources/${source.id}.yml`}`} class="font-mono text-xs text-muted hover:underline">
+                contract YAML on GitHub
+              </a>
+              {hasProfile && (
+                <>
+                  {" · "}
+                  <a href={`/profiles/${source.id}/`} class="font-mono text-xs hover:underline">
+                    Profile: {sourceLabel(source.id)}
+                  </a>
+                </>
+              )}
+              {hasSignals && (
+                <>
+                  {" · "}
+                  <a href={`/signals/source/${source.id}/`} class="font-mono text-xs hover:underline">
+                    Signals
+                  </a>
+                </>
+              )}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+</Base>

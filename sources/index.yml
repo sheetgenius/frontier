@@ -1,0 +1,72 @@
+schema_version: bitter.frontier_source_index.v0
+last_revised: 2026-05-12
+sources:
+  - id: codex
+    contract: sources/codex.yml
+    notes: sources/codex.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: claude-code
+    contract: sources/claude-code.yml
+    notes: sources/claude-code.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: gemini-cli
+    contract: sources/gemini-cli.yml
+    notes: sources/gemini-cli.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: hermes-agent
+    contract: sources/hermes-agent.yml
+    notes: sources/hermes-agent.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: pi-coding-agent
+    contract: sources/pi-coding-agent.yml
+    notes: sources/pi-coding-agent.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: openclaw
+    contract: sources/openclaw.yml
+    notes: sources/openclaw.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: paperclip
+    contract: sources/paperclip.yml
+    notes: sources/paperclip.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: agent-zero
+    contract: sources/agent-zero.yml
+    notes: sources/agent-zero.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: openhands
+    contract: sources/openhands.yml
+    notes: sources/openhands.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: flue
+    contract: sources/flue.yml
+    notes: sources/flue.notes.md
+    tier: 2
+    status: active
+    cadence: weekly
+default_window:
+  live: previous_24h
+  weekly_digest: previous_calendar_week
+  backtest: explicit_operator_window
+contract_schema: schemas/source-contract.schema.json
+notes: >
+  The index is the harvest entrypoint. A run should load a source contract
+  before searching the open web so the agent starts from known official
+  surfaces, accepted evidence, rejected evidence, and actionability rules.

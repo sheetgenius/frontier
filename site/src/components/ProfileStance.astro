@@ -1,0 +1,40 @@
+---
+type Stance = {
+  use_for?: string;
+  avoid_for?: string;
+  watch_next?: string;
+};
+
+const { stance, asOf } = Astro.props as { stance?: Stance; asOf?: string };
+const hasStance = stance && (stance.use_for || stance.avoid_for || stance.watch_next);
+---
+
+{
+  hasStance && (
+    <section class="profile-stance">
+      <p class="profile-stance-kicker small-caps">
+        Operator Stance{asOf ? ` · as of ${asOf}` : ""}
+      </p>
+      <dl class="profile-stance-list">
+        {stance.use_for && (
+          <div class="stance-row stance-use">
+            <dt class="small-caps">Use it for</dt>
+            <dd set:html={stance.use_for} />
+          </div>
+        )}
+        {stance.avoid_for && (
+          <div class="stance-row stance-avoid">
+            <dt class="small-caps">Avoid it for</dt>
+            <dd set:html={stance.avoid_for} />
+          </div>
+        )}
+        {stance.watch_next && (
+          <div class="stance-row stance-watch">
+            <dt class="small-caps">Watch next</dt>
+            <dd set:html={stance.watch_next} />
+          </div>
+        )}
+      </dl>
+    </section>
+  )
+}

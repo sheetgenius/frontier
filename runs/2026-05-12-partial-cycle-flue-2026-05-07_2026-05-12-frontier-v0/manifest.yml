@@ -1,0 +1,22 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-12-partial-cycle-flue-2026-05-07_2026-05-12-frontier-v0
+mode: partial_cycle
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+model: claude-sonnet-4-6
+sources:
+  - flue
+source_contracts:
+  - sources/flue.yml
+versions_covered: "v0.4.0..v0.5.3"
+status: complete
+outputs:
+  - runs/2026-05-12-partial-cycle-flue-2026-05-07_2026-05-12-frontier-v0/findings/flue.md
+  - runs/2026-05-12-partial-cycle-flue-2026-05-07_2026-05-12-frontier-v0/signals/frontier-signals.yml
+  - runs/2026-05-12-partial-cycle-flue-2026-05-07_2026-05-12-frontier-v0/weekly/flue-fragment.md
+  - content/profiles/flue.md
+note: >
+  Initial profile build for Flue (Tier 2 watchlist addition). Coverage
+  condition was re-opened when Flue was added to AGENTS.md. This cycle
+  builds the profile and restores Coverage = MET.

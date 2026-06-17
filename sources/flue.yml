@@ -1,0 +1,134 @@
+schema_version: bitter.frontier_source_contract.v0
+id: flue
+label: Flue
+owner: withastro
+homepage: https://flueframework.com/
+primary_surfaces:
+  - id: repo
+    kind: github_repo
+    url: https://github.com/withastro/flue
+    priority: 1
+    watch:
+      - commits
+      - releases
+      - tags
+      - pull_requests
+      - readme
+      - changelog
+      - examples
+      - docs
+  - id: changelog
+    kind: changelog_file
+    url: https://github.com/withastro/flue/blob/main/CHANGELOG.md
+    priority: 1
+    watch:
+      - versions
+      - breaking_changes
+      - new_features
+      - fixes
+    notes: >
+      Canonical receipt surface. Flue publishes no GitHub Releases
+      (github.com/withastro/flue/releases is empty), so cite the
+      version-tagged CHANGELOG.md (or a release tag) as the receipt,
+      never the /releases page. Surfaced by the 2026-05-28_2026-06-03
+      run audit (item 2).
+  - id: homepage
+    kind: official_site
+    url: https://flueframework.com/
+    priority: 2
+    watch:
+      - framing
+      - feature_surface
+      - deployment_targets
+      - skill_system
+      - sandbox_api
+accepted_evidence:
+  - github_commit
+  - github_release
+  - tagged_release
+  - merged_pr
+  - readme_change
+  - official_docs
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+  - seo_clone_or_mirror
+change_types:
+  - capability
+  - api_surface
+  - runtime
+  - sandbox
+  - skill_system
+  - deployment
+  - protocol
+  - philosophy
+  - ecosystem
+  - security
+  - breaking_change
+research_lenses:
+  - agent_harness_architecture
+  - model_harness_separation
+  - programmable_runtime
+  - headless_agent
+  - sandbox_design
+  - skill_primitives
+  - session_memory
+  - ci_deployment
+  - filesystem_abstraction
+high_signal_patterns:
+  - model + harness separation
+  - programmable harness
+  - headless agent
+  - sandboxed execution
+  - skill system
+  - markdown skills
+  - AGENTS.md
+  - session management
+  - memory
+  - filesystem abstraction
+  - HTTP server
+  - CLI agent
+  - CI/CD deployment
+  - Cloudflare Workers
+  - API change
+  - breaking change
+  - experimental
+operator_questions:
+  - Does this validate or challenge the "model + harness" framing as a durable public category?
+  - Which harness primitives (sandbox, filesystem, skills, memory, sessions, credentials) are stabilizing vs. still experimental?
+  - Does this suggest integration surfaces Bitter should expose, wrap, or treat as precedent?
+  - Does any API change affect how Bitter thinks about its own receipt layer or deployment membrane?
+  - Is the project gaining enough traction to treat as architectural reference rather than just category evidence?
+default_actionability:
+  release: observe
+  docs_change: observe
+  api_change: study
+  breaking_change: note
+  ecosystem_package: observe
+  philosophy_change: study
+discovery:
+  last_verified: 2026-06-03
+  verified_by: harvest_run
+  confidence: medium
+  open_questions:
+    - Confirm GitHub repo is github.com/withastro/flue (withastro org is unusual for an agent harness project — verify ownership).
+    - Is the Apache-2.0 license confirmed in the repo?
+    - What is the actual star count and commit velocity at time of first harvest?
+    - Are APIs stable enough to treat individual primitives as architectural precedent, or watch-only for now?
+notes: >
+  Watch Flue as the programmable harness / headless agent calibration source.
+  Its core framing — "Agent = Model + Harness" — explicitly separates the model
+  from the harness, filesystem, sandbox, skills, memory, sessions, and deployment
+  surface, which directly validates Bitter's thesis that the valuable layer is
+  the shaped environment around the model, not just the model call itself.
+  Treat it as category evidence and possible integration reference, not stable
+  infrastructure. APIs are self-described as experimental; monitor direction
+  before treating any primitive as architectural precedent. Bitter is the
+  operating loop / receipt layer / local actuation membrane; Flue is an agent
+  framework — they are adjacent, not the same thing.

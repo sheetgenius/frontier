@@ -1,0 +1,64 @@
+---
+import Base from "../../../layouts/Base.astro";
+import SignalList from "../../../components/SignalList.astro";
+import {
+  adjacentTool,
+  composesLabel,
+  listComposesFacets,
+  listProfiles,
+  signalsComposingWith,
+} from "../../../lib/frontier";
+
+export function getStaticPaths() {
+  return listComposesFacets().map((slug) => ({ params: { slug } }));
+}
+
+const slug = Astro.params.slug!;
+const signals = signalsComposingWith(slug);
+const profiles = listProfiles();
+const profileSlugs = new Set(profiles.map((p) => p.slug));
+const hasProfile = profileSlugs.has(slug);
+const adj = adjacentTool(slug);
+const label = composesLabel(slug);
+const kindLabel = hasProfile ? "watchlist provider" : "adjacent tool";
+---
+
+<Base
+  title={`Signals composing with ${label} · Bitter Frontier`}
+  description={`Every signal whose underlying finding declares composes: [${slug}].`}
+>
+  <section class="measure py-10">
+    <p class="small-caps text-muted">
+      <a href="/signals/">Signals</a>
+      {hasProfile && (
+        <>
+          {" · "}
+          <a href={`/profiles/${slug}/`}>{label} profile</a>
+        </>
+      )}
+    </p>
+    <h1 class="issue-title">composes with: {label}</h1>
+    <p class="issue-meta">{kindLabel}</p>
+    <p class="signal-intro">
+      Every accepted signal whose underlying finding declares
+      <code>composes: [{slug}]</code>. Composition is one-directional from the
+      originating finding's perspective.
+      {hasProfile && (
+        <> The <a href={`/profiles/${slug}/`} class="hover:underline">{label} profile</a> carries the current evergreen state for the {label} surface itself.</>
+      )}
+      {adj?.canonical_url && (
+        <> Adjacent tool home: <a href={adj.canonical_url} class="hover:underline">{adj.canonical_url}</a>.</>
+      )}
+    </p>
+
+    {signals.length === 0 ? (
+      <p class="mt-9 text-muted">No accepted signals compose with this id yet.</p>
+    ) : (
+      <SignalList signals={signals} profileSlugs={profileSlugs} />
+    )}
+
+    <p class="rule mt-10 pt-5 font-mono text-sm text-muted">
+      <a href="/signals/" class="hover:underline">← All signals</a>
+    </p>
+  </section>
+</Base>

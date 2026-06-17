@@ -1,0 +1,57 @@
+---
+import {
+  evidenceLinksForFinding,
+  findingsForSources,
+  formatEvidenceTarget,
+  sourceLabelForId,
+  type FindingEntry,
+} from "../lib/frontier";
+
+const {
+  findings,
+  sourceIds = [],
+  title = "Sources",
+  intro = "Primary links, including exact changelog lines when available.",
+} = Astro.props as {
+  findings?: FindingEntry[];
+  sourceIds?: string[];
+  title?: string;
+  intro?: string;
+};
+
+const rows = (findings?.length ? findings : findingsForSources(sourceIds)).map((finding) => ({
+  finding,
+  evidence: evidenceLinksForFinding(finding),
+}));
+---
+
+{
+  rows.length > 0 && (
+    <section class="source-trail-section rule mt-10 pt-7">
+      <p class="small-caps text-muted">{title}</p>
+      <p class="source-trail-intro">{intro}</p>
+      <ol class="source-trail">
+        {rows.map(({ finding, evidence }) => (
+          <li class="source-trail-row">
+            <div class="source-trail-head">
+              <a class="source-trail-name" href={`/findings/${finding.finding}/`}>
+                {sourceLabelForId(finding.data.source)}
+              </a>
+            </div>
+            <div class="source-trail-links">
+              {evidence.map((item) => (
+                <a class="source-trail-link" href={item.url}>
+                  <span class="source-trail-kind">{item.precision ?? "source"}</span>
+                  <span>
+                    <span class="source-trail-label">{item.label}</span>
+                    <span class="source-trail-target">{formatEvidenceTarget(item.url)}</span>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}

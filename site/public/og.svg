@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Bitter Frontier</title>
+  <desc id="desc">This week in agentic harnesses.</desc>
+  <rect width="1200" height="630" fill="#0b0a07"/>
+  <path d="M0 126h1200M0 252h1200M0 378h1200M0 504h1200M150 0v630M300 0v630M450 0v630M600 0v630M750 0v630M900 0v630M1050 0v630" stroke="#262015" stroke-width="1"/>
+  <circle cx="980" cy="120" r="360" fill="#c7aa54" opacity=".08"/>
+  <text x="92" y="96" fill="#cfc7b8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" letter-spacing="10">BITTER FRONTIER</text>
+  <text x="92" y="270" fill="#f2eee6" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="86" font-weight="500">This week in</text>
+  <text x="92" y="374" fill="#f2eee6" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="86" font-weight="500">agentic harnesses.</text>
+  <text x="96" y="510" fill="#c7aa54" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30">The frontier changes. Your loop should compound.</text>
+</svg>

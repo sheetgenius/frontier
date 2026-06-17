@@ -1,0 +1,21 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-12-partial-cycle-agent-zero-2026-05-07_2026-05-12-frontier-v0
+mode: partial_cycle
+provider: agent-zero
+model: claude-sonnet-4-6
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+artifacts:
+  - findings/agent-zero.md
+  - signals/frontier-signals.yml
+  - weekly/agent-zero-fragment.md
+  - audit.md
+profile_updated: content/profiles/agent-zero.md
+notes: >
+  First Agent Zero profile build. surface_class: open_source_commits,
+  evidence_floor: release_note. No commits in the May 7-12 window itself;
+  primary evidence is v1.11-v1.13 (May 2-5) which were not included in
+  the prior finding. Key changes: LibreOffice replaces Collabora, ODF-first
+  document defaults, multi-tab browser with parallel fanout, persistent
+  desktop lifecycle with explicit shutdown semantics.

@@ -1,0 +1,17 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-12
+  end: 2026-05-12
+signals:
+  - id: 2026-05-12-gemini-session-resume-reliability
+    section: control-plane
+    title: "Session resume now surfaces errors and finds legacy sessions"
+    source: gemini-cli
+    finding_ids:
+      - 2026-05-12-gemini-session-resume-reliability
+    why_action_bearing:
+      - "Operators using --resume with legacy session formats should re-test:
+        prior to this fix, resume failures silently started new sessions. Verify
+        the behavior after upgrade."
+    accessibility_impact: low
+    factory_relevance: low

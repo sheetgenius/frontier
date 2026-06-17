@@ -1,0 +1,49 @@
+---
+import Base from "../../../layouts/Base.astro";
+import SignalList from "../../../components/SignalList.astro";
+import { listProfiles, listSignalSourceSlugs, signalsForSource, sourceLabel } from "../../../lib/frontier";
+
+export function getStaticPaths() {
+  return listSignalSourceSlugs().map((slug) => ({ params: { slug } }));
+}
+
+const slug = Astro.params.slug!;
+const signals = signalsForSource(slug);
+const profiles = listProfiles();
+const profileSlugs = new Set(profiles.map((p) => p.slug));
+const hasProfile = profileSlugs.has(slug);
+const label = sourceLabel(slug);
+---
+
+<Base
+  title={`${label} signals · Bitter Frontier`}
+  description={`Every accepted signal for ${label}, in reverse chronological order.`}
+>
+  <section class="measure py-10">
+    <p class="small-caps text-muted">
+      <a href="/signals/">Signals</a>{hasProfile && (
+        <>
+          {" · "}
+          <a href={`/profiles/${slug}/`}>{label} profile</a>
+        </>
+      )}
+    </p>
+    <h1 class="issue-title">{label}</h1>
+    <p class="signal-intro">
+      Every signal accepted for {label}. Each links to the run that produced it.
+      {hasProfile && (
+        <> The <a href={`/profiles/${slug}/`} class="hover:underline">{label} profile</a> carries the current evergreen state.</>
+      )}
+    </p>
+
+    {signals.length === 0 ? (
+      <p class="mt-9 text-muted">No accepted signals for this source yet.</p>
+    ) : (
+      <SignalList signals={signals} profileSlugs={profileSlugs} />
+    )}
+
+    <p class="rule mt-10 pt-5 font-mono text-sm text-muted">
+      <a href="/signals/" class="hover:underline">← All signals</a>
+    </p>
+  </section>
+</Base>

@@ -1,0 +1,27 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-13-partial-cycle-openclaw-refresh-2026-05-13-frontier-v0
+mode: partial_cycle
+window:
+  start: 2026-05-13
+  end: 2026-05-13
+model: claude-opus-4-7
+sources:
+  - openclaw
+source_contracts:
+  - sources/openclaw.yml
+versions_covered: "v2026.5.12-beta.3 (released 2026-05-12T23:38:26Z, post-baseline)"
+status: complete
+outputs:
+  - runs/2026-05-13-partial-cycle-openclaw-refresh-2026-05-13-frontier-v0/findings/openclaw.md
+  - runs/2026-05-13-partial-cycle-openclaw-refresh-2026-05-13-frontier-v0/signals/frontier-signals.yml
+  - runs/2026-05-13-partial-cycle-openclaw-refresh-2026-05-13-frontier-v0/audit.md
+note: >
+  Primary-source refresh for OpenClaw. The v2026.5.12-beta.3 tagged release
+  published 2026-05-12T23:38:26Z (after the 2026-05-12 baseline window's
+  cutoff) carries one new authority-pattern signal: per-sender tool policies
+  with canonical channel-scoped sender keys (PR #66933). Three claim updates
+  are folded into the OpenClaw profile (memory-wiki scope tightening,
+  OpenAI CLI auth default, scoped compaction). Items already present in the
+  v2026.5.10-beta.5 baseline (skill archive upload, voice.allowedChannels,
+  CLI onboarding wayfinding, memory dreaming cap, per-agent message
+  restrictions) are explicitly NOT re-promoted as new signals.

@@ -1,0 +1,125 @@
+schema_version: bitter.frontier_source_contract.v0
+id: claude-code
+label: Claude Code
+owner: Anthropic
+homepage: https://code.claude.com/docs/en/overview
+primary_surfaces:
+  - id: changelog
+    kind: official_changelog
+    url: https://code.claude.com/docs/en/changelog
+    priority: 1
+    watch:
+      - releases
+      - new_features
+      - improvements
+      - bug_fixes
+      - breaking_changes
+  - id: whats-new
+    kind: official_digest
+    url: https://code.claude.com/docs/en/whats-new
+    priority: 1
+    watch:
+      - notable_features
+      - examples
+      - operator_guidance
+      - weekly_rollups
+  - id: docs
+    kind: official_docs
+    url: https://code.claude.com/docs/en/overview
+    priority: 1
+    watch:
+      - memory
+      - hooks
+      - slash_commands
+      - plugins
+      - skills
+      - subagents
+      - permissions
+      - settings
+      - sandboxing
+      - mcp
+      - sdk
+      - headless
+      - telemetry
+      - enterprise
+  - id: package
+    kind: package_registry
+    url: https://www.npmjs.com/package/@anthropic-ai/claude-code
+    priority: 3
+    watch:
+      - package_version
+      - publication_date
+      - install_surface
+accepted_evidence:
+  - official_changelog
+  - official_docs
+  - official_whats_new
+  - package_registry_release
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+  - accessibility
+high_signal_patterns:
+  - recap
+  - resume
+  - rewind
+  - plan
+  - subagent
+  - task
+  - hook
+  - permission
+  - managed setting
+  - plugin
+  - skill
+  - slash command
+  - MCP
+  - SDK
+  - headless
+  - telemetry
+  - prompt caching
+  - usage
+  - model picker
+  - enterprise
+operator_questions:
+  - Does this change how an operator should govern Claude Code sessions?
+  - Does this affect agent lifecycle, resume behavior, planning, permissions, or hooks?
+  - Does this change whether Bitter should defer to Claude Code-native capability?
+  - Does this create a new adapter, eval, receipt, or capability-profile need?
+  - Does this make serious agent work easier to start, inspect, or control without hiding authority?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  pricing_or_usage_change: observe
+discovery:
+  last_verified: 2026-05-06
+  verified_by: manual_web
+  confidence: high
+  open_questions:
+    - Which GitHub source backing the published changelog should be captured directly in addition to the rendered official docs?
+    - Which Claude Code behaviors should be probed locally because the changelog is too granular to imply operator impact by itself?
+notes: >
+  Watch Claude Code as a fast-moving provider-native coding environment with
+  strong session, hook, plugin, skill, permission, and enterprise surfaces.
+  Its changelog is granular; promote findings only when they change how
+  developers should run it, trust it, review its output, or wrap it inside a
+  longer-lived project workflow.

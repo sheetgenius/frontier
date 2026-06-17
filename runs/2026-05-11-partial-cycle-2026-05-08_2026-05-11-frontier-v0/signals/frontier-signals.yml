@@ -1,0 +1,21 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-08
+  end: 2026-05-11
+signals:
+  - id: 2026-05-11-gemini-subagent-protocol-and-session-portability
+    section: control-plane
+    title: "Subagents become pluggable; sessions become portable"
+    source: gemini-cli
+    finding_ids:
+      - 2026-05-11-gemini-subagent-protocol-and-session-portability
+    why_action_bearing:
+      - Capability-profile assumption "subagents inherit approval mode" is now
+        under-specified.
+      - Run-contract design should record which subagent protocol variant a run
+        used.
+      - Adapter work should distinguish local from remote subagent execution.
+      - Session export/import gives operators and Bitter a stable serialization
+        point.
+    accessibility_impact: medium
+    factory_relevance: medium

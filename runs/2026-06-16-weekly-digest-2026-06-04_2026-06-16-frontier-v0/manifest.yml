@@ -1,0 +1,61 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-06-16-weekly-digest-2026-06-04_2026-06-16-frontier-v0
+mode: weekly_digest
+window:
+  start: 2026-06-04
+  end: 2026-06-16
+model: claude-opus-4-8
+sources:
+  - codex
+  - claude-code
+  - gemini-cli
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+  - flue
+method:
+  harness: multi-agent (background subagents) orchestrated from a single loop
+  pipeline: >
+    harvest (1 subagent/provider, live WebFetch + gh API of source-contract
+    surfaces, dedup against current profiles) -> consolidate (per-provider
+    harvest/<source>.md evidence records) -> triage (33 curated decision-bearing
+    signals from 112 findings) -> draft (cross-provider digest at the editorial
+    bar) -> verify (4 adversarial refuter subagents re-fetch every load-bearing
+    receipt and resolve release-channel by git ancestry) -> review (Codex on
+    xhigh as fact-checker/editor + an independent editorial pass) -> humanize
+    (AI-tell scrub) -> publish (build + integrity + link-graph)
+  integrity_rule: >
+    Every harvester and verifier was hard-instructed to use live fetches and
+    report only date-stamped, receipted, in-window changes; dates verified to the
+    YEAR; release-channel (tagged-release | main-unreleased | preview-beta)
+    resolved by git ancestry, not date inference. No model-memory fabrication.
+  reviews:
+    - "Adversarial receipt verification: 4 subagents, ~38 load-bearing claims; 2 overstatements caught and corrected (Gemini Antigravity channel, Gemini Flash GA gating). See qa.md."
+    - "Codex xhigh: 20-item fact + editorial punch list; all factual/channel corrections applied (thesis recast, Paperclip master-not-main, OpenHands CVE channel split, Claude Code version attribution, computer-use claim scoping)."
+    - "Editorial pass: WSJ-craft punch list; lede semicolon chain broken, superlatives cut, Flue removed from the accessibility section, over-built sentences split."
+outputs:
+  - content/digests/2026-06-04_2026-06-16-weekly.md (published)
+  - weekly/2026-06-04_2026-06-16.md (run copy)
+  - harvest/<source>.md (10 per-provider evidence records, 112 findings with verbatim receipts)
+  - findings/<finding_id>.md (48 index stubs for signal-referenced findings; full detail in harvest/)
+  - signals/frontier-signals.yml (33 curated accepted signals, each channel-tagged)
+  - qa.md (verification record + mandatory QA checks)
+  - audit.md (doctrine + process notes)
+status: complete
+note: >
+  Third full ten-provider weekly under the Amendment 004 schema. The defining
+  hazard this window was release-channel accuracy, not date accuracy: a large
+  share of the sharpest security work (Hermes's fail-closed wave, Paperclip's
+  multi-tenant authority cluster, OpenHands's enterprise cluster, Gemini's skill
+  path-traversal fix) is merged to a default branch but NOT in a tagged release.
+  The verify stage resolved channel by git ancestry and the digest flags every
+  unreleased fix explicitly. Cross-provider thesis: authority catching up to
+  capability as agents gained depth. Findings recorded as consolidated
+  harvest/<source>.md evidence files rather than one file per finding (with
+  index stubs for the signal-referenced subset); rationale and the still-open
+  sources/flue.yml receipt-surface follow-up are in audit.md. Provider-profile
+  refresh deferred this cycle (profile doctrine is experimental/exemplar-only,
+  consistent with the prior weekly run).

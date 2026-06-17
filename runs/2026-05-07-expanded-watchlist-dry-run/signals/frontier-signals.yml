@@ -1,0 +1,55 @@
+schema_version: bitter.frontier_signal_set.v0
+run: 2026-05-07-expanded-watchlist-dry-run
+window:
+  start: 2026-05-07
+  end: 2026-05-07
+signals:
+  - id: 2026-05-07-agent-labor-needs-operating-state
+    section: control-plane
+    title: Agent labor needs operating state, not just parallelism.
+    signal_class: agent_frontier
+    change_type: [ workflow, economics, governance ]
+    frontier_area: [ coordination_control_plane, multi_agent_operations ]
+    sources: [ paperclip ]
+    confidence: medium
+    actionability: study
+    accessibility_impact: medium
+  - id: 2026-05-07-real-computers-become-agent-workcells
+    section: runtime
+    title: Real computers are becoming the agent work surface.
+    signal_class: agent_frontier
+    change_type: [ runtime, capability, security ]
+    frontier_area: [ workcell_autonomy, computer_use, runtime_isolation ]
+    sources: [ agent-zero, openhands ]
+    confidence: high
+    actionability: test
+    accessibility_impact: medium
+  - id: 2026-05-07-platforms-package-the-harness
+    section: platform
+    title: Agent harnesses are becoming full development platforms.
+    signal_class: agent_frontier
+    change_type: [ ecosystem, workflow, accessibility ]
+    frontier_area: [ productized_agent_platform, cli_gui_cloud_surface ]
+    sources: [ openhands ]
+    confidence: high
+    actionability: study
+    accessibility_impact: high
+  - id: 2026-05-07-accessibility-is-a-capability
+    section: platform
+    title: Accessibility is becoming a frontier capability.
+    signal_class: agent_frontier
+    change_type: [ accessibility, philosophy, workflow ]
+    frontier_area: [ everyday_use, gateway, visible_autonomy ]
+    sources: [ openclaw, openhands, agent-zero ]
+    confidence: medium
+    actionability: adapt
+    accessibility_impact: high
+  - id: 2026-05-07-bitter-must-separate-wrap-adapt-refuse
+    title: Bitter needs a wrap, adapt, refuse decision for every frontier surface.
+    signal_class: bitter_product_intake
+    change_type: [ philosophy, workflow, governance ]
+    frontier_area: [ operator_loop, adapter_strategy ]
+    sources: [ paperclip, agent-zero, openhands, openclaw ]
+    confidence: high
+    actionability: adapt
+    accessibility_impact: medium

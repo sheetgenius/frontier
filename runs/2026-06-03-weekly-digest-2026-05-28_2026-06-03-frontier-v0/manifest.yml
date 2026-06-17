@@ -1,0 +1,47 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0
+mode: weekly_digest
+window:
+  start: 2026-05-28
+  end: 2026-06-03
+model: claude-opus-4-8
+sources:
+  - codex
+  - claude-code
+  - gemini-cli
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+  - flue
+method:
+  harness: multi-agent workflow (background), 85 agents
+  pipeline: harvest (1 agent/provider, live WebFetch of source-contract surfaces)
+    -> promote (signals + section + consequence blocks)
+    -> synthesize (cross-provider digest)
+    -> verify (adversarial re-fetch of every promoted signal receipt)
+    -> qa (editorial + citation gate)
+  integrity_rule: >
+    Every harvester and verifier was hard-instructed to use live WebFetch and
+    report only date-stamped, receipted, in-window changes. No model-memory
+    fabrication. All ten harvesters confirmed tool_access_ok=true.
+outputs:
+  - content/digests/2026-05-28_2026-06-03-weekly.md (published)
+  - weekly/2026-05-28_2026-06-03.md (run copy)
+  - findings/<provider>.md (99 in-window findings across 10 providers)
+  - signals/frontier-signals.yml (32 curated accepted signals)
+  - qa.md (QA gate failed first pass; remediation recorded)
+  - audit.md (decomposition + receipt-hygiene doctrine notes)
+status: complete
+note: >
+  Second full ten-provider weekly under the Amendment 004 schema, and the first
+  run executed end-to-end as a background multi-agent workflow rather than a
+  hand-orchestrated harvest. The adversarial verify stage did real work: the QA
+  gate failed on first assembly (15 unsupported and 8 out-of-window receipts out
+  of 63 promoted signals), and the digest was remediated to a receipt-clean
+  state before publication (see qa.md). The harvest over-decomposed (100 findings
+  / 63 raw signals for a 7-day window); the published signal set was curated down
+  to 32 genuinely decision-bearing signals to honor the findings-rarer-than-signals
+  discipline. Doctrine and source-contract follow-ups are in audit.md.

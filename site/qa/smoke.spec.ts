@@ -1,0 +1,76 @@
+import { mkdir } from "node:fs/promises";
+import path from "node:path";
+
+import { expect, test } from "@playwright/test";
+
+const screenshotDir = process.env.PLAYWRIGHT_SCREENSHOT_DIR ?? path.join("test-results", "screenshots");
+
+test.beforeAll(async () => {
+  await mkdir(screenshotDir, { recursive: true });
+});
+
+test("health endpoint reports the deploy receipt shape", async ({ request }) => {
+  const response = await request.get("/up");
+  expect(response.ok()).toBeTruthy();
+
+  const payload = await response.json();
+  expect(payload).toMatchObject({
+    ok: true,
+    status: "ok",
+    service: "frontier.bitter.sh",
+    hostname: "frontier.bitter.sh",
+    app: "Bitter Frontier",
+    secret_material_returned: false,
+  });
+  expect(payload.git_sha).toMatch(/^([0-9a-f]{40}|unknown)$/);
+  expect(payload.release).toBe(payload.git_sha);
+});
+
+test("home page preserves the public launch contract", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page).toHaveTitle(/Bitter Frontier/);
+  await expect(page.getByRole("heading", { name: "Coding agents are changing faster than operating policy." })).toBeVisible();
+  await expect(page.getByText("Field Notes For Agent Operators")).toBeVisible();
+  await expect(page.getByText("Latest Issue")).toBeVisible();
+  await expect(page.getByText("Provider Updates")).toBeVisible();
+
+  const checkoutButtons = page.locator('[data-checkout-pack="frontier-founding-member"]');
+  await expect(checkoutButtons.first()).toBeVisible();
+  await expect(checkoutButtons.first()).toHaveAttribute("type", "button");
+  await checkoutButtons.first().click({ trial: true });
+});
+
+test("primary index links navigate from the public shell", async ({ page }) => {
+  const targets = [
+    { name: "Digests", path: "/digests/", visibleText: "Digests" },
+    { name: "Profiles", path: "/profiles/", visibleText: "Profiles" },
+    { name: "Signals", path: "/signals/", visibleText: "Signals" },
+    { name: "Evidence", path: "/runs/", visibleText: "Research Trail" },
+  ];
+
+  for (const target of targets) {
+    await page.goto("/");
+    await Promise.all([
+      page.waitForURL(`**${target.path}`),
+      page.getByRole("link", { name: target.name }).first().click(),
+    ]);
+    await expect(page).toHaveURL(new RegExp(`${target.path.replaceAll("/", "\\/")}$`));
+    await expect(page.locator("body")).toContainText(target.visibleText);
+  }
+});
+
+test("home page responsive screenshots are captured", async ({ page }) => {
+  const widths = [390, 768, 1440];
+
+  for (const width of widths) {
+    await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
+    await page.goto("/");
+    await expect(page.getByRole("heading", { name: "Coding agents are changing faster than operating policy." })).toBeVisible();
+    await expect(page.locator('[data-checkout-pack="frontier-founding-member"]').first()).toBeVisible();
+    await page.screenshot({
+      path: path.join(screenshotDir, `frontier-home-${width}.png`),
+      fullPage: true,
+    });
+  }
+});

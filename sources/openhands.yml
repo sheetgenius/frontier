@@ -1,0 +1,141 @@
+schema_version: bitter.frontier_source_contract.v0
+id: openhands
+label: OpenHands
+owner: OpenHands
+homepage: https://openhands.dev/
+primary_surfaces:
+  - id: site
+    kind: official_site
+    url: https://openhands.dev/
+    priority: 1
+    watch:
+      - positioning
+      - cloud
+      - enterprise
+      - integrations
+      - pricing
+      - deployment
+  - id: docs
+    kind: official_docs
+    url: https://docs.openhands.dev/
+    priority: 1
+    watch:
+      - installation
+      - sdk
+      - cli
+      - gui
+      - cloud
+      - enterprise
+      - integrations
+      - sandboxing
+      - security
+      - evaluation
+      - configuration
+      - runtime
+  - id: repo
+    kind: github_repo
+    url: https://github.com/OpenHands/OpenHands
+    priority: 1
+    watch:
+      - releases
+      - tags
+      - commits
+      - pull_requests
+      - issues
+      - docs
+      - examples
+      - security
+  - id: releases
+    kind: github_releases
+    url: https://github.com/OpenHands/OpenHands/releases
+    priority: 1
+    watch:
+      - release_notes
+      - breaking_changes
+      - migration_notes
+      - security
+accepted_evidence:
+  - official_docs
+  - official_site
+  - github_release
+  - tagged_release
+  - maintainer_commit
+  - merged_pr
+  - security_advisory
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+  - accessibility
+research_lenses:
+  - productized_agent_platform
+  - sandboxed_development
+  - cli_gui_cloud_surface
+  - enterprise_governance
+  - evaluation
+high_signal_patterns:
+  - SDK
+  - CLI
+  - GUI
+  - cloud
+  - enterprise
+  - self-hosting
+  - sandbox
+  - runtime
+  - browser
+  - evaluation
+  - benchmark
+  - security
+  - RBAC
+  - permission
+  - collaboration
+  - Slack
+  - Jira
+  - Linear
+  - GitHub
+  - extension
+  - integration
+  - multi-user
+operator_questions:
+  - What happens when an agent harness becomes a full software-development platform?
+  - Which surfaces are SDK, CLI, GUI, cloud, enterprise, or integration-specific?
+  - How does OpenHands package sandboxing, permissions, collaboration, and evaluation for real teams?
+  - Which parts should Bitter wrap, which parts should Bitter learn from, and which parts should Bitter refuse to become?
+  - Does this make agentic software work easier to adopt without hiding evidence or authority?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  enterprise_change: study
+discovery:
+  last_verified: 2026-05-07
+  verified_by: manual_web
+  confidence: high
+  open_questions:
+    - Which OpenHands surfaces should be treated as one product versus separate SDK, CLI, cloud, and enterprise sources?
+    - Which evaluation and sandboxing claims can be probed locally?
+    - Which integrations change operator behavior enough to become signals?
+notes: >
+  Watch OpenHands as the productized software-agent platform source. Its
+  relevance to Bitter is breadth: SDK, CLI, GUI, cloud, enterprise,
+  integrations, sandboxing, collaboration, and evaluation in one system.
+  Study what a full platform makes easier, and where Bitter should stay a
+  wrapper/control layer instead of becoming the whole platform.

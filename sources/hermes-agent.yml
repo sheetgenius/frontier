@@ -1,0 +1,125 @@
+schema_version: bitter.frontier_source_contract.v0
+id: hermes-agent
+label: Hermes Agent
+owner: Nous Research
+homepage: https://hermes-agent.nousresearch.com/docs
+primary_surfaces:
+  - id: repo
+    kind: github_repo
+    url: https://github.com/NousResearch/hermes-agent
+    priority: 1
+    watch:
+      - releases
+      - tags
+      - commits
+      - pull_requests
+      - issues
+      - docs
+      - examples
+      - security
+  - id: releases
+    kind: github_releases
+    url: https://github.com/NousResearch/hermes-agent/releases
+    priority: 1
+    watch:
+      - release_notes
+      - breaking_changes
+      - migration_notes
+      - security
+  - id: docs
+    kind: official_docs
+    url: https://hermes-agent.nousresearch.com/docs
+    priority: 1
+    watch:
+      - installation
+      - configuration
+      - tools
+      - toolsets
+      - memory
+      - skills
+      - mcp
+      - messaging
+      - cron
+      - security
+      - terminal_backends
+      - architecture
+      - context_files
+      - llms_txt
+accepted_evidence:
+  - official_docs
+  - github_release
+  - tagged_release
+  - maintainer_commit
+  - merged_pr
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+  - accessibility
+high_signal_patterns:
+  - memory
+  - skill
+  - self-improvement
+  - subagent
+  - delegate
+  - toolset
+  - terminal backend
+  - sandbox
+  - container
+  - SSH
+  - Modal
+  - Daytona
+  - cron
+  - messaging gateway
+  - Telegram
+  - Discord
+  - Slack
+  - MCP
+  - context file
+  - SOUL.md
+  - llms.txt
+  - trajectory
+  - RL
+operator_questions:
+  - Does this change how an operator should think about self-improving agents?
+  - Does this affect long-horizon work, memory, skills, subagents, runtime portability, or messaging gateways?
+  - Does this change whether Bitter should wrap Hermes as an agent engine, compare it, or adopt an adapter assumption?
+  - Does this expose a governance, permission, receipt, or replay gap that Bitter can own?
+  - Does this make serious agent work easier to start, inspect, or control without hiding authority?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  pricing_or_usage_change: observe
+discovery:
+  last_verified: 2026-05-06
+  verified_by: manual_web
+  confidence: high
+  open_questions:
+    - Which docs domain should be considered canonical if GitHub README links and deployed docs diverge?
+    - Which social or Discord announcements are maintainer-authored enough to include, and how should they be cited?
+notes: >
+  Hermes should be watched as a broad self-improving agent platform, not just
+  as a coding CLI. Pay special attention to memory, skills, automations,
+  messaging surfaces, subagents, sandboxing, runtime portability, and research
+  trajectory generation. Bitter's opening is the project workflow around tools
+  like this: permissions, evidence, review, memory, and what the next run
+  should know.

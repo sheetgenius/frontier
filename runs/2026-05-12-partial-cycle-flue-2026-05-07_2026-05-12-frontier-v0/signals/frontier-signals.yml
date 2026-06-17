@@ -1,0 +1,24 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+signals:
+  - id: 2026-05-12-flue-initial-profile-and-observability-wave
+    section: platform
+    title: "Flue: programmable harness with run observability, virtual sandbox, and
+      shell env security fix"
+    source: flue
+    finding_ids:
+      - 2026-05-12-flue-initial-profile-and-observability-wave
+    why_action_bearing:
+      - "Operators using shell env for credentials in pre-v0.4.1 Flue sessions
+        should verify their session store does not contain unredacted values —
+        the v0.4.1 shell env redaction fix is a security patch."
+      - "Operators using `sandbox: 'local'` should re-test: it is now genuinely
+        local (direct host access, no just-bash), changing the isolation
+        boundary for agents running in CI."
+      - "Operators building on Flue should evaluate `flue logs` and run history
+        (v0.5.0) as the primary evidence trail for autonomous agent
+        invocations."
+    accessibility_impact: medium
+    factory_relevance: low

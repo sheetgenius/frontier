@@ -1,0 +1,145 @@
+---
+import Base from "../../layouts/Base.astro";
+import SourceTrail from "../../components/SourceTrail.astro";
+import {
+  formatDate,
+  getSignal,
+  listRuns,
+  runArtifacts,
+  runManifest,
+  signalIdsInRun,
+  sourceLabel,
+} from "../../lib/frontier";
+import { GH_BLOB_BASE } from "../../lib/site";
+
+export function getStaticPaths() {
+  return listRuns().map((run) => ({ params: { runId: run.id } }));
+}
+
+const run = listRuns().find((item) => item.id === Astro.params.runId);
+if (!run) throw new Error("Run not found");
+const digestHtml = run.digest?.html.replace(/^<h1[^>]*>.*?<\/h1>\s*/s, "");
+
+const artifacts = runArtifacts(run.id);
+const manifest = runManifest(run.id);
+const acceptedSignalIds = signalIdsInRun(run.id);
+const acceptedSignals = acceptedSignalIds.map((id) => getSignal(id)).filter(Boolean);
+const sourceContractPaths: string[] = manifest?.source_contracts ?? [];
+const manifestSources: string[] = manifest?.sources ?? [];
+---
+
+<Base title={`${run.id} · Bitter Frontier`}>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">Research Version</p>
+    <h1 class="issue-title">{run.title}</h1>
+    <p class="break-anywhere mt-3 font-mono text-sm text-muted">{run.id}</p>
+    <dl class="rule mt-8 grid gap-y-6 py-6 md:grid-cols-3 md:gap-x-10">
+      <div>
+        <dt class="small-caps text-muted">Status</dt>
+        <dd class="mt-2 font-serif text-xl md:text-2xl">{run.status}</dd>
+      </div>
+      <div>
+        <dt class="small-caps text-muted">Window</dt>
+        <dd class="mt-2 font-serif text-xl md:text-2xl">{run.windowLabel}</dd>
+      </div>
+      <div>
+        <dt class="small-caps text-muted">Signals</dt>
+        <dd class="mt-2 font-serif text-xl md:text-2xl">{run.signalCount}</dd>
+      </div>
+    </dl>
+
+    {manifest?.mode && (
+      <p class="font-mono text-sm text-muted">Mode: {manifest.mode}{manifest.model ? ` · Model: ${manifest.model}` : ""}{manifest.versions_covered ? ` · Versions: ${manifest.versions_covered}` : ""}</p>
+    )}
+
+    {manifest?.note && (
+      <p class="mt-6 text-muted" style="font-size: 1rem; line-height: 1.65; max-width: 42rem;">
+        {manifest.note}
+      </p>
+    )}
+
+    {run.manifest.revision_reason && (
+      <section class="rule py-6">
+        <p class="small-caps text-muted">Revision Reason</p>
+        <p class="mt-3 max-w-3xl font-serif text-xl leading-tight">{run.manifest.revision_reason}</p>
+      </section>
+    )}
+
+    {manifestSources.length > 0 && (
+      <div class="rule mt-9 pt-6">
+        <p class="small-caps text-muted">Sources harvested</p>
+        <div class="mt-3 flex flex-wrap gap-3">
+          {manifestSources.map((src) => (
+            <a
+              href={`/profiles/${src}/`}
+              class="font-mono text-sm no-underline hover:underline text-[var(--color-bitter)]"
+            >
+              {sourceLabel(src)}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {sourceContractPaths.length > 0 && (
+      <div class="rule mt-7 pt-6">
+        <p class="small-caps text-muted">Source contracts</p>
+        <ul class="mt-3 space-y-1">
+          {sourceContractPaths.map((p) => (
+            <li class="font-mono text-sm">
+              <a href={`${GH_BLOB_BASE}/${p}`} class="hover:underline">{p}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {acceptedSignals.length > 0 && (
+      <div class="rule mt-7 pt-6">
+        <p class="small-caps text-muted">Accepted signals from this run</p>
+        <ol class="mt-3 top-signals-list">
+          {acceptedSignals.map((signal: any) => (
+            <li>
+              <a href={`/signals/${signal.id}/`} class="no-underline hover:underline">
+                <span class="font-mono text-xs text-muted">{sourceLabel(signal.sources[0] ?? "")}</span>
+                <span class="block">{signal.title}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    )}
+
+    {artifacts.length > 0 && (
+      <div class="rule mt-7 pt-6">
+        <p class="small-caps text-muted">Artifact contents</p>
+        <p class="mt-2 text-muted" style="font-size: 0.92rem; line-height: 1.55; max-width: 42rem;">
+          Every file the loop produced for this run, anchored in the repo. Internal links go to the rendered page; the repo path opens the raw artifact on GitHub.
+        </p>
+        <ul class="mt-3 run-artifacts">
+          {artifacts.map((artifact) => (
+            <li>
+              <div class="run-artifact-kind small-caps text-muted">{artifact.kind}</div>
+              <div class="run-artifact-body">
+                {artifact.internalUrl ? (
+                  <a href={artifact.internalUrl} class="run-artifact-label hover:underline">{artifact.label}</a>
+                ) : (
+                  <span class="run-artifact-label">{artifact.label}</span>
+                )}
+                <a href={`${GH_BLOB_BASE}/${artifact.repoPath}`} class="run-artifact-path font-mono text-xs text-muted hover:underline">{artifact.repoPath}</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {run.digest && (
+      <section class="rule pt-7 mt-7">
+        <p class="small-caps text-muted">Run digest</p>
+        <div class="prose-frontier mt-4" set:html={digestHtml} />
+        <SourceTrail sourceIds={run.digest.data.sources ?? []} />
+      </section>
+    )}
+  </article>
+</Base>

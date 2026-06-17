@@ -1,0 +1,743 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-28
+  end: 2026-06-03
+run_id: 2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0
+signals:
+
+  - id: 2026-06-03-claude-code-permission-rule-enforcement-cluster
+    section: control-plane
+    title: "Permission and deny rules now enforced as written across WebFetch, Windows paths, and Glob/Grep"
+    source: claude-code
+    finding_ids:
+      - 2026-06-03-claude-code-webfetch-permission-rules
+    why_action_bearing:
+      - "Three distinct gaps where a configured permission/deny rule silently failed to apply are closed in the 2.1.160-2.1.162 line: custom WebFetch rules now override built-in preapproved domains, Windows rules with backslashes or case-variant paths now match, and Read deny rules now hide files from Glob and Grep results."
+      - "Operators who wrote allow/deny policy and assumed it was enforced were running with a false sense of coverage; the fix is gated purely on upgrading past these versions, so the operator action is 'upgrade, then re-audit whether any policy was silently bypassed in the prior window.'"
+      - "The Read-deny-vs-Glob/Grep gap is the sharpest: a file an operator denied for Read was still discoverable (and its path/contents surfaceable) via search tools, defeating the access-control intent."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes three permission-bypass gaps: WebFetch reaching denied domains via the preapproved whitelist, Windows path rules silently not matching, and denied files leaking through Glob/Grep enumeration."
+      attacker_model: "Prompt-injection or compromised-task content steering the agent toward a denied domain or a path the operator believed was walled off; also an operator-error model where policy was simply never enforced."
+      enforcement: "policy"
+      cost_to_operator: "Upgrade past 2.1.160-2.1.162; re-audit any allow/deny or Read-deny policy that ran on older builds, especially on Windows and any setup relying on Read-deny to hide secrets from search."
+      residual: "Policy is only as good as the rules written; the fix restores enforcement of existing rules but does not author them. Operators must confirm their rule set actually covers the domains/paths they assumed it did."
+    security_advisory: true
+    receipts:
+      - https://code.claude.com/docs/en/changelog
+
+  - id: 2026-06-02-claude-code-execution-granting-config-write-prompts
+    section: runtime
+    title: "Writes to execution-granting config and shell startup files now prompt even in acceptEdits mode"
+    source: claude-code
+    finding_ids:
+      - 2026-06-02-claude-code-build-tool-config-protection
+    why_action_bearing:
+      - "Two new guardrails land together: acceptEdits mode now prompts before writing build-tool config that grants code execution (.npmrc, .yarnrc*, bunfig.toml, .bazelrc, .pre-commit-config.yaml, .devcontainer/, etc.), and the agent now prompts before writing shell startup files (.zshenv, .zlogin, .bash_login) and ~/.config/git/."
+      - "Operators who ran acceptEdits or auto-leaning modes previously had a silent write path into files that execute code on the next shell, install, or commit; the new prompt converts that into a confirmation checkpoint."
+      - "The operator action is to recognize that these prompts will now fire and not blanket-allow them \u2014 the prompt is the supply-chain/persistence defense, so auto-approving it re-opens the vector."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a silent-write path into files that grant code execution on next shell login, package install, commit hook, or devcontainer build \u2014 the classic agent-persistence and supply-chain escalation vector."
+      attacker_model: "Prompt-injection or malicious repo content steering the agent to write a payload into .npmrc/.zshenv/pre-commit config while running in acceptEdits or auto mode, executing on the operator's next routine action."
+      enforcement: "runtime"
+      cost_to_operator: "None to gain the protection (default after upgrade); operators must avoid blanket-allowing the new prompts, which would restore the silent path."
+      residual: "List of protected files is finite; writes to other execution-granting surfaces not on the list still pass under acceptEdits. The prompt also depends on a human reviewing it rather than reflexively confirming."
+    receipts:
+      - https://code.claude.com/docs/en/changelog
+
+  - id: 2026-06-03-claude-code-agent-status-observability
+    section: control-plane
+    title: "Agent view exposes why a session is blocked and fan-out progress for scripted supervision"
+    source: claude-code
+    finding_ids:
+      - 2026-06-03-claude-code-agent-status-monitoring
+    why_action_bearing:
+      - "claude agents --json now includes a waitingFor field naming what a blocked session is waiting on (e.g. a permission prompt), and claude agents rows now show done/total progress before detail when work is fanned out."
+      - "Operators scripting or monitoring agent fleets can now programmatically distinguish 'stuck on a permission prompt' from other waits and read parallel-task completion, which is the difference between a watchdog that can unblock a session and one that can only detect silence."
+      - "The operator action is to wire waitingFor and the progress counter into supervision tooling so stuck-agent triage stops requiring a human to open each session."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Determining why an agent session is blocked and how far fanned-out work has progressed, without opening each session manually."
+      who_can_use_now: "Operators building programmatic supervision/watchdog tooling over claude agents --json, plus anyone visually monitoring parallel runs in the agent view."
+      authority_visibility: "Improved: the blocking reason (e.g. a pending permission prompt) is now an explicit, queryable state rather than an opaque 'waiting'."
+    security_impact: none
+    receipts:
+      - https://code.claude.com/docs/en/changelog
+
+  - id: 2026-05-30-claude-code-auto-mode-bedrock-vertex-foundry
+    section: control-plane
+    title: "Auto Mode now available on Bedrock, Vertex, and Foundry for Opus 4.7 / 4.8"
+    source: claude-code
+    finding_ids:
+      - 2026-05-30-claude-code-auto-mode-bedrock-vertex
+    why_action_bearing:
+      - "Auto Mode's permission-handling posture, previously tied to first-party Anthropic auth, now extends to the cloud provider APIs (AWS Bedrock, Google Vertex, Foundry) for Opus 4.7 and 4.8, opt-in via CLAUDE_CODE_ENABLE_AUTO_MODE=1."
+      - "The operator decision is governance-shaped: teams running Claude Code through a cloud-provider procurement path can now deploy the reduced-prompt autonomy posture they could not before, which changes what consent ceremony exists on those deployments."
+      - "Because Auto Mode shifts permission decisioning away from per-action prompts, an operator enabling it on a Bedrock/Vertex deployment must confirm their managed-settings deny rules carry the governance weight the prompts used to."
+    accessibility_impact: none
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Neither opens nor closes a bypass directly, but relocates the autonomy/consent posture onto cloud-provider deployments \u2014 the same auto-mode governance trade-off now reaches Bedrock/Vertex/Foundry installs."
+      attacker_model: "An operator over-trusting auto mode on a cloud-provider deployment where managed-settings deny rules were not configured to substitute for the removed per-action prompts."
+      enforcement: "policy"
+      cost_to_operator: "Opt-in env var, so no change unless enabled; if enabled, audit managed-settings deny coverage on the cloud-provider path before relying on it."
+      residual: "Auto Mode's classifier/policy governance applies, but the operator must verify their specific cloud-provider deployment has the deny rules they expect."
+    receipts:
+      - https://code.claude.com/docs/en/changelog
+
+  - id: 2026-06-03-codex-remote-exec-apikey-registration
+    section: runtime
+    title: "CLI 0.136.0 adds API-key registration for approved remote exec-server hosts"
+    source: codex
+    finding_ids:
+      - 2026-06-02-codex-cli-0136-remote-exec
+    why_action_bearing:
+      - "An operator running remote execution can register approved hosts via API key instead of entering credentials per session, changing the remote-exec authentication model."
+      - "This shifts trust to a pre-registered host allowlist keyed by API key \u2014 operators must decide which hosts are 'approved' and how those keys are scoped and rotated before enabling remote exec."
+      - "Verification path: upgrade to 0.136.0, register a test host, confirm only approved hosts authenticate and that key scope/rotation behaves as expected before exposing remote execution."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Standing up remote execution against trusted hosts without re-entering credentials each session."
+      who_can_use_now: "Operators automating remote-host execution who previously gated on per-session credential entry."
+      authority_visibility: "Mixed \u2014 convenience removes a per-session credential prompt; the standing API-key registration must be audited or it becomes ambient remote-exec authority. Downgraded to low for this reason."
+    security_impact: medium
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Replaces per-session credential entry with a registered-host API-key model: blocks ad-hoc unapproved host connection but opens a standing-credential surface if keys leak or hosts are over-approved."
+      attacker_model: "third-party network / supply-chain actor who obtains a registered API key, or an operator who over-broadly approves hosts."
+      enforcement: "both"
+      cost_to_operator: "Operators must now manage an approved-host registry and API-key lifecycle (scoping, rotation, revocation) rather than relying on ephemeral per-session credentials."
+      residual: "Key scope, rotation, and revocation semantics are not documented in the changelog; whether a leaked key grants persistent remote exec is unverified."
+    receipts:
+      - https://developers.openai.com/codex/changelog
+
+  - id: 2026-06-03-codex-bedrock-aws-managed-auth
+    section: platform
+    title: "Amazon Bedrock integration runs Codex models under AWS-managed authentication and billing"
+    source: codex
+    finding_ids:
+      - 2026-06-02-codex-amazon-bedrock-integration
+    why_action_bearing:
+      - "An operator with AWS infrastructure can now run OpenAI models through Amazon Bedrock, moving authentication and billing under AWS IAM and cost allocation instead of an external OpenAI API path."
+      - "This reframes where the trust and identity boundary sits \u2014 Codex model calls become AWS-native, which changes compliance and credential-management decisions for AWS-policy organizations."
+      - "Verification path: provision Codex models via Bedrock, confirm IAM scoping and that no model traffic leaves the AWS-managed path before treating it as compliance-satisfying."
+    accessibility_impact: none
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Reframes identity/billing from an external OpenAI API path to AWS IAM-managed access, letting operators apply existing IAM controls and keep traffic within AWS-managed boundaries."
+      attacker_model: "operator/organization managing credential sprawl and external-API egress; not a specific external adversary."
+      enforcement: "policy"
+      cost_to_operator: "Operators must now manage Codex access through Bedrock/IAM rather than OpenAI API keys; the integration assumes AWS-native identity and billing setup."
+      residual: "Changelog asserts AWS-managed auth/billing but does not detail data-handling, model-availability, or feature-parity differences versus the direct path; compliance equivalence is unverified."
+    receipts:
+      - https://developers.openai.com/codex/changelog
+
+  - id: 2026-06-03-codex-ios-faceid-lock
+    section: control-plane
+    title: "ChatGPT iOS 1.2026.146 adds optional Face ID / passcode lock for Codex"
+    source: codex
+    finding_ids:
+      - 2026-06-02-chatgpt-ios-1-2026-146-face-id
+    why_action_bearing:
+      - "An operator running Codex on iOS can now require Face ID or a passcode to open Codex, adding a device-level authority gate that did not exist before."
+      - "It is optional, so the operator decision is whether to enable it as policy for mobile-deployed Codex access."
+      - "Verification path: update to 1.2026.146, enable the lock, confirm Codex requires biometric/passcode on foreground before trusting mobile as an access surface."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Locking down mobile agent access with a familiar device-native gesture instead of an external MDM or no lock at all."
+      who_can_use_now: "Operators using Codex on personal or shared iOS devices who needed an at-device access control to consider mobile safe."
+      authority_visibility: "Authority became more visible \u2014 access to the agent is now gated behind a visible, user-recognizable lock rather than open on app launch."
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes the unlocked-device-access path: a lost/borrowed phone no longer grants immediate access to Codex sessions and any standing agent authority they carry."
+      attacker_model: "end user / opportunistic local attacker with physical access to the unlocked device."
+      enforcement: "runtime"
+      cost_to_operator: "Operators/users must enable the optional lock (off by default) and accept a per-open authentication step; an unenabled lock leaves the prior exposure."
+      residual: "Default-off means the protection only applies where explicitly enabled; protects the app surface, not the underlying account credentials or server-side session if compromised elsewhere."
+    receipts:
+      - https://developers.openai.com/codex/changelog
+
+  - id: 2026-06-03-codex-sites-plugin-deploy
+    section: platform
+    title: "Sites plugin (preview) adds in-app website and web-app creation and deployment"
+    source: codex
+    finding_ids:
+      - 2026-06-02-codex-sites-plugin-launch
+    why_action_bearing:
+      - "An operator can now create, deploy, and manage websites, dashboards, and web apps directly within Codex, removing the external-tool step for web deployment."
+      - "ChatGPT Business workspaces include Sites by default, so the operator decision is whether to allow/govern an in-product deploy surface that may already be enabled."
+      - "Verification path: confirm whether Sites is enabled in your Business workspace and whether agent-initiated deployments fit your hosting/governance policy before relying on it."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Going from build to deployed website/web app without leaving Codex or wiring a separate hosting pipeline."
+      who_can_use_now: "Operators and less-technical builders who wanted to ship a site or dashboard without standing up external deploy tooling."
+      authority_visibility: "Watch item \u2014 default inclusion in Business workspaces means a deploy capability may be active without an explicit enablement step; authority over what gets deployed should be made visible per-workspace."
+    security_impact: none
+    receipts:
+      - https://developers.openai.com/codex/changelog
+
+  - id: 2026-06-03-gemini-cli-v0-45-0-stable-release
+    section: platform
+    title: "v0.45.0 stable bundles terminal hardening, session-context cleanup, and an MCP blacklist-bypass fix"
+    source: gemini-cli
+    finding_ids:
+      - 2026-06-03-gemini-cli-v0-45-0-release
+    why_action_bearing:
+      - "Operators on preview or older stable builds get a single upgrade decision: move to v0.45.0 to pick up Termux relaunch/resize fixes, session-context filtering on history resume, sequential tool execution for update_topic, Vim keybinding fixes, and an MCP blacklist-bypass prevention fix."
+      - "The MCP blacklist-bypass prevention is the security-bearing item: it closes a path where a blacklisted MCP tool/server could still be reached, so operators relying on MCP allow/deny controls should upgrade before trusting the blacklist."
+      - "Verification path: release tag v0.45.0 notes (published 2026-06-03T01:05:14Z) enumerate the bundled fixes."
+      - "Single composite upgrade decision - bundled small fixes all gated on 'upgrade to v0.45.0' stay one signal."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Termux users escape relaunch/resize loops and Vim-keybinding users get corrected bindings, making the CLI usable in environments where it previously looped or mis-input."
+      who_can_use_now: "Mobile/Termux operators and Vim-keybinding users who were blocked by terminal instability can run the stable build."
+      authority_visibility: "Session-context filtering on history resumption keeps stale context from leaking into resumed sessions, keeping what the agent acts on more visible to the operator."
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes an MCP blacklist bypass where a tool/server the operator had blacklisted could still be invoked, defeating the deny-list control."
+      attacker_model: "A malicious or compromised MCP server, or a prompt-injection path, attempting to reach a tool the operator explicitly blacklisted."
+      enforcement: "runtime"
+      cost_to_operator: "Upgrade to v0.45.0; operators who depend on MCP blacklists for containment should treat this as a required upgrade before relying on the deny-list."
+      residual: "Release notes assert the bypass is fixed; operators with high-assurance MCP deny-lists should still test that blacklisted tools are unreachable rather than assume coverage of every bypass variant."
+    security_advisory: true
+    receipts:
+      - https://github.com/google-gemini/gemini-cli/releases/tag/v0.45.0
+
+  - id: 2026-06-03-gemini-cli-policy-file-resilience
+    section: control-plane
+    title: "Policy file survives cross-device mounts and corruption via EBUSY fallback and TOML recovery"
+    source: gemini-cli
+    finding_ids:
+      - 2026-06-03-gemini-cli-policy-resilience
+    why_action_bearing:
+      - "Operators running in containers with cross-device mounts no longer hit silent policy-update failures - atomic rename now falls back to copy-then-unlink on EBUSY/EXDEV."
+      - "A corrupted policy TOML is auto-backed-up to .bak and rebuilt from scratch rather than blocking on a syntax error, removing a manual-intervention failure mode."
+      - "Verification path: packages/core/src/policy/config.ts adds the fallback and recovery; persistence.test.ts covers both paths."
+      - "Single operator class (operator persisting policy/permission config), single consequence (policy persistence no longer fails silently)."
+    accessibility_impact: none
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a fail-open-ish gap where a policy file that failed to persist or parse could leave the agent running without the operator's intended permission policy in effect."
+      attacker_model: "Not an external attacker - the risk is an operator believing a permission policy is enforced when a write/parse failure had silently dropped it."
+      enforcement: "runtime"
+      cost_to_operator: "None beyond upgrading to v0.46.0-preview.0; recovery is automatic and writes a .bak for forensic review."
+      residual: "Recovery rebuilds policy from scratch, so a corrupted policy is silently reset to defaults rather than restored - operators should re-verify intended policy after a .bak appears."
+    receipts:
+      - https://github.com/google-gemini/gemini-cli/commit/dceb2ea30650c3f6742e67ec71110857904e78b3
+
+  - id: 2026-06-03-gemini-cli-fork-pr-target-trigger
+    section: platform
+    title: "CI labeler switched to pull_request_target, granting write context to fork PR runs"
+    source: gemini-cli
+    finding_ids:
+      - 2026-06-03-gemini-cli-ci-fork-access
+    why_action_bearing:
+      - "Contributors and maintainers should note the PR-size labeler now runs under pull_request_target, which executes in the base-repo context with write-capable token access on fork PRs."
+      - "This is the classic pwn-request surface: pull_request_target with any checkout or execution of fork-controlled content can leak the elevated token; operators forking or auditing the repo's CI should confirm the workflow does not check out and run untrusted PR code."
+      - "Verification path: .github/workflows/pr-size-labeler.yml line 4 trigger change from pull_request to pull_request_target."
+      - "Single decision for the repo-security auditor: review this workflow's token scope and whether it touches fork-controlled inputs."
+    accessibility_impact: none
+    security_impact: medium
+    security_change: opens
+    security_consequence:
+      threat_blocked_or_opened: "Opens potential exposure of an elevated GITHUB_TOKEN to fork PR context (pull_request_target runs with base-repo secrets/write permissions)."
+      attacker_model: "An external contributor opening a malicious fork PR attempting to exploit a pull_request_target workflow that consumes fork-controlled inputs to exfiltrate the token or push changes."
+      enforcement: "policy"
+      cost_to_operator: "Maintainers must audit the labeler workflow to confirm it only reads PR metadata (line counts) and never checks out/executes fork code under the elevated context."
+      residual: "As observed the workflow only labels by line count, which is low-risk, but the trigger choice removes the structural safety of pull_request; any future edit that adds checkout/execution becomes immediately dangerous."
+    receipts:
+      - https://github.com/google-gemini/gemini-cli/commit/cfcecebe8069f3714641a68e2898593698f739ba
+
+  - id: 2026-06-03-gemini-cli-flash-ga-flag-rollout
+    section: control-plane
+    title: "Gemini 3.5 Flash GA routes to flagged users via backend experiment flag, no client update"
+    source: gemini-cli
+    finding_ids:
+      - 2026-06-03-gemini-cli-flash-ga-transition
+    why_action_bearing:
+      - "Operators auditing which model their CLI calls cannot rely on client version alone - model selection is now gated server-side by experiment flag GEMINI_3_5_FLASH_GA_LAUNCHED (ID 45780819) via hasGemini35FlashGAAccess()."
+      - "Auto-routing logic silently switches to Flash GA when the flag is enabled for a user cohort, so the same binary can route to different models across users."
+      - "Verification path: Config.hasGemini35FlashGAAccess() and the registered experiment flag determine routing; the model in use is no longer fully determined by local config."
+      - "Single decision: operators must treat backend flag state as part of the model-routing audit surface."
+    accessibility_impact: none
+    security_impact: none
+    receipts:
+      - https://github.com/google-gemini/gemini-cli/commit/665228e983c611007c4e2d36550e67b34f75055e
+
+  - id: 2026-06-03-hermes-agent-docker-insecure-optin
+    section: control-plane
+    title: "Docker dashboard insecure binding now requires explicit HERMES_DASHBOARD_INSECURE=1 opt-in"
+    source: hermes-agent
+    finding_ids:
+      - 2026-05-29-hermes-agent-patch-release
+    why_action_bearing:
+      - "The dashboard no longer infers insecure mode from bind host, so operators whose Docker setups relied on that inference must add HERMES_DASHBOARD_INSECURE=1 explicitly or the dashboard will not bind insecurely."
+      - "Existing Docker and hosted deployments must update env configuration before upgrading to v0.15.1 to avoid a broken or unexpectedly-secured dashboard."
+      - "Verification path: upgrade to v0.15.1, set HERMES_DASHBOARD_INSECURE=1 only where intended, and confirm the dashboard binds as expected without falling back to host-derived inference."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Insecure-binding behavior is now an explicit, auditable env flag instead of a silent inference from bind host, making the dashboard's exposure posture legible."
+      who_can_use_now: "Operators running Docker or hosted dashboards who need to reason clearly about whether their dashboard is exposed insecurely."
+      authority_visibility: "Makes the insecure-exposure decision explicit and visible rather than derived implicitly, raising authority visibility for a security-sensitive binding."
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Removes silent insecure binding that could expose the dashboard when bind host was misread as a signal to drop auth; insecure mode now requires deliberate opt-in."
+      attacker_model: "A network-adjacent attacker reaching a dashboard that was unintentionally bound insecurely because the host-inference heuristic mislabeled the deployment."
+      enforcement: "both"
+      cost_to_operator: "Audit Docker/hosted env config and set HERMES_DASHBOARD_INSECURE=1 only where insecure binding is genuinely intended before upgrading."
+      residual: "Operators can still opt into insecure binding; the flag prevents accidental exposure but not deliberate misconfiguration."
+    security_advisory: true
+    receipts:
+      - https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.29
+
+  - id: 2026-06-03-hermes-agent-promptware-defense
+    section: runtime
+    title: "Promptware defense added against Brainworm-class prompt-injection attacks"
+    source: hermes-agent
+    finding_ids:
+      - 2026-05-28-hermes-agent-velocity-release
+    why_action_bearing:
+      - "Operators running the agent against untrusted content (web, repos, MCP tool output) gain a built-in defense layer they should validate against their own injection test cases rather than assume blanket coverage."
+      - "19 security-tagged issues were closed in the same release, so the upgrade is the gate for these protections; staying on prior versions leaves the injection surface unmitigated."
+      - "Verification path: upgrade to v0.15.0 and run known Brainworm-class injection patterns to confirm the defense triggers before exposing the agent to untrusted input."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Blocks Brainworm-class prompt-injection (promptware) attacks that hijack agent behavior via malicious instructions embedded in processed content."
+      attacker_model: "An adversary who can place instructions in content the agent ingests \u2014 web pages, repository files, tool/MCP output \u2014 aiming to redirect the agent's actions."
+      enforcement: "runtime"
+      cost_to_operator: "Upgrade to v0.15.0; validate the defense against the operator's own injection corpus since vendor coverage is not a guarantee."
+      residual: "Defense targets a known attack class; novel injection vectors outside Brainworm patterns may still pass, so untrusted-input handling still needs operator scrutiny."
+    security_advisory: true
+    receipts:
+      - https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.28
+
+  - id: 2026-06-03-hermes-agent-bitwarden-secrets
+    section: control-plane
+    title: "Bitwarden Secrets Manager integration replaces per-provider API keys"
+    source: hermes-agent
+    finding_ids:
+      - 2026-05-28-hermes-agent-velocity-release
+    why_action_bearing:
+      - "Operators managing credentials must decide whether to migrate from per-provider API keys to centralized Bitwarden Secrets Manager, changing where secrets live and how they rotate."
+      - "Centralized secret management enables rotation and revocation that scattered per-provider keys did not; an operator wiring CI/automation must re-point credential sourcing."
+      - "Verification path: configure Bitwarden Secrets Manager on v0.15.0, confirm the agent resolves credentials from it, and test a rotation to verify the agent picks up the new secret."
+    accessibility_impact: none
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Reduces exposure from long-lived, scattered per-provider API keys by centralizing secrets behind a managed store with rotation and revocation."
+      attacker_model: "An attacker who obtains a leaked or stale per-provider key from config, env, or disk; centralized management shortens the window such a key stays valid."
+      enforcement: "policy"
+      cost_to_operator: "Stand up and configure Bitwarden Secrets Manager; migrate existing per-provider keys and update automation to source from it."
+      residual: "Centralization shifts trust to the Bitwarden integration and its access controls; a compromised vault token or misconfigured access grants broad credential access."
+    receipts:
+      - https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.28
+
+  - id: 2026-06-03-hermes-agent-multi-agent-platform
+    section: control-plane
+    title: "Kanban becomes a multi-agent orchestration platform with auto-decomposition, swarm topology, and worktree-per-task"
+    source: hermes-agent
+    finding_ids:
+      - 2026-05-28-hermes-agent-velocity-release
+    why_action_bearing:
+      - "Operators who ran Kanban as a task board must now decide whether to adopt orchestrator auto-decomposition and swarm topology, which turn a queue into a self-spawning multi-agent fleet with new operating state to supervise."
+      - "Per-task model overrides and worktree-per-task change the cost and isolation profile of every queued task; an operator must re-plan budget and concurrency."
+      - "Verification path: deploy v0.15.0, queue a decomposable task, and confirm the orchestrator spawns the expected sub-agents in isolated worktrees before trusting it with real work."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "A single high-level task can be auto-decomposed and fanned out across agents without the operator hand-authoring each subtask or wiring worktrees."
+      who_can_use_now: "Operators who want fleet-style parallel agent work but lacked the orchestration plumbing to manage decomposition and per-task isolation themselves."
+      authority_visibility: "Swarm topology and auto-decomposition expand what runs autonomously; the operator must watch that spawned sub-agents and per-task model overrides stay visible in the Kanban platform rather than running unsupervised."
+    security_impact: none
+    receipts:
+      - https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.28
+
+  - id: 2026-06-03-pi-coding-agent-oauth-launch-hardening
+    section: runtime
+    title: "OAuth browser-launch URI validation closes command-injection path"
+    source: pi-coding-agent
+    finding_ids:
+      - 2026-06-02-pi-coding-agent-oauth-hardening
+    why_action_bearing:
+      - "An operator authenticating against a third-party or attacker-influenced OAuth server was exposed to shell command injection via the verification URI; upgrading past ba6e529 removes that exposure."
+      - "Verification path: confirm the build includes ba6e529 (non-HTTP(S) URIs rejected, browser launched via spawn() not shell exec())."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Command injection during OAuth flow where a malicious OAuth server supplies a verification URI containing shell metacharacters (e.g. $(id>/tmp/pwned)) or a non-HTTP(S) scheme to trigger arbitrary local execution."
+      attacker_model: "Attacker controlling or impersonating the OAuth/verification server the operator authenticates against."
+      enforcement: "both"
+      cost_to_operator: "Upgrade past ba6e529; no config change required."
+      residual: "Relies on the URI parser and scheme allow-list being complete; legitimate non-browser auth flows unaffected."
+    security_advisory: true
+    receipts:
+      - https://github.com/earendil-works/pi/commit/ba6e529
+
+  - id: 2026-06-03-pi-coding-agent-git-install-path-traversal
+    section: runtime
+    title: "Git package install path-traversal rejection"
+    source: pi-coding-agent
+    finding_ids:
+      - 2026-06-02-pi-coding-agent-git-path-traversal
+    why_action_bearing:
+      - "An operator installing a git-sourced package from an untrusted URL was exposed to files being written outside the package install root via traversal sequences; upgrading past a98e087 blocks this at parse and resolution time."
+      - "Verification path: confirm a98e087 is present; a crafted git URL with '../' is rejected with 'Refusing to use path outside package install root'."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Directory traversal during git package install (.., null bytes, backslashes, leading slashes) letting a crafted git URL write or read outside the designated install root."
+      attacker_model: "Attacker authoring or hosting a git package the operator installs."
+      enforcement: "both"
+      cost_to_operator: "Upgrade past a98e087; no config change required."
+      residual: "Defense-in-depth covers parse-time and resolve-time; correctness depends on decodeForValidation/resolveManagedPath catching all encodings."
+    security_advisory: true
+    receipts:
+      - https://github.com/earendil-works/pi/commit/a98e087
+
+  - id: 2026-06-03-openclaw-skill-workshop-proposal-workflow
+    section: control-plane
+    title: "Skill Workshop adds a pending-proposal approval workflow with CLI/Gateway review and a skill_workshop agent tool"
+    source: openclaw
+    finding_ids:
+      - 2026-06-03-openclaw-stable-reliability-features
+    why_action_bearing:
+      - "Skill Workshop introduces a new pending-proposal lifecycle that an operator must approve or reject via CLI or Gateway before a skill takes effect, inserting a human-in-the-loop gate into skill provisioning."
+      - "The skill_workshop agent tool lets agents themselves file proposals, expanding the automation surface; operators must decide who may review and who may self-approve."
+      - "Decision is for the control-plane admin/skill-author: configure the review path and authority for skill proposals."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Proposing and reviewing new agent skills now happens through a managed proposal queue with explicit CLI/Gateway review actions instead of ad-hoc skill installs."
+      who_can_use_now: "Operators and skill authors who want a lightweight approval gate without building their own review tooling."
+      authority_visibility: "Authority stays visible: proposals are pending until an operator acts, and the reviewer/approver step is explicit rather than implicit."
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "A managed approval gate reduces the chance of an unreviewed or agent-initiated skill silently entering the runtime, but the new skill_workshop agent tool also widens the surface from which proposals originate."
+      attacker_model: "A compromised or prompt-injected agent attempting to introduce a malicious skill via self-filed proposals."
+      enforcement: "policy"
+      cost_to_operator: "Operators must define and staff the review/approval policy for proposals."
+      residual: "Approval quality depends on reviewer diligence; auto-approval or lax review re-opens the unreviewed-skill path."
+    receipts:
+      - https://github.com/openclaw/openclaw/releases
+
+  - id: 2026-06-03-openclaw-plugin-isolation-hardening
+    section: runtime
+    title: "Enhanced plugin isolation tightens the plugin sandbox boundary in the 2026.6.1 line"
+    source: openclaw
+    finding_ids:
+      - 2026-06-03-openclaw-beta3-control-ui-stability
+    why_action_bearing:
+      - "Enhanced plugin isolation changes the sandbox boundary around plugins, including the externalized Tokenjuice and GitHub Copilot plugins now run as separate plugins."
+      - "Operators running third-party or externalized plugins should re-test plugin behavior against the tightened isolation, since capabilities previously available in-process may now be constrained."
+      - "Single runtime-admin decision: verify plugins still function under the new isolation after upgrade."
+    accessibility_impact: none
+    security_impact: low
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Tighter plugin isolation narrows the blast radius of a misbehaving or malicious plugin reaching host or sibling-plugin state."
+      attacker_model: "A malicious or compromised plugin attempting to escalate beyond its intended capability or read adjacent plugin/agent state."
+      enforcement: "runtime"
+      cost_to_operator: "Re-test externalized and third-party plugins after upgrade to confirm they still function under tighter isolation."
+      residual: "Isolation strength is undocumented in the release note; operators cannot yet verify the boundary's depth from the receipt alone."
+    receipts:
+      - https://github.com/openclaw/openclaw/releases
+
+  - id: 2026-06-03-paperclip-first-admin-claim-flow
+    section: control-plane
+    title: "Unclaimed self-hosted deployments get a one-time browser claim to bootstrap the first admin"
+    source: paperclip
+    finding_ids:
+      - 2026-05-29-paperclip-v2026.529.0
+    why_action_bearing:
+      - "Operators standing up a private self-hosted deployment now have a defined bootstrap path to create the first admin before any invite exists, replacing ad-hoc seeding."
+      - "Whoever completes the one-time browser claim becomes the first admin, so an operator must claim a freshly deployed instance promptly to avoid a race for control."
+      - "This changes the deployment runbook: the claim step is now the gate that establishes ownership of the control plane."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Bootstrapping the first admin on an unclaimed self-hosted deployment is now a one-time browser flow instead of manual database or config seeding."
+      who_can_use_now: "Self-hosting operators without a pre-existing admin or invite can stand up and take ownership of a deployment."
+      authority_visibility: "The claim flow makes the establishment of first-admin authority an explicit, one-time, visible step."
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes the gap of an unclaimed deployment having no defined admin-establishment path; the one-time claim binds first-admin authority deliberately."
+      attacker_model: "An attacker with network reach to a freshly stood-up, unclaimed deployment could complete the claim and seize first-admin before the legitimate operator does."
+      enforcement: "runtime"
+      cost_to_operator: "Operator must claim the deployment promptly after standing it up and restrict network exposure during the unclaimed window."
+      residual: "Until the legitimate operator claims, the deployment is claimable by anyone who can reach the browser flow; the one-time guarantee only protects after the first claim succeeds."
+    security_advisory: true
+    receipts:
+      - https://github.com/paperclipai/paperclip/releases/tag/v2026.529.0
+
+  - id: 2026-06-03-paperclip-skills-cli-catalog-governance
+    section: control-plane
+    title: "Company skills become first-class resources with an install/reset/audit/export/assign CLI"
+    source: paperclip
+    finding_ids:
+      - 2026-05-29-paperclip-v2026.529.0
+    why_action_bearing:
+      - "Skills move from implicit configuration to governed resources: an operator can now audit which skills are installed and assigned, and export the catalog for review or provenance tracking."
+      - "The CLI verbs (install, reset, audit, export, assign) give platform operators a programmatic path to manage agent capabilities across a company instead of clicking through a board."
+      - "Assignment is a distinct authority action \u2014 an operator decides which agents get which skills \u2014 so capability grants become reviewable operating state rather than ambient defaults."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Auditing and exporting the skill catalog, and scripting skill assignment, are now first-class CLI operations instead of manual board navigation."
+      who_can_use_now: "Platform operators and governance owners who script their control plane can manage company skills without the GUI."
+      authority_visibility: "Improved: audit and export surface which skills are installed and assigned, making capability grants visible rather than implicit."
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "No new threat blocked or opened, but capability grants (which agents hold which skills) become auditable and exportable, reducing the chance of unreviewed skill creep."
+      attacker_model: "Insider or misconfiguration risk where an agent silently holds a skill it should not; audit/export makes this discoverable."
+      enforcement: "policy"
+      cost_to_operator: "Operators must adopt the CLI/board workflow to get the audit benefit; the audit is descriptive, not an enforced allowlist."
+      residual: "Audit and export are observational \u2014 they surface state but do not by themselves prevent an over-broad assignment."
+    receipts:
+      - https://github.com/paperclipai/paperclip/releases/tag/v2026.529.0
+
+  - id: 2026-06-03-agent-zero-screenshot-durable-storage
+    section: runtime
+    title: "Computer-use screenshots now persist to durable chat-scoped storage by default"
+    source: agent-zero
+    finding_ids:
+      - 2026-06-02-agent-zero-screenshot-artifact-durability
+    why_action_bearing:
+      - "Reverses the prior ephemeral-by-default posture for computer-use screenshots, so operators who relied on screenshots being transient must now account for retained artifacts"
+      - "Changes deployment storage characteristics: long-running computer-use sessions accumulate screenshots in chat context, requiring storage planning and retention/cleanup review"
+      - "Directly hits the Grid/workcell calibration concern of persistence and cleanup for real computer access"
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Audit trails and context preservation for computer-use operations: screenshots stay available within the chat rather than vanishing, so reviewers can reconstruct what the agent saw"
+      who_can_use_now: "Operators auditing or debugging desktop/computer-use runs after the fact, without needing to re-run to capture state"
+      authority_visibility: "Higher: persisted screenshots make agent visual actions reviewable, raising visibility of what the agent did on screen"
+    security_impact: medium
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Durable screenshots can capture sensitive on-screen content (credentials, PII, internal UIs) and now persist in chat-scoped storage rather than being discarded, widening the data-at-rest exposure surface"
+      attacker_model: "Anyone with read access to chat-scoped storage, or an exfiltration path through it, who can recover retained screenshots from prior computer-use sessions"
+      enforcement: "runtime"
+      cost_to_operator: "Review retention posture and storage access controls for chat-scoped artifacts; add cleanup if sensitive screens are captured"
+      residual: "No automatic redaction of screenshot contents; sensitive material rendered on screen is retained as-is until an operator prunes it"
+    receipts:
+      - https://github.com/agent0ai/agent-zero/releases
+
+  - id: 2026-06-03-agent-zero-plugin-toggles-protected-api
+    section: control-plane
+    title: "Office, Desktop, and Editor plugins become toggleable behind a protected plugin-state API"
+    source: agent-zero
+    finding_ids:
+      - 2026-06-02-agent-zero-plugin-visibility-toggleable
+    why_action_bearing:
+      - "Operators can disable Office, Desktop, or Editor plugins (Desktop computer-use especially) on deployments that should not hold those capabilities, via the v1.19 plugin-toggle endpoint."
+      - "The endpoint is described as 'protected' but the release note documents no auth model or role-based capability management, so treat it as a disable lever, not yet an audited capability register."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Scoping an agent's capability surface without forking or rebuilding: a toggle now governs whether Office/Desktop/Editor plugins are present"
+      who_can_use_now: "Operators who want a narrower, more predictable agent capability set can configure it from the plugin-toggle surface instead of editing code"
+      authority_visibility: "Higher: a protected endpoint exposes which plugin capabilities are installed/enabled, making the agent's authority surface inspectable"
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Reduces standing capability exposure by letting operators disable powerful plugins (Desktop computer-use, Office, Editor) on deployments that should not have them"
+      attacker_model: "A compromised or prompt-injected agent that would otherwise reach Desktop/Office/Editor capability by default; or an unauthenticated caller probing plugin state"
+      enforcement: "both"
+      cost_to_operator: "Decide per-deployment which plugins to leave enabled; ensure the protected endpoint's auth is configured"
+      residual: "Release note does not document the toggle endpoint's auth model, role scoping, or an audit trail of which capabilities a deployed agent holds."
+    receipts:
+      - https://github.com/agent0ai/agent-zero/releases
+
+  - id: 2026-06-03-agent-zero-remote-control-tunnel-providers
+    section: platform
+    title: "Remote Link renamed to Remote Control with selectable tunnel providers and handshake version advertisement"
+    source: agent-zero
+    finding_ids:
+      - 2026-06-02-agent-zero-remote-control-refactor
+    why_action_bearing:
+      - "Operators managing distributed deployments must update remote-connectivity terminology (Remote Link -> Remote Control) and can now choose among Cloudflare, Microsoft Dev Tunnels, Serveo, and Tailscale"
+      - "Version advertisement in connector handshakes lets CLI clients detect server compatibility, changing how operators coordinate client/server upgrades across a fleet"
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Standing up remote access: operators pick a tunnel provider that fits their network/trust constraints instead of a single fixed path"
+      who_can_use_now: "Operators in environments where a specific tunnel provider (e.g. Tailscale, Dev Tunnels) is mandated or pre-approved can now connect Agent Zero remotely"
+      authority_visibility: "Neutral: handshake version advertisement makes client/server compatibility explicit but does not itself change capability authority"
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Tunnel-provider choice shifts the remote-exposure trust boundary: each provider carries a different auth/identity and network-exposure model for reaching the agent"
+      attacker_model: "A network attacker on the path between CLI client and a remotely-exposed Agent Zero instance, where the chosen tunnel provider sets the auth and exposure surface"
+      enforcement: "policy"
+      cost_to_operator: "Choose and configure the tunnel provider whose trust model matches the deployment; do not leave a permissive default tunnel up"
+      residual: "Remote Control still exposes the agent's control surface; provider choice does not remove the exposure, only changes its shape"
+    receipts:
+      - https://github.com/agent0ai/agent-zero/releases
+
+  - id: 2026-06-03-openhands-frontend-cve-cluster
+    section: platform
+    title: "Upgrade frontend deps (axios 1.16.0, dompurify 3.4.0) to close CVE-2026-44492 and CVE-2026-41238"
+    source: openhands
+    finding_ids:
+      - 2026-06-03-openhands-cve-2026-44492-axios
+    why_action_bearing:
+      - "Two browser-facing frontend dependencies were patched in the window: axios to 1.16.0 (CVE-2026-44492, commit 73d1d9a) and dompurify to 3.4.0 (CVE-2026-41238, commit b025cd2). Two commits, one operator action: rebuild and redeploy the frontend bundle."
+      - "Self-hosters pinning older lockfiles must bump both manually; a stale frontend build leaves both CVEs live."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes CVE-2026-44492 (axios HTTP client) and CVE-2026-41238 (dompurify HTML/DOM sanitizer), both in the browser-facing frontend."
+      attacker_model: "Remote/web attacker supplying crafted responses or HTML content to a frontend user; insufficient DOM sanitization can enable injection/XSS-class issues."
+      enforcement: "policy"
+      cost_to_operator: "Frontend rebuild and redeploy at next maintenance window; no config change."
+      residual: "Unpatched deployments remain exposed until the frontend bundle is rebuilt; self-hosters pinning older lockfiles must bump manually."
+    security_advisory: true
+    receipts:
+      - https://github.com/OpenHands/OpenHands/commit/73d1d9a
+      - https://github.com/OpenHands/OpenHands/commit/b025cd2
+
+  - id: 2026-06-03-openhands-cve-dulwich-git-lib
+    section: runtime
+    title: "Upgrade dulwich to 1.2.5 to close CVE-2026-42305 in git operations"
+    source: openhands
+    finding_ids:
+      - 2026-06-03-openhands-cve-2026-42305-dulwich
+    why_action_bearing:
+      - "Operator must re-resolve poetry.lock (enterprise and root) and rebuild backend images to ship patched dulwich; git operations run inside the agent runtime path."
+      - "Distinct from the frontend CVEs: this is a backend Python git library, different surface and different verification (lockfile pin, not frontend bundle)."
+      - "Verification path: confirm dulwich>=1.2.5 in deployed poetry.lock / installed environment."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes CVE-2026-42305 in the dulwich git library used for git operations."
+      attacker_model: "Attacker influencing git inputs/operations the agent performs against repositories; exploitability depends on whether agent processes attacker-controlled git data."
+      enforcement: "policy"
+      cost_to_operator: "Backend dependency re-resolve and image rebuild; no config change."
+      residual: "Agents performing git operations on untrusted repos stay exposed until backend is rebuilt with the pinned version."
+    security_advisory: true
+    receipts:
+      - https://github.com/OpenHands/OpenHands/commit/3eb16a9
+
+  - id: 2026-06-03-openhands-acp-creds-secrets-channel
+    section: control-plane
+    title: "ACP provider credentials now route through cipher-protected agent_context.secrets, not acp_env"
+    source: openhands
+    finding_ids:
+      - 2026-06-03-openhands-acp-creds-secrets
+    why_action_bearing:
+      - "Operators running ACP agents must understand provider API keys/base URLs now flow through the cipher-protected secrets channel; the deprecated acp_env channel no longer carries credentials."
+      - "Changes the persistence and exposure surface for agent provider credentials, with SDK gap-fill logic specifically preventing re-folding into the insecure acp_env channel."
+      - "Verification path: confirm ACP provider creds appear via agent_context.secrets and are absent from acp_env in agent context."
+    accessibility_impact: none
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Reduces credential-persistence exposure by moving ACP provider credentials off the deprecated plaintext-style acp_env channel onto the cipher-protected secrets channel."
+      attacker_model: "Adversary with access to persisted agent environment/state attempting to recover provider API keys stored in the clear via acp_env."
+      enforcement: "runtime"
+      cost_to_operator: "No operator action required to gain the protection; operators relying on acp_env for credentials must migrate to the secrets channel."
+      residual: "Provider credentials still override same-named Secrets-panel entries per prior priority logic; deprecated acp_env path remains for non-credential use."
+    receipts:
+      - https://github.com/OpenHands/OpenHands/commit/ce271ad
+
+  - id: 2026-06-03-openhands-cascade-delete-org
+    section: control-plane
+    title: "DELETE /api/organizations now cascade-deletes the sole-org requester (personal org)"
+    source: openhands
+    finding_ids:
+      - 2026-06-03-openhands-cascade-delete-org
+    why_action_bearing:
+      - "Operators must understand that deleting a personal org now also deletes the requesting user account, enabling re-onboarding on next login \u2014 a destructive identity-state change behind one endpoint."
+      - "Changes operating-state semantics of an existing destructive API: requires backup discipline before org deletion; multi-org members are protected by preflight orphan detection."
+      - "Verification path: test DELETE /api/organizations against a sole-org account vs a multi-org member and confirm orphan-rejection behavior."
+    accessibility_impact: none
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Reframes a destructive endpoint: org deletion now has user-deletion side effects, raising the blast radius of an accidental or coerced DELETE call."
+      attacker_model: "Authenticated requester (or one who tricks a sole-org user) triggering org deletion that now also removes the user identity."
+      enforcement: "runtime"
+      cost_to_operator: "Operators should enforce backups before org deletion; multi-org orphan protection is automatic."
+      residual: "Sole-org users still lose account state on deletion by design; recovery relies on Keycloak-identifier-preserved re-onboarding."
+    receipts:
+      - https://github.com/OpenHands/OpenHands/commit/82744a0
+
+  - id: 2026-06-03-flue-v090-app-config-migration
+    section: platform
+    title: "v0.9.0 breaking app-config migration: routing/provider imports, provider-ID format, SDK mount paths, and beta session-state reset"
+    source: flue
+    finding_ids:
+      - 2026-06-01-flue-v090-major-refactor
+    why_action_bearing:
+      - "Upgrading to v0.9.0 forces a developer to rewrite application imports: routing moves from `@flue/runtime/app` to `@flue/runtime/routing`, provider APIs and `observe` come from `@flue/runtime`, and Workers AI types from `@flue/runtime/cloudflare` \u2014 code will not compile until updated."
+      - "Provider model values now require `provider-id/model-id` format and `registerProvider()`/`configureProvider()` must share one ID; SDK mount paths now derive from `baseUrl` pathname \u2014 both are silent runtime-behavior changes that mis-route calls if not updated."
+      - "Persisted beta session state is now rejected; the operator must clear or migrate the session store before upgrading or sessions fail to restore \u2014 a distinct destructive pre-upgrade step gated on the same v0.9.0 cutover."
+      - "All of these share one verb (update-before-upgrade) for one persona (the Flue app developer) and one verification path (build + smoke-test against v0.9.0), so they route as a single platform migration signal."
+    accessibility_impact: high
+    accessibility_consequence:
+      what_got_easier: "Nothing got easier; this raises the migration cost. The provider-ID consistency and single `baseUrl` mount-path model do reduce future configuration ambiguity once adopted."
+      who_can_use_now: "Existing Flue app developers on pre-v0.9.0 betas; no new operator class is enabled."
+      authority_visibility: "Provider identity is now explicit and consistent (`provider-id/model-id`, shared registration ID), making which provider answers a call more visible in config."
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Rejecting persisted beta session state prevents silently restoring sessions whose serialization predates current redaction/validation rules, avoiding carry-forward of stale or unredacted persisted state."
+      attacker_model: "An operator inheriting a pre-v0.9.0 session store whose persisted state may contain content written under older, weaker persistence guarantees."
+      enforcement: "runtime"
+      cost_to_operator: "Must clear or migrate the session store before upgrade; loses in-flight beta session history unless explicitly migrated."
+      residual: "No automated migration path is provided; operators who script their own migration could reintroduce stale state. Not upgrade-blocking for security reasons, so not an advisory."
+    receipts:
+      - https://github.com/withastro/flue/blob/main/CHANGELOG.md
+
+  - id: 2026-06-03-flue-v091-websocket-credential-hardening
+    section: runtime
+    title: "v0.9.1 strips WebSocket URL credentials and rejects blank requestIds"
+    source: flue
+    finding_ids:
+      - 2026-06-02-flue-v091-websocket-security
+    why_action_bearing:
+      - "Operators deploying Flue on Cloudflare WebSockets get two upstream hardening fixes by upgrading to v0.9.1: query strings and fragments are stripped before attachment persistence, so URL-carried handshake credentials are no longer retained, and agent/workflow frames reject blank or whitespace-only `requestId` values."
+      - "Both are the same consequence for one persona (the Cloudflare WebSocket operator) gated on the same upgrade, so they stay one signal; the operator action is to upgrade and confirm credentials are no longer in persisted attachments."
+    accessibility_impact: none
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Stripping query strings/fragments before persistence stops handshake credentials carried in WebSocket URLs from being retained in Durable Object attachment storage; rejecting blank requestIds blocks frame-correlation ambiguity and unkeyed ping abuse."
+      attacker_model: "An attacker with later read access to persisted attachment state (or who can exploit unkeyed/whitespace requestIds) attempting to recover URL-embedded credentials or confuse frame correlation."
+      enforcement: "runtime"
+      cost_to_operator: "Upgrade to v0.9.1; operators should also stop passing credentials in WebSocket URLs and use header-based auth, which is the durable fix."
+      residual: "Credentials already persisted by pre-v0.9.1 versions remain in existing stores until rotated/cleared; the fix only prevents new retention. Not flagged advisory because the primary exposure requires existing read access to persisted state and the durable fix is operator-side (header auth)."
+    receipts:
+      - https://github.com/withastro/flue/blob/main/CHANGELOG.md
+
+  - id: 2026-06-03-flue-v092-autonomous-skill-activation
+    section: control-plane
+    title: "v0.9.2 adds an activate_skill tool letting agents load skills autonomously"
+    source: flue
+    finding_ids:
+      - 2026-06-03-flue-v092-autonomous-skills
+    why_action_bearing:
+      - "Operators configuring skills now get a new agent-facing `activate_skill` tool: agents load full skill instructions on demand before matching work, shifting skill loading from operator-orchestrated to agent-initiated \u2014 a proactivity/authority change the operator should be aware of when scoping which skills are available."
+      - "Workspace skills are reread on activation, so edits during an active session take effect (lazy loading preserved); verification is concrete (configure a skill, confirm the agent self-activates it and picks up an edit mid-session)."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Agents can self-select relevant skills without the operator wiring explicit activation, and skill edits are picked up live without restart."
+      who_can_use_now: "Operators who define skill libraries can let agents discover and activate them dynamically rather than hard-routing each call."
+      authority_visibility: "Activation authority shifts toward the agent; the operator's visible control is now which skills are configured/available, while the choice to activate is the agent's via the exposed tool."
+    security_impact: none
+    receipts:
+      - https://github.com/withastro/flue/blob/main/CHANGELOG.md

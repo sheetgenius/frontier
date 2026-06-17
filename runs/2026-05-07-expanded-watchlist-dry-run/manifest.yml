@@ -1,0 +1,47 @@
+schema_version: bitter.frontier_run_manifest.v0
+id: 2026-05-07-expanded-watchlist-dry-run
+title: Agents Are Getting Companies, Computers, And Consumer Surfaces
+mode: editorial_dry_run
+status: draft
+window:
+  from: 2026-05-07
+  to: 2026-05-07
+generated_at: 2026-05-07
+generated_by: codex
+contract:
+  id: frontier-contract
+  version: v0.2-expanded-facets
+artifact_version: 0
+source_policy:
+  accepted_evidence_only: true
+  primary_sources_preferred: true
+sources:
+  - id: codex
+    contract: sources/codex.yml
+  - id: claude-code
+    contract: sources/claude-code.yml
+  - id: gemini-cli
+    contract: sources/gemini-cli.yml
+  - id: hermes-agent
+    contract: sources/hermes-agent.yml
+  - id: pi-coding-agent
+    contract: sources/pi-coding-agent.yml
+  - id: openclaw
+    contract: sources/openclaw.yml
+  - id: paperclip
+    contract: sources/paperclip.yml
+  - id: agent-zero
+    contract: sources/agent-zero.yml
+  - id: openhands
+    contract: sources/openhands.yml
+outputs:
+  digest:
+    - weekly/2026-05-07-expanded-watchlist.md
+  signals:
+    - signals/frontier-signals.yml
+  qa:
+    - qa.md
+notes: >
+  Draft editorial pass to see how the publication reads after adding
+  accessibility, coordination/economic control, workcell autonomy, and
+  productized platform facets. This is not a completed weekly backtest.

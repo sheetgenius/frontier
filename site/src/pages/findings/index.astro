@@ -1,0 +1,22 @@
+---
+import Base from "../../layouts/Base.astro";
+import { listFindings } from "../../lib/frontier";
+const findings = listFindings();
+---
+
+<Base title="Findings · Bitter Frontier">
+  <section class="measure py-10">
+    <p class="small-caps text-muted">Findings</p>
+    <h1 class="issue-title">Source-backed observations.</h1>
+    <div class="mt-9 signal-list">
+      {
+        findings.map((finding) => (
+          <a href={`/findings/${finding.finding}/`} class="block no-underline hover:underline">
+            <div class="small-caps text-[var(--color-bitter)]">{finding.data.source} · {finding.data.confidence}</div>
+            <h2 class="signal-title">{finding.title}</h2>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>

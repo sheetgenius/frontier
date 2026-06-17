@@ -1,0 +1,20 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+signals:
+  - id: 2026-05-12-pi-earendil-migration-and-harness-sdk
+    section: platform
+    title: "Package scope migration to earendil-works; harness SDK stream config"
+    source: pi-coding-agent
+    finding_ids:
+      - 2026-05-12-pi-earendil-migration-and-harness-sdk
+    why_action_bearing:
+      - "Operators with global Pi installs should run `pi update --self` once
+        @earendil-works/pi-coding-agent is published to migrate from the old
+        @mariozechner scope."
+      - "Operators with Pi pinned in CI, Dockerfiles, or package.json by the old
+        @mariozechner/pi-coding-agent name should update their references to
+        @earendil-works/pi-coding-agent."
+    accessibility_impact: low
+    factory_relevance: low

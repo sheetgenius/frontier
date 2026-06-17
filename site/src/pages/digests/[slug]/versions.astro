@@ -1,0 +1,30 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { getDigest, listDigests, versionsForDigest } from "../../../lib/frontier";
+
+export function getStaticPaths() {
+  return listDigests().map((digest) => ({ params: { slug: digest.slug } }));
+}
+
+const digest = getDigest(Astro.params.slug!);
+if (!digest) throw new Error("Digest not found");
+const versions = versionsForDigest(digest.id);
+---
+
+<Base title={`Versions · ${digest.data.title}`}>
+  <section class="measure py-10">
+    <p class="small-caps text-muted">Versions</p>
+    <h1 class="issue-title">{digest.data.title}</h1>
+    <div class="mt-9 version-list">
+      {
+        versions.map((version) => (
+          <a href={`/runs/${version.id}/`} class="version-link">
+            <div class="small-caps text-[var(--color-bitter)]">{version.status} {version.artifactVersion ? `v${version.artifactVersion}` : ""}</div>
+            <h2 class="version-title">{version.title}</h2>
+            <p class="mt-1 text-sm text-muted">{version.signalCount} signals · {version.windowLabel}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>

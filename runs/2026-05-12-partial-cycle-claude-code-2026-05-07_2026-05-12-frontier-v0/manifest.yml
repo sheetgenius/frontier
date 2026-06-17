@@ -1,0 +1,41 @@
+schema_version: bitter.run_manifest.v0
+run_id: 2026-05-12-partial-cycle-claude-code-2026-05-07_2026-05-12-frontier-v0
+mode: partial_cycle
+provider: claude-code
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+versions_covered: "2.1.133..2.1.139"
+model: claude-sonnet-4-6
+source_contracts:
+  - sources/claude-code.yml
+profiles_read:
+  - content/profiles/codex.md
+  - content/profiles/gemini-cli.md
+prior_findings_read:
+  - runs/2026-05-06-manual-2026-04-22_2026-05-06-frontier-v0/findings/claude-code.md
+surface_class: closed_source_release_notes
+primary_sources_harvested:
+  - https://code.claude.com/docs/en/changelog
+  - https://code.claude.com/docs/en/whats-new
+  - https://code.claude.com/docs/en/agent-view
+  - https://code.claude.com/docs/en/hooks
+harvested_at: 2026-05-12
+operator: autonomous-loop-v0
+outputs:
+  findings:
+    - findings/claude-code.md
+  signals:
+    - signals/frontier-signals.yml
+  digest_fragments:
+    - weekly/claude-code-fragment.md
+  profile:
+    - content/profiles/claude-code.md
+  audit:
+    - audit.md
+purpose: >
+  First partial cycle for Claude Code. Tests the profile pipeline on a
+  closed_source_release_notes provider, establishing the third surface_class
+  in the autonomous loop alongside Gemini CLI (open_source_commits) and
+  Codex (mixed_official_docs). Seeded from the prior manual-run finding
+  (2026-04-22..2026-05-06) plus a fresh harvest of 2026-05-07..2026-05-12.

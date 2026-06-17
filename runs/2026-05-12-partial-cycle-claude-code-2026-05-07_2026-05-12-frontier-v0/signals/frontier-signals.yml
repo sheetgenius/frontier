@@ -1,0 +1,30 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+signals:
+  - id: 2026-05-12-claude-code-agent-view-goal-and-governance
+    section: control-plane
+    title: "Agent view, goal completion, and governance hardening"
+    source: claude-code
+    finding_ids:
+      - 2026-05-12-claude-code-agent-view-goal-and-governance
+    why_action_bearing:
+      - "`claude agents` is the new canonical surface for multi-session
+        supervision; operators running parallel Claude Code sessions should
+        evaluate it now as their primary management interface."
+      - "/goal changes how long-running autonomous work is structured; operators
+        should test goal-based termination against their most common multi-turn
+        workflows."
+      - "`continueOnBlock` enables advisory governance hooks; existing
+        PostToolUse blocks should be redesigned to pass rejection reasons so
+        Claude can adapt rather than just stop."
+      - "`x-claude-code-agent-id` / `x-claude-code-parent-agent-id` headers and
+        OTel span attributes enable call-tree attribution; logging pipelines
+        receiving Anthropic API calls should start capturing these to
+        distinguish parent sessions from subagents."
+      - "API key auth now disables Remote Control, /schedule, and claude.ai MCP
+        connectors; operators using API key should audit reliance on these
+        surfaces before upgrading."
+    accessibility_impact: high
+    factory_relevance: medium

@@ -1,0 +1,39 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-27-weekly-digest-2026-05-13_2026-05-27-frontier-v0
+mode: weekly_digest
+window:
+  start: 2026-05-13
+  end: 2026-05-27
+model: claude-opus-4-7
+sources:
+  - codex
+  - claude-code
+  - gemini-cli
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+  - flue
+input_research:
+  - research/watchlist-harvest-2026-05-13_2026-05-27/group-a.md
+  - research/watchlist-harvest-2026-05-13_2026-05-27/group-b.md
+  - research/watchlist-harvest-2026-05-13_2026-05-27/group-c.md
+  - research/agent-receipt-spec-survey-delta-2026-05-27.md
+  - research/research-arc-synthesis-2026-05-27.md
+outputs:
+  - content/digests/2026-05-13_2026-05-27-weekly.md
+  - findings/ (10 promoted findings)
+  - signals/frontier-signals.yml (10 accepted signals)
+  - audit.md (three doctrine questions + composite-finding flag)
+status: complete
+note: >
+  Consolidated weekly-digest run covering the full nine-provider Tier-1 watchlist
+  plus Flue (Tier 2) for the 2026-05-13 → 2026-05-27 window. Unlike the prior
+  2026-05-12 digest, this run consolidates findings and signals in a single run
+  directory rather than orchestrating across per-provider partial cycles — the
+  research inputs are the three parallel-subagent harvest files cited above.
+  First weekly digest produced against the full Amendment 004 schema
+  (section + accessibility_consequence + security_consequence triads), as such
+  it is also a stress-test of those required fields under real signal volume.

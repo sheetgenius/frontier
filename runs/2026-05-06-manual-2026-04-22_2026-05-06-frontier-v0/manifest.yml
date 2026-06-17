@@ -1,0 +1,85 @@
+schema_version: bitter.frontier_run_manifest.v0
+id: 2026-05-06-manual-2026-04-22_2026-05-06-frontier-v0
+title: Initial two-week Bitter Frontier research sprint
+mode: manual_research_sprint
+status: gold
+window:
+  from: 2026-04-22
+  to: 2026-05-06
+generated_at: 2026-05-06
+generated_by: codex
+artifact_version: 0
+superseded_by: 2026-05-06-goal-weighted-2026-04-22_2026-05-06-frontier-v2
+revision_reason: >
+  Manual gold run used as the source-backed reference for later candidate and
+  goal-weighted versions.
+purpose: >
+  Produce the first source-backed roll-up across the initial Bitter Frontier
+  watchlist, prove the file-backed research artifact shape, and create a
+  static digest suitable for frontier.bitter.sh.
+source_policy:
+  accepted_evidence_only: true
+  primary_sources_preferred: true
+  social_claims_allowed: false
+sources:
+  - id: codex
+    contract: sources/codex.yml
+    surfaces:
+      - https://developers.openai.com/codex/changelog/rss.xml
+      - https://developers.openai.com/codex/changelog/#github-release-315916672
+      - https://github.com/openai/codex/releases/tag/rust-v0.128.0
+  - id: claude-code
+    contract: sources/claude-code.yml
+    surfaces:
+      - https://code.claude.com/docs/en/whats-new/2026-w17
+      - https://code.claude.com/docs/en/changelog
+  - id: gemini-cli
+    contract: sources/gemini-cli.yml
+    surfaces:
+      - https://github.com/google-gemini/gemini-cli/releases/tag/v0.41.0
+      - https://github.com/google-gemini/gemini-cli/releases/tag/v0.42.0-preview.0
+      - https://github.com/google-gemini/gemini-cli/releases
+  - id: hermes-agent
+    contract: sources/hermes-agent.yml
+    surfaces:
+      - https://github.com/NousResearch/hermes-agent/releases/tag/v2026.4.23
+      - https://github.com/NousResearch/hermes-agent/releases/tag/v2026.4.30
+      - https://github.com/NousResearch/hermes-agent/commits
+  - id: pi-coding-agent
+    contract: sources/pi-coding-agent.yml
+    surfaces:
+      - https://github.com/badlogic/pi-mono/releases/tag/v0.69.0
+      - https://github.com/badlogic/pi-mono/releases/tag/v0.70.0
+      - https://github.com/badlogic/pi-mono/releases/tag/v0.71.0
+      - https://github.com/badlogic/pi-mono/releases/tag/v0.71.1
+      - https://github.com/badlogic/pi-mono/releases/tag/v0.72.0
+      - https://github.com/badlogic/pi-mono/releases/tag/v0.73.0
+outputs:
+  findings:
+    - findings/codex.md
+    - findings/claude-code.md
+    - findings/gemini-cli.md
+    - findings/hermes-agent.md
+    - findings/pi-coding-agent.md
+  signals:
+    - signals/frontier-signals.yml
+    - ../../data/frontier_signals.jsonl
+  top_signal_ids:
+    - 2026-05-06-worker-native-goals
+    - 2026-05-06-worker-native-memory
+    - 2026-05-06-fragmented-authority-semantics
+    - 2026-05-06-worker-verification
+    - 2026-05-06-plugin-extension-skill-surface
+    - 2026-05-06-worker-integrations-not-doctrine
+  digest:
+    - weekly/2026-04-22_2026-05-06.md
+    - ../../content/digests/2026-04-22_2026-05-06-frontier-rollup.md
+  review:
+    - qa.md
+    - audit.md
+quality_gates:
+  - source contracts loaded for all five sources
+  - findings separated from accepted action-bearing signals
+  - weekly digest written for human operators
+  - low-confidence or non-actionable items kept out of signals
+  - run limitations recorded in audit and QA

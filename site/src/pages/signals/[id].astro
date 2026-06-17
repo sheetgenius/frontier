@@ -1,0 +1,246 @@
+---
+import { marked } from "marked";
+import Base from "../../layouts/Base.astro";
+import {
+  adjacentTool,
+  composesLabel,
+  digestsForSignalId,
+  evidenceLinksForFinding,
+  findFindingByFindingId,
+  formatDate,
+  formatEvidenceTarget,
+  getFinding,
+  listProfiles,
+  listSignals,
+  sectionLabel,
+  sourceLabel,
+} from "../../lib/frontier";
+
+function inline(md: string): string {
+  return marked.parseInline(md ?? "") as string;
+}
+
+export function getStaticPaths() {
+  return listSignals().map((signal) => ({ params: { id: signal.id } }));
+}
+
+const signal = listSignals().find((s) => s.id === Astro.params.id);
+if (!signal) throw new Error("Signal not found");
+
+const profiles = listProfiles();
+const profileSlugs = new Set(profiles.map((p) => p.slug));
+const backDigests = digestsForSignalId(signal.id);
+const idResolved = signal.findingIds
+  .map((fid) => ({ fid, finding: findFindingByFindingId(fid) }))
+  .filter((f) => f.finding);
+const pathResolved = signal.findingRefs
+  .map((ref) => {
+    const finding = getFinding(ref.runId, ref.slug);
+    return finding ? { fid: finding.data.finding_id ?? `${ref.runId}/${ref.slug}`, finding } : null;
+  })
+  .filter(Boolean) as Array<{ fid: string; finding: any }>;
+const findings = idResolved.length > 0 ? idResolved : pathResolved;
+
+const primaryFinding = findings[0]?.finding;
+const confidence = signal.confidence ?? primaryFinding?.data.confidence;
+const actionability = signal.actionability ?? primaryFinding?.data.actionability;
+const evidence = findings.flatMap(({ finding }) =>
+  finding ? evidenceLinksForFinding(finding).map((link) => ({ ...link, findingId: finding.data.finding_id })) : [],
+);
+
+const hasMetadata =
+  confidence ||
+  actionability ||
+  signal.accessibilityImpact ||
+  signal.factoryRelevance ||
+  primaryFinding?.data.operator_relevance ||
+  primaryFinding?.data.bitter_relevance;
+---
+
+<Base
+  title={`${signal.title} · Bitter Frontier`}
+  description={signal.summary ?? signal.whyActionBearing[0] ?? signal.title}
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">
+      <a href="/signals/">Signals</a>
+    </p>
+    <div class="signal-meta small-caps text-muted mt-1">
+      {formatDate(signal.date)}
+      {signal.sources.map((src) => (
+        <span>
+          {" · "}
+          {profileSlugs.has(src) ? (
+            <a href={`/profiles/${src}/`} class="text-[var(--color-bitter)] no-underline hover:underline">
+              {sourceLabel(src)}
+            </a>
+          ) : (
+            <span>{sourceLabel(src)}</span>
+          )}
+        </span>
+      ))}
+    </div>
+    <h1 class="issue-title mt-2">{signal.title}</h1>
+    {signal.sections.length > 0 && (
+      <div class="signal-tracks mt-3">
+        {signal.sections.map((section) => (
+          <a href={`/sections/${section}/`} class={`signal-track track-${section}`}>{sectionLabel(section)}</a>
+        ))}
+      </div>
+    )}
+
+    {signal.summary && (
+      <p class="signal-summary mt-3" style="font-size: 1.05rem;">{signal.summary}</p>
+    )}
+
+    {signal.whyActionBearing.length > 0 && (
+      <div class="mt-7">
+        <p class="small-caps text-muted">What this changes for operators</p>
+        <ul class="signal-actions mt-3">
+          {signal.whyActionBearing.map((item) => (
+            <li set:html={inline(item)} />
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {evidence.length > 0 && (
+      <div class="mt-7 rule pt-5">
+        <p class="small-caps text-muted">Receipts</p>
+        <ul class="mt-3 receipts-list">
+          {evidence.map((item) => (
+            <li>
+              <a href={item.url} class="receipts-link">
+                <span class="receipts-kind">{item.precision ?? "source"}</span>
+                <span>
+                  <span class="receipts-label">{item.label}</span>
+                  <span class="receipts-target">{formatEvidenceTarget(item.url)}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {signal.composes.length > 0 && (
+          <div class="mt-5">
+            <p class="small-caps text-muted">Composition</p>
+            <ul class="mt-2 composition-list font-mono text-sm">
+              {signal.composes.map((id) => {
+                const isWatchlist = profileSlugs.has(id);
+                const adj = isWatchlist ? undefined : adjacentTool(id);
+                const href = isWatchlist
+                  ? `/profiles/${id}/`
+                  : adj?.canonical_url;
+                return (
+                  <li>
+                    {href ? (
+                      <a href={href} class="composes-link">{composesLabel(id)}</a>
+                    ) : (
+                      <span>{composesLabel(id)}</span>
+                    )}
+                    {isWatchlist ? (
+                      <span class="text-muted"> · watchlist</span>
+                    ) : (
+                      <span class="text-muted"> · adjacent</span>
+                    )}
+                    {adj?.notes && (
+                      <span class="text-muted"> · {adj.notes}</span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+      </div>
+    )}
+
+    {hasMetadata && (
+      <div class="mt-7 rule pt-5">
+        <p class="small-caps text-muted">Signal metadata</p>
+        <dl class="signal-metadata mt-3">
+          {confidence && (
+            <div>
+              <dt>Confidence</dt>
+              <dd>{confidence}</dd>
+            </div>
+          )}
+          {actionability && (
+            <div>
+              <dt>Actionability</dt>
+              <dd>{actionability}</dd>
+            </div>
+          )}
+          {signal.accessibilityImpact && (
+            <div>
+              <dt>Accessibility impact</dt>
+              <dd>{signal.accessibilityImpact}</dd>
+            </div>
+          )}
+          {primaryFinding?.data.operator_relevance && (
+            <div>
+              <dt>Operator relevance</dt>
+              <dd>{primaryFinding.data.operator_relevance}</dd>
+            </div>
+          )}
+          {primaryFinding?.data.bitter_relevance && (
+            <div>
+              <dt>Bitter relevance</dt>
+              <dd>{primaryFinding.data.bitter_relevance}</dd>
+            </div>
+          )}
+          {signal.factoryRelevance && (
+            <div>
+              <dt>Factory relevance</dt>
+              <dd>{signal.factoryRelevance}</dd>
+            </div>
+          )}
+        </dl>
+      </div>
+    )}
+
+    {findings.length > 0 && (
+      <div class="mt-7 rule pt-5">
+        <p class="small-caps text-muted">Source findings</p>
+        <ul class="mt-3 space-y-2">
+          {findings.map(({ fid, finding }) => (
+            <li class="font-mono text-sm">
+              <a href={`/findings/${finding!.runId}/${finding!.finding}/`} class="hover:underline">
+                {finding!.title}
+              </a>
+              <div class="text-muted" style="margin-top: 2px;">{fid}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {backDigests.length > 0 && (
+      <div class="mt-7 rule pt-5">
+        <p class="small-caps text-muted">Featured in</p>
+        <ul class="mt-3 space-y-2">
+          {backDigests.map((digest) => (
+            <li class="font-mono text-sm">
+              <a href={`/digests/${digest.slug}/`} class="hover:underline">
+                {digest.data.title ?? digest.slug}
+              </a>
+              <span class="text-muted"> · {formatDate(digest.data.window?.end)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {signal.runId && (
+      <p class="rule mt-7 pt-5 font-mono text-sm text-muted">
+        Run: <a href={`/runs/${signal.runId}/`} class="hover:underline">{signal.runId}</a>
+      </p>
+    )}
+    <p class="mt-3 font-mono text-sm text-muted">
+      Schema: <code>bitter.frontier_signals.v0</code> · ID: <code>{signal.id}</code>
+    </p>
+    <p class="mt-3 font-mono text-sm text-muted">
+      Signals are produced by the <a class="hover:underline" href="https://bitter.sh">Bitter</a> autonomous research loop.
+    </p>
+  </article>
+</Base>

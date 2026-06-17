@@ -1,0 +1,22 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-12-partial-cycle-codex-refresh-2026-05-12-frontier-v0
+mode: partial_cycle
+window:
+  start: 2026-05-12
+  end: 2026-05-12
+model: claude-sonnet-4-6
+sources:
+  - codex
+source_contracts:
+  - sources/codex.yml
+versions_covered: "post-v0.131.0"
+status: complete
+outputs:
+  - runs/2026-05-12-partial-cycle-codex-refresh-2026-05-12-frontier-v0/findings/codex.md
+  - runs/2026-05-12-partial-cycle-codex-refresh-2026-05-12-frontier-v0/signals/frontier-signals.yml
+  - runs/2026-05-12-partial-cycle-codex-refresh-2026-05-12-frontier-v0/weekly/codex-fragment.md
+  - content/profiles/codex.md
+note: >
+  Freshness refresh for Codex. One new finding: PreToolUse updatedInput
+  rewrite (PR #20527). Profile advanced to 2026-05-12. Freshness condition
+  partially satisfied (combined with Gemini CLI refresh in same commit: 2/10).

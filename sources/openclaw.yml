@@ -1,0 +1,129 @@
+schema_version: bitter.frontier_source_contract.v0
+id: openclaw
+label: OpenClaw
+owner: OpenClaw
+homepage: https://docs.openclaw.ai/
+primary_surfaces:
+  - id: repo
+    kind: github_repo
+    url: https://github.com/openclaw/openclaw
+    priority: 1
+    watch:
+      - releases
+      - tags
+      - commits
+      - pull_requests
+      - issues
+      - docs
+      - examples
+      - security
+  - id: docs
+    kind: official_docs
+    url: https://docs.openclaw.ai/
+    priority: 1
+    watch:
+      - getting_started
+      - gateway
+      - installation
+      - configuration
+      - channels
+      - plugins
+      - skills
+      - permissions
+      - memory
+      - remote_access
+      - security
+      - mobile_or_desktop_surfaces
+  - id: getting-started
+    kind: official_docs
+    url: https://docs.openclaw.ai/start/getting-started
+    priority: 1
+    watch:
+      - onboarding
+      - setup_steps
+      - first_run
+      - user_workflow
+accepted_evidence:
+  - official_docs
+  - github_release
+  - tagged_release
+  - maintainer_commit
+  - merged_pr
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+  - seo_clone_or_mirror
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+  - accessibility
+research_lenses:
+  - accessibility
+  - distribution_surface
+  - everyday_use
+  - gateway
+  - authority_visibility
+high_signal_patterns:
+  - onboarding
+  - setup
+  - gateway
+  - visual surface
+  - desktop
+  - mobile
+  - channel
+  - notification
+  - remote access
+  - everyday user
+  - natural language workflow
+  - permission
+  - approval
+  - visibility
+  - handoff
+  - plugin
+  - skill
+  - daemon
+  - background agent
+  - long-running task
+  - memory
+operator_questions:
+  - Does this make agentic work more approachable to ordinary developers or everyday users?
+  - Does this reduce setup, terminal fluency, or coordination burden?
+  - Does it simplify the surface while preserving visible authority and control?
+  - Does this change whether Bitter should expose a more humane surface over its rigorous internals?
+  - Does this suggest a new distribution surface beyond terminal-only agent work?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  accessibility_change: study
+discovery:
+  last_verified: 2026-05-07
+  verified_by: manual_web
+  confidence: medium
+  open_questions:
+    - Which OpenClaw release surface should be treated as canonical if docs and GitHub move at different speeds?
+    - Which user-facing gateway surfaces are official product posture rather than experimental examples?
+    - Which security and authority boundaries are visible enough for everyday users to understand?
+notes: >
+  Watch OpenClaw as the accessibility calibration source for the agentic
+  harness frontier. Its most important lesson may be product posture: making
+  autonomous agent work feel reachable to everyday people. Pay special
+  attention to onboarding, gateway surfaces, familiar channels, visual state,
+  permissions, and any design move that hides setup complexity without hiding
+  authority.

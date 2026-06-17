@@ -1,0 +1,57 @@
+schema_version: bitter.frontier_run_manifest.v0
+id: 2026-05-07-commit-harvest-2026-04-23_2026-05-07-frontier-v1
+title: "The Harness Leaves The Chat Box"
+status: published
+artifact_version: 3
+mode: manual_commit_harvest
+created_at: 2026-05-07T13:45:00+08:00
+window:
+  start: 2026-04-23
+  end: 2026-05-07
+contract:
+  id: bitter-frontier-research-contract
+  version: v0
+source_contracts:
+  - sources/codex.yml
+  - sources/gemini-cli.yml
+  - sources/hermes-agent.yml
+  - sources/pi-coding-agent.yml
+  - sources/openclaw.yml
+  - sources/paperclip.yml
+  - sources/agent-zero.yml
+  - sources/openhands.yml
+excluded_sources:
+  - id: claude-code
+    reason: "No public GitHub commit stream is defined in the v0 source contract. This run is commit-harvest focused, so Claude Code is intentionally excluded rather than mixed with changelog-only evidence."
+harvest:
+  method: "GitHub commits API via gh"
+  since: 2026-04-23T00:00:00Z
+  until: 2026-05-07T23:59:59Z
+  commit_counts:
+    codex: 553
+    gemini-cli: 169
+    hermes-agent: 2061
+    pi-coding-agent: 229
+    openclaw: 8210
+    paperclip: 125
+    agent-zero: 116
+    openhands: 127
+  local_receipts:
+    - /tmp/bitterfrontier-harvest/codex.json
+    - /tmp/bitterfrontier-harvest/gemini-cli.json
+    - /tmp/bitterfrontier-harvest/hermes-agent.json
+    - /tmp/bitterfrontier-harvest/pi-coding-agent.json
+    - /tmp/bitterfrontier-harvest/openclaw.json
+    - /tmp/bitterfrontier-harvest/paperclip.json
+    - /tmp/bitterfrontier-harvest/agent-zero.json
+    - /tmp/bitterfrontier-harvest/openhands.json
+quality_gates:
+  require_primary_sources: true
+  cite_commit_urls: true
+  separate_commit_metadata_from_diff_review: true
+  distinguish_public_language_from_bitter_internal_language: true
+outputs:
+  findings: 8
+  signals: 6
+  digest: weekly/2026-04-23_2026-05-07.md
+  qa: qa.md

@@ -1,0 +1,28 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-13
+  end: 2026-05-13
+signals:
+  - id: 2026-05-13-openclaw-per-sender-tool-policies
+    section: control-plane
+    title: "Per-sender tool policies via channel-scoped sender keys"
+    source: openclaw
+    finding_ids:
+      - 2026-05-13-openclaw-per-sender-tool-policies
+    why_action_bearing:
+      - "Operators running OpenClaw with public-facing channels can now restrict
+        dangerous tools by requester identity rather than only by agent. Review
+        your tool surfaces and decide whether the broader trust model
+        (per-channel × per-sender) belongs in your deployment."
+      - "Authority restriction now extends across global, agent, group, core,
+        bundled, and plugin tool surfaces — operators should re-audit which
+        surfaces hold authority decisions in their deployment and whether the
+        requester-level layer makes some prior per-agent restrictions
+        redundant."
+      - "Three claim-level updates land in the same release: memory-wiki ingest
+        now requires admin scope, Obsidian search requires write scope, and
+        `openclaw models auth login --provider openai` defaults to ChatGPT/Codex
+        login (API-key setup is now behind `--method api-key`). Setup scripts
+        assuming read-only or API-key-first paths need to be updated."
+    accessibility_impact: medium
+    factory_relevance: low

@@ -1,0 +1,22 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-12-partial-cycle-gemini-refresh-2026-05-12-frontier-v0
+mode: partial_cycle
+window:
+  start: 2026-05-12
+  end: 2026-05-12
+model: claude-sonnet-4-6
+sources:
+  - gemini-cli
+source_contracts:
+  - sources/gemini-cli.yml
+versions_covered: "post-v0.41.0"
+status: complete
+outputs:
+  - runs/2026-05-12-partial-cycle-gemini-refresh-2026-05-12-frontier-v0/findings/gemini-cli.md
+  - runs/2026-05-12-partial-cycle-gemini-refresh-2026-05-12-frontier-v0/signals/frontier-signals.yml
+  - runs/2026-05-12-partial-cycle-gemini-refresh-2026-05-12-frontier-v0/weekly/gemini-fragment.md
+  - content/profiles/gemini-cli.md
+note: >
+  Freshness refresh for Gemini CLI. One new finding: session resume
+  reliability fix (PR #26577). Profile advanced to 2026-05-12. Freshness
+  condition partially satisfied.

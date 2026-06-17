@@ -1,0 +1,137 @@
+schema_version: bitter.frontier_source_contract.v0
+id: gemini-cli
+label: Gemini CLI
+owner: Google
+homepage: https://github.com/google-gemini/gemini-cli
+primary_surfaces:
+  - id: repo
+    kind: github_repo
+    url: https://github.com/google-gemini/gemini-cli
+    priority: 1
+    watch:
+      - releases
+      - tags
+      - commits
+      - pull_requests
+      - issues
+      - discussions
+      - docs
+      - roadmap
+      - security
+  - id: releases
+    kind: github_releases
+    url: https://github.com/google-gemini/gemini-cli/releases
+    priority: 1
+    watch:
+      - stable
+      - preview
+      - nightly
+      - breaking_changes
+      - security
+  - id: docs
+    kind: official_docs
+    url: https://google-gemini.github.io/gemini-cli/docs/
+    priority: 1
+    watch:
+      - changelog
+      - installation
+      - authentication
+      - configuration
+      - commands
+      - context_files
+      - checkpointing
+      - tools
+      - mcp
+      - extensions
+      - headless
+      - ide
+      - sandboxing
+      - trusted_folders
+      - enterprise
+      - telemetry
+  - id: npm
+    kind: package_registry
+    url: https://www.npmjs.com/package/@google/gemini-cli
+    priority: 3
+    watch:
+      - package_version
+      - publication_date
+      - dist_tags
+accepted_evidence:
+  - official_docs
+  - github_release
+  - tagged_release
+  - maintainer_commit
+  - merged_pr
+  - security_advisory
+  - package_registry_release
+  - official_google_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+  - accessibility
+high_signal_patterns:
+  - checkpoint
+  - resume
+  - context file
+  - GEMINI.md
+  - tool call
+  - shell
+  - web fetch
+  - search grounding
+  - MCP
+  - extension
+  - sandbox
+  - trusted folder
+  - permission
+  - IDE
+  - GitHub Action
+  - output format
+  - stream-json
+  - authentication
+  - enterprise
+  - telemetry
+  - preview channel
+  - security
+operator_questions:
+  - Does this change how an operator should trust Gemini CLI in a repo?
+  - Does this affect checkpointing, context files, sandboxing, tools, auth, or output contracts?
+  - Does this change Bitter adapter, receipt, eval, or run-contract assumptions?
+  - Does the release-channel cadence change how Bitter should test stable versus preview behavior?
+  - Does this make serious agent work easier to start, inspect, or control without hiding authority?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  pricing_or_usage_change: observe
+discovery:
+  last_verified: 2026-05-06
+  verified_by: manual_web
+  confidence: high
+  open_questions:
+    - Should nightly and preview releases be harvested into findings or only used for adapter-probe canaries?
+    - Which security advisories should be treated as direct signals even when they do not change public docs?
+notes: >
+  Watch Gemini CLI as a large open-source terminal agent with rapid release
+  channels, explicit context-file behavior, tool and extension surfaces,
+  checkpointing, sandboxing, IDE/GitHub integrations, and Google account or
+  Vertex/enterprise authentication paths. Separate stable operator guidance
+  from preview/nightly churn.

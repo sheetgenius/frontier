@@ -1,0 +1,36 @@
+# Harvest: Paperclip (window 2026-06-04 .. 2026-06-16) — coordination/control-plane calibration source
+
+coverage: tool_access_ok=yes (gh authenticated, REST API). DEFAULT BRANCH = `master` (not main; /commits/main is dead — record for source contract). One in-window release: v2026.609.0 (2026-06-09T21:33Z). ~150 in-window commits; major multi-tenant authority/security cluster 06-11/06-12 is POST-release, NOT yet tagged (treated as maintainer_commit/merged_pr, "merged not yet released"). Dedupe vs baseline through 06-03.
+
+## Findings (12)
+
+1. **2026-06-09-paperclip-v2026.609.0-company-artifacts-and-low-trust-review** (06-09; v2026.609.0) — capability/workflow. **Company Artifacts** (company-scoped page indexing every file/media/doc agents produce, grouped by task stack, upload+playback); structured **checkbox confirmation** approvals (API/CLI/plugin/UI); instance settings → company settings; automated PR quality+security gates (commitperclip) + **low-trust review containment** (see #3). Agent output → inspectable operating state. Receipt: release v2026.609.0.
+
+2. **2026-06-09-paperclip-invalid-agent-eligibility-and-recovery-actions** (06-06/07; v2026.609.0, #7663/#7695/#7679) — workflow/governance. Invalid agents (terminated/paused/pending-approval) centrally barred from assignments/runs via one eligibility contract (issue assignment, routes, heartbeat, routines, recovery, liveness); company-scoped activity-logged **clear-error** recovery action; live-run stop finalization. Audited human recovery path. Receipt: PR#7663.
+
+3. **2026-06-05-paperclip-low-trust-review-containment** (06-05; v2026.609.0, #7530) — **security/governance (high)**. First slice of **deny-by-default review containment**: `low_trust_review` authority preset + source-trust tagging (issues/comments/docs/work-products, migration 0097) + route-level containment + quarantine so low-trust output doesn't auto-flow into higher-trust wake context. Server enforces low-trust scope, self-view redaction, secret/plugin/runtime denial, quarantined continuation. Fail-closed. attacker=prompt-injection via hostile PRs/comments/attachments. Receipt: PR#7530 "Add low-trust review containment… hostile PRs/comments/attachments… can carry prompt-injection payloads… deny-by-default."
+
+4. **2026-06-12-paperclip-per-company-jwt-signing-keys** (06-12; #5864, unreleased) — **security**. Agent-auth JWTs were signed with single master secret + 48h TTL → any leak mints tokens for ANY tenant. Now per-company derived key HMAC-SHA256(master,"jwt:<companyId>") + default TTL 48h→**1h** + legacy-fallback sunset toggle. Multi-tenant blast-radius control. Receipt: PR#5864.
+
+5. **2026-06-12-paperclip-cloud-tenant-never-instance-admin** (06-12; #7525, unreleased) — **security/governance (highest)**. cloud_tenant auth mode granted EVERY cloud tenant instance_admin → on shared pool, any tenant = admin of whole instance, reach all tenants' data. Now grant removed, isInstanceAdmin:false pinned, stale instance_admin rows PURGED at auth boundary every request; cloud tenants get company-scoped via membership. Privilege-escalation fix. Destructive purge (hold admin via non-cloud-tenant identity). Receipt: PR#7525.
+
+6. **2026-06-12-paperclip-read-config-no-longer-requires-agents-create** (06-12; #3725, unreleased) — security/workflow (permission calibration). Reading agent configs/skills/revision history required mutation-tier agents:create → 403 for ordinary members. Now read gate = company membership only; mutation keeps agents:create; secret-touching test-environment endpoint reclassified UP to agents:create. Read-vs-mutate boundary fixed. Receipt: PR#3725.
+
+7. **2026-06-12-paperclip-board-member-visibility-and-viewer-carveout** (06-12; #7935, unreleased) — governance (authz). Board users with active membership saw "You have no agents" because null-mapped visibility actions denied before membership eval. Now 6 read actions resolve via active membership; **Viewer** members get 4 read-only but denied runtime:manage + secrets:read. Role-based legibility. Receipt: PR#7935.
+
+8. **2026-06-12-paperclip-auto-complete-approved-review-atomicity** (06-12; #5839, unreleased) — reliability/governance. Approval regex matched NEGATED phrasings ("NOT APPROVED" auto-completed issues!); comment-insert + status-transition + decision not atomic (422 → orphan approval comment). Fix: tighten regex vs negations + wrap in one transaction. "A rejection can never auto-complete." Receipt: PR#5839.
+
+9. **2026-06-12-paperclip-plugin-tenant-isolation-and-log-redaction** (06-12; #5865+#8013, unreleased) — **security**. (a) 4 plugin tables get nullable company_id FK ON DELETE CASCADE + per-tenant external-id uniqueness (company deletion cascades plugin state). (b) pino-http customProps copied req.body/params/query verbatim into 4xx/5xx logs → **plaintext passwords + bearer tokens written to server.log**; new redactSensitive walker masks credential-shaped keys (bare `token` deliberately kept). Receipt: PR#8013 + #5865.
+
+10. **2026-06-11-paperclip-skills-store-and-teams-catalog** (06-05/06-11; #7990/#7550, unreleased) — capability/ecosystem. **Skills Store** (browse/inspect/version/install/attach company skills, canonical URLs, version snapshots/diffs, **pinned skill versions** through runtime materialization); **Teams catalog** (@paperclipai/teams-catalog — app-shipped team templates installable into a company with scoped selection, source policy, **approval fallback for agent-initiated agent creation**, provenance hashes). Company-as-reusable-template. Receipt: PR#7990 + #7550.
+
+11. **2026-06-12-paperclip-self-hostable-kubernetes-sandbox-and-gateway-routing** (06-11/12; #5790/#7938/#7934 + #7919/#7920/#7837, unreleased) — runtime/ecosystem. Self-hostable **Kubernetes sandbox provider** (3-stage: plugin+server+harness images) joining E2B/Cloudflare/Daytona/Modal; env-driven gateway routing for codex-local/pi-local/opencode-local adapters. Lowers infra lock-in. Receipt: commits 05ab45225 etc.
+
+12. **2026-06-05-paperclip-positioning-pivot-away-from-zero-human-companies** (06-05; #7580, unreleased) — **philosophy/positioning**. Retired "**zero-human companies**" tagline → "**Paperclip is the app people use to manage AI agents for work**" / "Open-source orchestration for **teams of AI agents**". In-window engineering (board-member visibility, clear-error recovery, low-trust review, approval atomicity) all add HUMAN governance surfaces. Calibration: company metaphor converging on human-in-the-loop. Receipt: PR#7580 README diff.
+
+## Top signals (harvester's pick)
+1. cloud-tenant-never-instance-admin (#7525) — privilege-escalation fix: shared-pool tenant was instance-admin over whole instance. Highest authority/security weight.
+2. per-company-jwt-signing-keys (#5864) — per-tenant derived keys + 1h TTL replace single master key/48h blast radius.
+3. v2026.609.0 + low-trust-review-containment (#7530) — Company Artifacts (agent output as operating state) + structured approvals + deny-by-default low-trust authority preset. "Enforced authority, not dashboard theater."
+4. auto-complete-approved-review-atomicity (#5839) — rejection can't auto-complete; comment+status can't diverge.
+5. positioning-pivot (#7580) — drops "zero-human companies"; humans back in the governance loop.

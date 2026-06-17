@@ -1,0 +1,42 @@
+schema_version: bitter.run_manifest.v0
+run_id: 2026-05-12-partial-cycle-openclaw-2026-05-07_2026-05-12-frontier-v0
+mode: partial_cycle
+provider: openclaw
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+versions_covered: "v2026.5.10-beta.1..v2026.5.10-beta.5"
+model: claude-sonnet-4-6
+source_contracts:
+  - sources/openclaw.yml
+profiles_read:
+  - content/profiles/gemini-cli.md
+  - content/profiles/codex.md
+  - content/profiles/claude-code.md
+prior_findings_read:
+  - runs/2026-05-07-commit-harvest-2026-04-23_2026-05-07-frontier-v1/findings/openclaw.md
+surface_class: open_source_commits
+primary_sources_harvested:
+  - https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5
+  - https://docs.openclaw.ai/
+  - https://docs.openclaw.ai/start/getting-started
+harvested_at: 2026-05-12
+operator: autonomous-loop-v0
+outputs:
+  findings:
+    - findings/openclaw.md
+  signals:
+    - signals/frontier-signals.yml
+  digest_fragments:
+    - weekly/openclaw-fragment.md
+  profile:
+    - content/profiles/openclaw.md
+  audit:
+    - audit.md
+purpose: >
+  First partial cycle for OpenClaw, the accessibility calibration source.
+  Tests the profile pipeline on a high-velocity open-source project with
+  surface_class: open_source_commits. Primary harvest surface is GitHub
+  release notes (v2026.5.10-beta series) rather than individual commit
+  diff reviews, due to high commit volume (8000+ per window). Seeded from
+  the prior commit-harvest finding (2026-04-23..2026-05-07).

@@ -1,0 +1,21 @@
+---
+const { versions = [], currentRunId = "" } = Astro.props;
+---
+
+<section class="rule mt-9 pt-6">
+  <div class="small-caps text-muted">Versions</div>
+  <div class="version-list">
+    {
+      versions.map((version: any) => (
+        <a
+          href={`/runs/${version.id}/`}
+          class={`version-link ${version.id === currentRunId ? "text-[var(--color-bitter)]" : ""}`}
+        >
+          <div class="small-caps text-muted">{version.status}{version.artifactVersion ? ` v${version.artifactVersion}` : ""}</div>
+          <div class="version-title">{version.title}</div>
+          <div class="mt-1 text-sm text-muted">{version.signalCount} signals · {version.windowLabel}</div>
+        </a>
+      ))
+    }
+  </div>
+</section>

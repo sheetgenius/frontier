@@ -1,0 +1,36 @@
+---
+import Base from "../../layouts/Base.astro";
+import { formatDate, listProfiles } from "../../lib/frontier";
+const profiles = listProfiles();
+---
+
+<Base title="Profiles · Bitter Frontier">
+  <section class="measure py-10">
+    <p class="small-caps text-muted">Profiles</p>
+    <h1 class="issue-title">Evergreen provider state.</h1>
+    <p class="publication-dek">
+      One page per watched provider. Each profile records what is currently true — capability, governance posture, and open questions — refreshed after every harvest cycle.
+    </p>
+    <div class="mt-9 space-y-7">
+      {
+        profiles.map((profile) => {
+          const activeClaims = (profile.data.claims ?? []).filter((c: any) => c.status === "active").length;
+          const openQuestions = (profile.data.claims ?? []).filter((c: any) => c.status === "open_question").length;
+          return (
+            <a class="block no-underline hover:underline" href={`/profiles/${profile.slug}/`}>
+              <div class="small-caps text-muted">
+                {profile.data.owner} · {profile.data.surface_class?.replaceAll("_", " ")}
+              </div>
+              <h2 class="signal-title">{profile.data.label ?? profile.slug}</h2>
+              <p class="issue-meta">
+                {activeClaims} active claim{activeClaims !== 1 ? "s" : ""}
+                {openQuestions > 0 ? ` · ${openQuestions} open question${openQuestions !== 1 ? "s" : ""}` : ""}
+                {" · "}updated {formatDate(profile.data.last_updated)}
+              </p>
+            </a>
+          );
+        })
+      }
+    </div>
+  </section>
+</Base>

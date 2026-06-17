@@ -1,0 +1,22 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-12-partial-cycle-hermes-refresh-2026-05-12-frontier-v0
+mode: partial_cycle
+window:
+  start: 2026-05-12
+  end: 2026-05-12
+model: claude-sonnet-4-6
+sources:
+  - hermes-agent
+source_contracts:
+  - sources/hermes-agent.yml
+versions_covered: "main (post-v0.13.0, commit 99ad2d1)"
+status: complete
+outputs:
+  - runs/2026-05-12-partial-cycle-hermes-refresh-2026-05-12-frontier-v0/findings/hermes-agent.md
+  - runs/2026-05-12-partial-cycle-hermes-refresh-2026-05-12-frontier-v0/signals/frontier-signals.yml
+  - runs/2026-05-12-partial-cycle-hermes-refresh-2026-05-12-frontier-v0/weekly/hermes-fragment.md
+  - content/profiles/hermes-agent.md
+note: >
+  Freshness refresh for Hermes Agent. One new finding: mistralai PyPI
+  quarantine response (PR #24205, commit 99ad2d1). Not yet in a tagged release.
+  Freshness condition: 3/10 providers refreshed after this commit.

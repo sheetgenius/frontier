@@ -1,0 +1,25 @@
+---
+import Base from "../../layouts/Base.astro";
+import { formatDate, listDigests } from "../../lib/frontier";
+const digests = listDigests();
+---
+
+<Base title="Digests · Bitter Frontier">
+  <section class="measure py-10">
+    <p class="small-caps text-muted">Digests</p>
+    <h1 class="issue-title">Weekly synthesis.</h1>
+    <div class="mt-9 space-y-7">
+      {
+        digests.map((digest) => (
+          <a class="block no-underline hover:underline" href={`/digests/${digest.slug}/`}>
+            <div class="small-caps text-muted">
+              {digest.data.series ? `${digest.data.series} · ` : ""}{formatDate(digest.data.window?.start)} to {formatDate(digest.data.window?.end)}
+            </div>
+            <h2 class="signal-title">{digest.data.title}</h2>
+            <p class="issue-meta">{digest.data.signal_count} signals · {digest.data.finding_count} findings</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>

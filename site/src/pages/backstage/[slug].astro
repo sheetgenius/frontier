@@ -1,0 +1,25 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getBackstage, listBackstage } from "../../lib/frontier";
+
+export function getStaticPaths() {
+  return listBackstage().map((entry) => ({ params: { slug: entry.slug } }));
+}
+
+const backstage = getBackstage(Astro.params.slug!);
+if (!backstage) throw new Error("Backstage note not found");
+---
+
+<Base title={`${backstage.data.title} · Bitter Frontier`}>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">Backstage</p>
+    <div class="prose-frontier mt-7" set:html={backstage.html} />
+    {
+      backstage.data.digest_id && (
+        <p class="rule mt-8 pt-5 font-mono text-sm text-muted">
+          Public digest: <a href={`/digests/${backstage.data.digest_id}/`}>{backstage.data.digest_id}</a>
+        </p>
+      )
+    }
+  </article>
+</Base>

@@ -1,0 +1,52 @@
+schema_version: bitter.frontier_run_manifest.v0
+id: 2026-05-11-partial-cycle-2026-05-08_2026-05-11-frontier-v0
+title: "Partial cycle: testing Profile doctrine on Gemini CLI"
+status: draft
+artifact_version: 1
+mode: partial_profile_cycle_test
+created_at: 2026-05-11T11:00:00+08:00
+window:
+  start: 2026-05-08
+  end: 2026-05-11
+contract:
+  id: bitter-frontier-research-contract
+  version: v0
+  notes: >
+    First test of the experimental Profile durable object introduced
+    2026-05-11. Single provider, single window, partial pipeline.
+source_contracts:
+  - sources/gemini-cli.yml
+excluded_sources:
+  - id: all-other-providers
+    reason: >
+      This run is a doctrine test, not a weekly digest. Scope was kept to
+      Gemini CLI alone to surface schema gaps before scaling.
+harvest:
+  method: "GitHub commits API via gh"
+  since: 2026-05-08T00:00:00Z
+  until: 2026-05-12T00:00:00Z
+  commit_counts:
+    gemini-cli: 21
+  notes: >
+    No commits landed on 2026-05-09, 2026-05-10, or 2026-05-11. All 21
+    commits in the window are dated 2026-05-08. Two release tags
+    (v0.41.0, v0.42.0-preview.2) were also fetched.
+profiles_read:
+  - content/profiles/gemini-cli.md
+novelty_pass: >
+  Existing claims (memory-reviewable-patch, memory-private-allowlist,
+  workspace-trust-visible-mcp, shell-safety-evals, subagents-approval-mode-aware,
+  agent-execution-stopped-json, long-horizon-goal-primitive) were enumerated
+  and used to filter the commit set. AgentProtocol abstraction, session
+  export/import, headless workspace-trust enforcement, and shell-tools
+  allowlist all surfaced as novel relative to the profile.
+quality_gates:
+  require_primary_sources: true
+  cite_commit_urls: true
+  distinguish_new_claim_from_refresh: surfaced_as_doctrine_gap
+outputs:
+  findings: 1
+  signals: 1
+  digest_fragment: weekly/gemini-fragment.md
+  profile_updates: content/profiles/gemini-cli.md
+  audit: audit.md

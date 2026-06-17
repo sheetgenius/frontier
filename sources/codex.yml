@@ -1,0 +1,138 @@
+schema_version: bitter.frontier_source_contract.v0
+id: codex
+label: Codex
+owner: OpenAI
+homepage: https://developers.openai.com/codex/
+primary_surfaces:
+  - id: changelog
+    kind: official_changelog
+    url: https://developers.openai.com/codex/changelog
+    priority: 1
+    watch:
+      - releases
+      - new_features
+      - improvements
+      - bug_fixes
+      - breaking_changes
+  - id: docs
+    kind: official_docs
+    url: https://developers.openai.com/codex/
+    priority: 1
+    watch:
+      - cli
+      - app
+      - ide_extension
+      - web
+      - workflows
+      - subagents
+      - sandboxing
+      - memories
+      - commands
+      - agents_md
+      - mcp
+      - plugins
+      - skills
+      - authentication
+      - approvals
+      - security
+      - governance
+      - automation
+  - id: repo
+    kind: github_repo
+    url: https://github.com/openai/codex
+    priority: 2
+    watch:
+      - releases
+      - tags
+      - commits
+      - pull_requests
+      - issues
+      - docs
+      - examples
+      - security
+  - id: npm
+    kind: package_registry
+    url: https://www.npmjs.com/package/@openai/codex
+    priority: 3
+    watch:
+      - package_version
+      - publication_date
+      - install_surface
+accepted_evidence:
+  - official_changelog
+  - official_docs
+  - github_release
+  - tagged_release
+  - maintainer_commit
+  - merged_pr
+  - official_blog_or_developer_post
+  - package_registry_release
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+  - accessibility
+high_signal_patterns:
+  - goal
+  - long-horizon
+  - subagent
+  - memory
+  - workflow
+  - sandbox
+  - approval
+  - permission
+  - command
+  - hook
+  - MCP
+  - plugin
+  - skill
+  - AGENTS.md
+  - local environment
+  - browser
+  - computer use
+  - automation
+  - non-interactive
+  - SDK
+  - cost
+  - usage
+operator_questions:
+  - Does this change how an operator should run, trust, or govern Codex?
+  - Does this affect long-horizon autonomous software work?
+  - Does this affect verification, replay, resume, permissions, memory, or receipts?
+  - Does this change whether Bitter should wrap, test, adapt, or ignore Codex capability?
+  - Does this make serious agent work easier to start, inspect, or control without hiding authority?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  pricing_or_usage_change: observe
+discovery:
+  last_verified: 2026-05-06
+  verified_by: manual_web
+  confidence: high
+  open_questions:
+    - Which GitHub releases, tags, and npm package versions should be treated as canonical when they disagree with the official Codex changelog?
+    - Which provider-native long-horizon features should Bitter explicitly detect through local probes rather than relying on release notes?
+notes: >
+  Watch Codex as provider-native frontier capability, not just as an open-source
+  CLI. Pay special attention to features that change Bitter's wrapper posture:
+  long-horizon work, goals, subagents, workflows, sandboxing, permissions,
+  AGENTS.md behavior, skills, plugins, MCP, browser/computer-use surfaces,
+  non-interactive execution, SDKs, cost reporting, and enterprise governance.

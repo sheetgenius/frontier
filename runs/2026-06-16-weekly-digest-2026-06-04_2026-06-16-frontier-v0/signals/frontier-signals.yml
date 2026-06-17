@@ -1,0 +1,646 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-06-04
+  end: 2026-06-16
+run_id: 2026-06-16-weekly-digest-2026-06-04_2026-06-16-frontier-v0
+note: >
+  33 curated decision-bearing signals from 112 findings. Each signal carries an
+  explicit release-channel status (tagged-release | main-unreleased | preview-beta),
+  because this window's defining hazard was the gap between a fix merged to a
+  default branch and a fix in the binary an operator runs. Channel was resolved by
+  git ancestry in the adversarial verify stage (see qa.md).
+signals:
+
+  # ---------- The authority spine (control-plane) ----------
+  - id: 2026-06-15-claude-code-recursive-subagent-governance
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "Subagents can spawn subagents five deep, and auto mode now classifies spawns before launch"
+    finding_ids: [2026-06-10-claude-code-nested-subagent-spawning, 2026-06-15-claude-code-automode-classifies-subagent-spawns]
+    why_action_bearing:
+      - "2.1.172 lets a subagent spawn its own subagents up to 5 levels deep (new capability and a new governance surface); 2.1.178 then made the auto-mode classifier evaluate a spawn before launch, closing a gap where a deeply nested agent could request an action the operator's policy would block at the top."
+      - "Operators running under auto mode should upgrade past 2.1.178 before trusting a delegation tree, and use argument-aware permission rules to cap what spawned agents can do."
+    accessibility_impact: low
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a privilege-escalation path where a nested subagent could request an auto-mode-blocked action without review."
+      attacker_model: "Prompt-injected or attacker-influenced subagent spawning to route around the parent's policy."
+      enforcement: runtime
+      cost_to_operator: "Upgrade past 2.1.178; audit subagent depth and cost."
+      residual: "Five-deep trees multiply token cost and reduce direct operator visibility even when policy holds."
+    security_advisory: false
+    receipts: [https://code.claude.com/docs/en/changelog]
+
+  - id: 2026-06-15-claude-code-argument-aware-permissions
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "Permission rules can finally match a tool's arguments (Agent(model:opus))"
+    finding_ids: [2026-06-15-claude-code-tool-param-value-permission-syntax]
+    why_action_bearing:
+      - "2.1.178 added Tool(param:value) syntax so a rule can match input parameters, e.g. Agent(model:opus) blocks Opus subagents; permissions move from all-or-nothing per tool to per-argument."
+      - "Operators governing delegated trees should reach for this to cap model tiers and arguments inside subagents."
+    accessibility_impact: none
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Narrows what a tool invocation can do by parameter (model-tier or argument escalation in delegated calls)."
+      attacker_model: "Operator-side governance grammar, not an attacker fix."
+      enforcement: policy
+      cost_to_operator: "Re-author all-or-nothing tool grants where argument-level matching now lets you tighten."
+      residual: "Only as good as the rules written."
+    receipts: [https://code.claude.com/docs/en/changelog]
+
+  - id: 2026-06-06-claude-code-sendmessage-authority-hardening
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "Relayed SendMessage from peer sessions no longer carries user authority"
+    finding_ids: [2026-06-06-claude-code-sendmessage-authority-hardening]
+    why_action_bearing:
+      - "2.1.166: messages relayed via SendMessage from other Claude sessions no longer carry user authority; receivers refuse relayed permission requests and auto mode blocks them. Closes a confused-deputy path in multi-session orchestration."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes an authority-forwarding/confused-deputy path where one session could relay a message the receiver treated as user-authorized."
+      attacker_model: "A peer (or attacker-influenced) Claude session relaying a permission request."
+      enforcement: both
+      cost_to_operator: "Upgrade to 2.1.166+; expect relayed permission requests to be refused by design."
+      residual: "Applies to relayed permission requests; orchestration logic must not depend on the old behavior."
+    receipts: [https://code.claude.com/docs/en/changelog]
+
+  - id: 2026-06-12-claude-code-model-allowlist-binding
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "Org model allowlists are finally binding, even against the default model"
+    finding_ids: [2026-06-12-claude-code-enforce-available-models, 2026-06-12-claude-code-availablemodels-bypass-fixes]
+    why_action_bearing:
+      - "enforceAvailableModels (2.1.175) makes the availableModels allowlist constrain the Default model and blocks user/project widening; a cluster of fixes closed env-var, /fast, subagent, advisor, and dispatch escape hatches. This is the lever an enterprise needs to decide whether Fable 5 is reachable per-org."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes multiple ways a user or project setting (or the default-resolution path) escaped an org-managed model allowlist."
+      attacker_model: "A user widening/escaping a managed model allowlist via env vars, /fast, or subagent/advisor/dispatch pickers."
+      enforcement: policy
+      cost_to_operator: "Enable enforceAvailableModels; re-check version-specific allowlist entries."
+      residual: "Allowlist must be authored correctly; the fix enforces, it does not author."
+    receipts: [https://code.claude.com/docs/en/changelog]
+
+  - id: 2026-06-05-paperclip-low-trust-review-containment
+    section: control-plane
+    source: paperclip
+    channel: tagged-release
+    title: "Deny-by-default authority preset for agents reviewing untrusted content"
+    finding_ids: [2026-06-05-paperclip-low-trust-review-containment]
+    why_action_bearing:
+      - "PR #7530 (in v2026.609.0) adds a low_trust_review authority preset, source-trust tagging, route containment, and quarantine so an agent reviewing a hostile PR/comment/attachment gets narrower authority and its output cannot flow into higher-trust context. Enforced authority for the untrusted-input boundary, not a dashboard label."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Contains prompt-injection carried in hostile PRs, comments, attachments, and generated output."
+      attacker_model: "Third party submitting untrusted content an agent will review."
+      enforcement: both
+      cost_to_operator: "Adopt the preset; route future review integrations through the containment layer (deny-by-default may need explicit allowlisted exceptions)."
+      residual: "First production slice; coverage expands over time."
+    receipts: [https://github.com/paperclipai/paperclip/pull/7530]
+
+  - id: 2026-06-12-paperclip-cloud-tenant-deprivilege
+    section: control-plane
+    source: paperclip
+    channel: main-unreleased
+    title: "Shared-pool tenants were instance admins of the whole instance (fixed, unreleased)"
+    finding_ids: [2026-06-12-paperclip-cloud-tenant-never-instance-admin]
+    why_action_bearing:
+      - "PR #7525 (merged to master 2026-06-12, NOT in a tagged release) removes a grant that made every cloud tenant on a shared pool an instance admin with reach into every other tenant's data, and purges stale admin rows. Shared-pool operators must track the next tag and provision a non-cloud-tenant admin identity first (the purge is destructive)."
+    accessibility_impact: none
+    security_impact: critical
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a cross-tenant privilege escalation: any paying tenant administered the whole shared instance."
+      attacker_model: "Any tenant on a shared multi-tenant pool."
+      enforcement: both
+      cost_to_operator: "Provision a separate non-cloud-tenant admin before upgrading; the stale-row purge is destructive by design."
+      residual: "Unreleased as of 2026-06-16; the running binary is still exposed until the next tag."
+    security_advisory: true
+    receipts: [https://github.com/paperclipai/paperclip/pull/7525]
+
+  - id: 2026-06-12-paperclip-per-company-jwt-isolation
+    section: control-plane
+    source: paperclip
+    channel: main-unreleased
+    title: "Per-company JWT signing keys and a 1-hour TTL replace a single master key (unreleased)"
+    finding_ids: [2026-06-12-paperclip-per-company-jwt-signing-keys]
+    why_action_bearing:
+      - "PR #5864 (master, unreleased) derives a per-company signing key and cuts the agent-token TTL from 48h to 1h, so one tenant's leaked key can no longer forge tokens for other tenants. Multi-tenant blast-radius control; track the next tag."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "A leaked master key minted tokens for any tenant for up to 48h; now per-tenant keys with a 1h TTL."
+      attacker_model: "Supply-chain/CI/insider leak of a signing key or token."
+      enforcement: both
+      cost_to_operator: "Override PAPERCLIP_AGENT_JWT_TTL_SECONDS if you depended on 48h; sunset the legacy fallback after one TTL."
+      residual: "Legacy tokens validate against the master key until TTL elapses unless the fallback is disabled; unreleased."
+    receipts: [https://github.com/paperclipai/paperclip/pull/5864]
+
+  - id: 2026-06-12-paperclip-approval-gate-atomicity
+    section: control-plane
+    source: paperclip
+    channel: main-unreleased
+    title: "A 'NOT APPROVED' comment could auto-complete an issue (fixed, unreleased)"
+    finding_ids: [2026-06-12-paperclip-auto-complete-approved-review-atomicity]
+    why_action_bearing:
+      - "PR #5839 (master, unreleased) tightens an approval regex that matched negated phrasings (so 'NOT APPROVED' auto-completed an issue) and wraps comment + status + decision in one transaction. Makes 'a rejection can never auto-complete' and 'observable state cannot diverge from intended state' true invariants of the approval gate."
+    accessibility_impact: none
+    security_impact: none
+    receipts: [https://github.com/paperclipai/paperclip/pull/5839]
+
+  - id: 2026-06-10-openhands-default-org-bootstrap
+    section: control-plane
+    source: openhands
+    channel: main-unreleased
+    title: "OpenHands Enterprise: the first user to log in owns the organization (unreleased)"
+    finding_ids: [2026-06-10-openhands-ohe-default-org-bootstrap]
+    why_action_bearing:
+      - "PR #14752 (main, intended for an untagged 1.39.0) makes the first user to sign in after enabling the default org its owner, keyed to an is_default DB flag (migration 119). The multi-tenant foundation the window's enterprise work stacks on. Operators must control who signs in first."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Standing up a shared enterprise org without config-file owner-email wiring."
+      who_can_use_now: "Self-hosted enterprise admins."
+      authority_visibility: "Ownership is claimed by first sign-in rather than declared; an operational trust assumption to manage."
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "First-signer-owns-it is a provisioning trust assumption, not a remote exploit."
+      attacker_model: "Whoever signs in first on a freshly enabled OHE install."
+      enforcement: policy
+      cost_to_operator: "Control the first sign-in; the org is renameable in-app afterward."
+      residual: "Unreleased; ownership/role management is in-app post-bootstrap."
+    receipts: [https://github.com/OpenHands/OpenHands/pull/14752]
+
+  - id: 2026-06-14-openhands-byok-model-gating
+    section: control-plane
+    source: openhands
+    channel: main-unreleased
+    title: "Admins can lock an org to a curated model set and hide custom-key fields (unreleased)"
+    finding_ids: [2026-06-14-openhands-ohe-multimodel-discovery-byok-gating]
+    why_action_bearing:
+      - "PR #14773 (main, unreleased) adds allow_user_llm_configuration: off hides custom model/base-URL/API-key inputs and locks the org to a curated, proxy-served model set. The platform owns the model-access policy, not the user."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Curated, governed model access for managed orgs."
+      who_can_use_now: "Enterprise admins setting org LLM policy; members lose custom-key fields when off."
+      authority_visibility: "Authority over which models/credentials end users can configure is now a visible admin gate."
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Limits end-user ability to point the agent at arbitrary models/endpoints with their own keys."
+      attacker_model: "Over-broad end-user model/credential configuration."
+      enforcement: policy
+      cost_to_operator: "Decide BYOK on/off per org."
+      residual: "Defaults on (SaaS parity); unreleased."
+    receipts: [https://github.com/OpenHands/OpenHands/pull/14773]
+
+  - id: 2026-06-15-openhands-concurrency-limits
+    section: control-plane
+    source: openhands
+    channel: main-unreleased
+    title: "Concurrency becomes a governed, billable resource (Personal 3, commercial 10; unreleased)"
+    finding_ids: [2026-06-15-openhands-conversation-concurrency-limits]
+    why_action_bearing:
+      - "PR #14168 (main, unreleased) caps concurrent conversations/sandboxes (Personal=3, commercial=10) with per-org and per-user override columns and HTTP 429 enforcement. A real resource-control and economics surface; tightens the free tier."
+    accessibility_impact: none
+    security_impact: none
+    receipts: [https://github.com/OpenHands/OpenHands/pull/14168]
+
+  - id: 2026-06-10-openhands-personal-workspaces-ui-only
+    section: control-plane
+    source: openhands
+    channel: main-unreleased
+    title: "hide_personal_workspaces is explicitly UI-only, not an access boundary"
+    finding_ids: [2026-06-10-openhands-hide-personal-workspaces]
+    why_action_bearing:
+      - "PR #14741 (main, unreleased) hides personal workspaces in org-only installs but the docs state it is UI-only: the orgs API still returns personal orgs and there is no server-side enforcement. Operators must NOT treat it as an access-control boundary; the real boundary is the membership model."
+    accessibility_impact: none
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Presentation-only filtering; a direct orgs-API call still returns personal orgs."
+      attacker_model: "A user calling the orgs API directly."
+      enforcement: policy
+      cost_to_operator: "Do not rely on the flag for isolation; verify the membership model."
+      residual: "Hard server-side enforcement deliberately out of scope for this MVP."
+    receipts: [https://github.com/OpenHands/OpenHands/pull/14741]
+
+  - id: 2026-06-08-pi-project-trust-system
+    section: control-plane
+    source: pi-coding-agent
+    channel: tagged-release
+    title: "Pi gates local settings, instructions, and packages behind a saved trust decision"
+    finding_ids: [2026-06-08-pi-coding-agent-project-trust-system]
+    why_action_bearing:
+      - "v0.79.0 added project trust for local settings, resources, instructions, and packages with saved decisions and --approve/--no-approve CLI controls. Pi now treats local project files as untrusted-by-default; open an untrusted repo and confirm it refuses to load local resources until approved."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "A visible, persistent trust decision for opening unfamiliar repos."
+      who_can_use_now: "Anyone running Pi against third-party code."
+      authority_visibility: "Improved: loading local resources is now an explicit, saved consent."
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Blocks auto-loading of a malicious repo's local settings/instructions/packages."
+      attacker_model: "A hostile project shipping local config the agent would otherwise load."
+      enforcement: both
+      cost_to_operator: "Approve trusted projects once; use the flags in non-interactive modes."
+      residual: "Trust is per-project; saved decisions must be managed."
+    receipts: [https://github.com/earendil-works/pi/releases/tag/v0.79.0]
+
+  - id: 2026-06-12-openclaw-fail-closed-boundary-sweep
+    section: control-plane
+    source: openclaw
+    channel: tagged-release
+    title: "Exec approvals fail closed on timeout, and HTTP override surfaces are admin-gated"
+    finding_ids: [2026-06-12-openclaw-security-boundary-sweep, 2026-06-16-openclaw-admin-gated-http-override-surfaces]
+    why_action_bearing:
+      - "v2026.6.6 made exec approvals fail closed on timeout (a pending dangerous command now denies rather than proceeds) across a dozen-surface boundary sweep that also closed a deleted-agent ACP bypass; v2026.6.8 gated HTTP session/model override surfaces behind admin privileges. The correct reversibility default for a surface aimed at non-experts."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Safer defaults (deny-on-timeout) for non-expert operators."
+      who_can_use_now: "Gateway operators exposing OpenClaw."
+      authority_visibility: "Improved: override authority is admin-gated and approvals fail closed."
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a fail-open exec-approval timeout, a deleted-agent ACP bypass, and a non-admin HTTP override path."
+      attacker_model: "Network-adjacent caller on an exposed gateway; a timed-out approval proceeding."
+      enforcement: both
+      cost_to_operator: "Upgrade; the WCAG accessibility pass is still beta-only (separate signal)."
+      residual: "Boundary sweep spans many surfaces; verify your configuration."
+    receipts:
+      - https://github.com/openclaw/openclaw/releases/tag/v2026.6.6
+      - https://github.com/openclaw/openclaw/releases/tag/v2026.6.8
+
+  - id: 2026-06-04-codex-remote-control-grants
+    section: control-plane
+    source: codex
+    channel: tagged-release
+    title: "Remote controllers are now listable and revocable, and approvals carry environment identity"
+    finding_ids: [2026-06-04-codex-cli-0137-remote-control-pairing-and-managed-config]
+    why_action_bearing:
+      - "CLI 0.137.0 lets remote-control clients pair and have controller grants listed/revoked via app-server v2 RPCs, and binds permission requests/approvals to an environment identity. A concrete authority-inventory and revocation surface for who can drive a session remotely."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Inventorying and revoking who can remotely drive a Codex session."
+      who_can_use_now: "Operators using Codex remote control."
+      authority_visibility: "Improved: controller grants are explicit, listable, and revocable; approvals are environment-tagged."
+    security_impact: medium
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Unauthorized remote control and ambiguous approval provenance; note managed MITM proxying installs CA bundles into child commands."
+      attacker_model: "An unauthorized remote controller; a child command trusting a managed proxy."
+      enforcement: both
+      cost_to_operator: "Inventory and revoke stale controller grants; understand managed MITM proxy trust."
+      residual: "Managed MITM proxying actively installs trust into child commands."
+    receipts: [https://github.com/openai/codex/releases/tag/rust-v0.137.0]
+
+  # ---------- Computer use (control-plane / runtime) ----------
+  - id: 2026-06-11-codex-computer-use-governance
+    section: control-plane
+    source: codex
+    channel: tagged-release
+    title: "Computer use expands to Europe and Enterprise, with the first per-app controls and a CDP browser surface"
+    finding_ids: [2026-06-11-codex-app-26609-developer-mode-cdp-and-computer-use-controls, 2026-06-16-codex-computer-use-eea-uk-switzerland-and-chronicle]
+    why_action_bearing:
+      - "App 26.609 added Developer mode giving the agent controlled Chrome DevTools Protocol access (network interception, arbitrary in-page JS, the debugger), the first per-app access controls for computer use on Windows, and Enterprise computer use; on 2026-06-16 computer use reached the EEA/UK/Switzerland and Chronicle previewed building memory from screen context."
+      - "Keep Developer-mode CDP off by default; use the Windows per-app controls to allowlist apps; default Chronicle off on confidential machines."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Desktop automation for the European and Enterprise operator base previously excluded."
+      who_can_use_now: "EEA/UK/Switzerland and Enterprise Codex users."
+      authority_visibility: "Mixed: new per-app controls add scope; CDP and Chronicle add capability/data surfaces that must be governed."
+    security_impact: high
+    security_change: opens
+    security_consequence:
+      threat_blocked_or_opened: "Opens a CDP browser surface (far beyond click/type) and continuous screen-context capture (Chronicle), gated by Developer mode and opt-in."
+      attacker_model: "A prompt-injected or abused agent driving signed-in desktop/browser, or harvesting screen-context memory."
+      enforcement: policy
+      cost_to_operator: "Govern Developer-mode CDP, per-app scope, and Chronicle opt-in before enabling for teams."
+      residual: "The 'controlled' CDP boundary is not specified in the changelog."
+    receipts: [https://developers.openai.com/codex/changelog]
+
+  # ---------- Runtime: the security/theater fixes ----------
+  - id: 2026-06-13-hermes-fail-closed-security-wave
+    section: runtime
+    source: hermes-agent
+    channel: main-unreleased
+    title: "Hermes closes its own guardrail theater: cp into ~/.ssh, a status leak, fail-open adapters (unreleased)"
+    finding_ids: [2026-06-13-hermes-agent-sensitive-write-and-status-leak-hardening]
+    why_action_bearing:
+      - "June 13 commits (main, post-v0.16.0) gate cp/mv/install into ~/.ssh and credential/shell-rc files (an unpaired write deny the commit calls 'theater'), stop /api/status leaking host paths and the gateway PID on exposed binds, and make own-policy chat adapters fail closed without an allowlist as their own SECURITY.md required. The v0.16.0 release binary does NOT have these; run main or wait for the next tag."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes an SSH-key-implant/persistence write path, a recon leak, and a fail-open network adapter."
+      attacker_model: "Prompt-injected agent attempting persistence; unauthenticated caller on an exposed dashboard; any external sender on an unlisted adapter."
+      enforcement: runtime
+      cost_to_operator: "Run main or the next tag; the released v0.16.0 binary is exposed."
+      residual: "Unreleased as of 2026-06-16."
+    security_advisory: true
+    receipts:
+      - https://github.com/NousResearch/hermes-agent/commit/da28d5d11
+      - https://github.com/NousResearch/hermes-agent/commit/3380563d9
+      - https://github.com/NousResearch/hermes-agent/commit/fc4635458
+
+  - id: 2026-06-16-hermes-skill-self-harm-fixes
+    section: runtime
+    source: hermes-agent
+    channel: main-unreleased
+    title: "Skills were poisoning every memory store and a skill delete could wipe the working tree (unreleased)"
+    finding_ids: [2026-06-16-hermes-agent-skill-memory-poisoning-fixes]
+    why_action_bearing:
+      - "June 16 commits (main) stop a /skill invocation poisoning every connected memory provider with its raw body, and add tree-escape validation so an agent-triggered skill delete cannot rmtree outside the skills root (a fix ported from an incident that wiped another tool user's working directory). The self-improving-agent risk class made concrete."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes memory-store poisoning and a recursive-delete tree escape."
+      attacker_model: "A malicious or malformed skill turning on its owner."
+      enforcement: runtime
+      cost_to_operator: "Run main or the next tag."
+      residual: "Unreleased; pre-fix memory stores may hold poisoned content."
+    security_advisory: true
+    receipts:
+      - https://github.com/NousResearch/hermes-agent/commit/c2c55c444
+      - https://github.com/NousResearch/hermes-agent/commit/2dbc3bd93
+
+  - id: 2026-06-15-hermes-async-background-subagents
+    section: runtime
+    source: hermes-agent
+    channel: main-unreleased
+    title: "Fire-and-forget background subagents that re-inject results as a new turn (unreleased)"
+    finding_ids: [2026-06-15-hermes-agent-async-background-subagents]
+    why_action_bearing:
+      - "delegate_task(background=true) (main) dispatches an async subagent and re-injects its result as a new turn, with /stop and /agents as the control surface and a max_async_children cap. The same week removed the default 600s subagent timeout, so runaway detection now rests on heartbeat staleness alone. Changes the unit of work and the receipt boundary."
+    accessibility_impact: low
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Resource exhaustion / runaway subagents, bounded by an atomic capacity cap and /stop visibility, but the default wall-clock timeout was removed."
+      attacker_model: "Concurrent dispatch exceeding the cap; a stuck worker no longer time-bounded."
+      enforcement: runtime
+      cost_to_operator: "Tune max_async_children; rely on heartbeat staleness for stuck workers."
+      residual: "No default wall-clock timeout; unreleased."
+    receipts: [https://github.com/NousResearch/hermes-agent/commit/c66ecf0bc]
+
+  - id: 2026-06-15-gemini-skill-path-traversal
+    section: runtime
+    source: gemini-cli
+    channel: main-unreleased
+    title: "Three path-traversal holes in agent skill install/link/uninstall (fixed on main only)"
+    finding_ids: [2026-06-15-gemini-cli-skill-install-path-traversal-fix]
+    why_action_bearing:
+      - "Commit bca5667fc / PR #27767 (main, ahead of every stable, preview, and nightly tag as of 2026-06-16) fixes three path-traversal vulnerabilities so a malicious skill package cannot write outside .gemini/skills or delete sibling directories. The clearest confirmation that agent skill packages are an untrusted-input boundary; treat third-party skill installs as untrusted until the carrying release ships."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes config-overwrite and sibling-directory-deletion via a crafted skill package."
+      attacker_model: "A malicious or corrupted .skill package or remote clone."
+      enforcement: runtime
+      cost_to_operator: "Avoid untrusted skill sources until the fix ships in a release; prefer the carrying version when it lands."
+      residual: "Main-only; no release of any channel contains it yet."
+    security_advisory: true
+    receipts: [https://github.com/google-gemini/gemini-cli/commit/bca5667fc]
+
+  - id: 2026-06-04-agent-zero-remote-control-origin-hardening
+    section: runtime
+    source: agent-zero
+    channel: tagged-release
+    title: "The public Tailscale tunnel now trusts only the active Remote Control origin"
+    finding_ids: [2026-06-04-agent-zero-remote-control-csrf-ws-origin-hardening]
+    why_action_bearing:
+      - "v1.20 (commit ca4efe6e6) normalizes active Remote Control URLs before CSRF allowlisting and restricts WebSocket origin validation to only the currently active Remote Control origin (the public tunnel exposing the whole visible computer), rejecting unrelated external origins."
+    accessibility_impact: low
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes cross-origin CSRF and WS connection from non-active origins / origin-confusion via path-and-port variants on the public tunnel."
+      attacker_model: "Cross-origin attacker against an exposed Tailscale Funnel tunnel."
+      enforcement: runtime
+      cost_to_operator: "Upgrade to v1.20; tunnel bootstrap over Funnel URLs is also more reliable."
+      residual: "Tunnel remains the exposure surface for the visible computer."
+    receipts: [https://github.com/agent0ai/agent-zero/commit/ca4efe6e6]
+
+  - id: 2026-06-10-claude-code-trust-isolation-fixes
+    section: runtime
+    source: claude-code
+    channel: tagged-release
+    title: "Untrusted-repo OTEL cert injection and pre-warmed-worker trust bleed closed"
+    finding_ids: [2026-06-08-claude-code-otel-cert-trust-fix, 2026-06-10-claude-code-background-worker-settings-bleed]
+    why_action_bearing:
+      - "2.1.169 fixes untrusted project settings setting OTEL client-certificate paths without a trust prompt (credential-path injection from a hostile repo); 2.1.172/2.1.174 fix pre-warmed background workers reading another directory's .mcp.json approvals/trust and inheriting another session's ANTHROPIC_* provider env. Upgrade past 2.1.174 and re-audit background-agent and untrusted-repo workflows."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes telemetry-cert redirection from an untrusted repo and cross-context trust/credential bleed on reused workers."
+      attacker_model: "A malicious repo's settings; a background job reusing a pre-warmed worker."
+      enforcement: runtime
+      cost_to_operator: "Upgrade past 2.1.174; re-audit background-agent fleets."
+      residual: "Verify trust state on reused workers."
+    security_advisory: true
+    receipts: [https://code.claude.com/docs/en/changelog]
+
+  - id: 2026-06-13-openhands-credential-at-rest-cluster
+    section: runtime
+    source: openhands
+    channel: mixed
+    title: "Plaintext git tokens in the DB, a plaintext MCP key, and two frontend CVEs"
+    finding_ids: [2026-06-13-openhands-pluginspec-source-credential-redaction, 2026-06-15-openhands-mcp-for-acp-agents, 2026-06-05-openhands-cve-2026-42342-react-router, 2026-06-12-openhands-cve-2026-41305-postcss-xss]
+    why_action_bearing:
+      - "OpenHands stopped persisting PluginSpec.source git tokens in plaintext in the DB (#14795, main) and stopped round-tripping remote MCP API keys in plaintext (#14613, main); react-router CVE-2026-42342 shipped in release 1.8.0 (uncredited), postcss CVE-2026-41305 is on main. Rotate any token embedded in a repo source URL or MCP config before the fix; rebuild the frontend."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes credential-at-rest exposure (git tokens, MCP keys) and two frontend CVEs."
+      attacker_model: "Anyone with DB/settings read access; the react-router and postcss CVEs."
+      enforcement: runtime
+      cost_to_operator: "Rotate embedded tokens; rebuild the frontend; the PluginSpec/MCP/postcss fixes are main-only, react-router is in 1.8.0."
+      residual: "Mixed channel; main-only fixes not in the 1.8.0 binary."
+    security_advisory: true
+    receipts:
+      - https://github.com/OpenHands/OpenHands/pull/14795
+      - https://github.com/OpenHands/OpenHands/pull/14613
+      - https://github.com/OpenHands/OpenHands/pull/14684
+      - https://github.com/OpenHands/OpenHands/pull/14770
+
+  - id: 2026-06-15-codex-cli-data-controls
+    section: runtime
+    source: codex
+    channel: tagged-release
+    title: "Codex CLI adds usage views, permanent session deletion, and managed encrypted Bedrock auth"
+    finding_ids: [2026-06-15-codex-cli-0140-usage-import-session-delete, 2026-06-09-codex-cli-0139-code-mode-web-search-schema-fidelity]
+    why_action_bearing:
+      - "CLI 0.140.0 adds /usage cost visibility, permanent codex delete (a data-retention/right-to-delete lever), /import, and managed Amazon Bedrock API-key auth with encrypted local storage; 0.139.0 made sandbox proxy-only networking enforcement more consistent. Use codex delete to purge sensitive sessions; re-validate proxy-only egress."
+    accessibility_impact: low
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Encrypted local Bedrock keys, permanent session deletion, and a sandbox proxy-only-egress consistency fix."
+      attacker_model: "Local plaintext key theft; residual sensitive session state; egress leakage under the sandbox."
+      enforcement: both
+      cost_to_operator: "Prefer managed-Bedrock encrypted auth; purge sensitive sessions; re-validate proxy-only egress."
+      residual: "The experimental /realtime voice controls were removed."
+    receipts:
+      - https://github.com/openai/codex/releases/tag/rust-v0.140.0
+      - https://github.com/openai/codex/releases/tag/rust-v0.139.0
+
+  - id: 2026-06-08-flue-durable-recoverable-execution
+    section: runtime
+    source: flue
+    channel: changelog-tagged
+    title: "Flue reaches a 1.0-line beta and makes durable, recoverable agent execution the default"
+    finding_ids: [2026-06-08-flue-v0100-durable-agent-execution, 2026-06-16-flue-v100-beta1-leading-release, 2026-06-10-flue-v0102-durable-streams-replace-websocket-sse]
+    why_action_bearing:
+      - "Flue shipped durable, recoverable agent execution with pluggable SQLite or Postgres persistence (0.10.0) and reached its first 1.0-line beta (1.0.0-beta.1), a migration-heavy stabilization (valibot tool schemas, opaque run_<ulid> IDs, run-introspection exports). It also swapped standard WebSocket and SSE for a proprietary Durable Streams transport (0.10.2), narrowing external observability. Category evidence that the model+harness split is maturing into stateful infrastructure; the experimental-API caution starts to lift."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "A stateful, recoverable agent with no external database (built-in SQLite)."
+      who_can_use_now: "Operators wanting durable runs without standing up Postgres."
+      authority_visibility: "Mixed: run-introspection exports help; the proprietary Durable Streams transport raises the cost of consuming run events from outside the SDK."
+    security_impact: none
+    receipts: [https://github.com/withastro/flue/blob/main/CHANGELOG.md]
+
+  # ---------- Platform: the reshuffle, model churn, accessibility ----------
+  - id: 2026-06-09-gemini-antigravity-succession
+    section: platform
+    source: gemini-cli
+    channel: mixed
+    title: "Google steers Gemini CLI users toward a separate Antigravity CLI"
+    finding_ids: [2026-06-05-gemini-cli-antigravity-transition-banner-uncapped, 2026-06-09-gemini-cli-antigravity-cli-migration-path]
+    why_action_bearing:
+      - "A transition banner exempted from the 5-show cap shipped to STABLE (v0.45.2) so 'Antigravity is coming to town' shows every session; a PREVIEW build (v0.47.0-preview.0) added in-product migration commands and a skill pointing to Antigravity CLI, a separate Google product. Reads as the start of a managed succession for Gemini CLI; track whether feature investment shifts to Antigravity and whether trust/policy semantics carry over."
+    accessibility_impact: low
+    security_impact: none
+    receipts:
+      - https://github.com/google-gemini/gemini-cli/commit/f40498db6
+      - https://github.com/google-gemini/gemini-cli/commit/452356027
+
+  - id: 2026-06-09-codex-migrate-from-claude-cowork
+    section: platform
+    source: codex
+    channel: tagged-release
+    title: "Codex ships one-click import of Claude Code and Cowork setup"
+    finding_ids: [2026-06-09-codex-app-26608-migrate-from-claude-code-and-cowork]
+    why_action_bearing:
+      - "App 26.608 added Migrate-to-Codex flows importing supported setup from Claude Code and Claude Cowork, including during onboarding: a defection on-ramp off Anthropic's coding agents and a concrete cross-tool config-portability surface."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Switching to Codex without re-creating setup."
+      who_can_use_now: "Claude Code / Cowork users evaluating Codex."
+      authority_visibility: "Neutral; an import surface translating another vendor's config."
+    security_impact: none
+    receipts: [https://developers.openai.com/codex/changelog]
+
+  - id: 2026-06-05-paperclip-positioning-pivot
+    section: platform
+    source: paperclip
+    channel: main-unreleased
+    title: "Paperclip drops 'zero-human companies' for 'manage AI agents for work'"
+    finding_ids: [2026-06-05-paperclip-positioning-pivot-away-from-zero-human-companies]
+    why_action_bearing:
+      - "PR #7580 retires the 'zero-human companies' tagline for 'the app people use to manage AI agents for work', a repositioning its in-window engineering backs up (human board visibility, audited recovery, approval gates). Calibration signal: the autonomous-company metaphor is being repriced toward human-in-the-loop operating software."
+    accessibility_impact: none
+    security_impact: none
+    receipts: [https://github.com/paperclipai/paperclip/pull/7580]
+
+  - id: 2026-06-09-claude-code-fable-5-launch
+    section: platform
+    source: claude-code
+    channel: tagged-release
+    title: "Anthropic's Fable 5 launches and is adopted across rival harnesses within days"
+    finding_ids: [2026-06-09-claude-code-fable-5-launch, 2026-06-09-pi-coding-agent-claude-fable-5-support]
+    why_action_bearing:
+      - "Claude Code 2.1.170 shipped access to Claude Fable 5, a 'Mythos-class' model; OpenClaw and Pi added Fable 5 support within days (Pi with xhigh effort). A frontier model now reaches the long tail of agent harnesses in a week; the governance lever is the model-allowlist work (separate signal)."
+    accessibility_impact: low
+    security_impact: none
+    receipts:
+      - https://www.anthropic.com/news/claude-fable-5-mythos-5
+      - https://github.com/earendil-works/pi/releases/tag/v0.79.1
+
+  - id: 2026-06-10-gemini-flash-ga-routing
+    section: runtime
+    source: gemini-cli
+    channel: tagged-release
+    title: "Gemini routes flash workloads to gemini-3.5-flash on stable, behind an experiment flag"
+    finding_ids: [2026-06-10-gemini-cli-flash-3-5-ga-routing-to-stable]
+    why_action_bearing:
+      - "Stable v0.46.0 began moving flash workloads to gemini-3.5-flash, gated by an experiment flag and auth-type access logic (so the same binary can route different users to different models). Anyone with cost or eval assumptions pinned to the old flash should re-baseline."
+    accessibility_impact: none
+    security_impact: none
+    receipts: [https://github.com/google-gemini/gemini-cli/releases/tag/v0.46.0]
+
+  - id: 2026-06-13-openclaw-accessibility-and-consent
+    section: platform
+    source: openclaw
+    channel: mixed
+    title: "A WCAG 2.1 AA pass (beta) and a deliberate consent-over-convenience choice on search"
+    finding_ids: [2026-06-13-openclaw-control-ui-accessibility-pass, 2026-06-16-openclaw-keyfree-web-search-opt-in, 2026-06-09-openclaw-mobile-state-clarity-and-clawhub-skills]
+    why_action_bearing:
+      - "OpenClaw shipped a measured WCAG 2.1 AA pass on its browser dashboard (contrast above 4.5:1, a focus ring, a 12px font floor across 136 elements) in a BETA tag (v2026.6.7-beta.1), plain-language mobile provider states, and pinned-commit ClawHub skill installs. It also made key-free web search an explicit opt-in (stable v2026.6.8), trading zero-config convenience for explicit consent on where queries egress."
+    accessibility_impact: high
+    accessibility_consequence:
+      what_got_easier: "Reading and keyboard-navigating the dashboard for low-vision and keyboard-only users; understanding why a provider is unavailable; consenting to where searches go."
+      who_can_use_now: "Low-vision and keyboard-only operators (beta); mobile-first users; anyone who avoided silent third-party search routing."
+      authority_visibility: "Improved: search egress is now an explicit choice; skill installs pin a commit."
+    security_impact: none
+    receipts:
+      - https://github.com/openclaw/openclaw/pull/89822
+      - https://github.com/openclaw/openclaw/releases/tag/v2026.6.8
+
+  - id: 2026-06-09-codex-goal-on-mobile
+    section: platform
+    source: codex
+    channel: tagged-release
+    title: "Goal mode, worktrees, and inline review come to the iPhone"
+    finding_ids: [2026-06-09-chatgpt-ios-1-2026-153-goal-worktree-inline-review]
+    why_action_bearing:
+      - "ChatGPT iOS 1.2026.153 added /goal, branch selection, worktree creation, and inline review comments. Persistent long-horizon objectives, env-isolated work, and code review now run from the smallest surface, widening who can drive serious agent work and from where."
+    accessibility_impact: high
+    accessibility_consequence:
+      what_got_easier: "Starting and managing long-horizon goals, isolated worktrees, and code review from a phone."
+      who_can_use_now: "Operators who work from mobile."
+      authority_visibility: "Neutral-positive: review and worktree isolation are visible on the small surface."
+    security_impact: none
+    receipts: [https://developers.openai.com/codex/changelog]
+
+  - id: 2026-06-06-hermes-surface-release
+    section: platform
+    source: hermes-agent
+    channel: tagged-release
+    title: "Hermes adds a desktop app, a browser admin panel, and remote-gateway connect"
+    finding_ids: [2026-06-06-hermes-agent-v0.16.0-surface-release]
+    why_action_bearing:
+      - "v0.16.0 'The Surface Release' adds a native Electron desktop app, a browser web-admin dashboard, and remote-gateway connect over OAuth or username/password, collapsing install-to-first-message to seconds and adding a new authority boundary (the dashboard auth gate) that operators exposing it must govern."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Installing and driving Hermes without the terminal; connecting a desktop client to a remote gateway."
+      who_can_use_now: "Non-terminal operators and teammates."
+      authority_visibility: "Mixed: a friendlier surface plus a new auth boundary to configure (and the fail-closed wave that hardens it is unreleased)."
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Adds a browser admin panel and remote-gateway connect; safe posture depends on configuring the dashboard auth gate."
+      attacker_model: "Unauthenticated caller against an exposed dashboard/gateway."
+      enforcement: policy
+      cost_to_operator: "Configure OIDC or username/password before exposing; pair with the unreleased fail-closed wave."
+      residual: "The hardening wave for these surfaces is main-unreleased."
+    receipts: [https://github.com/NousResearch/hermes-agent/releases/tag/v2026.6.5]

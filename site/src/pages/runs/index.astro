@@ -1,0 +1,27 @@
+---
+import Base from "../../layouts/Base.astro";
+import { listRuns } from "../../lib/frontier";
+const runs = listRuns();
+---
+
+<Base title="Research Trail · Bitter Frontier">
+  <section class="measure py-10">
+    <p class="small-caps text-muted">Research Trail</p>
+    <h1 class="issue-title">The full evidence behind every claim.</h1>
+    <p class="mt-3 text-muted" style="font-size: 1rem; line-height: 1.65; max-width: 42rem;">
+      Each entry is a research cycle artifact: the sources read, the findings produced, and the signals accepted
+      for publication. Every claim in every digest and profile traces back to one of these runs.
+    </p>
+    <div class="mt-9 version-list">
+      {
+        runs.map((run) => (
+          <a href={`/runs/${run.id}/`} class="version-link">
+            <div class="small-caps text-[var(--color-bitter)]">{run.status}{run.artifactVersion ? ` · v${run.artifactVersion}` : ""}</div>
+            <h2 class="version-title">{run.title}</h2>
+            <p class="mt-1 text-sm text-muted">{run.signalCount} signals · {run.windowLabel}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,124 @@
+schema_version: bitter.frontier_source_contract.v0
+id: paperclip
+label: Paperclip
+owner: Paperclip
+homepage: https://paperclip.ing/
+primary_surfaces:
+  - id: site
+    kind: official_site
+    url: https://paperclip.ing/
+    priority: 1
+    watch:
+      - positioning
+      - onboarding
+      - governance
+      - company_model
+      - pricing
+      - demos
+  - id: docs
+    kind: official_docs
+    url: https://docs.paperclip.ing/
+    priority: 1
+    watch:
+      - setup
+      - goals
+      - agents
+      - teams
+      - governance
+      - budgets
+      - accountability
+      - approvals
+      - integrations
+      - security
+  - id: repo
+    kind: github_repo
+    url: https://github.com/paperclipai/paperclip
+    priority: 1
+    watch:
+      - releases
+      - tags
+      - commits
+      - pull_requests
+      - issues
+      - docs
+      - examples
+      - security
+accepted_evidence:
+  - official_docs
+  - official_site
+  - github_release
+  - tagged_release
+  - maintainer_commit
+  - merged_pr
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+  - accessibility
+research_lenses:
+  - coordination_control_plane
+  - economic_governance
+  - accountability
+  - multi_agent_operations
+  - factory_analogue
+high_signal_patterns:
+  - company
+  - org chart
+  - goal
+  - budget
+  - role
+  - manager
+  - employee
+  - approval
+  - governance
+  - accountability
+  - cost
+  - task queue
+  - progress
+  - audit
+  - session
+  - dashboard
+  - multi-agent
+  - agent team
+operator_questions:
+  - Does this make multi-agent labor more legible as operating state?
+  - Does this expose goals, budgets, roles, approvals, and accountability in a way a human can govern?
+  - Does this produce real control over agent work or only a company-themed dashboard?
+  - Does this change how Bitter Factory should model run contracts, allocation, budgets, or property operations?
+  - Does this make coordination easier without hiding who approved what and why?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  governance_change: study
+discovery:
+  last_verified: 2026-05-07
+  verified_by: manual_web
+  confidence: medium
+  open_questions:
+    - Which source is canonical for product changes if the public site, docs, and GitHub repository diverge?
+    - How much of the company/control-plane metaphor is backed by durable operating state versus UI framing?
+    - Which governance and budget primitives are enforceable rather than descriptive?
+notes: >
+  Watch Paperclip as the coordination and economic-control-plane source. Its
+  relevance to Bitter is the Factory question: can agent work be organized
+  into goals, roles, budgets, accountability, approvals, and operating state
+  without becoming theater?

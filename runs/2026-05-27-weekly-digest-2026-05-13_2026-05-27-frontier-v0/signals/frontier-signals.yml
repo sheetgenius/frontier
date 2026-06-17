@@ -1,0 +1,657 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-13
+  end: 2026-05-27
+signals:
+
+  - id: 2026-05-27-claude-code-auto-mode-default-on
+    section: control-plane
+    title: "Auto mode becomes the default permission posture"
+    source: claude-code
+    finding_ids:
+      - 2026-05-27-claude-code-auto-mode-default-on
+    why_action_bearing:
+      - "Operators with managed Claude Code deployments must re-audit
+        what Auto mode classifies as safe by default — the consent gate
+        is gone."
+      - "Admins relying on the opt-in consent dialog as a visible
+        posture check have lost that surface; equivalent visibility now
+        comes from managed-settings policy, not from a runtime
+        prompt."
+      - "Skill authors should evaluate `disallowed-tools` for skills
+        that should run with a reduced tool surface."
+      - "Hook authors should consider whether `MessageDisplay` is a
+        governance gain or a censorship hazard for their deployment."
+    accessibility_impact: high
+    accessibility_consequence:
+      what_got_easier: "Operators who never enabled Auto mode now get
+        the productivity benefit of safe-action auto-approval without
+        explicit opt-in."
+      who_can_use_now: "All Claude Code operators on 2.1.152+, including
+        those who were uncertain whether to consent to Auto mode."
+      authority_visibility: "Downgraded. The consent dialog was an
+        explicit posture-confirmation surface; its removal makes
+        posture decisions less visible at runtime. Managed settings
+        remain visible to admins but not to operators in-session."
+    security_impact: medium
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Reframes the permission posture from
+        opt-in-trust-by-consent to opt-out-trust-by-default. No new
+        attack surface; risky actions still gate. But the trust default
+        shifts."
+      attacker_model: "Operator-as-third-party (someone using Claude
+        Code on a workstation where the admin assumed consent would be
+        the visible gate)."
+      enforcement: both
+      cost_to_operator: "The explicit consent ceremony is gone.
+        Operators who used the dialog as a manual sanity check before
+        risky actions must build that check elsewhere — managed
+        settings, hook policy, or out-of-band review."
+      residual: "Auto mode's runtime classification of 'safe' is not
+        enumerated in the changelog; deployments must consult the
+        runtime, not the docs."
+    factory_relevance: medium
+
+  - id: 2026-05-27-claude-code-powershell-and-worktree-sandbox-fixes
+    section: runtime
+    title: "Three de-facto security advisories without a separate advisory surface"
+    source: claude-code
+    finding_ids:
+      - 2026-05-27-claude-code-powershell-and-worktree-sandbox-fixes
+    why_action_bearing:
+      - "Windows operators on 2.1.148 or earlier with PowerShell
+        allowlists, git worktree workflows, or enterprise login pinning
+        should upgrade to 2.1.149+ before deploying new agents."
+      - "Operators monitoring for security-advisory-shape events (RSS,
+        CVE feeds) need to recognize that Anthropic ships these as
+        ordinary changelog entries; the changelog is the de-facto
+        advisory surface."
+      - "Source-contract owners should decide whether to amend
+        `sources/claude-code.yml` to add an explicit security advisory
+        surface or to document the changelog as carrying that role."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Nothing operator-facing. These are correctness
+        fixes."
+      who_can_use_now: "Same population as before."
+      authority_visibility: "Restored. Sandbox boundaries that had
+        silently regressed are now enforced again."
+    security_impact: high
+    security_change: closes
+    security_advisory: true
+    security_consequence:
+      threat_blocked_or_opened: "Closes three categories: (1) PowerShell
+        built-in `cd` functions defeating workspace boundary checks; (2)
+        sandbox write-allowlist over-scoping in git worktrees; (3)
+        enterprise login pinning bypassed against third-party-provider
+        and API-key sessions."
+      attacker_model: "Compromised tool input or malicious prompt
+        steering the agent to read or write outside the intended
+        sandbox; enterprise users whose login pinning policy was not
+        actually enforcing."
+      enforcement: runtime
+      cost_to_operator: "Operators must upgrade to 2.1.149+ before
+        deployment. No new operator action required after upgrade.
+        Vertex AI provider users should also confirm 2.1.148 closure."
+      residual: "Anthropic does not publish a separate security
+        advisory page. Operators relying on advisory feeds to drive
+        upgrade discipline will not catch these — they appear only in
+        the changelog."
+    factory_relevance: low
+
+  - id: 2026-05-27-codex-goal-mode-graduated-and-remote-computer-use
+    section: control-plane
+    title: "Goal mode graduates default-on; remote computer use after lock ships"
+    source: codex
+    finding_ids:
+      - 2026-05-27-codex-goal-mode-graduated-and-remote-computer-use
+    why_action_bearing:
+      - "Operators using Codex must decide whether goal mode is
+        permitted as a baseline or constrained via permission profiles —
+        the inheritance + managed-requirements features are the right
+        tool for this."
+      - "Evaluators of remote computer use after Mac lock should treat
+        the locked-host surface as a new authority decision, not a
+        default; short-lived authorization and relock-on-input are
+        sensible defaults, but the policy for which tasks may operate
+        against a locked host is still an operator choice."
+      - "Plugin-marketplace evaluators (ChatGPT Business; Enterprise
+        coming soon) should treat plugin distribution-by-marketplace
+        as a new supply-chain surface to govern."
+    accessibility_impact: high
+    accessibility_consequence:
+      what_got_easier: "Long-horizon objective-bearing work no longer
+        requires an explicit research-preview opt-in; operators can
+        point Codex at hours-or-days objectives from the default
+        surface."
+      who_can_use_now: "All Codex operators on 26.519+ across app,
+        IDE, and CLI, plus ChatGPT Business operators wanting to share
+        plugins via marketplace."
+      authority_visibility: "Mixed. Goal mode default-on means the
+        objective-as-state primitive is no longer hidden behind a
+        feature flag — which improves visibility. Remote computer use
+        after lock adds new authority surface (locked-host access);
+        the changelog documents the safeguards but the operator's
+        policy decision is implicit."
+    security_impact: medium
+    security_change: opens
+    security_consequence:
+      threat_blocked_or_opened: "Opens a new locked-host remote
+        computer use surface with documented safeguards (short-lived
+        authorization, covered displays, relock-on-input, manual
+        unlock fallback). The capability is gated, but the gates are
+        policy choices, not absent capability."
+      attacker_model: "Operator-as-target (their locked machine
+        operated remotely); compromised goal-bearing session continuing
+        unattended."
+      enforcement: both
+      cost_to_operator: "Operators must explicitly decide whether to
+        permit locked-host remote operation. Default policy is not
+        documented; safeguards are enumerated but their per-deployment
+        configuration is operator-owned."
+      residual: "The changelog does not enumerate per-task / per-tool /
+        per-domain gating for the locked-host path. Operators should
+        confirm whether the safeguards can be narrowed beyond the
+        documented ones."
+    factory_relevance: medium
+
+  - id: 2026-05-27-codex-permission-profile-inheritance-and-managed-requirements
+    section: control-plane
+    title: "Permission profiles get inheritance and an org-managed enforcement file"
+    source: codex
+    finding_ids:
+      - 2026-05-27-codex-permission-profile-inheritance-and-managed-requirements
+    why_action_bearing:
+      - "Enterprise operators should restructure permission policy: stop
+        maintaining flat profile lists; build a base profile plus
+        per-team derivations using inheritance."
+      - "Decide where `requirements.toml` lives (repo-rooted, org-rooted,
+        signed) before depending on enforcement — the distribution and
+        trust model are not yet documented."
+      - "Migrate off legacy profile configs; 0.134.0 rejects them with
+        migration guidance."
+      - "Normalize permission selection on `--profile` as the canonical
+        handle; flag-soup approaches are now legacy."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Enterprise admins can express permission policy
+        as base + derivations instead of repeating grant lists per
+        team."
+      who_can_use_now: "Enterprise operators running Codex at scale who
+        previously found per-profile management unworkable."
+      authority_visibility: "Visible. Profile inheritance hierarchies
+        and managed `requirements.toml` are operator-facing structural
+        primitives, named in release notes as policy concepts."
+    security_impact: medium
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Reframes permission enforcement from
+        per-session flags to a versioned, org-managed surface.
+        Reduces drift between intended policy and runtime posture."
+      attacker_model: "Operator-as-third-party who could previously
+        deviate from intended policy via per-session flags;
+        org-administrator who wants enforcement, not advice."
+      enforcement: both
+      cost_to_operator: "Operators using legacy profile configs must
+        migrate. Inheritance changes the mental model — semantics of
+        whether a derived profile can subtract from the base are not
+        documented."
+      residual: "The distribution and signing model for
+        `requirements.toml` is unspecified. Runtime profile-refresh
+        consistency under in-flight tool calls is also unspecified."
+    factory_relevance: high
+
+  - id: 2026-05-27-gemini-session-invocation-protocols-stable
+    section: runtime
+    title: "Local and remote session invocation protocols land stable"
+    source: gemini-cli
+    finding_ids:
+      - 2026-05-27-gemini-session-invocation-protocols-stable
+    why_action_bearing:
+      - "Operators building delegated workflows on Gemini CLI should
+        re-test against v0.44.0 stable; the remote invocation protocol
+        is no longer preview."
+      - "Multi-scope deployments must audit agent name overlaps before
+        upgrading — the new `first-wins prioritize project` resolution
+        changes which definition wins."
+      - "Until Google documents where remote invocations actually run,
+        treat the remote path as infrastructure-to-be-defined; do not
+        depend on it for production."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Delegated work has a stable protocol to call
+        against. Operators can target the same agent name from
+        multiple scopes with a documented resolution rule."
+      who_can_use_now: "Builders shipping multi-agent Gemini workflows;
+        platforms wrapping Gemini as a sub-agent invocation surface."
+      authority_visibility: "Visible. Protocols are named, scoped, and
+        documented. Resolution is rule-based, not implementation-
+        defined."
+    security_impact: none
+    factory_relevance: medium
+
+  - id: 2026-05-27-gemini-auto-modes-merged-and-policy-engine-in-acp
+    section: control-plane
+    title: "Auto modes collapse and PolicyEngine reaches into ACP sessions"
+    source: gemini-cli
+    finding_ids:
+      - 2026-05-27-gemini-auto-modes-merged-and-policy-engine-in-acp
+    why_action_bearing:
+      - "Operators on previous Auto variants must re-audit which
+        behaviors the consolidated Auto mode treats as safe — the
+        merger may have loosened or tightened constraints; release
+        notes do not enumerate."
+      - "`AUTO_EDIT` operators should explicitly decide whether
+        shell-redirect auto-approval is acceptable for their
+        environment."
+      - "Operators evaluating Gemini ACP integration should treat
+        PolicyEngine-in-ACP as the new enforcement boundary; the
+        'deadlock fix' framing understates the structural shift."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Single Auto mode means less mode-picker
+        complexity; shell-redirect auto-approval in `AUTO_EDIT`
+        smooths a common operator workflow."
+      who_can_use_now: "All Gemini CLI v0.44.0 operators."
+      authority_visibility: "Downgraded on the Auto-merger (collapsed
+        differentiation hides which prior-mode constraint applies).
+        Upgraded on PolicyEngine-in-ACP (enforcement reaches a layer
+        the docs name explicitly)."
+    security_impact: medium
+    security_change: opens
+    security_consequence:
+      threat_blocked_or_opened: "Shell-redirect auto-approval in
+        `AUTO_EDIT` opens a new auto-approved verb (redirects can
+        write to disk under attacker-controlled paths if the agent is
+        steered there). PolicyEngine-in-ACP closes a deadlock
+        condition and reaches enforcement into protocol sessions."
+      attacker_model: "Prompt-injection steering an `AUTO_EDIT`
+        session toward sensitive write paths via redirects; ACP
+        clients that previously deadlocked enforcement gates."
+      enforcement: both
+      cost_to_operator: "`AUTO_EDIT` operators must accept the new
+        default or constrain shell redirects via workspace trust /
+        allowlists. PolicyEngine-in-ACP adds enforcement state
+        operators must understand when reading ACP session
+        behavior."
+      residual: "PolicyEngine-in-ACP default posture is unspecified
+        (per-session enforcement by default vs only when configured).
+        Interaction with workspace trust on shell-redirect
+        auto-approval is not in release notes."
+    factory_relevance: medium
+
+  - id: 2026-05-27-openhands-acp-ui-and-org-llm-profiles
+    section: platform
+    title: "OpenHands becomes the GUI shell for other harnesses, with org-level LLM profiles"
+    source: openhands
+    finding_ids:
+      - 2026-05-27-openhands-acp-ui-and-org-llm-profiles
+    why_action_bearing:
+      - "Evaluators of OpenHands as a multi-agent shell: enable
+        `ENABLE_ACP` against your preferred ACP back-end (Claude Code,
+        Codex, Gemini CLI) and test the policy surface — the greyed-out
+        settings while ACP is active are intentional."
+      - "Multi-tenant SaaS operators must confirm they are on 2026-05-22+
+        to get the MCP/ACP env scoping fix. Audit MCP credentials that
+        may have been shared across org members pre-fix."
+      - "Enterprise admins should treat the org-level LLM profile model
+        as the canonical place to set 'this org uses these models'
+        policy."
+      - "Operators on the release channel need to know none of this is
+        in a tagged 1.x release yet — main-branch only."
+    accessibility_impact: high
+    accessibility_consequence:
+      what_got_easier: "Enterprise teams can adopt OpenHands as a GUI
+        wrapper around their chosen agent (Claude Code, Codex, Gemini
+        CLI) without switching agent. Org admins get one place to set
+        LLM policy."
+      who_can_use_now: "SaaS-enterprise operators who previously had to
+        choose between OpenHands and their preferred agent; org
+        administrators who lacked a versioned policy surface."
+      authority_visibility: "Visible. ACP routing greys out the
+        downstream settings (LLM, Condenser, MCP) — authority for
+        those moves to the back-end agent, and the UI reflects that
+        transfer."
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a cross-org credential leak —
+        previously, MCP server and `acp_env` configurations added by
+        one org member were broadcast to every other member's row.
+        The fix splits agent settings into shared and private halves
+        and strips legacy leaked values on read."
+      attacker_model: "Org-internal observer / actor who could see and
+        use other members' MCP credentials or ACP environment
+        variables pre-fix."
+      enforcement: runtime
+      cost_to_operator: "Pre-fix deployments may have already
+        cross-contaminated; operators should rotate MCP credentials
+        added before 2026-05-22 on multi-member orgs."
+      residual: "Team-org UI for org-level LLM profiles is gated on a
+        follow-up PR not in window. The composition pattern (OpenHands
+        ACP fronting Claude Code) raises a schema-doctrine question
+        recorded in audit."
+    factory_relevance: high
+
+  - id: 2026-05-27-agent-zero-host-desktop-with-vision-verification
+    section: runtime
+    title: "Host desktop control with required visual verification"
+    source: agent-zero
+    finding_ids:
+      - 2026-05-27-agent-zero-host-desktop-with-vision-verification
+    why_action_bearing:
+      - "Operators evaluating Agent Zero for host control must decide
+        whether `computer_use_remote` is allowed at all on the host —
+        the default trust mode is opt-in but the runtime checks are
+        enforceable."
+      - "Workcell operators should know that screenshot capture is now
+        ephemeral and context-scoped by default; auditing what the
+        agent saw requires explicit durable capture."
+      - "Operators using the existing `linux-desktop` skill: verify your
+        skill routes to the path you expect; host and container
+        desktops are now cleanly separated."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Agent Zero can now operate the operator's
+        actual machine via accessibility APIs (AX/UIA/AT-SPI) with
+        named structural targets — closer to assistive-technology
+        semantics than to coordinate-click pattern matching."
+      who_can_use_now: "Operators who want host-machine automation
+        with stronger evidence than coordinate clicks; users of
+        platform-native assistive APIs."
+      authority_visibility: "Visible. Vision verification, re-arm
+        enforcement, and macOS approval-denial → stop flow are
+        runtime checks the operator can observe."
+    security_impact: high
+    security_change: opens
+    security_consequence:
+      threat_blocked_or_opened: "Opens a new attack surface (host
+        desktop control outside the container). Closes the
+        bounded-by-prompt-discipline gap with runtime-enforced
+        vision verification: state-changing actions are unverified
+        until a screenshot confirms the outcome."
+      attacker_model: "Prompt-injection steering the agent toward
+        host actions the operator would not have approved;
+        compromised host applications relying on agent for
+        permission posture."
+      enforcement: runtime
+      cost_to_operator: "Operators must explicitly enable
+        `computer_use_remote`. Ephemeral capture default means
+        operators wanting durable host-action evidence must enable
+        explicit capture; coordinate-click escapes are discouraged
+        but not blocked entirely."
+      residual: "Audit evidence landing under ephemeral capture is
+        unspecified. Visual-verification enforcement layer
+        (prompt vs runtime return-shape) is partially ambiguous.
+        Host-vs-container routing under conflict relies on ranking,
+        not enforcement."
+    factory_relevance: medium
+
+  - id: 2026-05-27-openclaw-content-boundary-hardening-suite
+    section: runtime
+    title: "Content-boundary hardening suite across inbound surfaces"
+    source: openclaw
+    finding_ids:
+      - 2026-05-27-openclaw-content-boundary-hardening-suite
+    why_action_bearing:
+      - "Operators evaluating OpenClaw against 'is it safe to put
+        agents on real channels' can use this suite as evidence of a
+        threat model, not just a feature list."
+      - "Gateway operators should verify whether `gateway.auth.rateLimit`
+        was unset in their config — the on-by-default ratelimit
+        changes observable behavior for non-browser/HTTP auth flows."
+      - "Plugin authors should treat `allowFrom` sender allowlists as
+        the canonical inbound boundary; post-dispatch filtering is the
+        older model."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Operators can put OpenClaw agents on
+        public-facing channels (Discord, Signal, iMessage, WhatsApp,
+        WebChat) with structural sender authority and content-safety
+        defaults, rather than building per-channel guardrails by hand."
+      who_can_use_now: "Channel-deployment operators who previously
+        deferred public exposure pending a threat model."
+      authority_visibility: "Visible. Pre-dispatch allowlists are an
+        explicit authority surface; SSRF policy, sanitization, and
+        external-content wrapping all surface in policy-and-runtime
+        layers operators can configure."
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes multiple categories: SSRF on
+        browser snapshot reads, prompt-marker spoofing in queued
+        system-event text, prompt-like text in memory store, serialized
+        tool-call text leaking in replies, RPCs from invalidated
+        device-token clients."
+      attacker_model: "Third-party network actor sending crafted URLs
+        for browser snapshot; untrusted channel or plugin labels
+        attempting prompt-marker spoofing; rotated-out device clients;
+        outsider content injected into long-running memory."
+      enforcement: both
+      cost_to_operator: "On-by-default gateway auth ratelimit for
+        unset `gateway.auth.rateLimit` changes observable behavior;
+        operators relying on pre-rate-limit observability for
+        non-browser/HTTP auth failures must adjust monitoring."
+      residual: "Browser snapshot SSRF policy default and interaction
+        with operator-configured allow-domains is not documented.
+        Typed-plugin-author signing/trust model still open."
+    factory_relevance: low
+
+  # Hermes Foundation Release decomposed into 4 consequence-shaped signals
+  # at amendment-005 ratification (2026-05-27). Single composite replaced.
+  # All four reference the same unchanged finding.
+
+  - id: 2026-05-27-hermes-pypi-and-windows-beta-distribution
+    section: platform
+    title: "Hermes ships PyPI, lazy adapter install, native Windows beta"
+    source: hermes-agent
+    finding_ids:
+      - 2026-05-27-hermes-v0.14.0-foundation-release
+    why_action_bearing:
+      - "Builders who bounced off the prior clone-and-shell installer
+        should re-evaluate Hermes — `pip install hermes-agent` plus
+        lazy adapter install plus Windows beta plus Zed ACP Registry
+        listing materially lower the floor."
+    accessibility_impact: high
+    accessibility_consequence:
+      what_got_easier: "`pip install hermes-agent` plus lazy adapter
+        install plus Windows beta plus Zed ACP Registry listing — Hermes
+        is reachable through standard package paths now, not just through
+        repo clone."
+      who_can_use_now: "Python operators who default to `pip install` for
+        tooling; Windows developers; Zed users with the ACP Registry."
+      authority_visibility: "Distribution win is visible. No authority
+        change."
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Lazy adapter install with supply-chain
+        advisory checker reframes the install posture — adapters aren't
+        fetched until used, but fetched paths carry advisory checks."
+      attacker_model: "Supply-chain attacker against package dependencies;
+        operator inadvertently installing a backend with a known
+        advisory."
+      enforcement: policy
+      cost_to_operator: "A 'missing backend' state can exist at runtime
+        before first use. Operators relying on fail-closed credential
+        behavior must verify the lazy path preserves it."
+      residual: "Lazy-install interaction with fail-closed credential
+        doctrine is unverified."
+    factory_relevance: low
+
+  - id: 2026-05-27-hermes-proxy-credential-router
+    section: control-plane
+    title: "`hermes proxy`: local OpenAI-compatible endpoint backed by operator OAuth"
+    source: hermes-agent
+    finding_ids:
+      - 2026-05-27-hermes-v0.14.0-foundation-release
+    why_action_bearing:
+      - "Operators running `hermes proxy` on the documented loopback
+        default (`--host 127.0.0.1`) inherit a low-risk posture; the
+        proxy accepts client `Authorization` headers and strips them
+        before attaching the Hermes OAuth upstream. Operators changing
+        the bind to a non-loopback address must place their own auth
+        in front of the port — the proxy itself does not authenticate
+        local callers."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "A bounded set of wire-compatible clients (Codex
+        CLI, Aider, Cline, Continue, custom scripts) can reach a Hermes
+        subscription without maintaining separate API keys for each
+        tool. Initial provider routing target is Nous Portal, with the
+        PR explicitly framing more providers later."
+      who_can_use_now: "Users of OpenAI-API-shaped tools who want
+        single-subscription routing across them."
+      authority_visibility: "Downgraded. Authority transfer is explicit
+        at config time but opaque at runtime — downstream tools making
+        API calls do not see that they are routing through a local
+        proxy."
+    security_impact: medium
+    security_change: opens
+    security_consequence:
+      threat_blocked_or_opened: "On the documented loopback default,
+        opens a local-host attack surface: anything running on the
+        loopback interface that can reach the proxy port may invoke
+        routed API calls under the operator's OAuth (client
+        `Authorization` headers are stripped, not validated). On
+        non-loopback binds, opens a broader attack surface unless the
+        operator adds their own authentication layer."
+      attacker_model: "Local-host attacker (malicious dependency,
+        compromised local service) on the loopback default;
+        network-adjacent attacker on non-loopback binds where the
+        operator has not added an auth layer."
+      enforcement: runtime
+      cost_to_operator: "Operators on the loopback default should treat
+        any local code that can open a loopback socket as a potential
+        credential consumer. Operators changing the bind must add their
+        own auth in front."
+      residual: "The PR does not specify a recommended non-loopback
+        posture (reverse-proxy + shared bearer, mTLS, etc.). Operators
+        exposing the proxy beyond loopback are choosing their own auth
+        story, not following one Nous Research documented."
+    factory_relevance: low
+
+  - id: 2026-05-27-hermes-honcho-identity-and-credential-isolation
+    section: control-plane
+    title: "Honcho identity mapping and credential-pool isolation"
+    source: hermes-agent
+    finding_ids:
+      - 2026-05-27-hermes-v0.14.0-foundation-release
+    why_action_bearing:
+      - "Multi-user gateway operators should upgrade past the Honcho
+        commits (week of 2026-05-21) and the credential-pool isolation
+        commit (2026-05-27) before running shared-thread deployments —
+        these are quiet correctness fixes for cross-user contamination."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Multi-user gateway deployments have a named
+        identity-mapping primitive (`pinUserPeer` / `pinPeerName`) rather
+        than implicit identity drift."
+      who_can_use_now: "Multi-user Hermes operators who previously had to
+        reason about identity contamination by hand."
+      authority_visibility: "Visible. Explicit identity resolver replaces
+        implicit cross-user state."
+    security_impact: medium
+    security_change: closes
+    security_advisory: true
+    security_consequence:
+      threat_blocked_or_opened: "Closes cross-user contamination on
+        shared threads (peer-id in cache signatures) and credential
+        bleed on provider fallback (isolated credential pool)."
+      attacker_model: "Org-internal observer / actor who could see other
+        users' agent state via shared-thread cache signatures pre-fix;
+        provider-fallback scenarios where the wrong credential could be
+        reused."
+      enforcement: both
+      cost_to_operator: "Multi-user gateway operators must upgrade past
+        the 2026-05-21+ Honcho commits and the 2026-05-27 credential-pool
+        isolation commit."
+      residual: "Honcho identity-mapping resolver ladder canonicality —
+        is this the Hermes identity layer or a Honcho integration? — is
+        open and may evolve."
+    factory_relevance: low
+
+  - id: 2026-05-27-hermes-kanban-corruption-hardening
+    section: runtime
+    title: "Kanban corruption-hardening wave (post-v0.14.0)"
+    source: hermes-agent
+    finding_ids:
+      - 2026-05-27-hermes-v0.14.0-foundation-release
+    why_action_bearing:
+      - "Kanban-dependent multi-agent operators should treat the
+        post-v0.14.0 line as the integrity-floor baseline; the
+        corruption-hardening wave volume is the signal."
+    accessibility_impact: none
+    security_impact: low
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes torn-write corruption vectors
+        (`secure_delete + cell_size_check + synchronous=FULL`) and silent
+        WAL → DELETE downgrade on transient EIO."
+      attacker_model: "Operational hazard — abrupt host shutdown, disk
+        EIO, concurrent multi-agent workloads stressing SQLite."
+      enforcement: runtime
+      cost_to_operator: "No operator action beyond upgrading; the
+        hardening is internal."
+      residual: "Kanban gate's false-positive rate under real
+        multi-agent load remains undocumented (existing open question)."
+    factory_relevance: low
+
+  - id: 2026-05-27-paperclip-scoped-permissions-and-routine-env-secrets
+    section: control-plane
+    title: "Scoped agent permissions, layered routine secrets, document locks"
+    source: paperclip
+    finding_ids:
+      - 2026-05-27-paperclip-scoped-permissions-and-routine-env-secrets
+    why_action_bearing:
+      - "Multi-agent operators: re-evaluate Paperclip's authz model.
+        The principal-access backfill means pre-existing data is being
+        normalized to the new model — confirm any operator action
+        needed for older versions."
+      - "Secret-handling operators: read PR #6212 before configuring
+        routine env in a deployment where secrets matter — the
+        `agent < project < routine` precedence is a structural
+        operator concept."
+      - "Approval-discipline operators: migrate to lock-backed
+        approval; document locks give approval a persistent surface."
+      - "ACPX-Claude operators: confirm `~/.claude/settings.json` is
+        configured as the source of truth for Claude permissions —
+        the Paperclip control plane defers to it."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Approval discipline has a persistent surface
+        (document locks). Routine env precedence is documented as an
+        operator concept, not an implementation detail."
+      who_can_use_now: "Multi-agent / multi-routine operators who
+        previously had to enforce approval and secret-precedence by
+        convention."
+      authority_visibility: "Visible. Authz service, protected
+        assignments, precedence rules, lock state, and policy/grant
+        UI surfaces all expose authority to operators."
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes agent-asserted assignment
+        (agents can no longer self-assign or self-transition).
+        Closes silent overwrite of approved document state. Closes
+        secret-value leakage in logs (safe metadata only;
+        `secret_access_events` preserved). Closes implicit
+        precedence ambiguity (now documented `agent < project <
+        routine`)."
+      attacker_model: "Prompt-injected agent attempting to escalate
+        via self-assignment or self-approval; multi-tenant
+        deployments where routine-level secrets must override
+        project-level or agent-level defaults."
+      enforcement: both
+      cost_to_operator: "Approval-by-convention workflows must
+        migrate to lock-backed approval. Pre-backfill data needs
+        principal-access metadata — operators on older versions may
+        have had a different governance baseline."
+      residual: "Pre-backfill governance baseline and required
+        operator action for older versions not in release notes
+        (possible advisory shape). Composition of Paperclip authz
+        with agent-owned permission files
+        (`~/.claude/settings.json`) is undocumented — schema
+        doctrine question in audit."
+    factory_relevance: high

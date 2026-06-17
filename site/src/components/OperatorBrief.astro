@@ -1,0 +1,51 @@
+---
+type Brief = {
+  thesis?: string;
+  upgrade_check?: string[];
+  try?: string[];
+  watch?: string[];
+  ignore_or_deprioritize?: string[];
+  uncertain?: string[];
+};
+
+const { brief } = Astro.props as { brief?: Brief };
+
+const sections: Array<{ label: string; items: string[] | undefined; key: string }> = brief
+  ? [
+      { label: "Upgrade / check", items: brief.upgrade_check, key: "upgrade" },
+      { label: "Try", items: brief.try, key: "try" },
+      { label: "Watch", items: brief.watch, key: "watch" },
+      { label: "Ignore / deprioritize", items: brief.ignore_or_deprioritize, key: "ignore" },
+      { label: "Uncertain", items: brief.uncertain, key: "uncertain" },
+    ]
+  : [];
+
+const hasAnySection = sections.some((s) => s.items && s.items.length > 0);
+---
+
+{
+  brief && (brief.thesis || hasAnySection) && (
+    <section class="operator-brief">
+      <p class="operator-brief-kicker small-caps">Operator Brief</p>
+      {brief.thesis && <p class="operator-brief-thesis">{brief.thesis}</p>}
+      {hasAnySection && (
+        <dl class="operator-brief-list">
+          {sections
+            .filter((s) => s.items && s.items.length > 0)
+            .map((s) => (
+              <div class={`operator-brief-row brief-${s.key}`}>
+                <dt class="small-caps">{s.label}</dt>
+                <dd>
+                  <ul>
+                    {s.items!.map((item) => (
+                      <li set:html={item} />
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            ))}
+        </dl>
+      )}
+    </section>
+  )
+}

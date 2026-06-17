@@ -1,0 +1,21 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-05-12-partial-cycle-paperclip-2026-05-07_2026-05-12-frontier-v0
+mode: partial_cycle
+provider: paperclip
+model: claude-sonnet-4-6
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+artifacts:
+  - findings/paperclip.md
+  - signals/frontier-signals.yml
+  - weekly/paperclip-fragment.md
+  - audit.md
+profile_updated: content/profiles/paperclip.md
+notes: >
+  First Paperclip profile build. surface_class: open_source_commits,
+  evidence_floor: release_note. Primary evidence: v2026.511.0 release
+  notes (released 2026-05-11, 89 commits from v2026.428.0). Key additions:
+  secrets provider vaults with AWS Secrets Manager, cursor_cloud adapter,
+  routine revision history, planning mode for issues. Prior cycle finding
+  seeds 4 claims; this cycle adds 5 new ones.

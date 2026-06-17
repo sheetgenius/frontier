@@ -1,0 +1,27 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-07
+  end: 2026-05-12
+signals:
+  - id: 2026-05-12-hermes-tenacity-kanban-and-security
+    section: control-plane
+    title: "Durable Kanban with hallucination gate, redaction-on-by-default, channel
+      allowlists"
+    source: hermes-agent
+    finding_ids:
+      - 2026-05-12-hermes-tenacity-kanban-and-security
+    why_action_bearing:
+      - "Operators upgrading existing Hermes deployments must verify that secret
+        redaction is now ON by default. Log pipelines that relied on unredacted
+        output will see sanitized logs after upgrade."
+      - "Discord operators with role-gated access (`DISCORD_ALLOWED_ROLES`)
+        should re-verify their role-scoping configuration: the guild-scoped fix
+        (CVSS 8.1) may change behavior in cross-guild bot deployments."
+      - "Operators building multi-agent workflows on Hermes should evaluate the
+        Kanban board's reliability primitives (heartbeat reclaim, zombie
+        detection, hallucination gate, per-task retries) before building a
+        custom coordination layer."
+      - "Operators using cron should evaluate `no_agent` mode for script-only
+        automation that does not require LLM invocation."
+    accessibility_impact: medium
+    factory_relevance: high

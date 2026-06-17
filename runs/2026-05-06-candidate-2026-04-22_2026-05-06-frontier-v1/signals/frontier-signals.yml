@@ -1,0 +1,52 @@
+schema_version: bitter.frontier_signal_set.v0
+run: 2026-05-06-candidate-2026-04-22_2026-05-06-frontier-v1
+window:
+  start: 2026-04-22
+  end: 2026-05-06
+signals:
+  - id: 2026-05-06-worker-native-state
+    section: control-plane
+    title: Provider-native long-horizon state is now table stakes.
+    signal_class: agent_frontier
+    change_type: [ capability, memory, workflow ]
+    frontier_area: [ coding_agent, worker_state ]
+    sources: [ codex, claude-code, gemini-cli, hermes-agent ]
+    confidence: high
+    actionability: adapt
+  - id: 2026-05-06-fragmented-authority-semantics
+    section: control-plane
+    title: Authority semantics are explicit but fragmented.
+    signal_class: agent_frontier
+    change_type: [ security, workflow, runtime ]
+    frontier_area: [ authority, credentials, sandboxing ]
+    sources: [ codex, claude-code, gemini-cli, pi-coding-agent ]
+    confidence: high
+    actionability: adapt
+  - id: 2026-05-06-worker-verification
+    section: control-plane
+    title: Verification is becoming a worker capability.
+    signal_class: agent_frontier
+    change_type: [ evaluation, reliability, workflow ]
+    frontier_area: [ verification, multi_agent, qa ]
+    sources: [ claude-code, codex, gemini-cli, hermes-agent ]
+    confidence: high
+    actionability: test
+  - id: 2026-05-06-plugin-extension-skill-surface
+    section: platform
+    title: Plugin, extension, and skill ecosystems are becoming the integration
+      surface.
+    signal_class: agent_frontier
+    change_type: [ ecosystem, protocol, workflow ]
+    frontier_area: [ plugins, extensions, skills, mcp ]
+    sources: [ codex, claude-code, gemini-cli, hermes-agent, pi-coding-agent ]
+    confidence: high
+    actionability: adapt
+  - id: 2026-05-06-worker-integrations-not-doctrine
+    section: platform
+    title: Worker integrations are not durable doctrine.
+    signal_class: agent_frontier
+    change_type: [ ecosystem, reliability, economics ]
+    frontier_area: [ adapters, providers, release_channels ]
+    sources: [ pi-coding-agent, gemini-cli, codex ]
+    confidence: high
+    actionability: observe

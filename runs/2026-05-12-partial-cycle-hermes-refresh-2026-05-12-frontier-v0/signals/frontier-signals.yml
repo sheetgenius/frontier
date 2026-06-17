@@ -1,0 +1,20 @@
+schema_version: bitter.frontier_signals.v0
+window:
+  start: 2026-05-12
+  end: 2026-05-12
+signals:
+  - id: 2026-05-12-hermes-mistralai-quarantine-response
+    section: platform
+    title: "Hermes drops mistralai from [all] extras after PyPI quarantine of 2.4.6"
+    source: hermes-agent
+    finding_ids:
+      - 2026-05-12-hermes-mistralai-quarantine-response
+    why_action_bearing:
+      - "Operators who installed hermes-agent[all] on or around 2026-05-12
+        should verify whether mistralai==2.4.6 is present in their environment
+        and remove it if so."
+      - "Operators needing Mistral Voxtral TTS must switch to explicit
+        hermes-agent[mistral] install; it no longer ships in [all] while
+        quarantine is active."
+    accessibility_impact: low
+    factory_relevance: low

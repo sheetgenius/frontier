@@ -1,0 +1,37 @@
+{
+  "name": "bitter-frontier-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "check": "astro check",
+    "check:integrity": "node scripts/check-integrity.mjs",
+    "check:links": "node scripts/check-external-links.mjs",
+    "test:headers": "node --test scripts/static-headers.test.mjs",
+    "test:smoke": "playwright test -c playwright.config.ts",
+    "test:smoke:install": "playwright install --with-deps chromium"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.18",
+    "astro": "^6.2.2",
+    "gray-matter": "^4.0.3",
+    "marked": "^17.0.1",
+    "yaml": "2.9.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@playwright/test": "^1.59.1",
+    "@tailwindcss/postcss": "^4.2.4",
+    "@tailwindcss/vite": "^4.2.4",
+    "@types/node": "^25.6.0",
+    "tailwindcss": "^4.2.4",
+    "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "devalue": "5.8.1",
+    "yaml": "2.9.0"
+  }
+}

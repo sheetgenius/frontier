@@ -1,0 +1,128 @@
+schema_version: bitter.frontier_source_contract.v0
+id: agent-zero
+label: Agent Zero
+owner: agent0ai
+homepage: https://www.agent-zero.ai/
+primary_surfaces:
+  - id: site
+    kind: official_site
+    url: https://www.agent-zero.ai/
+    priority: 1
+    watch:
+      - positioning
+      - installation
+      - ui
+      - features
+      - pricing
+      - deployment
+  - id: docs
+    kind: official_docs
+    url: https://www.agent-zero.ai/p/docs/
+    priority: 1
+    watch:
+      - installation
+      - configuration
+      - tools
+      - code_execution
+      - browser
+      - memory
+      - subagents
+      - custom_tools
+      - docker
+      - security
+      - remote_access
+  - id: repo
+    kind: github_repo
+    url: https://github.com/agent0ai/agent-zero
+    priority: 1
+    watch:
+      - releases
+      - tags
+      - commits
+      - pull_requests
+      - issues
+      - docs
+      - examples
+      - security
+accepted_evidence:
+  - official_docs
+  - official_site
+  - github_release
+  - tagged_release
+  - maintainer_commit
+  - merged_pr
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+  - accessibility
+research_lenses:
+  - workcell_autonomy
+  - computer_use
+  - runtime_isolation
+  - tool_creation
+  - visible_autonomy
+high_signal_patterns:
+  - Linux
+  - terminal
+  - file system
+  - browser
+  - code execution
+  - Docker
+  - container
+  - tool creation
+  - plugin
+  - custom tool
+  - subagent
+  - memory
+  - task
+  - project
+  - remote access
+  - UI
+  - safety
+  - sandbox
+  - persistence
+  - cleanup
+operator_questions:
+  - What does full computer access let the agent do that a narrow tool loop cannot?
+  - How is the environment isolated, inspected, persisted, reset, or cleaned up?
+  - What state is visible to the human while the agent acts?
+  - What happens when the agent creates tools or subagents during a long run?
+  - Does this change how BitterGrid should model containers, workcells, or full machines?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  runtime_change: test
+discovery:
+  last_verified: 2026-05-07
+  verified_by: manual_web
+  confidence: high
+  open_questions:
+    - Which release or docs surface best describes the current runtime isolation model?
+    - Which parts of Agent Zero's tool creation are safe to compare against Bitter-owned tool and receipt boundaries?
+    - What should Bitter test locally versus only study as product posture?
+notes: >
+  Watch Agent Zero as the workcell-autonomy source. Its relevance to Bitter is
+  the Grid question: what happens when an agent gets a real computer
+  environment, can use terminal/browser/files, and can grow tools or subagents
+  inside that environment? Pay special attention to isolation, persistence,
+  cleanup, visibility, and whether power remains governable.

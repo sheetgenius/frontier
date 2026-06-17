@@ -1,0 +1,39 @@
+---
+type NotPromotedItem = {
+  source?: string;
+  finding_id?: string;
+  link?: string;
+  reason?: string;
+};
+
+const { items } = Astro.props as { items?: NotPromotedItem[] };
+const hasItems = Array.isArray(items) && items.length > 0;
+---
+
+{
+  hasItems && (
+    <div class="rule mt-10 pt-6">
+      <p class="small-caps text-muted">What we didn't promote</p>
+      <p class="not-promoted-intro">
+        Findings observed during this cycle that did not rise to top-tier signal — surfaced here for restraint, not silence.
+      </p>
+      <ul class="mt-3 not-promoted-list">
+        {items!.map((item) => (
+          <li>
+            {item.link ? (
+              <a href={item.link} class="not-promoted-link">
+                <span class="not-promoted-source font-mono text-xs text-muted">{item.source ?? item.finding_id}</span>
+                <span class="not-promoted-reason" set:html={item.reason ?? ""} />
+              </a>
+            ) : (
+              <div>
+                <span class="not-promoted-source font-mono text-xs text-muted">{item.source ?? item.finding_id}</span>
+                <span class="not-promoted-reason" set:html={item.reason ?? ""} />
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}

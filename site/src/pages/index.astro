@@ -1,0 +1,140 @@
+---
+import Base from "../layouts/Base.astro";
+import VersionList from "../components/VersionList.astro";
+import { canonicalRunForDigest, formatDate, listDigests, listProfiles, listSignals, logLinkGraphReportOnce, sourceLabel, versionsForDigest } from "../lib/frontier";
+
+logLinkGraphReportOnce();
+
+const [latest] = listDigests();
+const canonicalRun = latest ? canonicalRunForDigest(latest) : undefined;
+const versions = latest ? versionsForDigest(latest.id) : [];
+const signals = listSignals().slice(0, 6);
+const profiles = listProfiles();
+const profileSlugs = new Set(profiles.map((p) => p.slug));
+---
+
+<Base title="Bitter Frontier">
+  <section class="measure pt-12 pb-10">
+    <p class="small-caps publication-kicker">Field Notes For Agent Operators</p>
+    <h1 class="publication-title">Coding agents are changing faster than operating policy.</h1>
+    <p class="publication-dek">
+      Weekly, source-backed field notes for teams running coding agents in production: what changed, what broke
+      assumptions, what got easier, and what to test before the next rollout. Covers {profiles.length} providers.
+    </p>
+  </section>
+
+  <section class="measure rule frontier-offer py-8">
+    <div>
+      <p class="small-caps text-muted">Private Launch</p>
+      <h2 class="frontier-offer-title">Founding member access</h2>
+      <p class="frontier-offer-copy">
+        Support the weekly operator brief and record membership through BitterHub as private launch access comes online.
+      </p>
+    </div>
+    <button
+      class="frontier-offer-button"
+      type="button"
+      data-checkout-pack="frontier-founding-member"
+    >
+      Join for $49
+    </button>
+  </section>
+
+  {
+    latest && (
+      <section class="measure rule py-8">
+        <p class="small-caps text-muted">Latest Issue</p>
+        <a href={`/digests/${latest.slug}/`} class="mt-4 block no-underline hover:underline">
+          <h2 class="issue-title">{latest.data.title}</h2>
+        </a>
+        <p class="issue-meta">
+          Published {formatDate(latest.data.window?.end)} ·
+          <a href={`/runs/${canonicalRun?.id}/`}>{canonicalRun?.status} v{canonicalRun?.artifactVersion}</a> ·
+          {latest.data.signal_count} signals
+        </p>
+        {latest.data.operator_brief?.thesis && (
+          <p class="homepage-thesis">{latest.data.operator_brief.thesis}</p>
+        )}
+        {latest.data.operator_brief && (
+          <dl class="homepage-brief">
+            {latest.data.operator_brief.upgrade_check?.length > 0 && (
+              <div>
+                <dt class="small-caps">Upgrade / check</dt>
+                <dd set:html={latest.data.operator_brief.upgrade_check[0]} />
+              </div>
+            )}
+            {latest.data.operator_brief.try?.length > 0 && (
+              <div>
+                <dt class="small-caps">Try</dt>
+                <dd set:html={latest.data.operator_brief.try[0]} />
+              </div>
+            )}
+            {latest.data.operator_brief.watch?.length > 0 && (
+              <div>
+                <dt class="small-caps">Watch</dt>
+                <dd set:html={latest.data.operator_brief.watch[0]} />
+              </div>
+            )}
+          </dl>
+        )}
+        <p class="mt-5 font-mono text-sm text-muted">
+          <a href={`/digests/${latest.slug}/`} class="hover:underline">Read the full issue →</a>
+        </p>
+      </section>
+    )
+  }
+
+  <section class="measure rule py-8">
+    <p class="small-caps text-muted">Provider Updates</p>
+    <ul class="provider-updates">
+      {profiles.map((profile) => (
+        <li>
+          <a href={`/profiles/${profile.slug}/`} class="provider-update-link">
+            <span class="provider-update-name">{sourceLabel(profile.slug)}</span>
+            <span class="provider-update-date">{formatDate(profile.data.last_updated)}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="measure rule py-8">
+    <p class="small-caps text-muted">Recent Signals</p>
+    <ol class="signal-list">
+      {
+        signals.map((signal) => (
+          <li>
+            <div class="signal-meta small-caps text-muted">
+              {formatDate(signal.date)}
+              {signal.sources.map((src) => (
+                <span>
+                  {" · "}
+                  {profileSlugs.has(src) ? (
+                    <a href={`/profiles/${src}/`} class="text-[var(--color-bitter)] no-underline hover:underline">
+                      {sourceLabel(src)}
+                    </a>
+                  ) : (
+                    <span>{sourceLabel(src)}</span>
+                  )}
+                </span>
+              ))}
+            </div>
+            <h3 class="signal-title">
+              <a href={`/signals/${signal.id}/`} class="no-underline hover:underline">{signal.title}</a>
+            </h3>
+            {signal.whyActionBearing.length > 0 ? (
+              <p class="signal-summary">{signal.whyActionBearing[0]}</p>
+            ) : signal.summary ? (
+              <p class="signal-summary">{signal.summary}</p>
+            ) : null}
+          </li>
+        ))
+      }
+    </ol>
+    <p class="mt-6 font-mono text-sm text-muted">
+      <a href="/signals/" class="hover:underline">All signals →</a>
+    </p>
+  </section>
+
+  {latest && <section class="measure pb-8"><VersionList versions={versions} currentRunId={canonicalRun?.id} /></section>}
+</Base>
