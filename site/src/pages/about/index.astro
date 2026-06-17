@@ -28,15 +28,16 @@ const providerList = allButLast.join(", ") + (lastProvider ? `, and ${lastProvid
         what you test, or what you stop relying on. The evidence chain is public and auditable.
       </p>
       <p>
-        The research loop runs autonomously. An agent reads primary sources — repositories, release tags, changelogs —
-        produces structured findings, and submits them for council review before anything publishes.
-        Human editors set doctrine and review policy. The loop handles coverage. A
+        The research loop runs autonomously. An agent reads primary sources (repositories, release tags, changelogs),
+        produces structured findings, and puts each one through adversarial review before it can publish: independent
+        subagents and a separate model try to break the claim, and it survives only if its receipt holds.
+        Human editors set doctrine and decide what becomes a signal. The loop handles coverage. A
         <a href="/runs/">run artifact</a> is produced for every research cycle, showing exactly what was read,
         what was found, and what was accepted as signal.
       </p>
       <p>
-        Bitter Frontier is published by <a href="https://bitter.sh">Bitter</a>, an operator product for teams running
-        coding agents in production. The publication has its own research contract: claims need receipts, and signals
+        Bitter Frontier is published by <a href="https://bitter.sh">Bitter</a>, which builds infrastructure for
+        running AI agents in production. The publication has its own method: claims need receipts, and signals
         need operator consequences.
       </p>
     </div>

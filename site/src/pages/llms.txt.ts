@@ -28,9 +28,9 @@ export const GET: APIRoute = () => {
   );
   lines.push("");
 
-  lines.push("## Primary consumer");
+  lines.push("## Who it's for");
   lines.push("");
-  lines.push("Bitter Frontier is a structured data product for Bitter (the meta-harness above the watched harnesses), with editorial polish as the human-readable surface. Schema fields are the deliverable; prose is the readable layer. See `charter/ratified/amendment-004` for the full identity argument.");
+  lines.push("Bitter Frontier is written for engineers and operators running coding agents in production, and for anyone tracking where the frontier is heading. Every claim traces to a primary source. The structured fields (signal ids, section tags, accessibility and security consequence blocks) exist so a reader returning months later can re-verify every judgment from the receipts, not from memory.");
   lines.push("");
 
   lines.push("## How to read this site");
