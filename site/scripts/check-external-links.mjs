@@ -301,7 +301,20 @@ for (const p of PATHS) {
   if (fs.statSync(full).isDirectory()) walkDirCollect(full);
 }
 
-let urls = Array.from(collected.keys()).sort();
+const isHttpUrl = (u) => {
+  try {
+    const parsed = new URL(u);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
+  } catch {
+    return false;
+  }
+};
+const allUrls = Array.from(collected.keys()).sort();
+const invalidUrls = allUrls.filter((u) => !isHttpUrl(u));
+if (invalidUrls.length) {
+  logProgress(`Skipped ${invalidUrls.length} unparseable URL(s) (likely illustrative code-span examples, not receipts): ${invalidUrls.slice(0, 3).join(", ")}`);
+}
+let urls = allUrls.filter(isHttpUrl);
 if (LIMIT && LIMIT > 0) urls = urls.slice(0, LIMIT);
 
 logProgress(`Discovered ${urls.length} unique URL(s) across ${PATHS.join(", ")}.`);
