@@ -1,28 +1,62 @@
 @import "tailwindcss";
 
-/* Vendored Inter (Regular + SemiBold), self-hosted so the masthead, eyebrows,
-   and UI render in the intended face under a `font-src 'self'` CSP. The same
-   TTFs feed the OG-card renderer in scripts/og-cards.mjs. */
+/* Type system inherited from the parent brand, bitter.sh. There is no serif:
+   editorial weight contrast carries the headlines, not a contrasting face.
+   All faces are self-hosted so they render under the `font-src 'self'` CSP.
+
+   Manrope — the brand typeface. One self-hosted VARIABLE woff2 (weight axis
+   200..800) carries the whole hierarchy, body AND headlines, by weight
+   contrast. Both --font-sans and --font-serif map to it; existing
+   var(--font-serif) headline references therefore render in Manrope.
+   The OG-card renderer (scripts/og-cards.mjs) uses static Manrope/IBM Plex
+   Mono TTFs in the same directory, since satori cannot read woff2. */
 @font-face {
-  font-family: "Inter";
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("../fonts/manrope-variable.woff2") format("woff2");
+}
+
+/* IBM Plex Mono — the wordmark/logo voice and the operator/data labels.
+   Crisp, institutional, technical. Self-hosted static weights. */
+@font-face {
+  font-family: "IBM Plex Mono";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/Inter-Regular.ttf") format("truetype");
+  src: url("../fonts/ibm-plex-mono-400.woff2") format("woff2");
 }
-
 @font-face {
-  font-family: "Inter";
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../fonts/Inter-SemiBold.ttf") format("truetype");
+  src: url("../fonts/ibm-plex-mono-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-700.woff2") format("woff2");
 }
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", monospace;
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  /* No serif in the system: weight contrast carries headlines. This token maps
+     to the brand sans so existing var(--font-serif) display references render
+     in Manrope (set heavier per-component for headline weight contrast). */
+  --font-serif: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tracking-brand: 0.22em;
   --color-ground: #f7f2e8;
   --color-ink: #19150f;
   --color-muted: #756d62;
@@ -173,11 +207,13 @@ code {
   white-space: nowrap;
 }
 
+/* Wordmark in IBM Plex Mono — bitter.sh's logo voice: institutional, crisp,
+   letterspaced. Weight contrast against the mono tag below carries the lockup. */
 .masthead-wordmark .wordmark-name {
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 1.2vw + 1.1rem, 1.95rem);
-  font-weight: 500;
-  letter-spacing: -0.012em;
+  font-family: var(--font-mono);
+  font-size: clamp(1.18rem, 0.7vw + 0.95rem, 1.48rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
   line-height: 1;
   color: var(--color-ink);
 }
@@ -185,6 +221,7 @@ code {
 .masthead-wordmark .wordmark-tag {
   font-family: var(--font-mono);
   font-size: 0.62rem;
+  font-weight: 400;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--color-muted);
@@ -320,9 +357,9 @@ code {
   margin: 1.5rem 0 0;
   font-family: var(--font-serif);
   font-size: clamp(2.5rem, 6vw, 4.35rem);
-  font-weight: 500;
-  letter-spacing: -0.018em;
-  line-height: 0.99;
+  font-weight: 750;
+  letter-spacing: -0.026em;
+  line-height: 0.97;
   text-wrap: balance;
 }
 
@@ -347,9 +384,9 @@ code {
   margin: 0.55rem 0 0;
   font-family: var(--font-serif);
   font-size: clamp(1.35rem, 2.2vw, 1.7rem);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  line-height: 1.12;
 }
 
 .opensource-note .opensource-body {
@@ -415,9 +452,9 @@ code {
   margin: 0.85rem 0 0;
   font-family: var(--font-serif);
   font-size: clamp(1.85rem, 3.7vw, 2.85rem);
-  font-weight: 500;
-  letter-spacing: -0.014em;
-  line-height: 1.08;
+  font-weight: 720;
+  letter-spacing: -0.022em;
+  line-height: 1.05;
   text-wrap: balance;
 }
 
@@ -485,9 +522,9 @@ code {
   margin: 0.5rem 0 0;
   font-family: var(--font-serif);
   font-size: clamp(1.22rem, 2vw, 1.6rem);
-  font-weight: 500;
-  letter-spacing: -0.008em;
-  line-height: 1.2;
+  font-weight: 680;
+  letter-spacing: -0.016em;
+  line-height: 1.18;
   text-wrap: balance;
 }
 
@@ -518,7 +555,8 @@ code {
   font-family: var(--font-serif);
   font-size: clamp(1.05rem, 1.5vw, 1.25rem);
   line-height: 1.4;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   max-width: 42rem;
 }
 
@@ -581,6 +619,8 @@ code {
 .provider-update-name {
   font-family: var(--font-serif);
   font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.006em;
   color: var(--color-bitter);
 }
 
@@ -709,8 +749,9 @@ code {
   margin: 0.35rem 0 0;
   font-family: var(--font-serif);
   font-size: clamp(1.3rem, 2vw, 1.65rem);
-  font-weight: 500;
-  line-height: 1.2;
+  font-weight: 680;
+  letter-spacing: -0.016em;
+  line-height: 1.18;
 }
 
 .source-owner {
@@ -1022,6 +1063,8 @@ code {
 .top-signals-list a span.block {
   font-family: var(--font-serif);
   font-size: 1.05rem;
+  font-weight: 640;
+  letter-spacing: -0.012em;
   margin-top: 0.15rem;
 }
 
@@ -1067,7 +1110,8 @@ code {
   font-family: var(--font-serif);
   font-size: clamp(1.1rem, 1.6vw, 1.3rem);
   line-height: 1.35;
-  font-weight: 500;
+  font-weight: 620;
+  letter-spacing: -0.01em;
 }
 
 .operator-brief-list {
@@ -1227,22 +1271,27 @@ code {
 
 .version-title {
   margin-top: 0.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   line-height: 1.35;
 }
 
+/* Long-form reading column. Manrope at 400 carries the body; weight contrast,
+   not a serif, distinguishes the heads. */
 .prose-frontier {
   max-width: 44rem;
   font-family: var(--font-serif);
-  font-size: clamp(1.08rem, 0.45vw + 1rem, 1.22rem);
-  line-height: 1.72;
+  font-size: clamp(1.06rem, 0.45vw + 1rem, 1.2rem);
+  font-weight: 400;
+  line-height: 1.7;
 }
 
 .prose-frontier h1,
 .prose-frontier h2,
 .prose-frontier h3 {
-  line-height: 1.08;
-  letter-spacing: 0;
-  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  font-weight: 720;
 }
 
 .prose-frontier h1 {
@@ -1364,6 +1413,8 @@ code {
   color: var(--color-ink);
   font-family: var(--font-serif);
   font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   line-height: 1.15;
   text-decoration: none;
 }
@@ -1433,6 +1484,7 @@ code {
   max-width: 40rem;
   font-family: var(--font-serif);
   font-size: 1.02rem;
+  font-weight: 500;
   line-height: 1.5;
   color: var(--color-ink);
 }

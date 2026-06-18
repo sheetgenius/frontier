@@ -231,19 +231,35 @@ export function cardEntries() {
 const WIDTH = 1200;
 const HEIGHT = 630;
 
+// satori needs static TTF/OTF (it cannot read woff2 or variable fonts), so the
+// cards use static Manrope instances (400/700, instantiated from the variable
+// brand woff2) for the title/body and static IBM Plex Mono (400/600) for the
+// eyebrow/footer — the same Manrope + IBM Plex Mono voices the live site uses.
 let _fonts;
 function loadFonts() {
   if (_fonts) return _fonts;
   _fonts = [
     {
-      name: "Inter",
-      data: fs.readFileSync(path.join(FONTS_DIR, "Inter-Regular.ttf")),
+      name: "Manrope",
+      data: fs.readFileSync(path.join(FONTS_DIR, "Manrope-Static-Regular.ttf")),
       weight: 400,
       style: "normal",
     },
     {
-      name: "Inter",
-      data: fs.readFileSync(path.join(FONTS_DIR, "Inter-SemiBold.ttf")),
+      name: "Manrope",
+      data: fs.readFileSync(path.join(FONTS_DIR, "Manrope-Static-Bold.ttf")),
+      weight: 700,
+      style: "normal",
+    },
+    {
+      name: "IBM Plex Mono",
+      data: fs.readFileSync(path.join(FONTS_DIR, "IBMPlexMono-Regular.ttf")),
+      weight: 400,
+      style: "normal",
+    },
+    {
+      name: "IBM Plex Mono",
+      data: fs.readFileSync(path.join(FONTS_DIR, "IBMPlexMono-SemiBold.ttf")),
       weight: 600,
       style: "normal",
     },
@@ -302,42 +318,46 @@ function cardTree(entry) {
       justifyContent: "space-between",
       backgroundColor: COLOR.ground,
       padding: "72px 92px",
-      fontFamily: "Inter",
+      fontFamily: "Manrope",
       // Subtle hairline frame inside the bleed.
       border: `1px solid ${COLOR.line}`,
     },
     [
-      // Eyebrow / wordmark.
+      // Eyebrow / wordmark — IBM Plex Mono, letterspaced (the brand label voice).
       div({ alignItems: "center" }, [
         span(entry.eyebrow, {
+          fontFamily: "IBM Plex Mono",
           color: COLOR.bitter,
-          fontSize: 24,
+          fontSize: 23,
           fontWeight: 600,
           letterSpacing: "0.22em",
         }),
       ]),
 
-      // Headline block: gold rule + title.
+      // Headline block: gold rule + title in heavy Manrope (weight-driven, the
+      // bitter.sh display voice).
       div({ flexDirection: "column", marginTop: 8, marginBottom: 8 }, [
         div({ width: 96, height: 4, backgroundColor: COLOR.bitter, marginBottom: 36 }, []),
         span(text, {
           color: COLOR.ink,
           fontSize,
-          fontWeight: 600,
+          fontWeight: 700,
           lineHeight,
-          letterSpacing: "-0.01em",
+          letterSpacing: "-0.022em",
           // Constrain the wrap box so long titles wrap instead of overflowing.
           maxWidth: 1016,
         }),
       ]),
 
-      // Footer: site + section/date, separated by a thin rule.
+      // Footer: site + section/date, separated by a thin rule. The site name is
+      // the IBM Plex Mono wordmark voice; the meta stays Manrope.
       div({ flexDirection: "column" }, [
         div({ width: "100%", height: 1, backgroundColor: COLOR.line, marginBottom: 20 }, []),
         div({ alignItems: "center", justifyContent: "space-between", width: "100%" }, [
           span(entry.footer, {
+            fontFamily: "IBM Plex Mono",
             color: COLOR.ink,
-            fontSize: 26,
+            fontSize: 24,
             fontWeight: 600,
             letterSpacing: "0.02em",
           }),
