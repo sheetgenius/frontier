@@ -9,7 +9,7 @@ docs: https://github.com/withastro/flue/blob/main/README.md
 surface_class: open_source_commits
 evidence_floor: commit
 status: active_watch
-last_updated: 2026-06-03
+last_updated: 2026-06-16
 last_full_review: 2026-06-03
 claims:
   - id: virtual-sandbox-default
@@ -30,7 +30,7 @@ claims:
     status: active
   - id: run-observability-history
     finding_id: 2026-05-12-flue-initial-profile-and-observability-wave
-    last_verified: 2026-05-12
+    last_verified: 2026-06-16
     status: active
   - id: connector-agent-install
     finding_id: 2026-05-12-flue-initial-profile-and-observability-wave
@@ -40,17 +40,32 @@ claims:
     finding_id: 2026-06-01-flue-v090-major-refactor
     last_verified: 2026-06-03
     status: active
+  - id: durable-agent-execution
+    finding_id: 2026-06-08-flue-v0100-durable-agent-execution
+    last_verified: 2026-06-16
+    status: active
+  - id: durable-streams-replace-ws-sse
+    finding_id: 2026-06-10-flue-v0102-durable-streams-replace-websocket-sse
+    last_verified: 2026-06-16
+    status: active
+  - id: v100-beta1-leading-release
+    finding_id: 2026-06-16-flue-v100-beta1-leading-release
+    last_verified: 2026-06-16
+    status: active
 posture_basis:
   capability:
     - 2026-05-12-flue-initial-profile-and-observability-wave
+    - 2026-06-08-flue-v0100-durable-agent-execution
+    - 2026-06-16-flue-v100-beta1-leading-release
   accessibility:
     - 2026-05-12-flue-initial-profile-and-observability-wave
   governance:
     - 2026-05-12-flue-initial-profile-and-observability-wave
+    - 2026-06-10-flue-v0102-durable-streams-replace-websocket-sse
 stance:
   use_for: "Operators building their own agent surface who want a small, programmable harness, not a full platform. Deployments where 'no container' is the feature: Workers, Node bundles, CI runners where the explicit Model+Harness split makes ownership obvious."
   avoid_for: "Production deployments that need stability guarantees. Pre-1.0 with self-described experimental APIs; expect breaking changes on minor versions until that lifts."
-  watch_next: "Whether Flue's observability run history becomes consumable by external monitoring tools, and how the connector ecosystem develops past the initial observability wave."
+  watch_next: "Whether Flue's observability run history becomes consumable by external monitoring tools (the 0.10.2 move to a proprietary Durable Streams transport narrowed this, though 1.0.0-beta.1 reopened it partway with SDK-native listRuns/getRun/listAgents), and how the connector ecosystem develops past the initial observability wave."
 ---
 
 # Flue
@@ -59,8 +74,8 @@ Flue is a [TypeScript framework](https://github.com/withastro/flue) for
 building autonomous agents, built around an explicit "Agent = Model + Harness"
 architecture. It is
 [Apache-2.0 licensed](https://github.com/withastro/flue/blob/main/LICENSE),
-maintained by the Astro organization (withastro). Current version:
-[v0.5.3-era](https://github.com/withastro/flue/commit/36033ea1). See
+maintained by the Astro organization (withastro). Leading release as of June 2026:
+[1.0.0-beta.1](https://github.com/withastro/flue/blob/main/CHANGELOG.md). See
 `sources/flue.yml` for watch posture, accepted evidence, and high-signal
 patterns.
 
@@ -69,8 +84,30 @@ Bitter Frontier. The research question is what a clean "Model + Harness"
 framing enables and limits: what does an operator control, what does the
 framework own, and how does evidence of agent work get surfaced?
 
-> **Status**: APIs are self-described as experimental. Pre-1.0; expect
-> breaking changes on minor versions.
+> **Status**: APIs are self-described as experimental. As of 2026-06-16 the
+> leading release is 1.0.0-beta.1, so the experimental caveat is starting to
+> lift, but the window stayed migration-heavy; expect breaking changes until
+> a stable 1.0 lands.
+
+## Recent activity (2026-06-04 to 2026-06-16)
+
+Flue moved fast and broke its own API repeatedly this window (six versions,
+0.10.0 through 1.0.0-beta.1). Two inflections matter for operators. First,
+[unified durable agent execution with pluggable persistence](https://github.com/withastro/flue/blob/main/CHANGELOG.md)
+(0.10.0, `sqlite()` plus `@flue/postgres`, signal messages, mid-turn
+recovery) turns the harness from an ephemeral runner into recoverable
+stateful infrastructure (Cloudflare durable deployments require a migration).
+Second, and more constraining, 0.10.2
+[replaced the WebSocket and SSE transports with a proprietary Durable Streams protocol](https://github.com/withastro/flue/blob/main/CHANGELOG.md),
+abandoning two standard transports one cycle after WS credential hardening
+and narrowing how easily run events are consumed from outside the SDK. The
+[leading 1.0.0-beta.1](https://github.com/withastro/flue/blob/main/CHANGELOG.md)
+(June 16) is the API-stability signal: roughly eleven breaking changes
+(opaque `run_<ulid>` run IDs, `defineTool` parameters moving from TypeBox to
+valibot, `observe()` now receiving every event), and it partially reopens the
+observability door 0.10.2 closed via new `@flue/runtime` exports
+`listRuns()`, `getRun()`, and `listAgents()`. Note that the engine underneath
+is now visibly `@earendil-works/pi-*` (the Pi coding agent's core).
 
 ## Current capability state
 
@@ -129,9 +166,17 @@ framework own, and how does evidence of agent work get surfaced?
   Last-Event-ID resume](https://github.com/withastro/flue/commit/cc432b4f)
   shipped in v0.5.0. Every agent invocation has a stable ID and a
   retrievable log stream. Operators can tail live runs or replay history.
+  Note: the streaming transport changed in 0.10.2, which
+  [replaced WebSocket and SSE with a proprietary Durable Streams protocol](https://github.com/withastro/flue/blob/main/CHANGELOG.md)
+  (integrators must rewrite to the Durable Streams client); run history
+  itself persists, and 1.0.0-beta.1 added
+  [`listRuns()`, `getRun()`, and `listAgents()` in `@flue/runtime`](https://github.com/withastro/flue/blob/main/CHANGELOG.md)
+  as an SDK-native run-introspection surface. Run IDs are now opaque
+  `run_<ulid>` values.
 - [`observe()`](https://github.com/withastro/flue/commit/36033ea1)
   (v0.5.3) exposes isolate-global event subscriptions for programmatic
-  monitoring of run events.
+  monitoring of run events; as of 1.0.0-beta.1 `observe()`
+  [now receives every event directly](https://github.com/withastro/flue/blob/main/CHANGELOG.md).
 
 ### Connector system
 

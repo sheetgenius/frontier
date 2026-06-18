@@ -9,7 +9,7 @@ docs: https://docs.openhands.dev/
 surface_class: mixed_official_docs
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-03
+last_updated: 2026-06-16
 last_full_review: 2026-06-03
 claims:
   - id: api-key-redaction
@@ -52,11 +52,37 @@ claims:
     finding_id: 2026-06-03-openhands-cve-2026-44492-axios
     last_verified: 2026-06-03
     status: active
+  - id: ohe-default-org-bootstrap
+    finding_id: 2026-06-10-openhands-ohe-default-org-bootstrap
+    last_verified: 2026-06-16
+    status: active
+  - id: byok-model-access-gating
+    finding_id: 2026-06-14-openhands-ohe-multimodel-discovery-byok-gating
+    last_verified: 2026-06-16
+    status: active
+  - id: conversation-concurrency-limits
+    finding_id: 2026-06-15-openhands-conversation-concurrency-limits
+    last_verified: 2026-06-16
+    status: active
+  - id: hide-personal-workspaces-ui-only
+    finding_id: 2026-06-10-openhands-hide-personal-workspaces
+    last_verified: 2026-06-16
+    status: active
+  - id: pluginspec-source-credential-redaction
+    finding_id: 2026-06-13-openhands-pluginspec-source-credential-redaction
+    last_verified: 2026-06-16
+    status: active
+  - id: mcp-for-acp-agents
+    finding_id: 2026-06-15-openhands-mcp-for-acp-agents
+    last_verified: 2026-06-16
+    status: active
 posture_basis:
   capability:
     - 2026-05-07-openhands-platform-hardening
     - 2026-05-12-openhands-subagent-delegation-and-critic-evaluation
     - 2026-05-27-openhands-acp-ui-and-org-llm-profiles
+    - 2026-06-10-openhands-ohe-default-org-bootstrap
+    - 2026-06-15-openhands-mcp-for-acp-agents
   accessibility:
     - 2026-05-07-openhands-platform-hardening
     - 2026-05-12-openhands-subagent-delegation-and-critic-evaluation
@@ -65,6 +91,10 @@ posture_basis:
     - 2026-05-07-openhands-platform-hardening
     - 2026-05-12-openhands-subagent-delegation-and-critic-evaluation
     - 2026-05-27-openhands-acp-ui-and-org-llm-profiles
+    - 2026-06-10-openhands-ohe-default-org-bootstrap
+    - 2026-06-14-openhands-ohe-multimodel-discovery-byok-gating
+    - 2026-06-15-openhands-conversation-concurrency-limits
+    - 2026-06-10-openhands-hide-personal-workspaces
 stance:
   use_for: "Teams that want the platform to own sandboxing, evaluation, and sub-agent posture, and are willing to take the platform's defaults rather than build their own. Ops shops needing parity across GUI, CLI, and SDK from a single tool."
   avoid_for: "Operators who want governance to live in their own codebase: OpenHands ships sub-agent delegation, critic scoring, and sandbox grouping as platform decisions, not knobs you bolt on."
@@ -72,6 +102,33 @@ stance:
 ---
 
 # OpenHands
+
+## Recent activity (2026-06-04 to 2026-06-16)
+
+OpenHands spent the window becoming a tenant-provisioning system, mostly on
+main rather than in a release. A
+[default-organization bootstrap](https://github.com/OpenHands/OpenHands/pull/14752)
+makes the first user to sign in after enabling the flag the org owner
+(owner-email lists removed); on top of it sit
+[per-org and per-user concurrency limits](https://github.com/OpenHands/OpenHands/pull/14168)
+enforced with HTTP 429 (Personal 3, commercial 10) and a
+[BYOK gate](https://github.com/OpenHands/OpenHands/pull/14773)
+(`allow_user_llm_configuration`) that locks an org to a curated,
+proxy-served model set and hides the custom-key inputs. The new
+[hide-personal-workspaces flag](https://github.com/OpenHands/OpenHands/pull/14741)
+is, the docs say explicitly, UI-only and not an access-control boundary;
+do not treat it as one. On security, the react-router
+[CVE-2026-42342](https://github.com/OpenHands/OpenHands/pull/14684)
+shipped in release 1.8.0, but the postcss XSS
+[CVE-2026-41305](https://github.com/OpenHands/OpenHands/pull/14770)
+and a fix that stops persisting
+[git OAuth tokens embedded in `PluginSpec.source` as plaintext in the database](https://github.com/OpenHands/OpenHands/pull/14795)
+are on main, unreleased; rebuild the frontend and rotate any token embedded
+in a repo source URL. The ACP front-end thread also continued:
+[MCP config is now attachable to ACP agents](https://github.com/OpenHands/OpenHands/pull/14613),
+which also fixed a plaintext leak where remote MCP API keys were serialized
+as bare `auth:<key>`. The 1.8.0 release itself mostly consolidated May work;
+the enterprise cluster lands later.
 
 ## Operator read
 

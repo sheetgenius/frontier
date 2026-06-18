@@ -9,7 +9,7 @@ docs: https://docs.openclaw.ai/
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-03
+last_updated: 2026-06-16
 last_full_review: 2026-06-03
 claims:
   - id: channel-recovery-self-healing
@@ -84,6 +84,26 @@ claims:
     finding_id: 2026-06-03-openclaw-stable-reliability-features
     last_verified: 2026-06-03
     status: active
+  - id: control-ui-wcag-accessibility-pass
+    finding_id: 2026-06-13-openclaw-control-ui-accessibility-pass
+    last_verified: 2026-06-16
+    status: active
+  - id: security-boundary-sweep-fail-closed
+    finding_id: 2026-06-12-openclaw-security-boundary-sweep
+    last_verified: 2026-06-16
+    status: active
+  - id: keyfree-web-search-opt-in
+    finding_id: 2026-06-16-openclaw-keyfree-web-search-opt-in
+    last_verified: 2026-06-16
+    status: active
+  - id: mobile-state-clarity-and-clawhub-pinned-skills
+    finding_id: 2026-06-09-openclaw-mobile-state-clarity-and-clawhub-skills
+    last_verified: 2026-06-16
+    status: active
+  - id: admin-gated-http-override-surfaces
+    finding_id: 2026-06-16-openclaw-admin-gated-http-override-surfaces
+    last_verified: 2026-06-16
+    status: active
 posture_basis:
   capability:
     - 2026-05-07-openclaw-everyday-agent-surfaces
@@ -94,11 +114,16 @@ posture_basis:
     - 2026-05-07-openclaw-everyday-agent-surfaces
     - 2026-05-12-openclaw-agent-permissions-and-onboarding
     - 2026-05-27-openclaw-content-boundary-hardening-suite
+    - 2026-06-13-openclaw-control-ui-accessibility-pass
+    - 2026-06-09-openclaw-mobile-state-clarity-and-clawhub-skills
   governance:
     - 2026-05-07-openclaw-everyday-agent-surfaces
     - 2026-05-12-openclaw-agent-permissions-and-onboarding
     - 2026-05-13-openclaw-per-sender-tool-policies
     - 2026-05-27-openclaw-content-boundary-hardening-suite
+    - 2026-06-12-openclaw-security-boundary-sweep
+    - 2026-06-16-openclaw-keyfree-web-search-opt-in
+    - 2026-06-16-openclaw-admin-gated-http-override-surfaces
 stance:
   use_for: "Teams running their own bridge between chat or voice platforms and an agent, where the data has to stay on-prem. Operators who need to scope what any individual agent can say back, in which thread, in which channel."
   avoid_for: "Cloud-first teams who already standardized on a hosted control plane. Workflows that depend on uploaded skill archives until OpenClaw documents its signing and sandbox-isolation model."
@@ -106,6 +131,29 @@ stance:
 ---
 
 # OpenClaw
+
+## Recent activity (2026-06-04 to 2026-06-16)
+
+OpenClaw shipped a measured
+[WCAG 2.1 AA pass](https://github.com/openclaw/openclaw/pull/89822)
+on its browser Control UI: muted text lifted above the 4.5-to-1 contrast
+floor it had been failing in dark mode, a real keyboard focus ring, and a
+12-pixel font floor across 136 elements. The catch is channel: it is in a
+beta build (v2026.6.7-beta.1), not yet stable, so whether the fixes reach
+stable is the thing to confirm next cycle. On a stable release, OpenClaw also
+[stopped auto-selecting key-free web search providers](https://github.com/openclaw/openclaw/releases/tag/v2026.6.8)
+(v2026.6.8), trading zero-config convenience for an explicit choice about
+where a user's search queries egress. Security work was substantial: a
+[fail-closed boundary sweep](https://github.com/openclaw/openclaw/releases/tag/v2026.6.6)
+across a dozen surfaces (v2026.6.6) whose load-bearing item is that exec
+approvals now fail closed on timeout, and HTTP session/model override
+surfaces
+[now require admin privileges](https://github.com/openclaw/openclaw/releases/tag/v2026.6.8)
+(v2026.6.8). Onboarding got plainer too: Android provider and model screens
+now
+[surface expiring or unavailable states in plain words, and ClawHub installs skills from a pinned GitHub commit](https://github.com/openclaw/openclaw/releases/tag/v2026.6.5)
+(v2026.6.5), a more auditable supply path, though uploaded-archive signing
+remains undocumented.
 
 ## Operator read
 

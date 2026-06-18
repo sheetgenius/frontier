@@ -9,7 +9,7 @@ docs: https://www.agent-zero.ai/p/docs/
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-03
+last_updated: 2026-06-16
 last_full_review: 2026-06-03
 claims:
   - id: native-browser-playwright
@@ -60,6 +60,10 @@ claims:
     finding_id: 2026-06-02-agent-zero-screenshot-artifact-durability
     last_verified: 2026-06-03
     status: active
+  - id: remote-control-csrf-ws-origin-hardening
+    finding_id: 2026-06-04-agent-zero-remote-control-csrf-ws-origin-hardening
+    last_verified: 2026-06-16
+    status: active
 posture_basis:
   capability:
     - 2026-05-07-agent-zero-full-computer-workcell
@@ -73,6 +77,7 @@ posture_basis:
     - 2026-05-07-agent-zero-full-computer-workcell
     - 2026-05-12-agent-zero-browser-multitab-and-document-formats
     - 2026-05-27-agent-zero-host-desktop-with-vision-verification
+    - 2026-06-04-agent-zero-remote-control-csrf-ws-origin-hardening
 stance:
   use_for: "Work where the agent actually needs a desktop: a real browser, a LibreOffice session, a terminal that remembers what it did. Operators trying to figure out whether giving an agent a full computer is more useful or more dangerous than a tool-only sandbox."
   avoid_for: "Pipelines downstream of the agent that expect OOXML by default. v1.13+ writes ODF unless you configure otherwise. UI automation that depends on coordinate clicks: the agent is now told to prefer named actions and reach for coordinates last."
@@ -80,6 +85,24 @@ stance:
 ---
 
 # Agent Zero
+
+## Recent activity (2026-06-04 to 2026-06-16)
+
+Thin window: the entire fortnight was a single maintenance day. The
+[v1.20 release](https://github.com/agent0ai/agent-zero/releases/tag/v1.20)
+and its seven in-window commits all landed on 2026-06-04, with no commits or
+releases June 5 through 16, and no capability expansion to computer access,
+isolation, or subagents. The load-bearing item hardened the tunnel that
+exposes the desktop: active Remote Control URLs (the public Tailscale Funnel
+surface) are now
+[normalized to a bare origin before CSRF allowlisting, and WebSocket origin validation trusts only the currently active Remote Control origin](https://github.com/agent0ai/agent-zero/commit/ca4efe6e6),
+rejecting unrelated external origins and path/slash/port-variant
+origin-confusion. The rest of the day was hygiene: a static OAuth API-key
+placeholder was
+[removed from provider defaults](https://github.com/agent0ai/agent-zero/commit/ca4c9306c)
+and the runtime dummy key gated on connection status, and the
+[file browser path bar](https://github.com/agent0ai/agent-zero/commit/f9d8167a0)
+gained direct navigation with last-directory memory.
 
 ## Operator read
 

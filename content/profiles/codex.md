@@ -11,7 +11,7 @@ repo: https://github.com/openai/codex
 surface_class: mixed_official_docs
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-03
+last_updated: 2026-06-16
 last_full_review: 2026-06-03
 claims:
   - id: goal-persistent-validation
@@ -94,6 +94,26 @@ claims:
     finding_id: 2026-06-02-chatgpt-ios-1-2026-146-face-id
     last_verified: 2026-06-03
     status: active
+  - id: browser-developer-mode-cdp
+    finding_id: 2026-06-11-codex-app-26609-developer-mode-cdp-and-computer-use-controls
+    last_verified: 2026-06-16
+    status: active
+  - id: computer-use-regional-expansion-and-chronicle
+    finding_id: 2026-06-16-codex-computer-use-eea-uk-switzerland-and-chronicle
+    last_verified: 2026-06-16
+    status: active
+  - id: remote-control-pairing-revocable-grants
+    finding_id: 2026-06-04-codex-cli-0137-remote-control-pairing-and-managed-config
+    last_verified: 2026-06-16
+    status: active
+  - id: ios-goal-worktree-inline-review
+    finding_id: 2026-06-09-chatgpt-ios-1-2026-153-goal-worktree-inline-review
+    last_verified: 2026-06-16
+    status: active
+  - id: migrate-from-claude-code-and-cowork
+    finding_id: 2026-06-09-codex-app-26608-migrate-from-claude-code-and-cowork
+    last_verified: 2026-06-16
+    status: active
 posture_basis:
   capability:
     - 2026-05-07-codex-stateful-control-plane
@@ -101,15 +121,20 @@ posture_basis:
     - 2026-05-12-codex-pretooluse-input-rewrite
     - 2026-05-27-codex-goal-mode-graduated-and-remote-computer-use
     - 2026-05-27-codex-permission-profile-inheritance-and-managed-requirements
+    - 2026-06-11-codex-app-26609-developer-mode-cdp-and-computer-use-controls
+    - 2026-06-16-codex-computer-use-eea-uk-switzerland-and-chronicle
   accessibility:
     - 2026-05-11-codex-permissions-visibility-and-plugin-share-evolution
     - 2026-05-27-codex-goal-mode-graduated-and-remote-computer-use
+    - 2026-06-09-chatgpt-ios-1-2026-153-goal-worktree-inline-review
   governance:
     - 2026-05-07-codex-stateful-control-plane
     - 2026-05-11-codex-permissions-visibility-and-plugin-share-evolution
     - 2026-05-12-codex-pretooluse-input-rewrite
     - 2026-05-27-codex-goal-mode-graduated-and-remote-computer-use
     - 2026-05-27-codex-permission-profile-inheritance-and-managed-requirements
+    - 2026-06-11-codex-app-26609-developer-mode-cdp-and-computer-use-controls
+    - 2026-06-04-codex-cli-0137-remote-control-pairing-and-managed-config
 stance:
   use_for: "Teams who want OpenAI's read on long-running goals, plugin permissions, and visible authority state. Codex is editorially useful as a directional indicator for how a major closed-source coding-agent vendor shapes these surfaces: directional, not predictive. Treat the design choices as evidence of where one large vendor is going, not as a forecast of where the category lands."
   avoid_for: "Anyone who needs to fork or audit the agent itself: Codex is watched as platform behavior, not a CLI you own. Hook authors using PreToolUse rewrites should re-test after v0.130.x; the rewrite path now actually rewrites."
@@ -117,6 +142,29 @@ stance:
 ---
 
 # Codex
+
+## Recent activity (2026-06-04 to 2026-06-16)
+
+Computer use was the window's center of gravity. App 26.609 added
+[Developer mode for the browser](https://developers.openai.com/codex/changelog),
+giving the agent "controlled" Chrome DevTools Protocol access (network
+interception, arbitrary in-page JavaScript, the debugger, a far larger
+surface than click-and-type) plus per-app access controls on Windows; on
+June 16 Codex also
+[made computer use available in the EEA, UK, and Switzerland](https://developers.openai.com/codex/changelog)
+and previewed Chronicle, an opt-in feature that builds the agent's memory
+from recent screen context. The "controlled" CDP boundary is not specified
+in the changelog, and Chronicle is a new screen-capture surface to default
+off on confidential machines. On the CLI, 0.137.0 made remote-control
+clients
+[pair and list or revoke controller grants](https://github.com/openai/codex/releases/tag/rust-v0.137.0)
+and bound approvals to an environment identity, and 0.140.0 added a
+[`/usage` view, permanent session deletion, `/import`, and managed Bedrock encrypted auth](https://github.com/openai/codex/releases/tag/rust-v0.140.0).
+On mobile, ChatGPT iOS 1.2026.153 brought
+[`/goal`, branch and worktree selection, and inline review comments](https://developers.openai.com/codex/changelog).
+And in a market move, app 26.608 added
+[Migrate-to-Codex flows for importing Claude Code and Claude Cowork setup](https://developers.openai.com/codex/changelog),
+an on-ramp off Anthropic's coding agents.
 
 ## Operator read
 

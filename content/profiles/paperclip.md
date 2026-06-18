@@ -9,7 +9,7 @@ docs: https://docs.paperclip.ing/
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-03
+last_updated: 2026-06-16
 last_full_review: 2026-06-03
 claims:
   - id: adapter-runtime-command-spec
@@ -72,6 +72,26 @@ claims:
     finding_id: 2026-05-29-paperclip-v2026.529.0
     last_verified: 2026-06-03
     status: active
+  - id: cloud-tenant-never-instance-admin
+    finding_id: 2026-06-12-paperclip-cloud-tenant-never-instance-admin
+    last_verified: 2026-06-16
+    status: active
+  - id: per-company-jwt-signing-keys
+    finding_id: 2026-06-12-paperclip-per-company-jwt-signing-keys
+    last_verified: 2026-06-16
+    status: active
+  - id: low-trust-review-containment
+    finding_id: 2026-06-05-paperclip-low-trust-review-containment
+    last_verified: 2026-06-16
+    status: active
+  - id: auto-complete-approved-review-atomicity
+    finding_id: 2026-06-12-paperclip-auto-complete-approved-review-atomicity
+    last_verified: 2026-06-16
+    status: active
+  - id: positioning-pivot-away-from-zero-human-companies
+    finding_id: 2026-06-05-paperclip-positioning-pivot-away-from-zero-human-companies
+    last_verified: 2026-06-16
+    status: active
 posture_basis:
   capability:
     - 2026-05-07-paperclip-agent-company-control-plane
@@ -85,6 +105,10 @@ posture_basis:
     - 2026-05-07-paperclip-agent-company-control-plane
     - 2026-05-12-paperclip-secrets-vaults-and-cursor-cloud
     - 2026-05-27-paperclip-scoped-permissions-and-routine-env-secrets
+    - 2026-06-12-paperclip-cloud-tenant-never-instance-admin
+    - 2026-06-12-paperclip-per-company-jwt-signing-keys
+    - 2026-06-05-paperclip-low-trust-review-containment
+    - 2026-06-12-paperclip-auto-complete-approved-review-atomicity
 stance:
   use_for: "Teams treating agents as labor instead of as a tool: roles, issues, budgets, and review gates as first-class objects you can govern. Operations centralizing secrets across multiple agent adapters in one vault layer."
   avoid_for: "Solo developers with a single agent: Paperclip's model assumes there are several agents to coordinate. Anyone running v2026.511.0 or earlier with SSH adapters should upgrade: the prior version forwarded host env (including API keys) to remote targets."
@@ -92,6 +116,31 @@ stance:
 ---
 
 # Paperclip
+
+## Recent activity (2026-06-04 to 2026-06-16)
+
+The window's load-bearing item is a multi-tenant privilege escalation, fixed
+but not yet released: in `cloud_tenant` auth mode every tenant on a shared
+pool was silently granted instance-admin, so any paying customer was an
+administrator of the whole instance. The
+[fix](https://github.com/paperclipai/paperclip/pull/7525)
+removes the grant and purges stale admin rows at the auth boundary; a
+companion change gives each company its
+[own derived JWT signing key](https://github.com/paperclipai/paperclip/pull/5864)
+and cuts the token lifetime from 48 hours to one. Both are merged to
+Paperclip's `master` branch, not a tagged release, and the purge is
+destructive by design, so shared-pool operators should provision a separate
+non-cloud-tenant admin identity before upgrading. The release that did ship
+(v2026.609.0) added Company Artifacts and a deny-by-default
+[low-trust review containment preset](https://github.com/paperclipai/paperclip/pull/7530)
+that quarantines an agent reviewing a hostile pull request, and a later fix
+found the approval gate
+[matched negated phrasings](https://github.com/paperclipai/paperclip/pull/5839)
+("NOT APPROVED" could auto-complete an issue) and made the comment and status
+change atomic. Paperclip also
+[retired its "zero-human companies" tagline](https://github.com/paperclipai/paperclip/pull/7580)
+for "the app people use to manage AI agents for work," backed by the same
+fortnight's human-in-the-loop governance work.
 
 ## Operator read
 

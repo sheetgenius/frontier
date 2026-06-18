@@ -9,7 +9,7 @@ docs: https://google-gemini.github.io/gemini-cli/docs/
 surface_class: open_source_commits
 evidence_floor: commit_diff_reviewed
 status: active_watch
-last_updated: 2026-06-03
+last_updated: 2026-06-16
 last_full_review: 2026-06-03
 claims:
   - id: memory-reviewable-patch
@@ -84,6 +84,22 @@ claims:
     finding_id: 2026-06-03-gemini-cli-v0-45-0-release
     last_verified: 2026-06-03
     status: active
+  - id: antigravity-transition-banner-uncapped
+    finding_id: 2026-06-05-gemini-cli-antigravity-transition-banner-uncapped
+    last_verified: 2026-06-16
+    status: active
+  - id: antigravity-cli-migration-path
+    finding_id: 2026-06-09-gemini-cli-antigravity-cli-migration-path
+    last_verified: 2026-06-16
+    status: active
+  - id: flash-3-5-ga-routing-to-stable
+    finding_id: 2026-06-10-gemini-cli-flash-3-5-ga-routing-to-stable
+    last_verified: 2026-06-16
+    status: active
+  - id: skill-install-path-traversal-fix
+    finding_id: 2026-06-15-gemini-cli-skill-install-path-traversal-fix
+    last_verified: 2026-06-16
+    status: active
 posture_basis:
   capability:
     - 2026-05-07-gemini-reviewable-memory-and-trust
@@ -98,13 +114,36 @@ posture_basis:
     - 2026-05-11-gemini-subagent-protocol-and-session-portability
     - 2026-05-12-gemini-session-resume-reliability
     - 2026-05-27-gemini-auto-modes-merged-and-policy-engine-in-acp
+    - 2026-06-15-gemini-cli-skill-install-path-traversal-fix
 stance:
   use_for: "Teams that want to review what an agent remembered before it sticks; operators moving sessions between machines or running unattended in CI, where workspace trust now actually enforces in headless mode."
   avoid_for: "Production multi-agent fan-out that needs a real remote backend. The remote subagent protocol ships with tests but no observed target: assume in-process today, plan for remote later."
-  watch_next: "Where the remote subagent infrastructure actually lands (Google-hosted or operator-controlled), and how aggressively the shell-validation allowlist tightens past pattern-matching."
+  watch_next: "Where the remote subagent infrastructure actually lands (Google-hosted or operator-controlled), how aggressively the shell-validation allowlist tightens past pattern-matching, and whether the in-product Antigravity-CLI steering (banner in stable, migration tooling in preview) means Gemini CLI is entering managed decline toward a separate successor binary."
 ---
 
 # Gemini CLI
+
+## Recent activity (2026-06-04 to 2026-06-16)
+
+The window's biggest development is about Gemini CLI's own future, not a
+feature. Google began steering users toward a separate successor: an
+[Antigravity transition banner](https://github.com/google-gemini/gemini-cli/commit/f40498db6)
+was made exempt from the usual five-show display cap and cherry-picked to
+stable (v0.45.2/v0.46.0), so it now shows every session it is active, and a
+preview build added
+[in-product migration commands and a built-in skill](https://github.com/google-gemini/gemini-cli/commit/452356027)
+pointing to "Antigravity CLI," a distinct Google agent CLI with its own
+binary and installer (an unsigned `curl | bash` installer; fetch-inspect
+before running). The marketing is in stable; the migration tooling is preview
+only as of June 16. On models, v0.46.0 began
+[routing flash workloads to gemini-3.5-flash](https://github.com/google-gemini/gemini-cli/releases/tag/v0.46.0)
+behind an experiment flag and auth-type logic, so re-baseline any cost or
+eval assumptions pinned to the old flash. Security-wise, three
+[path-traversal holes in skill install, link, and uninstall](https://github.com/google-gemini/gemini-cli/commit/bca5667fc)
+(a malicious `.skill` package could write outside the skills directory or
+delete sibling folders) were fixed on main but, as of June 16, are in no
+tagged release, stable or preview; treat third-party skill installs as
+untrusted until the carrying release ships.
 
 ## Operator read
 
@@ -229,6 +268,12 @@ security advisory handling), see `sources/gemini-cli.yml#discovery`.
 
 ## What to watch next
 
+- Whether the Antigravity-CLI steering hardens into a managed succession:
+  the [transition banner](https://github.com/google-gemini/gemini-cli/commit/f40498db6)
+  is already uncapped in stable, the
+  [migration commands and skill](https://github.com/google-gemini/gemini-cli/commit/452356027)
+  are in preview, and the destination is a separate binary. Whether trust
+  and policy semantics carry over to the successor is the open question.
 - The actual remote runtime target of `RemoteSessionInvocation` once
   one ships or is named.
 - How PolicyEngine-in-ACP interacts with operators using Gemini CLI

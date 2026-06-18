@@ -10,7 +10,7 @@ changelog: https://code.claude.com/docs/en/changelog
 surface_class: closed_source_release_notes
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-03
+last_updated: 2026-06-16
 last_full_review: 2026-06-03
 claims:
   - id: ultrareview-cloud-review
@@ -47,7 +47,7 @@ claims:
     status: active
   - id: auto-mode-default-on
     finding_id: 2026-05-27-claude-code-auto-mode-default-on
-    last_verified: 2026-05-27
+    last_verified: 2026-06-16
     status: active
   - id: skill-disallowed-tools
     finding_id: 2026-05-27-claude-code-auto-mode-default-on
@@ -65,11 +65,41 @@ claims:
     finding_id: 2026-06-03-claude-code-webfetch-permission-rules
     last_verified: 2026-06-03
     status: active
+  - id: nested-subagent-spawning
+    finding_id: 2026-06-10-claude-code-nested-subagent-spawning
+    last_verified: 2026-06-16
+    status: active
+  - id: automode-classifies-subagent-spawns
+    finding_id: 2026-06-15-claude-code-automode-classifies-subagent-spawns
+    last_verified: 2026-06-16
+    status: active
+  - id: tool-param-value-permission-syntax
+    finding_id: 2026-06-15-claude-code-tool-param-value-permission-syntax
+    last_verified: 2026-06-16
+    status: active
+  - id: sendmessage-authority-hardening
+    finding_id: 2026-06-06-claude-code-sendmessage-authority-hardening
+    last_verified: 2026-06-16
+    status: active
+  - id: enforce-available-models
+    finding_id: 2026-06-12-claude-code-enforce-available-models
+    last_verified: 2026-06-16
+    status: active
+  - id: background-worker-and-otel-trust-fixes
+    finding_id: 2026-06-10-claude-code-background-worker-settings-bleed
+    last_verified: 2026-06-16
+    status: active
+  - id: fable-5-launch
+    finding_id: 2026-06-09-claude-code-fable-5-launch
+    last_verified: 2026-06-16
+    status: active
 posture_basis:
   capability:
     - 2026-05-06-claude-code-review-recap-plugin-surfaces
     - 2026-05-12-claude-code-agent-view-goal-and-governance
     - 2026-05-27-claude-code-auto-mode-default-on
+    - 2026-06-10-claude-code-nested-subagent-spawning
+    - 2026-06-09-claude-code-fable-5-launch
   accessibility:
     - 2026-05-12-claude-code-agent-view-goal-and-governance
     - 2026-05-27-claude-code-auto-mode-default-on
@@ -78,6 +108,10 @@ posture_basis:
     - 2026-05-12-claude-code-agent-view-goal-and-governance
     - 2026-05-27-claude-code-auto-mode-default-on
     - 2026-05-27-claude-code-powershell-and-worktree-sandbox-fixes
+    - 2026-06-15-claude-code-automode-classifies-subagent-spawns
+    - 2026-06-15-claude-code-tool-param-value-permission-syntax
+    - 2026-06-06-claude-code-sendmessage-authority-hardening
+    - 2026-06-12-claude-code-enforce-available-models
 stance:
   use_for: "Use Claude Code when you need to supervise several sessions from one screen, or set a completion condition on work that should keep moving after you leave the terminal."
   avoid_for: "Avoid procuring on the assumption that Console / API auth unlocks the highest-leverage cloud-control surfaces. Under API-key or token auth (`ANTHROPIC_API_KEY`, `apiKeyHelper`, `ANTHROPIC_AUTH_TOKEN`), Remote Control, `/schedule`, and claude.ai MCP connectors disable themselves; those surfaces require Claude.ai subscription identity, often with admin policy / SSO settings on top. API-key auth is not 'fully offline': it is an online API path that disables cloud-account control surfaces."
@@ -85,6 +119,33 @@ stance:
 ---
 
 # Claude Code
+
+## Recent activity (2026-06-04 to 2026-06-16)
+
+The window (2.1.163 through 2.1.178) was dominated by the recursion that
+deep delegation forces. Subagents can now
+[spawn their own subagents five levels deep](https://code.claude.com/docs/en/changelog)
+(2.1.172), and the governance work tracked it: the auto-mode classifier now
+[evaluates a spawn before it launches](https://code.claude.com/docs/en/changelog)
+(2.1.178), a new
+[`Tool(param:value)` permission syntax](https://code.claude.com/docs/en/changelog)
+(2.1.178, e.g. `Agent(model:opus)`) lets a rule match a tool's arguments for
+the first time, and relayed
+[`SendMessage` from a peer session no longer carries user authority](https://code.claude.com/docs/en/changelog)
+(2.1.166). Two trust-boundary fixes warrant an upgrade: untrusted project
+settings could set
+[OTEL client-certificate paths without a trust prompt](https://code.claude.com/docs/en/changelog)
+(2.1.169) and pre-warmed background workers could read another directory's
+`.mcp.json` approvals and trust (2.1.172). Anthropic also launched
+[Claude Fable 5](https://www.anthropic.com/news/claude-fable-5-mythos-5)
+(a Mythos-class model, access at 2.1.170) and, separately, made org model
+allowlists binding via an
+[`enforceAvailableModels`](https://code.claude.com/docs/en/changelog)
+setting plus a cluster of escape-hatch fixes (2.1.175/2.1.176) that close
+the lever an enterprise needs to decide whether a model like Fable 5 is
+reachable. Several of the sharpest items are changelog entries, not a
+separate advisory; treat the advisory-shape entries as the de-facto
+advisory surface, as before.
 
 ## Operator read
 

@@ -9,7 +9,7 @@ docs: https://hermes-agent.nousresearch.com/docs
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-03
+last_updated: 2026-06-16
 last_full_review: 2026-06-03
 claims:
   - id: curator-autonomous-skill-maintenance
@@ -80,23 +80,44 @@ claims:
     finding_id: 2026-05-29-hermes-agent-patch-release
     last_verified: 2026-06-03
     status: active
+  - id: surface-release-desktop-and-admin
+    finding_id: 2026-06-06-hermes-agent-v0.16.0-surface-release
+    last_verified: 2026-06-16
+    status: active
+  - id: fail-closed-security-wave-unreleased
+    finding_id: 2026-06-13-hermes-agent-sensitive-write-and-status-leak-hardening
+    last_verified: 2026-06-16
+    status: active
+  - id: async-background-subagents
+    finding_id: 2026-06-15-hermes-agent-async-background-subagents
+    last_verified: 2026-06-16
+    status: active
+  - id: skill-memory-poisoning-and-recursive-delete-fixes
+    finding_id: 2026-06-16-hermes-agent-skill-memory-poisoning-fixes
+    last_verified: 2026-06-16
+    status: active
 posture_basis:
   capability:
     - 2026-05-06-hermes-curator-and-service-surfaces
     - 2026-05-07-hermes-gateways-skills-and-service-operation
     - 2026-05-12-hermes-tenacity-kanban-and-security
     - 2026-05-27-hermes-v0.14.0-foundation-release
+    - 2026-06-06-hermes-agent-v0.16.0-surface-release
+    - 2026-06-15-hermes-agent-async-background-subagents
   accessibility:
     - 2026-05-06-hermes-curator-and-service-surfaces
     - 2026-05-07-hermes-gateways-skills-and-service-operation
     - 2026-05-12-hermes-tenacity-kanban-and-security
     - 2026-05-27-hermes-v0.14.0-foundation-release
+    - 2026-06-06-hermes-agent-v0.16.0-surface-release
   governance:
     - 2026-05-06-hermes-curator-and-service-surfaces
     - 2026-05-07-hermes-gateways-skills-and-service-operation
     - 2026-05-12-hermes-tenacity-kanban-and-security
     - 2026-05-12-hermes-mistralai-quarantine-response
     - 2026-05-27-hermes-v0.14.0-foundation-release
+    - 2026-06-13-hermes-agent-sensitive-write-and-status-leak-hardening
+    - 2026-06-16-hermes-agent-skill-memory-poisoning-fixes
 stance:
   use_for: "Use Hermes when worker completion needs independent verification: the Kanban gate blocks phantom card claims before a worker can move state. Also when chat or voice bridging is a primary surface, not an afterthought."
   avoid_for: "Avoid it if your log pipelines depend on unredacted agent output: v0.13.0 makes redaction default-on. Skip if you need centralized identity tooling: Hermes governs through allowlists, not SSO or role services."
@@ -104,6 +125,33 @@ stance:
 ---
 
 # Hermes Agent
+
+## Recent activity (2026-06-04 to 2026-06-16)
+
+Hermes shipped its
+[v0.16.0 "Surface Release"](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.6.5)
+(June 6): a native Electron desktop app, a browser web-admin dashboard, and
+remote-gateway connect over OAuth or username/password, collapsing
+install-to-first-message to seconds but adding a new authority boundary in
+the dashboard auth gate. The sharper story is what the release binary does
+NOT contain: a week later, a fail-closed security wave merged to main that
+fixed Hermes's own guardrail gaps, including an auto-approved `cp` into
+[`~/.ssh/authorized_keys`](https://github.com/NousResearch/hermes-agent/commit/da28d5d11)
+(the maintainer called an unpaired write-deny "theater"), an unauthenticated
+`/api/status` endpoint
+[leaking host paths and the gateway PID](https://github.com/NousResearch/hermes-agent/commit/3380563d9),
+and own-policy chat adapters that
+[failed open when enabled without an allowlist](https://github.com/NousResearch/hermes-agent/commit/fc4635458);
+if you run an exposed gateway, run main or wait for the next tag. Hermes also
+shipped fire-and-forget
+[background subagents](https://github.com/NousResearch/hermes-agent/commit/c66ecf0bc)
+whose results re-enter the conversation as a new turn, but removed the
+default 600-second subagent timeout the same week, so runaway detection now
+rests on heartbeat staleness alone. Two skill fixes closed a self-improving
+risk class: skills were
+[poisoning every connected memory store](https://github.com/NousResearch/hermes-agent/commit/c2c55c444)
+with their raw body, and an agent-triggered skill delete could
+[escape its directory and wipe the working tree](https://github.com/NousResearch/hermes-agent/commit/2dbc3bd93).
 
 ## Operator read
 

@@ -9,7 +9,7 @@ docs: https://pi.dev/docs/latest
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-03
+last_updated: 2026-06-16
 last_full_review: 2026-06-03
 claims:
   - id: typebox-extension-sdk-validation
@@ -44,11 +44,20 @@ claims:
     finding_id: 2026-06-02-pi-coding-agent-oauth-hardening
     last_verified: 2026-06-03
     status: active
+  - id: project-trust-system
+    finding_id: 2026-06-08-pi-coding-agent-project-trust-system
+    last_verified: 2026-06-16
+    status: active
+  - id: claude-fable-5-support
+    finding_id: 2026-06-09-pi-coding-agent-claude-fable-5-support
+    last_verified: 2026-06-16
+    status: active
 posture_basis:
   capability:
     - 2026-05-06-pi-thin-harness-provider-churn
     - 2026-05-07-pi-thin-harness-churn
     - 2026-05-12-pi-earendil-migration-and-harness-sdk
+    - 2026-06-09-pi-coding-agent-claude-fable-5-support
   accessibility:
     - 2026-05-06-pi-thin-harness-provider-churn
     - 2026-05-07-pi-thin-harness-churn
@@ -57,6 +66,7 @@ posture_basis:
     - 2026-05-06-pi-thin-harness-provider-churn
     - 2026-05-07-pi-thin-harness-churn
     - 2026-05-12-pi-earendil-migration-and-harness-sdk
+    - 2026-06-08-pi-coding-agent-project-trust-system
 stance:
   use_for: "Embedding agent functionality in custom UIs (Cloudflare Workers, custom CLIs); minimal-by-default operator harnesses where you control governance externally."
   avoid_for: "Operators who want built-in subagents, plan mode, approval popups, or MCP: Pi deliberately ships none of these."
@@ -64,6 +74,25 @@ stance:
 ---
 
 # Pi Coding Agent
+
+## Recent activity (2026-06-04 to 2026-06-16)
+
+The window (v0.78.1 through v0.79.5) added the first real trust boundary to
+an otherwise governance-light harness: v0.79.0 shipped a
+[project-trust system](https://github.com/earendil-works/pi/releases/tag/v0.79.0)
+that gates loading of a repo's local settings, instructions, resources, and
+packages behind an explicit, saved decision with CLI controls
+(untrusted-by-default). This is narrower than the approval dialogs, plan
+mode, and MCP Pi still refuses, but it is a notable shift from the prior
+"no governance in core" reading. Pi also adopted
+[Claude Fable 5 within days of launch](https://github.com/earendil-works/pi/releases/tag/v0.79.1)
+(v0.79.1, on Anthropic and Bedrock with xhigh effort). Two operator-relevant
+fixes have no separate finding but are worth flagging: v0.79.4 added
+[standalone binary integrity checksums (SHA256SUMS)](https://github.com/earendil-works/pi/releases/tag/v0.79.4)
+for supply-chain verification, and v0.79.3 corrected
+[context-window and prompt-cache cost accounting](https://github.com/earendil-works/pi/releases/tag/v0.79.3)
+for Codex (272k-token limits) and Anthropic 1-hour cache writes, so if you
+surface Pi cost telemetry, prior spend may have been misreported.
 
 ## Operator read
 
@@ -99,11 +128,15 @@ part of the run contract; do not treat defaults as production policy.
 
 ## What Pi refuses to own
 
-Pi's governance posture is explicit refusal: no approval dialogs, no plan
-mode, no permission popups, no MCP in the default surface. The refusal is the
-design statement: those concerns belong to the operator or a layer above the
-harness. No governance additions shipped in this window; the posture is
-stable.
+Pi's governance posture is mostly explicit refusal: no approval dialogs, no
+plan mode, no permission popups, no MCP in the default surface. The refusal
+is the design statement: those concerns belong to the operator or a layer
+above the harness. The one exception added in the 2026-06-04 to 2026-06-16
+window is a
+[project-trust gate](https://github.com/earendil-works/pi/releases/tag/v0.79.0)
+(v0.79.0) on loading local project resources, which is a safety boundary
+rather than a per-action approval surface; the broader refusal of subagents,
+plan mode, and MCP still holds.
 
 ## Harness receipts to capture
 
