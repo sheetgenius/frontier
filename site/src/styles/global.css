@@ -184,27 +184,26 @@ code {
   padding-inline: clamp(1.25rem, 4vw, 2rem);
 }
 
+/* Masthead.
+   Mobile-first: a single stacked column -- wordmark lockup, then the nav.
+   The desktop two-tier layout (wordmark name on the section-nav line, tag on the
+   utility-cluster line) is opted into at >=720px below; until then everything
+   stacks so nothing can overflow or wrap into a ragged staircase. */
 .site-header {
-  display: grid;
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
   padding-block: 1.5rem 1.35rem;
   border-bottom: 1px solid var(--color-line);
-}
-
-@media (min-width: 720px) {
-  .site-header {
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 1.5rem;
-  }
 }
 
 .masthead-wordmark {
   display: inline-flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.32rem;
   text-decoration: none;
-  white-space: nowrap;
+  /* No nowrap: the standfirst must be free to wrap on narrow phones rather than
+     run off the right edge. The name itself is short enough to hold one line. */
 }
 
 /* Wordmark in IBM Plex Mono — bitter.sh's logo voice: institutional, crisp,
@@ -216,13 +215,15 @@ code {
   letter-spacing: 0.04em;
   line-height: 1;
   color: var(--color-ink);
+  white-space: nowrap;
 }
 
 .masthead-wordmark .wordmark-tag {
   font-family: var(--font-mono);
   font-size: 0.62rem;
   font-weight: 400;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.24em;
+  line-height: 1.4;
   text-transform: uppercase;
   color: var(--color-muted);
 }
@@ -231,21 +232,25 @@ code {
   color: var(--color-bitter);
 }
 
+/* The nav is two first-class clusters: the section links and the utility
+   controls (GitHub + theme). On mobile they stack; on desktop they sit on the
+   right, the sections above the controls, mirroring the wordmark's two lines. */
 .site-nav {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1.15rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
   font-family: var(--font-mono);
   font-size: 0.71rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
-@media (min-width: 720px) {
-  .site-nav {
-    justify-content: flex-end;
-  }
+.nav-sections {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem 1.15rem;
 }
 
 .site-nav a {
@@ -277,27 +282,34 @@ code {
   color: var(--color-ink);
 }
 
-/* Visual divider before the utility controls (theme + GitHub). */
-.site-nav .nav-controls {
+/* The utility cluster: GitHub + theme, read as one tidy unit distinct from the
+   section nav. The divider only earns its keep on desktop, where the cluster
+   sits inline beside the sections; on mobile (its own row) it is hidden so a
+   stray vertical bar never floats at the start of the line. */
+.nav-controls {
   display: inline-flex;
   align-items: center;
-  gap: 0.85rem;
-  padding-left: 0.9rem;
-  margin-left: 0.1rem;
-  border-left: 1px solid var(--color-line);
+  gap: 0.95rem;
 }
 
 .nav-github {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   border-bottom: 0 !important;
 }
 
+/* Optically centre the mark on the cap height of the uppercase label rather
+   than on the full line box (which sits the icon a hair low). The mono caps run
+   ~0.72em tall; nudging the icon up by a sliver lands its centre on the cap
+   midline. The 0.9em box keeps the mark a touch smaller than the cap so it reads
+   as an icon beside the word, not a second glyph. */
 .nav-github svg {
-  width: 1rem;
-  height: 1rem;
+  width: 0.9em;
+  height: 0.9em;
   display: block;
+  flex: none;
+  transform: translateY(-0.04em);
 }
 
 .nav-github:hover {
@@ -311,6 +323,63 @@ code {
 
 .nav-github:hover .nav-github-label {
   border-bottom-color: var(--color-bitter);
+}
+
+@media (min-width: 720px) {
+  /* Desktop masthead: a two-row baseline grid. The wordmark name shares its row
+     with the section nav (both top-aligned); the wordmark tag shares the row
+     beneath with the utility cluster. The accidental "name~nav / tag~controls"
+     relationship the old align-items:end stumbled into is now made deliberate
+     and robust -- no wrapping can disturb it because each side owns its rows. */
+  .site-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    align-items: start;
+    column-gap: 1.5rem;
+    row-gap: 0.7rem;
+  }
+
+  .masthead-wordmark {
+    grid-row: 1 / span 2;
+    grid-column: 1;
+    display: grid;
+    grid-template-rows: subgrid;
+    gap: 0;
+    align-content: start;
+    min-width: 0;
+  }
+
+  .masthead-wordmark .wordmark-name {
+    align-self: center;
+  }
+
+  .masthead-wordmark .wordmark-tag {
+    align-self: center;
+  }
+
+  /* The nav stops being a flow item and places its two clusters directly into
+     the masthead's two rows, right-aligned, so the sections line up with the
+     name and the controls line up with the tag. */
+  .site-nav {
+    display: contents;
+  }
+
+  .nav-sections {
+    grid-row: 1;
+    grid-column: 2;
+    justify-content: flex-end;
+    align-self: center;
+  }
+
+  .nav-controls {
+    grid-row: 2;
+    grid-column: 2;
+    justify-self: end;
+    align-self: center;
+    padding-left: 0.95rem;
+    border-left: 1px solid var(--color-line);
+  }
 }
 
 .small-caps {
@@ -1518,10 +1587,14 @@ code {
   text-decoration: none;
 }
 
+/* Match the masthead GitHub control: size the mark in ems so it tracks the
+   label's cap height, and nudge it onto the cap midline rather than the line box. */
 .footer-open .footer-open-lead svg {
-  width: 0.95rem;
-  height: 0.95rem;
+  width: 0.9em;
+  height: 0.9em;
   display: block;
+  flex: none;
+  transform: translateY(-0.04em);
 }
 
 .footer-open a {
