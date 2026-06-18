@@ -26,7 +26,7 @@ test("health endpoint reports the deploy receipt shape", async ({ request }) => 
   expect(payload.release).toBe(payload.git_sha);
 });
 
-test("home page preserves the public launch contract", async ({ page }) => {
+test("home page renders the public shell", async ({ page }) => {
   await page.goto("/");
 
   await expect(page).toHaveTitle(/Bitter Frontier/);
@@ -34,11 +34,6 @@ test("home page preserves the public launch contract", async ({ page }) => {
   await expect(page.getByText("Field Notes For Agent Operators")).toBeVisible();
   await expect(page.getByText("Latest Issue")).toBeVisible();
   await expect(page.getByText("Provider Updates")).toBeVisible();
-
-  const checkoutButtons = page.locator('[data-checkout-pack="frontier-founding-member"]');
-  await expect(checkoutButtons.first()).toBeVisible();
-  await expect(checkoutButtons.first()).toHaveAttribute("type", "button");
-  await checkoutButtons.first().click({ trial: true });
 });
 
 test("primary index links navigate from the public shell", async ({ page }) => {
@@ -67,7 +62,6 @@ test("home page responsive screenshots are captured", async ({ page }) => {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "Coding agents are changing faster than operating policy." })).toBeVisible();
-    await expect(page.locator('[data-checkout-pack="frontier-founding-member"]').first()).toBeVisible();
     await page.screenshot({
       path: path.join(screenshotDir, `frontier-home-${width}.png`),
       fullPage: true,

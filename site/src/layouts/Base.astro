@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { GA_MEASUREMENT_ID, SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE, SITE_URL } from "../lib/site";
+import { SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE, SITE_URL } from "../lib/site";
 
 const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = SITE_IMAGE } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, SITE_URL).toString();
@@ -49,15 +49,6 @@ const jsonLd = {
     <meta name="twitter:image" content={image} />
     <title>{pageTitle}</title>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
-    <script is:inline define:vars={{ measurementId: GA_MEASUREMENT_ID }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        window.dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", measurementId);
-    </script>
     <script is:inline>
       (() => {
         const stored = localStorage.getItem("theme");
@@ -65,22 +56,6 @@ const jsonLd = {
         if (stored === "dark" || (!stored && prefersDark)) document.documentElement.classList.add("dark");
       })();
     </script>
-    <script is:inline>
-      window.addEventListener("bittercheckout:success", () => {
-        document.documentElement.dataset.checkoutStatus = "success";
-      });
-      window.addEventListener("bittercheckout:cancelled", () => {
-        document.documentElement.dataset.checkoutStatus = "cancelled";
-      });
-    </script>
-    <script
-      is:inline
-      defer
-      src="https://bittercheckout.com/widget.js"
-      data-site="frontier-bitter-sh"
-      data-success-url="/?credits=success"
-      data-cancel-url="/?credits=cancelled"
-    ></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -93,13 +68,6 @@ const jsonLd = {
         <a class="no-underline hover:underline" href="/runs/">Evidence</a>
         <a class="no-underline hover:underline" href="/about/">About</a>
         <button
-          class="site-nav-checkout"
-          type="button"
-          data-checkout-pack="frontier-founding-member"
-        >
-          Founding Member
-        </button>
-        <button
           id="theme-toggle"
           class="text-inherit bg-transparent border-0 p-0 cursor-pointer hover:underline"
           type="button"
@@ -110,12 +78,6 @@ const jsonLd = {
         </button>
       </nav>
     </header>
-    <div class="measure checkout-status checkout-status-success" role="status">
-      Founding member access recorded.
-    </div>
-    <div class="measure checkout-status checkout-status-cancelled" role="status">
-      Checkout cancelled.
-    </div>
     <main id="main">
       <slot />
     </main>

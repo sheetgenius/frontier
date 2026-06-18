@@ -151,18 +151,6 @@ code {
   text-transform: inherit;
 }
 
-.site-nav-checkout {
-  color: var(--color-bitter);
-  background: transparent;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-}
-
-.site-nav-checkout:hover {
-  text-decoration: underline;
-}
-
 .small-caps {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -201,66 +189,6 @@ code {
   color: var(--color-muted);
   font-size: clamp(1.05rem, 1.1vw, 1.2rem);
   line-height: 1.7;
-}
-
-.frontier-offer {
-  display: grid;
-  gap: 1.25rem;
-  align-items: center;
-}
-
-@media (min-width: 720px) {
-  .frontier-offer {
-    grid-template-columns: 1fr auto;
-  }
-}
-
-.frontier-offer-title {
-  margin: 0.65rem 0 0;
-  font-family: var(--font-serif);
-  font-size: clamp(1.35rem, 2.3vw, 1.8rem);
-  font-weight: 500;
-  line-height: 1.15;
-}
-
-.frontier-offer-copy {
-  margin: 0.65rem 0 0;
-  color: var(--color-muted);
-  font-size: 0.98rem;
-  line-height: 1.6;
-}
-
-.frontier-offer-button {
-  inline-size: fit-content;
-  min-height: 2.75rem;
-  padding: 0.72rem 1rem;
-  border: 1px solid var(--color-bitter);
-  border-radius: 4px;
-  background: var(--color-bitter);
-  color: var(--color-ground);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.frontier-offer-button:hover {
-  background: transparent;
-  color: var(--color-bitter);
-}
-
-.checkout-status {
-  display: none;
-  margin-top: 1rem;
-  color: var(--color-bitter);
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-}
-
-:root[data-checkout-status="success"] .checkout-status-success,
-:root[data-checkout-status="cancelled"] .checkout-status-cancelled {
-  display: block;
 }
 
 .issue-title {
