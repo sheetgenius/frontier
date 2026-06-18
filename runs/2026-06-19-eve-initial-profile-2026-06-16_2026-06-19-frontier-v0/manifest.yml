@@ -1,0 +1,31 @@
+schema_version: bitter.frontier_run.v0
+run_id: 2026-06-19-eve-initial-profile-2026-06-16_2026-06-19-frontier-v0
+mode: partial_cycle
+window:
+  start: 2026-06-16
+  end: 2026-06-19
+model: claude-opus-4-8
+sources:
+  - eve
+source_contracts:
+  - sources/eve.yml
+versions_covered: "eve@0.10.0..eve@0.11.5"
+status: complete
+outputs:
+  - runs/2026-06-19-eve-initial-profile-2026-06-16_2026-06-19-frontier-v0/findings/2026-06-17-eve-initial-public-release.md
+  - runs/2026-06-19-eve-initial-profile-2026-06-16_2026-06-19-frontier-v0/findings/2026-06-17-eve-filesystem-first-agent-model.md
+  - runs/2026-06-19-eve-initial-profile-2026-06-16_2026-06-19-frontier-v0/findings/2026-06-17-eve-durable-execution-workflow-sdk.md
+  - runs/2026-06-19-eve-initial-profile-2026-06-16_2026-06-19-frontier-v0/findings/2026-06-17-eve-hitl-approval-gates.md
+  - runs/2026-06-19-eve-initial-profile-2026-06-16_2026-06-19-frontier-v0/findings/2026-06-17-eve-multi-backend-sandbox.md
+  - runs/2026-06-19-eve-initial-profile-2026-06-16_2026-06-19-frontier-v0/findings/2026-06-17-eve-subagents-and-mcp-connections.md
+  - runs/2026-06-19-eve-initial-profile-2026-06-16_2026-06-19-frontier-v0/findings/2026-06-17-eve-ai-gateway-oidc.md
+  - runs/2026-06-19-eve-initial-profile-2026-06-16_2026-06-19-frontier-v0/findings/2026-06-17-eve-fast-beta-velocity.md
+  - content/profiles/eve.md
+note: >
+  Initial profile build for Eve (Tier 2 watchlist addition, Vercel's open-source
+  agent framework, editorially greenlit as a peer to Flue). The window
+  (2026-06-16..2026-06-19) covers the initial public release eve@0.10.0 through
+  eve@0.11.5. Findings are recorded one file per finding_id, each carrying its
+  primary-source receipt (tagged release notes, docs, or the Vercel launch
+  changelog). This cycle builds the source contract, the receipted findings, and
+  the evergreen profile.

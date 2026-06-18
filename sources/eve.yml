@@ -1,0 +1,157 @@
+schema_version: bitter.frontier_source_contract.v0
+id: eve
+label: Eve
+owner: Vercel
+homepage: https://eve.dev
+primary_surfaces:
+  - id: repo
+    kind: github_repo
+    url: https://github.com/vercel/eve
+    priority: 1
+    watch:
+      - commits
+      - releases
+      - tags
+      - pull_requests
+      - readme
+      - changelog
+      - examples
+  - id: releases
+    kind: github_releases
+    url: https://github.com/vercel/eve/releases
+    priority: 1
+    watch:
+      - versions
+      - breaking_changes
+      - new_features
+      - fixes
+    notes: >
+      Canonical receipt surface. Eve ships tagged GitHub Releases with
+      per-release notes (e.g. eve@0.10.0, eve@0.11.5). Cite the release tag
+      and its notes as the receipt for a version-level change; cite the docs
+      for architectural claims and the Vercel changelog for the launch itself.
+  - id: docs
+    kind: official_docs
+    url: https://eve.dev/docs
+    priority: 1
+    watch:
+      - framing
+      - project_layout
+      - tools
+      - skills
+      - channels
+      - schedules
+      - subagents
+      - connections
+      - sandbox
+      - hooks
+      - durable_execution
+  - id: changelog
+    kind: vendor_changelog
+    url: https://vercel.com/changelog/introducing-eve-an-open-source-agent-framework
+    priority: 2
+    watch:
+      - launch_framing
+      - positioning
+accepted_evidence:
+  - github_release
+  - tagged_release
+  - github_commit
+  - merged_pr
+  - readme_change
+  - official_docs
+  - maintainer_authored_post
+  - vendor_changelog
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+  - seo_clone_or_mirror
+change_types:
+  - capability
+  - api_surface
+  - runtime
+  - sandbox
+  - skill_system
+  - subagents
+  - connections
+  - durable_execution
+  - approval_gates
+  - deployment
+  - protocol
+  - philosophy
+  - ecosystem
+  - security
+  - breaking_change
+research_lenses:
+  - agent_harness_architecture
+  - filesystem_first_agents
+  - durable_execution
+  - human_in_the_loop_approval
+  - sandbox_design
+  - subagent_delegation
+  - mcp_connections
+  - skill_primitives
+  - session_recovery
+  - gateway_credentials
+high_signal_patterns:
+  - filesystem-first agent
+  - agent is a directory of files
+  - durable execution
+  - resumable sessions
+  - crash-safe
+  - human in the loop
+  - approval gate
+  - tool call denied
+  - sandbox backend
+  - Microsandbox
+  - Docker sandbox
+  - subagent delegation
+  - MCP connection
+  - skills
+  - schedules
+  - channels
+  - AI Gateway
+  - OIDC
+  - breaking change
+  - public beta
+operator_questions:
+  - Does Eve's approval-gate model change how teams gate tool calls before an agent proceeds?
+  - Which primitives (sandbox backends, durable sessions, subagents, connections, approval gates) are stabilizing versus still moving on a fast beta?
+  - Does the filesystem-first "agent is a directory of files" model make agent definitions more portable, reviewable, or version-controllable than code-first frameworks?
+  - How does durable, resumable execution on the Workflow SDK change what operators can promise about crash recovery and human pauses mid-run?
+  - Is the project stable enough to treat individual primitives as architectural precedent, or watch-only while the beta churns?
+default_actionability:
+  release: observe
+  docs_change: observe
+  api_change: study
+  breaking_change: note
+  approval_gate_change: study
+  sandbox_change: study
+  philosophy_change: study
+discovery:
+  last_verified: 2026-06-19
+  verified_by: harvest_run
+  confidence: medium
+  open_questions:
+    - How stable is the public API across the rapid 0.10..0.11 release cadence (eight releases in the first days)?
+    - Which of the three sandbox backends (Vercel, Microsandbox, Docker) are first-class versus best-effort in practice?
+    - What does the human-in-the-loop approval surface look like end to end (who approves, where the pause is recorded, what an operator sees)?
+    - Does the Workflow SDK dependency constrain where Eve agents can be hosted and recovered?
+notes: >
+  Watch Eve as the filesystem-first, durable-execution agent framework on the
+  authority axis. Its model, "an agent is a directory of files" (instructions,
+  tools, skills, channels, schedules, subagents, connections, sandbox, hooks),
+  states a portable, reviewable definition of an agent in public from a major
+  vendor. Two lenses make it frontier-relevant: durable, resumable, crash-safe
+  execution built on the open-source Workflow SDK, and human-in-the-loop
+  approval gates that let an operator approve or deny a tool call before the
+  agent proceeds. Treat it as category evidence and an authority-gate reference,
+  not stable infrastructure: it is a fast-moving public beta under Vercel beta
+  terms, with breaking changes arriving on minor versions. It is a general
+  agent framework, watched as a harness on the coding and agent frontier, not a
+  coding-only tool.

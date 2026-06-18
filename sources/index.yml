@@ -61,6 +61,12 @@ sources:
     tier: 2
     status: active
     cadence: weekly
+  - id: eve
+    contract: sources/eve.yml
+    notes: sources/eve.notes.md
+    tier: 2
+    status: active
+    cadence: weekly
 default_window:
   live: previous_24h
   weekly_digest: previous_calendar_week

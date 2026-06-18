@@ -8,6 +8,7 @@ export const SOURCE_LABELS: Record<string, string> = {
   "agent-zero": "Agent Zero",
   "claude-code": "Claude Code",
   "codex": "Codex",
+  "eve": "Eve",
   "flue": "Flue",
   "gemini-cli": "Gemini CLI",
   "hermes-agent": "Hermes Agent",
