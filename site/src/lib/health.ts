@@ -25,10 +25,7 @@ export function healthResponse() {
 
 function releaseSha() {
   const sha =
-    process.env.BITTERFRONTIER_RELEASE_SHA ||
-    process.env.RADICCHIO_RELEASE_SHA ||
-    process.env.BITTERGRID_RELEASE_SHA ||
-    process.env.BITTER_RELEASE ||
+    process.env.RELEASE_SHA ||
     process.env.GIT_SHA ||
     process.env.VERSION ||
     currentGitSha() ||
