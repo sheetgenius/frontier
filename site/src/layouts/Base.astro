@@ -1,8 +1,13 @@
 ---
 import "../styles/global.css";
-import { SITE_DESCRIPTION, SITE_IMAGE, SITE_TITLE, SITE_URL } from "../lib/site";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../lib/site";
+import { ogImageForPath } from "../lib/og";
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = SITE_IMAGE } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, image } = Astro.props;
+// Per-page OG card (build-time, under /og/) when one exists; otherwise the
+// site-wide static fallback (/og.png). An explicit non-default `image` prop
+// still wins, so callers can override.
+const ogImage = image ?? ogImageForPath(Astro.url.pathname);
 const canonicalUrl = new URL(Astro.url.pathname, SITE_URL).toString();
 const pageTitle = title === SITE_TITLE ? title : `${title}`;
 const path = Astro.url.pathname;
@@ -15,7 +20,7 @@ const jsonLd = {
   name: pageTitle,
   description,
   url: canonicalUrl,
-  image,
+  image: ogImage,
   publisher: {
     "@type": "Organization",
     name: "Bitter",
@@ -42,11 +47,11 @@ const jsonLd = {
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={ogImage} />
     <title>{pageTitle}</title>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>
