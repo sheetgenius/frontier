@@ -6,6 +6,7 @@ owner: Earendil Works (formerly badlogic / Mario Zechner)
 source_contract: sources/pi-coding-agent.yml
 homepage: https://pi.dev/
 docs: https://pi.dev/docs/latest
+repo: https://github.com/earendil-works/pi
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch

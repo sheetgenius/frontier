@@ -6,6 +6,7 @@ owner: OpenClaw
 source_contract: sources/openclaw.yml
 homepage: https://openclaw.ai
 docs: https://docs.openclaw.ai/
+repo: https://github.com/openclaw/openclaw
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch

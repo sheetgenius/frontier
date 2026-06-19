@@ -6,6 +6,7 @@ owner: withastro
 source_contract: sources/flue.yml
 homepage: https://www.flueframework.com
 docs: https://github.com/withastro/flue/blob/main/README.md
+repo: https://github.com/withastro/flue
 surface_class: open_source_commits
 evidence_floor: commit
 status: active_watch

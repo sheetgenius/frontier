@@ -6,6 +6,7 @@ owner: OpenHands
 source_contract: sources/openhands.yml
 homepage: https://openhands.dev/
 docs: https://docs.openhands.dev/
+repo: https://github.com/OpenHands/OpenHands
 surface_class: mixed_official_docs
 evidence_floor: release_note
 status: active_watch

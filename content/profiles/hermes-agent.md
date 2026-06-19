@@ -6,6 +6,7 @@ owner: Nous Research
 source_contract: sources/hermes-agent.yml
 homepage: https://hermes-agent.nousresearch.com/docs
 docs: https://hermes-agent.nousresearch.com/docs
+repo: https://github.com/NousResearch/hermes-agent
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch

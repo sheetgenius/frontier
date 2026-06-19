@@ -6,6 +6,7 @@ owner: agent0ai
 source_contract: sources/agent-zero.yml
 homepage: https://www.agent-zero.ai/
 docs: https://www.agent-zero.ai/p/docs/
+repo: https://github.com/agent0ai/agent-zero
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch

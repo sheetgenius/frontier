@@ -20,6 +20,13 @@ const inboundAll = inboundCompositionForSource(profile.slug);
 const inboundShown = inboundAll.slice(0, INBOUND_CAP);
 const inboundOverflow = inboundAll.length > INBOUND_CAP;
 
+const officialLinks = [
+  profile.data.homepage && { label: "Homepage", href: profile.data.homepage },
+  profile.data.repo && { label: "Repository", href: profile.data.repo },
+  profile.data.docs && { label: "Docs", href: profile.data.docs },
+  profile.data.changelog && { label: "Changelog", href: profile.data.changelog },
+].filter(Boolean) as { label: string; href: string }[];
+
 function humanizeId(id: string): string {
   return id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
@@ -43,6 +50,14 @@ function findingUrlFor(findingId: string | undefined | null): string | undefined
       evidence floor: {profile.data.evidence_floor?.replaceAll("_", " ")} ·
       updated {formatDate(profile.data.last_updated)}
     </p>
+
+    {officialLinks.length > 0 && (
+      <nav class="profile-links" aria-label="Official links">
+        {officialLinks.map((l) => (
+          <a href={l.href}>{l.label}</a>
+        ))}
+      </nav>
+    )}
 
     <ProfileStance stance={profile.data.stance} asOf={formatDate(profile.data.last_updated)} />
 
@@ -137,9 +152,6 @@ function findingUrlFor(findingId: string | undefined | null): string | undefined
 
     <p class="mt-8 rule pt-5 font-mono text-sm text-muted">
       Source contract: <a href={`/sources/`}>{profile.data.source_contract}</a>
-      {profile.data.homepage && (
-        <> · <a href={profile.data.homepage}>{profile.data.homepage}</a></>
-      )}
     </p>
     <p class="mt-3 font-mono text-sm text-muted">
       Profiles are maintained by the <a class="hover:underline" href="https://bitter.sh">Bitter</a> research loop.

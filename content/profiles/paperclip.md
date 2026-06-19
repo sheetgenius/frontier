@@ -6,6 +6,7 @@ owner: Paperclip
 source_contract: sources/paperclip.yml
 homepage: https://paperclip.ing/
 docs: https://docs.paperclip.ing/
+repo: https://github.com/paperclipai/paperclip
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch

@@ -6,6 +6,7 @@ owner: Google
 source_contract: sources/gemini-cli.yml
 homepage: https://github.com/google-gemini/gemini-cli
 docs: https://google-gemini.github.io/gemini-cli/docs/
+repo: https://github.com/google-gemini/gemini-cli
 surface_class: open_source_commits
 evidence_floor: commit_diff_reviewed
 status: active_watch

@@ -273,13 +273,15 @@ code {
   color: var(--color-muted);
   background: transparent;
   border: 0;
-  padding: 0;
+  border-bottom: 1px solid transparent;
+  padding: 0 0 0.12rem;
   cursor: pointer;
-  transition: color 0.12s ease;
+  transition: color 0.12s ease, border-color 0.12s ease;
 }
 
 .site-nav button:hover {
   color: var(--color-ink);
+  border-bottom-color: var(--color-bitter);
 }
 
 /* The utility cluster: GitHub + theme, read as one tidy unit distinct from the
@@ -322,6 +324,31 @@ code {
 }
 
 .nav-github:hover .nav-github-label {
+  border-bottom-color: var(--color-bitter);
+}
+
+/* Official links row on a profile: repo / homepage / docs / changelog, in the
+   expected spot under the title. Mono caps, accent, hover underline. */
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.1rem;
+  margin-top: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.71rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.profile-links a {
+  color: var(--color-bitter);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.1rem;
+  transition: border-color 0.12s ease;
+}
+
+.profile-links a:hover {
   border-bottom-color: var(--color-bitter);
 }
 
