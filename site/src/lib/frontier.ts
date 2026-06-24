@@ -576,6 +576,42 @@ export type RunArtifact = {
   internalUrl?: string;
 };
 
+export type SocialReceiptCard = {
+  id: string;
+  title: string;
+  kind: string;
+  status: string;
+  date: string;
+  datePrecision?: string;
+  dateNote?: string;
+  sourceIds: string[];
+  authors: string[];
+  sourceUrls: string[];
+  displayText?: string;
+  excerpt?: string;
+  summary: string;
+  whyItMatters?: string;
+  verificationNeeded?: string;
+  confidence?: string;
+  caveats?: string;
+  tags: string[];
+};
+
+export type RunEditorialBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "heading"; text: string }
+  | { type: "pullquote"; text: string; attribution?: string }
+  | { type: "social_embed"; cardId: string; caption?: string };
+
+export type RunEditorial = {
+  title: string;
+  dek?: string;
+  eyebrow?: string;
+  byline?: string;
+  publishedAt?: string;
+  blocks: RunEditorialBlock[];
+};
+
 export function runArtifacts(runId: string): RunArtifact[] {
   const runDir = repoPath("runs", runId);
   if (!fs.existsSync(runDir)) return [];
@@ -586,6 +622,14 @@ export function runArtifacts(runId: string): RunArtifact[] {
       kind: "manifest",
       label: "Run manifest",
       repoPath: rel(manifestPath),
+    });
+  }
+  const editorialPath = path.join(runDir, "editorial.yml");
+  if (fs.existsSync(editorialPath)) {
+    artifacts.push({
+      kind: "editorial",
+      label: "Public editorial",
+      repoPath: rel(editorialPath),
     });
   }
   const findingsDir = path.join(runDir, "findings");
@@ -618,6 +662,34 @@ export function runArtifacts(runId: string): RunArtifact[] {
       });
     }
   }
+  const socialCardsDir = path.join(runDir, "social-cards");
+  if (fs.existsSync(socialCardsDir)) {
+    for (const file of fs.readdirSync(socialCardsDir).filter((f) => f.endsWith(".yml") || f.endsWith(".yaml")).sort()) {
+      artifacts.push({
+        kind: "social cards",
+        label: `Static social cards — ${file.replace(/\.(ya?ml)$/, "")}`,
+        repoPath: rel(path.join(socialCardsDir, file)),
+      });
+    }
+  }
+  const verifyDir = path.join(runDir, "verify");
+  if (fs.existsSync(verifyDir)) {
+    for (const file of fs.readdirSync(verifyDir).filter((f) => f.endsWith(".md")).sort()) {
+      artifacts.push({
+        kind: "verification",
+        label: `Verification notes — ${file.replace(/\.md$/, "")}`,
+        repoPath: rel(path.join(verifyDir, file)),
+      });
+    }
+  }
+  const journalPath = path.join(runDir, "research-journal.md");
+  if (fs.existsSync(journalPath)) {
+    artifacts.push({
+      kind: "journal",
+      label: "R&D journal",
+      repoPath: rel(journalPath),
+    });
+  }
   const qaPath = path.join(runDir, "qa.md");
   if (fs.existsSync(qaPath)) {
     artifacts.push({
@@ -635,6 +707,86 @@ export function runArtifacts(runId: string): RunArtifact[] {
     });
   }
   return artifacts;
+}
+
+export function runEditorial(runId: string): RunEditorial | undefined {
+  const editorialPath = repoPath("runs", runId, "editorial.yml");
+  if (!fs.existsSync(editorialPath)) return undefined;
+  const yaml = readYaml(editorialPath);
+  const blocks = Array.isArray(yaml?.blocks)
+    ? yaml.blocks.map((block: any) => {
+        const type = String(block?.type ?? "");
+        if (type === "social_embed") {
+          return {
+            type,
+            cardId: String(block.card_id ?? block.cardId ?? ""),
+            caption: block.caption ? String(block.caption) : undefined,
+          };
+        }
+        if (type === "pullquote") {
+          return {
+            type,
+            text: String(block.text ?? ""),
+            attribution: block.attribution ? String(block.attribution) : undefined,
+          };
+        }
+        return {
+          type: type === "heading" ? "heading" : "paragraph",
+          text: String(block?.text ?? ""),
+        };
+      }).filter((block: RunEditorialBlock) => {
+        if (block.type === "social_embed") return block.cardId.length > 0;
+        return block.text.length > 0;
+      })
+    : [];
+  if (!yaml?.title || blocks.length === 0) return undefined;
+  return {
+    title: String(yaml.title),
+    dek: yaml.dek ? String(yaml.dek) : undefined,
+    eyebrow: yaml.eyebrow ? String(yaml.eyebrow) : undefined,
+    byline: yaml.byline ? String(yaml.byline) : undefined,
+    publishedAt: yaml.published_at ? formatDate(yaml.published_at) : undefined,
+    blocks,
+  };
+}
+
+function normalizeStringArray(value: unknown): string[] {
+  if (Array.isArray(value)) return value.map((item) => String(item)).filter(Boolean);
+  if (typeof value === "string" && value.length > 0) return [value];
+  return [];
+}
+
+export function listRunSocialCards(runId: string): SocialReceiptCard[] {
+  const dir = repoPath("runs", runId, "social-cards");
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((file) => file.endsWith(".yml") || file.endsWith(".yaml"))
+    .sort()
+    .flatMap((file) => {
+      const yaml = readYaml(path.join(dir, file));
+      return (yaml?.cards ?? []).map((card: any) => ({
+        id: String(card.id ?? ""),
+        title: String(card.title ?? card.id ?? "Untitled social receipt"),
+        kind: String(card.kind ?? "social_receipt"),
+        status: String(card.status ?? "candidate"),
+        date: formatDate(card.date ?? card.event_date ?? card.observed_at),
+        datePrecision: card.date_precision ? String(card.date_precision) : undefined,
+        dateNote: card.date_note ? String(card.date_note) : undefined,
+        sourceIds: normalizeStringArray(card.source_ids ?? card.sources ?? card.source),
+        authors: normalizeStringArray(card.authors ?? card.author),
+        sourceUrls: normalizeStringArray(card.source_urls ?? card.source_url ?? card.primary_url),
+        displayText: card.display_text ? String(card.display_text) : undefined,
+        excerpt: card.excerpt ? String(card.excerpt) : undefined,
+        summary: String(card.summary ?? ""),
+        whyItMatters: card.why_it_matters ? String(card.why_it_matters) : undefined,
+        verificationNeeded: card.verification_needed ? String(card.verification_needed) : undefined,
+        confidence: card.confidence ? String(card.confidence) : undefined,
+        caveats: card.caveats ? String(card.caveats) : undefined,
+        tags: normalizeStringArray(card.tags),
+      })).filter((card: SocialReceiptCard) => card.id && card.sourceUrls.length > 0);
+    })
+    .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
 }
 
 export function runManifest(runId: string): any | undefined {

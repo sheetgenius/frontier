@@ -1,0 +1,4 @@
+interface:
+  display_name: "Humanizer"
+  short_description: "Make editorial prose sound clear and human"
+  default_prompt: "Use $humanizer to revise this draft into clear, human editorial prose."

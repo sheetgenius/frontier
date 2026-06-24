@@ -1,11 +1,14 @@
 ---
 import Base from "../../layouts/Base.astro";
+import RunEditorial from "../../components/RunEditorial.astro";
+import SocialReceiptCards from "../../components/SocialReceiptCards.astro";
 import SourceTrail from "../../components/SourceTrail.astro";
 import {
-  formatDate,
   getSignal,
+  listRunSocialCards,
   listRuns,
   runArtifacts,
+  runEditorial,
   runManifest,
   signalIdsInRun,
   sourceLabel,
@@ -26,9 +29,83 @@ const acceptedSignalIds = signalIdsInRun(run.id);
 const acceptedSignals = acceptedSignalIds.map((id) => getSignal(id)).filter(Boolean);
 const sourceContractPaths: string[] = manifest?.source_contracts ?? [];
 const manifestSources: string[] = manifest?.sources ?? [];
+const socialCards = listRunSocialCards(run.id);
+const editorial = runEditorial(run.id);
 ---
 
 <Base title={`${run.id} · Bitter Frontier`}>
+  {editorial ? (
+    <>
+      <RunEditorial editorial={editorial} cards={socialCards} />
+
+      <section class="measure editorial-source-drawer pb-10">
+        <details>
+          <summary>Source trail and public artifacts</summary>
+          <div class="editorial-source-drawer-body">
+            <p>
+              The essay above is the public artifact. The files below keep the evidence reproducible without making the reading experience depend on X embeds or internal research notes.
+            </p>
+
+            {manifestSources.length > 0 && (
+              <div>
+                <h2>Projects covered</h2>
+                <div class="editorial-source-links">
+                  {manifestSources.map((src) => (
+                    <a href={`/profiles/${src}/`}>{sourceLabel(src)}</a>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {sourceContractPaths.length > 0 && (
+              <div>
+                <h2>Source contracts</h2>
+                <ul class="editorial-evidence-list">
+                  {sourceContractPaths.map((p) => (
+                    <li><a href={`${GH_BLOB_BASE}/${p}`}>{p}</a></li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {acceptedSignals.length > 0 && (
+              <div>
+                <h2>Accepted signals from this run</h2>
+                <ol class="editorial-evidence-list">
+                  {acceptedSignals.map((signal: any) => (
+                    <li>
+                      <a href={`/signals/${signal.id}/`}>{signal.title}</a>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+
+            {artifacts.length > 0 && (
+              <div>
+                <h2>Public artifact files</h2>
+                <ul class="run-artifacts">
+                  {artifacts.map((artifact) => (
+                    <li>
+                      <div class="run-artifact-kind small-caps text-muted">{artifact.kind}</div>
+                      <div class="run-artifact-body">
+                        {artifact.internalUrl ? (
+                          <a href={artifact.internalUrl} class="run-artifact-label hover:underline">{artifact.label}</a>
+                        ) : (
+                          <span class="run-artifact-label">{artifact.label}</span>
+                        )}
+                        <a href={`${GH_BLOB_BASE}/${artifact.repoPath}`} class="run-artifact-path font-mono text-xs text-muted hover:underline">{artifact.repoPath}</a>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </details>
+      </section>
+    </>
+  ) : (
   <article class="measure py-10">
     <p class="small-caps text-muted">Research Version</p>
     <h1 class="issue-title">{run.title}</h1>
@@ -110,6 +187,8 @@ const manifestSources: string[] = manifest?.sources ?? [];
       </div>
     )}
 
+    <SocialReceiptCards cards={socialCards} />
+
     {artifacts.length > 0 && (
       <div class="rule mt-7 pt-6">
         <p class="small-caps text-muted">Artifact contents</p>
@@ -142,4 +221,5 @@ const manifestSources: string[] = manifest?.sources ?? [];
       </section>
     )}
   </article>
+  )}
 </Base>

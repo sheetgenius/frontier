@@ -1,0 +1,52 @@
+---
+import { sourceLabel, type SocialReceiptCard } from "../lib/frontier";
+
+const { card, caption } = Astro.props as { card: SocialReceiptCard; caption?: string };
+
+const kindLabel = card.kind.replace(/_/g, " ");
+const primaryUrl = card.sourceUrls[0];
+const supportingUrls = card.sourceUrls.slice(1);
+const sourceNames = card.sourceIds.map((sourceId) => sourceLabel(sourceId)).join(" / ");
+const authors = card.authors.join(" / ");
+const evidenceLabel = card.status === "verified_secondary"
+  ? "cross-checked"
+  : card.status === "needs_primary_crosscheck"
+    ? "needs source check"
+    : card.status.replace(/_/g, " ");
+---
+
+<figure class={`editorial-social-embed editorial-social-embed-${card.kind}`}>
+  <div class="editorial-social-shell">
+    <div class="editorial-social-topline">
+      <span>{authors || sourceNames || "Public post"}</span>
+      <span>{card.date}</span>
+    </div>
+    <div class="editorial-social-body">
+      <p class="editorial-social-label">{kindLabel}</p>
+      <p class="editorial-social-text">{card.displayText ?? card.excerpt ?? card.summary}</p>
+    </div>
+    <figcaption>
+      <span>{caption ?? card.title}</span>
+      <a href={primaryUrl}>Open source post</a>
+    </figcaption>
+    <details class="editorial-social-evidence">
+      <summary>Evidence note</summary>
+      <div>
+        <p><strong>{evidenceLabel}</strong>{card.confidence ? `: ${card.confidence}` : ""}</p>
+        {card.caveats && <p>{card.caveats}</p>}
+        {card.dateNote && <p>{card.dateNote}</p>}
+        {supportingUrls.length > 0 && (
+          <p>
+            Supporting links:{" "}
+            {supportingUrls.map((url, index) => (
+              <>
+                <a href={url}>{index + 1}</a>
+                {index < supportingUrls.length - 1 ? ", " : ""}
+              </>
+            ))}
+          </p>
+        )}
+      </div>
+    </details>
+  </div>
+</figure>

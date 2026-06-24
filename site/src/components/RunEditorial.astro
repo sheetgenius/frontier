@@ -1,0 +1,45 @@
+---
+import type { RunEditorial, SocialReceiptCard } from "../lib/frontier";
+import SocialPostEmbed from "./SocialPostEmbed.astro";
+
+const { editorial, cards } = Astro.props as {
+  editorial: RunEditorial;
+  cards: SocialReceiptCard[];
+};
+
+const cardsById = new Map(cards.map((card) => [card.id, card]));
+---
+
+<article class="editorial-article">
+  <header class="editorial-header">
+    <p class="small-caps editorial-eyebrow">{editorial.eyebrow ?? "Bitter Frontier dispatch"}</p>
+    <h1 class="editorial-title">{editorial.title}</h1>
+    {editorial.dek && <p class="editorial-dek">{editorial.dek}</p>}
+    {(editorial.byline || editorial.publishedAt) && (
+      <p class="editorial-meta">
+        {editorial.byline && <span>{editorial.byline}</span>}
+        {editorial.byline && editorial.publishedAt && <span aria-hidden="true"> / </span>}
+        {editorial.publishedAt && <time datetime={editorial.publishedAt}>{editorial.publishedAt}</time>}
+      </p>
+    )}
+  </header>
+
+  <div class="editorial-body">
+    {editorial.blocks.map((block) => {
+      if (block.type === "heading") return <h2>{block.text}</h2>;
+      if (block.type === "pullquote") {
+        return (
+          <blockquote class="editorial-pullquote">
+            <p>{block.text}</p>
+            {block.attribution && <cite>{block.attribution}</cite>}
+          </blockquote>
+        );
+      }
+      if (block.type === "social_embed") {
+        const card = cardsById.get(block.cardId);
+        return card ? <SocialPostEmbed card={card} caption={block.caption} /> : null;
+      }
+      return <p>{block.text}</p>;
+    })}
+  </div>
+</article>

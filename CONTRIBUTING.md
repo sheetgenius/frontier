@@ -61,6 +61,17 @@ window-anchoring; the maintainers decide whether it rises to a signal. See the
 A coverage gap must carry the same receipt and in-window date as a correction,
 plus which artifact should have caught it (which window's digest, which profile).
 
+For public X/social discovery that may become a coverage gap later, use the
+[X Social Harvest Workflow](./docs/x-social-harvest-workflow.md). Social harvests
+are candidate inputs only; product/version claims still need source-contract
+cross-checks before promotion.
+
+For deeper public-conversation work, including static tweet-like receipt cards
+and ecosystem-drama cataloging, use the
+[Deep Social Research Loop](./docs/deep-social-research-loop.md). The loop keeps
+cards repo-local and treats social posts as context until source contracts
+support promotion.
+
 ### 3. New-source proposals
 
 A proposal to add a watchlist source contract (a new provider) or an

@@ -1,0 +1,175 @@
+schema_version: bitter.frontier_run_editorial.v0
+title: The Agent Fight Is About Trust Now
+dek: A noisy week on X made one thing clearer. The fight is no longer just about better code edits. It's about whether these tools are becoming infrastructure that teams can actually trust.
+eyebrow: Social dispatch
+byline: Bitter Frontier
+published_at: 2026-06-24
+blocks:
+  - type: paragraph
+    text: >
+      Here's what jumped out this week: the loudest posts were not really about
+      coding. They were about trust. Who gets to remember your project? Who
+      controls the place where the agent runs? Who can spend tokens on your
+      behalf? Who do you blame when the agent goes sideways?
+
+  - type: paragraph
+    text: >
+      That's a different conversation from "which agent writes the best patch?"
+      A few months ago, it still made sense to talk about these tools like
+      autocomplete with ambition. Now they look more like small operating
+      systems for work. Once you see that, the launch posts, release notes, and
+      drama all start to rhyme.
+
+  - type: pullquote
+    text: The question is no longer just "can it write code?" It is "would you let it keep working after you close the laptop?"
+    attribution: The shift
+
+  - type: heading
+    text: Memory Is Becoming the Product
+
+  - type: paragraph
+    text: >
+      Hermes is the easiest place to see it. The /learn pitch is that the agent
+      can turn code, docs, and prior sessions into reusable skills. If that
+      works well, it is not just a shortcut. It means yesterday's work can
+      make tomorrow's agent better. The agent is no longer only reading context.
+      It is trying to remember how the team works.
+
+  - type: social_embed
+    card_id: hermes-learn-official-post
+    caption: "Hermes is selling memory as a front-door feature: past work becomes something the agent can reuse, not just context it consumes."
+
+  - type: paragraph
+    text: >
+      That's exciting, but it also opens the obvious questions. What exactly is
+      being saved? Can the skill travel to another machine or another team? Does
+      it avoid secrets? What happens when it learns the wrong lesson? The launch
+      post is interesting because it points straight at those questions.
+
+  - type: heading
+    text: Distribution Is Becoming the Product
+
+  - type: paragraph
+    text: >
+      Gemini CLI and OpenHands show the second fight: where the agent lives.
+      Gemini's Antigravity transition can sound like branding, but the concrete
+      part is more practical. There are migration commands, docs, and transition
+      banners around v0.47.0. That matters because the channel decides how users
+      install the tool, how they move, what defaults they inherit, and who gets
+      to change the terms later.
+
+  - type: social_embed
+    card_id: gemini-antigravity-transition-post
+    caption: The interesting story is not a slogan change; it is the migration path around a new distribution channel.
+
+  - type: paragraph
+    text: >
+      OpenHands is coming at the same problem from the other side. Its ACP pitch
+      is basically: your agent should not be trapped in one client. The code and
+      release notes back up part of that story, especially UI, presets, and
+      routing work. They don't yet prove every product area named in the post.
+      That is fine. The important thing is that portability is becoming part of
+      what these products are selling, not an afterthought.
+
+  - type: social_embed
+    card_id: openhands-acp-official-post
+    caption: The interop pitch matters because portability is a promise users can actually test.
+
+  - type: heading
+    text: The Boring Controls Are Becoming the Story
+
+  - type: paragraph
+    text: >
+      The third pattern is less flashy and probably more important. Codex
+      chatter around token budgets and Claude Code chatter around sandbox
+      credentials, resume repair, and remote MCP timeouts all point at the same
+      thing: once an agent runs for more than a few minutes, controls become the
+      product. Budgets, resumability, credential boundaries, and timeout behavior
+      aren't plumbing. They decide whether you can let the agent work without
+      babysitting it.
+
+  - type: social_embed
+    card_id: codex-token-budget-release-post
+    caption: Token budgets are not a cosmetic feature. They give the agent a meter and a stopping point.
+
+  - type: social_embed
+    card_id: claude-code-community-2187-post
+    caption: A community changelog is useful when it sends readers back to the official notes.
+
+  - type: paragraph
+    text: >
+      This is where coding agents start to look more like security tooling than
+      developer toys. The question is not only "can it do the task?" The question
+      is "can we see what it did, stop it, and recover from it?" The least
+      flashy posts from the week may be the most important because they mark the
+      move from demos to operations.
+
+  - type: heading
+    text: Drama Shows Where Trust Is Weak
+
+  - type: paragraph
+    text: >
+      The OpenClaw and Hermes drama is tempting because drama is easy to follow.
+      But the useful part is not who got the best line off. The useful part is
+      what people chose to fight about: funding, non-profit posture, agendas,
+      and who deserves trust. That tells you project leadership is not a side
+      issue for agent tools. It is part of the product.
+
+  - type: social_embed
+    card_id: openclaw-hermes-public-exchange
+    caption: The drama is useful because it shows where people are nervous about trust. It does not prove motives.
+
+  - type: paragraph
+    text: >
+      The code keeps that from turning into a cheap dunk. OpenClaw's
+      recent release work shows active fixes around routing, channel/session
+      state, and trusted-policy hook composition. That doesn't erase user pain
+      or reputational tension, but it does stop the lazy version of the story:
+      "project is broken, rivals are right." The better read is messier:
+      reliability problems and active repair are happening at the same time.
+
+  - type: heading
+    text: Ambition Matters Before It Ships
+
+  - type: paragraph
+    text: >
+      Paperclip's Maximizer-mode post is different. It is not something you can
+      point to as shipped in the public releases from this window. But it
+      is still worth paying attention to because it says the quiet part out
+      loud. The market doesn't want to stop at "an agent helps me code." It
+      wants to get to "an agent can organize other agents toward an outcome."
+
+  - type: social_embed
+    card_id: paperclip-maximizer-maintainer-post
+    caption: "The point is direction, not shipment: Paperclip is sketching a future of delegated agents managing other agents."
+
+  - type: paragraph
+    text: >
+      That's the thread tying the week together. Hermes wants memory to
+      compound. Gemini and OpenHands are fighting over channels and portability.
+      Codex and Claude Code are making the boring controls more explicit.
+      OpenClaw and Hermes show that leadership and reputation travel through the
+      same channels as releases. Paperclip points toward agents delegating to
+      other agents. These are not separate anecdotes. They are the outline of a
+      stack.
+
+  - type: heading
+    text: How to Read the Noise
+
+  - type: paragraph
+    text: >
+      So the simple advice is: read the noise, but don't be ruled by it. Don't
+      migrate because a project account announced a future. Don't dismiss a
+      framework because a rival found a sore spot. Don't accept an interop
+      promise until you can see exactly what works. But do notice what the
+      conversation reveals before the release note does: where maintainers want
+      to move authority, where users feel trapped, where rivals attack trust,
+      and where boring controls start to matter more than benchmark theatrics.
+
+  - type: paragraph
+    text: >
+      The agent frontier is becoming less about isolated intelligence and more
+      about permission. Who remembers? Who routes? Who pays? Who can stop the
+      work? Who can prove what happened? X will not answer those questions for
+      you. It is just a good place to notice which questions the market can no
+      longer avoid.
