@@ -23,7 +23,7 @@ const evidenceLabel = card.status === "verified_secondary"
     </div>
     <div class="editorial-social-body">
       <p class="editorial-social-label">{kindLabel}</p>
-      <p class="editorial-social-text">{card.excerpt ?? card.summary}</p>
+      <p class="editorial-social-text">{card.displayText ?? card.excerpt ?? card.summary}</p>
     </div>
     <figcaption>
       <span>{caption ?? card.title}</span>

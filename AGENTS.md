@@ -16,6 +16,11 @@ House style: ASCII punctuation only, no em dashes; operator-first, skeptical, no
 hype. Cite the primary source on the claim-bearing words. Every claim carries a
 receipt or it does not ship.
 
+For reader-facing prose, use the repo-local [humanizer skill](./skills/humanizer/SKILL.md):
+the public copy should sound like a sharp person explaining the idea clearly,
+with traceability and research-process details pushed into quieter source
+layers.
+
 Validate before you push:
 
     npm --prefix site run build            # regenerates pages + internal link check

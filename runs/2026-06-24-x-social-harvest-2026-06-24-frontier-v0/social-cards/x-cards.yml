@@ -12,6 +12,7 @@ cards:
     authors: ["@NousResearch"]
     source_urls:
       - https://x.com/NousResearch/status/2069526242236182697
+    display_text: "Hermes is pitching /learn as a way for the agent to turn past code, docs, and sessions into reusable skills."
     summary: "The official NousResearch account described Hermes Agent's /learn command as a way to turn directories of code, docs, and sessions into reusable skills."
     why_it_matters: "The post points at the same frontier pressure this journal keeps seeing: agent systems are trying to turn past work into reusable operating memory."
     verification_needed: "Check Hermes docs, release notes, or source commits before treating /learn as a shipped, specified capability."
@@ -30,6 +31,7 @@ cards:
     authors: ["@clawdb0t"]
     source_urls:
       - https://x.com/clawdb0t/status/2069299802903654611
+    display_text: "OpenClaw and Hermes-adjacent accounts are not just trading feature notes. They are arguing about trust, funding, and what kind of project people should rely on."
     summary: "A community account surfaced a public exchange involving OpenClaw and Hermes-adjacent figures around non-profit status, funding, and agendas."
     why_it_matters: "Framework drama can reveal governance pressure, project positioning, and trust questions that do not show up in release notes."
     verification_needed: "Reconstruct the direct reply chain from primary participant posts before treating this as more than ecosystem context."
@@ -50,6 +52,7 @@ cards:
       - https://x.com/OpenHandsDev/status/2067643119957410096
       - https://github.com/OpenHands/OpenHands/releases/tag/1.8.0
       - https://github.com/OpenHands/OpenHands/pull/14401
+    display_text: "OpenHands is talking up ACP support across its product surface, which is another way of saying: your agent should not be trapped in one client."
     summary: "The OpenHands account posted that Agent Client Protocol support spans Agent Canvas, SDK, and the cloud offering."
     why_it_matters: "ACP support is a composability claim: if shipped, it changes how operators can move agents across surfaces."
     verification_needed: "Check OpenHands docs and follow-up commits for the full Agent Canvas, SDK, and cloud surface claim before promotion."
@@ -69,6 +72,7 @@ cards:
     source_urls:
       - https://x.com/CodexReleases/status/2069185685131804760
       - https://github.com/openai/codex/releases/tag/rust-v0.142.0
+    display_text: "Codex release chatter around token budgets points to a simple need: an agent should have a meter, and it should stop when the meter is spent."
     summary: "A Codex release-tracker post said v0.142.0 added configurable per-thread token budgets with automatic turn abortion; the run found a public release tag as secondary support."
     why_it_matters: "Budgets are operational control-plane state: they turn runaway agent work into a bounded, inspectable failure mode."
     verification_needed: "Check release-note wording and behavior before promoting this into a finding or signal."
@@ -88,6 +92,7 @@ cards:
     source_urls:
       - https://x.com/ClaudeCodeLog/status/2069531604951687542
       - https://code.claude.com/docs/en/changelog#2-1-187
+    display_text: "Claude Code 2.1.187 chatter pointed back to practical fixes: sandbox credentials, resume behavior, and remote MCP timeout handling."
     summary: "A community changelog account posted Claude Code v2.1.187 notes; the official Claude Code changelog confirms the core release items including sandbox credentials, resume repair, and remote MCP timeout handling."
     why_it_matters: "Even unofficial release chatter can point the verifier toward security and reliability changes worth checking in primary Anthropic channels."
     verification_needed: "Before promotion, quote and scope the exact official changelog item being used; do not apply this receipt to unrelated Claude Code controversy claims."
@@ -109,6 +114,7 @@ cards:
       - https://github.com/google-gemini/gemini-cli/releases/tag/v0.47.0
       - https://github.com/google-gemini/gemini-cli/pull/27676
       - https://github.com/google-gemini/gemini-cli/pull/27765
+    display_text: "Gemini CLI's Antigravity transition is a channel story: where the tool lives, how users migrate, and who controls the next default."
     summary: "A Gemini CLI account post described an Antigravity transition path; Gemini CLI v0.47.0 includes source receipts for persistent transition-banner behavior and Antigravity migration commands/docs."
     why_it_matters: "Distribution-channel shifts are operator-relevant even before they become code receipts: they change who can run what, where, and under which terms."
     verification_needed: "Do not infer a hard cutoff, source-availability change, or quota/backlash claim without separate primary receipts."
@@ -145,6 +151,7 @@ cards:
     authors: ["@dotta"]
     source_urls:
       - https://x.com/dotta/status/2067801977447137332
+    display_text: "Paperclip's Maximizer idea is the big-swing version of the market: not one agent helping you code, but agents managing other agents toward an outcome."
     summary: "A Paperclip maintainer described a Maximizer-mode direction where a CEO-like agent can hire and run agents toward an outcome."
     why_it_matters: "The post captures where orchestration products are trying to move: from single coding helpers toward delegated agent operations."
     verification_needed: "Find a Paperclip docs, release-note, or commit receipt that names Maximizer mode before treating it as shipped behavior."

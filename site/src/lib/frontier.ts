@@ -587,6 +587,7 @@ export type SocialReceiptCard = {
   sourceIds: string[];
   authors: string[];
   sourceUrls: string[];
+  displayText?: string;
   excerpt?: string;
   summary: string;
   whyItMatters?: string;
@@ -775,6 +776,7 @@ export function listRunSocialCards(runId: string): SocialReceiptCard[] {
         sourceIds: normalizeStringArray(card.source_ids ?? card.sources ?? card.source),
         authors: normalizeStringArray(card.authors ?? card.author),
         sourceUrls: normalizeStringArray(card.source_urls ?? card.source_url ?? card.primary_url),
+        displayText: card.display_text ? String(card.display_text) : undefined,
         excerpt: card.excerpt ? String(card.excerpt) : undefined,
         summary: String(card.summary ?? ""),
         whyItMatters: card.why_it_matters ? String(card.why_it_matters) : undefined,
