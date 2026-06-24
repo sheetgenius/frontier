@@ -563,15 +563,15 @@ code {
   line-height: 1.7;
 }
 
-/* The lead block on the homepage: a heavier top rule marks it as the front
-   page's anchor without turning it into a card. */
+/* The lead block on the homepage: a slightly stronger top rule marks it as the
+   front page's anchor without turning it into a heavy slab or a card. */
 .featured-issue {
-  border-top-width: 2px;
-  border-top-color: var(--color-ink);
+  border-top-width: 1px;
+  border-top-color: color-mix(in srgb, var(--color-muted) 50%, transparent);
 }
 
 :root.dark .featured-issue {
-  border-top-color: var(--color-night-ink);
+  border-top-color: color-mix(in srgb, var(--color-night-muted) 50%, transparent);
 }
 
 .featured-issue .issue-title {
