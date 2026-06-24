@@ -1,0 +1,11 @@
+{
+  "api_base": "https://radicchio.bitter.sh",
+  "build": {
+    "install": "cd site && npm ci",
+    "command": "cd site && npm run build",
+    "publish": "site/dist"
+  },
+  "hostname": "frontier.bitter.sh",
+  "site_id": 106,
+  "site_name": "frontier"
+}
