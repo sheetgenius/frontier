@@ -7,13 +7,13 @@ claim: Paperclip is developing "Maximizer mode" where a CEO agent can autonomous
 primary_url: https://x.com/dotta/status/2067801977447137332
 author: @dotta
 observed_at: 2026-06-24
-event_date: 2026-06
-date_precision: month_only
-date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
-date_precision: month_only
-date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
+event_date: 2026-06-19
+date_precision: day
+date_note: Exact post publication date resolved via public X post lookup (ID 2067801977447137332): 2026-06-19. Reproducible from primary_url.
 evidence_kind: maintainer_authored_post
 channel: x.com
 status: candidate
-operator_consequence: Shifts from single-agent to persistent agent organization workflows.
+crosscheck_status: needs_primary_crosscheck
+release_channel: social_only
+operator_consequence: Candidate workflow/positioning item; verify against product docs, release notes, or commits before promotion.
 notes: Philosophy and workflow signal.

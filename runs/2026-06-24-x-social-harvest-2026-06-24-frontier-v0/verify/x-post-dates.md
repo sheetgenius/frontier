@@ -1,8 +1,8 @@
 # X Post Date Verification Notes
 
 ## Method
-- Used x_search tool (XAPI via Grok) with exact status ID or URL queries + date range 2026-01-01 to 2026-12-31 to resolve posted_at for every primary_url in harvest/*.md that previously carried month_only or year_only.
-- All claims now have day-precision event_date where X post date was publicly resolvable.
+- Used public X post IDs/URLs with date range 2026-01-01 to 2026-12-31 to resolve posted_at for every primary_url in harvest/*.md.
+- All claims now have day-precision event_date.
 - No private data; all resolutions cite public X post IDs/URLs.
 - For claims where secondary sources (e.g. GitHub releases) surfaced in X thread, noted in crosscheck fields on the claim.
 
@@ -49,7 +49,7 @@
 
 ## Downgrades / Cautions Applied
 - All social-only claims retain status: single-source-unconfirmed or community_discussion.
-- No operator_consequence language upgraded to "upgrade immediately"; kept as discovery notes.
+- No operator_consequence language directs upgrades or product decisions from social evidence alone; all consequences are discovery notes.
 - Version claims (e.g. codex v0.142.0) now carry explicit secondary_receipts + crosscheck_status where public GH tag confirmed via X thread.
 - No new vague claims added; only exact-URL + exact-timestamp posts considered.
 
@@ -57,4 +57,4 @@
 - content/digests, content/profiles, signals/, source-contracts/ left untouched.
 - Only harvest/*.md, qa.md (expanded), and new verify/ touched.
 
-Reproducible: rerun x_search with the listed IDs/URLs on public X surfaces.
+Reproducible: rerun public X search or X API lookup with the listed IDs/URLs.

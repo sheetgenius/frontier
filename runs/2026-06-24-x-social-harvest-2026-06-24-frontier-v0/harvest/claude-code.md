@@ -13,5 +13,7 @@ date_note: Exact post publication date resolved via public X post lookup (ID 203
 evidence_kind: community_discussion
 channel: x.com
 status: single-source-unconfirmed
-operator_consequence: May affect trust and fork ecosystem around the tool.
+crosscheck_status: single_source_unconfirmed
+release_channel: not_applicable
+operator_consequence: Candidate ecosystem/trust item; needs independent public confirmation before promotion.
 notes: Ecosystem / trust claim.

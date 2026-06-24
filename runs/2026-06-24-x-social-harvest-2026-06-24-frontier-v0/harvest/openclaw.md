@@ -7,13 +7,15 @@ claim: Peter Steinberger (@steipete) was hired by OpenAI in early 2026 to work o
 primary_url: https://x.com/steipete/status/2068961217524490739
 author: @steipete
 observed_at: 2026-06-24
-event_date: 2026
-date_precision: year_only
-date_note: Exact post publication date not captured by x_search in this pass; only year resolved. Reproducible from primary_url.
+event_date: 2026-06-22
+date_precision: day
+date_note: Exact post publication date resolved via public X post lookup (ID 2068961217524490739): 2026-06-22. Reproducible from primary_url.
 evidence_kind: maintainer_authored_post
 channel: x.com
 status: candidate
-operator_consequence: Project moved to OpenClaw Foundation with OpenAI token support.
+crosscheck_status: needs_primary_crosscheck
+release_channel: not_applicable
+operator_consequence: Candidate governance/affiliation item; verify against public project/org records before promotion.
 notes: Governance and affiliation change.
 
 ## Claim 2
@@ -23,13 +25,13 @@ claim: Public tension between OpenClaw and Hermes Agent maintainers in June 2026
 primary_url: https://x.com/clawdb0t/status/2069299802903654611
 author: @clawdb0t
 observed_at: 2026-06-24
-event_date: 2026-06
-date_precision: month_only
-date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
-date_precision: month_only
-date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
+event_date: 2026-06-23
+date_precision: day
+date_note: Exact post publication date resolved via public X post lookup (ID 2069299802903654611): 2026-06-23. Reproducible from primary_url.
 evidence_kind: community_discussion
 channel: x.com
 status: single-source-unconfirmed
-operator_consequence: Indicates competitive dynamics in the open agent space.
+crosscheck_status: single_source_unconfirmed
+release_channel: not_applicable
+operator_consequence: Candidate ecosystem-color item; do not promote without direct primary posts or independent confirmation.
 notes: Drama claim — kept as discovery.

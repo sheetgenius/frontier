@@ -8,10 +8,14 @@ primary_url: https://x.com/OpenHandsDev/status/2067643119957410096
 author: @OpenHandsDev
 observed_at: 2026-06-24
 event_date: 2026-06-18
+date_precision: day
+date_note: Exact event date was captured in the initial harvest and retained; reproducible from primary_url.
 evidence_kind: official_account_post
 channel: x.com
 status: candidate
-operator_consequence: Allows mixing multiple agents through one interface without lock-in.
+crosscheck_status: needs_primary_crosscheck
+release_channel: social_only
+operator_consequence: Candidate protocol/interoperability item; verify against OpenHands release notes, docs, or commits before promotion.
 notes: High-signal interoperability claim. Should be verified against GitHub releases.
 
 ## Claim 2
@@ -21,13 +25,13 @@ claim: Graham Neubig (@gneubig) published benchmark results on the OpenHands Ind
 primary_url: https://x.com/gneubig/status/2067698787082973390
 author: @gneubig
 observed_at: 2026-06-24
-event_date: 2026-06
-date_precision: month_only
-date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
-date_precision: month_only
-date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
+event_date: 2026-06-18
+date_precision: day
+date_note: Exact post publication date resolved via public X post lookup (ID 2067698787082973390): 2026-06-18. Reproducible from primary_url.
 evidence_kind: maintainer_authored_post
 channel: x.com
 status: candidate
-operator_consequence: Provides comparative data for operator decision making.
+crosscheck_status: needs_primary_crosscheck
+release_channel: not_applicable
+operator_consequence: Candidate benchmark item; requires benchmark-method receipt before use.
 notes: Maintainer-authored technical content.

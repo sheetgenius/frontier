@@ -8,10 +8,12 @@ primary_url: https://x.com/Agent0ai/status/2067583909815087601
 author: @Agent0ai
 observed_at: 2026-06-24
 event_date: 2026-06-18
- date_precision: day
- date_note: Exact post publication date resolved via public X post lookup (ID 2067583909815087601): 2026-06-18. Reproducible from primary_url.
+date_precision: day
+date_note: Exact post publication date resolved via public X post lookup (ID 2067583909815087601): 2026-06-18. Reproducible from primary_url.
 evidence_kind: official_account_post
 channel: x.com
 status: candidate
-operator_consequence: Increases transparency in project governance.
+crosscheck_status: social_only
+release_channel: not_applicable
+operator_consequence: Candidate governance-discovery item; verify against the project's governance surface before promotion.
 notes: Governance signal.

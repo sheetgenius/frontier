@@ -8,10 +8,14 @@ primary_url: https://x.com/PiChangelog/status/2069475435738480878
 author: @PiChangelog
 observed_at: 2026-06-24
 event_date: 2026-06-23
+date_precision: day
+date_note: Exact event date was captured in the initial harvest and retained; reproducible from primary_url.
 evidence_kind: community_account_post
 channel: x.com
 status: candidate
-operator_consequence: Requires migration for users of old import paths.
+crosscheck_status: needs_primary_crosscheck
+release_channel: social_only
+operator_consequence: Candidate version item; verify against Pi release notes/tags before migration language.
 notes: Version-specific claim.
 
 ## Claim 2
@@ -21,13 +25,13 @@ claim: Pi has a powerful native in-process extension API with deep lifecycle hoo
 primary_url: https://x.com/eSaadster/status/2069592942206243149
 author: @eSaadster
 observed_at: 2026-06-24
-event_date: 2026-06
-date_precision: month_only
-date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
-date_precision: month_only
-date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
+event_date: 2026-06-24
+date_precision: day
+date_note: Exact post publication date resolved via public X post lookup (ID 2069592942206243149): 2026-06-24. Reproducible from primary_url.
 evidence_kind: community_discussion
 channel: x.com
 status: candidate
-operator_consequence: Enables deep customization and self-modifying agent behavior.
+crosscheck_status: needs_primary_crosscheck
+release_channel: social_only
+operator_consequence: Candidate extension-system item; verify against docs or release notes before promotion.
 notes: Technical capability signal.
