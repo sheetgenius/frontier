@@ -74,10 +74,16 @@ quoted text.
   claim.
 - Product/version/capability claims still need source-contract verification
   before promotion.
+- A secondary receipt upgrades only the exact bounded claim it proves. Do not
+  let a real release tag or PR validate a different claim from the same project.
 - Drama, public exchanges, rankings, benchmark chatter, and user pain may be
   cataloged as ecosystem context when clearly labeled.
 - If a claim depends on a thread or reply chain, keep enough public source URLs
   to let a reader reconstruct the exchange.
+- Reputational or conduct claims about named people or organizations stay
+  journal-only unless supported by direct primary receipts.
+- User-pain and drama clusters should include counterweight searches: fixes,
+  maintainer replies, disconfirming posts, issue threads, or release notes.
 
 ## Loop Cadence
 

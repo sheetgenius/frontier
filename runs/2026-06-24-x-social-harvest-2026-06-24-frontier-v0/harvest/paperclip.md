@@ -16,4 +16,4 @@ status: candidate
 crosscheck_status: needs_primary_crosscheck
 release_channel: social_only
 operator_consequence: Candidate workflow/positioning item; verify against product docs, release notes, or commits before promotion.
-notes: Philosophy and workflow signal.
+notes: Philosophy and workflow signal. Paperclip v2026.618.0 verifies adjacent OpenClaw Gateway and Hermes adapter interoperability work, but the in-window release does not mention Maximizer mode.

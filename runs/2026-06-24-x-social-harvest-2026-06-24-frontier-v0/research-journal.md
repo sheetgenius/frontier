@@ -91,6 +91,40 @@ merely because it was posted on X.
 - Search for disconfirming posts: OpenClaw maintainer replies, failed Hermes
   migrations, or user pain on the favored side of any comparison.
 
+## Drama / Code Follow-Up Pass
+
+The follow-up scout focused on drama leads and then checked public code,
+release, PR, and changelog receipts for each lead.
+
+Editorial results:
+
+- OpenClaw/Hermes governance and funding tension remains journal-only. Hermes
+  found direct participant URLs, but the pass did not return complete
+  `created_at` timestamps or enough reply-chain structure to promote the item
+  beyond social context.
+- Gemini Antigravity is now source-backed for the narrow transition/migration
+  claim: Gemini CLI v0.47.0 includes merged PRs for Antigravity transition
+  banner behavior and migration commands/docs. This does not verify social
+  claims about a hard cutoff, closed-source impact, or quota pain.
+- Claude Code v2.1.187 is source-backed for the release-note subset listed in
+  the community tracker post. The official changelog supports sandbox
+  credentials, resume repair, and remote MCP timeout handling. This receipt is
+  not reusable for unrelated Claude Code controversy claims.
+- OpenHands ACP is partially source-backed. Release 1.8.0 and PR #14401 verify
+  ACP UI/preset/routing work, but not every Agent Canvas, SDK, and cloud surface
+  named in the social post.
+- Paperclip Maximizer mode remains maintainer intent only. The in-window
+  release verifies adjacent interop and reliability work around OpenClaw Gateway
+  and Hermes custom providers, but does not mention Maximizer mode.
+- OpenClaw reliability complaints should be read with counterweight: v2026.6.10
+  and linked PRs show active fixes in model routing, channel/session state, and
+  trusted-policy hook composition. The release verifies real bug classes and
+  active remediation, not a simple "broken" narrative.
+
+The durable record for this pass is `verify/drama-code-followup.md`. It maps
+each receipt to the exact claim it supports so a later editor cannot let a real
+source receipt validate a different social claim in the same project.
+
 ## Editorial Standard
 
 Make the public conversation visible without becoming gossip:

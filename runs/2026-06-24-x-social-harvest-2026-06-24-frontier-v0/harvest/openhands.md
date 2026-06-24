@@ -13,10 +13,13 @@ date_note: Exact event date was captured in the initial harvest and retained; re
 evidence_kind: official_account_post
 channel: x.com
 status: candidate
+secondary_receipts:
+  - https://github.com/OpenHands/OpenHands/releases/tag/1.8.0
+  - https://github.com/OpenHands/OpenHands/pull/14401
 crosscheck_status: needs_primary_crosscheck
-release_channel: social_only
+release_channel: mixed
 operator_consequence: Candidate protocol/interoperability item; verify against OpenHands release notes, docs, or commits before promotion.
-notes: High-signal interoperability claim. Should be verified against GitHub releases.
+notes: Release 1.8.0 and PR #14401 verify ACP UI/presets and routing support. They are partial receipts and do not verify the full Agent Canvas, SDK, and Cloud claim.
 
 ## Claim 2
 claim_id: openhands-gneubig-benchmarks-2026-06

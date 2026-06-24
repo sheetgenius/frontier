@@ -648,6 +648,16 @@ export function runArtifacts(runId: string): RunArtifact[] {
       });
     }
   }
+  const verifyDir = path.join(runDir, "verify");
+  if (fs.existsSync(verifyDir)) {
+    for (const file of fs.readdirSync(verifyDir).filter((f) => f.endsWith(".md")).sort()) {
+      artifacts.push({
+        kind: "verification",
+        label: `Verification notes — ${file.replace(/\.md$/, "")}`,
+        repoPath: rel(path.join(verifyDir, file)),
+      });
+    }
+  }
   const journalPath = path.join(runDir, "research-journal.md");
   if (fs.existsSync(journalPath)) {
     artifacts.push({

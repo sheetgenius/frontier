@@ -90,6 +90,32 @@ surface before promotion:
 Record the result as `crosscheck_status`. If the claim is only social evidence,
 leave it as `needs_primary_crosscheck` or `single_source_unconfirmed`.
 
+When upgrading a claim to `verified_secondary`, record the receipt-to-claim map.
+The secondary receipt must prove the same bounded claim, not merely a nearby
+claim in the same project. Narrow the claim text when the receipt verifies only
+part of the social post.
+
+Examples:
+
+- A release tag that includes an Antigravity transition banner and migration
+  commands can verify transition/migration support, but not a broader social
+  claim about a hard cutoff or quota pain.
+- A release PR that adds an ACP settings UI can partially support an ACP post,
+  but it should not verify every SDK, cloud, or product-surface claim unless the
+  receipt names those surfaces.
+- A release that contains adjacent orchestration or adapter work should not
+  verify an aspirational maintainer post unless it names the same shipped
+  feature.
+
+For drama, affiliation, takedown, funding, hiring, or motive claims naming
+people or organizations, keep the item as journal context until direct
+participant posts, public organization records, or other primary receipts
+support the exact claim. Date precision alone is not enough.
+
+When a social cluster is user pain or drama, look for counterweight before
+publishing the run: maintainer replies, release fixes, docs, issue threads, or
+changelog entries that show remediation or disconfirmation.
+
 ## QA checklist
 
 Before opening or updating a PR:
@@ -97,6 +123,11 @@ Before opening or updating a PR:
 - Every claim has a public `primary_url`.
 - Every claim has `observed_at`, `event_date`, `date_precision`, and `date_note`.
 - Every product/version claim has `crosscheck_status`.
+- Every `verified_secondary` claim has a public receipt-to-claim explanation.
+- Reputational or conduct claims remain journal-only unless exact primary
+  evidence supports them.
+- User-pain clusters include counterweight search notes where public releases,
+  issues, or maintainer replies exist.
 - No claim is promoted into `content/digests`, `content/profiles`, or
   `signals/frontier-signals.yml`.
 - `verify/x-post-dates.md` explains how dates were resolved.

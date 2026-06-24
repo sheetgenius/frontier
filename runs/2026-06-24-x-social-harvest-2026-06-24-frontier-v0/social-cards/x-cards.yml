@@ -48,11 +48,13 @@ cards:
     authors: ["@OpenHandsDev"]
     source_urls:
       - https://x.com/OpenHandsDev/status/2067643119957410096
+      - https://github.com/OpenHands/OpenHands/releases/tag/1.8.0
+      - https://github.com/OpenHands/OpenHands/pull/14401
     summary: "The OpenHands account posted that Agent Client Protocol support spans Agent Canvas, SDK, and the cloud offering."
     why_it_matters: "ACP support is a composability claim: if shipped, it changes how operators can move agents across surfaces."
-    verification_needed: "Check OpenHands release notes, docs, and commits for the exact ACP surfaces and shipped channel."
-    confidence: official social post, implementation unverified
-    caveats: "Social announcement only; the release-channel state remains unverified."
+    verification_needed: "Check OpenHands docs and follow-up commits for the full Agent Canvas, SDK, and cloud surface claim before promotion."
+    confidence: official social post, partial release and PR support
+    caveats: "Release 1.8.0 and PR #14401 support ACP UI/presets and routing work; they do not by themselves verify every surface named in the social post."
     tags: [acp, interoperability, cloud]
 
   - id: codex-token-budget-release-post
@@ -77,7 +79,7 @@ cards:
   - id: claude-code-community-2187-post
     title: Community changelog account posts Claude Code 2.1.187 notes
     kind: capability_announcement
-    status: needs_primary_crosscheck
+    status: verified_secondary
     date: 2026-06-23
     date_precision: day
     date_note: Exact post date reported by the second scout pass for source post 2069531604951687542.
@@ -85,17 +87,18 @@ cards:
     authors: ["@ClaudeCodeLog"]
     source_urls:
       - https://x.com/ClaudeCodeLog/status/2069531604951687542
-    summary: "A community changelog account posted Claude Code v2.1.187 notes including sandbox credential hardening, remote MCP timeout handling, and resume-flow fixes."
+      - https://code.claude.com/docs/en/changelog#2-1-187
+    summary: "A community changelog account posted Claude Code v2.1.187 notes; the official Claude Code changelog confirms the core release items including sandbox credentials, resume repair, and remote MCP timeout handling."
     why_it_matters: "Even unofficial release chatter can point the verifier toward security and reliability changes worth checking in primary Anthropic channels."
-    verification_needed: "Cross-check against official Claude Code release notes or maintainer confirmation before accepting any listed change."
-    confidence: community release tracker
-    caveats: "This card receipts a public changelog-style post, not an official release claim."
+    verification_needed: "Before promotion, quote and scope the exact official changelog item being used; do not apply this receipt to unrelated Claude Code controversy claims."
+    confidence: community tracker plus official changelog receipt
+    caveats: "The source post remains a community tracker; the official changelog entry was published on 2026-06-24 and supports the release-item subset only."
     tags: [security, release-tracker, reliability]
 
   - id: gemini-antigravity-transition-post
     title: Gemini CLI account posts Antigravity transition notice
     kind: maintainer_intent
-    status: needs_primary_crosscheck
+    status: verified_secondary
     date: 2026-06-18
     date_precision: day
     date_note: Exact post date reported by the second scout pass and aligned with the structured Gemini transition harvest.
@@ -103,12 +106,15 @@ cards:
     authors: ["@geminicli"]
     source_urls:
       - https://x.com/geminicli/status/2067702889837953512
-    summary: "A Gemini CLI account post described a transition path that directs individual users toward Antigravity while noting enterprise/API-key users separately."
+      - https://github.com/google-gemini/gemini-cli/releases/tag/v0.47.0
+      - https://github.com/google-gemini/gemini-cli/pull/27676
+      - https://github.com/google-gemini/gemini-cli/pull/27765
+    summary: "A Gemini CLI account post described an Antigravity transition path; Gemini CLI v0.47.0 includes source receipts for persistent transition-banner behavior and Antigravity migration commands/docs."
     why_it_matters: "Distribution-channel shifts are operator-relevant even before they become code receipts: they change who can run what, where, and under which terms."
-    verification_needed: "Check Google/Gemini release channels and docs for exact product relationship, user impact, and source availability."
-    confidence: social transition notice
-    caveats: "Kept as channel/context evidence until verified against official docs or release artifacts."
-    tags: [distribution, antigravity, channel-shift]
+    verification_needed: "Do not infer a hard cutoff, source-availability change, or quota/backlash claim without separate primary receipts."
+    confidence: stable release and merged PR receipts for transition/migration affordances
+    caveats: "The receipts verify transition and migration support in Gemini CLI, not the broader social claims about closed-source impact or user cutoffs."
+    tags: [distribution, antigravity, channel-shift, migration]
 
   - id: agent-zero-governance-vote
     title: Agent Zero account posts governance-vote result
@@ -141,7 +147,7 @@ cards:
       - https://x.com/dotta/status/2067801977447137332
     summary: "A Paperclip maintainer described a Maximizer-mode direction where a CEO-like agent can hire and run agents toward an outcome."
     why_it_matters: "The post captures where orchestration products are trying to move: from single coding helpers toward delegated agent operations."
-    verification_needed: "Check Paperclip docs, release notes, or commits before treating Maximizer mode as shipped behavior."
+    verification_needed: "Find a Paperclip docs, release-note, or commit receipt that names Maximizer mode before treating it as shipped behavior."
     confidence: maintainer intent, product state unverified
-    caveats: "Cataloged as intent and positioning, not a shipped feature."
+    caveats: "The 2026-06-18 Paperclip release verifies adjacent OpenClaw Gateway and Hermes adapter work, but it does not mention Maximizer mode."
     tags: [orchestration, delegation, positioning]
