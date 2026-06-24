@@ -1,0 +1,548 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-06-23-weekly-digest-2026-06-16_2026-06-23-frontier-v0
+window:
+  start: 2026-06-16
+  end: 2026-06-23
+note: >
+  23 curated decision-bearing signals rendered from the coordinator's set. Each
+  signal carries an explicit release-channel status (tagged-release |
+  main-unreleased | preview-or-beta), because this window's defining hazard was
+  the gap between a fix merged to a default branch and a fix in the binary an
+  operator runs. Channel was resolved by git ancestry in the adversarial verify
+  stage (see verify/). Editorial framing and corrections from verify/ are
+  honored verbatim; receipts are primary-source URLs.
+signals:
+
+  # ============== CONTROL PLANE ==============
+
+  - id: 2026-06-23-claude-code-foreground-subagent-depth-enforcement
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "The five-level subagent depth cap did not bind for foreground spawns until 2.1.181"
+    finding_ids: [2026-06-23-claude-code-foreground-subagent-depth-limit]
+    why_action_bearing:
+      - "2.1.181 fixed foreground subagents spawning unbounded nested chains; they now respect the same 5-level depth limit as background subagents. An operator who relied on last window's depth cap (2.1.178) for foreground delegation was, in the interim, not protected by it."
+      - "Upgrade past 2.1.181 and re-test that a foreground delegation tree actually stops at five levels rather than assuming the announced cap binds."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes an unbounded-recursion path where a foreground subagent could spawn nested chains the depth cap was supposed to limit."
+      attacker_model: "Prompt-injected or attacker-influenced foreground subagent recursing to multiply authority and cost."
+      enforcement: runtime
+      cost_to_operator: "Upgrade past 2.1.181; re-verify foreground delegation depth rather than trusting the prior announcement."
+      residual: "A feature is not a boundary until something refuses the disallowed action; only a test confirms it."
+    security_advisory: false
+    receipts: ["https://code.claude.com/docs/en/changelog"]
+
+  - id: 2026-06-23-claude-code-agent-permission-enforcement
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "Agent(type) deny and Agent(x,y) allowed-types rules were not enforced for named subagent spawns until 2.1.186"
+    finding_ids: [2026-06-23-claude-code-agent-permission-rules-enforced]
+    why_action_bearing:
+      - "2.1.186 fixed `Agent(type)` deny rules and `Agent(x,y)` allowed-types restrictions not being enforced for named subagent spawns. An operator who wrote those rules when the argument-aware grammar was announced was unprotected by them until this fix."
+      - "Upgrade past 2.1.186, then write an `Agent(type)` deny for a subagent you expect blocked and confirm a named spawn is actually refused, not silently allowed."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes an enforcement gap where named-subagent permission rules were authored but did not bind."
+      attacker_model: "A spawned (or attacker-influenced) named subagent whose type the operator's policy meant to deny or restrict."
+      enforcement: policy
+      cost_to_operator: "Upgrade past 2.1.186; re-test that previously authored Agent() rules now refuse the disallowed spawn."
+      residual: "Rules only protect what the operator authored correctly; the fix enforces, it does not author."
+    security_advisory: false
+    receipts: ["https://code.claude.com/docs/en/changelog"]
+
+  - id: 2026-06-23-claude-code-automode-destructive-denylist
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "Auto mode now blocks specific destructive git/IaC commands and reclassifies scheduled-task and webhook triggers"
+    finding_ids: [2026-06-23-claude-code-auto-mode-destructive-command-blocks, 2026-06-23-claude-code-scheduled-trigger-input-classification]
+    why_action_bearing:
+      - "2.1.183 enumerated destructive commands the auto-mode classifier now blocks — `git reset --hard`, `git checkout -- .`, `git clean -fd`, `git stash drop` (when you did not ask to discard work), `git commit --amend` for commits the agent did not make this session, and `terraform`/`pulumi`/`cdk destroy` unless you asked for the specific stack."
+      - "2.1.183 also fixed scheduled-task and webhook trigger deliveries being treated as keyboard input; they now classify as task notifications and can no longer approve a pending action or set the session title under auto mode."
+      - "Operators running auto mode should upgrade past 2.1.183; the blocks are conditional (gated on what you asked for), not unconditional refusals."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Blocks unrequested destructive git/IaC actions under auto mode and closes a path where an automated trigger's input could approve a pending action without operator intent."
+      attacker_model: "An agent (or a prompt-injected automated trigger) attempting a destructive or self-approving action under auto mode."
+      enforcement: policy
+      cost_to_operator: "Upgrade past 2.1.183; legitimate destructive operations now require an explicit ask to pass the classifier."
+      residual: "Blocks are conditional on request context; coverage is the enumerated command set, not all destructive operations."
+    security_advisory: false
+    receipts: ["https://code.claude.com/docs/en/changelog"]
+
+  - id: 2026-06-23-codex-environment-scoped-approvals
+    section: control-plane
+    source: codex
+    channel: tagged-release
+    title: "Codex command and network approvals are now scoped per execution environment and fail closed on ambiguity"
+    finding_ids: [2026-06-23-codex-environment-scoped-approvals]
+    why_action_bearing:
+      - "CLI 0.142.0 (#28738, #28899) scopes command and network approvals by execution environment: an approval granted in one environment no longer leaks to another, Codex denies when active-call attribution is ambiguous, and it fails closed if an environment-specific proxy endpoint cannot be prepared."
+      - "Upgrade to 0.142.0 and re-test approval reuse: grant a command approval in a local workspace and confirm a remote executor environment prompts again rather than inheriting it."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes an approval-reuse path where a grant in one execution environment was honored in another."
+      attacker_model: "An operator-influenced or hostile environment inheriting an approval scoped to a different, more-trusted one."
+      enforcement: runtime
+      cost_to_operator: "Upgrade to 0.142.0; expect to re-approve commands per environment instead of once globally."
+      residual: "Legacy fallback is preserved for unattributed requests; only genuinely ambiguous attribution fails closed."
+    security_advisory: false
+    receipts: ["https://github.com/openai/codex/pull/28738"]
+
+  - id: 2026-06-23-codex-token-budget-abort
+    section: control-plane
+    source: codex
+    channel: tagged-release
+    title: "Codex rollout token budgets abort turns on exhaustion — a hard spend cap at the accounting boundary"
+    finding_ids: [2026-06-23-codex-rollout-token-budgets]
+    why_action_bearing:
+      - "CLI 0.142.0 makes configurable rollout token budgets track usage across agent threads and abort turns when exhausted — a hard spend cap, not a warning. It is soft in timing: it lands at the next usage-accounting boundary with no cross-thread interrupt fan-out, so an in-flight expensive call can still complete."
+      - "Set a rollout token budget and watch it abort a long multi-turn run at the accounting boundary; do not assume an instantaneous mid-response kill. Behavior under real multi-agent load is undocumented."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Capping spend on a long autonomous run no longer requires external watchdogs; the budget is configurable and self-enforcing."
+      who_can_use_now: "Operators running long multi-turn or multi-agent sessions who could not previously bound spend from inside the tool."
+      authority_visibility: "Remaining-budget reminders keep the spend ceiling visible; the soft accounting-boundary timing is the only opacity, and it is documented."
+    security_impact: low
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Bounds runaway token spend on a long or looping autonomous run."
+      attacker_model: "A runaway or prompt-influenced multi-turn loop consuming budget without a ceiling."
+      enforcement: runtime
+      cost_to_operator: "A turn can be aborted mid-task at the accounting boundary; operators must size budgets for legitimate long runs."
+      residual: "No cross-thread interrupt: an in-flight call completes before its thread aborts; tightness under multi-agent load is undocumented."
+    security_advisory: false
+    receipts: ["https://github.com/openai/codex/releases/tag/rust-v0.142.0"]
+
+  - id: 2026-06-23-codex-delegation-authority-mode
+    section: control-plane
+    source: codex
+    channel: tagged-release
+    title: "Codex adds a multi-agent delegation-authority mode"
+    finding_ids: [2026-06-23-codex-multi-agent-delegation-modes]
+    why_action_bearing:
+      - "CLI 0.142.0 adds a multi-agent delegation-authority mode, giving operators a configurable posture for how authority flows to delegated agents. It is the control surface to set before trusting a delegation tree under the new shared token ledger."
+      - "Operators orchestrating delegated Codex agents should choose the delegation-authority mode deliberately rather than inheriting a default."
+    accessibility_impact: none
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Reframes how authority is granted to delegated agents, narrowing or widening the delegated blast radius by configuration."
+      attacker_model: "Operator-side governance of delegated agents, not an attacker-fix."
+      enforcement: policy
+      cost_to_operator: "Operators must understand and set the mode; a wrong choice widens delegated authority."
+      residual: "Only as good as the configured posture; the mode governs, it does not constrain a misconfigured tree."
+    security_advisory: false
+    receipts: ["https://github.com/openai/codex/releases/tag/rust-v0.142.0"]
+
+  - id: 2026-06-23-hermes-managed-scope-etc-hermes
+    section: control-plane
+    source: hermes-agent
+    channel: tagged-release
+    title: "Hermes adds a root-owned, user-immutable /etc/hermes managed scope"
+    finding_ids: [2026-06-23-hermes-managed-scope-etc-hermes]
+    why_action_bearing:
+      - "PR #49098 (in v0.17.0 / v2026.6.19) adds a managed `/etc/hermes` scope: a root-owned, user-immutable layer of config and secrets that wins per-key over a user's own files. It is Hermes's first centralized, OS-backed policy pin, for a tool whose posture had been governs-through-allowlists, not identity services."
+      - "Operators wanting an OS-enforced policy floor can now pin config and secrets a user cannot override; audit which keys the managed scope wins so credential flow stays legible."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Enforcing an org policy floor no longer depends on a user keeping their own files correct; root-owned config wins per-key."
+      who_can_use_now: "Operators administering a Hermes host for less-trusted users who needed a centralized, OS-backed pin they previously lacked."
+      authority_visibility: "Authority becomes more centralized but also less visible to the user whose files are silently overridden; the per-key precedence must be audited, so impact is held at low."
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a path where a user's own config/secret files could override an administrator's intended policy."
+      attacker_model: "A local user (or process running as that user) attempting to override managed policy via their own files."
+      enforcement: both
+      cost_to_operator: "Operators must move policy into the root-owned scope and accept that user-level overrides no longer apply for managed keys."
+      residual: "Protection is per-key and only as good as which keys are placed under management; unmanaged keys still follow user files."
+    security_advisory: false
+    receipts: ["https://github.com/NousResearch/hermes-agent/pull/49098"]
+
+  - id: 2026-06-23-paperclip-carryforward-landed-v2026.618.0
+    section: control-plane
+    source: paperclip
+    channel: tagged-release
+    title: "Last window's multi-tenant authority cluster finally tagged in v2026.618.0"
+    finding_ids: [2026-06-23-paperclip-v2026.618.0-multitenant-cluster-tagged]
+    why_action_bearing:
+      - "v2026.618.0 (June 18) is the tag that finally contains last window's master-only authority cluster: cloud-tenant instance-admin deprivileging (#7525), per-company JWT signing keys (#5864), plugin tenant isolation (#5865), the negated-phrasing review-approval fix (#5839), and HTTP-log credential redaction (#8013). Shared-pool and cloud-tenant operators must upgrade."
+      - "Provision a separate non-cloud-tenant admin identity first: the deprivileging purges stale instance-admin rows by design."
+    accessibility_impact: none
+    security_impact: critical
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a cross-tenant privilege escalation (every shared-pool tenant was an instance admin) plus a review-approval logic flaw and credential leakage into HTTP logs — now in a runnable binary."
+      attacker_model: "Any tenant on a shared multi-tenant pool; and untrusted content reaching a negated-phrasing review path."
+      enforcement: both
+      cost_to_operator: "Provision a non-cloud-tenant admin before upgrading; the stale-admin-row purge is destructive by design."
+      residual: "Operators still on the prior tag remain exposed until they upgrade to v2026.618.0."
+      affected_deployment_class: "Operators running Paperclip in cloud_tenant or shared multi-tenant pool mode, where multiple companies share one instance."
+      exploit_precondition: "Before v2026.618.0 any authenticated tenant on a shared pool was granted instance-admin with reach into every other tenant's data; v2026.618.0 removes the grant and purges stale admin rows on upgrade, so provision a separate non-cloud-tenant admin identity first."
+    security_advisory: true
+    receipts: ["https://github.com/paperclipai/paperclip/releases/tag/v2026.618.0"]
+
+  - id: 2026-06-23-paperclip-budget-enforcement
+    section: control-plane
+    source: paperclip
+    channel: main-unreleased
+    title: "Preflight budget caps that cancel queued work before an adapter starts (master, unreleased)"
+    finding_ids: [2026-06-23-paperclip-heartbeat-preflight-budget-caps]
+    why_action_bearing:
+      - "PR #8347 (merged to master 2026-06-20, NOT in a tagged release) adds heartbeat preflight gates for daily-run and daily-cost caps (`maxDailyRuns`, `maxDailyCostCents`): a capped agent stops before new execution, with the cap re-checked immediately before execution. This moves budget from surfacing to enforced state."
+      - "Paperclip operators tracking master can stage a per-agent daily cost cap in a test company and confirm work is refused at claim time, not mid-run; operators running the tagged binary do not yet have it."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Bounding an agent's daily spend no longer depends on watching it mid-run; the cap refuses work before an adapter starts."
+      who_can_use_now: "Operators managing agent pools who needed a preflight budget gate rather than after-the-fact accounting."
+      authority_visibility: "The cap is an explicit, checked preflight gate, keeping the spend ceiling visible; the only caveat is channel — it is on master, not in a tag."
+    security_impact: low
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Bounds runaway cost from a looping or misbehaving agent before execution begins."
+      attacker_model: "A runaway or prompt-influenced agent consuming budget without a ceiling."
+      enforcement: both
+      cost_to_operator: "Legitimate work is refused once a cap is hit; operators must size caps per agent."
+      residual: "Unreleased: the running binary is not protected until the next tag."
+    security_advisory: false
+    receipts: ["https://github.com/paperclipai/paperclip/pull/8347"]
+
+  - id: 2026-06-23-paperclip-task-watchdog
+    section: control-plane
+    source: paperclip
+    channel: main-unreleased
+    title: "A recovery watchdog whose actors structurally cannot mutate approvals (master, unreleased)"
+    finding_ids: [2026-06-23-paperclip-task-watchdog-control-plane]
+    why_action_bearing:
+      - "PR #8339 (merged to master 2026-06-19, NOT tagged) adds a task watchdog control plane whose recovery and status-only actors must remain limited to status reporting and cannot create approvals, link approvals, or submit approval comments — enforced via a scoped mutation guard."
+      - "Operators relying on automated recovery should know the next tag structurally prevents a recovery actor from escalating into an approval; the running binary does not yet carry this guard."
+    accessibility_impact: none
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a privilege path where a recovery/status actor could mutate or grant approvals it was never meant to touch."
+      attacker_model: "An automated recovery/status process (or one influenced into doing more) escalating into approval mutation."
+      enforcement: runtime
+      cost_to_operator: "Recovery actors lose any incidental approval-mutation ability they may have relied on."
+      residual: "Unreleased: the guard is on master, not in a tagged binary."
+    security_advisory: false
+    receipts: ["https://github.com/paperclipai/paperclip/pull/8339"]
+
+  - id: 2026-06-23-openhands-apikey-keycloak-decouple
+    section: control-plane
+    source: openhands
+    channel: main-unreleased
+    title: "API-key auth decoupled from Keycloak — IdP session revocation is no longer a kill switch for machine keys"
+    finding_ids: [2026-06-23-openhands-apikey-keycloak-decouple]
+    why_action_bearing:
+      - "PR #14867 (merged to main 2026-06-17, NOT in any tag) decouples API-key (Bearer) auth from Keycloak offline sessions: API-key authentication performs zero Keycloak round-trips, so a revoked or expired IdP session no longer invalidates a machine key. Headless clients stop hitting opaque 401s — but the revocation contract changed."
+      - "Operators who relied on Keycloak session revocation to kill machine keys must now revoke at the key store instead. This is on main, in no release."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Headless and machine clients stop hitting opaque 401s when an unrelated IdP session expires; API-key auth becomes self-contained."
+      who_can_use_now: "Operators running headless/automated integrations who were blocked by IdP-session coupling on their machine keys."
+      authority_visibility: "The revocation path moved and is named plainly, but operators who assumed IdP revocation killed keys now have a less-visible kill switch — held at low until they re-learn the contract."
+    security_impact: medium
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Reframes machine-identity revocation: a machine key now survives IdP session revocation, separating machine identity from human SSO."
+      attacker_model: "An operator relying on the old kill switch; a compromised key that IdP revocation no longer disables."
+      enforcement: policy
+      cost_to_operator: "Operators must revoke machine keys at the key store, not via the IdP session; the old kill switch no longer applies."
+      residual: "Credentials now flow on a separate machine-identity plane; revocation discipline must follow them there."
+    security_advisory: false
+    receipts: ["https://github.com/OpenHands/OpenHands/pull/14867"]
+
+  - id: 2026-06-23-openhands-concurrency-revert
+    section: control-plane
+    source: openhands
+    channel: main-unreleased
+    title: "Last window's per-org concurrency limits reverted outright in-window"
+    finding_ids: [2026-06-23-openhands-sandbox-concurrency-list-count]
+    why_action_bearing:
+      - "PR #14877 (merged to main 2026-06-17) reverts the DB-backed per-org/per-user concurrent sandbox/conversation limits from #14168, adding migration 124 to drop the columns introduced by migration 120. The 429-based quota some operators were waiting for is not coming in the next 1.x; the surviving concurrency-control path now counts from the runtime `/list` API rather than a DB flag."
+      - "Operators who anticipated 429-based concurrency enforcement must not plan around it — it was withdrawn, not enforced."
+    accessibility_impact: none
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Reopens the absence of a per-org concurrency ceiling: a quota mechanism was withdrawn rather than enforced."
+      attacker_model: "A tenant or runaway workload consuming concurrent sandboxes without a DB-backed cap."
+      enforcement: runtime
+      cost_to_operator: "Operators counting on the 429 quota must find another bound; the columns are dropped."
+      residual: "The surviving count comes from runtime `/list`, not an enforced limit; no concurrency ceiling ships in the next 1.x."
+    security_advisory: false
+    receipts: ["https://github.com/OpenHands/OpenHands/pull/14877"]
+
+  - id: 2026-06-23-openclaw-auto-plugin-approvals
+    section: control-plane
+    source: openclaw
+    channel: tagged-release
+    title: "OpenClaw shipped automatic Codex plugin approvals to stable — the one gate that loosened this window"
+    finding_ids: [2026-06-23-openclaw-codex-auto-plugin-approvals-stable]
+    why_action_bearing:
+      - "PR #92625 (stable v2026.6.9, June 21) adds automatic Codex plugin approvals — a gate opened in a fortnight when nearly everyone else was closing them. It cuts against the consent-over-default grain even from a vendor with real accessibility discipline."
+      - "Operators on v2026.6.9 should audit the new automatic Codex plugin approvals against their trust posture; convenience relaxed a consent gate that was previously explicit."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Codex plugin setup no longer requires a manual approval step; integration is faster to reach a working state."
+      who_can_use_now: "Operators integrating Codex who were slowed by per-plugin approval friction."
+      authority_visibility: "This is the cross-axis tension: the ease comes by removing a consent gate, so authority became less visible — the loosening is the cost, and impact is held at low for that reason."
+    security_impact: medium
+    security_change: opens
+    security_consequence:
+      threat_blocked_or_opened: "Opens a path where a Codex plugin is approved automatically rather than by explicit operator consent."
+      attacker_model: "A malicious or compromised plugin reaching auto-approval without a human gate."
+      enforcement: policy
+      cost_to_operator: "Operators must now audit auto-approved plugins after the fact instead of gating them up front."
+      residual: "The gate is loosened in stable; the only remaining control is post-hoc audit and trust-posture review."
+    security_advisory: false
+    receipts: ["https://github.com/openclaw/openclaw/releases/tag/v2026.6.9"]
+
+  # ============== SECURITY ADVISORIES (routed to control-plane / runtime per amendment-004) ==============
+
+  - id: 2026-06-23-hermes-0day-mitigation-main-unreleased
+    section: control-plane
+    source: hermes-agent
+    channel: main-unreleased
+    title: "Hermes MCP-persistence mitigation wave landed on main, not in the v0.17.0 tag"
+    finding_ids: [2026-06-23-hermes-0day-mitigation-wave-main-unreleased]
+    why_action_bearing:
+      - "Days after tagging v0.17.0, a fresh security wave landed on main (June 21-22, NOT in that tag): a guard that rejects MCP entries writing shell payloads into OS persistence surfaces (authorized_keys, cron, sudoers), an IOC blocklist enforced at save and spawn time, an API-key entropy floor raised from 8 to 16, and a startup posture audit warning when a gateway runs as root or exposes an unauthenticated API server."
+      - "Per the maintainer's own commit narrative, this wave responds to an apparent in-the-wild hermes-0day persistence campaign — a single-source claim (a cited Reddit thread and a self-named instance), NOT independently confirmed exploitation. Read the mechanism and fix as real; read 'actively exploited' as the maintainer's account. Either way, if you expose a Hermes dashboard or API server, run main or wait for the next tag."
+    accessibility_impact: none
+    security_impact: critical
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes an MCP-config persistence path where an exposed control plane could be driven to plant a 'command: bash' MCP entry appending an attacker SSH key to authorized_keys, re-executed by cron and startup each tick."
+      attacker_model: "A third-party network scanner finding an exposed, unauthenticated Hermes dashboard or API server."
+      enforcement: both
+      cost_to_operator: "Operators must run main or wait for the next tag to get the mitigations; the v0.17.0 binary does not contain them."
+      residual: "Mitigations are main-unreleased; the tagged binary is unprotected. The in-the-wild exploitation claim is single-source and awaits corroboration."
+      affected_deployment_class: "Self-hosted Hermes deployments exposing a dashboard or API server on a network-reachable bind, especially without an API_SERVER_KEY set."
+      exploit_precondition: "Per the maintainer's commit narrative (single-source, not independently confirmed): an exposed control plane lets a remote actor drive the root agent to plant a command:bash MCP entry appending an attacker SSH key to authorized_keys, re-executed by cron/startup. The mitigations are main-unreleased past v0.17.0, so the tagged binary does not yet carry them."
+    security_advisory: true
+    receipts: ["https://github.com/NousResearch/hermes-agent/commit/7726ce304"]
+
+  - id: 2026-06-23-openhands-enterprise-cluster-unreleased
+    section: control-plane
+    source: openhands
+    channel: main-unreleased
+    title: "An entire OpenHands enterprise and security build-out, two windows unreleased (postcss CVE + git-token redaction)"
+    finding_ids: [2026-06-23-openhands-cve-sweep]
+    why_action_bearing:
+      - "The only mainline release is still 1.8.0 (June 10). Two security fixes that matter to anyone on a build from main are in no tag: the moderate postcss XSS, CVE-2026-41305 (#14770), and a fix that stops a `PluginSpec.source` containing an embedded git token from being written to the database in plaintext (#14795). New writes are redacted."
+      - "Operators on 1.8.0 have none of this and are not patched. Operators on a build from main should rotate any git token that was embedded in a repo source URL, because pre-fix writes were stored plaintext."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a moderate postcss XSS (CVE-2026-41305) and stops embedded git tokens in PluginSpec.source from being persisted to the database in plaintext."
+      attacker_model: "An end user delivering crafted CSS (XSS); anyone with database/log read access (token-at-rest)."
+      enforcement: runtime
+      cost_to_operator: "Operators on 1.8.0 are unpatched; operators on main must rotate any token embedded in a repo source URL, since redaction only covers new writes."
+      residual: "Two consecutive windows with the entire enterprise/security cluster in no release; the running release binary remains exposed."
+      affected_deployment_class: "Operators running OpenHands from a build off the main branch, where the enterprise frontend and PluginSpec.source handling are active; 1.8.0-release operators lack the fixes too where those surfaces apply."
+      exploit_precondition: "The postcss XSS (CVE-2026-41305) requires the vulnerable frontend build; the plaintext git-token-at-rest issue requires a PluginSpec.source carrying an embedded oauth2:token URL written before the redaction fix. Both fixes are main-unreleased; rotate any token embedded in a repo source URL."
+    security_advisory: true
+    receipts: ["https://github.com/OpenHands/OpenHands/pull/14795"]
+
+  - id: 2026-06-23-gemini-skill-path-traversal-stranded
+    section: control-plane
+    source: gemini-cli
+    channel: preview-or-beta
+    title: "Gemini CLI skill path-traversal fix stranded in preview for a second window"
+    finding_ids: [2026-06-15-gemini-cli-skill-install-path-traversal-fix]
+    why_action_bearing:
+      - "The skill install/link/uninstall path-traversal fix (commit bca5667fc / PR #27767) is, for the second straight week, in no stable release. It exists only in v0.48.0-preview.0; stable v0.47.0 does not contain it. A malicious `.skill` package can still write outside the skills directory on stable."
+      - "Treat third-party skill installs as untrusted on stable v0.47.0 until the path-traversal fix leaves preview."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a path-traversal where a malicious skill package writes outside the skills directory — but only on the preview channel."
+      attacker_model: "A third party publishing a malicious `.skill` package an operator installs."
+      enforcement: runtime
+      cost_to_operator: "Operators on stable must treat all third-party skill installs as untrusted until the fix is carried to a stable tag."
+      residual: "Stable v0.47.0 remains vulnerable; the fix is preview-only for a second consecutive window."
+      affected_deployment_class: "Operators on the stable Gemini CLI (v0.47.0) who install third-party .skill packages."
+      exploit_precondition: "A malicious or corrupted .skill package can write outside the skills directory, or delete sibling directories via a metadata-driven uninstall, on stable; the fix exists only in v0.48.0-preview.0, so stable users remain exposed until it reaches a stable tag."
+    security_advisory: true
+    receipts: ["https://github.com/google-gemini/gemini-cli/pull/27767"]
+
+  # ============== RUNTIME ==============
+
+  - id: 2026-06-23-openhands-dynamic-sandbox-spec
+    section: runtime
+    source: openhands
+    channel: main-unreleased
+    title: "Sandbox-spec authority moves off a hardcoded list onto a runtime-api control plane"
+    finding_ids: [2026-06-23-openhands-dynamic-sandbox-spec-service]
+    why_action_bearing:
+      - "PR #14849 (merge 56034afe10, merged to main 2026-06-16, NOT tagged) adds a DynamicRemoteSandboxSpecService that fetches available sandbox specs from the runtime-api `GET /api/warm-runtime-configs` endpoint rather than a hardcoded preset list — the foundation for custom and per-tenant execution images, with a companion guardrail refusing a custom image whose agent-server SDK version does not match."
+      - "Operators planning custom or per-tenant execution images should track this; the sandbox is becoming a server-driven, configurable surface. It is on main, in no release."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Selecting or customizing a sandbox image moves from editing a hardcoded preset list to a server-driven config name, so per-tenant images become reachable."
+      who_can_use_now: "Operators needing custom or per-tenant execution images who were constrained to a fixed preset list."
+      authority_visibility: "The SDK-version mismatch guardrail keeps a custom image from silently running against an incompatible server, preserving a visible compatibility boundary; impact held at low pending release."
+    security_impact: low
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Reframes sandbox-spec selection as a server-driven control plane; the companion guardrail refuses an image whose agent-server SDK version mismatches."
+      attacker_model: "An operator or tenant supplying a custom execution image incompatible with or hostile to the server contract."
+      enforcement: runtime
+      cost_to_operator: "Operators gain custom-image flexibility but must keep image SDK versions matched or be refused."
+      residual: "Unreleased on main; the runtime-api control plane is direction, not yet a shipped default."
+    security_advisory: false
+    receipts: ["https://github.com/OpenHands/OpenHands/pull/14849"]
+
+  - id: 2026-06-23-openhands-conversation-secret-enricher
+    section: runtime
+    source: openhands
+    channel: main-unreleased
+    title: "A per-user OAuth token now follows the user into the sandbox from any conversation start path"
+    finding_ids: [2026-06-23-openhands-conversation-secret-enricher]
+    why_action_bearing:
+      - "PRs #14697 and #14650 (merged to main 2026-06-16, NOT tagged) generalize a per-user secret enricher that injects a user's linked Jira Data Center OAuth token into the sandbox from any conversation start path — web, Slack, and API — not just the originating Jira integration. A credential now follows the user into the runtime, with the blast radius that implies."
+      - "Operators must reason explicitly about which start paths carry which secrets into a sandbox; the credential plane widened. It is on main, in no release."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "An agent started from any surface can now call back into Jira using the user's linked credential without re-linking per start path."
+      who_can_use_now: "Operators running cross-surface (web/Slack/API) workflows that previously could not reach the user's linked OAuth token outside Jira-triggered jobs."
+      authority_visibility: "This is the tension: convenience comes by flowing a credential into more sandbox paths, making the credential's reach less obvious — held at low precisely because authority became wider and less visible."
+    security_impact: medium
+    security_change: opens
+    security_consequence:
+      threat_blocked_or_opened: "Opens a wider credential-flow surface: a per-user OAuth token reaches sandboxes started from web, Slack, and API, not only Jira-triggered jobs."
+      attacker_model: "Prompt injection or a compromised conversation on any start path reaching a credential that now flows there."
+      enforcement: runtime
+      cost_to_operator: "Operators must audit which start paths inject which secrets; the blast radius of a leaked or injected sandbox grew."
+      residual: "Main-unreleased, and the broadened credential flow is by design — the exposure is which start paths carry which tokens."
+    security_advisory: false
+    receipts: ["https://github.com/OpenHands/OpenHands/pull/14697"]
+
+  - id: 2026-06-23-pi-inspectable-compaction
+    section: runtime
+    source: pi-coding-agent
+    channel: tagged-release
+    title: "Pi compaction events now carry reason and willRetry so a harness can tell the trigger apart"
+    finding_ids: [2026-06-23-pi-extension-compaction-event-context]
+    why_action_bearing:
+      - "v0.79.10 (PR #5962) adds `reason` and `willRetry` to the extension `session_before_compact` and `session_compact` events, so an extension can distinguish a manual `/compact` from a threshold auto-compaction from an overflow-retry flow. The runtime's context management becomes legible from the outside."
+      - "Harness authors building on Pi extensions can now branch behavior on why compaction fired and whether it will retry, rather than inferring it."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Understanding why context was compacted moves from guesswork to a typed signal: extensions read `reason` and `willRetry` directly."
+      who_can_use_now: "Extension and harness authors who needed to react to compaction but could not previously tell manual, threshold, and overflow flows apart."
+      authority_visibility: "This makes runtime state more visible, not less — the change exposes the compaction trigger that was previously opaque, with no authority or credential cost."
+    security_impact: none
+    security_advisory: false
+    receipts: ["https://github.com/earendil-works/pi/releases/tag/v0.79.10"]
+
+  - id: 2026-06-23-flue-private-by-default-observability
+    section: runtime
+    source: flue
+    channel: main-unreleased
+    title: "Flue workflow runs go private by default and flue logs is removed (staged in Unreleased)"
+    finding_ids: [2026-06-23-flue-workflow-runs-private-by-default, 2026-06-23-flue-logs-removed-typed-run-apis]
+    why_action_bearing:
+      - "Staged in the CHANGELOG `## Unreleased` section on main (NOT in the in-window v1.0.0-beta.1/beta.2 tags): workflow runs become private over HTTP unless the workflow separately exports a `runs: WorkflowRunsHandler`, admission receipts shrink to `{ runId }`, `streamUrl`/`offset` are dropped, and the `flue logs` command is removed in favor of typed SDK access (`client.runs.get()`/`events()`/`stream()`)."
+      - "This is direction, not a shipped default: the in-window beta.1 tag still documents `flue logs` as functional with the old `{ streamUrl, offset }` envelope. Operators should plan migrations off `flue logs` and the old run envelope, but not assume the new default is live until it tags."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Run inspection moves to typed SDK access (`client.runs.*`), which is more legible to programmatic consumers than the removed `flue logs` command."
+      who_can_use_now: "SDK and platform integrators who wanted typed run inspection rather than a CLI log stream."
+      authority_visibility: "Private-by-default keeps run data from leaking over HTTP without an explicit handler export, raising authority visibility; the cost is operators who relied on `flue logs` must migrate. Held at low because it is staged, not shipped."
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a default-exposure path: workflow runs are no longer readable over HTTP unless the workflow explicitly exports a runs handler."
+      attacker_model: "A third party reading run data over HTTP that was previously accessible by default."
+      enforcement: policy
+      cost_to_operator: "Operators must export a `runs` handler for HTTP access and migrate off `flue logs` and the `{ streamUrl, offset }` envelope."
+      residual: "Staged in `## Unreleased` on main; not in any in-window release tag, so the running beta does not yet enforce it."
+    security_advisory: false
+    receipts: ["https://github.com/withastro/flue/blob/main/CHANGELOG.md"]
+
+  - id: 2026-06-23-hermes-background-fanout-no-wallclock-bound
+    section: runtime
+    source: hermes-agent
+    channel: tagged-release
+    title: "Hermes shipped background fan-out delegation with no wall-clock bound on a busy worker"
+    finding_ids: [2026-06-23-hermes-background-async-subagents-tagged]
+    why_action_bearing:
+      - "v0.17.0 ships background fire-and-forget fan-out delegation (#49734) in the same line of work that removed the default subagent wall-clock timeout (#45149). A heartbeat/inactivity backstop remains for a wedged worker, but the wall-clock bound on a productively-busy runaway worker is gone and not replaced; the only bound on the fan-out is one async-pool slot for the whole batch."
+      - "Operators running long-horizon multi-agent Hermes work should re-introduce a spend or time bound themselves: a busy runaway background worker now has no wall-clock or cost ceiling."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Spawning parallel background work via fire-and-forget fan-out becomes a first-class delegation primitive, lowering the friction of long-horizon multi-agent runs."
+      who_can_use_now: "Operators orchestrating parallel background subagents who previously had to manage fan-out manually."
+      authority_visibility: "This is a tension entry: the autonomy surface widened while the wall-clock bound on a busy worker was removed, so cost/time authority became less visible — held at low for the lost ceiling."
+    security_impact: medium
+    security_change: opens
+    security_consequence:
+      threat_blocked_or_opened: "Opens a runaway-exposure: a productively-busy background worker has no wall-clock or cost ceiling, only a progress-stall heartbeat backstop and a single async-pool slot per batch."
+      attacker_model: "A runaway, looping, or prompt-influenced background worker that stays busy (so the inactivity backstop never fires)."
+      enforcement: runtime
+      cost_to_operator: "Operators must re-introduce a spend or wall-clock bound themselves; the default ceiling on a busy worker is gone."
+      residual: "Only a heartbeat/inactivity backstop and a concurrency-slot limit remain; no wall-clock or cost bound on a busy worker."
+    security_advisory: false
+    receipts: ["https://github.com/NousResearch/hermes-agent/pull/49734"]
+
+  # ============== PLATFORM ==============
+
+  - id: 2026-06-23-gemini-antigravity-migration-stable
+    section: platform
+    source: gemini-cli
+    channel: tagged-release
+    title: "Gemini CLI's Antigravity migration funnel reached stable"
+    finding_ids: [2026-06-23-gemini-antigravity-migration-to-stable, 2026-06-23-gemini-antigravity-banner-uncapped-in-stable]
+    why_action_bearing:
+      - "Stable v0.47.0 carries the Antigravity migration funnel: a built-in `antigravity-support` skill that hands users a `curl ... | bash` install of a separate `agy` binary (#27765), plus a removed five-show cap on the 'Antigravity is coming to town' banner so it now shows every session for free- and unpaid-tier users (#27676). The clearest sign yet of a managed succession — shipped to stable in the same release that left the skill path-traversal security fix in preview."
+      - "Operators should expect the migration prompt every session on free/unpaid tiers and treat the in-product `curl | bash` install of `agy` as a supply-chain decision, not a default to accept silently."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Migrating to the successor CLI is one in-product skill away, lowering the install friction for the `agy` binary."
+      who_can_use_now: "Free- and unpaid-tier Gemini CLI users, who now see the migration path surfaced every session."
+      authority_visibility: "The ease cuts against the operator: a `curl | bash` install reached via a built-in skill, and an uncapped banner, hide a supply-chain decision behind convenience — held at low because authority/verification became less visible."
+    security_impact: low
+    security_change: opens
+    security_consequence:
+      threat_blocked_or_opened: "Opens a supply-chain surface: a built-in skill triggers a `curl ... | bash` install of an external binary from within the agent."
+      attacker_model: "Anyone able to influence the install endpoint or the conditions under which the skill fires."
+      enforcement: policy
+      cost_to_operator: "Operators must treat the in-product migration install as an explicit supply-chain decision rather than a vendor default."
+      residual: "The funnel is in stable and runs every session for free/unpaid tiers; the only control is operator restraint."
+    security_advisory: false
+    receipts: ["https://github.com/google-gemini/gemini-cli/pull/27765"]
+
+  - id: 2026-06-23-openclaw-wcag-aa-stable
+    section: platform
+    source: openclaw
+    channel: tagged-release
+    title: "OpenClaw's WCAG 2.1 AA accessibility pass reached stable"
+    finding_ids: [2026-06-23-openclaw-wcag-aa-reaches-stable]
+    why_action_bearing:
+      - "PR #89822's WCAG 2.1 AA pass reached stable v2026.6.8 (June 16), having been beta-only last window: dark-mode contrast lifted to the 4.5-to-1 floor (verified >=4.8:1), real keyboard `:focus-visible` rings, and a 12-pixel font floor across 136 elements. The cleanest 'reached the operator' event of the fortnight."
+      - "Operators should verify their dashboard against the stable WCAG AA build — check dark-mode contrast and tab through for a visible focus ring; a previously beta-only accessibility capability is now on the default channel."
+    accessibility_impact: high
+    accessibility_consequence:
+      what_got_easier: "The dashboard becomes usable for low-vision and keyboard-only operators: sufficient contrast, visible focus rings, and a legible font floor, on the default channel."
+      who_can_use_now: "Low-vision and keyboard-only operators, who could not reliably use the prior dashboard and now can without a beta opt-in."
+      authority_visibility: "The accessibility win adds no authority cost — the authority surfaces stay visible while the interface becomes reachable; this is the half of the frontier that decides whether the authority work gets used at all."
+    security_impact: none
+    security_advisory: false
+    receipts: ["https://github.com/openclaw/openclaw/releases/tag/v2026.6.8"]

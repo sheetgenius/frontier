@@ -1,0 +1,157 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-06-24-weekly-digest-2026-06-23_2026-06-24-frontier-v0
+window:
+  start: 2026-06-23
+  end: 2026-06-24
+note: >
+  Five curated decision-bearing signals for a thin window whose editorial weight
+  is the introduction of heypi -- the governance-shell framework built on Pi.
+  Four heypi signals (the headline approvals-default gap, the 0.2.0-beta breaking
+  permissions move, secrets-at-rest, and runtime choice for team bots) plus the
+  one genuinely material watchlist event (OpenHands' unreleased dependency-CVE
+  batch). Channel is explicit on every signal and resolved by tag ancestry, not
+  date: heypi's biggest in-window change is a BETA, and the OpenHands fixes are on
+  main with no tag -- the same merged-vs-shipped gap that defined last window.
+  Signals (5) stay rarer than findings (13).
+signals:
+
+  # ============== CONTROL PLANE ==============
+
+  - id: 2026-06-24-heypi-approvals-not-on-by-default
+    section: control-plane
+    source: heypi
+    channel: tagged-release
+    title: "heypi's headline feature is approvals, but nothing requires approval by default"
+    finding_ids: [2026-06-24-heypi-approvals-opt-in-not-default, 2026-06-24-heypi-admin-panel-and-audit-default-off]
+    why_action_bearing:
+      - "The docs are explicit: `approval does not make every tool call require approval. Tool confirmation does that.` Out of the box the only automatic gate is the bash `approval.command()` classifier (blocks destructive, asks on risky, allows low-risk); every other tool runs without a human gate until you wire `approval`/`confirm` per tool. An operator who adopts heypi *for* its approvals must author them; the default is not a human-in-the-loop posture."
+      - "The companion 'audit trail' is typed trace events surfaced in the admin panel -- which is itself disabled by default and binds loopback. To actually get the reviewable record the marketing promises, you must enable and operate the admin panel (or read `heypi events`)."
+      - "Before deploying, decide which tools must gate on a named approver and wire them; do not assume the framework's headline posture is its default."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Wiring a human approval onto a tool is a documented, first-class primitive (`approval.command()`, custom-tool confirm), not a bespoke build."
+      who_can_use_now: "A team operator who wants risky chat-ops actions gated, once they author the gates."
+      authority_visibility: "Authority is visible only after the operator wires it; the default leaves most tool calls ungated, so the as-shipped authority surface is thinner than the headline implies. Impact downgraded for that gap."
+    security_impact: medium
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Reframes who holds the gate: the framework supplies approval primitives but does not gate tool calls by default, so an unconfigured deployment can execute model-chosen tool calls in a shared channel with no human in the loop."
+      attacker_model: "A prompt-injected or socially-engineered request in a shared channel driving an ungated tool call (the DevOps side-effect case the project's own community flagged as the point of approvals)."
+      enforcement: policy
+      cost_to_operator: "The operator must enumerate and wire approvals per tool; safe-by-default here means low-capability-by-default (network-off sandbox, admin off, memory off), not gated-by-default."
+      residual: "Any tool the operator does not explicitly gate runs without approval; coverage is exactly what was authored."
+    security_advisory: false
+    receipts:
+      - https://heypi.dev/docs/configuration/approvals
+      - https://heypi.dev/docs/configuration/admin
+
+  - id: 2026-06-24-heypi-0.2.0-beta-breaking-permissions
+    section: control-plane
+    source: heypi
+    channel: preview-or-beta
+    title: "heypi 0.2.0-beta.0 breaks root-level approver config and makes webhooks HTTPS-by-default -- and it is a beta"
+    finding_ids: [2026-06-24-heypi-0.2.0-beta-governance-hardening, 2026-06-24-heypi-channel-discipline-tags-no-releases]
+    why_action_bearing:
+      - "0.2.0-beta.0 (2026-06-23) moves approver/admin identity from a root-level `approval.approvers`/`approval.admins` block to adapter-local `permissions`, and root-level config now FAILS at startup. Webhooks are HTTPS-by-default (plain HTTP needs `unsafeReplyHttp: true`), and the durable instruction file renamed `prompt`/`soul` to `instructions`. An operator upgrading from 0.1.x must migrate config or the app will not start."
+      - "It is a `-beta.0` pre-release, and heypi publishes no GitHub Releases at all -- the newest fixes already sit on `main` past the tag. Decide deliberately: pin 0.1.3 for stability, or adopt the beta and track `main`, but do not run a beta as if it were a stable line."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "The hardened defaults (fail-closed on misplaced approver config, HTTPS webhooks) make a safe deployment the path of least resistance."
+      who_can_use_now: "Operators standing up a new heypi app on the beta inherit safer defaults without extra configuration."
+      authority_visibility: "Authority config that used to silently sit at the wrong scope now fails loudly at startup -- more visible, not less."
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a misconfiguration class (approver rules placed at a root scope that did not bind per-adapter) by refusing to start, and closes plaintext-HTTP webhook replies by default."
+      attacker_model: "An operator who believed root-level approver rules were enforcing per-adapter, or a network attacker reading/injecting plain-HTTP webhook traffic."
+      enforcement: both
+      cost_to_operator: "Existing 0.1.x configs must be migrated to adapter-local `permissions`; HTTP webhook callers must opt back in explicitly or move to HTTPS."
+      residual: "The hardening ships only in a beta tag; an operator who stays on 0.1.x does not have it, and `main` carries further unreleased fixes."
+    security_advisory: false
+    receipts:
+      - https://raw.githubusercontent.com/hunvreus/heypi/main/CHANGELOG.md
+      - https://github.com/hunvreus/heypi/tags
+
+  # ============== RUNTIME ==============
+
+  - id: 2026-06-24-heypi-secrets-plaintext-at-rest
+    section: runtime
+    source: heypi
+    channel: tagged-release
+    title: "heypi keeps secrets out of chat and the model context, but they rest plaintext-readable in the runtime workspace"
+    finding_ids: [2026-06-24-heypi-secret-handoff]
+    why_action_bearing:
+      - "The `secret_request` flow encrypts secrets client-side (WebCrypto) so they are `not stored as chat history and is not sent to the model` -- a genuine win over pasting credentials into a channel. But the docs are equally explicit that secrets land as scoped runtime files (`.secrets/<name>`) and `Anyone who can read the scoped runtime workspace can read saved secrets`."
+      - "Do not treat heypi's secret handoff as a vault. Restrict who and what can read the runtime workspace (and choose a sandboxed runtime accordingly), and remember `pending secret requests are lost on process restart`."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "A non-expert teammate can hand a credential to the agent without pasting it into chat -- the encrypted browser handoff removes a common, dangerous workaround."
+      who_can_use_now: "Any team member in a chat channel can supply a secret safely from the model's and the transcript's point of view."
+      authority_visibility: "The at-rest exposure is documented, not hidden -- but it is in a caveat, not the headline; operators must read past the feature to find the boundary."
+    security_impact: medium
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Blocks secret leakage into chat history and model context; does not block secret disclosure to anything that can read the runtime workspace filesystem."
+      attacker_model: "A co-tenant of the runtime workspace, a tool with filesystem read, or a compromised runtime -- not the chat transcript or the model provider."
+      enforcement: runtime
+      cost_to_operator: "The operator must isolate the runtime workspace (sandboxed runtime, scoped filesystem) to make the at-rest story match the in-transit one."
+      residual: "Secrets at rest are readable by anything with workspace read; the encryption protects the handoff path, not storage."
+    security_advisory: false
+    receipts:
+      - https://heypi.dev/docs/configuration/secrets
+
+  - id: 2026-06-24-heypi-runtime-choice-for-team-bots
+    section: runtime
+    source: heypi
+    channel: tagged-release
+    title: "For shared or team-facing heypi bots, the sandbox runtime is an explicit choice -- host runtimes ship with only a warning"
+    finding_ids: [2026-06-24-heypi-sandbox-runtimes]
+    why_action_bearing:
+      - "The default `just-bash` runtime is an in-process interpreter with a virtual filesystem and network off by default; Docker and Gondolin (a warm QEMU VM per scope) are opt-in isolation. The host runtimes (`host-bash`, `guarded-bash`) run against the real machine and emit only a startup warning: `For shared or team-facing bots, prefer just-bash, Docker, or Gondolin.`"
+      - "Choose the runtime before exposing a bot to a channel: a warning is not a boundary. For anything multiplayer, select an isolating runtime explicitly rather than relying on the default or accepting a host runtime past its warning."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "A safe sandbox (network-off `just-bash`) is the default, so the easy path is also the contained one."
+      who_can_use_now: "An operator without container expertise still gets isolation out of the box; Docker/Gondolin are there when they need stronger boundaries."
+      authority_visibility: "Host-runtime risk is surfaced as a startup warning rather than blocked, so the dangerous choice stays available and visible -- but only as text."
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes default network and host-filesystem exposure by shipping a network-off in-process sandbox as the default; leaves host access reachable behind an opt-in and a warning."
+      attacker_model: "A model-chosen or injected command attempting network egress or host filesystem access from a shared-channel bot."
+      enforcement: runtime
+      cost_to_operator: "Operators who need real host access must opt into a host runtime and accept the warning; stronger isolation (Docker/Gondolin) requires that infrastructure."
+      residual: "Host runtimes remain available with only a warning; the default's virtual filesystem is a sandbox, not a security guarantee against a determined escape."
+    security_advisory: false
+    receipts:
+      - https://heypi.dev/docs/configuration/runtime
+
+  # ============== PLATFORM ==============
+
+  - id: 2026-06-24-openhands-dependency-cve-batch-unreleased
+    section: platform
+    source: openhands
+    channel: main-unreleased
+    title: "OpenHands shipped a five-item dependency-CVE batch to main on 2026-06-23 -- in no tagged release"
+    finding_ids: [2026-06-24-openhands-dependency-cve-batch-main-unreleased]
+    why_action_bearing:
+      - "A batch of dependency security fixes landed on `main` on 2026-06-23 -- CVE-2026-44727 (jupyter-server 2.20.0), CVE-2026-49458 (dompurify 3.4.6), GHSA-6v7p-g79w-8964 (msgpack 1.2.1), CVE-2026-45409 (idna 3.15), GHSA-gj48-438w-jh9v (bleach 6.4.0) -- but no tag was cut; the only release remains 1.8.0 from 2026-06-10."
+      - "Determine which channel you run. An operator on 1.8.0 has none of these fixes; an operator on a build from main has them. This is the same merged-vs-shipped gap that defined last window, now continuing into this one -- 'fixed' is true on main and false in the binary most operators run."
+    accessibility_impact: none
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes five known dependency vulnerabilities (XSS via dompurify, and CVEs in jupyter-server, msgpack, idna, bleach) for builds that include them."
+      attacker_model: "A third party exploiting a known-CVE dependency in a deployed OpenHands instance -- e.g. XSS through the dompurify path."
+      enforcement: runtime
+      cost_to_operator: "There is no tag to upgrade to; getting the fixes means running a build from main, with all the unreleased enterprise/security churn that carries."
+      residual: "The 1.8.0 release line remains unpatched for these CVEs; operators who pin to tags have no fixed version to move to this window."
+      affected_deployment_class: "Operators running the tagged 1.8.0 release (or any build predating the 2026-06-23 main commits) with the affected dependencies in their image."
+      exploit_precondition: "An exposed surface reaching the vulnerable dependency code path -- e.g. rendering untrusted content through the dompurify sanitizer, or the affected jupyter-server/idna/msgpack/bleach paths. Per-CVE severity pending each advisory's resolution; the receipts below are the merge commits, not independent advisory confirmation."
+    security_advisory: true
+    receipts:
+      - https://github.com/OpenHands/OpenHands/pull/14943   # CVE-2026-44727 jupyter-server 2.20.0 (dcb840b)
+      - https://github.com/OpenHands/OpenHands/pull/14872   # CVE-2026-49458 dompurify 3.4.6 (0b7d2d4)
+      - https://github.com/OpenHands/OpenHands/pull/14944   # GHSA-6v7p-g79w-8964 msgpack 1.2.1 (d9cefcc)
+      - https://github.com/OpenHands/OpenHands/pull/14946   # CVE-2026-45409 idna 3.15 (f08e219)
+      - https://github.com/OpenHands/OpenHands/pull/14945   # GHSA-gj48-438w-jh9v bleach 6.4.0 (129584f)

@@ -1,0 +1,61 @@
+schema_version: bitter.frontier_run_manifest.v0
+run_id: 2026-06-23-weekly-digest-2026-06-16_2026-06-23-frontier-v0
+mode: weekly-digest
+window:
+  start: 2026-06-16
+  end: 2026-06-23
+status: published
+parent_window: 2026-06-04_2026-06-16
+finding_count: 86
+signal_count: 23
+sources:
+  - codex
+  - claude-code
+  - gemini-cli
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+  - flue
+models:
+  coordinator: claude-opus-4-8[1m]
+  harvesters: claude-opus-4-8 (max effort, parallel, sub-spawn authorized)
+  verifiers: claude-opus-4-8 (max effort, adversarial refute posture)
+  editorial_authority: coordinator
+harness:
+  shape: contextual-pyramid
+  description: >
+    Coordinator (final editorial authority) fans out one Opus harvester per
+    provider; harvesters may spawn their own Opus deep-dive subagents for
+    surface-level diffs and ancestry resolution. A separate adversarial
+    verify layer re-fetches load-bearing claims and is instructed to refute.
+    Coordinator personally synthesizes the digest, profile updates, backstage
+    note, and QA.
+quality_gates:
+  - channel_by_ancestry: required   # tagged-release | main-unreleased | preview-or-beta, resolved via git compare not date inference
+  - dates_verified_to_year: required # via API/changelog ISO timestamps, not rendered HTML
+  - signals_rarer_than_findings: required
+  - every_signal_receipt_adversarially_verified: required
+  - amendment_009_lens: required     # written for the author's cold-context self / wide frontier-curious reader
+prompts:
+  harvest: inline (coordinator-issued, per-provider)
+  verify: inline (adversarial refute)
+  digest: coordinator-authored
+  qa: coordinator-authored
+carry_forward_checks:
+  # prior-window (2026-06-04_2026-06-16) main-unreleased / preview-only fixes to confirm landed in a tag this window
+  hermes-agent: post-v0.16.0 fail-closed wave (da28d5d11, 3380563d9, fc4635458) + async subagents (c66ecf0bc)
+  paperclip: post-v2026.609.0 cloud-tenant deprivilege (#7525), per-company JWT (#5864), approval atomicity (#5839), plugin isolation (#5865), log redaction (#8013)
+  openhands: post-1.8.0 default-org (#14752), BYOK (#14773), concurrency (#14168), PluginSpec plaintext-token redact (#14795), postcss CVE-2026-41305 (#14770)
+  gemini-cli: skill path-traversal fix (commit bca5667fc / #27767) reaching a tag; Antigravity migration commands reaching stable (were v0.47.0-preview.0 only)
+  openclaw: WCAG 2.1 AA pass (#89822) reaching stable (was v2026.6.7-beta.1 only)
+generated_findings: harvest/*.md (consolidated per-provider, 10 providers)
+generated_signals: signals/frontier-signals.yml
+generated_digest: ../../content/digests/2026-06-16_2026-06-23-weekly.md
+verify_notes: verify/*.md (5 adversarial verifier clusters)
+profile_updates: all 10 profiles refreshed to last_updated 2026-06-23
+doctrine_drafts: ../../charter/proposed/amendment-010-channel-as-evidence-property.md
+audit_notes: audit.md
+qa_notes: qa.md

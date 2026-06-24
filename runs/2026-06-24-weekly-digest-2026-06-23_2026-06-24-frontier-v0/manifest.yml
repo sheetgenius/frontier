@@ -1,0 +1,73 @@
+schema_version: bitter.frontier_run_manifest.v0
+run_id: 2026-06-24-weekly-digest-2026-06-23_2026-06-24-frontier-v0
+mode: weekly-digest
+title: "Governance, Sold Separately"
+window:
+  start: 2026-06-23
+  end: 2026-06-24
+status: published
+parent_window: 2026-06-16_2026-06-23
+finding_count: 13
+signal_count: 5
+sources:
+  - heypi
+  - codex
+  - claude-code
+  - gemini-cli
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+  - flue
+new_source_this_run: heypi
+models:
+  coordinator: claude-opus-4-8[1m]
+  researchers: "claude-opus-4-8 (max effort, parallel; heypi-deep, foils/EVE, watchlist-harvest)"
+  historical_correction: claude-opus-4-8 (finding-stub materialization)
+  site_audit: claude-opus-4-8 (read-only typography/linking survey)
+  technical_critique: codex-cli 0.142.0 (high reasoning) [planned]
+  editorial_voice: claude-opus-4-8 (field-correspondent voice pass) [planned]
+harness:
+  shape: coordinator-led-fanout
+  description: >
+    Coordinator (final editorial authority) ran a deep protocol: parallel Opus
+    research agents (heypi repo+docs, EVE/Pi/OpenClaw/workflow-platform foils,
+    thin-window watchlist harvest) into a shared run JOURNAL.md; a historical-
+    correction agent materialized the prior run's missing finding stubs (integrity
+    132 -> 0); a read-only site audit grounded the render pipeline and inventoried
+    typography/linking defects. Coordinator authored the source contract, findings,
+    signals, profile, digest, and backstage note, then ran a Codex technical
+    critique and an Opus voice pass before publication. All agents logged to
+    JOURNAL.md; commits are frequent and cross-linked to journal entries.
+quality_gates:
+  - channel_by_ancestry: required   # tagged-release | main-unreleased | preview-or-beta, by git ancestry not date
+  - dates_verified_to_year: required
+  - signals_rarer_than_findings: required   # 5 signals / 13 findings
+  - every_signal_receipt_adversarially_verified: required
+  - amendment_009_lens: required    # explicit cross-provider synthesis thesis present
+  - marketing_vs_substance_separated: required  # heypi landing-page vs docs gap stated, not laundered
+prompts:
+  research: inline (coordinator-issued, per-agent)
+  harvest: inline
+  digest: coordinator-authored
+  qa: coordinator-authored
+carry_forward_checks:
+  # prior-window (2026-06-16_2026-06-23) main-unreleased / preview-only items to confirm tagged this window
+  openhands: post-1.8.0 enterprise/security cluster + new 2026-06-23 dependency-CVE batch reaching a tag (did NOT tag; still main-only)
+  hermes-agent: post-v2026.6.19 MCP-persistence wave reaching a tag (did NOT tag; no further security commits in-window)
+  paperclip: post-v2026.618.0 master controls reaching a tag (did NOT tag)
+  agent-zero: ready-branch staging backlog reaching a tag (did NOT tag; ~19 more commits 2026-06-23)
+  gemini-cli: skill path-traversal fix reaching stable (no in-window movement)
+  flue: private-by-default observability + flue logs removal -- CONFIRMED shipped in 0.11.0 (2026-06-09), correcting last window's "Unreleased" framing
+new_source_build:
+  heypi: initial profile + source contract + 9 findings seeded from tags 0.1.0..0.2.0-beta.0
+generated_findings: findings/*.md (13) + consolidated harvest/heypi.md, harvest/watchlist.md
+generated_signals: signals/frontier-signals.yml
+generated_digest: ../../content/digests/2026-06-23_2026-06-24-weekly.md
+profile_updates: content/profiles/heypi.md (new); existing profiles unchanged this thin window
+site_audit: review/site-audit-inventory.md
+journal: JOURNAL.md
+audit_notes: audit.md
+qa_notes: qa.md

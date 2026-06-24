@@ -1,5 +1,7 @@
 # Bitter Frontier Digests
 
+- [Governance, Sold Separately](2026-06-23_2026-06-24-weekly.md) -- 2026-06-23 to 2026-06-24
+- [Protected on Paper](2026-06-16_2026-06-23-weekly.md) -- 2026-06-16 to 2026-06-23
 - [Who's Allowed to Say Yes](2026-06-04_2026-06-16-weekly.md) -- 2026-06-04 to 2026-06-16
 - [The Policy You Wrote Wasn't the Policy You Had](2026-05-28_2026-06-03-weekly.md) -- 2026-05-28 to 2026-06-03
 - [Auto Stops Asking](2026-05-13_2026-05-27-weekly.md) -- 2026-05-13 to 2026-05-27

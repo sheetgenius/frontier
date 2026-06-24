@@ -55,6 +55,12 @@ sources:
     tier: 1
     status: active
     cadence: daily
+  - id: heypi
+    contract: sources/heypi.yml
+    notes: sources/heypi.notes.md
+    tier: 1
+    status: active
+    cadence: daily
   - id: flue
     contract: sources/flue.yml
     notes: sources/flue.notes.md
