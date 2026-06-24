@@ -22,6 +22,8 @@ Create a run directory:
 runs/YYYY-MM-DD-x-social-harvest-YYYY-MM-DD-frontier-v0/
   manifest.yml
   harvest/<source>.md
+  social-cards/<cluster>.yml
+  research-journal.md
   verify/x-post-dates.md
   qa.md
 ```
@@ -69,6 +71,11 @@ release tags, commits, pull requests, changelog entries, or official docs.
   the relevant source contract.
 - Mark drama, adoption, benchmark, and ranking claims
   `single-source-unconfirmed` unless independently supported.
+
+For richer public context, use the
+[Deep Social Research Loop](./deep-social-research-loop.md). It defines the
+static social-card format used to render tweet-like cards from repo data without
+loading X at runtime.
 
 ## Cross-check pass
 

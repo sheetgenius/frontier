@@ -576,6 +576,26 @@ export type RunArtifact = {
   internalUrl?: string;
 };
 
+export type SocialReceiptCard = {
+  id: string;
+  title: string;
+  kind: string;
+  status: string;
+  date: string;
+  datePrecision?: string;
+  dateNote?: string;
+  sourceIds: string[];
+  authors: string[];
+  sourceUrls: string[];
+  excerpt?: string;
+  summary: string;
+  whyItMatters?: string;
+  verificationNeeded?: string;
+  confidence?: string;
+  caveats?: string;
+  tags: string[];
+};
+
 export function runArtifacts(runId: string): RunArtifact[] {
   const runDir = repoPath("runs", runId);
   if (!fs.existsSync(runDir)) return [];
@@ -618,6 +638,24 @@ export function runArtifacts(runId: string): RunArtifact[] {
       });
     }
   }
+  const socialCardsDir = path.join(runDir, "social-cards");
+  if (fs.existsSync(socialCardsDir)) {
+    for (const file of fs.readdirSync(socialCardsDir).filter((f) => f.endsWith(".yml") || f.endsWith(".yaml")).sort()) {
+      artifacts.push({
+        kind: "social cards",
+        label: `Static social cards — ${file.replace(/\.(ya?ml)$/, "")}`,
+        repoPath: rel(path.join(socialCardsDir, file)),
+      });
+    }
+  }
+  const journalPath = path.join(runDir, "research-journal.md");
+  if (fs.existsSync(journalPath)) {
+    artifacts.push({
+      kind: "journal",
+      label: "R&D journal",
+      repoPath: rel(journalPath),
+    });
+  }
   const qaPath = path.join(runDir, "qa.md");
   if (fs.existsSync(qaPath)) {
     artifacts.push({
@@ -635,6 +673,44 @@ export function runArtifacts(runId: string): RunArtifact[] {
     });
   }
   return artifacts;
+}
+
+function normalizeStringArray(value: unknown): string[] {
+  if (Array.isArray(value)) return value.map((item) => String(item)).filter(Boolean);
+  if (typeof value === "string" && value.length > 0) return [value];
+  return [];
+}
+
+export function listRunSocialCards(runId: string): SocialReceiptCard[] {
+  const dir = repoPath("runs", runId, "social-cards");
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((file) => file.endsWith(".yml") || file.endsWith(".yaml"))
+    .sort()
+    .flatMap((file) => {
+      const yaml = readYaml(path.join(dir, file));
+      return (yaml?.cards ?? []).map((card: any) => ({
+        id: String(card.id ?? ""),
+        title: String(card.title ?? card.id ?? "Untitled social receipt"),
+        kind: String(card.kind ?? "social_receipt"),
+        status: String(card.status ?? "candidate"),
+        date: formatDate(card.date ?? card.event_date ?? card.observed_at),
+        datePrecision: card.date_precision ? String(card.date_precision) : undefined,
+        dateNote: card.date_note ? String(card.date_note) : undefined,
+        sourceIds: normalizeStringArray(card.source_ids ?? card.sources ?? card.source),
+        authors: normalizeStringArray(card.authors ?? card.author),
+        sourceUrls: normalizeStringArray(card.source_urls ?? card.source_url ?? card.primary_url),
+        excerpt: card.excerpt ? String(card.excerpt) : undefined,
+        summary: String(card.summary ?? ""),
+        whyItMatters: card.why_it_matters ? String(card.why_it_matters) : undefined,
+        verificationNeeded: card.verification_needed ? String(card.verification_needed) : undefined,
+        confidence: card.confidence ? String(card.confidence) : undefined,
+        caveats: card.caveats ? String(card.caveats) : undefined,
+        tags: normalizeStringArray(card.tags),
+      })).filter((card: SocialReceiptCard) => card.id && card.sourceUrls.length > 0);
+    })
+    .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
 }
 
 export function runManifest(runId: string): any | undefined {

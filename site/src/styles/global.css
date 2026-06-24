@@ -994,6 +994,183 @@ code {
   margin-top: 0.25rem;
 }
 
+.social-receipts-head {
+  display: grid;
+  gap: 0.85rem;
+}
+
+@media (min-width: 760px) {
+  .social-receipts-head {
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+    align-items: end;
+  }
+}
+
+.social-receipts-title {
+  margin: 0.45rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.18rem, 1.4vw, 1.36rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.social-receipts-note {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.social-receipt-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1.35rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social-receipt-card {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 1rem 0.95rem;
+  border: 1px solid var(--color-line);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-ground) 92%, white), var(--color-ground));
+}
+
+:root.dark .social-receipt-card {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-ground) 94%, white), var(--color-ground));
+}
+
+.social-receipt-card.social-receipt-ecosystem_drama,
+.social-receipt-card.social-receipt-public_exchange {
+  border-left: 2px solid var(--color-bitter);
+}
+
+.social-receipt-meta,
+.social-receipt-byline,
+.social-receipt-status,
+.social-receipt-links,
+.social-receipt-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.38rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.social-receipt-meta {
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.social-receipt-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.04rem, 1.1vw, 1.18rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.28;
+  text-wrap: balance;
+}
+
+.social-receipt-excerpt {
+  margin: 0.05rem 0 0;
+  padding: 0.2rem 0 0.2rem 0.85rem;
+  border-left: 2px solid color-mix(in srgb, var(--color-bitter) 55%, var(--color-line));
+  color: var(--color-ink);
+}
+
+.social-receipt-excerpt p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.social-receipt-summary,
+.social-receipt-why,
+.social-receipt-verification,
+.social-receipt-date-note,
+.social-receipt-caveat {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+.social-receipt-why,
+.social-receipt-verification,
+.social-receipt-date-note {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.social-receipt-why span,
+.social-receipt-verification span,
+.social-receipt-date-note span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-bitter);
+}
+
+.social-receipt-footer {
+  display: grid;
+  gap: 0.65rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--color-line);
+}
+
+@media (min-width: 640px) {
+  .social-receipt-footer {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+}
+
+.social-receipt-links {
+  justify-content: flex-start;
+}
+
+@media (min-width: 640px) {
+  .social-receipt-links {
+    justify-content: flex-end;
+  }
+}
+
+.social-receipt-links a {
+  color: var(--color-bitter);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-bitter) 45%, transparent);
+  padding-bottom: 0.1rem;
+}
+
+.social-receipt-links a:hover {
+  border-bottom-color: var(--color-bitter);
+}
+
+.social-receipt-tags {
+  gap: 0.32rem;
+}
+
+.social-receipt-tags span {
+  padding: 0.08rem 0.45rem;
+  border: 1px solid var(--color-line);
+  color: var(--color-muted);
+}
+
+.social-receipt-caveat {
+  font-size: 0.86rem;
+}
+
 .source-footer {
   font-family: var(--font-mono);
   font-size: 0.75rem;

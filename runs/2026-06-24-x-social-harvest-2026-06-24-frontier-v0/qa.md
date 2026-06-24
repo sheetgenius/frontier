@@ -15,11 +15,13 @@ This run performed discovery-only harvesting of X posts for all 10 watchlist pro
 - Primary evidence_kind used: `maintainer_authored_post`, `official_account_post`, `community_discussion`.
 - Social claims flagged as `single-source-unconfirmed` unless multiple independent posts found.
 - Each claim includes `crosscheck_status`. Most product/version claims remain `needs_primary_crosscheck`. The Codex v0.142.0 token-budget claim carries a public release-tag secondary receipt and `crosscheck_status=verified_secondary`.
+- Static social cards are generated only from exact-dated scout/harvest items. They do not use live embeds, engagement metrics, or unverified paraphrases as quotes.
 
 ### Refuted / Downgraded
 - Several early hype claims around OpenClaw and Gemini CLI noted as having cooled significantly.
 - No product version claims accepted without cross-reference to GitHub releases where possible.
 - `operator_consequence` is cautious discovery language only. It does not direct upgrades or product decisions from social evidence alone.
+- The scout/critic/editor loop rejected inferred-date and tracker-metric material from the social-card face. Those items remain journal/open-loop material until exact post dates and primary metric receipts are available.
 
 ### Limitations
 - Public secondary cross-checks were added only where discovered in this pass. Full verification of product/version claims requires a separate source-contract pass against GitHub releases, commits, docs, or changelogs.
@@ -28,6 +30,8 @@ This run performed discovery-only harvesting of X posts for all 10 watchlist pro
 
 ## Files Added/Changed in This Pass
 - harvest/*.md: exact event_date + date_precision=day for all previously imprecise X posts.
+- social-cards/x-cards.yml: static tweet-like receipt cards rendered from repo data only.
+- research-journal.md: public R&D journal for scout, critic, editor decisions and open loops.
 - verify/x-post-dates.md: per-cluster verification notes (what checked, why, public sources only).
 - qa.md: updated to reflect full date resolution and crosscheck additions.
 

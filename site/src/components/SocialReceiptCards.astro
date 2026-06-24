@@ -1,0 +1,81 @@
+---
+import { sourceLabel, type SocialReceiptCard } from "../lib/frontier";
+
+const { cards = [] } = Astro.props as { cards: SocialReceiptCard[] };
+
+const kindLabel = (kind: string) => kind.replace(/_/g, " ");
+---
+
+{
+  cards.length > 0 && (
+    <section class="rule mt-7 pt-6">
+      <div class="social-receipts-head">
+        <div>
+          <p class="small-caps text-muted">Social receipts</p>
+          <h2 class="social-receipts-title">X posts captured as static evidence cards.</h2>
+        </div>
+        <p class="social-receipts-note">
+          Cards render from repo data only. The source link opens the original post.
+        </p>
+      </div>
+      <ol class="social-receipt-grid">
+        {cards.map((card) => (
+          <li class={`social-receipt-card social-receipt-${card.kind}`}>
+            <div class="social-receipt-meta">
+              <span>{kindLabel(card.kind)}</span>
+              <span>{card.date}{card.datePrecision ? ` · ${card.datePrecision}` : ""}</span>
+            </div>
+            <h3 class="social-receipt-title">{card.title}</h3>
+            <div class="social-receipt-byline">
+              {card.authors.length > 0 && <span>{card.authors.join(" / ")}</span>}
+              {card.sourceIds.length > 0 && (
+                <span>{card.sourceIds.map((sourceId) => sourceLabel(sourceId)).join(" / ")}</span>
+              )}
+            </div>
+            {card.excerpt && (
+              <blockquote class="social-receipt-excerpt">
+                <p>{card.excerpt}</p>
+              </blockquote>
+            )}
+            <p class="social-receipt-summary">{card.summary}</p>
+            {card.whyItMatters && (
+              <p class="social-receipt-why">
+                <span>Why it matters</span>
+                {card.whyItMatters}
+              </p>
+            )}
+            {card.verificationNeeded && (
+              <p class="social-receipt-verification">
+                <span>Before promotion</span>
+                {card.verificationNeeded}
+              </p>
+            )}
+            {card.dateNote && (
+              <p class="social-receipt-date-note">
+                <span>Date note</span>
+                {card.dateNote}
+              </p>
+            )}
+            <div class="social-receipt-footer">
+              <div class="social-receipt-status">
+                <span>{card.status}</span>
+                {card.confidence && <span>{card.confidence}</span>}
+              </div>
+              <div class="social-receipt-links">
+                {card.sourceUrls.map((url, index) => (
+                  <a href={url}>{index === 0 ? "Source post" : `Source ${index + 1}`}</a>
+                ))}
+              </div>
+            </div>
+            {card.tags.length > 0 && (
+              <div class="social-receipt-tags">
+                {card.tags.map((tag) => <span>{tag}</span>)}
+              </div>
+            )}
+            {card.caveats && <p class="social-receipt-caveat">{card.caveats}</p>}
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}

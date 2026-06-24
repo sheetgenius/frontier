@@ -1,9 +1,10 @@
 ---
 import Base from "../../layouts/Base.astro";
+import SocialReceiptCards from "../../components/SocialReceiptCards.astro";
 import SourceTrail from "../../components/SourceTrail.astro";
 import {
-  formatDate,
   getSignal,
+  listRunSocialCards,
   listRuns,
   runArtifacts,
   runManifest,
@@ -26,6 +27,7 @@ const acceptedSignalIds = signalIdsInRun(run.id);
 const acceptedSignals = acceptedSignalIds.map((id) => getSignal(id)).filter(Boolean);
 const sourceContractPaths: string[] = manifest?.source_contracts ?? [];
 const manifestSources: string[] = manifest?.sources ?? [];
+const socialCards = listRunSocialCards(run.id);
 ---
 
 <Base title={`${run.id} · Bitter Frontier`}>
@@ -109,6 +111,8 @@ const manifestSources: string[] = manifest?.sources ?? [];
         </ol>
       </div>
     )}
+
+    <SocialReceiptCards cards={socialCards} />
 
     {artifacts.length > 0 && (
       <div class="rule mt-7 pt-6">
