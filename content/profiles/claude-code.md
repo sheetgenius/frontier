@@ -7,10 +7,19 @@ source_contract: sources/claude-code.yml
 homepage: https://claude.ai/code
 docs: https://code.claude.com/docs/en/overview
 changelog: https://code.claude.com/docs/en/changelog
+tagline: "Background work on a leash whose clasp only locks once you test it."
+compared_with:
+  - codex
+  - gemini-cli
+x:
+  project: AnthropicAI
+  maintainers:
+    - handle: bcherny
+      name: Boris Cherny
 surface_class: closed_source_release_notes
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-16
+last_updated: 2026-06-23
 last_full_review: 2026-06-03
 claims:
   - id: ultrareview-cloud-review
@@ -47,7 +56,7 @@ claims:
     status: active
   - id: auto-mode-default-on
     finding_id: 2026-05-27-claude-code-auto-mode-default-on
-    last_verified: 2026-06-16
+    last_verified: 2026-05-27
     status: active
   - id: skill-disallowed-tools
     finding_id: 2026-05-27-claude-code-auto-mode-default-on
@@ -65,95 +74,66 @@ claims:
     finding_id: 2026-06-03-claude-code-webfetch-permission-rules
     last_verified: 2026-06-03
     status: active
-  - id: nested-subagent-spawning
-    finding_id: 2026-06-10-claude-code-nested-subagent-spawning
-    last_verified: 2026-06-16
+  - id: foreground-subagent-depth-enforcement-gap
+    finding_id: 2026-06-23-claude-code-foreground-subagent-depth-limit
+    last_verified: 2026-06-23
     status: active
-  - id: automode-classifies-subagent-spawns
-    finding_id: 2026-06-15-claude-code-automode-classifies-subagent-spawns
-    last_verified: 2026-06-16
+  - id: agent-permission-rule-enforcement-gap
+    finding_id: 2026-06-23-claude-code-agent-permission-rules-enforced
+    last_verified: 2026-06-23
     status: active
-  - id: tool-param-value-permission-syntax
-    finding_id: 2026-06-15-claude-code-tool-param-value-permission-syntax
-    last_verified: 2026-06-16
+  - id: auto-mode-destructive-command-denylist
+    finding_id: 2026-06-23-claude-code-auto-mode-destructive-command-blocks
+    last_verified: 2026-06-23
     status: active
-  - id: sendmessage-authority-hardening
-    finding_id: 2026-06-06-claude-code-sendmessage-authority-hardening
-    last_verified: 2026-06-16
+  - id: trigger-input-classification-fix
+    finding_id: 2026-06-23-claude-code-scheduled-trigger-input-classification
+    last_verified: 2026-06-23
     status: active
-  - id: enforce-available-models
-    finding_id: 2026-06-12-claude-code-enforce-available-models
-    last_verified: 2026-06-16
+  - id: background-subagent-prompt-to-main
+    finding_id: 2026-06-23-claude-code-background-subagent-permission-prompts
+    last_verified: 2026-06-23
     status: active
-  - id: background-worker-and-otel-trust-fixes
-    finding_id: 2026-06-10-claude-code-background-worker-settings-bleed
-    last_verified: 2026-06-16
-    status: active
-  - id: fable-5-launch
-    finding_id: 2026-06-09-claude-code-fable-5-launch
-    last_verified: 2026-06-16
+  - id: mcp-cli-login-logout
+    finding_id: 2026-06-23-claude-code-mcp-cli-login-logout
+    last_verified: 2026-06-23
     status: active
 posture_basis:
   capability:
     - 2026-05-06-claude-code-review-recap-plugin-surfaces
     - 2026-05-12-claude-code-agent-view-goal-and-governance
     - 2026-05-27-claude-code-auto-mode-default-on
-    - 2026-06-10-claude-code-nested-subagent-spawning
-    - 2026-06-09-claude-code-fable-5-launch
+    - 2026-06-23-claude-code-mcp-cli-login-logout
   accessibility:
     - 2026-05-12-claude-code-agent-view-goal-and-governance
     - 2026-05-27-claude-code-auto-mode-default-on
+    - 2026-06-23-claude-code-background-subagent-permission-prompts
+    - 2026-06-23-claude-code-mcp-cli-login-logout
   governance:
     - 2026-05-06-claude-code-review-recap-plugin-surfaces
     - 2026-05-12-claude-code-agent-view-goal-and-governance
     - 2026-05-27-claude-code-auto-mode-default-on
     - 2026-05-27-claude-code-powershell-and-worktree-sandbox-fixes
-    - 2026-06-15-claude-code-automode-classifies-subagent-spawns
-    - 2026-06-15-claude-code-tool-param-value-permission-syntax
-    - 2026-06-06-claude-code-sendmessage-authority-hardening
-    - 2026-06-12-claude-code-enforce-available-models
+    - 2026-06-23-claude-code-foreground-subagent-depth-limit
+    - 2026-06-23-claude-code-agent-permission-rules-enforced
+    - 2026-06-23-claude-code-auto-mode-destructive-command-blocks
+    - 2026-06-23-claude-code-scheduled-trigger-input-classification
+    - 2026-06-23-claude-code-background-subagent-permission-prompts
 stance:
   use_for: "Use Claude Code when you need to supervise several sessions from one screen, or set a completion condition on work that should keep moving after you leave the terminal."
-  avoid_for: "Avoid procuring on the assumption that Console / API auth unlocks the highest-leverage cloud-control surfaces. Under API-key or token auth (`ANTHROPIC_API_KEY`, `apiKeyHelper`, `ANTHROPIC_AUTH_TOKEN`), Remote Control, `/schedule`, and claude.ai MCP connectors disable themselves; those surfaces require Claude.ai subscription identity, often with admin policy / SSO settings on top. API-key auth is not 'fully offline': it is an online API path that disables cloud-account control surfaces."
+  avoid_for: "Avoid procuring on the assumption that Console / API auth unlocks the highest-leverage cloud-control surfaces. Under API-key or token auth (`ANTHROPIC_API_KEY`, `apiKeyHelper`, `ANTHROPIC_AUTH_TOKEN`), Remote Control, `/schedule`, and claude.ai MCP connectors disable themselves; those surfaces require Claude.ai subscription identity, often with admin policy / SSO settings on top. API-key auth is not 'fully offline' -- it is an online API path that disables cloud-account control surfaces."
   watch_next: "Whether autonomous-completion and cloud-review surfaces stabilize output schemas a CI pipeline can ingest, and how aggressively cloud-only features keep expanding past local-only auth."
 ---
 
 # Claude Code
 
-## Recent activity (2026-06-04 to 2026-06-16)
-
-The window (2.1.163 through 2.1.178) was dominated by the recursion that
-deep delegation forces. Subagents can now
-[spawn their own subagents five levels deep](https://code.claude.com/docs/en/changelog)
-(2.1.172), and the governance work tracked it: the auto-mode classifier now
-[evaluates a spawn before it launches](https://code.claude.com/docs/en/changelog)
-(2.1.178), a new
-[`Tool(param:value)` permission syntax](https://code.claude.com/docs/en/changelog)
-(2.1.178, e.g. `Agent(model:opus)`) lets a rule match a tool's arguments for
-the first time, and relayed
-[`SendMessage` from a peer session no longer carries user authority](https://code.claude.com/docs/en/changelog)
-(2.1.166). Two trust-boundary fixes warrant an upgrade: untrusted project
-settings could set
-[OTEL client-certificate paths without a trust prompt](https://code.claude.com/docs/en/changelog)
-(2.1.169) and pre-warmed background workers could read another directory's
-`.mcp.json` approvals and trust (2.1.172). Anthropic also launched
-[Claude Fable 5](https://www.anthropic.com/news/claude-fable-5-mythos-5)
-(a Mythos-class model, access at 2.1.170) and, separately, made org model
-allowlists binding via an
-[`enforceAvailableModels`](https://code.claude.com/docs/en/changelog)
-setting plus a cluster of escape-hatch fixes (2.1.175/2.1.176) that close
-the lever an enterprise needs to decide whether a model like Fable 5 is
-reachable. Several of the sharpest items are changelog entries, not a
-separate advisory; treat the advisory-shape entries as the de-facto
-advisory surface, as before.
-
-## Operator read
+## Operator Read
 
 Claude Code is becoming a supervised background-work system with cloud-auth
-boundaries, and as of v2.1.152, an autonomy-default system. Baseline
+boundaries -- and as of v2.1.152, an autonomy-default system. Baseline
 consent for Auto mode moved out of the opt-in runtime ceremony and into
 managed policy plus classifier behavior; the runtime consent dialog is
-gone, but the *governance* of what auto-runs has not vanished. It moved.
+gone, but the *governance* of what auto-runs has not vanished -- it moved.
 The shape this window: a multi-session supervisor, a persistent goal
 primitive, a verification fleet that runs in the provider's cloud, and
 Auto-mode-default-on as the new permission posture across the install
@@ -162,11 +142,28 @@ surfaces* (Remote Control, `/schedule`, claude.ai MCP connectors) require
 Claude.ai subscription identity and, in team contexts, admin toggles;
 API-key-only auth disables them, and Console/API procurement does not by
 itself unlock them. And the runtime consent ceremony that some admins
-relied on as a posture-visibility surface no longer fires. Equivalent
+relied on as a posture-visibility surface no longer fires -- equivalent
 visibility now lives in managed-settings policy and classifier behavior,
 not in a runtime prompt.
 
-## Run it differently
+The sharper development as of v2.1.186 is a disclosure, not a feature:
+two of the prior window's marquee authority controls did not actually
+bind when announced. The five-level nested-subagent depth cap (shipped
+2.1.178) did not apply to *foreground* spawns -- a foreground subagent
+could spawn unbounded nested chains until 2.1.181 -- and the named-subagent
+permission rules (`Agent(type)` deny, `Agent(x,y)` allowed-types) were not
+enforced for named subagent spawns until 2.1.186. An operator who wrote
+either rule when it was announced was, in the interim, unprotected by it.
+The lesson generalizes past these two fixes: on this surface, a permission
+feature is not a permission boundary until something refuses the disallowed
+action, and the only way to know is to test it after upgrading. The
+counter-motion is real where enforcement did land: 2.1.183 enumerated the
+specific destructive git / IaC commands the auto-mode classifier now
+refuses, and reclassified scheduled-task and webhook trigger deliveries so
+an inbound automated trigger can no longer approve a pending action or set
+the session title under auto mode.
+
+## Run It Differently
 
 Use [`claude agents`](https://code.claude.com/docs/en/agent-view) (v2.1.139,
 Research Preview) when terminal juggling is the bottleneck. It turns scattered
@@ -191,10 +188,17 @@ When you return to a terminal that was unfocused, expect an automatic
 when you attach to a backgrounded session via agent view, Claude posts a short
 recap of what happened while you were away.
 
-## Governance boundaries
+Authenticate MCP connectors headlessly with
+[`claude mcp login`/`logout`](https://code.claude.com/docs/en/changelog#2-1-186)
+(v2.1.186) when a CI or SSH pipeline can't open the interactive `/mcp` menu. The
+`--no-browser` stdin-redirect path completes the OAuth flow over SSH. This lowers
+the friction of wiring authenticated connectors into non-interactive runs -- and
+is the connector-auth surface the source contract had flagged on its watch list.
+
+## Governance Boundaries
 
 As of [v2.1.152](https://code.claude.com/docs/en/changelog#2-1-152)
-(2026-05-27), Auto mode is the default permission posture. It no longer
+(2026-05-27), Auto mode is the default permission posture -- it no longer
 requires opt-in consent. Operators with managed Claude Code deployments
 should re-audit what Auto mode classifies as safe by default and where
 the equivalent visibility check now lives in their environment (managed
@@ -204,8 +208,50 @@ slash-command frontmatter (a skill can subtract tools from the agent
 while active), and a `MessageDisplay` hook that can transform or hide
 assistant message text on the output path.
 
+Two of the prior window's headline authority controls shipped with
+enforcement gaps that only closed this window -- verify both bind in the
+binary you run. Foreground subagents
+[ignored the five-level nested-subagent depth cap](https://code.claude.com/docs/en/changelog#2-1-181)
+until v2.1.181 (the cap, shipped at 2.1.178, applied only to background
+spawns; a foreground subagent could spawn an unbounded recursive chain
+until the fix). And the named-subagent permission rules -- [`Agent(type)` deny rules and `Agent(x,y)` allowed-types restrictions](https://code.claude.com/docs/en/changelog#2-1-186)
+ -- were not enforced for named subagent spawns until v2.1.186; they were
+cosmetic for the named-spawn path before it. Any deployment that relies on
+`Agent(...)` rules to gate which subagent types can spawn must pin 2.1.186+
+and re-test those rules by writing a deny and confirming a named spawn is
+actually refused. The bound only fully bound here; do not infer it from the
+2.1.178 announcement.
+
+As of [v2.1.183](https://code.claude.com/docs/en/changelog#2-1-183)
+(2026-06-19), the auto-mode classifier
+[enumerates a destructive-command denylist](https://code.claude.com/docs/en/changelog#2-1-183):
+destructive git commands (`git reset --hard`, `git checkout -- .`,
+`git clean -fd`, `git stash drop`) are blocked when the operator did not ask
+to discard work, `git commit --amend` is blocked when the commit wasn't made
+by the agent this session, and `terraform destroy` / `pulumi destroy` /
+`cdk destroy` are blocked unless the operator named the specific stack. These
+are *conditional* refusals, not unconditional ones, and they partially answer
+the standing open question of what auto mode classifies as unsafe -- but only
+for this enumerated set; the runtime, not the docs, remains canonical for the
+full classification. The same release also fixed an authority-confusion vector:
+[scheduled-task and webhook trigger deliveries](https://code.claude.com/docs/en/changelog#2-1-183)
+were being treated as keyboard input -- an inbound automated trigger could
+approve a pending action or set the session title in auto mode. They now
+classify as task notifications and can do neither. Deployments running
+`/schedule` or webhook triggers alongside auto mode should pin 2.1.183+ to
+close that unattended-escalation path.
+
+[Background subagent permission requests](https://code.claude.com/docs/en/changelog#2-1-186)
+now surface in the main session for a human decision (v2.1.186) instead of
+auto-denying; the dialog attributes which agent is asking, and Esc denies just
+that one tool. This moves consent authority *toward* operator visibility -- the
+opposite direction from the auto-mode-default trend -- but it also changes a
+boundary: operators who relied on background-subagent auto-deny as an implicit
+isolation barrier should note that a human is now prompted instead, with
+per-tool attribution as the mitigation.
+
 [`settings.autoMode.hard_deny`](https://code.claude.com/docs/en/changelog#2-1-136)
-(v2.1.136) defines auto-mode rules that block unconditionally: no allow rule
+(v2.1.136) defines auto-mode rules that block unconditionally -- no allow rule
 overrides them. Treat this as the unconditional-refusal layer of auto-mode
 policy.
 
@@ -248,16 +294,24 @@ API-key sessions. Per the source-contract note added 2026-05-27,
 treat advisory-shape changelog entries as the de-facto advisory
 surface; Anthropic does not publish a separate one.
 
-*Posture basis: `2026-05-06-claude-code-review-recap-plugin-surfaces`,
+*Findings: `2026-05-06-claude-code-review-recap-plugin-surfaces`,
 `2026-05-12-claude-code-agent-view-goal-and-governance`,
 `2026-05-27-claude-code-auto-mode-default-on`,
-`2026-05-27-claude-code-powershell-and-worktree-sandbox-fixes`.*
+`2026-05-27-claude-code-powershell-and-worktree-sandbox-fixes`,
+`2026-06-23-claude-code-foreground-subagent-depth-limit`,
+`2026-06-23-claude-code-agent-permission-rules-enforced`,
+`2026-06-23-claude-code-auto-mode-destructive-command-blocks`,
+`2026-06-23-claude-code-scheduled-trigger-input-classification`,
+`2026-06-23-claude-code-background-subagent-permission-prompts`.*
 
-## Open questions
+## Open Questions
 
-- What does Auto mode classify as "safe" by default? The v2.1.152
-  changelog does not enumerate the runtime classification; deployments
-  must consult the runtime, not the docs, to know what is now auto-approved.
+- What does Auto mode classify as "safe" by default? Partially answered:
+  [v2.1.183](https://code.claude.com/docs/en/changelog#2-1-183) enumerates a
+  destructive-command denylist (destructive git, IaC `destroy`), but only for
+  that set and only conditionally. The full runtime classification beyond the
+  enumerated commands is still undocumented; deployments must consult the
+  runtime, not the docs, to know what else is auto-approved.
 - `MessageDisplay` is a new hook event on the output path. Whether it is
   primarily a redaction surface (transform sensitive output) or a
   censorship surface (hide assistant disclosures from the operator)
@@ -271,20 +325,19 @@ surface; Anthropic does not publish a separate one.
 - Does `/goal` integrate with agent view progress reporting? The changelog entry
   describes the goal overlay per-session; whether the agent view row reflects
   goal state or completion is not yet documented.
-- Weeks 21 and 22 `whats-new` digests are not published as of 2026-05-27
-  despite the changelog being current through 2.1.152. Whether
-  publication is intentionally lagging or simply delayed is unclear; the
-  changelog remains the trailing-window canonical surface either way.
-- This profile's last harvest pass was 2026-05-27 against v2.1.152. The
-  external-review council pressure-test on 2026-05-29 flagged that the
-  changelog has advanced past that point (2.1.154 and 2.1.157 entries on
-  the official docs as of the council run). A refresh harvest is owed
-  before the next digest cycle, with particular attention to dynamic
-  workflow handling, auto-mode classifier fixes, and reduced startup
-  permission ceremony, all of which reinforce the "consent moved, not
-  vanished" framing rather than refuting it.
+- The `whats-new` digest has not published a Week 25 narrative covering
+  this window (latest is Week 24, through ~v2.1.176) as of 2026-06-23,
+  despite the changelog being current through 2.1.186. Whether publication
+  is intentionally lagging or simply delayed is unclear; the changelog
+  remains the trailing-window canonical surface either way.
+- Now that two announced authority controls (the depth cap and the
+  `Agent()` permission rules) shipped with enforcement gaps, are there
+  *other* governance features whose announcement preceded their actual
+  binding? The enforcement-gap disclosures were the provider's own; whether
+  the pattern is exhausted or ongoing is not knowable from the changelog
+  alone and warrants per-window re-testing of any rule a deployment relies on.
 
-## What to watch next
+## What To Watch Next
 
 - Whether Auto-mode-default-on is reversed or refined under operator
   pushback, or extended further (e.g. is `disallowed-tools` adoption
@@ -304,17 +357,17 @@ surface; Anthropic does not publish a separate one.
   becomes a CI-bound surface or remains interactive-only is a real
   authority decision.
 - `parentSettingsBehavior` (v2.1.133): admin-tier key for SDK managedSettings
-  policy merge: how it interacts with enterprise policy deployment at scale.
+  policy merge -- how it interacts with enterprise policy deployment at scale.
 - The `worktree.baseRef: "fresh"` default change (v2.1.133): watch for operator
   reports of unexpected worktree base behavior, especially in CI or automated
-  runs that create worktrees programmatically.
+  Bitter runs that create worktrees programmatically.
 - Whether Anthropic adds a separate security advisory surface or
   continues to use `official_changelog` for advisory-grade content
   (per `sources/claude-code.notes.md`).
 
-## Profile hygiene
+## Profile Hygiene
 
-This profile follows the discipline in `METHOD.md`: every
+This profile follows the discipline in `RESEARCH_CONTRACT.md#profile`: every
 concrete claim in the prose has an inline source link and an entry in the
 `claims:` block; posture sections may interpret freely but must cite finding IDs
 when naming a specific feature, behavior change, or cross-provider comparison.

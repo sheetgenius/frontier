@@ -11,6 +11,7 @@ compared_with:
   - pi-coding-agent
   - openclaw
   - eve
+repo: https://github.com/hunvreus/heypi
 surface_class: open_source_commits
 evidence_floor: official_docs
 status: active_watch

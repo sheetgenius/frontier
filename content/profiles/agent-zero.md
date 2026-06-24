@@ -6,11 +6,14 @@ owner: agent0ai
 source_contract: sources/agent-zero.yml
 homepage: https://www.agent-zero.ai/
 docs: https://www.agent-zero.ai/p/docs/
+tagline: "A real computer handed to an agent, watched by a forced screenshot loop."
+x:
+  project: Agent0ai
 repo: https://github.com/agent0ai/agent-zero
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-16
+last_updated: 2026-06-23
 last_full_review: 2026-06-03
 claims:
   - id: native-browser-playwright
@@ -61,10 +64,6 @@ claims:
     finding_id: 2026-06-02-agent-zero-screenshot-artifact-durability
     last_verified: 2026-06-03
     status: active
-  - id: remote-control-csrf-ws-origin-hardening
-    finding_id: 2026-06-04-agent-zero-remote-control-csrf-ws-origin-hardening
-    last_verified: 2026-06-16
-    status: active
 posture_basis:
   capability:
     - 2026-05-07-agent-zero-full-computer-workcell
@@ -78,52 +77,32 @@ posture_basis:
     - 2026-05-07-agent-zero-full-computer-workcell
     - 2026-05-12-agent-zero-browser-multitab-and-document-formats
     - 2026-05-27-agent-zero-host-desktop-with-vision-verification
-    - 2026-06-04-agent-zero-remote-control-csrf-ws-origin-hardening
 stance:
-  use_for: "Work where the agent actually needs a desktop: a real browser, a LibreOffice session, a terminal that remembers what it did. Operators trying to figure out whether giving an agent a full computer is more useful or more dangerous than a tool-only sandbox."
-  avoid_for: "Pipelines downstream of the agent that expect OOXML by default. v1.13+ writes ODF unless you configure otherwise. UI automation that depends on coordinate clicks: the agent is now told to prefer named actions and reach for coordinates last."
+  use_for: "Work where the agent actually needs a desktop -- a real browser, a LibreOffice session, a terminal that remembers what it did. Operators trying to figure out whether giving an agent a full computer is more useful or more dangerous than a tool-only sandbox."
+  avoid_for: "Pipelines downstream of the agent that expect OOXML by default -- v1.13+ writes ODF unless you configure otherwise. UI automation that depends on coordinate clicks: the agent is now told to prefer named actions and reach for coordinates last."
   watch_next: "What lifecycle policies emerge for the persistent Xpra desktop (timeouts, storage caps, idle cleanup), and whether 'agent with a real computer' stabilizes as a competitive position or fragments back into tool-by-tool."
 ---
 
 # Agent Zero
 
-## Recent activity (2026-06-04 to 2026-06-16)
+## Operator Read
 
-Thin window: the entire fortnight was a single maintenance day. The
-[v1.20 release](https://github.com/agent0ai/agent-zero/releases/tag/v1.20)
-and its seven in-window commits all landed on 2026-06-04, with no commits or
-releases June 5 through 16, and no capability expansion to computer access,
-isolation, or subagents. The load-bearing item hardened the tunnel that
-exposes the desktop: active Remote Control URLs (the public Tailscale Funnel
-surface) are now
-[normalized to a bare origin before CSRF allowlisting, and WebSocket origin validation trusts only the currently active Remote Control origin](https://github.com/agent0ai/agent-zero/commit/ca4efe6e6),
-rejecting unrelated external origins and path/slash/port-variant
-origin-confusion. The rest of the day was hygiene: a static OAuth API-key
-placeholder was
-[removed from provider defaults](https://github.com/agent0ai/agent-zero/commit/ca4c9306c)
-and the runtime dummy key gated on connection status, and the
-[file browser path bar](https://github.com/agent0ai/agent-zero/commit/f9d8167a0)
-gained direct navigation with last-directory memory.
-
-## Operator read
-
-Agent Zero is the most complete "visible computer" in the watchlist.
-As of [v1.17](https://github.com/agent0ai/agent-zero/releases/tag/v1.17)
+Agent Zero is the most complete "visible computer" in the watchlist -- and as of [v1.17](https://github.com/agent0ai/agent-zero/releases/tag/v1.17)
 (2026-05-23), the visible computer extends beyond the container to the
 operator's actual host machine, with required visual verification on
 state-changing actions. The operator decision is no longer just "give
-the agent a desktop?" but "give the agent *which* desktop (internal
-Xpra, host machine, or both)?" with each routed through cleanly
+the agent a desktop?" but "give the agent *which* desktop -- internal
+Xpra, host machine, or both?" with each routed through cleanly
 separated paths. The bet remains governance through visibility, now
 with a runtime-enforced screenshot loop instead of trusting tool
 outputs.
 
-## When a real desktop earns its keep
+## When A Real Desktop Earns Its Keep
 
 Use Agent Zero when the work actually needs a full computer.
 [The Playwright-powered browser](https://github.com/agent0ai/agent-zero/releases/tag/v1.10)
 runs a persistent Chromium with live WebUI viewer, screencast streaming,
-tab management, and Chrome extension support, including stale-context
+tab management, and Chrome extension support -- including stale-context
 recovery that [restarts the Playwright instance cleanly](https://github.com/agent0ai/agent-zero/releases/tag/v1.12)
 when a cached context is detected as closed. The
 [multi-tab fanout](https://github.com/agent0ai/agent-zero/releases/tag/v1.11)
@@ -134,13 +113,13 @@ opens DOCX, XLSX, and PPTX in full sessions over Xpra/XFCE; the legacy
 Collabora/WOPI runtime is gone.
 
 The [Linux Desktop skill](https://github.com/agent0ai/agent-zero/releases/tag/v1.11)
-teaches Agent Zero to operate XFCE (app launch, focus, click, cell edit,
-stable folder entry points) and tells the agent to prefer structured,
+teaches Agent Zero to operate XFCE -- app launch, focus, click, cell edit,
+stable folder entry points -- and tells the agent to prefer structured,
 app-native, keyboard actions and treat positional clicks as last resort. If
 your UI-automation pipeline relies on coordinate clicks, expect a behavior
 shift: `cell_edit(B3, 42)` is the path now, not `click(x=423, y=187)`.
 
-## The persistence trade
+## The Persistence Trade
 
 The desktop session is
 [persistent across canvas and modal navigation](https://github.com/agent0ai/agent-zero/releases/tag/v1.13):
@@ -148,12 +127,12 @@ a single Xpra iframe stays alive, with explicit shutdown distinguished from
 crashes via a "Shutdown Desktop" launcher that requires confirmation. Unsafe
 affordances (logout, lock, switch-user) are hidden. The accessibility win:
 operators can watch agent work in a real environment without losing state
-on every navigation. The trade: accumulated state (browser sessions,
-temporary files, LibreOffice locks, open applications) is the operator's
+on every navigation. The trade: accumulated state -- browser sessions,
+temporary files, LibreOffice locks, open applications -- is the operator's
 problem. There's no automatic session reset, no documented idle cleanup, no
 storage cap. Plan for manual cleanup or build it.
 
-## Open-format default
+## Open-Format Default
 
 Verify your downstream tooling handles ODT before upgrading to v1.13+.
 Document artifacts now default to
@@ -163,12 +142,12 @@ expecting Word/Excel/PowerPoint output silently flowing through will break.
 This is the trend across the watchlist made local: safe-and-open by default,
 proprietary requires the operator to ask.
 
-## Host desktop with vision verification
+## Host Desktop With Vision Verification
 
 [v1.17](https://github.com/agent0ai/agent-zero/releases/tag/v1.17)
 (2026-05-23) exposes `computer_use_remote` as a callable tool that
-controls the operator's **host** desktop, outside the
-Docker/Xpra container, using platform-native structural targeting:
+controls the operator's **host** desktop -- outside the
+Docker/Xpra container -- using platform-native structural targeting:
 macOS via Accessibility (AX) with `ax_snapshot` / `ax_action`,
 Windows via UIA, Linux via AT-SPI / Wayland. The category move sits
 in the runtime check: every state-changing action is treated as
@@ -181,7 +160,7 @@ The internal Docker/Xpra desktop continues to be controlled by the
 separated. macOS approval denials route to a re-arm-required stop
 flow rather than silent retry. Operators evaluating host control
 must decide whether `computer_use_remote` is permitted on their host
-at all. The trust mode is opt-in, but the runtime checks are
+at all -- the trust mode is opt-in, but the runtime checks are
 enforceable once enabled.
 
 [v1.16](https://github.com/agent0ai/agent-zero/releases/tag/v1.16)
@@ -190,17 +169,17 @@ captures route through in-process image refs rather than disk, so
 the agent no longer leaves screenshot trails on the filesystem by
 default. Explicit user-initiated screenshots remain durable. The
 tradeoff: host-action audit evidence now lives in the model context,
-not on disk. Operators wanting durable evidence must enable
+not on disk -- operators wanting durable evidence must enable
 explicit capture. v1.16 also split speech into independent built-in
-plugins (`_kokoro_tts`, `_whisper_stt`), legacy speech APIs were
-removed (breaking), and renamed `document_artifact` to
+plugins (`_kokoro_tts`, `_whisper_stt`) -- legacy speech APIs were
+removed (breaking) -- and renamed `document_artifact` to
 `office_artifact` with shims dropped.
 [v1.18](https://github.com/agent0ai/agent-zero/releases/tag/v1.18)
 added a configurable `max_active_skills` cap, skill visibility
 controls (hide skills from the model-facing catalog), and an MCP
 multimodal content handling fix.
 
-## Container reality
+## Container Reality
 
 Agent Zero is a Docker-deep install. Browser, desktop, LibreOffice all run
 inside a long-lived container. The WebUI makes the agent visible; getting
@@ -216,7 +195,7 @@ preventing `/dev/ptmx` exhaustion under sustained use.
 `2026-05-12-agent-zero-browser-multitab-and-document-formats`,
 `2026-05-27-agent-zero-host-desktop-with-vision-verification`.*
 
-## Open questions
+## Open Questions
 
 - Where does host-action audit evidence land under ephemeral capture?
   Operators cannot inspect on-disk caches by default to verify what
@@ -243,11 +222,11 @@ preventing `/dev/ptmx` exhaustion under sustained use.
   Skills, Agents, and Downloads. How do these map to the underlying Docker
   container filesystem, and what persists across container restarts?
 
-## What to watch next
+## What To Watch Next
 
 - Whether host computer-use evolves toward per-app, per-tool, or
   per-domain gating beyond the current opt-in / vision-verification
-  defaults. Operators with mixed-trust applications on the host
+  defaults -- operators with mixed-trust applications on the host
   need finer authority.
 - How the ephemeral-capture default coexists with audit requirements
   in enterprise deployments. The current setup is a privacy win; it
@@ -263,9 +242,21 @@ preventing `/dev/ptmx` exhaustion under sustained use.
 - Custom tool creation and subagent spawning within a long-running desktop
   session: how tool proliferation is managed and what the cleanup contract is.
 
-## Profile hygiene
+## Harvest Notes
 
-This profile follows the discipline in `METHOD.md`: every
+- **2026-06-16 .. 2026-06-23 -- silent release channel.** No commit reached the
+  default branch in-window; the latest tag remains
+  [v1.20](https://github.com/agent0ai/agent-zero/releases/tag/v1.20)
+  (2026-06-04, pre-window). The current-state claims above are unchanged and
+  re-verified as still standing. Caveat for next cycle: 23 commits landed
+  in-window on a non-default `ready` staging branch (none merged to default, none
+  tagged) -- Agent Zero is quiet in what operators run, not necessarily quiet as a
+  project. The standing persistent-desktop lifecycle question (timeouts, storage
+  caps, idle cleanup) was not advanced this cycle.
+
+## Profile Hygiene
+
+This profile follows the discipline in `RESEARCH_CONTRACT.md#profile`: every
 concrete claim in the prose has an inline source link and an entry in the
 `claims:` block; posture sections may interpret freely but must cite finding IDs
 when naming a specific feature, behavior change, or cross-provider comparison.
