@@ -7,9 +7,9 @@ claim: Anthropic issued takedown requests for ~97 repositories containing copies
 primary_url: https://x.com/GergelyOrosz/status/2039450834853916811
 author: @GergelyOrosz
 observed_at: 2026-06-24
-event_date: 2026
-date_precision: year_only
-date_note: Exact post publication date not captured by x_search in this pass; only year resolved. Reproducible from primary_url.
+event_date: 2026-04-01
+date_precision: day
+date_note: Exact post publication date resolved via public X post lookup (ID 2039450834853916811): 2026-04-01. Reproducible from primary_url.
 evidence_kind: community_discussion
 channel: x.com
 status: single-source-unconfirmed
