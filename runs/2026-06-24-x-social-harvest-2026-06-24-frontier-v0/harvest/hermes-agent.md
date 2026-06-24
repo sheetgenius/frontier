@@ -8,6 +8,12 @@ primary_url: https://x.com/NousResearch/status/2069526242236182697
 author: @NousResearch
 observed_at: 2026-06-24
 event_date: 2026-06
+date_precision: month_only
+date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
+date_precision: month_only
+date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
+date_precision: month_only
+date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
 evidence_kind: official_account_post
 channel: x.com
 status: candidate
@@ -22,6 +28,10 @@ primary_url: https://x.com/sudoingX/status/2053028341431820608
 author: @sudoingX
 observed_at: 2026-06-24
 event_date: 2026-06
+date_precision: month_only
+date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
+date_precision: month_only
+date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
 evidence_kind: community_discussion
 channel: x.com
 status: single-source-unconfirmed
@@ -36,6 +46,10 @@ primary_url: https://x.com/clawdb0t/status/2069299802903654611
 author: @clawdb0t
 observed_at: 2026-06-24
 event_date: 2026-06
+date_precision: month_only
+date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
+date_precision: month_only
+date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
 evidence_kind: community_discussion
 channel: x.com
 status: single-source-unconfirmed

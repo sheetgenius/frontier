@@ -22,6 +22,10 @@ primary_url: https://x.com/gneubig/status/2067698787082973390
 author: @gneubig
 observed_at: 2026-06-24
 event_date: 2026-06
+date_precision: month_only
+date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
+date_precision: month_only
+date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
 evidence_kind: maintainer_authored_post
 channel: x.com
 status: candidate

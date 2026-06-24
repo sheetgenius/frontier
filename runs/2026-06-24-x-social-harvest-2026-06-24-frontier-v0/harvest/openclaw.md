@@ -8,6 +8,8 @@ primary_url: https://x.com/steipete/status/2068961217524490739
 author: @steipete
 observed_at: 2026-06-24
 event_date: 2026
+date_precision: year_only
+date_note: Exact post publication date not captured by x_search in this pass; only year resolved. Reproducible from primary_url.
 evidence_kind: maintainer_authored_post
 channel: x.com
 status: candidate
@@ -22,6 +24,10 @@ primary_url: https://x.com/clawdb0t/status/2069299802903654611
 author: @clawdb0t
 observed_at: 2026-06-24
 event_date: 2026-06
+date_precision: month_only
+date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
+date_precision: month_only
+date_note: Exact post publication date not captured by x_search in this pass; month inferred from harvest window and context. Reproducible from primary_url.
 evidence_kind: community_discussion
 channel: x.com
 status: single-source-unconfirmed
