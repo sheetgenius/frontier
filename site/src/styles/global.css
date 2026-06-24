@@ -327,6 +327,40 @@ code {
   border-bottom-color: var(--color-bitter);
 }
 
+/* Theme toggle: a sun/moon icon button, sized and aligned to match the GitHub
+   control. The moon shows in light mode (tap to go dark); the sun in dark. */
+.nav-theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: inherit;
+  line-height: 0;
+}
+.nav-theme svg {
+  width: 0.95em;
+  height: 0.95em;
+  display: block;
+  flex: none;
+  transform: translateY(-0.04em);
+}
+.nav-theme:hover {
+  color: var(--color-bitter);
+}
+.nav-theme .theme-icon-sun {
+  display: none;
+}
+:root.dark .nav-theme .theme-icon-moon {
+  display: none;
+}
+:root.dark .nav-theme .theme-icon-sun {
+  display: block;
+}
+
 /* Official links row on a profile: repo / homepage / docs / changelog, in the
    expected spot under the title. Mono caps, accent, hover underline. */
 .profile-links {
