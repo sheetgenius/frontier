@@ -23,6 +23,7 @@ tools_used:
 input:
   - public X searches for watched project names, official accounts, maintainer accounts, and recurring feature keywords
 outputs:
+  - runs/2026-06-24-x-social-harvest-2026-06-24-frontier-v0/editorial.yml
   - runs/2026-06-24-x-social-harvest-2026-06-24-frontier-v0/harvest/
   - runs/2026-06-24-x-social-harvest-2026-06-24-frontier-v0/social-cards/
   - runs/2026-06-24-x-social-harvest-2026-06-24-frontier-v0/research-journal.md

@@ -596,6 +596,21 @@ export type SocialReceiptCard = {
   tags: string[];
 };
 
+export type RunEditorialBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "heading"; text: string }
+  | { type: "pullquote"; text: string; attribution?: string }
+  | { type: "social_embed"; cardId: string; caption?: string };
+
+export type RunEditorial = {
+  title: string;
+  dek?: string;
+  eyebrow?: string;
+  byline?: string;
+  publishedAt?: string;
+  blocks: RunEditorialBlock[];
+};
+
 export function runArtifacts(runId: string): RunArtifact[] {
   const runDir = repoPath("runs", runId);
   if (!fs.existsSync(runDir)) return [];
@@ -606,6 +621,14 @@ export function runArtifacts(runId: string): RunArtifact[] {
       kind: "manifest",
       label: "Run manifest",
       repoPath: rel(manifestPath),
+    });
+  }
+  const editorialPath = path.join(runDir, "editorial.yml");
+  if (fs.existsSync(editorialPath)) {
+    artifacts.push({
+      kind: "editorial",
+      label: "Public editorial",
+      repoPath: rel(editorialPath),
     });
   }
   const findingsDir = path.join(runDir, "findings");
@@ -683,6 +706,47 @@ export function runArtifacts(runId: string): RunArtifact[] {
     });
   }
   return artifacts;
+}
+
+export function runEditorial(runId: string): RunEditorial | undefined {
+  const editorialPath = repoPath("runs", runId, "editorial.yml");
+  if (!fs.existsSync(editorialPath)) return undefined;
+  const yaml = readYaml(editorialPath);
+  const blocks = Array.isArray(yaml?.blocks)
+    ? yaml.blocks.map((block: any) => {
+        const type = String(block?.type ?? "");
+        if (type === "social_embed") {
+          return {
+            type,
+            cardId: String(block.card_id ?? block.cardId ?? ""),
+            caption: block.caption ? String(block.caption) : undefined,
+          };
+        }
+        if (type === "pullquote") {
+          return {
+            type,
+            text: String(block.text ?? ""),
+            attribution: block.attribution ? String(block.attribution) : undefined,
+          };
+        }
+        return {
+          type: type === "heading" ? "heading" : "paragraph",
+          text: String(block?.text ?? ""),
+        };
+      }).filter((block: RunEditorialBlock) => {
+        if (block.type === "social_embed") return block.cardId.length > 0;
+        return block.text.length > 0;
+      })
+    : [];
+  if (!yaml?.title || blocks.length === 0) return undefined;
+  return {
+    title: String(yaml.title),
+    dek: yaml.dek ? String(yaml.dek) : undefined,
+    eyebrow: yaml.eyebrow ? String(yaml.eyebrow) : undefined,
+    byline: yaml.byline ? String(yaml.byline) : undefined,
+    publishedAt: yaml.published_at ? formatDate(yaml.published_at) : undefined,
+    blocks,
+  };
 }
 
 function normalizeStringArray(value: unknown): string[] {

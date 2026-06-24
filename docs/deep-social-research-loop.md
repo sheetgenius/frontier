@@ -25,6 +25,7 @@ A social research run may include:
 ```text
 runs/<run-id>/
   manifest.yml
+  editorial.yml
   harvest/*.md
   social-cards/*.yml
   research-journal.md
@@ -33,13 +34,29 @@ runs/<run-id>/
 ```
 
 `harvest/*.md` keeps structured candidate claims. `social-cards/*.yml` stores
-the cards the site renders. `research-journal.md` records editorial decisions,
-open loops, and what the next scout pass should investigate.
+static post artifacts the site can embed inside editorial. `editorial.yml` is
+the public reading experience: argument first, evidence woven into the essay,
+with traceability pushed into source links or a collapsed source trail.
+`research-journal.md` records editorial decisions, open loops, and what the next
+scout pass should investigate.
+
+## Publication Rule
+
+The public page should read like a finished editorial, not a research binder.
+Use X/social material to sharpen the story, show the public conversation, and
+surface questions a release-note-only workflow would miss. Do not lead with raw
+receipts, card grids, QA notes, claim tables, or artifact inventories.
+
+Traceability remains mandatory, but it belongs in the background: source links
+on the embedded post figure, collapsed evidence notes, repo artifacts, and the
+Git history. A reader should be able to audit the piece without having the audit
+machinery interrupt the piece.
 
 ## Static Social Cards
 
 Social cards simulate the useful parts of an embedded post while keeping runtime
-independent from X:
+independent from X. They are source material for editorial embeds, not the
+primary public artifact:
 
 ```yaml
 schema_version: bitter.frontier_social_cards.v0

@@ -21,6 +21,7 @@ Create a run directory:
 ```text
 runs/YYYY-MM-DD-x-social-harvest-YYYY-MM-DD-frontier-v0/
   manifest.yml
+  editorial.yml
   harvest/<source>.md
   social-cards/<cluster>.yml
   research-journal.md
@@ -30,6 +31,12 @@ runs/YYYY-MM-DD-x-social-harvest-YYYY-MM-DD-frontier-v0/
 
 Keep the run public and reproducible. Do not mention local paths, session IDs,
 private prompts, private API payloads, reviewer names, or internal coordination.
+
+`editorial.yml` is the public reading surface for a social harvest. It should
+read like a finished essay: thesis first, human stakes second, evidence embedded
+tastefully where it clarifies the argument. The rest of the run is supporting
+infrastructure. Do not make readers begin with receipt grids, harvest tables,
+QA notes, or artifact inventories.
 
 ## Harvest fields
 
@@ -74,8 +81,8 @@ release tags, commits, pull requests, changelog entries, or official docs.
 
 For richer public context, use the
 [Deep Social Research Loop](./deep-social-research-loop.md). It defines the
-static social-card format used to render tweet-like cards from repo data without
-loading X at runtime.
+static social-card format used to render tweet-like figures inside the editorial
+from repo data without loading X at runtime.
 
 ## Cross-check pass
 
