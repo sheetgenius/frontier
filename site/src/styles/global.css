@@ -386,6 +386,24 @@ code {
   border-bottom-color: var(--color-bitter);
 }
 
+/* Maintainer presence on X -- understated mono line under the official links;
+   the label stays muted, the handles take the accent. Handle case preserved. */
+.profile-social {
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-muted);
+}
+.profile-social a {
+  color: var(--color-bitter);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.12s ease;
+}
+.profile-social a:hover {
+  border-bottom-color: var(--color-bitter);
+}
+
 @media (min-width: 720px) {
   /* Desktop masthead: a two-row baseline grid. The wordmark name shares its row
      with the section nav (both top-aligned); the wordmark tag shares the row
@@ -586,6 +604,34 @@ code {
   letter-spacing: -0.005em;
   line-height: 1.2;
   text-wrap: balance;
+}
+
+/* Profile standfirst: the tagline rendered as a one-line verdict under the
+   provider name -- serif, near-title weight of attention, not muted. */
+.profile-dek {
+  max-width: 34rem;
+  margin: 0.55rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.04rem, 1vw, 1.18rem);
+  line-height: 1.5;
+  color: var(--color-ink);
+  text-wrap: pretty;
+}
+:root.dark .profile-dek {
+  color: var(--color-night-ink);
+}
+
+/* Tagline verdict in the profiles index list -- a touch smaller than the
+   profile-page dek, so the directory reads as scannable one-line verdicts. */
+.profile-row-dek {
+  margin-top: 0.3rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--color-ink);
+}
+:root.dark .profile-row-dek {
+  color: var(--color-night-ink);
 }
 
 .issue-meta {

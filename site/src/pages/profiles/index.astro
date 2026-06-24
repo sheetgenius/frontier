@@ -22,6 +22,9 @@ const profiles = listProfiles();
                 {profile.data.owner} · {profile.data.surface_class?.replaceAll("_", " ")}
               </div>
               <h2 class="signal-title">{profile.data.label ?? profile.slug}</h2>
+              {profile.data.tagline && (
+                <p class="profile-row-dek">{profile.data.tagline.replace(/^"|"$/g, "")}</p>
+              )}
               <p class="issue-meta">
                 {activeClaims} active claim{activeClaims !== 1 ? "s" : ""}
                 {openQuestions > 0 ? ` · ${openQuestions} open question${openQuestions !== 1 ? "s" : ""}` : ""}

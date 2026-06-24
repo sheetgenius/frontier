@@ -27,6 +27,11 @@ const officialLinks = [
   profile.data.changelog && { label: "Changelog", href: profile.data.changelog },
 ].filter(Boolean) as { label: string; href: string }[];
 
+const xHandles = [
+  ...(profile.data.x?.project ? [profile.data.x.project] : []),
+  ...((profile.data.x?.maintainers ?? []) as any[]).map((m: any) => m.handle),
+].filter(Boolean);
+
 function humanizeId(id: string): string {
   return id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
@@ -45,6 +50,9 @@ function findingUrlFor(findingId: string | undefined | null): string | undefined
       <a href="/profiles/">Profiles</a> · {profile.data.owner}
     </p>
     <h1 class="issue-title">{profile.data.label ?? profile.slug}</h1>
+    {profile.data.tagline && (
+      <p class="profile-dek">{profile.data.tagline.replace(/^"|"$/g, "")}</p>
+    )}
     <p class="issue-meta">
       {profile.data.surface_class?.replaceAll("_", " ")} ·
       evidence floor: {profile.data.evidence_floor?.replaceAll("_", " ")} ·
@@ -57,6 +65,15 @@ function findingUrlFor(findingId: string | undefined | null): string | undefined
           <a href={l.href}>{l.label}</a>
         ))}
       </nav>
+    )}
+
+    {xHandles.length > 0 && (
+      <p class="profile-social">
+        On X{" "}
+        {xHandles.map((h, i) => (
+          <>{i > 0 && <span aria-hidden="true"> · </span>}<a href={`https://x.com/${h}`}>@{h}</a></>
+        ))}
+      </p>
     )}
 
     <ProfileStance stance={profile.data.stance} asOf={formatDate(profile.data.last_updated)} />
