@@ -20,3 +20,9 @@ Validate before you push:
 
     npm --prefix site run build            # regenerates pages + internal link check
     node site/scripts/check-integrity.mjs  # cross-reference ids resolve
+
+To run a full research cycle -- harvest the watchlist, edit it down to signals, and
+publish the weekly digest -- invoke the `frontier-cycle` skill
+([.claude/skills/frontier-cycle/SKILL.md](./.claude/skills/frontier-cycle/SKILL.md)).
+It encodes the protocol end to end: the three rules, channel-by-ancestry, the
+coordinator-led fan-out, the artifact grammar, and the validate-and-publish steps.

@@ -9,7 +9,8 @@ site/.astro/
 site/qa-*.png
 site/test-results/
 .cache/
-.claude/
+.claude/*
+!.claude/skills/
 tmp/
 /package-lock.json
 ROUNDS.md
