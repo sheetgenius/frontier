@@ -6,7 +6,7 @@ description: >
   source-cited publication keeps its own receipts: when a date, version,
   channel, or claim is fixed, the fix is itself part of the record. This page
   is the audit trail of the publication correcting itself.
-last_updated: 2026-06-18
+last_updated: 2026-07-01
 ---
 
 # Corrections ledger
@@ -96,6 +96,19 @@ corrections:
     reporter: adversarial-verify
     provenance: internal/adversarial-verify
     pr: run 2026-06-16-weekly-digest-2026-06-04_2026-06-16-frontier-v0
+
+  - corrected_on: 2026-07-01
+    object: digests 2026-06-04_2026-06-16-weekly and 2026-06-16_2026-06-23-weekly (Gemini Antigravity succession)
+    field: lifecycle status of consumer Gemini CLI
+    kind: other-fact
+    before: "framed as prospective -- Gemini CLI 'may be entering a managed succession,' with the Antigravity funnel and banner in stable"
+    after: "the consumer service was already discontinued. Per Google's announcement, Gemini CLI stopped serving requests on 2026-06-18 for AI Pro/Ultra, free individual Code Assist, and new GitHub-org installs; enterprise Code Assist retained access and the OSS repo continues. The 06-16..06-23 window called an executed shutdown prospective."
+    receipt: https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/
+    in_window_date: 2026-06-18
+    verdict: under-called -> corrected (the shutdown executed inside the 06-16..06-23 window; recorded as accomplished in the 2026-07-01 digest, with Antigravity registered as a separate source)
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-07-01-weekly-digest-2026-06-24_2026-07-01-frontier-v0
 ```
 
 <!--

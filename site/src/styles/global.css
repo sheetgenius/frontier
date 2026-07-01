@@ -1283,39 +1283,62 @@ code {
 
 .operator-brief-thesis {
   margin: 0.6rem 0 0;
+}
+.operator-brief-thesis p {
+  margin: 0.75rem 0 0;
   font-family: var(--font-serif);
   font-size: clamp(1.08rem, 1.3vw, 1.22rem);
   line-height: 1.6;
   font-weight: 400;
   letter-spacing: 0;
 }
+.operator-brief-thesis p:first-child {
+  margin-top: 0;
+}
 
+/* Links are load-bearing in the brief -- make them read as links (accent + a
+   quiet underline), and render inline code from the markdown pass legibly. */
+.operator-brief a {
+  color: var(--color-bitter);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-bitter) 35%, transparent);
+  transition: border-color 0.12s ease;
+}
+.operator-brief a:hover {
+  border-bottom-color: var(--color-bitter);
+}
+.operator-brief code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--color-muted) 14%, transparent);
+}
+
+/* Stacked brief groups: a small-caps eyebrow over full-width items, with a quiet
+   hairline between groups -- no heavy left gutter pushing the text off to the side. */
 .operator-brief-list {
   display: grid;
-  gap: 0.9rem;
-  margin: 1.1rem 0 0;
+  gap: 1.4rem;
+  margin: 1.6rem 0 0;
 }
 
 .operator-brief-row {
-  display: grid;
-  grid-template-columns: 9rem 1fr;
-  gap: 0.75rem;
-  align-items: baseline;
+  display: block;
 }
 
-@media (max-width: 640px) {
-  .operator-brief-row {
-    grid-template-columns: 1fr;
-    gap: 0.2rem;
-  }
+.operator-brief-row + .operator-brief-row {
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--color-line);
 }
 
 .operator-brief-row dt {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--color-muted);
-  padding-top: 0.15rem;
+  margin: 0 0 0.7rem;
 }
 
 .brief-upgrade dt { color: var(--color-bitter); }
@@ -1330,19 +1353,19 @@ code {
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 0.4rem;
+  gap: 0.7rem;
 }
 
 .operator-brief-row li {
-  font-size: 0.95rem;
-  line-height: 1.55;
-  padding-left: 1rem;
-  text-indent: -1rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  padding-left: 1.15rem;
+  text-indent: -1.15rem;
 }
 
 .operator-brief-row li::before {
   content: "— ";
-  color: var(--color-muted);
+  color: color-mix(in srgb, var(--color-bitter) 65%, transparent);
 }
 
 .profile-stance {

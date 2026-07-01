@@ -86,7 +86,12 @@ signal: `section` (control-plane | runtime | platform), `channel`, `title`,
 `finding_ids`, `why_action_bearing` (concrete operator actions),
 `accessibility_consequence` and `security_consequence` (the two-altitude read:
 what_got_easier / who_can_use_now / authority_visibility; and threat / attacker_model
-/ enforcement / cost_to_operator / residual), `receipts`. **Signals must be rarer
+/ enforcement / cost_to_operator / residual), `receipts`. **When a finding or signal
+cites a CVE or GHSA, resolve the advisory and state in plain language what the
+vulnerability actually allows -- its class and operator impact (XSS, RCE, auth
+bypass, open redirect, DoS, SSRF) -- and link the canonical advisory (NVD or the
+GHSA) as the receipt, not a blog aggregator. An ID is a receipt, not a consequence;
+a reader should not have to look the CVE up to know what is at stake.** **Signals must be rarer
 than findings** -- the gap is the editing and it is the point. **Adversarially
 verify every signal receipt**: re-fetch it pinned, confirm it supports the exact
 claim; default to dropping the signal if uncertain.

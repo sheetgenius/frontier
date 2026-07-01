@@ -6,7 +6,7 @@ owner: Google
 source_contract: sources/gemini-cli.yml
 homepage: https://github.com/google-gemini/gemini-cli
 docs: https://google-gemini.github.io/gemini-cli/docs/
-tagline: "Makes agent state reviewable while steering its free tier off to a successor."
+tagline: "Discontinued for consumers on June 18; the open-source repo still ships for whoever's left."
 compared_with:
   - antigravity
 x:
@@ -18,9 +18,17 @@ repo: https://github.com/google-gemini/gemini-cli
 surface_class: open_source_commits
 evidence_floor: commit_diff_reviewed
 status: active_watch
-last_updated: 2026-06-23
+last_updated: 2026-07-01
 last_full_review: 2026-06-03
 claims:
+  - id: consumer-service-retired-2026-06-18
+    finding_id: 2026-07-01-gemini-cli-consumer-service-retired
+    last_verified: 2026-07-01
+    status: active
+  - id: oss-repo-active-enterprise-serving
+    finding_id: 2026-07-01-gemini-cli-consumer-service-retired
+    last_verified: 2026-07-01
+    status: active
   - id: memory-reviewable-patch
     finding_id: 2026-05-07-gemini-reviewable-memory-and-trust
     last_verified: 2026-05-07

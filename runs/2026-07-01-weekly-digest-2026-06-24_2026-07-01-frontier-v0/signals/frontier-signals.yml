@@ -1,0 +1,252 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-07-01-weekly-digest-2026-06-24_2026-07-01-frontier-v0
+window:
+  start: 2026-06-24
+  end: 2026-07-01
+note: >
+  A full, dense week. The cross-provider thesis is a hardening wave around the
+  agent boundary -- path/file escapes, approval bypasses, self-approval, subagent
+  containment -- that split hard on WHO actually receives the hardening. The
+  merged-vs-shipped gap mutated into a channel split, and this window it reached
+  its cleanest form: a tier-1 vendor discontinued the auditable consumer CLI
+  (Gemini) and force-migrated consumers to a closed one (Antigravity), while the
+  same class of security fix landed cloud-only (OpenHands), main-only (Hermes,
+  OpenClaw), or stable (Gemini OSS, Codex, Paperclip, Claude Code) depending on the
+  provider. Eight signals, rarer than the run's ~60 findings. Channel is explicit
+  on every one and resolved by tag ancestry, not date.
+
+signals:
+
+  # ============== PLATFORM ==============
+
+  - id: 2026-07-01-openhands-cve-fixes-cloud-only-oss-frozen
+    section: platform
+    source: openhands
+    channel: main-unreleased
+    title: "OpenHands shipped its dependency-CVE fixes on the cloud channel; the OSS 1.8.0 line is frozen and a new CVE already sits untagged on main"
+    finding_ids:
+      - 2026-07-01-openhands-cloud-1-40-0-tagged-2026-06-26-shipping-a-4-item-cve-ghs
+      - 2026-07-01-openhands-cloud-1-39-0-tagged-2026-06-24-with-a-large-16-item-cve
+      - 2026-07-01-openhands-oss-line-received-no-new-tag-in-window-newest-non-cloud
+      - 2026-07-01-openhands-new-untagged-cve-fix-on-main-after-cloud-1-40-0-cve-2026
+    why_action_bearing:
+      - "Last window's unreleased dependency-CVE batch reached tags this window -- but only on the CLOUD channel: cloud-1.39.0 (2026-06-24, ~16-item CVE/dependency batch) and cloud-1.40.0 (2026-06-26, a 4-item CVE/GHSA batch). The OSS line got NO new tag; the newest non-cloud release is still 1.8.0 (2026-06-10)."
+      - "It is worse than merged-vs-shipped: it is now cloud-vs-self-host. A managed OpenHands Cloud tenant is patched; a self-hoster on the 1.8.0 tag is not, with no fixed OSS tag to move to. And a fresh authlib CVE (CVE-2026-44681 -- an unauthenticated open redirect in Authlib's OIDC grant, CWE-601, phishing-grade at CVSS 6.1; commit e6fe505) already sits on main after cloud-1.40.0 -- untagged again."
+      - "Determine your channel and act on it: on Cloud, you are covered; on the OSS 1.8.0 tag, you are unpatched for this batch and must either run a build from main (inheriting all its churn) or wait for an OSS tag that has not come for three windows."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes multiple known dependency CVEs for Cloud builds; leaves the tagged OSS release line unpatched for the same CVEs."
+      attacker_model: "A third party exploiting a known-CVE dependency in a deployed self-hosted OpenHands instance pinned to the 1.8.0 tag."
+      enforcement: runtime
+      cost_to_operator: "Self-hosters have no fixed OSS tag; getting the fixes means tracking main (unreleased churn) or moving to Cloud."
+      residual: "The OSS 1.8.0 line stays unpatched; new CVE fixes continue to land untagged on main."
+      affected_deployment_class: "Self-hosted OpenHands pinned to the tagged 1.8.0 release with the affected dependencies."
+      exploit_precondition: "An exposed surface reaching a vulnerable dependency path. Per-CVE severity per each advisory; receipts are the release tags and the main commit, not independent advisory confirmation."
+    security_advisory: true
+    receipts:
+      - https://github.com/OpenHands/OpenHands/releases/tag/cloud-1.39.0
+      - https://github.com/OpenHands/OpenHands/releases/tag/cloud-1.40.0
+      - https://github.com/OpenHands/OpenHands/tags
+      - https://github.com/OpenHands/OpenHands/commit/e6fe505
+      - https://nvd.nist.gov/vuln/detail/CVE-2026-44681   # authlib open redirect (CWE-601, CVSS 6.1)
+
+  # ============== CONTROL PLANE ==============
+
+  - id: 2026-07-01-gemini-antigravity-tiered-succession
+    section: control-plane
+    source: antigravity
+    channel: tagged-release
+    title: "Google retired consumer Gemini CLI (June 18) and force-migrated users to closed-source Antigravity -- which hardened one approval gate and auto-opened another the same week"
+    finding_ids:
+      - 2026-07-01-gemini-cli-consumer-service-retired
+      - 2026-07-01-antigravity-successor-to-gemini-consumer
+      - 2026-07-01-antigravity-strict-approve-matching
+      - 2026-07-01-antigravity-subagent-auto-approve
+    why_action_bearing:
+      - "Per Google's own announcement, consumer Gemini CLI stopped serving requests on 2026-06-18 (AI Pro/Ultra, free individual Code Assist, new GitHub-org installs). Enterprise Code Assist retained access and the OSS gemini-cli repo stays Apache-2.0. The successor, Antigravity CLI (the `agy` binary), is closed-source Go. If you ran Gemini CLI as an individual, your path is now a binary you cannot read."
+      - "Antigravity's governance is real and moved both ways in one release train: 1.0.13 (06-27) made 'Always Approve' rule matching strict (non-regex) by default -- a tightening -- while 1.0.14 (06-30) added an 'always proceeds' mode that auto-approves a subagent's artifacts -- a loosening. Audit your migration: the closed binary's subagents can now approve their own work."
+      - "Decide deliberately per tier: enterprise stays on Gemini CLI unchanged; individuals migrate to Antigravity (closed) or move to an open harness; anyone who needs to audit enforcement should treat a closed governance claim as unverifiable until probed."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Antigravity is available to everyone and snappier (Go), with background multi-agent orchestration."
+      who_can_use_now: "Former consumer Gemini CLI users get a supported successor without an enterprise license."
+      authority_visibility: "Authority became LESS inspectable: an open CLI whose approval/sandbox rules were readable was replaced, for consumers, by a closed binary whose enforcement rests on the changelog. Impact bounded for that reason."
+    security_impact: medium
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Reframes trust: governance controls exist but can no longer be inspected in source; subagent auto-approval can execute delegated work without the parent's confirmation."
+      attacker_model: "A prompt-injected or over-broad task whose delegated subagent auto-approves an artifact the operator would have gated; or an operator who cannot verify a closed enforcement claim."
+      enforcement: policy
+      cost_to_operator: "Migration cost off Gemini CLI, plus the ongoing cost of trusting rather than reading the enforcement."
+      residual: "The closed binary's real behavior is only as verifiable as a local probe; subagent auto-approval coverage is whatever the default is."
+    security_advisory: false
+    receipts:
+      - https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/
+      - https://github.com/google-gemini/gemini-cli/discussions/27274
+      - https://github.com/google-antigravity/antigravity-cli/releases
+      - https://github.com/google-antigravity/antigravity-cli/blob/main/CHANGELOG.md
+
+  - id: 2026-07-01-hermes-security-wave-main-untagged
+    section: control-plane
+    source: hermes-agent
+    channel: main-unreleased
+    title: "Hermes landed a full security wave on main -- path-escape, command-approval-bypass, secret redaction -- and tagged none of it (still v2026.6.19)"
+    finding_ids:
+      - 2026-07-01-hermes-agent-path-traversal-fix-model-supplied-tool-call-ids-could-es
+      - 2026-07-01-hermes-agent-command-approval-bypass-closed-gnu-long-flag-prefix-abbr
+      - 2026-07-01-hermes-agent-secrets-now-redacted-in-user-facing-command-guard-code-e
+    why_action_bearing:
+      - "Three real hardening fixes hit main in-window: a path-traversal fix (model-supplied tool-call IDs could escape the tool-result storage directory), a command-approval-bypass close (GNU long-flag prefix abbreviations of `chown --recursive` and `git push --force` slipped past the guard), and secret redaction in user-facing approval prompts. None reached a tag; the newest release is still v2026.6.19 (2026-06-19)."
+      - "If you run the v2026.6.19 tag you have none of these. The approval-bypass in particular means a guard you believed was blocking `chown --recursive` / `git push --force` could be defeated by an abbreviated long flag on the tagged binary. Track main or wait for a tag, but know the gap."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a tool-output path escape, an approval-guard bypass, and secret leakage into approval prompts -- but only on main."
+      attacker_model: "A prompt-injected model emitting a crafted tool-call ID to write outside the results dir, or an abbreviated long flag (e.g. `--rec` for `--recursive`) to slip a destructive command past the approval guard."
+      enforcement: both
+      cost_to_operator: "The tagged release is unpatched; getting the fixes means running main."
+      residual: "Everything stays on main; the v2026.6.19 tag remains exposed to all three."
+    security_advisory: true
+    receipts:
+      - https://github.com/NousResearch/hermes-agent/pull/55929
+      - https://github.com/NousResearch/hermes-agent/pull/55959
+      - https://github.com/NousResearch/hermes-agent/pull/55955
+
+  - id: 2026-07-01-claude-code-mcp-self-approval-and-remote-binding
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "Claude Code 2.1.196 closes an MCP self-approval hole and binds Remote Control to the Anthropic host"
+    finding_ids:
+      - 2026-07-01-claude-code-v2-1-196-security-fix-claude-mcp-list-get-no-longer-spaw
+      - 2026-07-01-claude-code-v2-1-196-remote-control-disabled-when-anthropic-base-url
+    why_action_bearing:
+      - "2.1.196 is a security release: `claude mcp list`/`get` no longer spawn `.mcp.json` servers that a repo self-approves -- closing a path where merely inspecting MCP config in an untrusted repo could launch a repo-declared server. And Remote Control is now disabled when `ANTHROPIC_BASE_URL` points at a non-Anthropic host (org-configurable), so a redirected base URL cannot silently drive remote control."
+      - "Upgrade to 2.1.196+ and re-audit MCP trust in any workflow that opens untrusted repositories; if you proxy `ANTHROPIC_BASE_URL`, confirm the new Remote Control binding matches your intent."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes repo-self-approved MCP server spawning on inspect commands, and closes non-Anthropic-host Remote Control."
+      attacker_model: "A malicious repository whose `.mcp.json` would auto-launch a server when a user merely lists/gets MCP config; or a redirected base URL driving remote control."
+      enforcement: runtime
+      cost_to_operator: "Upgrade; re-verify MCP trust posture on untrusted-repo workflows."
+      residual: "Pre-2.1.196 versions retain both exposures."
+    security_advisory: true
+    receipts:
+      - https://github.com/anthropics/claude-code/releases/tag/v2.1.196
+
+  - id: 2026-07-01-codex-powershell-approval-and-mcp-tool-search
+    section: control-plane
+    source: codex
+    channel: tagged-release
+    title: "Codex 0.142.2 gates uninspectable PowerShell behind approval and switches MCP tool discovery to tool-search by default"
+    finding_ids:
+      - 2026-07-01-codex-codex-0-142-2-tightens-powershell-safety-commands-with-a
+      - 2026-07-01-codex-codex-0-142-2-stable-ships-mcp-tools-now-use-tool-search
+    why_action_bearing:
+      - "0.142.2 (stable, 06-25) tightened PowerShell safety: commands with AST regions the classifier cannot inspect now require approval rather than auto-running. Windows operators running Codex unattended may see new approval prompts (or refusals in non-interactive mode) where PowerShell previously executed -- re-audit unattended Windows pipelines before upgrading."
+      - "Same release makes MCP tools use tool-search by default (rather than dumping the full tool list). Re-verify MCP-backed workflows still resolve the tools you expect against your model/provider."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Tool-search scales MCP discovery to large tool sets without overrunning context."
+      who_can_use_now: "Operators wiring many MCP servers get discovery that does not blow up the prompt."
+      authority_visibility: "The PowerShell gate makes an uninspectable command visible as an approval rather than a silent execution."
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes silent execution of PowerShell whose AST the classifier cannot lower/inspect."
+      attacker_model: "An injected or model-chosen PowerShell command crafted so its dangerous region evades static classification."
+      enforcement: policy
+      cost_to_operator: "New approval prompts in unattended Windows automation; may block previously-passing pipelines."
+      residual: "Coverage is the classifier's inspection ability; approval is the fallback when it cannot inspect."
+    security_advisory: false
+    receipts:
+      - https://github.com/openai/codex/pull/24092
+      - https://github.com/openai/codex/pull/29486
+      - https://github.com/openai/codex/releases/tag/rust-v0.142.2
+
+  - id: 2026-07-01-gemini-oss-path-traversal-stable-and-config-rename
+    section: control-plane
+    source: gemini-cli
+    channel: tagged-release
+    title: "Gemini CLI's OSS repo shipped the skill path-traversal fix to stable (v0.49.0) and renamed coreTools -- fixes now landing in a CLI whose consumers were cut off"
+    finding_ids:
+      - 2026-07-01-gemini-cli-skill-install-path-traversal-fix-reaches-stable-in-v0-49
+      - 2026-07-01-gemini-cli-coretools-setting-migrated-to-tools-core-config-rename-i
+      - 2026-07-01-gemini-cli-at-reference-file-defensive-path-resolution-null-byte-sa
+    why_action_bearing:
+      - "Carry-forward resolved: the skill-install path-traversal fix, stranded in preview for two windows, reached STABLE in v0.49.0 (2026-06-25). Same release renamed the `coreTools` setting to `tools.core` -- a breaking config change to migrate. Newer `@file` defensive path resolution + null-byte sanitization landed on main (commit b5fc06e), not yet stable."
+      - "The pointed part: these fixes ship to an OSS CLI whose consumer service Google shut down on June 18. If you are on the OSS repo (enterprise or BYO-key), upgrade to v0.49.0 and migrate the config; if you were a consumer, this fix is not for you -- you are on Antigravity now."
+    accessibility_impact: none
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes path traversal during skill install/link/uninstall on the stable channel; adds `@file` path hardening on main."
+      attacker_model: "A malicious skill package or `@file` reference crafted to traverse outside the intended directory."
+      enforcement: runtime
+      cost_to_operator: "Upgrade to v0.49.0 and migrate `coreTools` -> `tools.core`; the newer `@file` hardening is main-only."
+      residual: "The `@file`/sensitive-path hardening is not yet in a stable tag."
+    security_advisory: true
+    receipts:
+      - https://github.com/google-gemini/gemini-cli/releases/tag/v0.49.0
+      - https://github.com/google-gemini/gemini-cli/commit/b5fc06e
+
+  - id: 2026-07-01-paperclip-control-plane-tagged
+    section: control-plane
+    source: paperclip
+    channel: tagged-release
+    title: "Paperclip v2026.626.0 tags its master-only control plane: daily run/cost budget caps, a split skills:create permission, cross-company auth hardening"
+    finding_ids:
+      - 2026-07-01-paperclip-stable-release-v2026-626-0-ships-tagging-previously-mast
+      - 2026-07-01-paperclip-heartbeat-preflight-budget-caps-hard-daily-run-count-and
+      - 2026-07-01-paperclip-skill-mutations-gated-behind-a-dedicated-skills-create-p
+      - 2026-07-01-paperclip-ceo-authorization-hardening-against-cross-company-access
+    why_action_bearing:
+      - "Carry-forward resolved: v2026.626.0 (2026-06-27) tagged 128 commits of previously master-only control-plane work. The operator-relevant pieces: hard daily run-count and cost ceilings enforced before an adapter runs (preflight budget caps), skill mutations now gated behind a dedicated `skills:create` permission split from `agents:create`, and cross-company access authorization hardened with single-issue read enforcement."
+      - "If you run Paperclip, these are now in a stable tag you can adopt: wire the budget caps to bound runaway spend, and split skill-creation authority from agent-creation in your permission model."
+    accessibility_impact: low
+    accessibility_consequence:
+      what_got_easier: "Budget caps give a non-expert operator a hard spend/run ceiling without custom guardrails."
+      who_can_use_now: "Teams that needed cost governance get it as a first-class preflight, on the stable channel."
+      authority_visibility: "Splitting `skills:create` from `agents:create` makes skill-mutation authority explicit rather than bundled."
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes over-broad skill-mutation authority (now a separate permission) and cross-company read access; bounds runaway run/cost."
+      attacker_model: "An over-privileged agent or cross-company caller mutating skills or reading another company's issues; a runaway loop burning budget."
+      enforcement: policy
+      cost_to_operator: "Adopt the new permission split and configure the budget ceilings."
+      residual: "Coverage is whatever caps and permissions the operator configures."
+    security_advisory: false
+    receipts:
+      - https://github.com/paperclipai/paperclip/releases/tag/v2026.626.0
+      - https://github.com/paperclipai/paperclip/pull/8347
+      - https://github.com/paperclipai/paperclip/pull/8616
+
+  # ============== RUNTIME ==============
+
+  - id: 2026-07-01-sonnet-5-propagation-default-and-adopted
+    section: runtime
+    source: claude-code
+    channel: tagged-release
+    title: "Sonnet 5 propagated across harnesses in one week: Claude Code makes it the default (1M context); Pi adds support"
+    finding_ids:
+      - 2026-07-01-claude-code-v2-1-197-claude-sonnet-5-becomes-the-default-model-in-cl
+      - 2026-07-01-pi-coding-agent-v0-80-3-adds-claude-sonnet-5-support-anthropic-compatibl
+    why_action_bearing:
+      - "Claude Code v2.1.197 (2026-06-30) makes Claude Sonnet 5 the default model, with native 1M-token context. Pi v0.80.3 (2026-06-30) added Sonnet 5 support (Anthropic-compatible + Bedrock) the same week. A new frontier model became a default and a cross-harness option within days."
+      - "Know your default changed: if you pin models for cost/behavior reasons, confirm whether you are now on Sonnet 5 with a 1M window (and the cost/latency that implies), or set the model explicitly."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "A larger-context, stronger default lowers the bar for long-session work without manual model selection."
+      who_can_use_now: "Every Claude Code user gets the new default; Pi users can opt in."
+      authority_visibility: "Model choice is a silent default change -- visible only if the operator checks."
+    security_impact: none
+    security_advisory: false
+    receipts:
+      - https://github.com/anthropics/claude-code/releases/tag/v2.1.197
+      - https://github.com/earendil-works/pi/releases/tag/v0.80.3

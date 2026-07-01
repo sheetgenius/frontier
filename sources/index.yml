@@ -1,5 +1,5 @@
 schema_version: bitter.frontier_source_index.v0
-last_revised: 2026-05-12
+last_revised: 2026-07-01
 sources:
   - id: codex
     contract: sources/codex.yml
@@ -16,6 +16,12 @@ sources:
   - id: gemini-cli
     contract: sources/gemini-cli.yml
     notes: sources/gemini-cli.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: antigravity
+    contract: sources/antigravity.yml
+    notes: sources/antigravity.notes.md
     tier: 1
     status: active
     cadence: daily
