@@ -15,3 +15,13 @@ Window: 2026-07-01 to 2026-07-02
   `runs/2026-07-01-weekly-digest-2026-06-24_2026-07-01-frontier-v0/manifest.yml`
   and baseline digest `content/digests/2026-06-24_2026-07-01-weekly.md`.
 - Scaffolded run directories and placeholder manifest/audit/qa/journal files.
+
+## Harvest
+
+- Ran coordinator-led fan-out over the existing watchlist and a direct tagged
+  harvest for new source `agent-flywheel`.
+- Resolved carry-forward checks from the prior manifest.
+- Re-fetched signal-candidate receipts for Agent Flywheel, Claude Code, Codex,
+  Gemini CLI, and Hermes. Antigravity 1.0.15/1.0.16 public tag URLs did not
+  resolve; those notes are retained only as pinned-changelog background.
+- Recorded harvest in `harvest/watchlist.md`.
