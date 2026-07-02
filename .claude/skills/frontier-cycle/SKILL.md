@@ -104,6 +104,21 @@ then the body in the field-correspondent voice. Each operator-brief line links t
 its signal. `not_promoted` records findings carried on a profile or in the body but
 deliberately not signaled, each with a reason.
 
+The digest must pass the exemplar bar
+(`.claude/skills/exemplar-pass/SKILL.md`), most bindingly:
+- **thesis <= 3 sentences** -- it renders first, as a standfirst, not an abstract;
+- **the lede is a case** (one receipted event and the cost inside it), the title an
+  argument a reader could dispute;
+- **one home per fact** -- a fix appears in the brief OR an advisory OR a provider
+  note OR what-to-try; the other mentions link to it;
+- **provider notes carry judgment or die**: a provider gets prose only when the
+  digest has something to say about it, otherwise one line ("no material change;
+  last tag holds at X"). No ten-item comma-lists of shipped features;
+- **not_promoted reasons in reader vocabulary** (no "promoted," "carry-forward,"
+  "captured on the profile");
+- **no template refrains**: before publishing, grep the previous two digests for
+  any repeated formula ("Same X, N different Y", a recurring closer) and retire it.
+
 ### 7. Profiles
 Refresh only the profiles that moved: bump `last_updated`, add or retire claims
 (each with a resolvable `finding_id`), update `stance`. Leave untouched providers

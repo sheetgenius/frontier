@@ -219,8 +219,8 @@ until the fix). And the named-subagent permission rules -- [`Agent(type)` deny r
 cosmetic for the named-spawn path before it. Any deployment that relies on
 `Agent(...)` rules to gate which subagent types can spawn must pin 2.1.186+
 and re-test those rules by writing a deny and confirming a named spawn is
-actually refused. The bound only fully bound here; do not infer it from the
-2.1.178 announcement.
+actually refused. The rule only began binding here; do not infer protection
+from the 2.1.178 announcement.
 
 As of [v2.1.183](https://code.claude.com/docs/en/changelog#2-1-183)
 (2026-06-19), the auto-mode classifier

@@ -28,3 +28,25 @@
   - Updated the digest index title.
 - Next iteration target: item 2, the expanded rollup ("Builder question:"
   template refrain).
+
+## 2026-07-02 -- iterations 2-6 (operator-authorized autonomous run)
+
+- Operator ratified the iteration-1 specimen; pushed. Also fixed a reported
+  site bug: evidence-kind labels (COMMIT_DIFF_REVIEWED) overlapping titles in
+  SourceTrail -- underscores now render as spaces and the label wraps.
+- Iteration 2: expanded rollup rewritten (v4). Same commit receipts; lede on
+  the Agent Zero visible-computer case; "Builder question:" scaffold removed.
+- Iteration 3: five operator_brief theses compressed to <= 3 sentences, each
+  digest version-bumped with a revision note.
+- Iteration 4: not_promoted reasons rewritten reader-facing (4 digests);
+  NotPromoted chrome retitled "Noted, not headlined", ASCII intro.
+- Iteration 5: exemplar bar encoded into frontier-cycle step 6 (thesis cap,
+  lede-as-case, one home per fact, provider-notes judgment-or-die, reader
+  vocabulary, refrain grep). Two provider-note specimens rewritten in the
+  05-27 digest (Codex, OpenClaw).
+- Iteration 6: claude-code profile garble fixed; repeated closers varied in
+  06-23/24 and 07-01.
+- Stopped at the ROI line: archive-wide provider-note rewrites and
+  redundancy unwinding accepted as debt (B-range, risk of claim drift
+  exceeds reader gain); enforcement is prospective via frontier-cycle.
+- Validation: check-integrity + site build run at the end of the batch.
