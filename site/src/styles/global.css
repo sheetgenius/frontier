@@ -1638,12 +1638,14 @@ code {
 }
 
 .source-trail-kind {
+  min-width: 0;
   color: var(--color-bitter);
   font-family: var(--font-mono);
   font-size: 0.66rem;
   letter-spacing: 0.14em;
   line-height: 1.35;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .source-trail-label {

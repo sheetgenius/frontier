@@ -41,7 +41,7 @@ const rows = (findings?.length ? findings : findingsForSources(sourceIds)).map((
             <div class="source-trail-links">
               {evidence.map((item) => (
                 <a class="source-trail-link" href={item.url}>
-                  <span class="source-trail-kind">{item.precision ?? "source"}</span>
+                  <span class="source-trail-kind">{(item.precision ?? "source").replace(/_/g, " ")}</span>
                   <span>
                     <span class="source-trail-label">{item.label}</span>
                     <span class="source-trail-target">{formatEvidenceTarget(item.url)}</span>
