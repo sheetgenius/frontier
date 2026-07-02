@@ -78,8 +78,8 @@ Agent Flywheel is not another coding agent. It is the assembly layer above sever
 of them. At the `v0.7.0` intake tag, ACFS presents itself as a complete bootstrap
 for a fresh Ubuntu VPS: one installer, a modern shell, language runtimes, and
 [three AI coding agents: Claude Code, Codex CLI, and Antigravity CLI](https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/README.md).
-That is why it belongs on the watchlist. Bitter already tracks what the individual
-harness vendors ship. Agent Flywheel tracks a different authority question: what
+That is why it belongs on the watchlist. This publication already tracks what the
+individual harness vendors ship. Agent Flywheel poses a different authority question: what
 happens when a third party chooses the defaults for several tier-1 harnesses at
 once.
 

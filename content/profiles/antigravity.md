@@ -52,8 +52,8 @@ claims:
     last_verified: 2026-07-01
     status: open_question
 stance:
-  use_it_for: "Individual and consumer users who relied on Gemini CLI and need a Google-supported terminal agent now that the open one stopped serving them, and teams already in the Antigravity ecosystem who want terminal reach plus background multi-agent orchestration."
-  avoid_it_for: "Any operator who must audit the enforcement behind an approval or sandbox claim -- the code is closed, so a governance guarantee rests on the changelog, not readable source. If you need an open, self-hostable CLI, the gemini-cli OSS repo (Apache-2.0) or another open harness is the honest choice."
+  use_for: "Individual and consumer users who relied on Gemini CLI and need a Google-supported terminal agent now that the open one stopped serving them, and teams already in the Antigravity ecosystem who want terminal reach plus background multi-agent orchestration."
+  avoid_for: "Any operator who must audit the enforcement behind an approval or sandbox claim -- the code is closed, so a governance guarantee rests on the changelog, not readable source. If you need an open, self-hostable CLI, the gemini-cli OSS repo (Apache-2.0) or another open harness is the honest choice."
   watch_next: "Whether subagent 'always proceeds' auto-approval hardens into a default gap; whether Google publishes verifiable enforcement docs for the closed binary; and the real behavior-change cost of migrating off Gemini CLI."
 ---
 
