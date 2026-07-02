@@ -8,4 +8,4 @@
 - [Auto Stops Asking](2026-05-13_2026-05-27-weekly.md) -- 2026-05-13 to 2026-05-27
 - [Governance Becomes Enforcement](2026-05-12-weekly.md) -- 2026-05-07 to 2026-05-12
 - [The Harness Leaves The Chat Box](2026-04-23_2026-05-07-frontier-rollup-expanded.md) -- 2026-04-23 to 2026-05-07
-- [Coding Agents Are Becoming Working Environments](2026-04-22_2026-05-06-frontier-rollup.md) -- 2026-04-22 to 2026-05-06
+- [What Shaped the Run](2026-04-22_2026-05-06-frontier-rollup.md) -- 2026-04-22 to 2026-05-06
