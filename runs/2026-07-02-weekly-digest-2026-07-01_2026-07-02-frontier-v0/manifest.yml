@@ -1,0 +1,72 @@
+schema_version: bitter.frontier_run_manifest.v0
+run_id: 2026-07-02-weekly-digest-2026-07-01_2026-07-02-frontier-v0
+mode: weekly-digest
+title: "The Installer Is the Control Plane"
+window:
+  start: 2026-07-01
+  end: 2026-07-02
+status: published
+parent_window: 2026-06-24_2026-07-01
+finding_count: 22
+signal_count: 5
+sources:
+  - agent-flywheel
+  - codex
+  - claude-code
+  - gemini-cli
+  - antigravity
+  - hermes-agent
+  - openhands
+  - openclaw
+  - paperclip
+  - agent-zero
+  - pi-coding-agent
+  - eve
+  - flue
+  - heypi
+new_source_this_run: agent-flywheel
+models:
+  coordinator: codex-gpt-5
+  researchers: "Codex subagents Ohm, Dalton, Meitner, read-only fan-out by source group"
+  verifier: "Coordinator re-fetch of promoted signal receipts"
+harness:
+  shape: coordinator-led-fanout
+  skill: .claude/skills/frontier-cycle
+  description: >
+    Ran the frontier-cycle protocol over a short live window. Three read-only
+    subagents harvested the existing watchlist in parallel while the coordinator
+    ran the Agent Flywheel intake, carry-forward checks, adversarial receipt
+    re-fetches for signal candidates, artifact materialization, digest/profile
+    drafting, and final validation.
+quality_gates:
+  - channel_by_ancestry: pass
+  - dates_verified_to_year: pass
+  - signals_rarer_than_findings: pass
+  - every_signal_receipt_adversarially_verified: pass
+  - cross_provider_synthesis_thesis: pass
+  - marketing_vs_substance_separated: pass
+  - exemplar_bar_checked: pass
+  - ascii_house_style: pass
+carry_forward_checks:
+  gemini-cli: "UNRESOLVED -- @file hardening and memory-import symlink escape fix are nightly-only; no stable/preview absorption in-window."
+  codex: "UNRESOLVED for 0.143 -- alpha through rust-v0.143.0-alpha.34; stable moved to rust-v0.142.5 with trace-log payload scrub."
+  openhands: "UNRESOLVED -- OSS remains 1.8.0, cloud remains 1.40.0, Authlib CVE fix stays main-only."
+  hermes-agent: "RESOLVED -- prior main-only security wave reached v2026.7.1 on 2026-07-01."
+  openclaw: "UNRESOLVED -- scoped capability profiles reached v2026.7.1-beta.1 only."
+  paperclip: "UNRESOLVED -- no stable tag after v2026.626.0; July 2 work is canary-only."
+  heypi: "NO CHANGE -- 0.2.0-beta.0 remains current and main matched the tag during harvest."
+new_source_build:
+  agent-flywheel: "Source intake, 7 findings, 1 signal, and seed profile. Scope restricted to tagged setup repo and official site source; author portfolio rejected."
+generated_findings: findings/*.md (22)
+generated_signals: signals/frontier-signals.yml (5)
+generated_digest: ../../content/digests/2026-07-01_2026-07-02-weekly.md
+profile_updates:
+  - content/profiles/agent-flywheel.md
+digest_index_update: ../../content/digests/index.md
+harvest_record: harvest/watchlist.md
+journal: JOURNAL.md
+audit_notes: audit.md
+qa_notes: qa.md
+validation:
+  integrity: "pass -- node site/scripts/check-integrity.mjs -- integrity check: clean; 334 findings indexed, 151 signals indexed; 14 watchlist sources, 3 adjacent (3 referenced)"
+  build: "pass -- npm --prefix site run build -- 899 pages built; link-graph clean; OG cards generated"

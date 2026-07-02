@@ -32,3 +32,11 @@ Window: 2026-07-01 to 2026-07-02
 - Promoted 5 signals: Agent Flywheel dangerous defaults, Claude Code background
   agents committing/pushing/opening draft PRs, Hermes security wave tagged, Codex
   trace-log payload scrub, and Gemini CLI nightly-only memory symlink escape fix.
+
+## Authoring and QA
+
+- Drafted digest `The Installer Is the Control Plane` and added it to the digest
+  index.
+- Seeded `content/profiles/agent-flywheel.md`.
+- Populated manifest, audit, and QA records. Initial build attempt failed while
+  manifest was still empty; final validation rerun follows after this record.
