@@ -1,5 +1,6 @@
 # Bitter Frontier Digests
 
+- [The Installer Is the Control Plane](2026-07-01_2026-07-02-weekly.md) -- 2026-07-01 to 2026-07-02
 - [Patched for Whom](2026-06-24_2026-07-01-weekly.md) -- 2026-06-24 to 2026-07-01
 - [Governance, Sold Separately](2026-06-23_2026-06-24-weekly.md) -- 2026-06-23 to 2026-06-24
 - [Protected on Paper](2026-06-16_2026-06-23-weekly.md) -- 2026-06-16 to 2026-06-23
