@@ -1,0 +1,147 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-07-02-weekly-digest-2026-07-01_2026-07-02-frontier-v0
+window:
+  start: 2026-07-01
+  end: 2026-07-02
+note: >
+  Short live window. Five signals out of 22 accepted findings. The lead signal is
+  not a vendor release: it is the first harvest of Agent Flywheel, an assembly
+  layer that sets dangerous defaults for Claude Code, Codex, and Antigravity on a
+  throwaway VPS. Vendor-side movement rhymed with it: Claude made background
+  agents more autonomous, Hermes finally tagged its security wave, Codex removed a
+  trace-log data leak, and Gemini fixed a memory-import symlink escape in nightly
+  only.
+
+signals:
+
+  - id: 2026-07-02-agent-flywheel-assembly-layer-dangerous-defaults
+    section: control-plane
+    source: agent-flywheel
+    channel: tagged-release
+    title: "Agent Flywheel turns three tier-1 agents into one dangerous-mode VPS bundle"
+    finding_ids:
+      - 2026-07-02-agent-flywheel-v0-7-0-tagged-release
+      - 2026-07-02-agent-flywheel-vibe-mode-dangerous-agent-aliases
+      - 2026-07-02-agent-flywheel-passwordless-sudo-vibe-default
+      - 2026-07-02-agent-flywheel-antigravity-locked-always-proceed
+      - 2026-07-02-agent-flywheel-dcg-hook-fail-open
+    why_action_bearing:
+      - "ACFS v0.7.0 is not just setup. In vibe mode it writes passwordless sudo, aliases Claude Code with `--dangerously-skip-permissions`, aliases Codex with `--dangerously-bypass-approvals-and-sandbox`, and routes Antigravity through a launcher that writes always-proceed settings, disables the terminal sandbox, allows non-workspace access, and launches `agy` with `--dangerously-skip-permissions`."
+      - "Run it only where the project says the posture belongs: a throwaway VPS. Pin the tag or commit before install, inspect the sudoers and shell aliases, and treat safe mode as the production-like path."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "A beginner can get Claude Code, Codex, Antigravity, shell tooling, and coordination tools on one VPS through one installer."
+      who_can_use_now: "Individual operators willing to run a paid, disposable-VPS workflow."
+      authority_visibility: "Authority is compressed into third-party defaults. The README describes the mode, but the dangerous boundary sits in written files and aliases the operator may never open."
+    security_impact: high
+    security_change: opens
+    security_consequence:
+      threat_blocked_or_opened: "Opens a deliberate dangerous-mode path: bypassed agent approvals, passwordless sudo, Antigravity always-proceed settings, terminal sandbox off, and non-workspace access on."
+      attacker_model: "A prompt-injected or mistaken agent command that reaches shell execution on a credentialed VPS account."
+      enforcement: policy
+      cost_to_operator: "Use a disposable VPS, pin and review the tag, choose safe mode on anything durable, and keep credentials out of the environment."
+      residual: "The Antigravity DCG hook fails open if `dcg` is unavailable or times out; the installer was read at tag but not executed locally."
+    security_advisory: false
+    receipts:
+      - https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/acfs/zsh/acfs.zshrc
+      - https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/scripts/lib/user.sh
+      - https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/scripts/lib/agy_locked.py
+      - https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/acfs.manifest.yaml
+
+  - id: 2026-07-02-claude-code-background-agents-commit-push-pr
+    section: runtime
+    source: claude-code
+    channel: tagged-release
+    title: "Claude Code background agents now commit, push, and open draft PRs instead of stopping to ask"
+    finding_ids:
+      - 2026-07-02-claude-code-v2-1-198-background-agents-commit-push-pr
+    why_action_bearing:
+      - "Claude Code v2.1.198 makes subagents background by default and says background agents launched from `claude agents` now commit, push, and open a draft PR after worktree code work instead of stopping to ask."
+      - "Before upgrading shared repos, decide whether background agents may write commits and branches, wire Notification hooks, and rely on branch protection rather than a human sitting at the terminal."
+    accessibility_impact: medium
+    accessibility_consequence:
+      what_got_easier: "Longer agent work can continue away from the foreground terminal."
+      who_can_use_now: "Teams comfortable with draft PRs as the review boundary."
+      authority_visibility: "A background task becomes a repository mutation path; the review object is the draft PR."
+    security_impact: medium
+    security_change: reframes
+    security_consequence:
+      threat_blocked_or_opened: "Opens more unattended repository mutation while retaining draft PR review as the visible checkpoint."
+      attacker_model: "A delegated background agent acting on stale or over-broad task direction in a worktree."
+      enforcement: policy
+      cost_to_operator: "Re-audit branch protection, remote permissions, worktree cleanup, and notification delivery."
+      residual: "The release notes state launching-agent messages are task direction, not user approval; local policy still has to enforce what can be pushed."
+    security_advisory: false
+    receipts:
+      - https://github.com/anthropics/claude-code/releases/tag/v2.1.198
+
+  - id: 2026-07-02-hermes-security-wave-tagged
+    section: control-plane
+    source: hermes-agent
+    channel: tagged-release
+    title: "Hermes v2026.7.1 tags the security wave that was main-only last issue"
+    finding_ids:
+      - 2026-07-02-hermes-agent-v2026-7-1-security-wave-tagged
+    why_action_bearing:
+      - "Hermes v2026.7.1 ships the prior main-only wave: MCP-config persistence hardening, cron `base_url` credential-exfiltration blocking, prefix-secret sentinels for file reads, Slack `xapp-` token redaction, browser cloud-metadata guardrails, resume/session scoping, and a dependency floor."
+      - "Upgrade from v2026.6.19 if you were waiting for a tag. The channel question changed from 'run main or wait' to a normal release upgrade."
+    accessibility_impact: none
+    security_impact: high
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes credential-exfiltration and secret-disclosure surfaces that were previously only fixed on main."
+      attacker_model: "Prompt-injected or misconfigured sessions abusing MCP persistence, cron URLs, file-read sentinels, Slack token display, browser metadata access, or session resume scope."
+      enforcement: both
+      cost_to_operator: "Upgrade to v2026.7.1 and re-run any local MCP/cron/Slack integration tests."
+      residual: "Release notes are the receipt for this bundle; no per-item advisory record was published in the harvested surface."
+    security_advisory: false
+    receipts:
+      - https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.1
+
+  - id: 2026-07-02-codex-trace-payload-scrub
+    section: telemetry
+    source: codex
+    channel: tagged-release
+    title: "Codex 0.142.5 stops writing full Responses WebSocket payloads to trace logs"
+    finding_ids:
+      - 2026-07-02-codex-v0-142-5-trace-payload-scrub
+    why_action_bearing:
+      - "Codex rust-v0.142.5 says full Responses WebSocket request payloads no longer go to trace logs."
+      - "Upgrade where traces are retained, centralized, or shared. Then restrict or purge older traces because the old behavior may have logged prompts, repo content, or secret-bearing tool inputs."
+    accessibility_impact: none
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a telemetry data-exposure path through trace logs."
+      attacker_model: "Anyone with access to retained Codex trace logs, including centralized logging readers and incident responders outside the repo team."
+      enforcement: runtime
+      cost_to_operator: "Upgrade and audit old trace retention."
+      residual: "The release note does not say whether existing logs are scrubbed; assume they are not."
+    security_advisory: false
+    receipts:
+      - https://github.com/openai/codex/releases/tag/rust-v0.142.5
+
+  - id: 2026-07-02-gemini-memory-symlink-escape-nightly
+    section: control-plane
+    source: gemini-cli
+    channel: preview-or-beta
+    title: "Gemini CLI fixes a memory-import symlink escape in nightly only"
+    finding_ids:
+      - 2026-07-02-gemini-cli-nightly-memory-symlink-escape
+      - 2026-07-02-gemini-cli-atfile-hardening-nightly-only
+    why_action_bearing:
+      - "Nightly v0.51.0-nightly.20260702.gff00dacd9 fixes a symbolic-link directory escape in the memory import processor."
+      - "Stable users do not have a shipped fix yet. Avoid untrusted `GEMINI.md` memory imports or track the nightly until a preview/stable tag absorbs it."
+    accessibility_impact: none
+    security_impact: medium
+    security_change: closes
+    security_consequence:
+      threat_blocked_or_opened: "Closes a host-file read path where a repository-controlled memory import can traverse through a symlinked directory."
+      attacker_model: "A malicious or compromised repository opened by a Gemini CLI user with memory import processing enabled."
+      enforcement: runtime
+      cost_to_operator: "Wait for stable, use nightly knowingly, or turn off/avoid untrusted memory imports."
+      residual: "The fix is nightly-only in this window; stable and preview channels remain carry-forward."
+    security_advisory: false
+    receipts:
+      - https://github.com/google-gemini/gemini-cli/releases/tag/v0.51.0-nightly.20260702.gff00dacd9
+      - https://github.com/google-gemini/gemini-cli/releases/tag/v0.51.0-nightly.20260701.g7f00c5fe5

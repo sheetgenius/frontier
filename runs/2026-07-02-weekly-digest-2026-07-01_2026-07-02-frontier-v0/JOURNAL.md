@@ -25,3 +25,10 @@ Window: 2026-07-01 to 2026-07-02
   Gemini CLI, and Hermes. Antigravity 1.0.15/1.0.16 public tag URLs did not
   resolve; those notes are retained only as pinned-changelog background.
 - Recorded harvest in `harvest/watchlist.md`.
+
+## Findings and signals
+
+- Materialized 22 accepted findings across the watched sources.
+- Promoted 5 signals: Agent Flywheel dangerous defaults, Claude Code background
+  agents committing/pushing/opening draft PRs, Hermes security wave tagged, Codex
+  trace-log payload scrub, and Gemini CLI nightly-only memory symlink escape fix.
