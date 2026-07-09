@@ -11,7 +11,7 @@ const ogImage = image ?? ogImageForPath(Astro.url.pathname);
 const canonicalUrl = new URL(Astro.url.pathname, SITE_URL).toString();
 const pageTitle = title === SITE_TITLE ? title : `${title}`;
 const path = Astro.url.pathname;
-const isDetail = /^\/(digests|signals|profiles)\/.+/.test(path);
+const isDetail = /^\/(digests|signals|profiles|findings)\/.+/.test(path);
 const ogType = isDetail ? "article" : "website";
 const jsonLdType = path === "/" ? "WebSite" : isDetail ? "Article" : "CollectionPage";
 const jsonLd = {

@@ -2,7 +2,8 @@
 import Base from "../../layouts/Base.astro";
 import FindingFooter from "../../components/FindingFooter.astro";
 import SourceTrail from "../../components/SourceTrail.astro";
-import { listFindings } from "../../lib/frontier";
+import { metaDescription } from "../../lib/seo";
+import { listFindings, signalsCitingFinding, sourceLabel } from "../../lib/frontier";
 
 export function getStaticPaths() {
   const byFinding = new Map();
@@ -20,9 +21,20 @@ for (const entry of listFindings()) {
 }
 const finding = byFinding.get(Astro.params.finding);
 if (!finding) throw new Error("Finding not found");
+
+const citedSignal = signalsCitingFinding(finding)[0];
+const findingTitle = finding.title === finding.finding ? (citedSignal?.title ?? finding.title) : finding.title;
+const findingDescription = metaDescription(
+  finding.data.summary,
+  citedSignal?.summary,
+  finding.data.operator_consequence,
+  citedSignal?.whyActionBearing?.[0],
+  finding.body,
+  `${findingTitle} source-backed finding for ${sourceLabel(String(finding.data.source ?? "coding agent"))}.`,
+);
 ---
 
-<Base title={`${finding.title} · Bitter Frontier`}>
+<Base title={`${findingTitle} · Bitter Frontier`} description={findingDescription}>
   <article class="measure py-10">
     <p class="small-caps text-muted">Finding · {finding.data.source}</p>
     <div class="prose-frontier mt-7" set:html={finding.html} />

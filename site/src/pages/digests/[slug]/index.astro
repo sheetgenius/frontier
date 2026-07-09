@@ -4,6 +4,7 @@ import NotPromoted from "../../../components/NotPromoted.astro";
 import OperatorBrief from "../../../components/OperatorBrief.astro";
 import SourceTrail from "../../../components/SourceTrail.astro";
 import VersionList from "../../../components/VersionList.astro";
+import { metaDescription } from "../../../lib/seo";
 import { GH_BLOB_BASE } from "../../../lib/site";
 import { canonicalRunForDigest, formatDate, getDigest, getSignal, listDigests, listProfiles, sourceLabel, versionsForDigest } from "../../../lib/frontier";
 
@@ -26,9 +27,15 @@ const topSignalIds: string[] = digest.data.top_signal_ids ?? [];
 const topSignals = topSignalIds
   .map((id) => getSignal(id))
   .filter(Boolean);
+
+const digestDescription = metaDescription(
+  digest.data.operator_brief?.thesis,
+  digest.data.summary,
+  `${digest.data.title}: ${digest.data.signal_count} sourced signals from the Bitter Frontier research loop.`,
+);
 ---
 
-<Base title={`${digest.data.title} · Bitter Frontier`}>
+<Base title={`${digest.data.title} · Bitter Frontier`} description={digestDescription}>
   <article class="measure py-10">
     <div class="small-caps text-muted">
       {digest.data.series ?? "Issue"} · Published {formatDate(digest.data.window?.end)}

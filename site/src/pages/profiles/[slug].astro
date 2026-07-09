@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import ProfileStance from "../../components/ProfileStance.astro";
+import { metaDescription } from "../../lib/seo";
 import { GH_BLOB_BASE } from "../../lib/site";
 import { digestsForSource, findFindingByFindingId, formatDate, getProfile, inboundCompositionForSource, listProfiles, sourceLabel } from "../../lib/frontier";
 
@@ -42,14 +43,21 @@ function findingUrlFor(findingId: string | undefined | null): string | undefined
   if (!finding) return undefined;
   return `/findings/${finding.runId}/${finding.finding}/`;
 }
+
+const profileLabel = profile.data.label ?? profile.slug;
+const profileDescription = metaDescription(
+  profile.data.tagline,
+  profile.data.stance?.use_for,
+  `${profileLabel} research profile with sourced claims, operator stance, open questions, and the latest Bitter Frontier signals.`,
+);
 ---
 
-<Base title={`${profile.data.label ?? profile.slug} · Bitter Frontier`}>
+<Base title={`${profileLabel} research · Bitter Frontier`} description={profileDescription}>
   <article class="measure py-10">
     <p class="small-caps text-muted">
       <a href="/profiles/">Profiles</a> · {profile.data.owner}
     </p>
-    <h1 class="issue-title">{profile.data.label ?? profile.slug}</h1>
+    <h1 class="issue-title">{profileLabel}</h1>
     {profile.data.tagline && (
       <p class="profile-dek">{profile.data.tagline.replace(/^"|"$/g, "")}</p>
     )}
