@@ -62,6 +62,7 @@ test("sitemap favors canonical reader pages over duplicate artifacts", async ({ 
 
   expect(body).toContain("https://frontier.bitter.sh/findings/2026-06-01-flue-v090-workers-ai-reasoning/");
   expect(body).not.toContain("https://frontier.bitter.sh/findings/2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0/2026-06-01-flue-v090-workers-ai-reasoning/");
+  expect(body).not.toContain("https://frontier.bitter.sh/runs/2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0/");
   expect(body).not.toContain("/versions/");
 
   const versionedFinding = await request.get("/findings/2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0/2026-06-01-flue-v090-workers-ai-reasoning/");
@@ -69,6 +70,11 @@ test("sitemap favors canonical reader pages over duplicate artifacts", async ({ 
   const versionedBody = await versionedFinding.text();
   expect(versionedBody).toContain('<meta name="robots" content="noindex, follow">');
   expect(versionedBody).toContain('<link rel="canonical" href="https://frontier.bitter.sh/findings/2026-06-01-flue-v090-workers-ai-reasoning/">');
+
+  const runArtifact = await request.get("/runs/2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0/");
+  expect(runArtifact.ok()).toBeTruthy();
+  const runBody = await runArtifact.text();
+  expect(runBody).toContain('<meta name="robots" content="noindex, follow">');
 });
 
 test("home page responsive screenshots are captured", async ({ page }) => {

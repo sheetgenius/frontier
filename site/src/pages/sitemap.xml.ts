@@ -1,4 +1,4 @@
-import { listDigests, listFindings, listProfiles, listRuns, listSignalSourceSlugs, listSignals } from "../lib/frontier";
+import { listDigests, listFindings, listProfiles, listSignalSourceSlugs, listSignals } from "../lib/frontier";
 import { SITE_URL } from "../lib/site";
 
 type SitemapEntry = {
@@ -45,10 +45,6 @@ export function GET() {
       priority: "0.6",
       changefreq: "weekly",
     });
-  }
-
-  for (const run of listRuns()) {
-    entries.set(`/runs/${run.id}/`, { path: `/runs/${run.id}/`, priority: "0.3", changefreq: "monthly" });
   }
 
   for (const profile of listProfiles()) {

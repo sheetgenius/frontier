@@ -29,7 +29,7 @@ const manifestSources: string[] = manifest?.sources ?? [];
 const runDescription = `${run.title}: ${run.signalCount} accepted signals from ${run.windowLabel}, with source contracts, artifacts, and the digest trail.`;
 ---
 
-<Base title={`${run.id} · Bitter Frontier`} description={runDescription}>
+<Base title={`${run.id} · Bitter Frontier`} description={runDescription} robots="noindex, follow">
   <article class="measure py-10">
     <p class="small-caps text-muted">Research Version</p>
     <h1 class="issue-title">{run.title}</h1>
