@@ -1,4 +1,5 @@
 {
+  "schema": "bittergrid.repo_manifest.v1",
   "schema_version": 1,
   "hosting": "radicchio",
   "service_name": "frontier.bitter.sh",
@@ -168,7 +169,7 @@
           "post_deploy",
           "continuous"
         ],
-        "policy": "optional",
+        "policy": "advisory",
         "access_path": "edge"
       }
     ]
