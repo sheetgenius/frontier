@@ -26,7 +26,12 @@ const findingDescription = metaDescription(
 );
 ---
 
-<Base title={`${findingTitle} · Bitter Frontier`} description={findingDescription}>
+<Base
+  title={`${findingTitle} · Bitter Frontier`}
+  description={findingDescription}
+  canonicalPath={`/findings/${finding.finding}/`}
+  robots="noindex, follow"
+>
   <article class="measure py-10">
     <p class="small-caps text-muted">Finding · {finding.data.source}</p>
     <div class="prose-frontier mt-7" set:html={finding.html} />

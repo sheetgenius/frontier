@@ -11,7 +11,12 @@ if (!digest) throw new Error("Digest not found");
 const versions = versionsForDigest(digest.id);
 ---
 
-<Base title={`Versions · ${digest.data.title}`}>
+<Base
+  title={`Versions · ${digest.data.title}`}
+  description={`Version history for ${digest.data.title}.`}
+  canonicalPath={`/digests/${digest.slug}/`}
+  robots="noindex, follow"
+>
   <section class="measure py-10">
     <p class="small-caps text-muted">Versions</p>
     <h1 class="issue-title">{digest.data.title}</h1>

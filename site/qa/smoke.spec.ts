@@ -55,6 +55,22 @@ test("primary index links navigate from the public shell", async ({ page }) => {
   }
 });
 
+test("sitemap favors canonical reader pages over duplicate artifacts", async ({ request }) => {
+  const sitemap = await request.get("/sitemap.xml");
+  expect(sitemap.ok()).toBeTruthy();
+  const body = await sitemap.text();
+
+  expect(body).toContain("https://frontier.bitter.sh/findings/2026-06-01-flue-v090-workers-ai-reasoning/");
+  expect(body).not.toContain("https://frontier.bitter.sh/findings/2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0/2026-06-01-flue-v090-workers-ai-reasoning/");
+  expect(body).not.toContain("/versions/");
+
+  const versionedFinding = await request.get("/findings/2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0/2026-06-01-flue-v090-workers-ai-reasoning/");
+  expect(versionedFinding.ok()).toBeTruthy();
+  const versionedBody = await versionedFinding.text();
+  expect(versionedBody).toContain('<meta name="robots" content="noindex, follow">');
+  expect(versionedBody).toContain('<link rel="canonical" href="https://frontier.bitter.sh/findings/2026-06-01-flue-v090-workers-ai-reasoning/">');
+});
+
 test("home page responsive screenshots are captured", async ({ page }) => {
   const widths = [390, 768, 1440];
 

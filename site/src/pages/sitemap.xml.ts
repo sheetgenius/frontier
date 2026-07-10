@@ -37,11 +37,6 @@ export function GET() {
 
   for (const digest of listDigests()) {
     entries.set(`/digests/${digest.slug}/`, { path: `/digests/${digest.slug}/`, priority: "0.9", changefreq: "weekly" });
-    entries.set(`/digests/${digest.slug}/versions/`, {
-      path: `/digests/${digest.slug}/versions/`,
-      priority: "0.3",
-      changefreq: "monthly",
-    });
   }
 
   for (const finding of listFindings()) {
@@ -49,11 +44,6 @@ export function GET() {
       path: `/findings/${finding.finding}/`,
       priority: "0.6",
       changefreq: "weekly",
-    });
-    entries.set(`/findings/${finding.runId}/${finding.finding}/`, {
-      path: `/findings/${finding.runId}/${finding.finding}/`,
-      priority: "0.3",
-      changefreq: "monthly",
     });
   }
 
