@@ -5,11 +5,20 @@ import OperatorBrief from "../../../components/OperatorBrief.astro";
 import SourceTrail from "../../../components/SourceTrail.astro";
 import VersionList from "../../../components/VersionList.astro";
 import { metaDescription } from "../../../lib/seo";
-import { GH_BLOB_BASE } from "../../../lib/site";
+import { GH_BLOB_BASE, SITE_URL } from "../../../lib/site";
 import { canonicalRunForDigest, formatDate, getDigest, getSignal, listDigests, listProfiles, sourceLabel, versionsForDigest } from "../../../lib/frontier";
 
 export function getStaticPaths() {
   return listDigests().map((digest) => ({ params: { slug: digest.slug } }));
+}
+
+function signalIdsFromBrief(brief: any): string[] {
+  const sections = ["upgrade_check", "try", "watch", "uncertain"];
+  const items = sections.flatMap((section) => Array.isArray(brief?.[section]) ? brief[section] : []);
+  const ids = items.flatMap((item) =>
+    [...String(item).matchAll(/href="\/signals\/([^/"]+)\/"/g)].map((match) => match[1])
+  );
+  return Array.from(new Set(ids));
 }
 
 const digest = getDigest(Astro.params.slug!);
@@ -23,7 +32,9 @@ const coveredProfiles = (digest.data.sources ?? [])
   .map((id: string) => profileMap.get(id))
   .filter(Boolean);
 
-const topSignalIds: string[] = digest.data.top_signal_ids ?? [];
+const topSignalIds: string[] = digest.data.top_signal_ids?.length
+  ? digest.data.top_signal_ids
+  : signalIdsFromBrief(digest.data.operator_brief);
 const topSignals = topSignalIds
   .map((id) => getSignal(id))
   .filter(Boolean);
@@ -33,26 +44,51 @@ const digestSourceLabels = (digest.data.sources ?? [])
   .filter(Boolean)
   .slice(0, 6);
 const digestKeywords = Array.from(new Set([
-  "coding agent digest",
+  "AI coding agent digest",
+  "coding agent release digest",
   "AI coding agents",
   "agent harnesses",
   ...digestSourceLabels,
 ]));
+const digestTitleSources = digestSourceLabels.slice(0, 3).join(", ");
+const digestSearchTitle = digestTitleSources
+  ? `${digestTitleSources} Agent Digest | ${digest.data.title}`
+  : `${digest.data.title} | Coding Agent Digest`;
+const digestSignalTopics = topSignals
+  .slice(0, 3)
+  .map((signal: any) => signal.title)
+  .filter(Boolean)
+  .join("; ");
 const digestDescription = metaDescription(
+  digestSignalTopics
+    ? `Weekly AI coding agent digest on ${digestSourceLabels.join(", ")}. Top signals: ${digestSignalTopics}.`
+    : undefined,
   `Weekly coding agent digest covering ${digestSourceLabels.join(", ")}: ${digest.data.operator_brief?.thesis ?? ""}`,
   digest.data.operator_brief?.thesis,
   digest.data.summary,
   `${digest.data.title}: ${digest.data.signal_count} sourced signals from the Bitter Frontier research loop.`,
 );
+const topSignalsItemList = topSignals.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `${digest.data.title} top coding agent signals`,
+  itemListElement: topSignals.map((signal: any, index: number) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: signal.title,
+    url: new URL(`/signals/${signal.id}/`, SITE_URL).toString(),
+  })),
+} : undefined;
 ---
 
 <Base
-  title={`${digest.data.title} | Coding Agent Digest | Bitter Frontier`}
+  title={digestSearchTitle}
   description={digestDescription}
   publishedDate={digest.data.window?.end}
   modifiedDate={digest.data.window?.end}
   articleSection="Weekly coding agent digest"
   keywords={digestKeywords}
+  structuredData={topSignalsItemList}
 >
   <article class="measure py-10">
     <div class="small-caps text-muted">

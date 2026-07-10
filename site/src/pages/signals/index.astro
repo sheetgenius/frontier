@@ -9,6 +9,8 @@ const profiles = listProfiles();
 const profileSlugs = new Set(profiles.map((p) => p.slug));
 const sourceSlugs = listSignalSourceSlugs();
 const composesFacets = listComposesFacets();
+const signalCount = signals.length;
+const sourceCount = sourceSlugs.length;
 const itemList = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -23,19 +25,23 @@ const itemList = {
 ---
 
 <Base
-  title="AI Coding Agent Signals: Codex, Claude, Gemini, Pi, Flue"
-  description="Source-backed signals on Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue, MCP, permissions, sandboxes, plugins, and release checks."
-  keywords={["AI coding agent signals", "Codex", "Claude Code", "Gemini CLI", "Pi Coding Agent", "Flue", "MCP"]}
+  title="AI Coding Agent Release Tracker and Signals | Codex, Claude, Gemini"
+  description={`Source-backed AI coding agent release tracker with ${signalCount} signals across ${sourceCount} watched sources, including Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue, OpenHands, MCP, permissions, sandboxes, and security fixes.`}
+  keywords={["AI coding agent signals", "AI coding agent release tracker", "Codex", "Claude Code", "Gemini CLI", "Pi Coding Agent", "Flue", "MCP"]}
   structuredData={itemList}
 >
   <section class="measure py-10">
     <p class="small-caps text-muted">Signals</p>
-    <h1 class="issue-title">AI coding agent signals: Codex, Claude Code, Gemini CLI, Pi, Flue.</h1>
+    <h1 class="issue-title">AI coding agent release tracker and source-backed signals.</h1>
     <p class="signal-intro">
       Each signal is a source-backed finding that should change what a serious operator does next: upgrade,
       re-audit, try, watch, or ignore. This archive tracks Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue,
       MCP, plugins, permissions, sandboxes, runtimes, and release checks. Each entry links to the run that
       produced it.
+    </p>
+    <p class="signal-summary mt-4">
+      {signalCount} accepted signals across {sourceCount} watched sources, organized for operators comparing agent
+      releases, security fixes, governance changes, and runtime behavior.
     </p>
 
     {sourceSlugs.length > 0 && (
