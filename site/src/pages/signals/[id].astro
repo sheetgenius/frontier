@@ -1,6 +1,7 @@
 ---
 import { marked } from "marked";
 import Base from "../../layouts/Base.astro";
+import { metaDescription } from "../../lib/seo";
 import {
   adjacentTool,
   composesLabel,
@@ -47,6 +48,21 @@ const actionability = signal.actionability ?? primaryFinding?.data.actionability
 const evidence = findings.flatMap(({ finding }) =>
   finding ? evidenceLinksForFinding(finding).map((link) => ({ ...link, findingId: finding.data.finding_id })) : [],
 );
+const sourceLabels = signal.sources.map((src) => sourceLabel(src)).filter(Boolean);
+const signalKeywords = Array.from(new Set([
+  ...sourceLabels,
+  ...signal.sections.map(sectionLabel),
+  "AI coding agent signal",
+  "agent harness",
+  "Bitter Frontier",
+]));
+const signalPrefix = sourceLabels.length > 0 ? `${sourceLabels.join(", ")} signal` : "AI coding agent signal";
+const signalDescription = metaDescription(
+  signal.summary ? `${signalPrefix}: ${signal.summary}` : undefined,
+  signal.summary,
+  signal.whyActionBearing[0],
+  signal.title,
+);
 
 const hasMetadata =
   confidence ||
@@ -56,8 +72,12 @@ const hasMetadata =
 ---
 
 <Base
-  title={`${signal.title} · Bitter Frontier`}
-  description={signal.summary ?? signal.whyActionBearing[0] ?? signal.title}
+  title={`${signal.title} | ${sourceLabels.join(", ")} Signal | Bitter Frontier`}
+  description={signalDescription}
+  publishedDate={signal.date}
+  modifiedDate={signal.date}
+  articleSection="AI coding agent signal"
+  keywords={signalKeywords}
 >
   <article class="measure py-10">
     <p class="small-caps text-muted">

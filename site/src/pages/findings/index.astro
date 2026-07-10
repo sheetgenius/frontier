@@ -1,12 +1,26 @@
 ---
 import Base from "../../layouts/Base.astro";
+import { SITE_URL } from "../../lib/site";
 import { listFindings } from "../../lib/frontier";
 const findings = listFindings();
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Source-backed coding agent findings",
+  itemListElement: findings.slice(0, 30).map((finding, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: finding.title,
+    url: new URL(`/findings/${finding.finding}/`, SITE_URL).toString(),
+  })),
+};
 ---
 
 <Base
-  title="Coding agent findings · Bitter Frontier"
-  description="Source-backed findings behind Bitter Frontier signals, profiles, and digests, with receipts for coding-agent operators."
+  title="Coding Agent Findings with Receipts | Codex, Claude, Gemini, Pi"
+  description="Source-backed coding agent findings with receipts for Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue, OpenHands, and operator-facing signals."
+  keywords={["coding agent findings", "source-backed findings", "Codex", "Claude Code", "Gemini CLI", "Pi Coding Agent"]}
+  structuredData={itemList}
 >
   <section class="measure py-10">
     <p class="small-caps text-muted">Findings</p>

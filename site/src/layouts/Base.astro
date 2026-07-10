@@ -13,6 +13,7 @@ const {
   modifiedDate,
   articleSection,
   keywords,
+  structuredData,
 } = Astro.props;
 // Per-page OG card (build-time, under /og/) when one exists; otherwise the
 // site-wide static fallback (/og.png). An explicit non-default `image` prop
@@ -25,6 +26,11 @@ const isDetail = /^\/(digests|signals|profiles|findings)\/.+/.test(path);
 const ogType = isDetail ? "article" : "website";
 const jsonLdType = path === "/" ? "WebSite" : isDetail ? "Article" : "CollectionPage";
 const keywordList = Array.isArray(keywords) ? keywords.filter(Boolean) : keywords ? [keywords] : [];
+const extraStructuredData = Array.isArray(structuredData)
+  ? structuredData.filter(Boolean)
+  : structuredData
+    ? [structuredData]
+    : [];
 const jsonLd: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": jsonLdType,
@@ -81,6 +87,9 @@ if (jsonLdType === "Article") {
     <meta name="twitter:image" content={ogImage} />
     <title>{pageTitle}</title>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {extraStructuredData.map((entry) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />
+    ))}
     <script is:inline>
       (() => {
         const stored = localStorage.getItem("theme");

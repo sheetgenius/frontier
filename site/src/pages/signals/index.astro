@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import SignalList from "../../components/SignalList.astro";
+import { SITE_URL } from "../../lib/site";
 import { composesLabel, listComposesFacets, listProfiles, listSignalSourceSlugs, listSignals, sourceLabel } from "../../lib/frontier";
 
 const signals = listSignals();
@@ -8,15 +9,28 @@ const profiles = listProfiles();
 const profileSlugs = new Set(profiles.map((p) => p.slug));
 const sourceSlugs = listSignalSourceSlugs();
 const composesFacets = listComposesFacets();
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "AI coding agent signals",
+  itemListElement: signals.slice(0, 25).map((signal, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: signal.title,
+    url: new URL(`/signals/${signal.id}/`, SITE_URL).toString(),
+  })),
+};
 ---
 
 <Base
-  title="AI Coding Agent Signals for Operators | Codex, Claude Code, Gemini CLI"
-  description="Accepted AI coding agent signals for operators: Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue, MCP, plugins, sandboxes, permissions, runtimes, and release checks."
+  title="AI Coding Agent Signals: Codex, Claude, Gemini, Pi, Flue"
+  description="Source-backed signals on Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue, MCP, permissions, sandboxes, plugins, and release checks."
+  keywords={["AI coding agent signals", "Codex", "Claude Code", "Gemini CLI", "Pi Coding Agent", "Flue", "MCP"]}
+  structuredData={itemList}
 >
   <section class="measure py-10">
     <p class="small-caps text-muted">Signals</p>
-    <h1 class="issue-title">AI coding agent signals for operators.</h1>
+    <h1 class="issue-title">AI coding agent signals: Codex, Claude Code, Gemini CLI, Pi, Flue.</h1>
     <p class="signal-intro">
       Each signal is a source-backed finding that should change what a serious operator does next: upgrade,
       re-audit, try, watch, or ignore. This archive tracks Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue,

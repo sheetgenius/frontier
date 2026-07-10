@@ -1,12 +1,26 @@
 ---
 import Base from "../../layouts/Base.astro";
+import { SITE_URL } from "../../lib/site";
 import { formatDate, listDigests } from "../../lib/frontier";
 const digests = listDigests();
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Coding agent weekly digests",
+  itemListElement: digests.slice(0, 20).map((digest, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: digest.data.title ?? digest.slug,
+    url: new URL(`/digests/${digest.slug}/`, SITE_URL).toString(),
+  })),
+};
 ---
 
 <Base
-  title="Coding Agent Weekly Digests | Bitter Frontier"
-  description="Weekly coding agent digests on Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue, OpenHands, and agent harness governance, releases, and security fixes."
+  title="Coding Agent Weekly Digests: Codex, Claude, Gemini, Pi"
+  description="Weekly source-backed digests on Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue, OpenHands, agent releases, governance, and security fixes."
+  keywords={["coding agent weekly digest", "Codex", "Claude Code", "Gemini CLI", "Pi Coding Agent", "Flue"]}
+  structuredData={itemList}
 >
   <section class="measure py-10">
     <p class="small-caps text-muted">Digests</p>
