@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "hosting": "radicchio",
+  "service_name": "frontier.bitter.sh",
+  "healthcheck_path": "/",
+  "preview": {
+    "default_target": "web",
+    "targets": {
+      "web": {
+        "command": "npm --prefix site run dev -- --host 0.0.0.0 --port 4321",
+        "container_port": 4321,
+        "health_path": "/up/"
+      }
+    }
+  },
+  "runtime": {
+    "state": "stateless",
+    "container_port": 8080,
+    "processes": [
+      "static-site"
+    ]
+  },
+  "verification": {
+    "liveness_path": "/",
+    "readiness_path": null,
+    "release_identity": {
+      "artifact_digest": {
+        "expected_from": "deploy_record",
+        "observed_from": "edge_headers"
+      },
+      "reported_git_sha_path": null
+    },
+    "checks": [
+      {
+        "name": "homepage",
+        "kind": "http",
+        "path": "/",
+        "expect_status": 200,
+        "timeout_ms": 5000,
+        "runs_on": [
+          "deploy",
+          "post_deploy",
+          "continuous"
+        ],
+        "policy": "required",
+        "access_path": "edge"
+      },
+      {
+        "name": "digests_index",
+        "kind": "http",
+        "path": "/digests/",
+        "expect_status": 200,
+        "timeout_ms": 5000,
+        "runs_on": [
+          "deploy",
+          "post_deploy",
+          "continuous"
+        ],
+        "policy": "required",
+        "access_path": "edge"
+      },
+      {
+        "name": "signals_index",
+        "kind": "http",
+        "path": "/signals/",
+        "expect_status": 200,
+        "timeout_ms": 5000,
+        "runs_on": [
+          "deploy",
+          "post_deploy",
+          "continuous"
+        ],
+        "policy": "required",
+        "access_path": "edge"
+      },
+      {
+        "name": "findings_index",
+        "kind": "http",
+        "path": "/findings/",
+        "expect_status": 200,
+        "timeout_ms": 5000,
+        "runs_on": [
+          "deploy",
+          "post_deploy",
+          "continuous"
+        ],
+        "policy": "required",
+        "access_path": "edge"
+      },
+      {
+        "name": "profiles_index",
+        "kind": "http",
+        "path": "/profiles/",
+        "expect_status": 200,
+        "timeout_ms": 5000,
+        "runs_on": [
+          "deploy",
+          "post_deploy",
+          "continuous"
+        ],
+        "policy": "required",
+        "access_path": "edge"
+      },
+      {
+        "name": "codex_delegation_signal",
+        "kind": "http",
+        "path": "/signals/2026-06-23-codex-delegation-authority-mode/",
+        "expect_status": 200,
+        "timeout_ms": 5000,
+        "runs_on": [
+          "deploy",
+          "post_deploy",
+          "continuous"
+        ],
+        "policy": "required",
+        "access_path": "edge"
+      },
+      {
+        "name": "weekly_digest",
+        "kind": "http",
+        "path": "/digests/2026-05-13_2026-05-27-weekly/",
+        "expect_status": 200,
+        "timeout_ms": 5000,
+        "runs_on": [
+          "deploy",
+          "post_deploy",
+          "continuous"
+        ],
+        "policy": "required",
+        "access_path": "edge"
+      },
+      {
+        "name": "flue_workers_finding",
+        "kind": "http",
+        "path": "/findings/2026-06-01-flue-v090-workers-ai-reasoning/",
+        "expect_status": 200,
+        "timeout_ms": 5000,
+        "runs_on": [
+          "deploy",
+          "post_deploy",
+          "continuous"
+        ],
+        "policy": "required",
+        "access_path": "edge"
+      },
+      {
+        "name": "sitemap",
+        "kind": "http",
+        "path": "/sitemap.xml",
+        "expect_status": 200,
+        "timeout_ms": 5000,
+        "runs_on": [
+          "deploy",
+          "post_deploy",
+          "continuous"
+        ],
+        "policy": "required",
+        "access_path": "edge"
+      },
+      {
+        "name": "llms_txt",
+        "kind": "http",
+        "path": "/llms.txt",
+        "expect_status": 200,
+        "timeout_ms": 5000,
+        "runs_on": [
+          "deploy",
+          "post_deploy",
+          "continuous"
+        ],
+        "policy": "optional",
+        "access_path": "edge"
+      }
+    ]
+  },
+  "housekeeping": {
+    "durable_paths": [],
+    "ephemeral_paths": [
+      "site/dist",
+      "site/.astro",
+      "site/test-results"
+    ]
+  }
+}
