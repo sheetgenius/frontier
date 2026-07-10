@@ -1,7 +1,9 @@
 ---
 import Base from "../../../layouts/Base.astro";
 import SignalList from "../../../components/SignalList.astro";
-import { listProfiles, listSignalSourceSlugs, signalsForSource, sourceLabel } from "../../../lib/frontier";
+import { getProfile, listProfiles, listSignalSourceSlugs, signalsForSource, sourceLabel } from "../../../lib/frontier";
+import { metaDescription } from "../../../lib/seo";
+import { SITE_URL } from "../../../lib/site";
 
 export function getStaticPaths() {
   return listSignalSourceSlugs().map((slug) => ({ params: { slug } }));
@@ -12,12 +14,41 @@ const signals = signalsForSource(slug);
 const profiles = listProfiles();
 const profileSlugs = new Set(profiles.map((p) => p.slug));
 const hasProfile = profileSlugs.has(slug);
+const profile = getProfile(slug);
 const label = sourceLabel(slug);
+const sourceKind = /\bcoding agent\b/i.test(label) ? "Signals" : "Coding Agent Signals";
+const title = `${label} ${sourceKind} | Bitter Frontier`;
+const description = metaDescription(
+  `${label} signal archive: sourced coding-agent changes, release-channel status, operator consequences, and current profile context.`,
+  profile?.data.tagline,
+  `Every accepted signal for ${label}, in reverse chronological order.`,
+);
+const keywords = [
+  label,
+  `${label} signals`,
+  `${label} release notes`,
+  `${label} coding agent`,
+  "AI coding agent signals",
+  "Bitter Frontier",
+];
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `${label} coding agent signals`,
+  itemListElement: signals.slice(0, 50).map((signal, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: signal.title,
+    url: new URL(`/signals/${signal.id}/`, SITE_URL).toString(),
+  })),
+};
 ---
 
 <Base
-  title={`${label} signals · Bitter Frontier`}
-  description={`Every accepted signal for ${label}, in reverse chronological order.`}
+  title={title}
+  description={description}
+  keywords={keywords}
+  structuredData={signals.length > 0 ? itemList : undefined}
 >
   <section class="measure py-10">
     <p class="small-caps text-muted">
@@ -30,7 +61,8 @@ const label = sourceLabel(slug);
     </p>
     <h1 class="issue-title">{label}</h1>
     <p class="signal-intro">
-      Every signal accepted for {label}. Each links to the run that produced it.
+      Sourced signals for {label}: release changes, governance moves, runtime shifts, and operator consequences.
+      Each links to the run that produced it.
       {hasProfile && (
         <> The <a href={`/profiles/${slug}/`} class="hover:underline">{label} profile</a> carries the current evergreen state.</>
       )}
