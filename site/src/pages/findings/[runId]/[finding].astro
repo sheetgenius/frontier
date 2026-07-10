@@ -16,19 +16,32 @@ if (!finding) throw new Error("Finding not found");
 
 const citedSignal = signalsCitingFinding(finding)[0];
 const findingTitle = finding.title === finding.finding ? (citedSignal?.title ?? finding.title) : finding.title;
+const findingSourceLabel = sourceLabel(String(finding.data.source ?? "coding agent"));
+const findingKeywords = Array.from(new Set([
+  findingSourceLabel,
+  "coding agent finding",
+  "source-backed finding",
+  "agent harness",
+  "Bitter Frontier",
+]));
 const findingDescription = metaDescription(
+  `${findingSourceLabel} source-backed coding agent finding: ${finding.data.summary ?? citedSignal?.summary ?? finding.data.operator_consequence ?? ""}`,
   finding.data.summary,
   citedSignal?.summary,
   finding.data.operator_consequence,
   citedSignal?.whyActionBearing?.[0],
   finding.body,
-  `${findingTitle} source-backed finding for ${sourceLabel(String(finding.data.source ?? "coding agent"))}.`,
+  `${findingTitle} source-backed finding for ${findingSourceLabel}.`,
 );
 ---
 
 <Base
-  title={`${findingTitle} · Bitter Frontier`}
+  title={`${findingTitle} | Source-Backed Finding | Bitter Frontier`}
   description={findingDescription}
+  publishedDate={finding.data.window?.end}
+  modifiedDate={finding.data.window?.end}
+  articleSection="Source-backed coding agent finding"
+  keywords={findingKeywords}
   canonicalPath={`/findings/${finding.finding}/`}
   robots="noindex, follow"
 >

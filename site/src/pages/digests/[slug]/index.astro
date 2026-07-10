@@ -28,14 +28,32 @@ const topSignals = topSignalIds
   .map((id) => getSignal(id))
   .filter(Boolean);
 
+const digestSourceLabels = (digest.data.sources ?? [])
+  .map((id: string) => sourceLabel(id))
+  .filter(Boolean)
+  .slice(0, 6);
+const digestKeywords = Array.from(new Set([
+  "coding agent digest",
+  "AI coding agents",
+  "agent harnesses",
+  ...digestSourceLabels,
+]));
 const digestDescription = metaDescription(
+  `Weekly coding agent digest covering ${digestSourceLabels.join(", ")}: ${digest.data.operator_brief?.thesis ?? ""}`,
   digest.data.operator_brief?.thesis,
   digest.data.summary,
   `${digest.data.title}: ${digest.data.signal_count} sourced signals from the Bitter Frontier research loop.`,
 );
 ---
 
-<Base title={`${digest.data.title} · Bitter Frontier`} description={digestDescription}>
+<Base
+  title={`${digest.data.title} | Coding Agent Digest | Bitter Frontier`}
+  description={digestDescription}
+  publishedDate={digest.data.window?.end}
+  modifiedDate={digest.data.window?.end}
+  articleSection="Weekly coding agent digest"
+  keywords={digestKeywords}
+>
   <article class="measure py-10">
     <div class="small-caps text-muted">
       {digest.data.series ?? "Issue"} · Published {formatDate(digest.data.window?.end)}

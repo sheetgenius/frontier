@@ -41,18 +41,33 @@ function findingUrlFor(findingId: string | undefined | null): string | undefined
   if (!findingId) return undefined;
   const finding = findFindingByFindingId(findingId);
   if (!finding) return undefined;
-  return `/findings/${finding.runId}/${finding.finding}/`;
+  return `/findings/${finding.finding}/`;
 }
 
 const profileLabel = profile.data.label ?? profile.slug;
+const profileKeywords = Array.from(new Set([
+  profileLabel,
+  "coding agent research profile",
+  "AI coding agent",
+  "agent harness",
+  "Bitter Frontier",
+]));
 const profileDescription = metaDescription(
+  `${profileLabel} coding agent research profile: ${profile.data.tagline ?? profile.data.stance?.use_for ?? ""}`,
   profile.data.tagline,
   profile.data.stance?.use_for,
   `${profileLabel} research profile with sourced claims, operator stance, open questions, and the latest Bitter Frontier signals.`,
 );
 ---
 
-<Base title={`${profileLabel} research · Bitter Frontier`} description={profileDescription}>
+<Base
+  title={`${profileLabel} Research Profile | Bitter Frontier`}
+  description={profileDescription}
+  publishedDate={profile.data.last_full_review ?? profile.data.last_updated}
+  modifiedDate={profile.data.last_updated}
+  articleSection="Coding agent research profile"
+  keywords={profileKeywords}
+>
   <article class="measure py-10">
     <p class="small-caps text-muted">
       <a href="/profiles/">Profiles</a> · {profile.data.owner}

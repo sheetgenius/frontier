@@ -3,7 +3,17 @@ import "../styles/global.css";
 import { GH_BLOB_BASE, GH_REPO_URL, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../lib/site";
 import { ogImageForPath } from "../lib/og";
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, canonicalPath, robots } = Astro.props;
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  image,
+  canonicalPath,
+  robots,
+  publishedDate,
+  modifiedDate,
+  articleSection,
+  keywords,
+} = Astro.props;
 // Per-page OG card (build-time, under /og/) when one exists; otherwise the
 // site-wide static fallback (/og.png). An explicit non-default `image` prop
 // still wins, so callers can override.
@@ -14,6 +24,7 @@ const path = Astro.url.pathname;
 const isDetail = /^\/(digests|signals|profiles|findings)\/.+/.test(path);
 const ogType = isDetail ? "article" : "website";
 const jsonLdType = path === "/" ? "WebSite" : isDetail ? "Article" : "CollectionPage";
+const keywordList = Array.isArray(keywords) ? keywords.filter(Boolean) : keywords ? [keywords] : [];
 const jsonLd: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": jsonLdType,
@@ -42,6 +53,10 @@ if (jsonLdType === "Article") {
     "@id": canonicalUrl
   };
   jsonLd.isAccessibleForFree = true;
+  if (publishedDate) jsonLd.datePublished = publishedDate;
+  if (modifiedDate || publishedDate) jsonLd.dateModified = modifiedDate ?? publishedDate;
+  if (articleSection) jsonLd.articleSection = articleSection;
+  if (keywordList.length > 0) jsonLd.keywords = keywordList;
 }
 ---
 
