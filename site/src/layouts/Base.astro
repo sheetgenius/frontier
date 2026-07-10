@@ -14,13 +14,15 @@ const path = Astro.url.pathname;
 const isDetail = /^\/(digests|signals|profiles|findings)\/.+/.test(path);
 const ogType = isDetail ? "article" : "website";
 const jsonLdType = path === "/" ? "WebSite" : isDetail ? "Article" : "CollectionPage";
-const jsonLd = {
+const jsonLd: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": jsonLdType,
+  "@id": `${canonicalUrl}#${jsonLdType.toLowerCase()}`,
   name: pageTitle,
   description,
   url: canonicalUrl,
   image: ogImage,
+  inLanguage: "en",
   publisher: {
     "@type": "Organization",
     name: "Bitter",
@@ -32,6 +34,15 @@ const jsonLd = {
     url: SITE_URL
   }
 };
+
+if (jsonLdType === "Article") {
+  jsonLd.headline = pageTitle;
+  jsonLd.mainEntityOfPage = {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  };
+  jsonLd.isAccessibleForFree = true;
+}
 ---
 
 <!doctype html>

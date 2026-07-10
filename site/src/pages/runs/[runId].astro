@@ -26,9 +26,10 @@ const acceptedSignalIds = signalIdsInRun(run.id);
 const acceptedSignals = acceptedSignalIds.map((id) => getSignal(id)).filter(Boolean);
 const sourceContractPaths: string[] = manifest?.source_contracts ?? [];
 const manifestSources: string[] = manifest?.sources ?? [];
+const runDescription = `${run.title}: ${run.signalCount} accepted signals from ${run.windowLabel}, with source contracts, artifacts, and the digest trail.`;
 ---
 
-<Base title={`${run.id} · Bitter Frontier`}>
+<Base title={`${run.id} · Bitter Frontier`} description={runDescription}>
   <article class="measure py-10">
     <p class="small-caps text-muted">Research Version</p>
     <h1 class="issue-title">{run.title}</h1>
