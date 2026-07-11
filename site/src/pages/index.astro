@@ -147,5 +147,5 @@ const latestThesisHtml = latest?.data.operator_brief?.thesis
     </p>
   </section>
 
-  {latest && <section class="measure pb-8"><VersionList versions={versions} currentRunId={canonicalRun?.id} /></section>}
+  {latest && versions.length > 0 && <section class="measure pb-8"><VersionList versions={versions} currentRunId={canonicalRun?.id} /></section>}
 </Base>

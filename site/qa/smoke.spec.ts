@@ -39,6 +39,22 @@ test("home page renders the public shell", async ({ page }) => {
   await expect(page.locator("body")).not.toContainText("[Agent Flywheel](");
   await expect(page.getByText("Latest Issue")).toBeVisible();
   await expect(page.getByText("Provider Updates")).toBeVisible();
+  await expect(page.locator(".version-list:empty")).toHaveCount(0);
+});
+
+test("public research pages use source language", async ({ page, request }) => {
+  for (const path of ["/about/", "/findings/", "/llms.txt"]) {
+    const response = await request.get(path);
+    expect(response.ok(), `${path} should remain public`).toBeTruthy();
+    expect((await response.text()).toLowerCase()).not.toContain("receipt");
+  }
+
+  await page.goto("/signals/");
+  const firstSignal = page.locator(".signal-title a[href^='/signals/']").first();
+  await expect(firstSignal).toBeVisible();
+  await firstSignal.click();
+  await expect(page.getByText("Primary sources", { exact: true })).toBeVisible();
+  await expect(page.getByText("Receipts", { exact: true })).toHaveCount(0);
 });
 
 test("primary index links navigate from the public shell", async ({ page }) => {

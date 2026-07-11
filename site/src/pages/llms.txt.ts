@@ -30,7 +30,7 @@ export const GET: APIRoute = () => {
 
   lines.push("## Who it's for");
   lines.push("");
-  lines.push("Bitter Frontier is written for engineers and operators running coding agents in production, and for anyone tracking where the frontier is heading. Every claim traces to a primary source. The structured fields (signal ids, section tags, accessibility and security consequence blocks) exist so a reader returning months later can re-verify every judgment from the receipts, not from memory.");
+  lines.push("Bitter Frontier is written for engineers and operators running coding agents in production, and for anyone tracking where the frontier is heading. Every claim traces to a primary source. The structured fields (signal ids, section tags, accessibility and security consequence blocks) exist so a reader returning months later can re-verify every judgment from the linked sources, not from memory.");
   lines.push("");
 
   lines.push("## How to read this site");
@@ -54,7 +54,7 @@ export const GET: APIRoute = () => {
   lines.push("");
   lines.push("Every signal must answer four axes, none of which are sections:");
   lines.push("- **Authority** - is this allowed? (Captured in prose + accessibility_consequence.authority_visibility.)");
-  lines.push("- **Evidence** - every signal traces to a primary-source receipt.");
+  lines.push("- **Evidence** - every signal traces to a primary source.");
   lines.push("- **Accessibility** - what got easier, who can use it now, did authority stay visible? (Structured as accessibility_consequence when accessibility_impact >= low.)");
   lines.push("- **Security** - is this enforceable regardless of policy? (Structured as security_consequence + security_change + cost_to_operator when security_impact >= low.)");
   lines.push("");
