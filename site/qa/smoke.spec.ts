@@ -33,6 +33,10 @@ test("home page renders the public shell", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Coding agents are changing faster than operating policy." })).toBeVisible();
   await expect(page.getByText("Weekly field notes", { exact: true })).toBeVisible();
   await expect(page.getByText("Weekly field notes on what changed, what broke, and what to test.")).toBeVisible();
+  await expect(page.getByText(/whole publication, source notes and all/)).toBeVisible();
+  await expect(page.locator(".homepage-thesis a").first()).toHaveAttribute("href", "/profiles/agent-flywheel/");
+  await expect(page.locator("body")).not.toContainText("receipts and all");
+  await expect(page.locator("body")).not.toContainText("[Agent Flywheel](");
   await expect(page.getByText("Latest Issue")).toBeVisible();
   await expect(page.getByText("Provider Updates")).toBeVisible();
 });

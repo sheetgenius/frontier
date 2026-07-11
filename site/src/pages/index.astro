@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import VersionList from "../components/VersionList.astro";
 import { GH_BLOB_BASE, GH_REPO_URL } from "../lib/site";
 import { canonicalRunForDigest, formatDate, listDigests, listProfiles, listSignals, logLinkGraphReportOnce, sourceLabel, versionsForDigest } from "../lib/frontier";
+import { marked } from "marked";
 
 logLinkGraphReportOnce();
 
@@ -12,6 +13,9 @@ const versions = latest ? versionsForDigest(latest.id) : [];
 const signals = listSignals().slice(0, 6);
 const profiles = listProfiles();
 const profileSlugs = new Set(profiles.map((p) => p.slug));
+const latestThesisHtml = latest?.data.operator_brief?.thesis
+  ? marked.parseInline(latest.data.operator_brief.thesis)
+  : "";
 ---
 
 <Base
@@ -32,7 +36,7 @@ const profileSlugs = new Set(profiles.map((p) => p.slug));
       <p class="small-caps eyebrow">Open by default</p>
       <h2 class="opensource-title">Open source, and auditable by design.</h2>
       <p class="opensource-body">
-        Every claim links to a primary source you can open and check, and the whole publication, receipts and all,
+        Every claim links to a primary source you can open and check, and the whole publication, source notes and all,
         is on GitHub. Find something wrong? Send a correction.
       </p>
       <div class="opensource-actions">
@@ -59,8 +63,8 @@ const profileSlugs = new Set(profiles.map((p) => p.slug));
           <a href={`/runs/${canonicalRun?.id}/`}>{canonicalRun?.status} v{canonicalRun?.artifactVersion}</a> ·
           {latest.data.signal_count} signals
         </p>
-        {latest.data.operator_brief?.thesis && (
-          <p class="homepage-thesis">{latest.data.operator_brief.thesis}</p>
+        {latestThesisHtml && (
+          <p class="homepage-thesis" set:html={latestThesisHtml} />
         )}
         {latest.data.operator_brief && (
           <dl class="homepage-brief">
