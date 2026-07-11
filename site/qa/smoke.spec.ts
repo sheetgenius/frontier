@@ -31,7 +31,8 @@ test("home page renders the public shell", async ({ page }) => {
 
   await expect(page).toHaveTitle(/Bitter Frontier/);
   await expect(page.getByRole("heading", { name: "Coding agents are changing faster than operating policy." })).toBeVisible();
-  await expect(page.getByText("Field Notes For Agent Operators")).toBeVisible();
+  await expect(page.getByText("Weekly field notes", { exact: true })).toBeVisible();
+  await expect(page.getByText("Weekly field notes on what changed, what broke, and what to test.")).toBeVisible();
   await expect(page.getByText("Latest Issue")).toBeVisible();
   await expect(page.getByText("Provider Updates")).toBeVisible();
 });
@@ -40,8 +41,8 @@ test("primary index links navigate from the public shell", async ({ page }) => {
   const targets = [
     { name: "Digests", path: "/digests/", visibleText: "Digests" },
     { name: "Profiles", path: "/profiles/", visibleText: "Profiles" },
-    { name: "Signals", path: "/signals/", visibleText: "Signals" },
-    { name: "Evidence", path: "/runs/", visibleText: "Research Trail" },
+    { name: "Changes", path: "/signals/", visibleText: "Signals" },
+    { name: "Research trail", path: "/runs/", visibleText: "Research Trail" },
   ];
 
   for (const target of targets) {
@@ -53,6 +54,25 @@ test("primary index links navigate from the public shell", async ({ page }) => {
     await expect(page).toHaveURL(new RegExp(`${target.path.replaceAll("/", "\\/")}$`));
     await expect(page.locator("body")).toContainText(target.visibleText);
   }
+});
+
+test("public research indexes remain routable", async ({ request }) => {
+  for (const path of ["/digests/", "/profiles/", "/signals/", "/sources/"]) {
+    const response = await request.get(path);
+    expect(response.ok(), `${path} should remain public`).toBeTruthy();
+  }
+});
+
+test("theme choice remains explicit and persistent", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.goto("/");
+
+  await expect(page.locator("html")).not.toHaveClass(/dark/);
+  await page.getByRole("button", { name: "Switch color theme" }).click();
+  await expect(page.locator("html")).toHaveClass(/dark/);
+
+  await page.reload();
+  await expect(page.locator("html")).toHaveClass(/dark/);
 });
 
 test("sitemap favors canonical reader pages over duplicate artifacts", async ({ request }) => {
@@ -84,6 +104,8 @@ test("home page responsive screenshots are captured", async ({ page }) => {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "Coding agents are changing faster than operating policy." })).toBeVisible();
+    const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(pageWidth).toBeLessThanOrEqual(width);
     await page.screenshot({
       path: path.join(screenshotDir, `frontier-home-${width}.png`),
       fullPage: true,

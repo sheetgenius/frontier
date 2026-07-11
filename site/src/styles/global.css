@@ -184,16 +184,13 @@ code {
   padding-inline: clamp(1.25rem, 4vw, 2rem);
 }
 
-/* Masthead.
-   Mobile-first: a single stacked column -- wordmark lockup, then the nav.
-   The desktop two-tier layout (wordmark name on the section-nav line, tag on the
-   utility-cluster line) is opted into at >=720px below; until then everything
-   stacks so nothing can overflow or wrap into a ragged staircase. */
+/* Masthead. Mobile keeps the promise out of the way and places navigation and
+   utility controls on one compact row. Desktop restores the two-line lockup. */
 .site-header {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  padding-block: 1.5rem 1.35rem;
+  gap: 0.7rem;
+  padding-block: 0.9rem;
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -219,12 +216,12 @@ code {
 }
 
 .masthead-wordmark .wordmark-tag {
+  display: none;
   font-family: var(--font-mono);
   font-size: 0.62rem;
   font-weight: 400;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.04em;
   line-height: 1.4;
-  text-transform: uppercase;
   color: var(--color-muted);
 }
 
@@ -232,17 +229,15 @@ code {
   color: var(--color-bitter);
 }
 
-/* The nav is two first-class clusters: the section links and the utility
-   controls (GitHub + theme). On mobile they stack; on desktop they sit on the
-   right, the sections above the controls, mirroring the wordmark's two lines. */
+/* The nav is two first-class clusters: section links and utility controls. */
 .site-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.9rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
   font-family: var(--font-mono);
-  font-size: 0.71rem;
-  letter-spacing: 0.15em;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -250,7 +245,11 @@ code {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.7rem 1.15rem;
+  gap: 0.55rem 0.95rem;
+}
+
+.nav-sections a {
+  white-space: nowrap;
 }
 
 .site-nav a {
@@ -291,7 +290,7 @@ code {
 .nav-controls {
   display: inline-flex;
   align-items: center;
-  gap: 0.95rem;
+  gap: 0.75rem;
 }
 
 .nav-github {
@@ -319,6 +318,7 @@ code {
 }
 
 .nav-github .nav-github-label {
+  display: none;
   border-bottom: 1px solid transparent;
   padding-bottom: 0.12rem;
 }
@@ -417,6 +417,7 @@ code {
     align-items: start;
     column-gap: 1.5rem;
     row-gap: 0.7rem;
+    padding-block: 1.15rem;
   }
 
   .masthead-wordmark {
@@ -434,6 +435,7 @@ code {
   }
 
   .masthead-wordmark .wordmark-tag {
+    display: block;
     align-self: center;
   }
 
@@ -458,6 +460,10 @@ code {
     align-self: center;
     padding-left: 0.95rem;
     border-left: 1px solid var(--color-line);
+  }
+
+  .nav-github .nav-github-label {
+    display: inline;
   }
 }
 
@@ -501,6 +507,10 @@ code {
   color: var(--color-muted);
 }
 
+.publication-intro {
+  padding-block: 2.6rem 2.5rem;
+}
+
 .publication-title {
   margin: 1.5rem 0 0;
   font-family: var(--font-serif);
@@ -518,6 +528,28 @@ code {
   font-size: clamp(1.08rem, 1.1vw, 1.22rem);
   line-height: 1.65;
   text-wrap: pretty;
+}
+
+@media (max-width: 640px) {
+  .publication-intro {
+    padding-block: 1.85rem 2rem;
+  }
+
+  .publication-kicker {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+  }
+
+  .publication-title {
+    margin-top: 1rem;
+    line-height: 1.1;
+  }
+
+  .publication-dek {
+    margin-top: 1.05rem;
+    font-size: 1rem;
+    line-height: 1.58;
+  }
 }
 
 /* Open-source callout: editorial, not a pricing box. A single bitter-gold
