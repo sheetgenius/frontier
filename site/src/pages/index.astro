@@ -60,7 +60,7 @@ const latestThesisHtml = latest?.data.operator_brief?.thesis
         </a>
         <p class="issue-meta">
           Published {formatDate(latest.data.window?.end)} ·
-          <a href={`/runs/${canonicalRun?.id}/`}>{canonicalRun?.status} v{canonicalRun?.artifactVersion}</a> ·
+          {canonicalRun && <><a href={`/runs/${canonicalRun.id}/`}>Research run</a> ·</>}
           {latest.data.signal_count} signals
         </p>
         {latestThesisHtml && (

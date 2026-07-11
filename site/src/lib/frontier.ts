@@ -226,7 +226,7 @@ export const SECTION_LABELS: Record<string, string> = {
 
 export const SECTION_FRAMINGS: Record<string, string> = {
   "control-plane":
-    "Agent labor becomes operational only when the surface shows who asked for it, what it may touch, what it costs, and what receipt it owes.",
+    "Agent labor becomes operational only when the surface shows who asked for it, what it may touch, what it costs, and how the result will be checked.",
   "runtime":
     "The frontier gets serious when an agent leaves the prompt and enters a computer that someone has to bound, inspect, and clean up.",
   "platform":
