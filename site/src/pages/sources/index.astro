@@ -18,7 +18,7 @@ function sortedSurfaces(surfaces: any[]): any[] {
 ---
 
 <Base
-  title="Sources · Bitter Frontier"
+  title="Sources | Bitter Frontier"
   description="Bitter Frontier watched source contracts for coding-agent research, including accepted evidence, refused evidence, research lenses, and discovery state."
 >
   <section class="measure py-10">
@@ -27,8 +27,8 @@ function sortedSurfaces(surfaces: any[]): any[] {
     <p class="signal-intro">
       A source contract is the public commitment that defines where the loop looks for evidence, what
       it accepts as a finding, and what it refuses before a profile or digest can carry the claim.
-      Each card below shows the contract as the loop sees it. Every field is rendered from
-      <code>sources/[id].yml</code> as-is - no editorial overlay.
+      The cards expose the reader-facing contract: official surfaces, accepted and refused evidence,
+      standing questions, and review state. The complete YAML remains linked.
     </p>
 
     <div class="mt-9 source-cards">
@@ -37,8 +37,13 @@ function sortedSurfaces(surfaces: any[]): any[] {
         const surfaces = sortedSurfaces(contract.primary_surfaces ?? []);
         const accepted: string[] = contract.accepted_evidence ?? [];
         const rejected: string[] = contract.rejected_evidence ?? [];
+        const changeTypes: string[] = contract.change_types ?? [];
         const lenses: string[] = contract.research_lenses ?? [];
         const patterns: string[] = contract.high_signal_patterns ?? [];
+        const operatorQuestions: string[] = contract.operator_questions ?? [];
+        const related = contract.related_surfaces ?? {};
+        const relatedRepositories: any[] = related.repositories ?? [];
+        const relatedResearch: any[] = related.research ?? [];
         const defaultAct = contract.default_actionability ?? {};
         const defaultActKeys = Object.keys(defaultAct);
         const discovery = contract.discovery ?? {};
@@ -46,15 +51,15 @@ function sortedSurfaces(surfaces: any[]): any[] {
         const hasProfile = profileSlugs.has(source.id);
         const hasSignals = signalSourceSlugs.has(source.id);
         return (
-          <article class="source-card">
+          <article class="source-card" id={source.id}>
             <p class="source-eyebrow small-caps">
-              {source.id} · {source.status}
-              {source.tier ? ` · tier ${source.tier}` : ""}
-              {source.cadence ? ` · ${source.cadence}` : ""}
+              {source.id} / {source.status}
+              {source.tier ? ` / tier ${source.tier}` : ""}
+              {source.cadence ? ` / ${source.cadence}` : ""}
             </p>
             <h2 class="source-title">
               {contract.label ?? source.id}
-              {contract.owner && <span class="source-owner text-muted"> · {contract.owner}</span>}
+              {contract.owner && <span class="source-owner text-muted"> / {contract.owner}</span>}
             </h2>
 
             {contract.notes && (
@@ -65,11 +70,19 @@ function sortedSurfaces(surfaces: any[]): any[] {
               <div class="source-section">
                 <p class="small-caps text-muted">Primary surfaces</p>
                 <ul class="source-surfaces mt-3">
-                  {contract.homepage && (
+                  {contract.homepage && !surfaces.some((surface: any) => surface.url === contract.homepage) && (
                     <li>
                       <div class="source-surface-head">
                         <span class="source-surface-id">homepage</span>
                         <a href={contract.homepage} class="source-surface-url">{contract.homepage}</a>
+                      </div>
+                    </li>
+                  )}
+                  {contract.docs && !surfaces.some((surface: any) => surface.url === contract.docs) && (
+                    <li>
+                      <div class="source-surface-head">
+                        <span class="source-surface-id">docs</span>
+                        <a href={contract.docs} class="source-surface-url">{contract.docs}</a>
                       </div>
                     </li>
                   )}
@@ -82,9 +95,48 @@ function sortedSurfaces(surfaces: any[]): any[] {
                       </div>
                       {Array.isArray(surface.watch) && surface.watch.length > 0 && (
                         <div class="source-surface-watch text-muted">
-                          watch: {surface.watch.map(humanize).join(" · ")}
+                          watch: {surface.watch.map(humanize).join(" / ")}
                         </div>
                       )}
+                      {surface.notes && <p class="source-surface-notes text-muted">{surface.notes}</p>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {relatedRepositories.length > 0 && (
+              <div class="source-section">
+                <p class="small-caps text-muted">Related surfaces</p>
+                {related.standing_status && (
+                  <p class="font-mono text-sm text-muted mt-2">{humanize(related.standing_status)}</p>
+                )}
+                {related.notes && <p class="source-notes mt-2">{related.notes}</p>}
+                <ul class="source-surfaces mt-3">
+                  {relatedRepositories.map((repository: any) => (
+                    <li>
+                      <div class="source-surface-head">
+                        <span class="source-surface-id">{repository.id}</span>
+                        <span class="source-surface-kind text-muted">{humanize(repository.role ?? "")}</span>
+                        <a href={repository.url} class="source-surface-url">{repository.url}</a>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {relatedResearch.length > 0 && (
+              <div class="source-section">
+                <p class="small-caps text-muted">Related research</p>
+                <ul class="source-surfaces mt-3">
+                  {relatedResearch.map((item: any) => (
+                    <li>
+                      <div class="source-surface-head">
+                        <span class="source-surface-id">{item.id}</span>
+                        <span class="source-surface-kind text-muted">{humanize(item.role ?? "")}</span>
+                        <a href={item.url} class="source-surface-url">{item.url}</a>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -123,6 +175,15 @@ function sortedSurfaces(surfaces: any[]): any[] {
               </div>
             )}
 
+            {changeTypes.length > 0 && (
+              <div class="source-section">
+                <p class="small-caps text-muted">Change types</p>
+                <ul class="source-tag-list mt-2">
+                  {changeTypes.map((item) => <li>{humanize(item)}</li>)}
+                </ul>
+              </div>
+            )}
+
             {lenses.length > 0 && (
               <div class="source-section">
                 <p class="small-caps text-muted">Research lenses</p>
@@ -135,19 +196,31 @@ function sortedSurfaces(surfaces: any[]): any[] {
             {patterns.length > 0 && (
               <div class="source-section">
                 <p class="small-caps text-muted">High-signal patterns</p>
-                <p class="source-patterns mt-2">{patterns.join(" · ")}</p>
+                <p class="source-patterns mt-2">{patterns.join(" / ")}</p>
               </div>
             )}
 
-            {(discovery.last_verified || openQuestions.length > 0) && (
+            {operatorQuestions.length > 0 && (
+              <div class="source-section">
+                <p class="small-caps text-muted">Operator questions</p>
+                <ul class="source-open-questions mt-2">
+                  {operatorQuestions.map((question) => <li>{question}</li>)}
+                </ul>
+              </div>
+            )}
+
+            {(discovery.last_verified || discovery.migration_note || openQuestions.length > 0) && (
               <div class="source-section">
                 <p class="small-caps text-muted">Discovery state</p>
                 {discovery.last_verified && (
                   <p class="font-mono text-sm text-muted mt-2">
                     last verified: {discovery.last_verified}
-                    {discovery.verified_by ? ` · ${humanize(discovery.verified_by)}` : ""}
-                    {discovery.confidence ? ` · ${discovery.confidence} confidence` : ""}
+                    {discovery.verified_by ? ` / ${humanize(discovery.verified_by)}` : ""}
+                    {discovery.confidence ? ` / ${discovery.confidence} confidence` : ""}
                   </p>
+                )}
+                {discovery.migration_note && (
+                  <p class="source-notes mt-2">{discovery.migration_note}</p>
                 )}
                 {openQuestions.length > 0 && (
                   <ul class="source-open-questions mt-2">
@@ -163,7 +236,7 @@ function sortedSurfaces(surfaces: any[]): any[] {
               </a>
               {hasProfile && (
                 <>
-                  {" · "}
+                  {" / "}
                   <a href={`/profiles/${source.id}/`} class="font-mono text-xs hover:underline">
                     Profile: {sourceLabel(source.id)}
                   </a>
@@ -171,7 +244,7 @@ function sortedSurfaces(surfaces: any[]): any[] {
               )}
               {hasSignals && (
                 <>
-                  {" · "}
+                  {" / "}
                   <a href={`/signals/source/${source.id}/`} class="font-mono text-xs hover:underline">
                     Signals
                   </a>

@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.1
     precision: github_release
 ---
-# 2026-07-02-hermes-agent-v2026-7-1-security-wave-tagged
+# Hermes Agent v2026.7.1 tags the security wave
 
 Hermes Agent `v2026.7.1` tags the prior main-only security wave. Release notes
 list MCP-config persistence hardening, cron `base_url` credential-exfiltration

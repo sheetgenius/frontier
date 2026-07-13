@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/google-gemini/gemini-cli/releases/tag/v0.51.0-nightly.20260702.gff00dacd9
     precision: github_release
 ---
-# 2026-07-02-gemini-cli-nightly-memory-symlink-escape
+# Gemini CLI nightly fixes a memory-import symlink escape
 
 Gemini CLI nightly `v0.51.0-nightly.20260702.gff00dacd9` fixes a symbolic-link
 directory escape in the memory import processor. Channel: preview-or-beta.

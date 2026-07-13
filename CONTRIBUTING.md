@@ -6,10 +6,11 @@ is not. This document draws that line precisely, so a first-time contributor
 knows, before opening a tab, whether the change they have in mind is one we will
 merge or one we will thank them for and decline.
 
-Read [METHOD.md](./METHOD.md) first. It defines the three rules and the object
-grammar (finding, signal, digest, profile) that this guide assumes.
+Read [THESIS.md](./THESIS.md), [METHOD.md](./METHOD.md), and
+[EDITORIAL.md](./EDITORIAL.md) first. They define why Frontier exists, the three
+rules and object grammar, and the public writing standard this guide assumes.
 
-## The one rule that governs everything
+## The three rules that govern everything
 
 ```text
 No claim without a receipt.
@@ -45,8 +46,9 @@ PR templates.
 A correction must carry:
 
 - the receipt URL, the primary source that proves the corrected fact;
-- the in-window date, the full ISO date (`YYYY-MM-DD`), confirmed to the year,
-  that falls inside the artifact's window (see "Dates" below);
+- the event date, a full ISO date (`YYYY-MM-DD`) confirmed to the year. It may
+  fall outside the artifact's window when that is the error being corrected
+  (see "Dates" below);
 - what is wrong: the exact field, file, and current-versus-correct values.
 
 ### 2. Coverage gaps
@@ -58,8 +60,9 @@ candidate finding, not a finished one. You supply the receipt and the
 window-anchoring; the maintainers decide whether it rises to a signal. See the
 `coverage-gap` template.
 
-A coverage gap must carry the same receipt and in-window date as a correction,
-plus which artifact should have caught it (which window's digest, which profile).
+A coverage gap must carry a receipt and an event date inside the claimed
+publication window, plus which artifact should have caught it (which window's
+digest, which profile).
 
 ### 3. New-source proposals
 
@@ -86,13 +89,15 @@ one of these changes will be closed with thanks, not merged.
 - What becomes a signal. Promotion of a finding to a signal is the editorial act
   at the center of this publication. Signals are deliberately rarer than
   findings. You can give us a receipted finding the record is missing; whether it
-  changes an operator's next action, and therefore becomes a signal, is ours to
-  judge.
-- The weekly synthesis. The cross-provider thesis, the digest narrative, the
+  changes an operator's next action, the durable architecture around an agent,
+  or the use of scarce human attention, and therefore becomes a signal, is ours
+  to judge. Provider choice is one possible consequence, not the whole meaning
+  of actionability.
+- The weekly synthesis. The cross-project thesis, the digest narrative, the
   operator brief, the "what to try / watch / ignore" calls. This is the unit
   nobody else produces, because nobody else reads the whole watchlist through
-  this filter each cycle. Corrections to facts inside a digest are
-  crowdsourceable; the reading is not.
+  the Bitter Lesson and Amdahl lens each cycle. Corrections to facts inside a
+  digest are crowdsourceable; the reading is not.
 - The editorial voice. Tone, framing, what is emphasized, what is called hype,
   the house style. Bitter Frontier is skeptical, operator-facing, and allergic
   to vendor language by design.
@@ -101,6 +106,10 @@ one of these changes will be closed with thanks, not merged.
   change, open an issue describing the gap or contradiction with a concrete
   example (ideally a case in the existing record the current method handles
   badly); a maintainer decides in a separate pass.
+- The thesis and editorial standard. [THESIS.md](./THESIS.md) and
+  [EDITORIAL.md](./EDITORIAL.md) are living, maintained objects. A concrete case
+  that exposes a weak assumption or writing rule is welcome as an issue. The
+  philosophy determines questions, never a verdict that evidence must support.
 - Profiles as editorial objects. You can correct a fact or fill a claim's
   receipt in a profile. Rewriting a profile's posture prose, or deciding a
   claim's status, is an editorial pass the maintainers run after each digest.
@@ -125,28 +134,39 @@ count as receipts on their own:
 
 ### Evidence floor and precision
 
-Every artifact has an `evidence_floor`, the minimum citation precision that can
-stand alone as the only support for a claim. The precision ladder, highest to
-lowest:
+Every profile has an `evidence_floor`, and every source contract says which
+evidence classes it accepts. The floor is the weakest kind of evidence that can
+stand alone for that source's ordinary claims. It is not a universal numerical
+ranking. A tagged source file can be stronger than release prose for an
+implementation claim, while a release page can be the right primary source for
+a publication date.
 
-```text
-commit_diff_reviewed  >  commit  >  release_note  >  official_docs  >  observed_behavior
-```
+Use the most specific truthful precision label. Common labels include:
 
-- `commit_diff_reviewed`: a commit URL whose diff you actually read for the
-  specific claim.
-- `commit`: a commit URL whose diff has not been individually reviewed.
-- `release_note`: a release or changelog entry.
-- `official_docs`: an official docs page.
-- `observed_behavior`: a reproducible local probe you can describe.
+- `commit_diff_reviewed` or `commit_line_range`: code or a diff read for the
+  exact claim;
+- `tagged_commit_file` or `tagged_raw_file`: a file pinned to a release tag or
+  its dereferenced commit;
+- `git_commit`: a commit whose relevant diff and ancestry were checked;
+- `github_release` or `release_note`: a provider's versioned release record;
+- `official_docs`: an official documentation page, with a version or archive
+  when the claim is historical;
+- `canonical_advisory`: the issuing project's or vulnerability registry's
+  advisory;
+- `primary_research_source`: a versioned paper, source bundle, or dataset read
+  for the stated result;
+- `observed_behavior`: a reproducible local probe with the environment,
+  version, inputs, expected result, observed result, and steps recorded.
 
-A contributed claim must cite at or above the floor of the artifact it touches.
-Open-source-commit sources (Agent Zero, Hermes, OpenHands, OpenClaw, Paperclip,
-Pi, Gemini CLI) typically floor at `commit_diff_reviewed`; docs-driven sources
-(Claude Code, Codex) typically floor at `release_note`. The per-provider floor
-lives in the source contract and the profile frontmatter; check it before you
-file. A lower-precision link may ride along as supporting context, but it cannot
-be the only thing holding a claim up.
+More specific variants are welcome when they make the receipt easier to audit;
+do not invent a grand-sounding label to disguise weak evidence. Precision
+describes how the receipt was checked. It does not turn a source into support
+for a claim the source never makes.
+
+A contributed claim must meet the profile's floor and the source contract's
+accepted-evidence rules. A broader or moving source may ride along as context,
+but it cannot be the only thing holding up a historical or implementation
+claim.
 
 ### Channel status (read this before correcting a "shipped" claim)
 
@@ -157,18 +177,25 @@ carry an explicit channel:
 ```text
 tagged-release   in a released tag an operator can install
 main-unreleased  merged to the default branch, not in any tag yet
-preview-beta     in a preview/beta/nightly tag only
+preview-or-beta  in a preview/beta/nightly tag or channel only
 mixed            different parts of the change have different status
 ```
 
-Channel is resolved by git ancestry, not by date. The authoritative test is
-whether the commit is an ancestor of the release tag:
+For an inspectable repository, channel is resolved by git ancestry, not by date.
+The authoritative test is whether the commit is an ancestor of the release tag:
 
 ```bash
 git merge-base --is-ancestor <commit-sha> <release-tag> && echo "in <tag>" || echo "NOT in <tag>"
 # or, on a fork/clone of the provider repo:
 git tag --contains <commit-sha>
 ```
+
+Not every source has inspectable ancestry. Closed applications, SaaS rollouts,
+mobile releases, and docs-driven sources require the channel evidence named in
+their source contract: a versioned changelog entry, release page, store version,
+rollout notice, or reproducible observation. Never pretend a changelog date is
+git ancestry, and never pretend the absence of a public tag proves a closed
+rollout did not occur.
 
 If you are reporting that something "shipped," tell us which tag and how you
 checked. If you are reporting that we called something shipped that is only on
@@ -178,19 +205,28 @@ house rule as badly as a missing receipt.
 
 ### Dates
 
-In-window anchoring is by merge-to-default date, not release-tag date. A date
-must be a full ISO date (`YYYY-MM-DD`) whose year is confirmed inside the
-artifact's window. Watch for two traps the maintainers have hit:
+Anchor a claim to the date of the event it asserts: merge-to-default for an
+unreleased commit, publication of a tag for a release event, publication of a
+versioned changelog for a closed release, or the verified rollout date for a
+service change. A date must be a full ISO date (`YYYY-MM-DD`) whose year is
+confirmed inside the artifact's window. Watch for two traps the maintainers have
+hit:
 
 - Rendered HTML lies. Some release pages render a prior year in the visible HTML
   while the API or changelog timestamp is correct. Trust the API/ISO timestamp
   (`published_at`, the changelog ISO date), not the rendered page.
 - Tag date versus merge date. A tag dated before a window can legitimately
-  surface material in-window when the change merged in-window. Cite the merge.
+  surface an in-window merge, but the claim must say whether it is reporting the
+  merge or the release. Cite the event actually claimed.
 
 A claim whose only date is a plausible month and day with an unconfirmed or
 out-of-window year is an out-of-window finding and will be dropped, never
 asserted as in-window.
+
+A correction is the deliberate exception to the window requirement. If the
+published mistake was counting an event in the wrong window, report the event's
+actual full ISO date even though it falls outside that window. The correction
+receipt must prove both the date and why the original claim was ineligible.
 
 ## How to propose each kind of change
 
@@ -198,8 +234,9 @@ asserted as in-window.
 
 1. Open an issue with the Correction template (or go straight to a PR for a
    one-line factual fix).
-2. Give the receipt URL, the in-window ISO date, and the exact field, file, and
-   current-versus-correct value.
+2. Give the receipt URL, the event's full ISO date, and the exact field, file,
+   and current-versus-correct value. For a wrong-window correction, the correct
+   event date may be outside the original window.
 3. If it is a one-field fix (a date, a version, a channel, a URL), a PR editing
    the file directly is welcome; the template's fields become your PR body.
 4. CI re-fetches the receipts your PR changed; if the adversarial verifier is
@@ -227,10 +264,12 @@ fact. When in doubt, file the issue and let a maintainer point you at the file.
 
 See "Proposing a new source" below; use the New source template.
 
-### A change to the method
+### A change to the thesis, method, or editorial standard
 
-[METHOD.md](./METHOD.md) is owned (see above). Open an issue describing the gap
-with a concrete example; do not send it as a PR.
+[THESIS.md](./THESIS.md), [METHOD.md](./METHOD.md), and
+[EDITORIAL.md](./EDITORIAL.md) are owned (see above). Open an issue describing
+the gap with a concrete example; do not send it as a drive-by PR. These documents
+are expected to evolve when new evidence makes the concepts more precise.
 
 ## Proposing a new source
 
@@ -269,10 +308,11 @@ git diff --check                           # whitespace / conflict markers
 rg "TODO|TBD|FIXME"                        # no placeholders in published artifacts
 ```
 
-Style: prefer ASCII punctuation, no em dashes, no emoji in artifacts; keep prose
-source-backed, concise, and skeptical. Cite on the claim-bearing words, not in
-footnote blocks. If you are touching narrative prose, write like a skeptical
-engineer, not a press release.
+Style: follow [EDITORIAL.md](./EDITORIAL.md). Use ASCII punctuation, no em dashes,
+and no emoji in artifacts. Keep prose source-backed, concise, skeptical, and
+human. Color is welcome when it sharpens a mechanism or consequence. Cite on the
+claim-bearing words, not in footnote blocks. Public prose should feel like a
+strong technical editorial, not a pipeline report or press release.
 
 Deployment is not your concern and not part of CI: frontier.bitter.sh publishes
 on commit-and-push to `main` after a maintainer merges. CI on your PR is a
@@ -297,12 +337,13 @@ verification gate, not a deploy.
 
 1. CI runs the offline integrity checker and the site build. For PRs that change
    receipts, an adversarial verifier (when enabled) re-fetches the changed
-   receipts and posts a verdict comment
-   (`verified-in-window` / `unsupported` / `out-of-window` / `channel-mismatch`).
+   receipts and posts a verdict comment (`verified-in-window` /
+   `verified-correction` / `unsupported` / `out-of-window` /
+   `channel-mismatch`).
 2. A maintainer reviews. For a correction, the bar is "the receipt supports the
-   corrected fact, in-window." For a coverage gap, the maintainer decides harvest
-   and promotion. For anything owned, the maintainer decides the editorial
-   question.
+   corrected fact and event date." For a coverage gap, the date must also land
+   inside the claimed window, and the maintainer decides harvest and promotion.
+   For anything owned, the maintainer decides the editorial question.
 3. Merged corrections are logged in the public corrections ledger
    ([content/corrections.md](./content/corrections.md)). Every fix to the record
    is itself part of the record. Being in that ledger is a credit, not a demerit:

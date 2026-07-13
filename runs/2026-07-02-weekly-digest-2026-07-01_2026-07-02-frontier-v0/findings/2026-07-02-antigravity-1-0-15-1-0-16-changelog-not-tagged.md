@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/google-antigravity/antigravity-cli/blob/2939422297ba014da627961f4e387fad0e151f47/CHANGELOG.md
     precision: git_blob_sha
 ---
-# 2026-07-02-antigravity-1-0-15-1-0-16-changelog-not-tagged
+# Antigravity lists 1.0.15 and 1.0.16 without public tags
 
 The Antigravity CLI changelog at commit `2939422297ba014da627961f4e387fad0e151f47`
 lists 1.0.15 and 1.0.16 changes, including live subagent/background-task status,

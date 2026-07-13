@@ -2,9 +2,9 @@
 import Base from "../../layouts/Base.astro";
 import SignalList from "../../components/SignalList.astro";
 import { SITE_URL } from "../../lib/site";
-import { composesLabel, listComposesFacets, listProfiles, listSignalSourceSlugs, listSignals, sourceLabel } from "../../lib/frontier";
+import { composesLabel, listAcceptedSignals, listComposesFacets, listProfiles, listSignalSourceSlugs, sourceLabel } from "../../lib/frontier";
 
-const signals = listSignals();
+const signals = listAcceptedSignals();
 const profiles = listProfiles();
 const profileSlugs = new Set(profiles.map((p) => p.slug));
 const sourceSlugs = listSignalSourceSlugs();

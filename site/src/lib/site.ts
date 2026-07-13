@@ -3,5 +3,5 @@ export const GH_REPO_URL = "https://github.com/sheetgenius/frontier";
 export const GH_BLOB_BASE = `${GH_REPO_URL}/blob/main`;
 export const SITE_TITLE = "Bitter Frontier";
 export const SITE_DESCRIPTION =
-  "Source-backed field notes on what changed in agentic harnesses, what got easier, and what serious developers should do next.";
+  "Source-backed, cross-project reporting on what coding agents made cheaper, where the bottleneck moved, and what deserves human attention.";
 export const SITE_IMAGE = `${SITE_URL}/og.png`;

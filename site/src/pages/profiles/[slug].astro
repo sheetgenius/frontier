@@ -1,9 +1,12 @@
 ---
 import Base from "../../layouts/Base.astro";
+import FrontierLens from "../../components/FrontierLens.astro";
 import ProfileStance from "../../components/ProfileStance.astro";
 import { metaDescription } from "../../lib/seo";
+import { gitFirstRevisionDate } from "../../lib/revision";
 import { GH_BLOB_BASE } from "../../lib/site";
 import { digestsForSource, findFindingByFindingId, formatDate, getProfile, inboundCompositionForSource, listProfiles, sourceLabel } from "../../lib/frontier";
+import { marked } from "marked";
 
 export function getStaticPaths() {
   return listProfiles().map((profile) => ({ params: { slug: profile.slug } }));
@@ -13,6 +16,9 @@ const profile = getProfile(Astro.params.slug!);
 if (!profile) throw new Error("Profile not found");
 
 const activeClaims = (profile.data.claims ?? []).filter((c: any) => c.status === "active");
+const verifiedClaimReceipts = Array.from(new Map(
+  activeClaims.map((claim: any) => [claim.finding_id ?? `claim:${claim.id}`, claim]),
+).values());
 const openQuestions = (profile.data.claims ?? []).filter((c: any) => c.status === "open_question");
 const appearedIn = digestsForSource(profile.slug);
 
@@ -44,42 +50,61 @@ function findingUrlFor(findingId: string | undefined | null): string | undefined
   return `/findings/${finding.finding}/`;
 }
 
+function splitLeadingOperatorRead(markdown: string): { operatorHtml: string; remainingHtml: string } {
+  const heading = /^## Operator Read\s*$/m.exec(markdown);
+  if (!heading || markdown.slice(0, heading.index).trim()) {
+    return { operatorHtml: "", remainingHtml: marked.parse(markdown) as string };
+  }
+
+  const afterHeading = heading.index + heading[0].length;
+  const nextHeading = /^##\s+/m.exec(markdown.slice(afterHeading));
+  const sectionEnd = nextHeading ? afterHeading + nextHeading.index : markdown.length;
+  return {
+    operatorHtml: marked.parse(markdown.slice(heading.index, sectionEnd).trim()) as string,
+    remainingHtml: marked.parse(markdown.slice(sectionEnd).trim()) as string,
+  };
+}
+
 const profileLabel = profile.data.label ?? profile.slug;
 const profileKeywords = Array.from(new Set([
   profileLabel,
-  "coding agent research profile",
-  "AI coding agent",
-  "agent harness",
+  "coding agent stack research profile",
+  "agent infrastructure",
+  "AI software operations",
   "Bitter Frontier",
 ]));
 const profileDescription = metaDescription(
-  `${profileLabel} coding agent research profile: ${profile.data.tagline ?? profile.data.stance?.use_for ?? ""}`,
+  `${profileLabel} source-backed project profile: ${profile.data.tagline ?? profile.data.stance?.use_for ?? ""}`,
   profile.data.tagline,
   profile.data.stance?.use_for,
-  `${profileLabel} research profile with sourced claims, operator stance, open questions, and the latest Bitter Frontier signals.`,
+  `${profileLabel} project profile with sourced claims, operator stance, open questions, and the latest Bitter Frontier reporting.`,
 );
+const profilePublishedDate = gitFirstRevisionDate(
+  profile.relativePath,
+  formatDate(profile.data.first_published ?? profile.data.last_full_review ?? profile.data.last_updated),
+);
+const profileSections = splitLeadingOperatorRead(profile.body);
 ---
 
 <Base
   title={`${profileLabel} Research Profile | Bitter Frontier`}
   description={profileDescription}
-  publishedDate={profile.data.last_full_review ?? profile.data.last_updated}
+  publishedDate={profilePublishedDate}
   modifiedDate={profile.data.last_updated}
-  articleSection="Coding agent research profile"
+  articleSection="Coding agent stack research profile"
+  authorName="Michael Ruescher"
   keywords={profileKeywords}
 >
   <article class="measure py-10">
     <p class="small-caps text-muted">
-      <a href="/profiles/">Profiles</a> · {profile.data.owner}
+      <a href="/profiles/">Profiles</a> / {profile.data.owner}
     </p>
     <h1 class="issue-title">{profileLabel}</h1>
     {profile.data.tagline && (
       <p class="profile-dek">{profile.data.tagline.replace(/^"|"$/g, "")}</p>
     )}
     <p class="issue-meta">
-      {profile.data.surface_class?.replaceAll("_", " ")} ·
-      evidence floor: {profile.data.evidence_floor?.replaceAll("_", " ")} ·
-      updated {formatDate(profile.data.last_updated)}
+      Edited by Michael Ruescher / reviewed {formatDate(profile.data.last_full_review ?? profile.data.last_updated)}
     </p>
 
     {officialLinks.length > 0 && (
@@ -94,28 +119,45 @@ const profileDescription = metaDescription(
       <p class="profile-social">
         On X{" "}
         {xHandles.map((h, i) => (
-          <>{i > 0 && <span aria-hidden="true"> · </span>}<a href={`https://x.com/${h}`}>@{h}</a></>
+          <>{i > 0 && <span aria-hidden="true"> / </span>}<a href={`https://x.com/${h}`}>@{h}</a></>
         ))}
       </p>
     )}
 
+    {profileSections.operatorHtml && (
+      <div class="prose-frontier mt-9 rule pt-6" set:html={profileSections.operatorHtml} />
+    )}
+
     <ProfileStance stance={profile.data.stance} asOf={formatDate(profile.data.last_updated)} />
 
+    {profileSections.remainingHtml && (
+      <div class="prose-frontier mt-9 rule pt-6" set:html={profileSections.remainingHtml} />
+    )}
+
+    <div class="mt-8 rule pt-6">
+      <p class="small-caps text-muted">Verification</p>
+      <p class="mt-3 font-mono text-sm text-muted">
+        {profile.data.surface_class?.replaceAll("_", " ")} / evidence floor: {profile.data.evidence_floor?.replaceAll("_", " ")} / updated {formatDate(profile.data.last_updated)}
+      </p>
+    </div>
+
     {
-      activeClaims.length > 0 && (
+      verifiedClaimReceipts.length > 0 && (
         <div class="mt-8 rule pt-6">
-          <p class="small-caps text-muted">Active Claims</p>
+          <p class="small-caps text-muted">Verified claims</p>
           <ul class="mt-4 space-y-2">
-            {activeClaims.map((claim: any) => {
+            {verifiedClaimReceipts.map((claim: any) => {
               const href = findingUrlFor(claim.finding_id);
+              const finding = findFindingByFindingId(claim.finding_id);
+              const label = finding?.title ?? humanizeId(claim.id);
               return (
                 <li class="font-mono text-sm">
                   {href ? (
-                    <a href={href} class="hover:underline">{humanizeId(claim.id)}</a>
+                    <a href={href} class="hover:underline">{label}</a>
                   ) : (
-                    <span>{humanizeId(claim.id)}</span>
+                    <span>{label}</span>
                   )}
-                  <span class="text-muted"> · verified {formatDate(claim.last_verified)}</span>
+                  <span class="text-muted"> / verified {formatDate(claim.last_verified)}</span>
                 </li>
               );
             })}
@@ -148,16 +190,16 @@ const profileDescription = metaDescription(
 
     {inboundShown.length > 0 && (
       <div class="mt-8 rule pt-5">
-        <p class="small-caps text-muted">Inbound composition</p>
+        <p class="small-caps text-muted">Used by other projects</p>
         <p class="text-muted" style="font-size: 0.85rem; margin-top: 0.4rem;">
-          Signals from other watched providers whose finding declares it composes with {profile.data.label ?? profile.slug}.
+          Reporting on other watched projects that explicitly integrate with {profile.data.label ?? profile.slug}.
         </p>
         <ul class="mt-3 space-y-2">
           {inboundShown.map((signal) => (
             <li class="font-mono text-sm">
               <a href={`/signals/${signal.id}/`} class="hover:underline">{signal.title}</a>
               <div class="text-muted" style="margin-top: 2px;">
-                {signal.date} · from {signal.sources.map((s) => sourceLabel(s)).join(", ")}
+                {signal.date} / from {signal.sources.map((s) => sourceLabel(s)).join(", ")}
               </div>
             </li>
           ))}
@@ -165,14 +207,12 @@ const profileDescription = metaDescription(
         {inboundOverflow && (
           <p class="mt-3 font-mono text-sm">
             <a href={`/signals/composes-with/${profile.slug}/`} class="hover:underline">
-              earlier — all {inboundAll.length} inbound composition signals →
+              Earlier: all {inboundAll.length} related signals -&gt;
             </a>
           </p>
         )}
       </div>
     )}
-
-    <div class="prose-frontier mt-9 rule pt-6" set:html={profile.html} />
 
     {appearedIn.length > 0 && (
       <div class="mt-8 rule pt-5">
@@ -183,7 +223,7 @@ const profileDescription = metaDescription(
               <a href={`/digests/${digest.slug}/`} class="hover:underline">
                 {digest.data.title ?? digest.slug}
               </a>
-              <span class="text-muted"> · {formatDate(digest.data.window?.end)}</span>
+              <span class="text-muted"> / {formatDate(digest.data.window?.end)}</span>
             </li>
           ))}
         </ul>
@@ -191,10 +231,10 @@ const profileDescription = metaDescription(
     )}
 
     <p class="mt-8 rule pt-5 font-mono text-sm text-muted">
-      Source contract: <a href={`/sources/`}>{profile.data.source_contract}</a>
+      Source policy: <a href={`/sources/#${profile.slug}`}>what Frontier watches and accepts as evidence</a>
     </p>
     <p class="mt-3 font-mono text-sm text-muted">
-      Profiles are maintained by the <a class="hover:underline" href="https://bitter.sh">Bitter</a> research loop.
+      Edited and maintained by Bitter Frontier.
     </p>
     <p class="mt-3">
       <a class="view-source" href={`${GH_BLOB_BASE}/${profile.relativePath}`}>
@@ -204,5 +244,6 @@ const profileDescription = metaDescription(
         View source on GitHub
       </a>
     </p>
+    <FrontierLens />
   </article>
 </Base>

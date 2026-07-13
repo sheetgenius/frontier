@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.198
     precision: github_release
 ---
-# 2026-07-02-claude-code-v2-1-198-background-agents-commit-push-pr
+# Claude Code v2.1.198 lets background agents commit, push, and open draft PRs
 
 Claude Code `v2.1.198` makes subagents run in the background by default, adds
 background-agent notifications, and says background agents launched from

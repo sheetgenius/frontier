@@ -4,49 +4,58 @@ window:
   start: 2026-07-01
   end: 2026-07-02
 note: >
-  Short live window. Five signals out of 22 accepted findings. The lead signal is
-  not a vendor release: it is the first harvest of Agent Flywheel, an assembly
-  layer that sets dangerous defaults for Claude Code, Codex, and Antigravity on a
-  throwaway VPS. Vendor-side movement rhymed with it: Claude made background
-  agents more autonomous, Hermes finally tagged its security wave, Codex removed a
-  trace-log data leak, and Gemini fixed a memory-import symlink escape in nightly
-  only.
+  Short live window. Four accepted signals out of 23 findings. The original fifth
+  item, Agent Flywheel, was withdrawn on 2026-07-12 because v0.7.0 shipped before
+  the declared window and the intake baseline was not an upstream product event.
+  Its stable URL remains below as a correction record. In-window movement: Claude
+  made background agents more autonomous, Hermes tagged its security wave, Codex
+  removed a trace-log data leak, and Gemini fixed a memory-import symlink escape
+  in nightly only.
 
 signals:
 
   - id: 2026-07-02-agent-flywheel-assembly-layer-dangerous-defaults
+    status: withdrawn
+    correction:
+      date: 2026-07-12
+      reason: "Frontier added Agent Flywheel on July 2, but ACFS v0.7.0 shipped June 26. Source intake is not a product change inside the July 1-2 window, so this record is preserved but no longer counted as an accepted signal. The original safe-mode guidance was also too broad: safe mode skips one ACFS sudoers write but does not revoke existing or provider-supplied passwordless sudo."
+      canonical_url: /profiles/agent-flywheel/
     section: control-plane
     source: agent-flywheel
-    channel: tagged-release
-    title: "Agent Flywheel turns three tier-1 agents into one dangerous-mode VPS bundle"
+    channel: tagged-release-intake
+    title: "Withdrawn as a July 2 signal: Agent Flywheel v0.7.0 was an intake baseline"
+    summary: "The intake still established a useful operator posture: ACFS scripts a sophisticated multi-agent VPS, but v0.7.0 safe mode neither removes its dangerous agent shortcuts nor guarantees that passwordless sudo is absent."
     finding_ids:
       - 2026-07-02-agent-flywheel-v0-7-0-tagged-release
       - 2026-07-02-agent-flywheel-vibe-mode-dangerous-agent-aliases
       - 2026-07-02-agent-flywheel-passwordless-sudo-vibe-default
       - 2026-07-02-agent-flywheel-antigravity-locked-always-proceed
       - 2026-07-02-agent-flywheel-dcg-hook-fail-open
+      - 2026-07-02-agent-flywheel-openai-anthropic-license-rider
     why_action_bearing:
-      - "ACFS v0.7.0 is not just setup. In vibe mode it writes passwordless sudo, aliases Claude Code with `--dangerously-skip-permissions`, aliases Codex with `--dangerously-bypass-approvals-and-sandbox`, and routes Antigravity through a launcher that writes always-proceed settings, disables the terminal sandbox, allows non-workspace access, and launches `agy` with `--dangerously-skip-permissions`."
-      - "Run it only where the project says the posture belongs: a throwaway VPS. Pin the tag or commit before install, inspect the sudoers and shell aliases, and treat safe mode as the production-like path."
+      - "At the intake tag, ACFS put Claude Code, Codex, Antigravity, shell tooling, coordination, update, and recovery machinery behind one installer. Several downstream installers still select upstream `latest`, so this is a scripted front door rather than a reproducible dependency lock."
+      - "In v0.7.0, a safe-mode run skips ACFS's `NOPASSWD` write but does not remove a rule left by an earlier vibe run or a provider image. It also installs a shared zsh file whose `cc`, `cod`, `agy`, and `gmi` shortcuts select dangerous or always-proceed behavior."
+      - "The tagged LICENSE includes a non-standard OpenAI/Anthropic rider. Potentially covered operators should read it and obtain their own legal guidance; Frontier is not opining on interpretation or enforceability."
     accessibility_impact: medium
     accessibility_consequence:
       what_got_easier: "A beginner can get Claude Code, Codex, Antigravity, shell tooling, and coordination tools on one VPS through one installer."
-      who_can_use_now: "Individual operators willing to run a paid, disposable-VPS workflow."
-      authority_visibility: "Authority is compressed into third-party defaults. The README describes the mode, but the dangerous boundary sits in written files and aliases the operator may never open."
+      who_can_use_now: "Individual operators willing to run a rebuildable VPS workflow and inspect the installed policy."
+      authority_visibility: "The README makes the vibe-mode trade explicit, but safe mode neither gates the installed agent shortcuts nor cleans prior/provider passwordless-sudo state in v0.7.0."
     security_impact: high
-    security_change: opens
+    security_change: reframes
     security_consequence:
-      threat_blocked_or_opened: "Opens a deliberate dangerous-mode path: bypassed agent approvals, passwordless sudo, Antigravity always-proceed settings, terminal sandbox off, and non-workspace access on."
+      threat_blocked_or_opened: "The intake exposed a deliberate dangerous-mode path and an incomplete safe-mode boundary: bypassed agent approvals remain available through installed shortcuts, and safe mode does not prove that passwordless sudo is absent."
       attacker_model: "A prompt-injected or mistaken agent command that reaches shell execution on a credentialed VPS account."
       enforcement: policy
-      cost_to_operator: "Use a disposable VPS, pin and review the tag, choose safe mode on anything durable, and keep credentials out of the environment."
-      residual: "The Antigravity DCG hook fails open if `dcg` is unavailable or times out; the installer was read at tag but not executed locally."
+      cost_to_operator: "Use rebuildable infrastructure, pin and review the tag, scope provider credentials, keep production secrets elsewhere, remove the dangerous shortcuts, and inspect every effective sudoers rule on any durable host."
+      residual: "The Antigravity DCG hook allows commands on malformed input, a missing command, unavailable or timed-out DCG, and output without a blocking decision; the installer was read at tag but not executed locally. Safe mode was verified as a skipped write, not as a cleanup path."
     security_advisory: false
     receipts:
-      - https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/acfs/zsh/acfs.zshrc
-      - https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/scripts/lib/user.sh
-      - https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/scripts/lib/agy_locked.py
-      - https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/acfs.manifest.yaml
+      - https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup/blob/edaee4f6ceff772d4f56d42eda65b1d659fead73/acfs/zsh/acfs.zshrc#L526-L532
+      - https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup/blob/edaee4f6ceff772d4f56d42eda65b1d659fead73/install.sh#L4861-L4870
+      - https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup/blob/edaee4f6ceff772d4f56d42eda65b1d659fead73/scripts/providers/hetzner-cloud-init.yml#L41-L46
+      - https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup/blob/edaee4f6ceff772d4f56d42eda65b1d659fead73/scripts/lib/agy_locked.py#L41-L133
+      - https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup/blob/edaee4f6ceff772d4f56d42eda65b1d659fead73/LICENSE
 
   - id: 2026-07-02-claude-code-background-agents-commit-push-pr
     section: runtime
@@ -99,7 +108,7 @@ signals:
       - https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.1
 
   - id: 2026-07-02-codex-trace-payload-scrub
-    section: telemetry
+    section: platform
     source: codex
     channel: tagged-release
     title: "Codex 0.142.5 stops writing full Responses WebSocket payloads to trace logs"

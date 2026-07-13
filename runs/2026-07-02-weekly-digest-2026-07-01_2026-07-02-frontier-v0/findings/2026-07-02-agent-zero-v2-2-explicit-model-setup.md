@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/agent0ai/agent-zero/releases/tag/v2.2
     precision: github_release
 ---
-# 2026-07-02-agent-zero-v2-2-explicit-model-setup
+# Agent Zero v2.2 makes model setup explicit
 
 Agent Zero `v2.2` makes model setup explicit in-thread, removes silent OAuth
 model auto-population, sets the default main model to

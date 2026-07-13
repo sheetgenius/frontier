@@ -8,6 +8,9 @@
 // The og path for a page mirrors that page's URL path (see ogPathForUrlPath in
 // src/lib/og.ts), so this generator and the layout stay in lockstep without a
 // shared manifest:
+//   /letter/          -> og/letter.png
+//   /bitter-lesson/   -> og/bitter-lesson.png
+//   /amdahls-law/     -> og/amdahls-law.png
 //   /digests/<slug>/  -> og/digests/<slug>.png
 //   /profiles/<slug>/ -> og/profiles/<slug>.png
 //   /signals/<id>/    -> og/signals/<id>.png
@@ -38,7 +41,7 @@ const COLOR = {
 };
 
 // ---------------------------------------------------------------------------
-// Data loading (standalone — does not import the TS site lib).
+// Data loading (standalone; does not import the TS site lib).
 // Mirrors the slug/title/date conventions in src/lib/frontier.ts.
 // ---------------------------------------------------------------------------
 
@@ -61,12 +64,16 @@ function isoDate(value) {
 }
 
 const SOURCE_LABELS = {
+  "agent-flywheel": "Agent Flywheel",
   "agent-zero": "Agent Zero",
+  antigravity: "Antigravity CLI",
   "claude-code": "Claude Code",
   codex: "Codex",
+  eve: "Eve",
   flue: "Flue",
   "gemini-cli": "Gemini CLI",
   "hermes-agent": "Hermes Agent",
+  heypi: "heypi",
   openclaw: "OpenClaw",
   openhands: "OpenHands",
   paperclip: "Paperclip",
@@ -131,6 +138,7 @@ function listSignals() {
           title: signal.title ?? signal.id,
           date: dateFromSignalId(signal.id),
           sources,
+          status: signal.status ?? "accepted",
         });
       }
     }
@@ -156,6 +164,7 @@ function listSignals() {
         title: signal.title ?? signal.id,
         date: dateFromSignalId(signal.id),
         sources,
+        status: signal.status ?? "accepted",
       });
     }
   }
@@ -174,9 +183,41 @@ export function cardEntries() {
   entries.push({
     ogPath: "home",
     eyebrow: "BITTER FRONTIER",
-    title: "Coding agents are changing faster than operating policy.",
+    title: "Coding agents can create work faster than teams can verify it.",
     footer: "frontier.bitter.sh",
-    footerRight: "Field notes for agent operators",
+    footerRight: "Source-backed cross-project reporting",
+  });
+
+  entries.push({
+    ogPath: "letter",
+    eyebrow: "PINNED LETTER FROM THE FOUNDER",
+    title: "An ode to the Bitter Lesson and Amdahl's law maximalism.",
+    footer: "frontier.bitter.sh",
+    footerRight: "Michael Ruescher",
+  });
+
+  entries.push({
+    ogPath: "bitter-lesson",
+    eyebrow: "BITTER LESSON MAXING",
+    title: "The Bitter Lesson for AI software companies.",
+    footer: "frontier.bitter.sh",
+    footerRight: "Living thesis",
+  });
+
+  entries.push({
+    ogPath: "amdahls-law",
+    eyebrow: "AMDAHL MAXING",
+    title: "Human attention is the serial portion.",
+    footer: "frontier.bitter.sh",
+    footerRight: "Living thesis",
+  });
+
+  entries.push({
+    ogPath: "corrections",
+    eyebrow: "PUBLIC CORRECTIONS LEDGER",
+    title: "The record includes what we got wrong.",
+    footer: "frontier.bitter.sh",
+    footerRight: "Claims corrected in public",
   });
 
   // Digests.
@@ -188,23 +229,23 @@ export function cardEntries() {
       eyebrow: (digest.data.series ?? "Weekly digest").toUpperCase(),
       title,
       footer: "frontier.bitter.sh",
-      footerRight: end ? `Digest · ${end}` : "Digest",
+      footerRight: end ? `Digest | ${end}` : "Digest",
     });
   }
 
-  // Provider profiles.
+  // Research profiles.
   for (const profile of listProfiles()) {
     const label = profile.data.label ?? sourceLabel(profile.slug);
     const updated = isoDate(profile.data.last_updated);
     const owner = profile.data.owner;
     entries.push({
       ogPath: `profiles/${profile.slug}`,
-      eyebrow: "PROVIDER PROFILE",
+      eyebrow: "RESEARCH PROFILE",
       title: label,
       footer: "frontier.bitter.sh",
       footerRight: [owner, updated ? `updated ${updated}` : null]
         .filter(Boolean)
-        .join(" · "),
+        .join(" | "),
     });
   }
 
@@ -213,10 +254,10 @@ export function cardEntries() {
     const src = signal.sources[0] ? sourceLabel(signal.sources[0]) : null;
     entries.push({
       ogPath: `signals/${signal.id}`,
-      eyebrow: "SIGNAL",
+      eyebrow: signal.status === "withdrawn" ? "CORRECTION RECORD" : "SIGNAL",
       title: signal.title,
       footer: "frontier.bitter.sh",
-      footerRight: [src, signal.date].filter(Boolean).join(" · "),
+      footerRight: [src, signal.date].filter(Boolean).join(" | "),
     });
   }
 
@@ -234,7 +275,7 @@ const HEIGHT = 630;
 // satori needs static TTF/OTF (it cannot read woff2 or variable fonts), so the
 // cards use static Manrope instances (400/700, instantiated from the variable
 // brand woff2) for the title/body and static IBM Plex Mono (400/600) for the
-// eyebrow/footer — the same Manrope + IBM Plex Mono voices the live site uses.
+// eyebrow/footer; the same Manrope + IBM Plex Mono voices the live site uses.
 let _fonts;
 function loadFonts() {
   if (_fonts) return _fonts;
@@ -284,7 +325,7 @@ function titleSizing(title) {
   // size, then ellipsize.
   const maxChars = Math.floor((1016 / (fontSize * 0.52)) * 4);
   let text = title;
-  if (text.length > maxChars) text = text.slice(0, maxChars - 1).trimEnd() + "…";
+  if (text.length > maxChars) text = text.slice(0, maxChars - 3).trimEnd() + "...";
 
   const lineHeight = fontSize <= 50 ? 1.18 : 1.1;
   return { fontSize, lineHeight, text };
@@ -323,7 +364,7 @@ function cardTree(entry) {
       border: `1px solid ${COLOR.line}`,
     },
     [
-      // Eyebrow / wordmark — IBM Plex Mono, letterspaced (the brand label voice).
+      // Eyebrow / wordmark: IBM Plex Mono, letterspaced (the brand label voice).
       div({ alignItems: "center" }, [
         span(entry.eyebrow, {
           fontFamily: "IBM Plex Mono",

@@ -390,8 +390,8 @@ needs to be checked.
 This profile follows the discipline in `RESEARCH_CONTRACT.md#profile`: every
 concrete claim in the prose has an inline source link and an entry in the
 `claims:` block; posture sections may interpret freely but must cite finding IDs
-when naming a specific feature, behavior change, or cross-provider comparison.
-Cross-provider editorial belongs in the weekly digest, not here. Git history is
+when naming a specific feature, behavior change, or cross-project comparison.
+Cross-project editorial belongs in the weekly digest, not here. Git history is
 the audit trail; removed claims live in the diff log.
 
 Note on evidence_floor: this profile uses `evidence_floor: release_note` despite

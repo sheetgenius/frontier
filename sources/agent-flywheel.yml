@@ -1,7 +1,7 @@
 schema_version: bitter.frontier_source_contract.v0
 id: agent-flywheel
 label: Agent Flywheel
-owner: Dicklesworthstone
+owner: Jeffrey Emanuel (Dicklesworthstone)
 homepage: https://agent-flywheel.com/
 primary_surfaces:
   - id: repo
@@ -14,10 +14,12 @@ primary_surfaces:
       - readme
       - docs
     notes: >
-      Releases and tags only -- NOT commits or pull requests. The repo had
-      3,440 main-branch commits at intake against 7 tagged releases; the
-      tag is the receipt surface that keeps this source finite. Cite a
-      release tag or a file pinned to one, never a moving main URL.
+      Weekly change detection is release- and tag-bounded -- NOT commits or
+      pull requests. README and docs claims are accepted only when pinned to a
+      tag or its dereferenced commit. The repo had 3,440 main-branch commits at
+      the 2026-07-02 intake against 7 tagged releases; the tag is the receipt
+      surface that keeps this source finite. Never cite a moving main URL for a
+      historical posture claim.
   - id: homepage
     kind: official_site
     url: https://agent-flywheel.com/
@@ -28,19 +30,57 @@ primary_surfaces:
       - agent_lineup
       - installer_claims
       - security_posture
+related_surfaces:
+  standing_status: context_only_not_weekly_harvest
+  notes: >
+    A selected set of repositories that implement the operating loop may be
+    studied in explicitly scoped, dated work. This list is not the maintainer's
+    complete portfolio, and these repositories are not silently promoted into
+    weekly Agent Flywheel findings.
+  repositories:
+    - id: mcp-agent-mail-rust
+      url: https://github.com/Dicklesworthstone/mcp_agent_mail_rust
+      role: coordination_and_audit
+    - id: beads-rust
+      url: https://github.com/Dicklesworthstone/beads_rust
+      role: task_and_dependency_state
+    - id: beads-viewer
+      url: https://github.com/Dicklesworthstone/beads_viewer
+      role: graph_aware_work_ranking
+    - id: ntm
+      url: https://github.com/Dicklesworthstone/ntm
+      role: session_orchestration
+    - id: coding-agent-session-search
+      url: https://github.com/Dicklesworthstone/coding_agent_session_search
+      role: cross_harness_session_history
+    - id: cass-memory
+      url: https://github.com/Dicklesworthstone/cass_memory_system
+      role: procedural_memory
+    - id: dcg
+      url: https://github.com/Dicklesworthstone/destructive_command_guard
+      role: deterministic_command_guard
+    - id: slb
+      url: https://github.com/Dicklesworthstone/slb
+      role: human_approval_for_dangerous_commands
+  research:
+    - id: agentic-very-much-v1
+      url: https://arxiv.org/abs/2606.07448v1
+      role: context_only_individual_account_repository_count
 accepted_evidence:
   - tagged_release
   - github_release
-  - readme_change
-  - official_docs
-  - maintainer_authored_post
+  - tagged_readme_or_docs
+  - attributed_official_site_claim_for_current_posture
+  - attributed_project_authored_budget
+  - contextual_primary_research_paper
+  - maintainer_authored_post_with_primary_receipt
   - reproducible_local_probe
 rejected_evidence:
-  - author_portfolio_outside_named_surfaces
+  - unspecified_portfolio_wide_claim
   - untagged_main_branch_commits
   - unsourced_social_claim
   - third_party_summary_without_primary_link
-  - self_reported_metric_without_independent_receipt
+  - self_reported_metric_presented_as_independent_fact
   - speculation
   - stale_model_memory
   - duplicate_commentary
@@ -54,13 +94,18 @@ change_types:
   - agent_lineup
   - breaking_change
   - ecosystem
+  - license
 research_lenses:
   - assembly_layer
   - default_setting_authority
   - installer_trust
   - cost_of_operation
   - multi_agent_cohabitation
-  - solo_author_velocity
+  - individual_account_repository_output
+  - durable_state_outside_provider_harnesses
+  - human_liaison_work
+  - agent_native_interfaces
+  - memory_and_feedback_loops
 high_signal_patterns:
   - install.sh behavior change
   - default settings written for Claude Code / Codex / Antigravity
@@ -76,7 +121,9 @@ operator_questions:
   - Does the installer pin agent versions and channels? An assembly layer inherits the released-is-not-merged problem for every tool it bundles.
   - Where do credentials and session state land on the VPS, and who can read them?
   - Do the bundled "safety tools" enforce anything, or advise? A warning is not a boundary.
-  - Are the published operating costs ($440-656/month at intake) holding as the lineup changes?
+  - Are the project's attributed operating-budget examples ($440-656/month at intake, including a two-Claude-account high end) holding as the lineup changes?
+  - Does the plan-to-graph-to-coordination loop reduce total human attention across a completed project, or create new maintenance and review queues?
+  - Does the OpenAI/Anthropic license rider apply to the operator or intended use? Potentially covered parties should review the tagged LICENSE and obtain their own legal guidance.
 default_actionability:
   release: study
   docs_change: observe
@@ -85,24 +132,20 @@ default_actionability:
   cost_change: observe
   ecosystem_package: ignore
 discovery:
-  last_verified: 2026-07-02
-  verified_by: operator_intake
-  confidence: medium
+  last_verified: 2026-07-12
+  verified_by: exemplar_and_receipt_audit
+  confidence: high
   open_questions:
-    - The solo-author-velocity receipt is arXiv:2606.07448 (Robbes, Matricon, Degueule, Hora, Zacchiroli, submitted 2026-06-05), whose top-35-organizations adoption figure includes the individual account dicklesworthstone among corporate orgs. Verify the exact placement relative to Microsoft from the PDF figure itself before writing the comparison in claim-bearing prose; the abstract page does not carry the figure, and the author's own "git-mogged all of Microsoft" post is commentary, not the receipt.
-    - The profile README's self-reported figures (~185,914 contributions in the past year; 52+ agent subscriptions at ~$12K/month) need an independent receipt or a local count before appearing in claim-bearing prose.
-    - First-harvest probe candidate -- what install.sh actually configures - sudo surface, credential paths, agent settings files written.
-    - Do NTM and Agent Mail warrant named-surface status, or stay out of contract until a receipt arrives from elsewhere?
+    - Does the next tag make safe mode gate the dangerous Claude, Codex, and Antigravity shortcuts, remove ACFS-created NOPASSWD state when changing modes, and detect provider-supplied passwordless sudo?
+    - Which bundled agent versions and release channels are pinned, and which still float with upstream latest installs?
+    - What measured evidence would show that the coordination and memory loop improves verified outcomes per unit of human attention?
+    - Will the non-standard OpenAI/Anthropic license rider change, and which operators need to obtain separate permission?
 notes: >
-  Watch Agent Flywheel as the assembly-layer calibration source: a third
-  party deciding an operator's defaults for three tier-1 harnesses (Claude
-  Code, Codex, Antigravity) at once, behind a single curl command, on
-  infrastructure the operator owns. Its published cost transparency is
-  directly on the publication's core question of what these tools cost the
-  people who run them. THE SCOPE FENCE IS THE CONTRACT: the author maintains
-  183+ public repositories at agent-amplified velocity, and everything
-  outside the two named surfaces is rejected evidence by default. If another
-  Dicklesworthstone project matters, it enters as an ordinary finding with
-  an external receipt, not as standing coverage. The author's own output
-  velocity is itself frontier evidence (solo-author-at-vendor-velocity), but
-  that is a story to receipt once, not a tracking obligation.
+  Watch Agent Flywheel as both an assembly layer and an operating method. It
+  makes provider agents replaceable inside durable planning, task, coordination,
+  verification, and memory artifacts, then distributes the supporting toolchain
+  through one installer. That is unusually close to Frontier's Bitter Lesson and
+  Amdahl questions. Weekly evidence remains bounded to ACFS releases, tagged docs,
+  and attributed current claims on the official site. A dated ecosystem study may
+  inspect the named related repositories and contextual paper with pinned receipts
+  when their interaction changes the read.

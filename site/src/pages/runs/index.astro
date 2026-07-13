@@ -5,7 +5,7 @@ const runs = listRuns();
 ---
 
 <Base
-  title="Research Trail · Bitter Frontier"
+  title="Research Trail | Bitter Frontier"
   description="Bitter Frontier research run artifacts: harvested sources, findings, accepted signals, source contracts, and evidence trails behind each digest."
 >
   <section class="measure py-10">
@@ -19,9 +19,9 @@ const runs = listRuns();
       {
         runs.map((run) => (
           <a href={`/runs/${run.id}/`} class="version-link">
-            <div class="small-caps text-[var(--color-bitter)]">{run.status}{run.artifactVersion ? ` · v${run.artifactVersion}` : ""}</div>
+            <div class="small-caps text-[var(--color-bitter)]">{run.status}{run.artifactVersion ? ` / v${run.artifactVersion}` : ""}</div>
             <h2 class="version-title">{run.title}</h2>
-            <p class="mt-1 text-sm text-muted">{run.signalCount} signals · {run.windowLabel}</p>
+            <p class="mt-1 text-sm text-muted">{run.signalCount} signals / {run.windowLabel}</p>
           </a>
         ))
       }

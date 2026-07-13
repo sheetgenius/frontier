@@ -26,9 +26,11 @@ receipt before promotion.
 
 ## New source this run: agent-flywheel
 
-Scope fence honored: only the `agentic_coding_flywheel_setup` repository and
-`agent-flywheel.com` were harvested. The author's other repositories were rejected
-as evidence. The installer was read at tag; it was never executed.
+The intake was bounded to the `agentic_coding_flywheel_setup` repository and
+`agent-flywheel.com`. The wider ecosystem was not part of this run. The
+installer was read at tag; it was never executed. The tag and paper below both
+predate the July 1-2 research window, so they establish an intake baseline and
+context rather than an in-window product event.
 
 - Latest tag: `v0.7.0`, release published 2026-06-26, dereferenced commit
   `edaee4f6ceff772d4f56d42eda65b1d659fead73`.
@@ -41,21 +43,31 @@ as evidence. The installer was read at tag; it was never executed.
   dangerous agent flags.
   - channel: tagged-release
   - receipt: https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/README.md
-- Full vibe mode is recommended for throwaway VPS environments. Safe mode keeps
-  standard confirmations and does not enable passwordless sudo.
+- The README recommends full vibe mode for throwaway VPS environments and says
+  safe mode keeps standard confirmations with no passwordless sudo. The tagged
+  implementation supports neither claim as a hard cleanup boundary. A safe-mode
+  run skips ACFS's `/etc/sudoers.d/90-ubuntu-acfs` write, but it does not delete a
+  rule left by an earlier vibe run or revoke another `NOPASSWD` rule. Both modes
+  also install and source the same zsh file, including dangerous `cc`, `cod`,
+  `agy`, and `gmi` shortcuts.
   - channel: tagged-release
   - receipt: https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/README.md
+  - receipt: https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/install.sh
+  - receipt: https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/acfs/zsh/acfs.zshrc
 - The deployed shell aliases in `acfs/zsh/acfs.zshrc` run Claude Code with
   `--dangerously-skip-permissions`, Codex with
   `--dangerously-bypass-approvals-and-sandbox`, and Antigravity through
   `agy-locked`.
   - channel: tagged-release
   - receipt: https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/acfs/zsh/acfs.zshrc
-- `scripts/lib/user.sh` writes `/etc/sudoers.d/90-ubuntu-acfs` with
+- The active `install.sh` writes `/etc/sudoers.d/90-ubuntu-acfs` with
   `NOPASSWD:ALL` for the target user in vibe mode, then validates it with
-  `visudo`.
+  `visudo`. There is no safe-mode removal branch. The tagged Hetzner cloud-init
+  example separately creates passwordless sudo, so even a fresh safe-mode run
+  does not establish its absence when that provisioning path is used.
   - channel: tagged-release
-  - receipt: https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/scripts/lib/user.sh
+  - receipt: https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup/blob/edaee4f6ceff772d4f56d42eda65b1d659fead73/install.sh#L4861-L4870
+  - receipt: https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup/blob/edaee4f6ceff772d4f56d42eda65b1d659fead73/scripts/providers/hetzner-cloud-init.yml#L41-L46
 - `scripts/lib/agy_locked.py` writes Antigravity settings with
   `toolPermission: always-proceed`, `artifactReviewPolicy: always-proceed`,
   `enableTerminalSandbox: false`, and `allowNonWorkspaceAccess: true`; it
@@ -63,28 +75,41 @@ as evidence. The installer was read at tag; it was never executed.
   overrides for `--model`, `--sandbox`, and dangerous-skip flags.
   - channel: tagged-release
   - receipt: https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/scripts/lib/agy_locked.py
-- The Antigravity DCG pre-tool hook in `agy_locked.py` fails open if `dcg` is
-  unavailable or times out. That makes DCG a useful guard, not a hard guarantee
-  under failure.
+- The Antigravity DCG pre-tool hook in `agy_locked.py` allows the command when
+  hook input is malformed, no command is extracted, `dcg` is unavailable or
+  times out, or the result does not contain a blocking decision. That makes DCG
+  a useful guard, not a hard guarantee under indeterminate checks.
   - channel: tagged-release
   - receipt: https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/scripts/lib/agy_locked.py
-- The tagged web app source prices the setup as self-reported current costs:
-  Cloud VPS at `$40-56/month`, Claude Max at `$200/month`, ChatGPT Pro at
-  `$200/month`, and an estimated total of `$440-656/month`.
+- The tagged web app source presents a project-authored reference budget: Cloud
+  VPS at `$40-56/month`, Claude Max at `$200/month` with a `$400` two-account
+  note, ChatGPT Pro at `$200/month`, and an estimated total of `$440-656/month`.
+  The high end assumes the two-account Claude line; these are attributed
+  examples, not independent prices or an installer-enforced minimum.
   - channel: tagged-release
-  - receipt: https://raw.githubusercontent.com/Dicklesworthstone/agentic_coding_flywheel_setup/v0.7.0/apps/web/app/page.tsx
-- The solo-author-velocity claim was verified from arXiv source, not the author's
-  portfolio. Robbes et al. (submitted 2026-06-05) state that, among newer
-  projects, the entity with the most adopting repositories is `Dicklesworthstone`;
-  the figure macro sets the top-35 display count to 35, top entity to
-  `dicklesworthstone`, and top count to 110. The source table sets Microsoft's
-  newer-project repository count to 52, and the paper text says this single
-  developer created more repositories with coding-agent traces than Microsoft.
-  - channel: paper
-  - receipt: https://arxiv.org/abs/2606.07448
-  - local source verification: `/private/tmp/robbe-src-260607448/main.tex`,
-    `/private/tmp/robbe-src-260607448/rq4-Very/figure_counts.tex`,
-    `/private/tmp/robbe-src-260607448/rq3-Very/organization_adoption.tex`
+  - receipt: https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup/blob/edaee4f6ceff772d4f56d42eda65b1d659fead73/apps/web/app/page.tsx#L819-L873
+- The tagged LICENSE is headed "MIT License (with OpenAI/Anthropic Rider)" and
+  denies rights to the named companies, their affiliates, and people or entities
+  acting for them. GitHub reports `NOASSERTION`, not standard MIT. Potentially
+  covered operators should review the tagged text and obtain their own legal
+  guidance; Frontier does not opine on interpretation or enforceability.
+  - channel: tagged-release intake baseline
+  - receipt: https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup/blob/edaee4f6ceff772d4f56d42eda65b1d659fead73/LICENSE
+  - receipt: https://api.github.com/repos/Dicklesworthstone/agentic_coding_flywheel_setup/license?ref=edaee4f6ceff772d4f56d42eda65b1d659fead73
+- The individual-account repository-count claim was verified from the pinned
+  arXiv v1 source, not the author's portfolio. Robbes et al. (submitted
+  2026-06-05) state that, among newer projects, the entity with the most adopting
+  repositories is `Dicklesworthstone`;
+  the figure macro sets the top-35 display count to 35, `dicklesworthstone` to
+  110, and Microsoft to 97. The paper text says this single developer created
+  more repositories with coding-agent traces than Microsoft in the study
+  sample. The counts are from the same figure; the prior 110-versus-52 pairing
+  mixed unlike tables and was corrected on 2026-07-12. The paper does not
+  establish sole authorship, useful outcomes, or that Agent Flywheel caused the
+  account's repository count. Its sample is restricted to non-fork GitHub
+  projects with at least 10 stars, 5,000 lines of code, and 100 commits.
+  - channel: paper intake context
+  - receipt: https://arxiv.org/src/2606.07448v1
 
 ## claude-code
 

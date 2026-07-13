@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/google-gemini/gemini-cli/releases/tag/v0.51.0-nightly.20260701.g7f00c5fe5
     precision: github_release
 ---
-# 2026-07-02-gemini-cli-atfile-hardening-nightly-only
+# Gemini CLI @file hardening is nightly-only
 
 Gemini CLI `@file` hardening reached nightly
 `v0.51.0-nightly.20260701.g7f00c5fe5`, but not stable `v0.49.0` or preview

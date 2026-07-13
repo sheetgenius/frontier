@@ -1,6 +1,7 @@
 ---
 import { marked } from "marked";
 import Base from "../../layouts/Base.astro";
+import FrontierLens from "../../components/FrontierLens.astro";
 import { metaDescription } from "../../lib/seo";
 import {
   adjacentTool,
@@ -27,6 +28,7 @@ export function getStaticPaths() {
 
 const signal = listSignals().find((s) => s.id === Astro.params.id);
 if (!signal) throw new Error("Signal not found");
+const isWithdrawn = signal.status === "withdrawn";
 
 const profiles = listProfiles();
 const profileSlugs = new Set(profiles.map((p) => p.slug));
@@ -45,9 +47,11 @@ const findings = idResolved.length > 0 ? idResolved : pathResolved;
 const primaryFinding = findings[0]?.finding;
 const confidence = signal.confidence ?? primaryFinding?.data.confidence;
 const actionability = signal.actionability ?? primaryFinding?.data.actionability;
-const evidence = findings.flatMap(({ finding }) =>
-  finding ? evidenceLinksForFinding(finding).map((link) => ({ ...link, findingId: finding.data.finding_id })) : [],
-);
+const evidence = Array.from(new Map(
+  findings.flatMap(({ finding }) =>
+    finding ? evidenceLinksForFinding(finding).map((link) => ({ ...link, findingId: finding.data.finding_id })) : [],
+  ).map((link) => [link.url, link]),
+).values());
 const sourceLabels = signal.sources.map((src) => sourceLabel(src)).filter(Boolean);
 const signalKeywords = Array.from(new Set([
   ...sourceLabels,
@@ -75,8 +79,9 @@ const hasMetadata =
   title={`${signal.title} | ${sourceLabels.join(", ")} Signal | Bitter Frontier`}
   description={signalDescription}
   publishedDate={signal.date}
-  modifiedDate={signal.date}
-  articleSection="AI coding agent signal"
+  modifiedDate={signal.correction?.date ?? signal.date}
+  articleSection={isWithdrawn ? "Withdrawn signal record" : "AI coding agent signal"}
+  authorName="Michael Ruescher"
   keywords={signalKeywords}
 >
   <article class="measure py-10">
@@ -87,7 +92,7 @@ const hasMetadata =
       {formatDate(signal.date)}
       {signal.sources.map((src) => (
         <span>
-          {" · "}
+          {" / "}
           {profileSlugs.has(src) ? (
             <a href={`/profiles/${src}/`} class="text-[var(--color-bitter)] no-underline hover:underline">
               {sourceLabel(src)}
@@ -99,6 +104,20 @@ const hasMetadata =
       ))}
     </div>
     <h1 class="issue-title mt-2">{signal.title}</h1>
+    <p class="issue-meta">Edited by Michael Ruescher</p>
+    {isWithdrawn && (
+      <aside class="correction-notice mt-5" aria-label="Signal correction">
+        <p class="small-caps">Withdrawn from the reporting window</p>
+        <p class="mt-2">
+          {signal.correction?.reason ?? "This item is preserved for the correction record but is no longer counted as an accepted signal."}
+        </p>
+        {signal.correction?.canonicalUrl && (
+          <p class="mt-2">
+            <a href={signal.correction.canonicalUrl}>Read the corrected canonical record -&gt;</a>
+          </p>
+        )}
+      </aside>
+    )}
     {signal.sections.length > 0 && (
       <div class="signal-tracks mt-3">
         {signal.sections.map((section) => (
@@ -113,7 +132,9 @@ const hasMetadata =
 
     {signal.whyActionBearing.length > 0 && (
       <div class="mt-7">
-        <p class="small-caps text-muted">What this changes for operators</p>
+        <p class="small-caps text-muted">
+          {isWithdrawn ? "What the corrected intake established" : "What this changes for operators"}
+        </p>
         <ul class="signal-actions mt-3">
           {signal.whyActionBearing.map((item) => (
             <li set:html={inline(item)} />
@@ -157,12 +178,12 @@ const hasMetadata =
                       <span>{composesLabel(id)}</span>
                     )}
                     {isWatchlist ? (
-                      <span class="text-muted"> · watchlist</span>
+                      <span class="text-muted"> / watchlist</span>
                     ) : (
-                      <span class="text-muted"> · adjacent</span>
+                      <span class="text-muted"> / adjacent</span>
                     )}
                     {adj?.notes && (
-                      <span class="text-muted"> · {adj.notes}</span>
+                      <span class="text-muted"> / {adj.notes}</span>
                     )}
                   </li>
                 );
@@ -230,7 +251,7 @@ const hasMetadata =
               <a href={`/digests/${digest.slug}/`} class="hover:underline">
                 {digest.data.title ?? digest.slug}
               </a>
-              <span class="text-muted"> · {formatDate(digest.data.window?.end)}</span>
+              <span class="text-muted"> / {formatDate(digest.data.window?.end)}</span>
             </li>
           ))}
         </ul>
@@ -243,10 +264,11 @@ const hasMetadata =
       </p>
     )}
     <p class="mt-3 font-mono text-sm text-muted">
-      Schema: <code>bitter.frontier_signals.v0</code> · ID: <code>{signal.id}</code>
+      Schema: <code>bitter.frontier_signals.v0</code> / ID: <code>{signal.id}</code>
     </p>
     <p class="mt-3 font-mono text-sm text-muted">
-      Signals are produced by the <a class="hover:underline" href="https://bitter.sh">Bitter</a> autonomous research loop.
+      Research evidence and publication history are open in the repository.
     </p>
+    <FrontierLens />
   </article>
 </Base>

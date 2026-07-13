@@ -4,7 +4,7 @@
    editorial weight contrast carries the headlines, not a contrasting face.
    All faces are self-hosted so they render under the `font-src 'self'` CSP.
 
-   Manrope — the brand typeface. One self-hosted VARIABLE woff2 (weight axis
+   Manrope - the brand typeface. One self-hosted VARIABLE woff2 (weight axis
    200..800) carries the whole hierarchy, body AND headlines, by weight
    contrast. Both --font-sans and --font-serif map to it; existing
    var(--font-serif) headline references therefore render in Manrope.
@@ -18,7 +18,7 @@
   src: url("../fonts/manrope-variable.woff2") format("woff2");
 }
 
-/* IBM Plex Mono — the wordmark/logo voice and the operator/data labels.
+/* IBM Plex Mono - the wordmark/logo voice and the operator/data labels.
    Crisp, institutional, technical. Self-hosted static weights. */
 @font-face {
   font-family: "IBM Plex Mono";
@@ -203,7 +203,7 @@ code {
      run off the right edge. The name itself is short enough to hold one line. */
 }
 
-/* Wordmark in IBM Plex Mono — bitter.sh's logo voice: institutional, crisp,
+/* Wordmark in IBM Plex Mono - bitter.sh's logo voice: institutional, crisp,
    letterspaced. Weight contrast against the mono tag below carries the lockup. */
 .masthead-wordmark .wordmark-name {
   font-family: var(--font-mono);
@@ -530,6 +530,114 @@ code {
   text-wrap: pretty;
 }
 
+.publication-axioms {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 2rem 0 0;
+  border-block: 1px solid var(--color-line);
+}
+
+.publication-axioms > div {
+  padding: 1.2rem 1.35rem 1.25rem 0;
+}
+
+.publication-axioms > div + div {
+  padding-left: 1.35rem;
+  border-left: 1px solid var(--color-line);
+}
+
+.publication-axioms dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-bitter);
+}
+
+.publication-axioms dt a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.publication-axioms dt a:hover {
+  text-decoration: underline;
+}
+
+.publication-axioms dd {
+  margin: 0.48rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.93rem;
+  line-height: 1.55;
+}
+
+.publication-thesis-link {
+  margin: 0.85rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-muted);
+}
+
+.publication-thesis-link a {
+  text-decoration: none;
+}
+
+.publication-thesis-link a:hover {
+  text-decoration: underline;
+}
+
+.frontier-lens {
+  margin-top: 2rem;
+  padding-top: 1.1rem;
+}
+
+.frontier-lens p {
+  margin: 0;
+}
+
+.frontier-lens p + p {
+  margin-top: 0.55rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.frontier-lens a {
+  color: var(--color-ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.frontier-lens a:hover {
+  color: var(--color-bitter);
+  text-decoration: underline;
+}
+
+.founder-signoff {
+  margin-top: 2.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.publisher-note {
+  padding: 1.1rem 1.25rem;
+  border-left: 2px solid var(--color-bitter);
+  background: color-mix(in srgb, var(--color-bitter) 5%, transparent);
+}
+
+.publisher-note p {
+  margin: 0;
+}
+
+.publisher-note p + p {
+  margin-top: 0.55rem;
+  color: var(--color-muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
 @media (max-width: 640px) {
   .publication-intro {
     padding-block: 1.85rem 2rem;
@@ -549,6 +657,21 @@ code {
     margin-top: 1.05rem;
     font-size: 1rem;
     line-height: 1.58;
+  }
+
+  .publication-axioms {
+    grid-template-columns: 1fr;
+    margin-top: 1.5rem;
+  }
+
+  .publication-axioms > div {
+    padding: 1rem 0;
+  }
+
+  .publication-axioms > div + div {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid var(--color-line);
   }
 }
 
@@ -756,6 +879,144 @@ code {
   color: var(--color-muted);
   font-size: 1rem;
   line-height: 1.65;
+}
+
+.correction-notice {
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--color-bitter);
+  border-left-width: 4px;
+  background: color-mix(in srgb, var(--color-bitter) 7%, transparent);
+}
+
+.correction-notice p {
+  margin-bottom: 0;
+}
+
+.corrections-header h1 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.corrections-header p {
+  max-width: 42rem;
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-serif);
+  font-size: clamp(1.08rem, 1.3vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.corrections-list {
+  display: grid;
+  gap: 0;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.corrections-list > li {
+  padding: 1.65rem 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.correction-entry-meta,
+.correction-object,
+.correction-receipt {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.correction-entry-meta {
+  margin: 0;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+.correction-entry h3 {
+  max-width: 42rem;
+  margin: 0.55rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.18rem, 1.6vw, 1.4rem);
+  line-height: 1.3;
+}
+
+.correction-object {
+  margin: 0.45rem 0 0;
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+
+.correction-change {
+  display: grid;
+  gap: 0.9rem;
+  margin: 1.1rem 0 0;
+}
+
+.correction-change > div {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: 0.8rem;
+}
+
+.correction-change dt {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.correction-change dd {
+  margin: 0;
+  line-height: 1.58;
+}
+
+.correction-verdict {
+  max-width: 42rem;
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+  line-height: 1.58;
+}
+
+.correction-provenance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.5rem;
+  margin: 1rem 0 0;
+}
+
+.correction-provenance div {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.correction-provenance dt {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.correction-provenance dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+}
+
+.correction-receipt {
+  margin: 0.8rem 0 0;
+}
+
+@media (max-width: 640px) {
+  .correction-change > div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
 }
 
 .homepage-thesis {
@@ -1396,7 +1657,7 @@ code {
 }
 
 .operator-brief-row li::before {
-  content: "— ";
+  content: "- ";
   color: color-mix(in srgb, var(--color-bitter) 65%, transparent);
 }
 
@@ -1481,6 +1742,12 @@ code {
   color: var(--color-faint);
   font-family: var(--font-mono);
   font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.source-surface-notes {
+  margin: 0.45rem 0 0;
+  font-size: 0.86rem;
   line-height: 1.55;
 }
 

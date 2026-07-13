@@ -12,7 +12,7 @@ const versions = versionsForDigest(digest.id);
 ---
 
 <Base
-  title={`Versions · ${digest.data.title}`}
+  title={`Versions | ${digest.data.title}`}
   description={`Version history for ${digest.data.title}.`}
   canonicalPath={`/digests/${digest.slug}/`}
   robots="noindex, follow"
@@ -26,7 +26,7 @@ const versions = versionsForDigest(digest.id);
           <a href={`/runs/${version.id}/`} class="version-link">
             <div class="small-caps text-[var(--color-bitter)]">{version.status} {version.artifactVersion ? `v${version.artifactVersion}` : ""}</div>
             <h2 class="version-title">{version.title}</h2>
-            <p class="mt-1 text-sm text-muted">{version.signalCount} signals · {version.windowLabel}</p>
+            <p class="mt-1 text-sm text-muted">{version.signalCount} signals / {version.windowLabel}</p>
           </a>
         ))
       }

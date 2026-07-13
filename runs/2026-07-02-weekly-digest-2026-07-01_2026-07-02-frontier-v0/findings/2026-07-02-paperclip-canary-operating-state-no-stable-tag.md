@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/paperclipai/paperclip/releases/tag/canary/v2026.702.0-canary.8
     precision: github_release
 ---
-# 2026-07-02-paperclip-canary-operating-state-no-stable-tag
+# Paperclip operating-state work remains canary-only
 
 Paperclip did not cut a stable tag after `v2026.626.0`; July 2 work is canary
 only through `canary/v2026.702.0-canary.8`. The canary stream includes actual

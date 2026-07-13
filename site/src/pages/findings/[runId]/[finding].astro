@@ -24,8 +24,9 @@ const findingKeywords = Array.from(new Set([
   "agent harness",
   "Bitter Frontier",
 ]));
+const findingDetail = finding.data.summary ?? citedSignal?.summary ?? finding.data.operator_consequence;
 const findingDescription = metaDescription(
-  `${findingSourceLabel} source-backed coding agent finding: ${finding.data.summary ?? citedSignal?.summary ?? finding.data.operator_consequence ?? ""}`,
+  findingDetail ? `${findingSourceLabel} source-backed coding agent finding: ${findingDetail}` : undefined,
   finding.data.summary,
   citedSignal?.summary,
   finding.data.operator_consequence,
@@ -33,20 +34,24 @@ const findingDescription = metaDescription(
   finding.body,
   `${findingTitle} source-backed finding for ${findingSourceLabel}.`,
 );
+const findingModifiedDate = finding.data.corrected_on
+  ?? finding.data.last_updated
+  ?? finding.data.window?.end;
 ---
 
 <Base
   title={`${findingTitle} | Source-Backed Finding | Bitter Frontier`}
   description={findingDescription}
   publishedDate={finding.data.window?.end}
-  modifiedDate={finding.data.window?.end}
+  modifiedDate={findingModifiedDate}
   articleSection="Source-backed coding agent finding"
+  authorName="Michael Ruescher"
   keywords={findingKeywords}
   canonicalPath={`/findings/${finding.finding}/`}
   robots="noindex, follow"
 >
   <article class="measure py-10">
-    <p class="small-caps text-muted">Finding · {finding.data.source}</p>
+    <p class="small-caps text-muted">Finding / {finding.data.source}</p>
     <div class="prose-frontier mt-7" set:html={finding.html} />
     <FindingFooter finding={finding} />
     <SourceTrail findings={[finding]} title="Source links" />

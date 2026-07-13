@@ -36,12 +36,14 @@ and the repo. Verify **only** the receipts in that list.
    in the diff (`object` tells you which finding/signal/profile/digest). Quote
    the verbatim phrase in the source that supports (or fails to support) it.
 
-3. **Check the date, to the year, in-window.** The date must be a full ISO date
-   whose **year** falls inside the artifact `window`. Trust the API / changelog
-   ISO timestamp (`published_at`, the changelog's ISO date), NOT the rendered
-   HTML: some release pages render a stale prior year while the API date is
-   correct. A plausible month/day with the wrong or unconfirmed year is
-   out-of-window.
+3. **Check the date, to the year.** For a new claim or coverage gap, the full ISO
+   date must fall inside the artifact `window`. For a PR explicitly correcting a
+   wrong date or window classification, the proven date may fall outside the
+   original window; that is the fact the correction is meant to preserve. Trust
+   the API / changelog ISO timestamp (`published_at`, the changelog's ISO date),
+   NOT the rendered HTML: some release pages render a stale prior year while the
+   API date is correct. A plausible month/day with the wrong or unconfirmed year
+   is unsupported.
 
 4. **Resolve release-channel status by git ancestry, not by date.** This is the
    highest-value check. If the claim (or the signal's `channel` field) says the
@@ -57,11 +59,14 @@ and the repo. Verify **only** the receipts in that list.
      that is a **channel-mismatch**, even if the change is real and the date is
      in-window.
 
-5. **Check precision against the floor.** The receipt's `precision` must be at
-   or above the artifact's `evidence_floor` (read it from the provider's
-   `sources/<id>.yml` and/or the profile frontmatter). A `commit_diff_reviewed`
-   claim must point at a diff that actually contains the change; a `release_note`
-   claim must point at a release/changelog entry, not a marketing page.
+5. **Check precision against the source contract and profile floor.** Precision
+   is not a universal numerical ladder. It names how the receipt was checked and
+   must fit the claim: a `commit_line_range` must contain the implementation, a
+   `tagged_commit_file` must be pinned to the stated tag or dereferenced commit,
+   a `github_release` must be the versioned release record, and a
+   `primary_research_source` must be the paper/source/data actually used for the
+   result. Reject a label that overstates what was inspected or an evidence type
+   the source contract refuses.
 
 ## Verdict vocabulary (use exactly these)
 
@@ -70,11 +75,17 @@ For each receipt, assign one:
 - **verified-in-window**: the primary source supports the claim, the date's
   year is confirmed in-window, the channel matches, and the precision meets the
   floor.
+- **verified-correction**: the PR explicitly corrects a wrong date or window
+  classification, and the primary source supports the corrected fact and full
+  ISO event date. The date may be outside the original window when that is the
+  correction.
 - **unsupported**: the primary source does not support the claim (wrong fact,
   the source does not say it, the link is dead / login-walled / a moved shell,
   or precision is below the floor).
-- **out-of-window**: the change is real but its in-window date cannot be
-  confirmed, or its confirmed year falls outside the artifact window.
+- **out-of-window**: for a new claim or coverage gap, the change is real but its
+  event date cannot be confirmed inside the artifact window. Do not use this
+  verdict for a valid correction whose point is to prove the original date was
+  outside the window; use `verified-correction`.
 - **channel-mismatch**: the change is real and in-window, but its release
   channel is overstated (called shipped / tagged when it is main-unreleased or
   preview-beta only).
@@ -91,11 +102,12 @@ verdict, then the table, then evidence for every non-`verified-in-window` row.
 ## Receipt verification: adversarial re-fetch
 
 **Headline: <PASS | NEEDS-FIX>**. N receipts checked: A verified-in-window,
-B unsupported, C out-of-window, D channel-mismatch.
+B verified-correction, C unsupported, D out-of-window, E channel-mismatch.
 
 | object | url | verdict | note |
 |---|---|---|---|
 | signal <id> | <url> | verified-in-window | "<verbatim supporting phrase>" |
+| signal <id> | <url> | verified-correction | correct event date is outside the original window, which is the correction |
 | signal <id> | <url> | channel-mismatch | claimed tagged-release; `git tag --contains <sha>` returns nothing, only on `main` as of <date> |
 
 ### Detail for each non-verified row
@@ -107,7 +119,7 @@ claim".>
 ```
 
 Set **Headline: NEEDS-FIX** if any row is unsupported, out-of-window, or
-channel-mismatch; otherwise **PASS**.
+channel-mismatch; otherwise **PASS**. `verified-correction` is a passing verdict.
 
 ## Rules of engagement
 

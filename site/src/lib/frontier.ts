@@ -5,13 +5,16 @@ import { marked } from "marked";
 import YAML from "yaml";
 
 export const SOURCE_LABELS: Record<string, string> = {
+  "agent-flywheel": "Agent Flywheel",
   "agent-zero": "Agent Zero",
+  "antigravity": "Antigravity CLI",
   "claude-code": "Claude Code",
   "codex": "Codex",
   "eve": "Eve",
   "flue": "Flue",
   "gemini-cli": "Gemini CLI",
   "hermes-agent": "Hermes Agent",
+  "heypi": "heypi",
   "openclaw": "OpenClaw",
   "openhands": "OpenHands",
   "paperclip": "Paperclip",
@@ -87,6 +90,9 @@ function rewriteRunLinks(content: string) {
       const cleanLabel = label.replace(/\s+finding$/i, "");
       return `[${cleanLabel}](${href})`;
     },
+  ).replace(
+    /\[([^\]]+)\]\(\.\/([^/)]+)\.md\)/g,
+    (_match, label: string, finding: string) => `[${label}](/findings/${finding}/)`,
   );
 }
 
@@ -156,6 +162,7 @@ export function listRuns(): RunVersion[] {
       const digest = digestFile ? readMarkdown(digestFile) : undefined;
       const signalsFile = path.join(runDir, "signals", "frontier-signals.yml");
       const signals = fs.existsSync(signalsFile) ? readYaml(signalsFile)?.signals ?? [] : [];
+      const acceptedSignals = signals.filter((signal: any) => signal.status !== "withdrawn");
       const window = manifest.window ?? digest?.data.window ?? {};
       const start = window.start ?? window.from ?? "unknown";
       const end = window.end ?? window.to ?? "unknown";
@@ -168,12 +175,15 @@ export function listRuns(): RunVersion[] {
         windowLabel: `${start} to ${end}`,
         manifest,
         digest,
-        signalCount: signals.length || digest?.data.signal_count || 0,
-        signalIds: signals.map((signal: any) => signal.id).filter(Boolean),
+        signalCount: fs.existsSync(signalsFile) ? acceptedSignals.length : digest?.data.signal_count || 0,
+        signalIds: acceptedSignals.map((signal: any) => signal.id).filter(Boolean),
         qaPath: fs.existsSync(path.join(runDir, "qa.md")) ? rel(path.join(runDir, "qa.md")) : undefined,
       };
     })
     .sort((a, b) => {
+      const at = toTime(a.manifest.window?.end ?? a.manifest.window?.to ?? a.id.slice(0, 10));
+      const bt = toTime(b.manifest.window?.end ?? b.manifest.window?.to ?? b.id.slice(0, 10));
+      if (at !== bt) return bt - at;
       const av = a.artifactVersion ?? 0;
       const bv = b.artifactVersion ?? 0;
       if (av !== bv) return bv - av;
@@ -182,7 +192,15 @@ export function listRuns(): RunVersion[] {
 }
 
 export function versionsForDigest(digestId: string): RunVersion[] {
-  return listRuns().filter((run) => run.digest?.data.digest_id === digestId);
+  const directRunIds = new Set(
+    listDigests()
+      .filter((digest) => digest.id === digestId)
+      .flatMap((digest) => [digest.data.run_id, digest.data.published_from_run])
+      .filter(Boolean),
+  );
+  return listRuns().filter(
+    (run) => directRunIds.has(run.id) || run.digest?.data.digest_id === digestId,
+  );
 }
 
 export function canonicalRunForDigest(digest: MarkdownArtifact): RunVersion | undefined {
@@ -194,6 +212,12 @@ export type SignalEntry = {
   id: string;
   title: string;
   date: string;
+  status: "accepted" | "withdrawn";
+  correction?: {
+    date?: string;
+    reason?: string;
+    canonicalUrl?: string;
+  };
   sources: string[];
   sections: string[];
   tracks: string[]; // deprecated alias, kept until all readers migrate
@@ -239,7 +263,7 @@ export const SECTION_SCOPES: Record<string, string> = {
   "runtime":
     "Runtime covers the move from chat or tool calls into bounded execution: terminal, filesystem, browser, code execution, tool creation, sandboxing, persistence, cleanup. Where the agent actually operates.",
   "platform":
-    "Platform covers how agent harnesses become usable products and ecosystems for new operators: install paths, distribution, packages, plugins, skills, SDK / CLI / GUI shape, cloud and enterprise packaging, integrations. The adoption and distribution lane — not a catch-all for everything platform-shaped. Evaluation, governance defaults, and sandbox policy belong to Control Plane or Runtime.",
+    "Platform covers how agent harnesses become usable products and ecosystems for new operators: install paths, distribution, packages, plugins, skills, SDK / CLI / GUI shape, cloud and enterprise packaging, integrations. The adoption and distribution lane - not a catch-all for everything platform-shaped. Evaluation, governance defaults, and sandbox policy belong to Control Plane or Runtime.",
 };
 
 export function sectionLabel(slug: string): string {
@@ -288,6 +312,14 @@ function normalizeYamlSignal(signal: any, runId: string): SignalEntry {
     id: signal.id,
     title: signal.title ?? signal.id,
     date: dateFromSignalId(signal.id),
+    status: signal.status === "withdrawn" ? "withdrawn" : "accepted",
+    correction: signal.correction
+      ? {
+          date: signal.correction.date,
+          reason: signal.correction.reason,
+          canonicalUrl: signal.correction.canonical_url,
+        }
+      : undefined,
     sources,
     sections,
     tracks: sections, // deprecated alias kept for back-compat readers
@@ -311,6 +343,14 @@ function normalizeJsonlSignal(signal: any): SignalEntry {
     id: signal.id,
     title: signal.title ?? signal.id,
     date: dateFromSignalId(signal.id),
+    status: signal.status === "withdrawn" ? "withdrawn" : "accepted",
+    correction: signal.correction
+      ? {
+          date: signal.correction.date,
+          reason: signal.correction.reason,
+          canonicalUrl: signal.correction.canonical_url,
+        }
+      : undefined,
     sources: Array.isArray(signal.sources) ? signal.sources : signal.source ? [signal.source] : [],
     sections,
     tracks: sections,
@@ -385,6 +425,10 @@ export function listSignals(): SignalEntry[] {
   return Array.from(seen.values()).sort((a, b) => b.date.localeCompare(a.date));
 }
 
+export function listAcceptedSignals(): SignalEntry[] {
+  return listSignals().filter((signal) => signal.status !== "withdrawn");
+}
+
 export function digestsForSource(sourceId: string): MarkdownArtifact[] {
   return listDigests().filter((d) => (d.data.sources ?? []).includes(sourceId));
 }
@@ -393,8 +437,20 @@ export function getSignal(id: string): SignalEntry | undefined {
   return listSignals().find((s) => s.id === id);
 }
 
+export function signalIdsFromOperatorBrief(brief: any): string[] {
+  const sections = ["upgrade_check", "try", "watch", "ignore_or_deprioritize", "uncertain"];
+  const items = sections.flatMap((section) => Array.isArray(brief?.[section]) ? brief[section] : []);
+  const ids = items.flatMap((item) =>
+    [...String(item).matchAll(/href="\/signals\/([^/"]+)\/"/g)].map((match) => match[1]),
+  );
+  return Array.from(new Set(ids));
+}
+
 export function digestsForSignalId(signalId: string): MarkdownArtifact[] {
-  return listDigests().filter((d) => (d.data.top_signal_ids ?? []).includes(signalId));
+  return listDigests().filter((digest) => {
+    if ((digest.data.top_signal_ids ?? []).includes(signalId)) return true;
+    return signalIdsFromOperatorBrief(digest.data.operator_brief).includes(signalId);
+  });
 }
 
 export function findFindingByFindingId(findingId: string): FindingEntry | undefined {
@@ -403,7 +459,7 @@ export function findFindingByFindingId(findingId: string): FindingEntry | undefi
 
 export function signalsCitingFinding(finding: FindingEntry): SignalEntry[] {
   const findingId = finding.data.finding_id as string | undefined;
-  return listSignals().filter((s) => {
+  return listAcceptedSignals().filter((s) => {
     if (findingId && s.findingIds.includes(findingId)) return true;
     return s.findingRefs.some((ref) => ref.runId === finding.runId && ref.slug === finding.finding);
   });
@@ -421,13 +477,13 @@ export function profilesCitingFinding(finding: FindingEntry): ProfileCitation[] 
   for (const profile of listProfiles()) {
     for (const claim of profile.data.claims ?? []) {
       if (claim.finding_id === findingId) {
-        citations.push({ profile, context: `claim · ${claim.id}` });
+        citations.push({ profile, context: `claim / ${claim.id}` });
       }
     }
     const basis = profile.data.posture_basis ?? {};
     for (const lens of ["capability", "accessibility", "governance"]) {
       if ((basis[lens] ?? []).includes(findingId)) {
-        citations.push({ profile, context: `posture · ${lens}` });
+        citations.push({ profile, context: `posture / ${lens}` });
       }
     }
   }
@@ -435,24 +491,24 @@ export function profilesCitingFinding(finding: FindingEntry): ProfileCitation[] 
 }
 
 export function signalsForSource(sourceSlug: string): SignalEntry[] {
-  return listSignals().filter((s) => s.sources.includes(sourceSlug));
+  return listAcceptedSignals().filter((s) => s.sources.includes(sourceSlug));
 }
 
 export function listSignalSourceSlugs(): string[] {
   const set = new Set<string>();
-  for (const signal of listSignals()) {
+  for (const signal of listAcceptedSignals()) {
     for (const src of signal.sources) set.add(src);
   }
   return Array.from(set).sort();
 }
 
 export function signalsForSection(sectionSlug: string): SignalEntry[] {
-  return listSignals().filter((s) => s.sections.includes(sectionSlug));
+  return listAcceptedSignals().filter((s) => s.sections.includes(sectionSlug));
 }
 
 export function listSectionSlugs(): string[] {
   const set = new Set<string>();
-  for (const signal of listSignals()) {
+  for (const signal of listAcceptedSignals()) {
     for (const section of signal.sections) set.add(section);
   }
   return Array.from(set).sort();
@@ -479,7 +535,7 @@ export function linkGraphIssues(): LinkIssue[] {
       if (!findingsByFindingId.has(claim.finding_id)) {
         issues.push({
           kind: "profile-claim-missing-finding",
-          where: `profiles/${profile.slug} → claim ${claim.id}`,
+          where: `profiles/${profile.slug} -> claim ${claim.id}`,
           ref: claim.finding_id,
         });
       }
@@ -490,7 +546,7 @@ export function linkGraphIssues(): LinkIssue[] {
         if (!findingsByFindingId.has(fid)) {
           issues.push({
             kind: "profile-posture-missing-finding",
-            where: `profiles/${profile.slug} → posture_basis.${lens}`,
+            where: `profiles/${profile.slug} -> posture_basis.${lens}`,
             ref: fid,
           });
         }
@@ -503,7 +559,7 @@ export function linkGraphIssues(): LinkIssue[] {
       if (!signalIds.has(sid)) {
         issues.push({
           kind: "digest-top-signal-missing",
-          where: `digests/${digest.slug} → top_signal_ids`,
+          where: `digests/${digest.slug} -> top_signal_ids`,
           ref: sid,
         });
       }
@@ -518,7 +574,7 @@ export function linkGraphIssues(): LinkIssue[] {
             if (!signalIds.has(m[1])) {
               issues.push({
                 kind: "operator-brief-broken-signal-link",
-                where: `digests/${digest.slug} → operator_brief.${section}`,
+                where: `digests/${digest.slug} -> operator_brief.${section}`,
                 ref: m[1],
               });
             }
@@ -565,6 +621,30 @@ export function listFindings(): FindingEntry[] {
   return Array.from(seen.values()).sort((a, b) => a.relativePath.localeCompare(b.relativePath));
 }
 
+function findingCanonicalTime(finding: FindingEntry): number {
+  return toTime(
+    finding.data.corrected_on
+    ?? finding.data.last_updated
+    ?? finding.data.event_date
+    ?? finding.data.window?.end
+    ?? finding.runId.slice(0, 10),
+  );
+}
+
+export function listCanonicalFindings(): FindingEntry[] {
+  const bySlug = new Map<string, FindingEntry>();
+  for (const finding of listFindings()) {
+    const current = bySlug.get(finding.finding);
+    if (!current || findingCanonicalTime(finding) > findingCanonicalTime(current)) {
+      bySlug.set(finding.finding, finding);
+    }
+  }
+  return Array.from(bySlug.values()).sort((a, b) =>
+    findingCanonicalTime(b) - findingCanonicalTime(a)
+    || a.finding.localeCompare(b.finding),
+  );
+}
+
 export function getFinding(runId: string, finding: string): FindingEntry | undefined {
   return listFindings().find((entry) => entry.runId === runId && entry.finding === finding);
 }
@@ -592,10 +672,13 @@ export function runArtifacts(runId: string): RunArtifact[] {
   if (fs.existsSync(findingsDir)) {
     for (const file of fs.readdirSync(findingsDir).filter((f) => f.endsWith(".md")).sort()) {
       const slug = file.replace(/\.md$/, "");
+      const findingPath = path.join(findingsDir, file);
+      const findingArtifact = readMarkdown(findingPath);
+      const findingTitle = findingArtifact.body.split("\n")[0]?.replace(/^#\s+/, "") || slug;
       artifacts.push({
         kind: "finding",
-        label: `Finding · ${sourceLabel(slug)}`,
-        repoPath: rel(path.join(findingsDir, file)),
+        label: `Finding: ${findingTitle}`,
+        repoPath: rel(findingPath),
         internalUrl: `/findings/${runId}/${slug}/`,
       });
     }
@@ -604,7 +687,7 @@ export function runArtifacts(runId: string): RunArtifact[] {
   if (fs.existsSync(signalsPath)) {
     artifacts.push({
       kind: "signals",
-      label: "Accepted signals (YAML)",
+      label: "Signals and correction records (YAML)",
       repoPath: rel(signalsPath),
     });
   }
@@ -613,7 +696,7 @@ export function runArtifacts(runId: string): RunArtifact[] {
     for (const file of fs.readdirSync(weeklyDir).filter((f) => f.endsWith(".md")).sort()) {
       artifacts.push({
         kind: "weekly",
-        label: `Weekly digest — ${file.replace(/\.md$/, "")}`,
+        label: `Weekly digest - ${file.replace(/\.md$/, "")}`,
         repoPath: rel(path.join(weeklyDir, file)),
       });
     }
@@ -647,19 +730,34 @@ export function signalIdsInRun(runId: string): string[] {
   const signalsPath = repoPath("runs", runId, "signals", "frontier-signals.yml");
   if (!fs.existsSync(signalsPath)) return [];
   const yaml = readYaml(signalsPath);
-  return (yaml?.signals ?? []).map((s: any) => s.id).filter(Boolean);
+  return (yaml?.signals ?? [])
+    .filter((signal: any) => signal.status !== "withdrawn")
+    .map((signal: any) => signal.id)
+    .filter(Boolean);
 }
 
 export function evidenceLinksForFinding(finding: FindingEntry): EvidenceLink[] {
   if (Array.isArray(finding.data.evidence) && finding.data.evidence.length > 0) {
-    return finding.data.evidence;
+    return finding.data.evidence.map((link: EvidenceLink) => ({
+      ...link,
+      label: link.label || finding.title || "Primary source",
+    }));
   }
   return (finding.data.receipts ?? []).map((url: string) => ({ label: "Source", url, precision: "source" }));
 }
 
-export function findingsForSources(sourceIds: string[]): FindingEntry[] {
+export function findingsForSources(
+  sourceIds: string[],
+  runId?: string,
+  preferredFindingIds: string[] = [],
+): FindingEntry[] {
+  const candidates = listFindings().filter((finding) => !runId || finding.runId === runId);
   const bySource = new Map<string, FindingEntry>();
-  for (const finding of listFindings()) {
+  for (const findingId of preferredFindingIds) {
+    const finding = candidates.find((entry) => entry.data.finding_id === findingId);
+    if (finding && !bySource.has(finding.data.source)) bySource.set(finding.data.source, finding);
+  }
+  for (const finding of candidates) {
     if (!bySource.has(finding.data.source)) bySource.set(finding.data.source, finding);
   }
   return sourceIds.map((id) => bySource.get(id)).filter(Boolean) as FindingEntry[];
@@ -676,10 +774,10 @@ export function formatEvidenceTarget(url: string): string {
     if (parsed.hostname === "github.com") {
       const [, owner, repo, mode, ref, ...rest] = parsed.pathname.split("/");
       if (owner && repo && mode === "blob" && ref && rest.length > 0) {
-        return `${owner}/${repo} · ${rest.join("/")}${parsed.hash}`;
+        return `${owner}/${repo} / ${rest.join("/")}${parsed.hash}`;
       }
       if (owner && repo && parsed.pathname.includes("/releases/tag/")) {
-        return `${owner}/${repo} · ${parsed.pathname.split("/releases/tag/")[1]}`;
+        return `${owner}/${repo} / ${parsed.pathname.split("/releases/tag/")[1]}`;
       }
     }
     return `${parsed.hostname}${parsed.pathname}${parsed.hash}`;
@@ -719,21 +817,21 @@ export function composesHref(id: string, watchlistIds: Set<string>): string | un
 
 export function listComposesFacets(): string[] {
   const set = new Set<string>();
-  for (const signal of listSignals()) {
+  for (const signal of listAcceptedSignals()) {
     for (const id of signal.composes) set.add(id);
   }
   return Array.from(set).sort();
 }
 
 export function signalsComposingWith(id: string): SignalEntry[] {
-  return listSignals().filter((s) => s.composes.includes(id));
+  return listAcceptedSignals().filter((s) => s.composes.includes(id));
 }
 
 // Inbound composition for a profile: signals whose underlying finding declares
 // composes including the profile's source id, and whose originating source is
 // not the profile itself.
 export function inboundCompositionForSource(sourceId: string): SignalEntry[] {
-  return listSignals().filter(
+  return listAcceptedSignals().filter(
     (s) => s.composes.includes(sourceId) && !s.sources.includes(sourceId),
   );
 }

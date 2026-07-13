@@ -16,7 +16,7 @@ evidence:
   - url: https://github.com/vercel/eve/releases/tag/eve%400.19.0
     precision: github_release
 ---
-# 2026-07-02-eve-0-17-2-to-0-19-0-governance-and-channels
+# Eve 0.17.2 through 0.19.0 add governance and channels
 
 eve shipped three tagged releases in-window. `0.17.2` adds a default recursive
 subagent depth cap, per-session input/output token caps, and Sonnet 5 scaffolding;

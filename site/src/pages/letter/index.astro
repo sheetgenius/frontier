@@ -1,0 +1,191 @@
+---
+import Base from "../../layouts/Base.astro";
+import { GH_BLOB_BASE, GH_REPO_URL } from "../../lib/site";
+import { gitRevisionDate } from "../../lib/revision";
+
+const modifiedDate = gitRevisionDate("site/src/pages/letter/index.astro", "2026-07-12");
+---
+
+<Base
+  title="Why Bitter Does Not Build an Agent Harness | Bitter Frontier"
+  description="A founder's letter on the 90-tool agent that led to Bitter, the Bitter Lesson, Amdahl's law, and why Frontier tests both ideas in public."
+  publishedDate="2026-07-12"
+  modifiedDate={modifiedDate}
+  articleSection="Bitter Frontier thesis"
+  authorName="Michael Ruescher"
+  keywords={["Bitter Lesson", "Amdahl's law", "AI agents", "human attention", "coding agent harnesses"]}
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">Pinned letter from the founder</p>
+    <h1 class="issue-title">An ode to the Bitter Lesson and Amdahl's law maximalism.</h1>
+    <p class="profile-dek">
+      Why Bitter does not build an agent harness, why human attention is the scarce resource, and why this
+      publication exists.
+    </p>
+    <p class="issue-meta">By Michael Ruescher, founder of Bitter and editor of Bitter Frontier</p>
+    <p class="issue-meta">
+      Published July 12, 2026. Last revised {modifiedDate}. Living letter.
+      <a href={`${GH_REPO_URL}/commits/main/site/src/pages/letter/index.astro`}>Revision history</a>.
+    </p>
+
+    <div class="prose-frontier mt-9">
+      <p>I built an agent before I built Bitter.</p>
+
+      <p>
+        At Blueshift, I built a long-horizon tool-calling agent from scratch. It had compaction, paged tool access, and
+        programmatic tool calling. The published architecture covered
+        <a href="https://blueshift.com/blog/phasehandoff-long-horizon-agents/">roughly 90 tools and executions across
+        millions of tokens</a>.
+      </p>
+
+      <p>
+        Our <a href="https://blueshift.com/blog/phasehandoff-long-horizon-agents/">first design was a fleet of specialists.
+        Nothing failed loudly, but intent quietly evaporated at the handoffs</a>. The system kept producing work while
+        the strategy flattened into generic action. We eventually replaced the fleet with a continuous identity that
+        moved through phases and left explicit traces for itself.
+      </p>
+
+      <p>
+        That work taught me the layer I did not want to compete in again.
+      </p>
+
+      <p>
+        I came away believing that the harness is a punishing layer on which to build a durable company. A provider can
+        co-design its model and harness, train against its own interface, observe the combined system at scale, and
+        control the inference economics underneath it. A clever independent harness may win locally. The next provider
+        release can erase the reason it existed.
+      </p>
+
+      <h2 id="bitter-lesson-maxing"><a href="/bitter-lesson/">Bitter Lesson Maxing</a></h2>
+
+      <p>
+        Rich Sutton's <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">Bitter Lesson</a> gave me a
+        name for the pattern. General methods that improve through computation, learning, and search repeatedly overtake
+        handcrafted systems. My business version is simple: build where improving general agents compound your
+        advantage, not where their next release erases it. I call that Bitter Lesson Maxing.
+      </p>
+
+      <p>
+        That is why Bitter does not own a house reasoning loop. Bring Codex, Claude Code, Pi, or the next harness that
+        earns your trust. Bitter is betting that agent cognition will become replaceable. The operating environment,
+        repository, authority, deployment, logs, customer feedback, and company history should survive the swap.
+      </p>
+
+      <h2 id="amdahl-maxing"><a href="/amdahls-law/">Amdahl Maxing</a></h2>
+
+      <p>
+        <a href="https://doi.org/10.1145/1465482.1465560">Amdahl's law</a> explains the other half. Making one part of a
+        workload infinitely fast cannot overcome the fraction that remains serial. In a company full of agents, human
+        attention is that scarce serial resource. Faster code generation does not
+        make a faster company when prioritization, review, deployment, support, and learning still queue behind the same
+        person. More agent output can make the system slower when every artifact returns as an interruption.
+      </p>
+
+      <p>
+        Amdahl Maxing means designing the enterprise so scarce attention is spent where judgment has the highest
+        marginal value: direction, taste, ambiguity, consequential risk, customer evidence, and accountability. Routine
+        work should happen inside clear authority, be verified mechanically where possible, and return decision packets
+        instead of transcripts.
+      </p>
+
+      <p>
+        Not every human gate is waste. A deliberate boundary for responsibility or an irreversible action may be the
+        point. Re-entering the same state across five tools, approving low-risk actions one at a time, and reviewing
+        unfiltered agent output are accidental serial work.
+      </p>
+
+      <h2>Why Frontier exists</h2>
+
+      <p>
+        Bitter deliberately depends on upstream models and harnesses. We need to understand what they can now do, where
+        authority lives, which release contains the change, what state survives, and what new work reaches the human
+        queue. Bitter Frontier is that intelligence function made public.
+      </p>
+
+      <p>
+        A release note describes one provider in isolation. It will not tell you that another project tried the same
+        design earlier, that the shared feature name hides different defaults, or that one fix reached stable while the
+        other still lives on a branch. Frontier reads projects together and provides cross-project memory no single
+        project can supply.
+      </p>
+
+      <p>
+        The publication asks what agents just made cheaper, what handcrafted layer became less defensible, which part of
+        the end-to-end company loop agents can now operate, and where scarce human attention moved next.
+      </p>
+
+      <h2>See the thesis meet the evidence</h2>
+
+      <p>
+        <a href="/digests/2026-07-01_2026-07-02-weekly/">Foreground Attention Is No Longer the Control</a>
+        is the cleanest current Amdahl example. <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.198">Claude
+        Code let background agents commit, push, and open draft pull requests</a>,
+        moving human attention from a terminal prompt to repository policy and
+        review. <a href="https://github.com/openai/codex/releases/tag/rust-v0.142.5">Codex moved a permission consequence
+        into trace retention</a>, while Gemini showed that
+        <a href="https://github.com/google-gemini/gemini-cli/releases/tag/v0.51.0-nightly.20260702.gff00dacd9">a fix in
+        nightly does not protect a stable operator</a>.
+      </p>
+
+      <p>
+        The <a href="/profiles/agent-flywheel/">Agent Flywheel profile</a> tests
+        the Bitter Lesson from the other direction. Its
+        <a href="https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup/blob/v0.7.0/docs/methodology/THE_FLYWHEEL_CORE_LOOP.md">tagged
+        method keeps plans, task state, coordination, verification, and memory
+        outside any one provider agent</a>. That is bitter-pilled engineering.
+        The same review still finds incomplete authority boundaries. Choosing
+        the right layer does not excuse weak defaults.
+      </p>
+
+      <p>
+        The <a href="/bitter-lesson/">Bitter Lesson essay</a> and
+        <a href="/amdahls-law/">Amdahl's Law essay</a> collect more cases that support and complicate each part of the bet.
+      </p>
+
+      <h2>The line we will not cross</h2>
+
+      <p>
+        These ideas determine the questions. They do not predetermine the answers. A specialized method may remain
+        valuable. More autonomy may reduce total throughput. A human approval gate may be the correct design. A provider
+        change may contradict Bitter's assumptions. Frontier should publish those conclusions when the receipts support
+        them.
+      </p>
+
+      <p>
+        Bitter is the disclosed publisher. It does not become the answer inside the reporting. The publication has to
+        remain useful to someone who never becomes a Bitter customer. Trust first, product second.
+      </p>
+
+      <h2>A living letter</h2>
+
+      <p>
+        This is not a finished doctrine pinned in amber. Models will improve, provider harnesses will absorb new layers,
+        Bitter will mature, and our understanding of both constraints will get sharper. I will revise this letter when
+        the evidence changes the read. Frontier is where we test the bet in public. If the evidence breaks it, the record
+        should show that too.
+      </p>
+
+      <p class="founder-signoff">
+        Michael Ruescher<br />
+        Founder, <a href="https://bitter.sh">Bitter</a><br />
+        Editor, Bitter Frontier
+      </p>
+    </div>
+
+    <aside class="publisher-note mt-9">
+      <p class="small-caps text-muted">From the publisher</p>
+      <p>
+        Frontier studies where the agent-operable boundary moves. <a href="https://bitter.sh">Bitter</a> is the
+        harness-agnostic operating environment built around that diagnosis.
+      </p>
+    </aside>
+
+    <div class="rule mt-9 pt-5">
+      <p class="font-mono text-sm text-muted">
+        <a href="/digests/">Read the reporting</a> /
+        <a href={`${GH_BLOB_BASE}/THESIS.md`}>Read the complete thesis</a> /
+        <a href={`${GH_BLOB_BASE}/METHOD.md`}>Audit the method</a>
+      </p>
+    </div>
+  </article>
+</Base>

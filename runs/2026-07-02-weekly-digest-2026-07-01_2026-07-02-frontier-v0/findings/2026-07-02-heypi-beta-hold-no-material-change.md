@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/hunvreus/heypi/tree/0.2.0-beta.0
     precision: git_tag_tree
 ---
-# 2026-07-02-heypi-beta-hold-no-material-change
+# heypi remains on beta with no material in-window change
 
 heypi had no material in-window change. `0.2.0-beta.0` remains the active beta,
 and the harvested `main` commit matched the beta tag during this cycle. Channel:

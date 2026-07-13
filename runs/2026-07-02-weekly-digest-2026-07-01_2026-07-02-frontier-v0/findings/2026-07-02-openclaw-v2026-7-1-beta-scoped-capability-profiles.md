@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/openclaw/openclaw/releases/tag/v2026.7.1-beta.1
     precision: github_release
 ---
-# 2026-07-02-openclaw-v2026-7-1-beta-scoped-capability-profiles
+# OpenClaw beta adds scoped capability profiles
 
 OpenClaw `v2026.7.1-beta.1` ships external harness attach, Telegram Codex pairing
 and steering, event-driven cron, usage footers, mobile refresh, scoped

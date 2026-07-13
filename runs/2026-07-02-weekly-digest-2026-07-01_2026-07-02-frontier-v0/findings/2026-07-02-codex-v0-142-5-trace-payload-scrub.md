@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/openai/codex/releases/tag/rust-v0.142.5
     precision: github_release
 ---
-# 2026-07-02-codex-v0-142-5-trace-payload-scrub
+# Codex v0.142.5 stops logging full Responses WebSocket payloads
 
 Codex `rust-v0.142.5` says full Responses WebSocket request payloads are no
 longer written to trace logs. Channel: tagged-release. Operator consequence:

@@ -2,7 +2,6 @@
 import Base from "../../layouts/Base.astro";
 import SourceTrail from "../../components/SourceTrail.astro";
 import {
-  formatDate,
   getSignal,
   listRuns,
   runArtifacts,
@@ -25,11 +24,13 @@ const manifest = runManifest(run.id);
 const acceptedSignalIds = signalIdsInRun(run.id);
 const acceptedSignals = acceptedSignalIds.map((id) => getSignal(id)).filter(Boolean);
 const sourceContractPaths: string[] = manifest?.source_contracts ?? [];
-const manifestSources: string[] = manifest?.sources ?? [];
+const manifestSources: string[] = (manifest?.sources ?? [])
+  .map((source: unknown) => typeof source === "string" ? source : (source as any)?.id)
+  .filter(Boolean);
 const runDescription = `${run.title}: ${run.signalCount} accepted signals from ${run.windowLabel}, with source contracts, artifacts, and the digest trail.`;
 ---
 
-<Base title={`${run.id} · Bitter Frontier`} description={runDescription} robots="noindex, follow">
+<Base title={`${run.id} | Bitter Frontier`} description={runDescription} robots="noindex, follow">
   <article class="measure py-10">
     <p class="small-caps text-muted">Research Version</p>
     <h1 class="issue-title">{run.title}</h1>
@@ -50,7 +51,7 @@ const runDescription = `${run.title}: ${run.signalCount} accepted signals from $
     </dl>
 
     {manifest?.mode && (
-      <p class="font-mono text-sm text-muted">Mode: {manifest.mode}{manifest.model ? ` · Model: ${manifest.model}` : ""}{manifest.versions_covered ? ` · Versions: ${manifest.versions_covered}` : ""}</p>
+      <p class="font-mono text-sm text-muted">Mode: {manifest.mode}{manifest.model ? ` / Model: ${manifest.model}` : ""}{manifest.versions_covered ? ` / Versions: ${manifest.versions_covered}` : ""}</p>
     )}
 
     {manifest?.note && (
@@ -139,7 +140,7 @@ const runDescription = `${run.title}: ${run.signalCount} accepted signals from $
       <section class="rule pt-7 mt-7">
         <p class="small-caps text-muted">Run digest</p>
         <div class="prose-frontier mt-4" set:html={digestHtml} />
-        <SourceTrail sourceIds={run.digest.data.sources ?? []} />
+        <SourceTrail sourceIds={run.digest.data.sources ?? []} runId={run.id} />
       </section>
     )}
   </article>

@@ -5,38 +5,29 @@ const profiles = listProfiles();
 ---
 
 <Base
-  title="Coding Agent Research Profiles: Codex, Claude Code, Gemini CLI"
-  description="Evergreen source-backed profiles for Codex, Claude Code, Gemini CLI, Pi Coding Agent, OpenHands, Flue, Hermes, and other agent harnesses."
-  keywords={["coding agent research profiles", "Codex", "Claude Code", "Gemini CLI", "Pi Coding Agent", "OpenHands", "Flue"]}
+  title="AI Coding Agent and Infrastructure Research Profiles"
+  description="Dated, source-backed profiles for Codex, Claude Code, Gemini CLI, Agent Flywheel, OpenHands, and other projects across the coding-agent stack."
+  keywords={["coding agent research profiles", "agent infrastructure research", "Codex", "Claude Code", "Agent Flywheel", "Gemini CLI", "OpenHands"]}
 >
   <section class="measure py-10">
     <p class="small-caps text-muted">Profiles</p>
-    <h1 class="issue-title">Evergreen provider state.</h1>
+    <h1 class="issue-title">Dated project profiles.</h1>
     <p class="publication-dek">
-      One page per watched provider. Each profile records what is currently true — capability, governance posture, and open questions — refreshed after every harvest cycle.
+      One page per watched project. Each profile records what Frontier could verify at a stated date, the operator posture that follows, and the questions still open.
     </p>
     <div class="mt-9 space-y-7">
       {
-        profiles.map((profile) => {
-          const activeClaims = (profile.data.claims ?? []).filter((c: any) => c.status === "active").length;
-          const openQuestions = (profile.data.claims ?? []).filter((c: any) => c.status === "open_question").length;
-          return (
+        profiles.map((profile) => (
             <a class="block no-underline hover:underline" href={`/profiles/${profile.slug}/`}>
               <div class="small-caps text-muted">
-                {profile.data.owner} · {profile.data.surface_class?.replaceAll("_", " ")}
+                {profile.data.owner} / reviewed {formatDate(profile.data.last_updated)}
               </div>
               <h2 class="signal-title">{profile.data.label ?? profile.slug}</h2>
               {profile.data.tagline && (
                 <p class="profile-row-dek">{profile.data.tagline.replace(/^"|"$/g, "")}</p>
               )}
-              <p class="issue-meta">
-                {activeClaims} active claim{activeClaims !== 1 ? "s" : ""}
-                {openQuestions > 0 ? ` · ${openQuestions} open question${openQuestions !== 1 ? "s" : ""}` : ""}
-                {" · "}updated {formatDate(profile.data.last_updated)}
-              </p>
             </a>
-          );
-        })
+          ))
       }
     </div>
   </section>

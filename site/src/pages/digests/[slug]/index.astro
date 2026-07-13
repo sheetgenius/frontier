@@ -1,24 +1,17 @@
 ---
 import Base from "../../../layouts/Base.astro";
+import FrontierLens from "../../../components/FrontierLens.astro";
 import NotPromoted from "../../../components/NotPromoted.astro";
 import OperatorBrief from "../../../components/OperatorBrief.astro";
 import SourceTrail from "../../../components/SourceTrail.astro";
 import VersionList from "../../../components/VersionList.astro";
 import { metaDescription } from "../../../lib/seo";
+import { gitRevisionDate } from "../../../lib/revision";
 import { GH_BLOB_BASE, SITE_URL } from "../../../lib/site";
-import { canonicalRunForDigest, formatDate, getDigest, getSignal, listDigests, listProfiles, sourceLabel, versionsForDigest } from "../../../lib/frontier";
+import { canonicalRunForDigest, formatDate, getDigest, getSignal, listDigests, listProfiles, signalIdsFromOperatorBrief, sourceLabel, versionsForDigest } from "../../../lib/frontier";
 
 export function getStaticPaths() {
   return listDigests().map((digest) => ({ params: { slug: digest.slug } }));
-}
-
-function signalIdsFromBrief(brief: any): string[] {
-  const sections = ["upgrade_check", "try", "watch", "uncertain"];
-  const items = sections.flatMap((section) => Array.isArray(brief?.[section]) ? brief[section] : []);
-  const ids = items.flatMap((item) =>
-    [...String(item).matchAll(/href="\/signals\/([^/"]+)\/"/g)].map((match) => match[1])
-  );
-  return Array.from(new Set(ids));
 }
 
 const digest = getDigest(Astro.params.slug!);
@@ -34,12 +27,20 @@ const coveredProfiles = (digest.data.sources ?? [])
 
 const topSignalIds: string[] = digest.data.top_signal_ids?.length
   ? digest.data.top_signal_ids
-  : signalIdsFromBrief(digest.data.operator_brief);
+  : signalIdsFromOperatorBrief(digest.data.operator_brief);
 const topSignals = topSignalIds
   .map((id) => getSignal(id))
-  .filter(Boolean);
+  .filter((signal) => signal && signal.status !== "withdrawn");
+const preferredFindingIds = topSignals.flatMap((signal: any) => signal.findingIds ?? []);
+preferredFindingIds.unshift(...(digest.data.source_trail_finding_ids ?? []));
 
-const digestSourceLabels = (digest.data.sources ?? [])
+const acceptedTopSignalSourceIds = Array.from(new Set(
+  topSignals.flatMap((signal: any) => signal.sources ?? []),
+));
+const digestSeoSourceIds = acceptedTopSignalSourceIds.length > 0
+  ? acceptedTopSignalSourceIds
+  : digest.data.sources ?? [];
+const digestSourceLabels = digestSeoSourceIds
   .map((id: string) => sourceLabel(id))
   .filter(Boolean)
   .slice(0, 6);
@@ -50,10 +51,8 @@ const digestKeywords = Array.from(new Set([
   "agent harnesses",
   ...digestSourceLabels,
 ]));
-const digestTitleSources = digestSourceLabels.slice(0, 3).join(", ");
-const digestSearchTitle = digestTitleSources
-  ? `${digestTitleSources} Agent Digest | ${digest.data.title}`
-  : `${digest.data.title} | Coding Agent Digest`;
+const isSpecialBrief = digest.data.series === "Bitter Frontier Brief";
+const digestSearchTitle = `${digest.data.title} | ${isSpecialBrief ? "Coding Agent Brief" : "Weekly Coding Agent Digest"}`;
 const digestSignalTopics = topSignals
   .slice(0, 3)
   .map((signal: any) => signal.title)
@@ -61,13 +60,18 @@ const digestSignalTopics = topSignals
   .join("; ");
 const digestDescription = metaDescription(
   digestSignalTopics
-    ? `Weekly AI coding agent digest on ${digestSourceLabels.join(", ")}. Top signals: ${digestSignalTopics}.`
+    ? `${isSpecialBrief ? "Special" : "Weekly"} AI coding agent ${isSpecialBrief ? "brief" : "digest"} on ${digestSourceLabels.join(", ")}. Top signals: ${digestSignalTopics}.`
     : undefined,
-  `Weekly coding agent digest covering ${digestSourceLabels.join(", ")}: ${digest.data.operator_brief?.thesis ?? ""}`,
+  `${isSpecialBrief ? "Special coding agent brief" : "Weekly coding agent digest"} covering ${digestSourceLabels.join(", ")}: ${digest.data.operator_brief?.thesis ?? ""}`,
   digest.data.operator_brief?.thesis,
   digest.data.summary,
   `${digest.data.title}: ${digest.data.signal_count} sourced signals from the Bitter Frontier research loop.`,
 );
+const digestModifiedDate = gitRevisionDate(
+  digest.relativePath,
+  digest.data.last_updated ?? digest.data.window?.end ?? digest.data.window?.start ?? "2026-01-01",
+);
+const digestBodyHtml = digest.html.replace(/^<h1[^>]*>.*?<\/h1>\s*/s, "");
 const topSignalsItemList = topSignals.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -85,17 +89,20 @@ const topSignalsItemList = topSignals.length > 0 ? {
   title={digestSearchTitle}
   description={digestDescription}
   publishedDate={digest.data.window?.end}
-  modifiedDate={digest.data.window?.end}
-  articleSection="Weekly coding agent digest"
+  modifiedDate={digestModifiedDate}
+  articleSection={isSpecialBrief ? "Coding agent brief" : "Weekly coding agent digest"}
+  authorName="Michael Ruescher"
   keywords={digestKeywords}
   structuredData={topSignalsItemList}
 >
   <article class="measure py-10">
     <div class="small-caps text-muted">
-      {digest.data.series ?? "Issue"} · Published {formatDate(digest.data.window?.end)}
+      {digest.data.series ?? "Issue"} / Published {formatDate(digest.data.window?.end)}
     </div>
+    <h1 class="issue-title mt-3">{digest.data.title}</h1>
+    <p class="issue-meta">Edited by Michael Ruescher / revised {digestModifiedDate}</p>
     <OperatorBrief brief={digest.data.operator_brief} />
-    <div class="prose-frontier mt-7" set:html={digest.html} />
+    <div class="prose-frontier mt-7" set:html={digestBodyHtml} />
 
     {topSignals.length > 0 && (
       <div class="rule mt-10 pt-6">
@@ -117,7 +124,7 @@ const topSignalsItemList = topSignals.length > 0 ? {
 
     {coveredProfiles.length > 0 && (
       <div class="rule mt-9 pt-5">
-        <p class="small-caps text-muted">Providers covered</p>
+        <p class="small-caps text-muted">Projects reviewed in this research run</p>
         <div class="mt-3 flex flex-wrap gap-3">
           {coveredProfiles.map((profile: any) => (
             <a
@@ -133,7 +140,7 @@ const topSignalsItemList = topSignals.length > 0 ? {
 
     <div class="rule mt-9 pt-5">
       <p class="font-mono text-sm text-muted">
-        This digest was produced by the <a class="hover:underline" href="https://bitter.sh">Bitter</a> autonomous research loop.
+        Research artifacts and publication history are open in the repository.
       </p>
       <p class="mt-3">
         <a class="view-source" href={`${GH_BLOB_BASE}/${digest.relativePath}`}>
@@ -144,7 +151,12 @@ const topSignalsItemList = topSignals.length > 0 ? {
         </a>
       </p>
     </div>
-    <SourceTrail sourceIds={digest.data.sources ?? []} />
+    <SourceTrail
+      sourceIds={digest.data.sources ?? []}
+      runId={canonicalRun?.id}
+      preferredFindingIds={preferredFindingIds}
+    />
     <VersionList versions={versions} currentRunId={canonicalRun?.id} />
+    <FrontierLens />
   </article>
 </Base>

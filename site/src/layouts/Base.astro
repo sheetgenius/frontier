@@ -12,6 +12,9 @@ const {
   publishedDate,
   modifiedDate,
   articleSection,
+  authorName,
+  authorType = "Person",
+  authorUrl,
   keywords,
   structuredData,
 } = Astro.props;
@@ -22,7 +25,8 @@ const ogImage = image ?? ogImageForPath(Astro.url.pathname);
 const canonicalUrl = new URL(canonicalPath ?? Astro.url.pathname, SITE_URL).toString();
 const pageTitle = title === SITE_TITLE ? title : `${title}`;
 const path = Astro.url.pathname;
-const isDetail = /^\/(digests|signals|profiles|findings)\/.+/.test(path);
+const isDetail = /^\/(digests|signals|profiles|findings)\/.+/.test(path)
+  || ["/letter/", "/bitter-lesson/", "/amdahls-law/"].includes(path);
 const ogType = isDetail ? "article" : "website";
 const jsonLdType = path === "/" ? "WebSite" : isDetail ? "Article" : "CollectionPage";
 const keywordList = Array.isArray(keywords) ? keywords.filter(Boolean) : keywords ? [keywords] : [];
@@ -62,6 +66,13 @@ if (jsonLdType === "Article") {
   if (publishedDate) jsonLd.datePublished = publishedDate;
   if (modifiedDate || publishedDate) jsonLd.dateModified = modifiedDate ?? publishedDate;
   if (articleSection) jsonLd.articleSection = articleSection;
+  if (authorName) {
+    jsonLd.author = {
+      "@type": authorType,
+      name: authorName,
+      ...(authorUrl ? { url: authorUrl } : {}),
+    };
+  }
   if (keywordList.length > 0) jsonLd.keywords = keywordList;
 }
 ---
@@ -103,13 +114,14 @@ if (jsonLdType === "Article") {
     <header class="wide-measure site-header">
       <a class="masthead-wordmark" href="/">
         <span class="wordmark-name">Bitter Frontier</span>
-        <span class="wordmark-tag">Weekly field notes on what changed, what broke, and what to test.</span>
+        <span class="wordmark-tag">What agents made cheaper, where the bottleneck moved, and what deserves attention.</span>
       </a>
       <nav class="site-nav" aria-label="Primary">
         <span class="nav-sections">
           <a href="/digests/">Digests</a>
           <a href="/profiles/">Profiles</a>
-          <a href="/signals/">Changes</a>
+          <a href="/signals/">Signals</a>
+          <a href="/letter/">Thesis</a>
           <a href="/runs/">Research trail</a>
           <a href="/about/">About</a>
         </span>
@@ -152,6 +164,14 @@ if (jsonLdType === "Article") {
           </svg>
           Open source on GitHub
         </a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="/letter/">Founder's letter</a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="/bitter-lesson/">Bitter Lesson</a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="/amdahls-law/">Amdahl's Law</a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="/corrections/">Corrections</a>
         <span class="footer-sep" aria-hidden="true">/</span>
         <a href={`${GH_BLOB_BASE}/CONTRIBUTING.md`}>Contribute</a>
         <span class="footer-sep" aria-hidden="true">/</span>

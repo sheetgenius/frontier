@@ -40,3 +40,40 @@ Window: 2026-07-01 to 2026-07-02
 - Seeded `content/profiles/agent-flywheel.md`.
 - Populated manifest, audit, and QA records. Initial build attempt failed while
   manifest was still empty; final validation rerun follows after this record.
+
+## 2026-07-12 correction and exemplar pass
+
+- Re-fetched the ACFS v0.7.0 installer, shared zsh configuration, Antigravity
+  wrapper, release page, and arXiv source bundle.
+- Found that safe mode omits passwordless sudo but still installs the dangerous
+  agent shortcuts. Corrected the profile, digest, signal record, findings, and
+  harvest notes.
+- Corrected the paper comparison from unlike 110-versus-52 counts to the same
+  figure's 110-versus-97 counts.
+- Withdrew Agent Flywheel as a July 2 signal because the June 26 release predates
+  the declared window. Preserved the URL as a correction record.
+- Rebuilt the profile around the tagged plan-to-graph-to-coordination operating
+  method and added a separate dated study of the surrounding repo constellation.
+- A fresh adversarial pass found that "safe mode omits passwordless sudo" was
+  still too broad. The tag only skips ACFS's sudoers write on that run; it does
+  not delete a rule from an earlier vibe run or revoke provider-supplied
+  passwordless sudo. Updated the research record and operator action accordingly.
+- Reframed arXiv:2606.07448v1 as an individual-account repository count. The
+  paper does not establish sole authorship, useful outcomes, or that Agent
+  Flywheel caused the count.
+- Added the tagged non-standard OpenAI/Anthropic license rider as an eighth
+  Agent Flywheel intake finding, with neutral guidance to review the text and
+  obtain independent legal advice if potentially covered.
+- Corrected the ecosystem study to the Rust Agent Mail implementation installed
+  by ACFS, refreshed post-window release pins, and narrowed NTM's current main
+  work to a guarded claim-reserve-dispatch workflow rather than a cross-system
+  atomic assignment transaction.
+- Aligned the corrected run manifest with the rebuilt public record: artifact
+  version 4, title "Foreground Attention Is No Longer the Control," and
+  `frontier-brief` mode for the one-day issue. Historical journal entries remain
+  unchanged above.
+- Final research-artifact integrity rerun passed with 335 findings and 151 signal
+  records (150 accepted, 1 withdrawn). The first post-correction build attempt
+  collided with a concurrent site build and failed on a generated `.prerender`
+  chunk, so its page/card counts were not recorded as a valid result. The
+  coordinator owns the uncontended final build.

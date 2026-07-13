@@ -1,16 +1,9 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { listProfiles, sourceLabel } from "../../lib/frontier";
-
-const profiles = listProfiles();
-const providerNames = profiles.map((p) => sourceLabel(p.slug));
-const lastProvider = providerNames.at(-1);
-const allButLast = providerNames.slice(0, -1);
-const providerList = allButLast.join(", ") + (lastProvider ? `, and ${lastProvider}` : "");
 ---
 
 <Base
-  title="About · Bitter Frontier"
+  title="About | Bitter Frontier"
   description="Bitter Frontier is a research publication for software operators building with coding agents. Every claim is source-backed. Every signal should change what you do next."
 >
   <article class="measure py-10">
@@ -19,26 +12,41 @@ const providerList = allButLast.join(", ") + (lastProvider ? `, and ${lastProvid
 
     <div class="prose-frontier mt-8">
       <p>
-        Bitter Frontier watches {profiles.length} frontier coding agent harnesses ({providerList}) and publishes
-        what changes enough to matter for teams running agents in production.
+        Bitter Frontier reads projects across the coding-agent stack together:
+        what general agents just made cheaper, what became the new bottleneck,
+        and where operators should spend scarce human attention.
       </p>
       <p>
-        This is not a newsletter summarizing blog posts. Every claim in every digest traces back to a source commit,
-        release note, or changelog entry. Every signal is a finding that should change how you configure an agent,
-        what you test, or what you stop relying on. The evidence chain is public and auditable.
+        Two named ideas guide that read. <a href="/bitter-lesson/">Bitter Lesson Maxing</a> means
+        building where improving general agents compound your advantage, not where their next release erases it.
+        <a href="/amdahls-law/">Amdahl Maxing</a> means treating human attention as the scarce serial
+        resource and spending it where judgment changes the outcome.
       </p>
       <p>
-        The research loop runs autonomously. An agent reads primary sources (repositories, release tags, changelogs),
-        produces structured findings, and puts each one through adversarial review before it can publish: independent
-        subagents and a separate model re-check every claim against its source, and overstatements get caught and walked back.
-        Human editors set doctrine and decide what becomes a signal. The loop handles coverage. A
-        <a href="/runs/">run artifact</a> is produced for every research cycle, showing exactly what was read,
-        what was found, what was accepted as signal, and what the review caught.
+        This is not a newsletter summarizing blog posts. Claims trace back to
+        primary sources: commits, releases, versioned documentation, security
+        advisories, or described reproducible observations. A signal should
+        change what you build, delegate, configure, test, measure, keep human,
+        or stop relying on. The evidence chain is public and auditable.
       </p>
       <p>
-        Bitter Frontier is published by <a href="https://bitter.sh">Bitter</a>, which builds infrastructure for
-        running AI agents in production. The publication has its own method: claims need sources, and signals
-        need operator consequences.
+        Software helps gather and check the source record. Michael Ruescher sets
+        the editorial doctrine, verifies the reading, and decides what deserves
+        publication. Automation expands coverage; editorial judgment stays
+        accountable. The <a href="/runs/">research trail</a> preserves what was
+        read, what was found, and what the review caught.
+      </p>
+      <p>
+        Bitter Frontier is published by <a href="https://bitter.sh">Bitter</a>, which builds a harness-agnostic operating
+        environment for coding agents. The publication has its own method: claims need sources, and signals need operator
+        consequences.
+      </p>
+      <p>
+        Founder and editor Michael Ruescher previously built a
+        <a href="https://blueshift.com/blog/phasehandoff-long-horizon-agents/">long-horizon agent at Blueshift</a>.
+        That work led to the layer decision behind Bitter: the company is betting that provider harnesses should remain
+        replaceable while the operating environment and accumulated company state stay durable. Frontier is the upstream
+        intelligence function that follows from that decision. Read the <a href="/letter/">pinned founder's letter</a>.
       </p>
     </div>
 
@@ -46,8 +54,12 @@ const providerList = allButLast.join(", ") + (lastProvider ? `, and ${lastProvid
       <p class="small-caps text-muted">How to read this publication</p>
       <dl class="about-dl mt-4">
         <div>
+          <dt><a href="/letter/">Founder's letter</a></dt>
+          <dd>The Bitter Lesson, Amdahl's law, and why Frontier reads project changes through human attention.</dd>
+        </div>
+        <div>
           <dt><a href="/digests/">Digests</a></dt>
-          <dd>Weekly synthesis across all sources. Start here to see what changed in the last cycle.</dd>
+          <dd>Weekly synthesis and labeled special briefs. Start here to see what changed in the latest published window.</dd>
         </div>
         <div>
           <dt><a href="/signals/">Signals</a></dt>
@@ -55,7 +67,7 @@ const providerList = allButLast.join(", ") + (lastProvider ? `, and ${lastProvid
         </div>
         <div>
           <dt><a href="/profiles/">Profiles</a></dt>
-          <dd>Evergreen per-agent registers. The current state of each harness with active claims and open questions.</dd>
+          <dd>Dated project reads with verified claims, operator posture, and open questions.</dd>
         </div>
         <div>
           <dt><a href="/runs/">Evidence</a></dt>
@@ -63,7 +75,11 @@ const providerList = allButLast.join(", ") + (lastProvider ? `, and ${lastProvid
         </div>
         <div>
           <dt><a href="/sources/">Sources</a></dt>
-          <dd>The primary sources under contract: repositories, changelogs, and release feeds we watch.</dd>
+          <dd>The official repositories, changelogs, documentation, release feeds, and evidence rules we watch.</dd>
+        </div>
+        <div>
+          <dt><a href="/corrections/">Corrections</a></dt>
+          <dd>The public record of what Frontier got wrong, the corrected claim, and the receipt that settled it.</dd>
         </div>
       </dl>
     </div>

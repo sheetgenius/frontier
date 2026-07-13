@@ -69,7 +69,7 @@ for (const r of results) {
     warned++;
   } else if (redirected) {
     const finalUrl = r.final_url ?? r.finalUrl ?? "(see report)";
-    console.log(`::warning title=Changed receipt redirected::${url} now resolves to ${finalUrl}. Possible "Soft-OK Receipt Drift" — verify the destination is still the cited content, not a moved-docs or login shell.`);
+    console.log(`::warning title=Changed receipt redirected::${url} now resolves to ${finalUrl}. Possible "Soft-OK Receipt Drift" - verify the destination is still the cited content, not a moved-docs or login shell.`);
     warned++;
   }
 }

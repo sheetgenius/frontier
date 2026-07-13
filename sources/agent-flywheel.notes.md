@@ -2,52 +2,67 @@
 
 **Homepage:** https://agent-flywheel.com/
 **Repo:** https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup
-**Owner:** Dicklesworthstone (Jeffrey Emanuel)
+**Owner:** Jeffrey Emanuel (Dicklesworthstone; @doodlestein)
 **Added:** 2026-07-02
 **Tier:** 2 (weekly cadence)
 
 ## Why it's on the watchlist
 
-Agent Flywheel is a setup framework and methodology: a single-command
-installer that turns a fresh Ubuntu VPS into a multi-agent development
-environment with Claude Code, Codex CLI, and Antigravity CLI pre-configured
-side by side, ~30 supporting tools, session management, and agent
-coordination infrastructure (NTM, Agent Mail). At intake: 1.5k stars, 7
-tagged releases (latest v0.7.0, 2026-06-26), 3,440 main-branch commits.
+Agent Flywheel is both a setup framework and an operating method. The
+single-command installer scripts a fresh Ubuntu VPS into a multi-agent development
+environment with Claude Code, Codex CLI, Antigravity CLI, session management,
+coordination, work ranking, safety tools, and procedural memory. It is not a
+reproducible dependency lock: several bundled installers still select upstream
+`latest` versions.
 
-It fills a slot nothing else on the watchlist covers: the **assembly
-layer**. Every week the digests track what defaults, permission postures,
-and channels the individual harness vendors ship. Agent Flywheel is a third
-party overriding those decisions for three tier-1 agents at once, behind one
-curl command, with sudo, on operator-owned infrastructure. "What did the
-installer configure" is the operator-consequence question one level up the
-stack -- including whether it pins versions and channels, which makes it
-inherit the released-is-not-merged problem for every tool it bundles.
+It fills two unusually important slots on the current watchlist. First, it is an
+**assembly layer**: one project owns the environment and defaults an operator
+actually runs across several provider harnesses. Second, it is a
+**replaceable-agent operating loop**: plans become dependency-aware work, work is
+ranked and claimed, coordination survives outside model context, verification
+feeds closeout, and session history can become reusable memory.
 
-Secondary angles: published cost transparency ($440-656/month at intake) is
-directly on the publication's core question; and the author is the cleanest
-public specimen of solo-developer-at-vendor-velocity -- 183+ public repos,
-and an individual account appearing in the top-35-organizations
-coding-agent-adoption figure of arXiv:2606.07448 (submitted 2026-06-05),
-alongside corporate orgs.
+The second slot is the more important learning agenda. It is a concrete Bitter
+Lesson design because the durable state sits outside any one provider harness.
+It is an Amdahl design because the tools try to remove the human from liaison,
+status reconstruction, and repetitive coordination work. The standard Frontier
+questions still apply: did total verified throughput improve, where did review
+move, and which new maintenance queue became serial?
 
 ## The scope fence (load-bearing)
 
-This is the first contract that names an author's other work as rejected
-evidence. The two named surfaces (the setup repo at release/tag/docs
-precision, and the site) are the whole contract. The author's portfolio
-velocity makes commit-level or portfolio-wide tracking impossible and
-worthless in equal measure; if another Dicklesworthstone project matters, it
-enters as an ordinary finding with an external receipt, not as standing
-coverage. The velocity phenomenon itself is a story to receipt once (the
-arXiv paper is that receipt), not a tracking obligation.
+Weekly coverage stays bounded to the setup repository at release/tag/docs
+precision and the official site. That is an attention promise, not a judgment on
+the rest of Emanuel's work.
+
+The method itself composes a larger portfolio. Frontier's selected core-loop
+study set is Agent Mail's installed Rust implementation, `br`, `bv`, NTM, CASS
+and CM, DCG, and SLB. These projects may enter a dated ecosystem study through
+pinned receipts. They do not silently turn into eight additional weekly feeds,
+and an unspecified portfolio-wide claim remains out of scope.
 
 ## Editorial angle for Bitter Frontier
 
-**Signal:** operators are increasingly not configuring their agents -- an
-assembly layer is. Trust in the harness is becoming trust in whoever
-assembled the harness.
+**Primary angle:** the agent is not the durable unit. The plan, task graph,
+coordination record, verification state, and memory are. Provider agents can
+improve or trade places inside that loop.
 
-**First-harvest probe candidates:** what install.sh actually does (sudo
-surface, credential paths, settings files written for each agent, version
-pins); whether the bundled "safety tools" enforce or advise.
+**Authority angle:** the installer is the control plane. It inherits the release
+churn and permission surfaces of every harness it composes. v0.7.0 also shows an
+incomplete mode boundary: on a host without another `NOPASSWD` rule, a safe-mode
+run skips ACFS's passwordless-sudo write. It does not remove the ACFS sudoers file
+left by an earlier vibe-mode run, remove provider-supplied passwordless sudo, or
+remove the dangerous agent shortcuts.
+
+**License angle:** the tagged LICENSE is not standard MIT. Its OpenAI/Anthropic
+rider denies rights to named companies, affiliates, and people or entities acting
+for them. Frontier should disclose the restriction without guessing at
+enforceability; potentially covered operators should review the tagged text and
+obtain their own legal guidance.
+
+**Current probes:** measure total human attention across a completed Flywheel
+project; map which state is authoritative in each component; distinguish
+deterministic gates from advisory tools; track whether the next tag makes safe
+mode mechanical and cleans prior state; and watch whether NTM releases its
+guarded claim-reserve-dispatch workflow with its current reconciliation and
+failure semantics.

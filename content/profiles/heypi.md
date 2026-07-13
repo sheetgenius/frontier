@@ -371,7 +371,7 @@ own; eve makes the gate a durable platform primitive. Same axis, opposite emphas
 This profile follows the discipline in `RESEARCH_CONTRACT.md#profile`: every
 concrete claim in the prose carries an inline source link and a `claims:` entry;
 posture sections interpret freely but cite finding IDs when naming a specific
-feature, behavior change, or cross-provider comparison. Cross-provider editorial
+feature, behavior change, or cross-project comparison. Cross-project editorial
 belongs in the weekly digest; the contrasts here are scoped to locating heypi, not
 to synthesizing the field.
 

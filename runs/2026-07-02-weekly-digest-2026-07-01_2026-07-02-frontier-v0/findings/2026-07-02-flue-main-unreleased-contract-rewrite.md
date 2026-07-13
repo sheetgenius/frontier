@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/withastro/flue/blob/076fa5c5bfe089c1021833364f3b32ee423eeec8/CHANGELOG.md
     precision: git_blob_sha
 ---
-# 2026-07-02-flue-main-unreleased-contract-rewrite
+# Flue rewrites adapter contracts on main without a new tag
 
 Flue has no tag after `v1.0.0-beta.9`, but the `Unreleased` changelog at commit
 `076fa5c5bfe089c1021833364f3b32ee423eeec8` removes direct prompt result-await,

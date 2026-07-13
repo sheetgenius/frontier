@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/earendil-works/pi/releases/tag/v0.80.3
     precision: github_release
 ---
-# 2026-07-02-pi-coding-agent-v0-80-3-hold
+# Pi Coding Agent v0.80.3 holds with no in-window release
 
 Pi Coding Agent had no new release after `v0.80.3` in the July 1-2 window. Main
 had provider/model and reliability fixes, but no new approval, sandbox,

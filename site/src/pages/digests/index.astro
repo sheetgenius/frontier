@@ -6,7 +6,7 @@ const digests = listDigests();
 const itemList = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Coding agent weekly digests",
+  name: "Bitter Frontier coding agent digests and briefs",
   itemListElement: digests.slice(0, 20).map((digest, index) => ({
     "@type": "ListItem",
     position: index + 1,
@@ -17,27 +17,27 @@ const itemList = {
 ---
 
 <Base
-  title="AI Coding Agent Weekly Digest Archive | Codex, Claude, Gemini"
-  description="Weekly source-backed digest archive for AI coding agents: Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue, OpenHands, releases, governance, and security fixes."
-  keywords={["AI coding agent weekly digest", "coding agent release digest", "Codex", "Claude Code", "Gemini CLI", "Pi Coding Agent", "Flue"]}
+  title="AI Coding Agent Digest and Brief Archive | Bitter Frontier"
+  description="Source-backed weekly digests and special briefs on coding-agent releases, governance, security, operator cost, and human attention."
+  keywords={["AI coding agent weekly digest", "coding agent release digest", "coding agent brief", "Codex", "Claude Code", "Gemini CLI"]}
   structuredData={itemList}
 >
   <section class="measure py-10">
     <p class="small-caps text-muted">Digests</p>
-    <h1 class="issue-title">AI coding agent weekly digest archive.</h1>
+    <h1 class="issue-title">AI coding agent digest and brief archive.</h1>
     <p class="signal-summary mt-3">
-      Source-backed weekly briefs on coding agents and harnesses: what changed, what shipped, what only merged,
-      and what operators should test next.
+      Weekly synthesis and clearly labeled special briefs on what changed, what shipped, what only merged, and what
+      operators should test next.
     </p>
     <div class="mt-9 space-y-7">
       {
         digests.map((digest) => (
           <a class="block no-underline hover:underline" href={`/digests/${digest.slug}/`}>
             <div class="small-caps text-muted">
-              {digest.data.series ? `${digest.data.series} · ` : ""}{formatDate(digest.data.window?.start)} to {formatDate(digest.data.window?.end)}
+              {digest.data.series ? `${digest.data.series} / ` : ""}{formatDate(digest.data.window?.start)} to {formatDate(digest.data.window?.end)}
             </div>
             <h2 class="signal-title">{digest.data.title}</h2>
-            <p class="issue-meta">{digest.data.signal_count} signals · {digest.data.finding_count} findings</p>
+            <p class="issue-meta">{digest.data.signal_count} signals / {digest.data.finding_count} findings</p>
           </a>
         ))
       }

@@ -12,7 +12,7 @@ evidence:
   - url: https://github.com/openai/codex/compare/rust-v0.143.0-alpha.31...rust-v0.143.0-alpha.34
     precision: github_compare
 ---
-# 2026-07-02-codex-0-143-alpha-continues-preview-only
+# Codex 0.143 remains alpha-only
 
 The Codex 0.143 line stayed alpha-only through `rust-v0.143.0-alpha.34` in this
 window. Alpha changes include WebSocket liveness bounds, multi-agent/tool timing

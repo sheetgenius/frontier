@@ -468,7 +468,7 @@ described as defense-in-depth without published rules.
 This profile follows the discipline in `RESEARCH_CONTRACT.md#profile`: every
 concrete claim in the prose has an inline source link and an entry in the
 `claims:` block; posture sections may interpret freely but must cite finding IDs
-when naming a specific feature, behavior change, or cross-provider comparison.
+when naming a specific feature, behavior change, or cross-project comparison.
 
 Five claims are seeded from prior findings
 (`2026-05-06-hermes-curator-and-service-surfaces` and

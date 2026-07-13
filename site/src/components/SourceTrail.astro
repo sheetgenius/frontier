@@ -10,16 +10,20 @@ import {
 const {
   findings,
   sourceIds = [],
+  runId,
+  preferredFindingIds = [],
   title = "Sources",
   intro = "Primary links, including exact changelog lines when available.",
 } = Astro.props as {
   findings?: FindingEntry[];
   sourceIds?: string[];
+  runId?: string;
+  preferredFindingIds?: string[];
   title?: string;
   intro?: string;
 };
 
-const rows = (findings?.length ? findings : findingsForSources(sourceIds)).map((finding) => ({
+const rows = (findings?.length ? findings : findingsForSources(sourceIds, runId, preferredFindingIds)).map((finding) => ({
   finding,
   evidence: evidenceLinksForFinding(finding),
 }));

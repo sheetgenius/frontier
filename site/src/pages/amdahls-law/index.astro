@@ -1,0 +1,332 @@
+---
+import Base from "../../layouts/Base.astro";
+import { GH_REPO_URL } from "../../lib/site";
+import { gitRevisionDate } from "../../lib/revision";
+
+const modifiedDate = gitRevisionDate("site/src/pages/amdahls-law/index.astro", "2026-07-12");
+
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is Amdahl's Law?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Amdahl's Law says that the total speedup of a fixed workload is bounded by the fraction that remains serial. Making one portion arbitrarily fast cannot overcome the time still spent in the unimproved portion.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How does Amdahl's Law apply to AI companies?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "AI can make production highly parallel while prioritization, judgment, review, deployment, customer learning, and accountability remain dependent on scarce human attention. Those human decisions become the serial fraction that limits company throughput.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is Amdahl Maxing?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Amdahl Maxing is Bitter's name for expanding the fraction of the end-to-end company loop that agents can operate while reserving human attention for direction, ambiguity, consequential risk, customer evidence, and accountability.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Should AI companies remove every human approval?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. Some human gates are deliberate boundaries for responsibility or irreversible action. The goal is to remove accidental serial work and low-value interruption, not to eliminate human judgment where it changes the outcome.",
+      },
+    },
+  ],
+};
+---
+
+<Base
+  title="Amdahl's Law for AI Companies: The Human Attention Bottleneck"
+  description="How Amdahl's Law applies to AI agents, software development, company throughput, approval systems, and the scarce human attention that remains serial."
+  publishedDate="2026-07-12"
+  modifiedDate={modifiedDate}
+  articleSection="Bitter Frontier thesis"
+  authorName="Michael Ruescher"
+  keywords={["Amdahl's Law AI", "Amdahl's Law software development", "human attention bottleneck", "AI agent productivity", "AI company design"]}
+  structuredData={faq}
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">Amdahl Maxing</p>
+    <h1 class="issue-title">Amdahl's Law for AI companies: human attention is the serial portion.</h1>
+    <p class="profile-dek">
+      The objective is not maximum agent activity. It is maximum verified progress per unit of scarce human attention.
+    </p>
+    <p class="issue-meta">By Michael Ruescher, founder of Bitter and editor of Bitter Frontier</p>
+    <p class="issue-meta">
+      Published July 12, 2026. Last revised {modifiedDate}. Living essay.
+      <a href={`${GH_REPO_URL}/commits/main/site/src/pages/amdahls-law/index.astro`}>Revision history</a>.
+    </p>
+
+    <div class="prose-frontier mt-9">
+      <p>
+        If code generation is 20 percent of the path from an idea to a verified customer outcome, making code generation
+        instantaneous improves that fixed loop by at most 1.25x. A spectacular local improvement can produce an ordinary
+        company result.
+      </p>
+
+      <h2>What is Amdahl's Law?</h2>
+
+      <p>
+        Gene Amdahl introduced the argument now called
+        <a href="https://doi.org/10.1145/1465482.1465560">Amdahl's Law</a> in 1967 while analyzing the limits of
+        parallel computing. The total speedup of a fixed workload is bounded by the fraction that remains serial.
+        Accelerating one part produces diminishing system-level returns when the rest does not move.
+      </p>
+
+      <p>If fraction <code>p</code> can be accelerated by a factor of <code>k</code>, the total speedup is:</p>
+
+      <pre><code>1 / ((1 - p) + p / k)</code></pre>
+
+      <p>Even if the accelerated portion becomes infinitely fast, total speedup cannot exceed:</p>
+
+      <pre><code>1 / (1 - p)</code></pre>
+
+      <p>If the accelerated portion accounts for half of the fixed loop, even infinite speed leaves a ceiling of 2x.</p>
+
+      <h2>Amdahl's Law is not merely "find the slowest step"</h2>
+
+      <p>
+        The law is about the fraction left unimproved. A visibly slow task may not matter much if it occupies little of
+        the total workload. A collection of small handoffs, reviews, and context switches can dominate because together
+        they consume most of the cycle.
+      </p>
+
+      <p>
+        It also assumes a fixed workload. Companies often respond to cheaper production by attempting more work, so the
+        equation is not a literal model of an expanding business. It remains a powerful discipline for one complete
+        operating loop: idea, build, release, observe, support, learn, and decide again.
+      </p>
+
+      <p>
+        I ran into the same systems mistake before Bitter. Our
+        <a href="https://blueshift.com/blog/phasehandoff-long-horizon-agents/">first Blueshift design used a fleet of
+        specialist agents. Each one looked competent in isolation, yet intent evaporated at the handoffs</a>. More capable
+        parts did not produce a more coherent whole. That was not an Amdahl calculation, but it was the same
+        architectural error: optimizing the components while the end-to-end constraint lived somewhere else.
+      </p>
+
+      <h2>The serial portion of an AI company is human attention</h2>
+
+      <p>
+        Agents can make cognitive production cheap and parallel. They can draft code, research alternatives, inspect logs,
+        write tests, propose campaigns, and open pull requests at the same time. Human attention does not expand at the
+        same rate.
+      </p>
+
+      <p>
+        The obvious failure mode is a human becoming the message queue for a fleet of agents. Every agent asks a
+        question, requests an approval, produces a report, or returns an artifact for review. Nominal production rises.
+        Verified throughput falls because the scarce serial processor spends the day scheduling and checking parallel
+        work.
+      </p>
+
+      <p>The human-attention fraction includes:</p>
+
+      <ul>
+        <li>choosing what deserves to exist;</li>
+        <li>setting priorities and quality thresholds;</li>
+        <li>resolving ambiguity and novel exceptions;</li>
+        <li>accepting consequential or irreversible risk;</li>
+        <li>interpreting customer evidence;</li>
+        <li>deciding what the company should learn next;</li>
+        <li>remaining accountable for the outcome.</li>
+      </ul>
+
+      <p>
+        These are not leftovers waiting for a faster model. Some are the actual work of directing a company.
+      </p>
+
+      <h2>Approval spam is an Amdahl failure</h2>
+
+      <p>
+        Approval count alone is not evidence of safety. Repeated low-value prompts can
+        consume the serial resource until approval becomes reflex. The control
+        still exists on paper while the human judgment it was meant to preserve
+        has been exhausted.
+      </p>
+
+      <p>
+        Good authority design spends attention according to uncertainty, impact, and reversibility. A low-risk action
+        inside a pre-authorized environment should not interrupt. A novel or irreversible action should arrive with the
+        context required for a real decision.
+      </p>
+
+      <h2 id="amdahl-maxing">Amdahl Maxing</h2>
+
+      <p>
+        Amdahl Maxing is Bitter's name for the discipline of expanding the
+        agent-operable fraction of the company while protecting the value of
+        human judgment.
+      </p>
+
+      <blockquote>
+        Design the enterprise so scarce attention is spent where judgment has the highest marginal value.
+      </blockquote>
+
+      <p>A useful operating model has three lanes:</p>
+
+      <ol>
+        <li>
+          <strong>Autonomous inside policy.</strong> Agents perform routine, reversible work inside explicit authority
+          and budgets. Mechanical checks verify the result.
+        </li>
+        <li>
+          <strong>Batched human review.</strong> Related outcomes arrive together with summaries, evidence, and
+          exceptions rather than interrupting one at a time.
+        </li>
+        <li>
+          <strong>Immediate escalation.</strong> Novel, high-impact, high-uncertainty, or irreversible decisions reach a
+          human with a recommendation, alternatives, evidence, and rollback path.
+        </li>
+      </ol>
+
+      <p>
+        The interface should return decision packets, not transcripts. A human should not have to reconstruct the
+        agent's entire context to make one consequential choice.
+      </p>
+
+      <h2>Deliberate human gates versus accidental serial work</h2>
+
+      <p>Some human gates are the point:</p>
+
+      <ul>
+        <li>final authority over a production release;</li>
+        <li>acceptance of legal, financial, or security risk;</li>
+        <li>taste decisions that define the product;</li>
+        <li>direction changes based on ambiguous customer evidence.</li>
+      </ul>
+
+      <p>Other human work is accidental:</p>
+
+      <ul>
+        <li>copying state between disconnected tools;</li>
+        <li>re-explaining the same project context to every agent;</li>
+        <li>approving predictable low-risk operations individually;</li>
+        <li>reading raw logs to discover the one exception that matters;</li>
+        <li>manually checking outcomes that a deterministic test could verify.</li>
+      </ul>
+
+      <p>
+        Amdahl Maxing removes the accidental work so the deliberate gates can receive real attention.
+      </p>
+
+      <h2>The founder becomes the serial processor</h2>
+
+      <p>
+        A one-person company can summon many agents and still remain a one-person decision system. If every task,
+        exception, review, and release waits for the founder, adding agents increases the queue more quickly than the
+        throughput.
+      </p>
+
+      <p>
+        Principles, policies, budgets, tests, observability, and customer feedback are therefore company architecture.
+        They let routine decisions leave the founder while preserving authority over the few decisions that define the
+        business.
+      </p>
+
+      <h2>Measure attention, not activity</h2>
+
+      <p>Agent systems naturally produce impressive activity metrics:</p>
+
+      <ul>
+        <li>tokens consumed;</li>
+        <li>tasks attempted;</li>
+        <li>pull requests opened;</li>
+        <li>tool calls completed;</li>
+        <li>lines of code generated.</li>
+      </ul>
+
+      <p>
+        None measures whether the whole system improved. Measure shipped, verified outcomes per hour of human review.
+        How much real movement occurred, how much attention did it require, and did the result teach the next iteration
+        anything?
+      </p>
+
+      <h2>How this shapes Bitter</h2>
+
+      <p>
+        <a href="https://bitter.sh">Bitter</a> connects the operating surfaces around an agent: repository, deployment,
+        credentials, logs, payments, support, analytics, and project history. The purpose is not merely agent convenience.
+        It is to expand the fraction of the company loop a replaceable harness can operate without making a human
+        coordinate every boundary.
+      </p>
+
+      <p>
+        The companion idea is
+        <a href="/bitter-lesson/">Bitter Lesson Maxing</a>: do not build the company's durable value inside a proprietary
+        reasoning loop that provider progress can absorb. Let improving agents enter the operating environment and do
+        more over time.
+      </p>
+
+      <h2>How Bitter Frontier uses Amdahl's Law</h2>
+
+      <p>
+        Frontier does not ask only whether a provider made an agent more capable. It asks whether the change improved the
+        whole workflow or accelerated one local task. It asks what new review, coordination, approval, or exception work
+        returned to a human. It asks whether a safeguard preserves judgment or merely manufactures clicks.
+      </p>
+
+      <p>
+        That is why Frontier does not headline every change it finds. The
+        publication is itself an Amdahl-shaped system: broad research happens in
+        parallel, editorial judgment remains scarce, and the reader should
+        receive only the decisions worth that attention.
+      </p>
+
+      <p>
+        The <a href="/letter/">pinned founder's letter</a> explains why Amdahl's Law and the Bitter Lesson jointly
+        produced Bitter Frontier.
+      </p>
+
+      <h2>See the law in the reporting</h2>
+
+      <p>
+        Our <a href="/signals/2026-07-02-claude-code-background-agents-commit-push-pr/">background-agent report</a>
+        tracks how <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.198">Claude Code v2.1.198 made
+        background agents commit, push, and open draft pull requests</a>. The agent-operable fraction grew. Human
+        attention moved from watching the terminal to setting branch protection and reviewing the resulting pull request.
+      </p>
+
+      <p>
+        Less human involvement is not always the answer.
+        Our <a href="/signals/2026-07-01-codex-powershell-approval-and-mcp-tool-search/">Codex 0.142.2 report</a> follows
+        the change that <a href="https://github.com/openai/codex/pull/24092">gates uninspectable PowerShell commands
+        behind approval</a>. That is a deliberate serial boundary: the system cannot show the operator what it is about
+        to execute, so stopping is the useful behavior. Amdahl Maxing removes accidental queues. It does not automate
+        away responsibility.
+      </p>
+
+      <p>
+        This page is a living interpretation. The human-attention model should become more precise as organizations
+        operate larger agent fleets, new forms of verification mature, and evidence shows which gates are load-bearing
+        rather than accidental.
+      </p>
+    </div>
+
+    <aside class="publisher-note mt-9">
+      <p class="small-caps text-muted">From the publisher</p>
+      <p>
+        Frontier studies where human attention becomes the constraint. <a href="https://bitter.sh">Bitter</a> is the
+        harness-agnostic operating environment built to move routine work without turning a person into the message queue.
+      </p>
+    </aside>
+
+    <div class="rule mt-9 pt-5">
+      <p class="font-mono text-sm text-muted">
+        Continue with <a href="/bitter-lesson/">the Bitter Lesson for software companies</a> /
+        <a href="/letter/">the founder's letter</a> /
+        <a href="/about/">about Bitter Frontier</a>
+      </p>
+    </div>
+  </article>
+</Base>

@@ -1,14 +1,16 @@
 schema_version: bitter.frontier_run_manifest.v0
 run_id: 2026-07-02-weekly-digest-2026-07-01_2026-07-02-frontier-v0
-mode: weekly-digest
-title: "The Installer Is the Control Plane"
+mode: frontier-brief
+title: "Foreground Attention Is No Longer the Control"
 window:
   start: 2026-07-01
   end: 2026-07-02
 status: published
+artifact_version: 4
 parent_window: 2026-06-24_2026-07-01
-finding_count: 22
-signal_count: 5
+finding_count: 23
+signal_count: 4
+withdrawn_signal_count: 1
 sources:
   - agent-flywheel
   - codex
@@ -42,7 +44,7 @@ quality_gates:
   - channel_by_ancestry: pass
   - dates_verified_to_year: pass
   - signals_rarer_than_findings: pass
-  - every_signal_receipt_adversarially_verified: pass
+  - every_signal_receipt_adversarially_verified: corrected_2026-07-12
   - cross_provider_synthesis_thesis: pass
   - marketing_vs_substance_separated: pass
   - exemplar_bar_checked: pass
@@ -56,9 +58,9 @@ carry_forward_checks:
   paperclip: "UNRESOLVED -- no stable tag after v2026.626.0; July 2 work is canary-only."
   heypi: "NO CHANGE -- 0.2.0-beta.0 remains current and main matched the tag during harvest."
 new_source_build:
-  agent-flywheel: "Source intake, 7 findings, 1 signal, and seed profile. Scope restricted to tagged setup repo and official site source; author portfolio rejected."
-generated_findings: findings/*.md (22)
-generated_signals: signals/frontier-signals.yml (5)
+  agent-flywheel: "Source intake, 8 baseline/context findings, 0 accepted in-window signals, and a profile. The original signal is preserved as withdrawn because v0.7.0 predates the window. The correction audit added the tagged license rider and narrowed safe-mode sudo semantics."
+generated_findings: findings/*.md (23)
+generated_signals: signals/frontier-signals.yml (4 accepted, 1 withdrawn correction record)
 generated_digest: ../../content/digests/2026-07-01_2026-07-02-weekly.md
 profile_updates:
   - content/profiles/agent-flywheel.md
@@ -68,5 +70,6 @@ journal: JOURNAL.md
 audit_notes: audit.md
 qa_notes: qa.md
 validation:
-  integrity: "pass -- node site/scripts/check-integrity.mjs -- integrity check: clean; 334 findings indexed, 151 signals indexed; 14 watchlist sources, 3 adjacent (3 referenced)"
-  build: "pass -- npm --prefix site run build -- 899 pages built; link-graph clean; OG cards generated"
+  integrity: "pass -- node site/scripts/check-integrity.mjs -- integrity check: clean; 335 findings indexed, 151 signal records indexed (150 accepted, 1 withdrawn); 14 watchlist sources, 3 adjacent (3 referenced)"
+  build: "pending coordinated final rerun after concurrent generated-output churn invalidated this audit's build attempt"
+  smoke: "pass -- npm --prefix site run test:smoke -- 8 tests passed"

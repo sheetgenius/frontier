@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 import VersionList from "../components/VersionList.astro";
 import { GH_BLOB_BASE, GH_REPO_URL } from "../lib/site";
-import { canonicalRunForDigest, formatDate, listDigests, listProfiles, listSignals, logLinkGraphReportOnce, sourceLabel, versionsForDigest } from "../lib/frontier";
+import { canonicalRunForDigest, formatDate, listAcceptedSignals, listDigests, listProfiles, logLinkGraphReportOnce, sourceLabel, versionsForDigest } from "../lib/frontier";
 import { marked } from "marked";
 
 logLinkGraphReportOnce();
@@ -10,7 +10,7 @@ logLinkGraphReportOnce();
 const [latest] = listDigests();
 const canonicalRun = latest ? canonicalRunForDigest(latest) : undefined;
 const versions = latest ? versionsForDigest(latest.id) : [];
-const signals = listSignals().slice(0, 6);
+const signals = listAcceptedSignals().slice(0, 6);
 const profiles = listProfiles();
 const profileSlugs = new Set(profiles.map((p) => p.slug));
 const latestThesisHtml = latest?.data.operator_brief?.thesis
@@ -19,48 +19,45 @@ const latestThesisHtml = latest?.data.operator_brief?.thesis
 ---
 
 <Base
-  title="Bitter Frontier"
-  description="Source-backed field notes on Codex, Claude Code, Gemini CLI, OpenHands, Pi coding agent, and the agent harness releases operators should test next."
+  title="Bitter Frontier | Coding Agents Through the Bottleneck"
+  description="Source-backed analysis of what coding agents made cheaper, where the bottleneck moved, and what deserves scarce human attention."
 >
   <section class="measure publication-intro">
-    <p class="small-caps publication-kicker eyebrow">Weekly field notes</p>
-    <h1 class="publication-title">Coding agents are changing faster than operating policy.</h1>
+    <p class="small-caps publication-kicker eyebrow">Bitter Frontier</p>
+    <h1 class="publication-title">Coding agents can create work faster than teams can verify it.</h1>
     <p class="publication-dek">
-      Weekly, source-backed field notes for teams running coding agents in production: what changed, what broke
-      assumptions, what got easier, and what to test before the next rollout. Covers {profiles.length} providers.
+      Source-backed, cross-project reporting on what coding agents just made cheaper, what became the new
+      bottleneck, and where operators should spend scarce human attention.
     </p>
-  </section>
-
-  <section class="measure pb-10">
-    <aside class="opensource-note">
-      <p class="small-caps eyebrow">Open by default</p>
-      <h2 class="opensource-title">Open source, and auditable by design.</h2>
-      <p class="opensource-body">
-        Every claim links to a primary source you can open and check, and the whole publication, source notes and all,
-        is on GitHub. Find something wrong? Send a correction.
-      </p>
-      <div class="opensource-actions">
-        <a class="action-primary" href={GH_REPO_URL}>
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-          </svg>
-          View on GitHub
-        </a>
-        <a class="action-secondary" href={`${GH_BLOB_BASE}/CONTRIBUTING.md`}>How to contribute</a>
+    <dl class="publication-axioms">
+      <div>
+        <dt><a href="/bitter-lesson/">Bitter Lesson Maxing</a></dt>
+        <dd>Build where improving general agents compound your advantage, not where their next release erases it.</dd>
       </div>
-    </aside>
+      <div>
+        <dt><a href="/amdahls-law/">Amdahl Maxing</a></dt>
+        <dd>Treat human attention as the scarce serial resource and spend it where judgment changes the outcome.</dd>
+      </div>
+    </dl>
+    <p class="publication-thesis-link">
+      <a href="/letter/">A pinned letter from the founder: an ode to the Bitter Lesson and Amdahl's law maximalism -&gt;</a>
+    </p>
+    <p class="issue-meta">
+      Edited by Michael Ruescher. Published by <a href="https://bitter.sh">Bitter</a>.
+      <a href="/rss.xml">Subscribe by RSS</a>.
+    </p>
   </section>
 
   {
     latest && (
       <section class="measure rule featured-issue py-8">
-        <p class="small-caps eyebrow">Latest Issue</p>
+        <p class="small-caps eyebrow">Latest Published Brief</p>
         <a href={`/digests/${latest.slug}/`} class="mt-4 block no-underline hover:underline">
           <h2 class="issue-title">{latest.data.title}</h2>
         </a>
         <p class="issue-meta">
-          Published {formatDate(latest.data.window?.end)} ·
-          {canonicalRun && <><a href={`/runs/${canonicalRun.id}/`}>Research run</a> ·</>}
+          Published {formatDate(latest.data.window?.end)} /
+          {canonicalRun && <><a href={`/runs/${canonicalRun.id}/`}>Research run</a> /</>}
           {latest.data.signal_count} signals
         </p>
         {latestThesisHtml && (
@@ -89,14 +86,34 @@ const latestThesisHtml = latest?.data.operator_brief?.thesis
           </dl>
         )}
         <p class="mt-5 font-mono text-sm text-muted">
-          <a href={`/digests/${latest.slug}/`} class="hover:underline">Read the full issue →</a>
+          <a href={`/digests/${latest.slug}/`} class="hover:underline">Read the full issue -&gt;</a>
         </p>
       </section>
     )
   }
 
+  <section class="measure py-8">
+    <aside class="opensource-note">
+      <p class="small-caps eyebrow">Open by default</p>
+      <h2 class="opensource-title">Open source, and auditable by design.</h2>
+      <p class="opensource-body">
+        Every claim links to a primary source you can open and check, and the whole publication, source notes and all,
+        is on GitHub. Find something wrong? Send a correction.
+      </p>
+      <div class="opensource-actions">
+        <a class="action-primary" href={GH_REPO_URL}>
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          View on GitHub
+        </a>
+        <a class="action-secondary" href={`${GH_BLOB_BASE}/CONTRIBUTING.md`}>How to contribute</a>
+      </div>
+    </aside>
+  </section>
+
   <section class="measure rule py-8">
-    <p class="small-caps eyebrow">Provider Updates</p>
+    <p class="small-caps eyebrow">Latest Profile Reviews</p>
     <ul class="provider-updates">
       {profiles.map((profile) => (
         <li>
@@ -119,7 +136,7 @@ const latestThesisHtml = latest?.data.operator_brief?.thesis
               {formatDate(signal.date)}
               {signal.sources.map((src) => (
                 <span>
-                  {" · "}
+                  {" / "}
                   {profileSlugs.has(src) ? (
                     <a href={`/profiles/${src}/`} class="text-[var(--color-bitter)] no-underline hover:underline">
                       {sourceLabel(src)}
@@ -143,7 +160,7 @@ const latestThesisHtml = latest?.data.operator_brief?.thesis
       }
     </ol>
     <p class="mt-6 font-mono text-sm text-muted">
-      <a href="/signals/" class="hover:underline">All AI coding agent signals →</a>
+      <a href="/signals/" class="hover:underline">All AI coding agent signals -&gt;</a>
     </p>
   </section>
 

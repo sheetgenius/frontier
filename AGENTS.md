@@ -1,28 +1,62 @@
 # Bitter Frontier
 
-A weekly, receipted brief on the agentic-coding frontier: the coding agents and
-the harnesses around them, read through one question. What changed, and what does
-it cost the people who run these tools. The publication is the repository,
-file-backed Markdown and YAML, with no hidden database.
+Bitter Frontier is a receipted editorial publication on coding agents and their
+harnesses. It reads provider changes through two named ideas:
 
-This file orients AI assistants and human contributors working in the repo.
+- **[Bitter Lesson Maxing](https://frontier.bitter.sh/bitter-lesson/):** build
+  where improving general agents compound the advantage, not where their next
+  release erases it.
+- **[Amdahl Maxing](https://frontier.bitter.sh/amdahls-law/):** treat human
+  attention as the scarce serial resource and spend it where judgment changes
+  the outcome.
 
-- Read [METHOD.md](./METHOD.md) for how the publication works: the three rules
-  (no claim without a receipt; no signal without a consequence; released is not
-  merged) and the object grammar (finding, signal, digest, profile, run artifact).
-- Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request.
+The governing editorial question is: what did agents just make cheaper, which
+part of the end-to-end system can they now operate, and where did the human
+attention bottleneck move?
 
-House style: ASCII punctuation only, no em dashes; operator-first, skeptical, no
-hype. Cite the primary source on the claim-bearing words. Every claim carries a
-receipt or it does not ship.
+## Read the authorities in order
 
-Validate before you push:
+1. [THESIS.md](./THESIS.md) defines why the publication exists, the company
+   layer decision, the audience, the funnel, and the safeguard against a
+   predetermined corporate verdict.
+2. [METHOD.md](./METHOD.md) defines the three rules, evidence contract, object
+   grammar, signal packet, and synthesis standard.
+3. [EDITORIAL.md](./EDITORIAL.md) defines the public writing bar: synthesis,
+   decision utility, reader vocabulary, and the cold-read test.
+4. [CONTRIBUTING.md](./CONTRIBUTING.md) defines what an outside contributor may
+   change and what remains editorially owned.
 
-    npm --prefix site run build            # regenerates pages + internal link check
-    node site/scripts/check-integrity.mjs  # cross-reference ids resolve
+## The non-negotiables
 
-To run a full research cycle -- harvest the watchlist, edit it down to signals, and
-publish the weekly digest -- invoke the `frontier-cycle` skill
+- No claim without a primary-source receipt on the claim-bearing words.
+- No signal without a concrete consequence for an operator, the larger system,
+  or scarce human attention.
+- Released is not merged. State the channel an operator can actually run.
+- The thesis chooses the questions, not the answers. Publish evidence that cuts
+  against Bitter's assumptions.
+- Bitter is the disclosed publisher and stays outside the analysis.
+- Public prose leads with what happened, who it affects, what to do, and what it
+  means. Pipeline terms such as `finding_id`, harvest, promotion, and
+  carry-forward stay in research artifacts.
+- Public prose should have a pulse. Color, wit, analogy, and colloquial language
+  are welcome when they sharpen a receipted mechanism or consequence. They must
+  never inflate certainty or replace analysis.
+
+House style: ASCII punctuation only, no em dashes; operator-first, skeptical,
+plain, and free of hype or sneer. The publication absorbs complexity for the
+reader. A first-time visitor should not have to learn the repository taxonomy.
+
+## Validate before you push
+
+    npm --prefix site run build
+    node site/scripts/check-integrity.mjs
+
+The build regenerates pages and checks internal links. The integrity check
+resolves cross-reference IDs.
+
+To run a full research cycle, invoke the `frontier-cycle` skill
 ([.claude/skills/frontier-cycle/SKILL.md](./.claude/skills/frontier-cycle/SKILL.md)).
-It encodes the protocol end to end: the three rules, channel-by-ancestry, the
-coordinator-led fan-out, the artifact grammar, and the validate-and-publish steps.
+It encodes the coordinator-led research and publication protocol. To raise an
+existing public artifact to the house bar without changing its window truth, use
+the `exemplar-pass` skill
+([.claude/skills/exemplar-pass/SKILL.md](./.claude/skills/exemplar-pass/SKILL.md)).

@@ -1,8 +1,8 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { SITE_URL } from "../../lib/site";
-import { listFindings } from "../../lib/frontier";
-const findings = listFindings();
+import { listCanonicalFindings } from "../../lib/frontier";
+const findings = listCanonicalFindings();
 const itemList = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -29,7 +29,7 @@ const itemList = {
       {
         findings.map((finding) => (
           <a href={`/findings/${finding.finding}/`} class="block no-underline hover:underline">
-            <div class="small-caps text-[var(--color-bitter)]">{finding.data.source} · {finding.data.confidence}</div>
+            <div class="small-caps text-[var(--color-bitter)]">{finding.data.source} / {finding.data.confidence}</div>
             <h2 class="signal-title">{finding.title}</h2>
           </a>
         ))
