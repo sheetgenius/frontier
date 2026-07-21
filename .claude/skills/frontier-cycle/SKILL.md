@@ -108,6 +108,23 @@ profiles, and recent digests. Identify the nearest precedent, concurrent pattern
 or structural divergence. Do not force a comparison when it does not change the
 read.
 
+#### Optional: X/Grok social-discovery lane
+
+When public X/social chatter may reveal maintainer intent, adoption, or ecosystem
+tension a changelog does not, run the discovery lane: drive the Hermes agent (with
+its web/X search tools) on Grok through a SuperGrok or X Premium+ subscription.
+Setup and the one-command runner are in `docs/hermes-grok-harvest-setup.md`;
+`ops/hermes/grok-harvest.sh harvest <source>` writes candidate claims into an
+`x-social-harvest` run.
+
+This lane is **discovery only**: its output is leads, never receipts. No X or Grok
+claim becomes a finding, signal, digest, or profile until it clears the source
+contract's evidence floor against a primary source, per
+`docs/x-social-harvest-workflow.md`. It runs alongside, never instead of, the
+primary-source harvest. Grok's subscription surface can also reject a valid
+subscriber with HTTP 403; if the preflight degrades, skip the lane and harvest
+primary sources only.
+
 ### 4. Findings
 For every source-backed observation write `findings/<finding_id>.md` -- an index
 stub: frontmatter (`finding_id`, `source`, `source_contract`, `window`, `status`,

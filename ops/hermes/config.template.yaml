@@ -1,0 +1,28 @@
+# Bitter Frontier -- Hermes Agent config TEMPLATE (Grok via X subscription)
+#
+# This is a TEMPLATE showing the shape only. Do NOT put real credentials here and
+# do NOT commit a filled-in config. Hermes reads its live config from
+# ~/.hermes/config.yaml and stores the xai-oauth refresh token under ~/.hermes/
+# after 'hermes auth add xai-oauth'. Neither the token nor a real config belongs
+# in this repository.
+#
+# Set this up with the commands in docs/hermes-grok-harvest-setup.md, or copy the
+# model block below into ~/.hermes/config.yaml and then authenticate.
+
+model:
+  # Grok through a SuperGrok / X Premium+ subscription (OAuth), NOT an API key.
+  provider: xai-oauth
+  base_url: https://api.x.ai/v1
+
+  # The OAuth (subscription) catalog lags the metered API. Grok 4.5 is API-only
+  # and will NOT appear here. Pick the newest model the catalog actually exposes:
+  # run 'ops/hermes/grok-harvest.sh models' to list them. Known values have
+  # included grok-build-0.1 (auto-selected on login), grok-4.20-0309-reasoning,
+  # grok-4.20-multi-agent-0309, and grok-4.3.
+  default: grok-4.20-0309-reasoning
+
+# The agent API server runs via 'hermes gateway' (see
+# ops/hermes/grok-harvest.sh gateway). It runs the full agent with its web/X
+# search tools and binds 127.0.0.1:8642 by default; override with the
+# API_SERVER_HOST and API_SERVER_PORT environment variables. Keep it on loopback:
+# the endpoint accepts any bearer token and has no auth of its own.
