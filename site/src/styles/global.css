@@ -4,7 +4,7 @@
    editorial weight contrast carries the headlines, not a contrasting face.
    All faces are self-hosted so they render under the `font-src 'self'` CSP.
 
-   Manrope — the brand typeface. One self-hosted VARIABLE woff2 (weight axis
+   Manrope - the brand typeface. One self-hosted VARIABLE woff2 (weight axis
    200..800) carries the whole hierarchy, body AND headlines, by weight
    contrast. Both --font-sans and --font-serif map to it; existing
    var(--font-serif) headline references therefore render in Manrope.
@@ -18,7 +18,7 @@
   src: url("../fonts/manrope-variable.woff2") format("woff2");
 }
 
-/* IBM Plex Mono — the wordmark/logo voice and the operator/data labels.
+/* IBM Plex Mono - the wordmark/logo voice and the operator/data labels.
    Crisp, institutional, technical. Self-hosted static weights. */
 @font-face {
   font-family: "IBM Plex Mono";
@@ -184,16 +184,13 @@ code {
   padding-inline: clamp(1.25rem, 4vw, 2rem);
 }
 
-/* Masthead.
-   Mobile-first: a single stacked column -- wordmark lockup, then the nav.
-   The desktop two-tier layout (wordmark name on the section-nav line, tag on the
-   utility-cluster line) is opted into at >=720px below; until then everything
-   stacks so nothing can overflow or wrap into a ragged staircase. */
+/* Masthead. Mobile keeps the promise out of the way and places navigation and
+   utility controls on one compact row. Desktop restores the two-line lockup. */
 .site-header {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  padding-block: 1.5rem 1.35rem;
+  gap: 0.7rem;
+  padding-block: 0.9rem;
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -206,7 +203,7 @@ code {
      run off the right edge. The name itself is short enough to hold one line. */
 }
 
-/* Wordmark in IBM Plex Mono — bitter.sh's logo voice: institutional, crisp,
+/* Wordmark in IBM Plex Mono - bitter.sh's logo voice: institutional, crisp,
    letterspaced. Weight contrast against the mono tag below carries the lockup. */
 .masthead-wordmark .wordmark-name {
   font-family: var(--font-mono);
@@ -219,12 +216,12 @@ code {
 }
 
 .masthead-wordmark .wordmark-tag {
+  display: none;
   font-family: var(--font-mono);
   font-size: 0.62rem;
   font-weight: 400;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.04em;
   line-height: 1.4;
-  text-transform: uppercase;
   color: var(--color-muted);
 }
 
@@ -232,17 +229,15 @@ code {
   color: var(--color-bitter);
 }
 
-/* The nav is two first-class clusters: the section links and the utility
-   controls (GitHub + theme). On mobile they stack; on desktop they sit on the
-   right, the sections above the controls, mirroring the wordmark's two lines. */
+/* The nav is two first-class clusters: section links and utility controls. */
 .site-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.9rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
   font-family: var(--font-mono);
-  font-size: 0.71rem;
-  letter-spacing: 0.15em;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -250,7 +245,11 @@ code {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.7rem 1.15rem;
+  gap: 0.55rem 0.95rem;
+}
+
+.nav-sections a {
+  white-space: nowrap;
 }
 
 .site-nav a {
@@ -291,7 +290,7 @@ code {
 .nav-controls {
   display: inline-flex;
   align-items: center;
-  gap: 0.95rem;
+  gap: 0.75rem;
 }
 
 .nav-github {
@@ -319,6 +318,7 @@ code {
 }
 
 .nav-github .nav-github-label {
+  display: none;
   border-bottom: 1px solid transparent;
   padding-bottom: 0.12rem;
 }
@@ -386,6 +386,24 @@ code {
   border-bottom-color: var(--color-bitter);
 }
 
+/* Maintainer presence on X -- understated mono line under the official links;
+   the label stays muted, the handles take the accent. Handle case preserved. */
+.profile-social {
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-muted);
+}
+.profile-social a {
+  color: var(--color-bitter);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.12s ease;
+}
+.profile-social a:hover {
+  border-bottom-color: var(--color-bitter);
+}
+
 @media (min-width: 720px) {
   /* Desktop masthead: a two-row baseline grid. The wordmark name shares its row
      with the section nav (both top-aligned); the wordmark tag shares the row
@@ -399,6 +417,7 @@ code {
     align-items: start;
     column-gap: 1.5rem;
     row-gap: 0.7rem;
+    padding-block: 1.15rem;
   }
 
   .masthead-wordmark {
@@ -416,6 +435,7 @@ code {
   }
 
   .masthead-wordmark .wordmark-tag {
+    display: block;
     align-self: center;
   }
 
@@ -440,6 +460,10 @@ code {
     align-self: center;
     padding-left: 0.95rem;
     border-left: 1px solid var(--color-line);
+  }
+
+  .nav-github .nav-github-label {
+    display: inline;
   }
 }
 
@@ -483,6 +507,10 @@ code {
   color: var(--color-muted);
 }
 
+.publication-intro {
+  padding-block: 2.6rem 2.5rem;
+}
+
 .publication-title {
   margin: 1.5rem 0 0;
   font-family: var(--font-serif);
@@ -500,6 +528,151 @@ code {
   font-size: clamp(1.08rem, 1.1vw, 1.22rem);
   line-height: 1.65;
   text-wrap: pretty;
+}
+
+.publication-axioms {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 2rem 0 0;
+  border-block: 1px solid var(--color-line);
+}
+
+.publication-axioms > div {
+  padding: 1.2rem 1.35rem 1.25rem 0;
+}
+
+.publication-axioms > div + div {
+  padding-left: 1.35rem;
+  border-left: 1px solid var(--color-line);
+}
+
+.publication-axioms dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-bitter);
+}
+
+.publication-axioms dt a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.publication-axioms dt a:hover {
+  text-decoration: underline;
+}
+
+.publication-axioms dd {
+  margin: 0.48rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.93rem;
+  line-height: 1.55;
+}
+
+.publication-thesis-link {
+  margin: 0.85rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-muted);
+}
+
+.publication-thesis-link a {
+  text-decoration: none;
+}
+
+.publication-thesis-link a:hover {
+  text-decoration: underline;
+}
+
+.frontier-lens {
+  margin-top: 2rem;
+  padding-top: 1.1rem;
+}
+
+.frontier-lens p {
+  margin: 0;
+}
+
+.frontier-lens p + p {
+  margin-top: 0.55rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.frontier-lens a {
+  color: var(--color-ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.frontier-lens a:hover {
+  color: var(--color-bitter);
+  text-decoration: underline;
+}
+
+.founder-signoff {
+  margin-top: 2.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.publisher-note {
+  padding: 1.1rem 1.25rem;
+  border-left: 2px solid var(--color-bitter);
+  background: color-mix(in srgb, var(--color-bitter) 5%, transparent);
+}
+
+.publisher-note p {
+  margin: 0;
+}
+
+.publisher-note p + p {
+  margin-top: 0.55rem;
+  color: var(--color-muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .publication-intro {
+    padding-block: 1.85rem 2rem;
+  }
+
+  .publication-kicker {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+  }
+
+  .publication-title {
+    margin-top: 1rem;
+    line-height: 1.1;
+  }
+
+  .publication-dek {
+    margin-top: 1.05rem;
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+
+  .publication-axioms {
+    grid-template-columns: 1fr;
+    margin-top: 1.5rem;
+  }
+
+  .publication-axioms > div {
+    padding: 1rem 0;
+  }
+
+  .publication-axioms > div + div {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid var(--color-line);
+  }
 }
 
 /* Open-source callout: editorial, not a pricing box. A single bitter-gold
@@ -586,6 +759,34 @@ code {
   letter-spacing: -0.005em;
   line-height: 1.2;
   text-wrap: balance;
+}
+
+/* Profile standfirst: the tagline rendered as a one-line verdict under the
+   provider name -- serif, near-title weight of attention, not muted. */
+.profile-dek {
+  max-width: 34rem;
+  margin: 0.55rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.04rem, 1vw, 1.18rem);
+  line-height: 1.5;
+  color: var(--color-ink);
+  text-wrap: pretty;
+}
+:root.dark .profile-dek {
+  color: var(--color-night-ink);
+}
+
+/* Tagline verdict in the profiles index list -- a touch smaller than the
+   profile-page dek, so the directory reads as scannable one-line verdicts. */
+.profile-row-dek {
+  margin-top: 0.3rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--color-ink);
+}
+:root.dark .profile-row-dek {
+  color: var(--color-night-ink);
 }
 
 .issue-meta {
@@ -944,6 +1145,144 @@ code {
 .editorial-evidence-list {
   margin: 0;
   padding-left: 1.1rem;
+}
+
+.correction-notice {
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--color-bitter);
+  border-left-width: 4px;
+  background: color-mix(in srgb, var(--color-bitter) 7%, transparent);
+}
+
+.correction-notice p {
+  margin-bottom: 0;
+}
+
+.corrections-header h1 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.corrections-header p {
+  max-width: 42rem;
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-serif);
+  font-size: clamp(1.08rem, 1.3vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.corrections-list {
+  display: grid;
+  gap: 0;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.corrections-list > li {
+  padding: 1.65rem 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.correction-entry-meta,
+.correction-object,
+.correction-receipt {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.correction-entry-meta {
+  margin: 0;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+.correction-entry h3 {
+  max-width: 42rem;
+  margin: 0.55rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.18rem, 1.6vw, 1.4rem);
+  line-height: 1.3;
+}
+
+.correction-object {
+  margin: 0.45rem 0 0;
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+
+.correction-change {
+  display: grid;
+  gap: 0.9rem;
+  margin: 1.1rem 0 0;
+}
+
+.correction-change > div {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: 0.8rem;
+}
+
+.correction-change dt {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.correction-change dd {
+  margin: 0;
+  line-height: 1.58;
+}
+
+.correction-verdict {
+  max-width: 42rem;
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+  line-height: 1.58;
+}
+
+.correction-provenance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.5rem;
+  margin: 1rem 0 0;
+}
+
+.correction-provenance div {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.correction-provenance dt {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.correction-provenance dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+}
+
+.correction-receipt {
+  margin: 0.8rem 0 0;
+}
+
+@media (max-width: 640px) {
+  .correction-change > div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
 }
 
 .homepage-thesis {
@@ -1680,39 +2019,62 @@ code {
 
 .operator-brief-thesis {
   margin: 0.6rem 0 0;
+}
+.operator-brief-thesis p {
+  margin: 0.75rem 0 0;
   font-family: var(--font-serif);
   font-size: clamp(1.08rem, 1.3vw, 1.22rem);
   line-height: 1.6;
   font-weight: 400;
   letter-spacing: 0;
 }
+.operator-brief-thesis p:first-child {
+  margin-top: 0;
+}
 
+/* Links are load-bearing in the brief -- make them read as links (accent + a
+   quiet underline), and render inline code from the markdown pass legibly. */
+.operator-brief a {
+  color: var(--color-bitter);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-bitter) 35%, transparent);
+  transition: border-color 0.12s ease;
+}
+.operator-brief a:hover {
+  border-bottom-color: var(--color-bitter);
+}
+.operator-brief code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--color-muted) 14%, transparent);
+}
+
+/* Stacked brief groups: a small-caps eyebrow over full-width items, with a quiet
+   hairline between groups -- no heavy left gutter pushing the text off to the side. */
 .operator-brief-list {
   display: grid;
-  gap: 0.9rem;
-  margin: 1.1rem 0 0;
+  gap: 1.4rem;
+  margin: 1.6rem 0 0;
 }
 
 .operator-brief-row {
-  display: grid;
-  grid-template-columns: 9rem 1fr;
-  gap: 0.75rem;
-  align-items: baseline;
+  display: block;
 }
 
-@media (max-width: 640px) {
-  .operator-brief-row {
-    grid-template-columns: 1fr;
-    gap: 0.2rem;
-  }
+.operator-brief-row + .operator-brief-row {
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--color-line);
 }
 
 .operator-brief-row dt {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--color-muted);
-  padding-top: 0.15rem;
+  margin: 0 0 0.7rem;
 }
 
 .brief-upgrade dt { color: var(--color-bitter); }
@@ -1727,19 +2089,19 @@ code {
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 0.4rem;
+  gap: 0.7rem;
 }
 
 .operator-brief-row li {
-  font-size: 0.95rem;
-  line-height: 1.55;
-  padding-left: 1rem;
-  text-indent: -1rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  padding-left: 1.15rem;
+  text-indent: -1.15rem;
 }
 
 .operator-brief-row li::before {
-  content: "— ";
-  color: var(--color-muted);
+  content: "- ";
+  color: color-mix(in srgb, var(--color-bitter) 65%, transparent);
 }
 
 .profile-stance {
@@ -1823,6 +2185,12 @@ code {
   color: var(--color-faint);
   font-family: var(--font-mono);
   font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.source-surface-notes {
+  margin: 0.45rem 0 0;
+  font-size: 0.86rem;
   line-height: 1.55;
 }
 
@@ -2012,12 +2380,14 @@ code {
 }
 
 .source-trail-kind {
+  min-width: 0;
   color: var(--color-bitter);
   font-family: var(--font-mono);
   font-size: 0.66rem;
   letter-spacing: 0.14em;
   line-height: 1.35;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .source-trail-label {

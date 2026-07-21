@@ -264,7 +264,7 @@ open questions.
 This profile follows the discipline in `METHOD.md`: every concrete claim in the
 prose has an inline source link and an entry in the `claims:` block; posture
 sections may interpret freely but must cite finding IDs when naming a specific
-feature, behavior change, or cross-provider comparison.
+feature, behavior change, or cross-project comparison.
 
 Note: Eve publishes tagged GitHub Releases with per-release notes, so version-level
 claims are cited at `release_note` precision against the release tag; architectural

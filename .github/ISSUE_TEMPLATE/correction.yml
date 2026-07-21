@@ -10,7 +10,7 @@ body:
         The synthesis and what-becomes-a-signal are editorial and owned; a
         wrong date / version / channel / URL / owner is crowdsourceable and
         welcome. Every field below maps to the receipt requirement in
-        CONTRIBUTING.md. No receipt or no in-window date = not actionable.
+        CONTRIBUTING.md. No receipt or no full ISO event date = not actionable.
   - type: input
     id: location
     attributes:
@@ -49,24 +49,19 @@ body:
       placeholder: "https://github.com/<owner>/<repo>/commit/<sha>  or  https://.../changelog#<anchor>"
     validations:
       required: true
-  - type: dropdown
+  - type: input
     id: precision
     attributes:
       label: Receipt precision
-      description: Must be at or above the artifact's evidence_floor (see CONTRIBUTING.md). commit_diff_reviewed = you read the diff for this claim.
-      options:
-        - commit_diff_reviewed
-        - commit
-        - release_note
-        - official_docs
-        - observed_behavior
+      description: Use the most specific truthful label described in CONTRIBUTING.md, such as commit_line_range, tagged_commit_file, github_release, official_docs, primary_research_source, or observed_behavior.
+      placeholder: "github_release"
     validations:
       required: true
   - type: input
-    id: in_window_date
+    id: event_date
     attributes:
-      label: In-window date (full ISO, YYYY-MM-DD)
-      description: The merge-to-default date, full ISO with the YEAR confirmed inside the artifact's window. Trust the API/changelog timestamp, not rendered HTML (some pages render a stale year).
+      label: Event date (full ISO, YYYY-MM-DD)
+      description: The actual event date, with the year confirmed from the primary source. It may be outside the artifact's window when that is the error you are correcting. Trust the API/changelog timestamp, not rendered HTML.
       placeholder: "2026-06-12"
     validations:
       required: true
@@ -105,7 +100,7 @@ body:
       options:
         - label: This corrects a fact, not an editorial reading (synthesis / promotion / voice are owned; see CONTRIBUTING.md).
           required: true
-        - label: The receipt is a public primary source at or above the artifact's evidence_floor.
+        - label: The receipt is a public primary source that meets the profile's evidence floor and the source contract.
           required: true
-        - label: The date is a full ISO date with the year confirmed in-window (I trusted the API/changelog timestamp, not rendered HTML).
+        - label: The event date is a full ISO date with the year confirmed from the primary source; if it is outside the artifact window, that is the correction I am reporting.
           required: true

@@ -219,8 +219,8 @@ until the fix). And the named-subagent permission rules -- [`Agent(type)` deny r
 cosmetic for the named-spawn path before it. Any deployment that relies on
 `Agent(...)` rules to gate which subagent types can spawn must pin 2.1.186+
 and re-test those rules by writing a deny and confirming a named spawn is
-actually refused. The bound only fully bound here; do not infer it from the
-2.1.178 announcement.
+actually refused. The rule only began binding here; do not infer protection
+from the 2.1.178 announcement.
 
 As of [v2.1.183](https://code.claude.com/docs/en/changelog#2-1-183)
 (2026-06-19), the auto-mode classifier
@@ -370,8 +370,8 @@ surface; Anthropic does not publish a separate one.
 This profile follows the discipline in `RESEARCH_CONTRACT.md#profile`: every
 concrete claim in the prose has an inline source link and an entry in the
 `claims:` block; posture sections may interpret freely but must cite finding IDs
-when naming a specific feature, behavior change, or cross-provider comparison.
-Cross-provider editorial belongs in the weekly digest, not here. Git history is
+when naming a specific feature, behavior change, or cross-project comparison.
+Cross-project editorial belongs in the weekly digest, not here. Git history is
 the audit trail; removed claims live in the diff log.
 
 The `claims:` block references

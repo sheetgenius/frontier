@@ -43,7 +43,7 @@ for (const signal of signals) {
               {formatDate(signal.date)}
               {signal.sources.map((src) => (
                 <span>
-                  {" · "}
+                  {" / "}
                   {profileSlugs.has(src) ? (
                     <a href={`/profiles/${src}/`} class="text-[var(--color-bitter)] no-underline hover:underline">
                       {sourceLabel(src)}

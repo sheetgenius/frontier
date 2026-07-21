@@ -1,0 +1,285 @@
+---
+import Base from "../../layouts/Base.astro";
+import { GH_REPO_URL } from "../../lib/site";
+import { gitRevisionDate } from "../../lib/revision";
+
+const modifiedDate = gitRevisionDate("site/src/pages/bitter-lesson/index.astro", "2026-07-12");
+
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is the Bitter Lesson in AI?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The Bitter Lesson is Rich Sutton's observation that general methods which keep improving through computation, learning, and search repeatedly overtake AI systems built from handcrafted human domain knowledge.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is Bitter Lesson Maxing?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Bitter Lesson Maxing is the business discipline of building at a layer where improving general agents compound the company's advantage instead of erasing a product built around their temporary limitations.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does the Bitter Lesson mean domain knowledge is useless?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. Domain knowledge can produce valuable short-term systems and remains necessary for objectives, environments, evaluation, and accountability. The warning is against treating handcrafted knowledge as a durable substitute for methods that continue to improve with computation and learning.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How should software companies apply the Bitter Lesson?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A software company should avoid making its moat depend on something frontier models or provider harnesses are temporarily bad at. It should own durable environments, state, customer relationships, authority, distribution, and feedback loops that become more valuable as general agents improve.",
+      },
+    },
+  ],
+};
+---
+
+<Base
+  title="The Bitter Lesson for AI Software Companies | Bitter Frontier"
+  description="What Rich Sutton's Bitter Lesson means for AI startups, coding-agent harnesses, durable software moats, and where companies should build as models improve."
+  publishedDate="2026-07-12"
+  modifiedDate={modifiedDate}
+  articleSection="Bitter Frontier thesis"
+  authorName="Michael Ruescher"
+  keywords={["The Bitter Lesson", "Bitter Lesson AI", "Bitter Lesson software companies", "AI agent harnesses", "AI startup strategy"]}
+  structuredData={faq}
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">Bitter Lesson Maxing</p>
+    <h1 class="issue-title">The Bitter Lesson for AI software companies.</h1>
+    <p class="profile-dek">
+      Build where improving general agents compound your advantage, not where their next release erases it.
+    </p>
+    <p class="issue-meta">By Michael Ruescher, founder of Bitter and editor of Bitter Frontier</p>
+    <p class="issue-meta">
+      Published July 12, 2026. Last revised {modifiedDate}. Living essay.
+      <a href={`${GH_REPO_URL}/commits/main/site/src/pages/bitter-lesson/index.astro`}>Revision history</a>.
+    </p>
+
+    <div class="prose-frontier mt-9">
+      <blockquote>
+        If frontier models become twice as capable next year, does your product become more valuable or less necessary?
+      </blockquote>
+
+      <p>
+        I learned to ask that after building a long-horizon agent at Blueshift with
+        <a href="https://blueshift.com/blog/phasehandoff-long-horizon-agents/">roughly 90 tools, paged tool access, and
+        executions across millions of tokens</a>. The system worked. It also showed me how dangerous it is to build a
+        company around something a model provider is temporarily bad at.
+      </p>
+
+      <p>
+        A company that becomes more valuable is building with the slope. A company whose core feature disappears is
+        renting a temporary limitation.
+      </p>
+
+      <h2>What is the Bitter Lesson?</h2>
+
+      <p>
+        In 2019, reinforcement-learning researcher Rich Sutton published
+        <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">The Bitter Lesson</a>. His observation was
+        historical and uncomfortable: across major areas of artificial intelligence, general methods that could absorb
+        more computation through learning and search repeatedly overtook systems built from human-supplied knowledge.
+      </p>
+
+      <p>
+        The handcrafted systems were not foolish. They often worked first. They reflected real expertise and could win
+        while computation remained expensive. The problem was the slope. Human-designed features and rules tended to
+        plateau. General methods kept finding new gains as computation, data, and learning machinery improved.
+      </p>
+
+      <p>
+        The lesson is bitter because builders like putting their understanding into the machine. It makes the system
+        legible and makes our expertise feel load-bearing. Over a long enough horizon, the more durable contribution is
+        often not the expert answer. It is the environment and method that let the machine discover answers the expert
+        did not encode.
+      </p>
+
+      <h2>What the Bitter Lesson does not mean</h2>
+
+      <p>
+        It does not mean that domain knowledge is useless, that brute force solves every problem, or that software
+        engineering disappears. Domain knowledge still matters when people choose objectives, construct environments,
+        define interfaces, measure outcomes, and decide which failures are unacceptable.
+      </p>
+
+      <p>
+        It also does not mean every general method wins immediately. The time horizon matters. A specialized method can
+        be the correct product today. The mistake is assuming its current advantage will remain a durable moat after the
+        general system improves.
+      </p>
+
+      <h2>How I learned the lesson by building an agent harness</h2>
+
+      <p>
+        The <a href="https://blueshift.com/blog/phasehandoff-long-horizon-agents/">first version used a fleet of specialist
+        agents. Each local decision looked sensible, yet intent quietly evaporated across the handoffs</a>. The system did
+        not crash. It flattened. That experience taught me to distrust architectures that look impressive by component
+        while losing the objective between components.
+      </p>
+
+      <p>
+        Building the eventual long-horizon system was useful precisely because it showed me the structural disadvantage
+        of remaining at that layer. My conclusion was that model providers can co-design their models and harnesses,
+        train against their own interfaces, observe the combined system at scale, and control the inference economics
+        underneath the product.
+      </p>
+
+      <p>
+        An independent harness can still invent something important. But every feature built around a current model
+        failure lives under the next provider changelog. I do not assume today's gaps in compaction, tool search, context
+        management, delegation, or approval will remain open long enough to support a company.
+      </p>
+
+      <h2 id="bitter-lesson-maxing">Bitter Lesson Maxing</h2>
+
+      <p>
+        Bitter Lesson Maxing is my name for applying Sutton's research lesson to company construction:
+      </p>
+
+      <blockquote>
+        Build where improving general agents compound your advantage, not where their next release erases it.
+      </blockquote>
+
+      <p>
+        This does not mean refusing to build tools around agents. It means choosing the durable layer carefully. Bitter
+        does not try to own the agent's reasoning loop. A builder can bring Codex, Claude Code, Pi, or another harness.
+        Bitter is betting that agent cognition will become replaceable. The operating environment, accumulated state,
+        authority, and customer history should survive the swap.
+      </p>
+
+      <p>The durable layer includes:</p>
+
+      <ul>
+        <li>the repository and deployed product;</li>
+        <li>credentials, identity, permissions, and authority;</li>
+        <li>logs, verification, and operating history;</li>
+        <li>payments, support, analytics, and customer relationships;</li>
+        <li>the feedback that tells the next release what reality did;</li>
+        <li>the interfaces through which any capable agent can act.</li>
+      </ul>
+
+      <p>
+        A better model should make that system capable of more work without forcing the company to replace its durable
+        substrate. The agent is an increasingly capable worker. The company should own the workplace, the consequences,
+        and the memory.
+      </p>
+
+      <p>
+        That is bitter-pilled engineering: let the clever layer stay replaceable, and own the layer that reality keeps
+        making more valuable.
+      </p>
+
+      <h2>Two common AI startup mistakes</h2>
+
+      <h3>1. Building a moat from a temporary model weakness</h3>
+
+      <p>
+        The product manually supplies planning, routing, memory, formatting, or domain procedure because the current
+        model struggles without it. That may be useful now. It is dangerous when the whole company's value depends on
+        the struggle continuing.
+      </p>
+
+      <h3>2. Confusing a wrapper with a durable operating system</h3>
+
+      <p>
+        A prompt, tool router, or model-specific interface can be copied or absorbed upstream. Durable state, customer
+        access, operating authority, distribution, and accumulated feedback are harder to replace because they are not
+        merely instructions for producing an answer. They are parts of a running company.
+      </p>
+
+      <h2>A Bitter Lesson checklist for builders</h2>
+
+      <ul>
+        <li>Which parts of the product exist only because a current model is weak?</li>
+        <li>What happens to the value proposition after the next major provider release?</li>
+        <li>Can customers replace the model or harness without losing their durable state?</li>
+        <li>Does better model capability expand what the product can do?</li>
+        <li>Does the system collect real outcomes that improve the next decision?</li>
+        <li>Are we encoding an expert answer, or creating an environment in which an agent can find a better one?</li>
+        <li>Do we own a customer relationship and operating loop, or only an inference-shaped feature?</li>
+      </ul>
+
+      <h2>Why the Bitter Lesson is one half of the thesis</h2>
+
+      <p>
+        General agents making more work cheap does not automatically make a company fast. If the rest of the workflow
+        still waits on one person's attention, local intelligence improvements produce a queue. That is the second
+        constraint, and the subject of
+        <a href="/amdahls-law/">Amdahl's Law for AI companies and the human attention bottleneck</a>.
+      </p>
+
+      <p>
+        The <a href="/letter/">pinned founder's letter</a> explains why these two ideas jointly produced Bitter and
+        Bitter Frontier.
+      </p>
+
+      <h2>How Bitter Frontier uses the lesson</h2>
+
+      <p>
+        Frontier asks whether a provider change is a durable general primitive or a workaround for a current model
+        limit. It asks what independent software became less defensible because capability moved upstream. It compares
+        providers because isolated release notes cannot show the direction of commoditization across the field.
+      </p>
+
+      <p>
+        The lesson determines the questions, not the conclusion. Specialized systems sometimes remain correct. A
+        provider may ship a general-looking feature that fails in practice. The receipts decide what the publication
+        can say.
+      </p>
+
+      <h2>See the lesson in the reporting</h2>
+
+      <p>
+        Our <a href="/signals/2026-05-27-codex-goal-mode-graduated-and-remote-computer-use/">Goal mode report</a>
+        documents the broader launch. The
+        <a href="https://github.com/openai/codex/releases/tag/rust-v0.133.0">Codex CLI v0.133.0 release</a> enabled goals
+        by default. Objective-bearing work, the kind of primitive I once had to
+        build into a bespoke harness, moved into a provider product. That is
+        exactly the slope this lesson says to expect.
+      </p>
+
+      <p>
+        <a href="/digests/2026-06-23_2026-06-24-weekly/">Governance, Sold Separately</a> is the useful brake on the slogan.
+        <a href="https://pi.dev/docs/latest">Pi supplies a deliberately minimal loop</a> while
+        <a href="https://heypi.dev/docs/">heypi sells approvals, audit, sandboxing, and secrets around it</a>. Specialized
+        software did not disappear; it moved to the durable authority layer. The reporting also found that
+        <a href="https://heypi.dev/docs/configuration/approvals">most heypi approvals require an operator to wire the
+        relevant gates</a>. Choosing the right layer does not excuse weak defaults.
+      </p>
+
+      <p>
+        This page is a living interpretation, not an attempt to freeze Sutton's essay into one business slogan. It will
+        change when better evidence exposes a weak analogy, a provider absorbs a layer we thought durable, or operating
+        experience makes the company consequence more precise.
+      </p>
+    </div>
+
+    <aside class="publisher-note mt-9">
+      <p class="small-caps text-muted">From the publisher</p>
+      <p>
+        Frontier studies where the defensible software boundary moves. <a href="https://bitter.sh">Bitter</a> is the
+        harness-agnostic operating environment built around that diagnosis.
+      </p>
+    </aside>
+
+    <div class="rule mt-9 pt-5">
+      <p class="font-mono text-sm text-muted">
+        Continue with <a href="/amdahls-law/">Amdahl's Law and human attention</a> /
+        <a href="/letter/">the founder's letter</a> /
+        <a href="/about/">about Bitter Frontier</a>
+      </p>
+    </div>
+  </article>
+</Base>

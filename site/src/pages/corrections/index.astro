@@ -1,0 +1,128 @@
+---
+import path from "node:path";
+import YAML from "yaml";
+import Base from "../../layouts/Base.astro";
+import FrontierLens from "../../components/FrontierLens.astro";
+import { formatDate, readMarkdown, repoRoot } from "../../lib/frontier";
+import { SITE_URL } from "../../lib/site";
+
+const corrections = readMarkdown(path.join(repoRoot, "content", "corrections.md"));
+const ledgerBlock = corrections.body.match(/```yaml\s*([\s\S]*?)```/);
+const ledger = ledgerBlock ? YAML.parse(ledgerBlock[1]) : { corrections: [] };
+type CorrectionEntry = {
+  corrected_on: string;
+  object: string;
+  field: string;
+  kind: string;
+  before: string;
+  after: string;
+  receipt: string;
+  event_date: string;
+  artifact_url: string;
+  verdict: string;
+  reporter: string;
+  provenance: string;
+  pr: string;
+};
+const entries: CorrectionEntry[] = [...(ledger.corrections ?? [])].reverse();
+const correctionItemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Bitter Frontier corrections",
+  itemListElement: entries.map((entry, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: `${entry.object}: ${entry.field}`,
+    url: new URL(entry.artifact_url, SITE_URL).href,
+    sameAs: entry.receipt,
+  })),
+};
+---
+
+<Base
+  title="Corrections Ledger | Bitter Frontier"
+  description="The public Bitter Frontier corrections record: what was wrong, what changed, and the primary receipt that settled it."
+  publishedDate={corrections.data.last_updated}
+  modifiedDate={corrections.data.last_updated}
+  articleSection="Publication corrections"
+  keywords={["Bitter Frontier corrections", "AI coding agent research", "editorial corrections"]}
+  structuredData={correctionItemList}
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">Publication record</p>
+    <header class="corrections-header mt-5">
+      <h1>Corrections ledger</h1>
+      <p>
+        Every claim needs a receipt. Every correction does too. This is the public
+        record of what Bitter Frontier got wrong, what changed, and the primary
+        source that settled it.
+      </p>
+    </header>
+
+    <aside class="operator-brief">
+      <p class="operator-brief-kicker small-caps">How this works</p>
+      <p class="mt-3 mb-0">
+        A correction names the original claim, preserves the before and after,
+        and links the evidence used to clear the change. Withdrawn signals keep
+        their URLs, so a corrected record never becomes a quiet deletion.
+      </p>
+    </aside>
+
+    <section class="mt-10" aria-labelledby="correction-entries">
+      <div class="section-heading-row">
+        <h2 id="correction-entries" class="section-heading">Entries</h2>
+        <p class="font-mono text-xs text-muted">Newest first</p>
+      </div>
+      <ol class="corrections-list">
+        {entries.map((entry) => (
+          <li>
+            <article class="correction-entry">
+              <p class="correction-entry-meta text-muted">
+                <time datetime={formatDate(entry.corrected_on)}>{formatDate(entry.corrected_on)}</time>
+                <span aria-hidden="true"> / </span>
+                <span>{entry.kind}</span>
+                <span aria-hidden="true"> / </span>
+                <span>{entry.provenance}</span>
+              </p>
+              <h3>{entry.field}</h3>
+              <p class="correction-object"><a href={entry.artifact_url}>{entry.object}</a></p>
+              <dl class="correction-change">
+                <div>
+                  <dt>Before</dt>
+                  <dd>{entry.before}</dd>
+                </div>
+                <div>
+                  <dt>Corrected</dt>
+                  <dd>{entry.after}</dd>
+                </div>
+              </dl>
+              <p class="correction-verdict"><strong>Verdict:</strong> {entry.verdict}</p>
+              <dl class="correction-provenance">
+                <div>
+                  <dt>Event date</dt>
+                  <dd>{formatDate(entry.event_date)}</dd>
+                </div>
+                <div>
+                  <dt>Reported by</dt>
+                  <dd>{entry.reporter}</dd>
+                </div>
+                <div>
+                  <dt>Record</dt>
+                  <dd>{entry.pr}</dd>
+                </div>
+              </dl>
+              <p class="correction-receipt">
+                <a href={entry.receipt}>Open the primary receipt -&gt;</a>
+              </p>
+            </article>
+          </li>
+        ))}
+      </ol>
+    </section>
+    <p class="rule mt-8 pt-5 font-mono text-sm text-muted">
+      Last updated {formatDate(corrections.data.last_updated)}. Entries are stored
+      with the publication, not in a separate editorial database.
+    </p>
+    <FrontierLens />
+  </article>
+</Base>

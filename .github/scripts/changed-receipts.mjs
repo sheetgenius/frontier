@@ -65,7 +65,7 @@ function windowStr(win) {
 
 function git(cmdArgs) {
   // stdio: capture stdout, ignore stderr (git writes "fatal: path ... not in
-  // <ref>" to stderr for files that didn't exist on the base side — an expected,
+  // <ref>" to stderr for files that didn't exist on the base side - an expected,
   // handled case for newly-added files; we don't want that noise on our stdout
   // JSON or in the CI log).
   return execFileSync("git", cmdArgs, {
@@ -196,7 +196,7 @@ for (const file of files) {
 
   for (const rec of headRecords) {
     const cleanUrl = rec.url.replace(/[.,;]+$/, "");
-    if (baseUrls.has(cleanUrl)) continue; // unchanged receipt — skip
+    if (baseUrls.has(cleanUrl)) continue; // unchanged receipt - skip
     if (collected.has(cleanUrl)) continue;
     collected.set(cleanUrl, { ...rec, url: cleanUrl, file });
     if (!windowHint && rec.window) windowHint = rec.window;

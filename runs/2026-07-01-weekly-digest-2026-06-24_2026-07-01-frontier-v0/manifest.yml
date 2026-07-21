@@ -1,0 +1,68 @@
+schema_version: bitter.frontier_run_manifest.v0
+run_id: 2026-07-01-weekly-digest-2026-06-24_2026-07-01-frontier-v0
+mode: weekly-digest
+title: "Patched for Whom"
+window:
+  start: 2026-06-24
+  end: 2026-07-01
+status: published
+parent_window: 2026-06-23_2026-06-24
+finding_count: 60
+signal_count: 8
+sources:
+  - gemini-cli
+  - antigravity
+  - openhands
+  - hermes-agent
+  - claude-code
+  - codex
+  - paperclip
+  - openclaw
+  - agent-zero
+  - pi-coding-agent
+  - eve
+  - flue
+  - heypi
+new_source_this_run: antigravity
+models:
+  coordinator: claude-opus-4-8[1m]
+  researchers: "claude-opus-4-8 (high effort, parallel fan-out; one researcher per source via the frontier-cycle skill Workflow harness)"
+  verifiers: "claude-opus-4-8 (high effort; adversarial per-signal-candidate receipt re-fetch)"
+  new_source_research: "claude-opus-4-8 (Antigravity surfaces + Gemini transition, coordinator-run)"
+harness:
+  shape: coordinator-led-fanout
+  skill: .claude/skills/frontier-cycle
+  description: >
+    Ran the frontier-cycle skill. A background Workflow fanned out one researcher
+    per watched source (12) into structured harvest, then adversarially verified
+    every signal candidate by re-fetching its receipt (47 held). Coordinator ran
+    the pre-harvest carry-forward probes, researched and registered Antigravity as
+    a new source after the Gemini consumer discontinuation surfaced, materialized
+    60 finding stubs from the verified harvest, curated 8 signals, and authored the
+    digest, profiles, and this record. Receipts pinned to tags/SHAs; channel by
+    ancestry; every date verified to the year.
+quality_gates:
+  - channel_by_ancestry: pass         # tagged-release | main-unreleased | preview-or-beta, by git ancestry
+  - dates_verified_to_year: pass
+  - signals_rarer_than_findings: pass # 8 signals / 60 findings
+  - every_signal_receipt_adversarially_verified: pass  # 47/47 candidates re-fetched; refuted dropped (Codex Remote GA)
+  - cross_provider_synthesis_thesis: pass  # channel-split hardening; Gemini->Antigravity as lead specimen
+  - marketing_vs_substance_separated: pass # Antigravity landing vs changelog; Codex Remote GA (changelog-only) dropped
+carry_forward_checks:
+  gemini-cli: RESOLVED -- skill path-traversal fix reached STABLE in v0.49.0 (2026-06-25). Separately, consumer service retirement (2026-06-18) recorded as accomplished; correction filed.
+  paperclip: RESOLVED -- master-only control plane tagged in v2026.626.0 (2026-06-27, 128 commits).
+  agent-zero: RESOLVED -- ready-branch backlog tagged as v2.0 (2026-06-24) and v2.1 (2026-06-26).
+  openhands: RESOLVED (partial) -- CVE batch reached CLOUD tags (1.39.0/1.40.0) only; OSS line frozen at 1.8.0; new authlib CVE untagged on main.
+  hermes-agent: UNRESOLVED -- new security wave (path escape, approval-bypass, secret redaction) on main; no tag past v2026.6.19.
+  heypi: no in-window advance; 0.2.0 line held at beta.
+new_source_build:
+  antigravity: source contract + notes + 5 findings + seed profile; index entry (tier 1). Closed-source Go successor to consumer Gemini CLI.
+generated_findings: findings/*.md (60)
+generated_signals: signals/frontier-signals.yml (8)
+generated_digest: ../../content/digests/2026-06-24_2026-07-01-weekly.md
+profile_updates: content/profiles/antigravity.md (new); content/profiles/gemini-cli.md (tiered-discontinuation correction)
+correction_filed: content/corrections.md (Gemini succession called prospective after execution)
+harvest_record: harvest/watchlist.md, harvest/_harvest.json
+journal: JOURNAL.md
+audit_notes: audit.md
+qa_notes: qa.md

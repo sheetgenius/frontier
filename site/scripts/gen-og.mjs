@@ -18,7 +18,7 @@ const OG_DIR = path.join(DIST_DIR, "og");
 
 async function main() {
   if (!fs.existsSync(DIST_DIR)) {
-    console.error("[og] dist/ not found — run `astro build` first.");
+    console.error("[og] dist/ not found - run `astro build` first.");
     process.exit(1);
   }
 

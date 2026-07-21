@@ -1,10 +1,13 @@
 schema_version: bitter.frontier_run_manifest.v0
 run_id: 2026-06-23-weekly-digest-2026-06-16_2026-06-23-frontier-v0
 mode: weekly-digest
+title: "Protected on Paper"
 window:
   start: 2026-06-16
   end: 2026-06-23
 status: published
+artifact_version: 3
+revision_reason: "Corrected the June 18 Gemini CLI shutdown from prospective succession to an event that had executed inside the reporting window."
 parent_window: 2026-06-04_2026-06-16
 finding_count: 86
 signal_count: 23

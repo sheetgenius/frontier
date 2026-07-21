@@ -1,22 +1,43 @@
 ---
 import Base from "../../layouts/Base.astro";
+import { SITE_URL } from "../../lib/site";
 import { formatDate, listDigests } from "../../lib/frontier";
 const digests = listDigests();
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Bitter Frontier coding agent digests and briefs",
+  itemListElement: digests.slice(0, 20).map((digest, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: digest.data.title ?? digest.slug,
+    url: new URL(`/digests/${digest.slug}/`, SITE_URL).toString(),
+  })),
+};
 ---
 
-<Base title="Digests · Bitter Frontier">
+<Base
+  title="AI Coding Agent Digest and Brief Archive | Bitter Frontier"
+  description="Source-backed weekly digests and special briefs on coding-agent releases, governance, security, operator cost, and human attention."
+  keywords={["AI coding agent weekly digest", "coding agent release digest", "coding agent brief", "Codex", "Claude Code", "Gemini CLI"]}
+  structuredData={itemList}
+>
   <section class="measure py-10">
     <p class="small-caps text-muted">Digests</p>
-    <h1 class="issue-title">Weekly synthesis.</h1>
+    <h1 class="issue-title">AI coding agent digest and brief archive.</h1>
+    <p class="signal-summary mt-3">
+      Weekly synthesis and clearly labeled special briefs on what changed, what shipped, what only merged, and what
+      operators should test next.
+    </p>
     <div class="mt-9 space-y-7">
       {
         digests.map((digest) => (
           <a class="block no-underline hover:underline" href={`/digests/${digest.slug}/`}>
             <div class="small-caps text-muted">
-              {digest.data.series ? `${digest.data.series} · ` : ""}{formatDate(digest.data.window?.start)} to {formatDate(digest.data.window?.end)}
+              {digest.data.series ? `${digest.data.series} / ` : ""}{formatDate(digest.data.window?.start)} to {formatDate(digest.data.window?.end)}
             </div>
             <h2 class="signal-title">{digest.data.title}</h2>
-            <p class="issue-meta">{digest.data.signal_count} signals · {digest.data.finding_count} findings</p>
+            <p class="issue-meta">{digest.data.signal_count} signals / {digest.data.finding_count} findings</p>
           </a>
         ))
       }

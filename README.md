@@ -1,129 +1,166 @@
 # Bitter Frontier
 
-**A weekly, receipted brief on the AI coding agents and the harnesses around
-them, written for the people who run them in production.**
+**Source-backed reporting on what coding agents just made cheaper, what became
+the new bottleneck, and where operators should spend scarce human attention.**
 
-Every week, Bitter Frontier reads what changed across the major coding agents and
-their harnesses and turns it into what it costs you: what to upgrade, what to
-re-audit, what to try, what to watch, what to ignore. Every claim links to a
-primary source you can open and check.
+Bitter Frontier reads the coding agents and harnesses together. It turns their
+isolated release notes into a receipted editorial answer to five questions: what
+changed, who it affects, whether it reached the version people run, what they
+should do, and what the change reveals about the larger system.
 
 **Read the latest issue: https://frontier.bitter.sh**
 
----
+## What Frontier does that a release note cannot
+
+A provider describes its own product in isolation. It rarely tells you that
+another project tried the same design earlier, that the two implementations put
+authority in different places, or that the fix exists on `main` but not in the
+binary you run.
+
+Frontier supplies that missing memory. It compares defaults, enforcement,
+release channels, operator cost, and the human attention a change saves or
+creates. The comparison is not ornamental. It appears only when it changes the
+interpretation or the next action.
+
+The publication is not general AI news and not a release-note bot. A change earns
+attention when it alters an operating decision, the durable architecture around
+an agent, or the amount and quality of human judgment required to produce a
+verified outcome.
+
+Accurate provider coverage is the first obligation. Frontier's larger editorial
+ambition is to use that record to test a living, increasingly precise account of
+how the Bitter Lesson and Amdahl's law apply to building software and companies
+in the AI age.
+
+## The lens
+
+Bitter Frontier is grounded in two constraints.
+
+The [Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+says that general methods which improve through computation, learning, and
+search repeatedly overtake systems built from handcrafted domain knowledge. The
+business consequence is to avoid building a durable moat around something a
+general model or provider harness is temporarily bad at.
+
+[Amdahl's law](https://doi.org/10.1145/1465482.1465560) says that accelerating
+one part of a fixed workload cannot overcome the fraction that remains serial.
+For an agent-operated company, scarce human attention is the serial resource.
+Faster artifact production is not useful when review, coordination, deployment,
+support, and learning still queue behind the same people.
+
+Together they produce the publication's governing question:
+
+> What did general agents just make cheaper, which part of the end-to-end system
+> can they now operate, and where did the human attention bottleneck move?
+
+[THESIS.md](./THESIS.md) gives the complete company and editorial thesis,
+including the safeguards that keep it from becoming a predetermined conclusion.
 
 ## Why you can trust it
 
-**Released is not merged.** A fix on a default branch is not a fix in the release
-you run. Most write-ups blur the two. We resolve the channel of every
-security-relevant change, *shipped in version X* or *on `main`, unreleased*. An
-operator who thinks a hole is patched when it is only merged is the reader this
-brief is built for.
+Three non-negotiable rules govern the record.
 
-**No claim without a receipt.** Every statement of fact links to a changelog
-entry, commit, release, or pull request. If you cannot open it and check it, we
-do not publish it.
+**No claim without a receipt.** Every statement of fact links to a primary
+source: a changelog entry, commit, release, pull request, official document, or
+reproducible observation. If a reader cannot open it and check it, it does not
+ship.
 
-**No signal without an operator consequence.** A change earns your attention only
-if it changes what you should do. We do not paraphrase release notes.
+**No signal without a consequence.** A change becomes a signal only when it can
+change what someone should stop building, start delegating, upgrade, re-audit,
+try, watch, or ignore. Agent activity is not the unit of value. Verified progress
+per unit of human attention is.
 
-**Independent, on purpose.** Bitter Frontier is published by
-[Bitter](https://bitter.sh), which builds infrastructure for running AI agents in
-production. Bitter is never a subject of the analysis: no provider ranking, no
-"Bitter vs. them," no product pitch.
+**Released is not merged.** A fix on a default branch is not a fix in the
+release an operator runs. Security-relevant changes carry an explicit channel:
+tagged release, preview or beta, or main and unreleased.
 
-### One claim, start to finish
+The public corrections ledger records errors rather than laundering them out of
+the history. The run artifacts show what was read, what became a finding, what
+earned attention as a signal, and what the review rejected.
 
-This is what every line in a digest looks like underneath:
+## One signal, start to finish
 
-> Before June 13, Hermes Agent denied an agent from redirecting output into
-> `~/.ssh/authorized_keys`, but said nothing about *copying* a file there, so
-> `cp evil ~/.ssh/authorized_keys` (an SSH-key implant) sailed past a guardrail
-> that on paper existed.
-> **Receipt:** the fix commit, whose message calls the unpaired deny "theater"
-> ([NousResearch/hermes-agent@da28d5d11](https://github.com/NousResearch/hermes-agent/commit/da28d5d11)).
-> **Consequence:** if you run an exposed Hermes gateway this matters, but the fix
-> is on `main`, not in the v0.16.0 release binary. Run `main` or wait for the
-> next tag.
+Every accepted signal should answer a compact decision packet:
 
-Every claim has that shape: the change, the receipt, the consequence, and the
-channel it shipped on. The links are there so you can check us.
+1. What changed?
+2. Who is affected?
+3. Which versions and channels contain the change or fix?
+4. What authority, exposure, or workflow moved?
+5. What should the operator do or verify?
+6. What will that action cost in attention, compatibility, or capability?
+7. What remains uncertain?
+8. Which cross-project precedent changes the interpretation, if any?
 
----
+The public prose leads with those answers. The schemas, findings, and source
+contracts remain behind the glass for readers who want to audit the judgment.
+
+## Who makes it
+
+Bitter Frontier is published by [Bitter](https://bitter.sh), which provides a
+harness-agnostic operating environment for coding agents. Bitter's founder,
+Michael Ruescher, previously built a [long-horizon agent at Blueshift with
+roughly 90 tools, deliberate compaction, and paged tool
+access](https://blueshift.com/blog/phasehandoff-long-horizon-agents/). That work
+led to the layer decision behind Bitter: the company is betting that provider
+harnesses should remain replaceable while the operating environment and
+accumulated company state stay durable.
+
+Frontier is the upstream intelligence function that follows from that decision.
+It watches the provider harnesses Bitter deliberately does not try to replace.
+
+Bitter is disclosed as the publisher and kept out of the analysis. The
+publication must remain useful to a reader who never becomes a customer. The
+philosophy determines which questions Frontier asks, not which answers it is
+allowed to publish.
 
 ## What it covers
 
-Ten coding agents and harnesses, read together every week. The source-of-truth
-channel differs per provider, which is exactly why "released vs. merged" takes
-work:
+The active watchlist is deliberately bounded because every source is a recurring
+research commitment. Each source contract defines the official surfaces we
+watch, the evidence we accept, and the evidence we refuse. Dated profiles state
+the ordinary evidence floor for their claims.
 
-| Provider | Maker | What we watch |
-| --- | --- | --- |
-| Codex | OpenAI | changelog + app/CLI/iOS releases |
-| Claude Code | Anthropic | changelog + docs |
-| Gemini CLI | Google | releases + commits |
-| OpenHands | OpenHands | releases + `main` commits |
-| Hermes Agent | Nous Research | releases + post-release `main` |
-| Pi coding agent | Earendil Works | releases + `main` commits |
-| OpenClaw | OpenClaw | releases + betas |
-| Paperclip | Paperclip | releases + `master` commits |
-| Agent Zero | agent0 | releases |
-| Flue | Astro | weekly, changelog |
+The current watchlist lives in [`sources/index.yml`](./sources/index.yml). The
+contracts themselves live in [`sources/`](./sources/). Those files, not a copied
+provider count in this README, are the source of truth.
 
-The watched sources, and what counts as evidence for each, are defined as
-checked-in **source contracts** in [`sources/`](./sources/).
+Coverage follows three durable lanes:
 
----
+- **Control plane:** authority, permissions, budgets, approval, delegation, and
+  the human decisions a system preserves or exhausts.
+- **Runtime:** execution, tools, sandboxes, persistence, recovery, compaction,
+  and the fraction of real work an agent can complete.
+- **Platform:** deployment, observability, identity, billing, support,
+  distribution, and the operating loop around the agent.
 
-## How to read one issue
+These lanes organize the evidence. Each digest or brief still makes one argument.
 
-A digest has a fixed shape. You can read the first block in a minute and go deep
-only where it touches your stack:
+## How to read it
 
-1. **Operator brief**: the thesis in two sentences, plus the upgrade/check, try,
-   watch, and uncertain lists. If you read one thing, read this.
-2. **The cross-provider pattern**: the synthesis no single changelog can show
-   you (for example, "nine of ten providers spent the fortnight deciding who is
-   allowed to say yes").
-3. **Security advisories**: what to patch now, and what is fixed but unreleased.
-4. **Provider notes**: per provider; skim for the ones you run.
-5. **Try / watch / uncertain**: concrete next actions and open questions.
+Start with the latest published digest or special brief. The Operator Brief gives
+the thesis and the few upgrade, check, try, watch, and uncertainty decisions that
+earned attention. The body makes the cross-project argument.
 
-Start with the [latest issue](https://frontier.bitter.sh). The archive is in
-[`content/digests/`](./content/digests/).
+Use the other objects according to the job:
 
----
+- [`content/digests/`](./content/digests/) contains weekly digests and clearly
+  labeled special briefs.
+- [`content/profiles/`](./content/profiles/) answers what each provider is, as of
+  the date stated on the profile.
+- Signal pages hold atomic, citeable operator judgments.
+- [`runs/`](./runs/) contains the reproducible research trail.
+- [`content/corrections.md`](./content/corrections.md) records corrections.
+- [METHOD.md](./METHOD.md) defines the rules and object grammar.
 
-## What's in this repo
-
-Bitter Frontier is file-backed: the publication *is* the repository. Nothing is
-hidden in a database.
-
-- [`content/digests/`](./content/digests/): the weekly briefs.
-- [`content/profiles/`](./content/profiles/): an evergreen register per provider,
-  "what is this tool right now."
-- [`sources/`](./sources/): source contracts, where we watch and what counts as
-  evidence.
-- [`runs/`](./runs/): the reproducible record of how each cycle was produced.
-  What was read, what was found, what was accepted, how receipts were verified.
-- [`METHOD.md`](./METHOD.md): the three rules and the object grammar.
-- [`CONTRIBUTING.md`](./CONTRIBUTING.md): how to send a correction.
-
-The object chain is `source -> finding -> signal -> digest -> profile`. A
-**finding** is one sourced observation. A **signal** is a finding that should
-change what an operator does. A **digest** is the weekly synthesis. The
-distinctions are deliberate, and [`METHOD.md`](./METHOD.md) explains why.
-
----
+The chain is `source -> finding -> signal -> digest -> profile`. Most findings
+never become signals. The gap is the editing, and it protects reader attention.
 
 ## Contributing
 
-Corrections and coverage gaps are welcome, and a correction that carries its
-receipt is the most valuable thing you can send. The receipts are open to
-everyone; the editorial judgment (what becomes a signal, the weekly synthesis,
-the voice) stays with the maintainers, which keeps the brief coherent and its
-neutrality defensible.
+Corrections, coverage gaps, new-source proposals, and mechanical fixes are
+welcome. The receipts are open to everyone. Editorial judgment remains with the
+maintainers so the publication keeps a coherent, accountable voice.
 
-The single highest-value report is a **channel correction**: we said a fix was in
-a release and it is only on a branch, or the reverse. See
-[CONTRIBUTING.md](./CONTRIBUTING.md).
+Read [THESIS.md](./THESIS.md), [METHOD.md](./METHOD.md),
+[EDITORIAL.md](./EDITORIAL.md), and [CONTRIBUTING.md](./CONTRIBUTING.md) before
+opening a pull request.

@@ -3,24 +3,47 @@ import "../styles/global.css";
 import { GH_BLOB_BASE, GH_REPO_URL, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../lib/site";
 import { ogImageForPath } from "../lib/og";
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, image } = Astro.props;
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  image,
+  canonicalPath,
+  robots,
+  publishedDate,
+  modifiedDate,
+  articleSection,
+  authorName,
+  authorType = "Person",
+  authorUrl,
+  keywords,
+  structuredData,
+} = Astro.props;
 // Per-page OG card (build-time, under /og/) when one exists; otherwise the
 // site-wide static fallback (/og.png). An explicit non-default `image` prop
 // still wins, so callers can override.
 const ogImage = image ?? ogImageForPath(Astro.url.pathname);
-const canonicalUrl = new URL(Astro.url.pathname, SITE_URL).toString();
+const canonicalUrl = new URL(canonicalPath ?? Astro.url.pathname, SITE_URL).toString();
 const pageTitle = title === SITE_TITLE ? title : `${title}`;
 const path = Astro.url.pathname;
-const isDetail = /^\/(digests|signals|profiles)\/.+/.test(path);
+const isDetail = /^\/(digests|signals|profiles|findings)\/.+/.test(path)
+  || ["/letter/", "/bitter-lesson/", "/amdahls-law/"].includes(path);
 const ogType = isDetail ? "article" : "website";
 const jsonLdType = path === "/" ? "WebSite" : isDetail ? "Article" : "CollectionPage";
-const jsonLd = {
+const keywordList = Array.isArray(keywords) ? keywords.filter(Boolean) : keywords ? [keywords] : [];
+const extraStructuredData = Array.isArray(structuredData)
+  ? structuredData.filter(Boolean)
+  : structuredData
+    ? [structuredData]
+    : [];
+const jsonLd: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": jsonLdType,
+  "@id": `${canonicalUrl}#${jsonLdType.toLowerCase()}`,
   name: pageTitle,
   description,
   url: canonicalUrl,
   image: ogImage,
+  inLanguage: "en",
   publisher: {
     "@type": "Organization",
     name: "Bitter",
@@ -32,6 +55,26 @@ const jsonLd = {
     url: SITE_URL
   }
 };
+
+if (jsonLdType === "Article") {
+  jsonLd.headline = pageTitle;
+  jsonLd.mainEntityOfPage = {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  };
+  jsonLd.isAccessibleForFree = true;
+  if (publishedDate) jsonLd.datePublished = publishedDate;
+  if (modifiedDate || publishedDate) jsonLd.dateModified = modifiedDate ?? publishedDate;
+  if (articleSection) jsonLd.articleSection = articleSection;
+  if (authorName) {
+    jsonLd.author = {
+      "@type": authorType,
+      name: authorName,
+      ...(authorUrl ? { url: authorUrl } : {}),
+    };
+  }
+  if (keywordList.length > 0) jsonLd.keywords = keywordList;
+}
 ---
 
 <!doctype html>
@@ -40,6 +83,7 @@ const jsonLd = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {robots && <meta name="robots" content={robots} />}
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" type="application/rss+xml" title="Bitter Frontier" href="/rss.xml" />
     <meta property="og:site_name" content={SITE_TITLE} />
@@ -54,6 +98,9 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImage} />
     <title>{pageTitle}</title>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {extraStructuredData.map((entry) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />
+    ))}
     <script is:inline>
       (() => {
         const stored = localStorage.getItem("theme");
@@ -67,14 +114,15 @@ const jsonLd = {
     <header class="wide-measure site-header">
       <a class="masthead-wordmark" href="/">
         <span class="wordmark-name">Bitter Frontier</span>
-        <span class="wordmark-tag">Receipts for the agentic-coding frontier</span>
+        <span class="wordmark-tag">What agents made cheaper, where the bottleneck moved, and what deserves attention.</span>
       </a>
       <nav class="site-nav" aria-label="Primary">
         <span class="nav-sections">
           <a href="/digests/">Digests</a>
           <a href="/profiles/">Profiles</a>
           <a href="/signals/">Signals</a>
-          <a href="/runs/">Evidence</a>
+          <a href="/letter/">Thesis</a>
+          <a href="/runs/">Research trail</a>
           <a href="/about/">About</a>
         </span>
         <span class="nav-controls">
@@ -116,6 +164,14 @@ const jsonLd = {
           </svg>
           Open source on GitHub
         </a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="/letter/">Founder's letter</a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="/bitter-lesson/">Bitter Lesson</a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="/amdahls-law/">Amdahl's Law</a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="/corrections/">Corrections</a>
         <span class="footer-sep" aria-hidden="true">/</span>
         <a href={`${GH_BLOB_BASE}/CONTRIBUTING.md`}>Contribute</a>
         <span class="footer-sep" aria-hidden="true">/</span>

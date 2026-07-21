@@ -13,7 +13,7 @@ const { versions = [], currentRunId = "" } = Astro.props;
         >
           <div class="small-caps text-muted">{version.status}{version.artifactVersion ? ` v${version.artifactVersion}` : ""}</div>
           <div class="version-title">{version.title}</div>
-          <div class="mt-1 text-sm text-muted">{version.signalCount} signals · {version.windowLabel}</div>
+          <div class="mt-1 text-sm text-muted">{version.signalCount} signals / {version.windowLabel}</div>
         </a>
       ))
     }

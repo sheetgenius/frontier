@@ -24,7 +24,7 @@ const kindLabel = hasProfile ? "watchlist provider" : "adjacent tool";
 ---
 
 <Base
-  title={`Signals composing with ${label} · Bitter Frontier`}
+  title={`Signals composing with ${label} | Bitter Frontier`}
   description={`Every signal whose underlying finding declares composes: [${slug}].`}
 >
   <section class="measure py-10">
@@ -32,7 +32,7 @@ const kindLabel = hasProfile ? "watchlist provider" : "adjacent tool";
       <a href="/signals/">Signals</a>
       {hasProfile && (
         <>
-          {" · "}
+          {" / "}
           <a href={`/profiles/${slug}/`}>{label} profile</a>
         </>
       )}
@@ -58,7 +58,7 @@ const kindLabel = hasProfile ? "watchlist provider" : "adjacent tool";
     )}
 
     <p class="rule mt-10 pt-5 font-mono text-sm text-muted">
-      <a href="/signals/" class="hover:underline">← All signals</a>
+      <a href="/signals/" class="hover:underline">&lt;- All signals</a>
     </p>
   </section>
 </Base>

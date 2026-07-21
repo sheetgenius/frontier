@@ -259,7 +259,7 @@ preventing `/dev/ptmx` exhaustion under sustained use.
 This profile follows the discipline in `RESEARCH_CONTRACT.md#profile`: every
 concrete claim in the prose has an inline source link and an entry in the
 `claims:` block; posture sections may interpret freely but must cite finding IDs
-when naming a specific feature, behavior change, or cross-provider comparison.
+when naming a specific feature, behavior change, or cross-project comparison.
 
 Three claims are seeded from the prior finding
 (`2026-05-07-agent-zero-full-computer-workcell`, evidence precision:

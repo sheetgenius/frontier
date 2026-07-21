@@ -13,7 +13,7 @@ const hasStance = stance && (stance.use_for || stance.avoid_for || stance.watch_
   hasStance && (
     <section class="profile-stance">
       <p class="profile-stance-kicker small-caps">
-        Operator Stance{asOf ? ` · as of ${asOf}` : ""}
+        Operator Stance{asOf ? ` / as of ${asOf}` : ""}
       </p>
       <dl class="profile-stance-list">
         {stance.use_for && (

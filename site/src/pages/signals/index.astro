@@ -1,22 +1,47 @@
 ---
 import Base from "../../layouts/Base.astro";
 import SignalList from "../../components/SignalList.astro";
-import { composesLabel, listComposesFacets, listProfiles, listSignalSourceSlugs, listSignals, sourceLabel } from "../../lib/frontier";
+import { SITE_URL } from "../../lib/site";
+import { composesLabel, listAcceptedSignals, listComposesFacets, listProfiles, listSignalSourceSlugs, sourceLabel } from "../../lib/frontier";
 
-const signals = listSignals();
+const signals = listAcceptedSignals();
 const profiles = listProfiles();
 const profileSlugs = new Set(profiles.map((p) => p.slug));
 const sourceSlugs = listSignalSourceSlugs();
 const composesFacets = listComposesFacets();
+const signalCount = signals.length;
+const sourceCount = sourceSlugs.length;
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "AI coding agent signals",
+  itemListElement: signals.slice(0, 25).map((signal, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: signal.title,
+    url: new URL(`/signals/${signal.id}/`, SITE_URL).toString(),
+  })),
+};
 ---
 
-<Base title="Signals · Bitter Frontier">
+<Base
+  title="AI Coding Agent Release Tracker and Signals | Codex, Claude, Gemini"
+  description={`Source-backed AI coding agent release tracker with ${signalCount} signals across ${sourceCount} watched sources, including Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue, OpenHands, MCP, permissions, sandboxes, and security fixes.`}
+  keywords={["AI coding agent signals", "AI coding agent release tracker", "Codex", "Claude Code", "Gemini CLI", "Pi Coding Agent", "Flue", "MCP"]}
+  structuredData={itemList}
+>
   <section class="measure py-10">
     <p class="small-caps text-muted">Signals</p>
-    <h1 class="issue-title">What changed enough to matter.</h1>
+    <h1 class="issue-title">AI coding agent release tracker and source-backed signals.</h1>
     <p class="signal-intro">
-      A signal is a finding that should change what a serious operator does next — how they configure an agent,
-      what they test, or what they stop relying on. Each entry links to the run that produced it.
+      Each signal is a source-backed finding that should change what a serious operator does next: upgrade,
+      re-audit, try, watch, or ignore. This archive tracks Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue,
+      MCP, plugins, permissions, sandboxes, runtimes, and release checks. Each entry links to the run that
+      produced it.
+    </p>
+    <p class="signal-summary mt-4">
+      {signalCount} accepted signals across {sourceCount} watched sources, organized for operators comparing agent
+      releases, security fixes, governance changes, and runtime behavior.
     </p>
 
     {sourceSlugs.length > 0 && (

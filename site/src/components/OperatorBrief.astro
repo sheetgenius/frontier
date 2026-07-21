@@ -1,4 +1,6 @@
 ---
+import { marked } from "marked";
+
 type Brief = {
   thesis?: string;
   upgrade_check?: string[];
@@ -9,6 +11,9 @@ type Brief = {
 };
 
 const { brief } = Astro.props as { brief?: Brief };
+
+const md = (s: string) => marked.parse(s, { async: false }) as string;
+const mdInline = (s: string) => marked.parseInline(s, { async: false }) as string;
 
 const sections: Array<{ label: string; items: string[] | undefined; key: string }> = brief
   ? [
@@ -27,7 +32,7 @@ const hasAnySection = sections.some((s) => s.items && s.items.length > 0);
   brief && (brief.thesis || hasAnySection) && (
     <section class="operator-brief">
       <p class="operator-brief-kicker small-caps">Operator Brief</p>
-      {brief.thesis && <p class="operator-brief-thesis">{brief.thesis}</p>}
+      {brief.thesis && <div class="operator-brief-thesis" set:html={md(brief.thesis)} />}
       {hasAnySection && (
         <dl class="operator-brief-list">
           {sections
@@ -38,7 +43,7 @@ const hasAnySection = sections.some((s) => s.items && s.items.length > 0);
                 <dd>
                   <ul>
                     {s.items!.map((item) => (
-                      <li set:html={item} />
+                      <li set:html={mdInline(item)} />
                     ))}
                   </ul>
                 </dd>

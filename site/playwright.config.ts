@@ -29,7 +29,7 @@ export default defineConfig({
           command: `npm run build && npm run preview -- --port ${port}`,
           url: baseURL,
           reuseExistingServer: false,
-          timeout: 120_000,
+          timeout: 240_000,
         },
       }),
 });

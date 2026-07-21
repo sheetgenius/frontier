@@ -5,6 +5,10 @@ import { SITE_IMAGE, SITE_URL } from "./site";
 //
 // This MUST mirror the `ogPath` values produced by scripts/og-cards.mjs:
 //   /                 -> "home"
+//   /letter/          -> "letter"
+//   /bitter-lesson/   -> "bitter-lesson"
+//   /amdahls-law/     -> "amdahls-law"
+//   /corrections/     -> "corrections"
 //   /digests/<slug>/  -> "digests/<slug>"
 //   /profiles/<slug>/ -> "profiles/<slug>"
 //   /signals/<id>/    -> "signals/<id>"
@@ -15,10 +19,14 @@ function ogPathForUrlPath(pathname: string): string | null {
 
   if (p === "" || p === "/") return "home";
 
+  if (["/letter", "/bitter-lesson", "/amdahls-law", "/corrections"].includes(p)) {
+    return p.slice(1);
+  }
+
   const m = /^\/(digests|profiles|signals)\/([^/]+)$/.exec(p);
   if (m) {
     const [, kind, slug] = m;
-    // Detail pages only — never the section index (handled by the regex above,
+    // Detail pages only - never the section index (handled by the regex above,
     // which requires exactly one path segment after the kind).
     return `${kind}/${slug}`;
   }

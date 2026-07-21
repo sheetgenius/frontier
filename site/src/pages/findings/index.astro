@@ -1,10 +1,27 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { listFindings } from "../../lib/frontier";
-const findings = listFindings();
+import { SITE_URL } from "../../lib/site";
+import { listCanonicalFindings } from "../../lib/frontier";
+const findings = listCanonicalFindings();
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Source-backed coding agent findings",
+  itemListElement: findings.slice(0, 30).map((finding, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: finding.title,
+    url: new URL(`/findings/${finding.finding}/`, SITE_URL).toString(),
+  })),
+};
 ---
 
-<Base title="Findings · Bitter Frontier">
+<Base
+  title="Source-Backed Coding Agent Findings | Codex, Claude, Gemini, Pi"
+  description="Source-backed coding agent findings for Codex, Claude Code, Gemini CLI, Pi Coding Agent, Flue, OpenHands, and operator-facing signals."
+  keywords={["coding agent findings", "source-backed findings", "Codex", "Claude Code", "Gemini CLI", "Pi Coding Agent"]}
+  structuredData={itemList}
+>
   <section class="measure py-10">
     <p class="small-caps text-muted">Findings</p>
     <h1 class="issue-title">Source-backed observations.</h1>
@@ -12,7 +29,7 @@ const findings = listFindings();
       {
         findings.map((finding) => (
           <a href={`/findings/${finding.finding}/`} class="block no-underline hover:underline">
-            <div class="small-caps text-[var(--color-bitter)]">{finding.data.source} · {finding.data.confidence}</div>
+            <div class="small-caps text-[var(--color-bitter)]">{finding.data.source} / {finding.data.confidence}</div>
             <h2 class="signal-title">{finding.title}</h2>
           </a>
         ))

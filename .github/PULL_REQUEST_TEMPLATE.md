@@ -25,12 +25,12 @@ instead.
 
 <!-- One row per claim your PR adds or corrects. Skip only for pure infra/typo PRs. -->
 
-| claim / field changed | receipt URL (primary source) | precision | in-window date (ISO) | channel |
+| claim / field changed | receipt URL (primary source) | precision | event date (ISO) | channel |
 |---|---|---|---|---|
 | | | | | |
 
-- **precision** is one of `commit_diff_reviewed` / `commit` / `release_note` / `official_docs` / `observed_behavior`, at or above the artifact's `evidence_floor`.
-- **in-window date** is the full ISO `YYYY-MM-DD`, year confirmed in-window, from the API/changelog timestamp (not rendered HTML).
+- **precision** uses the most specific truthful label described in CONTRIBUTING.md, such as `commit_line_range`, `tagged_commit_file`, `github_release`, `official_docs`, `primary_research_source`, or `observed_behavior`. It must meet the profile floor and source contract.
+- **event date** is the full ISO `YYYY-MM-DD`, with its year confirmed from the API/changelog timestamp (not rendered HTML). For a coverage gap it must be in-window; for a correction it may prove that the original claim was out-of-window.
 - **channel** is one of `tagged-release` / `main-unreleased` / `preview-beta` / `mixed`, resolved by git ancestry.
 
 ### Channel ancestry check (if you assert or correct "shipped")
@@ -58,8 +58,8 @@ instead.
 <!--
 CI will run the offline integrity checker and the site build, and (if the
 adversarial verifier is enabled and this PR changes receipts) re-fetch the
-changed receipts and post a verdict comment: verified-in-window / unsupported /
-out-of-window / channel-mismatch. A green verdict is necessary but not
+changed receipts and post a verdict comment: verified-in-window /
+verified-correction / unsupported / out-of-window / channel-mismatch. A green verdict is necessary but not
 sufficient; a maintainer still merges, and merged corrections are logged in
 content/corrections.md.
 -->

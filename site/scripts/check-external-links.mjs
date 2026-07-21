@@ -8,7 +8,7 @@
 //   DNS broken. GitHub blob URL rot gets a specific diagnostic.
 // - Polite: per-origin throttle, cache, identifying User-Agent
 // - Cadence: manual before each digest, weekly cron, never block builds
-// - Named failure mode: "Soft-OK Receipt Drift" — providers return 200 for login walls or
+// - Named failure mode: "Soft-OK Receipt Drift" - providers return 200 for login walls or
 //   moved-docs shells. So the report shows final URL + redirects + content-type, not just status.
 //
 // Usage:
@@ -53,6 +53,9 @@ const QUIET = !!args["quiet"];
 const USER_AGENT =
   args["user-agent"] ??
   "Bitter Frontier link health check (https://frontier.bitter.sh)";
+const SCAN_EXCLUDES = new Set(
+  [CACHE_FILE, REPORT_JSON, REPORT_MD].map((file) => path.resolve(file)),
+);
 
 function parseArgs(argv) {
   const out = { paths: [] };
@@ -84,6 +87,14 @@ const collected = new Map(); // url -> [{ source: "evidence" | "markdown", file,
 
 function record(url, source, file, label) {
   url = url.replace(/[),.;:]+$/, ""); // strip trailing punct from URL extraction
+  if (typeof label === "string") {
+    label = label
+      .replace(/[\u2010-\u2015]/g, "-")
+      .replace(/\u2026/g, "...")
+      .replace(/\u2190/g, "<-")
+      .replace(/\u2192/g, "->")
+      .replace(/\u00b7/g, "/");
+  }
   const existing = collected.get(url) ?? [];
   existing.push({ source, file: path.relative(REPO_ROOT, file), label });
   collected.set(url, existing);
@@ -93,6 +104,7 @@ function walkDirCollect(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
     const full = path.join(dir, entry.name);
+    if (SCAN_EXCLUDES.has(path.resolve(full))) continue;
     if (entry.isDirectory()) {
       if (entry.name === "node_modules" || entry.name.startsWith(".")) continue;
       walkDirCollect(full);
@@ -225,50 +237,63 @@ function githubDiagnostic(url, finalUrl, statusClass) {
   // Detect GitHub blob URL rot: 404 likely means branch/tag/path moved
   if (!url.startsWith("https://github.com")) return null;
   if (statusClass === "broken" && url.includes("/blob/")) {
-    return "GitHub blob 404 — branch/tag/path likely moved. Check if the ref still exists or if the file was renamed.";
+    return "GitHub blob 404 - branch/tag/path likely moved. Check if the ref still exists or if the file was renamed.";
   }
   if (statusClass === "redirected" && finalUrl && finalUrl !== url) {
     if (finalUrl.match(/\/orgs\/[^/]+\/repositories/) || finalUrl.endsWith("/404")) {
-      return "GitHub redirect to org page or 404 — repo likely renamed, transferred, or deleted.";
+      return "GitHub redirect to org page or 404 - repo likely renamed, transferred, or deleted.";
     }
-    return "GitHub redirect — repo rename or path move; consider updating the link.";
+    return "GitHub redirect - repo rename or path move; consider updating the link.";
   }
   return null;
 }
 
 async function checkOnce(url) {
-  const origin = new URL(url).origin;
+  const requestUrl = new URL(url);
+  requestUrl.hash = "";
+  const normalizedRequestUrl = requestUrl.href;
+  const origin = requestUrl.origin;
   await waitForOrigin(origin);
   const start = Date.now();
-  let res, err, finalUrl, contentType, redirectChain = [];
+  let res, err, finalUrl, contentType, timer;
   try {
     const ctl = new AbortController();
-    const timer = setTimeout(() => ctl.abort(), TIMEOUT_MS);
-    res = await fetch(url, {
+    timer = setTimeout(() => ctl.abort(), TIMEOUT_MS);
+    res = await fetch(requestUrl, {
       method: "GET",
       redirect: "follow",
       headers: { "User-Agent": USER_AGENT, accept: "*/*" },
       signal: ctl.signal,
     });
-    clearTimeout(timer);
     finalUrl = res.url;
     contentType = res.headers.get("content-type") ?? null;
   } catch (e) {
     err = e?.name === "AbortError" ? "timeout" : (e?.message ?? String(e));
   } finally {
+    clearTimeout(timer);
+    if (res?.body) {
+      try {
+        await res.body.cancel();
+      } catch {}
+    }
     releaseOrigin(origin);
   }
 
   const elapsed_ms = Date.now() - start;
   const status = res?.status ?? null;
-  const status_class = err === "timeout" ? "retry" : classifyStatus(res);
+  const redirected = !!finalUrl && finalUrl !== normalizedRequestUrl;
+  const status_class = err === "timeout"
+    ? "retry"
+    : redirected && res && res.status >= 200 && res.status < 400
+      ? "redirected"
+      : classifyStatus(res);
   const note = res ? githubDiagnostic(url, finalUrl, status_class) : null;
   return {
     url,
     status,
     status_class,
     final_url: finalUrl ?? null,
-    redirected: !!finalUrl && finalUrl !== url,
+    redirected,
     content_type: contentType,
     elapsed_ms,
     error: err ?? null,
@@ -416,9 +441,9 @@ console.log(`Cache:   ${path.relative(REPO_ROOT, CACHE_FILE)}`);
 
 function renderMarkdown(report) {
   const lines = [];
-  lines.push(`# Link health — ${report.checked_at}`);
+  lines.push(`# Link health - ${report.checked_at}`);
   lines.push("");
-  lines.push(`Total URLs: **${report.total}** · Fresh checks: ${report.fresh_checks} · Cached: ${report.reused_from_cache}`);
+  lines.push(`Total URLs: **${report.total}** | Fresh checks: ${report.fresh_checks} | Cached: ${report.reused_from_cache}`);
   lines.push("");
   lines.push("## Summary");
   lines.push("");
@@ -447,12 +472,12 @@ function renderMarkdown(report) {
     for (const e of sec.items) {
       lines.push(`- \`${e.url}\``);
       if (e.final_url && e.final_url !== e.url) lines.push(`  - final: \`${e.final_url}\``);
-      lines.push(`  - status: ${e.status ?? "—"} (${e.status_class})${e.note ? " — " + e.note : ""}`);
+      lines.push(`  - status: ${e.status ?? "-"} (${e.status_class})${e.note ? " - " + e.note : ""}`);
       lines.push(`  - cited in:`);
       for (const s of e.sources.slice(0, 5)) {
         lines.push(`    - \`${s.file}\`${s.label ? ` (${s.label})` : ""}`);
       }
-      if (e.sources.length > 5) lines.push(`    - …and ${e.sources.length - 5} more`);
+      if (e.sources.length > 5) lines.push(`    - ...and ${e.sources.length - 5} more`);
     }
     lines.push("");
   }

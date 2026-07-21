@@ -1,0 +1,127 @@
+schema_version: bitter.frontier_source_contract.v0
+id: antigravity
+label: Antigravity CLI
+owner: Google
+homepage: https://antigravity.google/product/antigravity-cli
+docs: https://antigravity.google/docs
+primary_surfaces:
+  - id: releases
+    kind: github_release
+    url: https://github.com/google-antigravity/antigravity-cli/releases
+    priority: 1
+    watch:
+      - releases
+      - changelog
+      - breaking_changes
+      - security
+  - id: changelog
+    kind: official_changelog
+    url: https://github.com/google-antigravity/antigravity-cli/blob/main/CHANGELOG.md
+    priority: 1
+    watch:
+      - approvals
+      - permissions
+      - sandbox
+      - subagents
+      - mcp
+      - plugins
+      - breaking_changes
+  - id: docs
+    kind: official_docs
+    url: https://antigravity.google/docs
+    priority: 1
+    watch:
+      - cli_using
+      - approvals
+      - permissions
+      - sandbox
+      - configuration
+      - migration
+  - id: transition
+    kind: maintainer_authored_post
+    url: https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/
+    priority: 2
+    watch:
+      - lifecycle
+      - deprecation
+      - migration
+      - tier_access
+accepted_evidence:
+  - official_docs
+  - github_release
+  - official_changelog
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - marketing_claim_without_doc_or_code
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - security
+  - ecosystem
+  - philosophy
+  - lifecycle
+research_lenses:
+  - governance
+  - capability
+  - coordination_control_plane
+  - market_succession
+  - closed_source_verifiability
+high_signal_patterns:
+  - approval
+  - "Always Approve"
+  - permission rule
+  - regex
+  - sandbox
+  - proceed-in-sandbox
+  - --sandbox
+  - --dangerously-skip-permissions
+  - subagent
+  - always proceeds
+  - auto approve
+  - project permissions
+  - dangerous paths
+  - migration
+  - deprecation
+operator_questions:
+  - Does a subagent's "always proceeds" auto-approval remove the human gate the parent agent was subject to?
+  - What does the sandbox actually isolate, and which commands does proceed-in-sandbox auto-run without asking?
+  - Antigravity is closed source -- how does an operator verify a governance claim they cannot read the code for?
+  - What is the real migration cost and behavior change moving from consumer Gemini CLI to Antigravity CLI (agy)?
+  - Which permission scope wins when project and global configs disagree, and can that be exploited?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  governance_change: test
+  lifecycle_change: adapt
+discovery:
+  last_verified: 2026-07-01
+  verified_by: manual_web
+  confidence: medium
+  open_questions:
+    - The code is closed; governance claims rest on docs/changelog, not readable enforcement. What is independently verifiable via local probe?
+    - Is github.com/google-antigravity/antigravity-cli the canonical ship channel, or is antigravity.google the primary and the repo a mirror for releases/changelog?
+    - What license, if any, governs the distributed binaries?
+notes: >
+  Antigravity CLI (the `agy` binary) is Google's closed-source, Go successor to
+  consumer Gemini CLI. Google announced the transition on 2026-05-19 and stopped
+  serving Gemini CLI to consumer tiers (AI Pro/Ultra, free individual Code Assist,
+  new GitHub-org installs) on 2026-06-18; enterprise Code Assist retained access
+  and the open-source gemini-cli repo remains Apache-2.0 and enterprise-serving.
+  Watch Antigravity as two things at once: the market-succession case (a tier-1
+  vendor retiring an open CLI and force-migrating consumers to a closed one) and
+  the closed-source-governance case (its approval/sandbox model is real and
+  active -- strict "Always Approve" rule matching, project-over-global permission
+  precedence, proceed-in-sandbox, subagent auto-approval -- but you must trust the
+  changelog rather than read the enforcement). The high-signal tension is exactly
+  that: it hardens some gates and auto-opens others in the same release train.

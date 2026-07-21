@@ -55,7 +55,7 @@ if (data.operator_relevance) metaRows.push({ label: "Operator relevance", value:
           {citingSignals.map((signal: any) => (
             <li class="font-mono text-sm">
               <a href={`/signals/${signal.id}/`} class="hover:underline">{signal.title}</a>
-              <span class="text-muted"> · {formatDate(signal.date)}</span>
+              <span class="text-muted"> / {formatDate(signal.date)}</span>
             </li>
           ))}
         </ul>
@@ -71,7 +71,7 @@ if (data.operator_relevance) metaRows.push({ label: "Operator relevance", value:
               <a href={`/profiles/${citation.profile.slug}/`} class="hover:underline">
                 {sourceLabel(citation.profile.slug)}
               </a>
-              <span class="text-muted"> · {citation.context}</span>
+              <span class="text-muted"> / {citation.context}</span>
             </li>
           ))}
         </ul>
