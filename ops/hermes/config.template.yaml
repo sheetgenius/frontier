@@ -15,10 +15,9 @@ model:
   base_url: https://api.x.ai/v1
 
   # The OAuth (subscription) catalog lags the metered API. Grok 4.5 is API-only
-  # and will NOT appear here. Pick the newest model the catalog actually exposes:
-  # run 'ops/hermes/grok-harvest.sh models' to list them. Known values have
-  # included grok-build-0.1 (auto-selected on login), grok-4.20-0309-reasoning,
-  # grok-4.20-multi-agent-0309, and grok-4.3.
+  # and will NOT appear here. Choose from the catalog interactively with
+  # 'hermes model'. Known values have included grok-build-0.1 (auto-selected on
+  # login), grok-4.20-0309-reasoning, grok-4.20-multi-agent-0309, and grok-4.3.
   default: grok-4.20-0309-reasoning
 
 # The agent API server runs via 'hermes gateway' (see

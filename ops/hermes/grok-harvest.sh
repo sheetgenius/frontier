@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 #
-# grok-harvest.sh -- run the X social-discovery lane of a Bitter Frontier cycle
-# by driving the Hermes agent (with its web/X search tools) on Grok, using a
-# SuperGrok / X Premium+ subscription through Hermes' xai-oauth provider.
+# grok-harvest.sh -- the X social-discovery lane of a Bitter Frontier cycle.
+#
+# The loop (an orchestrating agent, or you) drives Hermes as a one-shot sub-agent:
+# `hermes -z "<prompt>"` runs the full Hermes agent with its web/X search tools on
+# Grok (via a SuperGrok / X Premium+ subscription, the xai-oauth provider) and
+# prints the final text. This script wraps that call for one watched source.
 #
 # DISCOVERY ONLY. Everything this produces is a candidate lead, never a receipt.
-# No lead may become a finding, signal, digest, or profile without independent
+# No lead becomes a finding, signal, digest, or profile without independent
 # primary-source verification against the source contract. See
 # docs/hermes-grok-harvest-setup.md and docs/x-social-harvest-workflow.md.
 #
@@ -13,107 +16,84 @@
 # ~/.hermes/. This script does not read, write, log, or print it.
 #
 # Usage:
-#   ops/hermes/grok-harvest.sh doctor                       preflight + allowlist probe
-#   ops/hermes/grok-harvest.sh gateway                      start the Hermes agent API server
-#   ops/hermes/grok-harvest.sh models                       list the OAuth model catalog
+#   ops/hermes/grok-harvest.sh doctor                         preflight (hermes + Grok probe)
 #   ops/hermes/grok-harvest.sh harvest <source-id> [<start> <end>]
+#   ops/hermes/grok-harvest.sh help
 #
-# Exit codes: 0 ok, 2 misconfigured, 3 degraded (Grok/allowlist unavailable).
+# Exit codes: 0 ok, 2 misconfigured, 3 degraded (Grok/subscription unavailable).
+#
+# Overrides (env): HERMES_BIN (default: hermes), HERMES_ONESHOT_ARGS (extra flags
+# passed to `hermes -z`, e.g. "--provider xai-oauth --model grok-4.20-0309-reasoning"),
+# HARVEST_TIMEOUT_SECS (default 900; needs timeout/gtimeout, else ignored).
 
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-GATEWAY_URL="${HERMES_GATEWAY_URL:-http://127.0.0.1:8642}"
-CHAT_ENDPOINT="${GATEWAY_URL}/v1/chat/completions"
-MODELS_ENDPOINT="${GATEWAY_URL}/v1/models"
-# Any non-empty bearer; the gateway attaches the real subscription credentials
-# itself. This is not a secret and must never be one.
-GATEWAY_BEARER="${HERMES_GATEWAY_BEARER:-local-dev}"
+HERMES_BIN="${HERMES_BIN:-hermes}"
+HARVEST_TIMEOUT_SECS="${HARVEST_TIMEOUT_SECS:-900}"
+# Extra flags for `hermes -z`. Empty by default: the model/provider come from
+# `hermes model` config. Set this to override per run without editing config.
+read -r -a ONESHOT_ARGS <<< "${HERMES_ONESHOT_ARGS:-}"
 
-# The OAuth (subscription) catalog lags the metered API. Grok 4.5 is API-only and
-# will NOT appear here; do not hardcode it. Prefer the newest model the catalog
-# actually exposes, falling back down this list.
-MODEL_PREFERENCE=(
-  grok-4.20-multi-agent-0309
-  grok-4.20-0309-reasoning
-  grok-4.20-0309-non-reasoning
-  grok-build-0.1
-  grok-4.3
-)
-
-log()  { printf '%s\n' "$*" >&2; }
-die()  { printf 'error: %s\n' "$*" >&2; exit 2; }
-
-require_cmd() {
-  command -v "$1" >/dev/null 2>&1 || die "$1 not on PATH.${2:+ $2}"
-}
+log() { printf '%s\n' "$*" >&2; }
+die() { printf 'error: %s\n' "$*" >&2; exit 2; }
 
 require_hermes() {
-  require_cmd hermes "Install Hermes Agent and run 'hermes auth add xai-oauth'. See docs/hermes-grok-harvest-setup.md."
+  command -v "$HERMES_BIN" >/dev/null 2>&1 || die \
+    "hermes not on PATH. Install it and authenticate:
+    curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+    hermes auth add xai-oauth --type oauth   # or: hermes model  (pick xAI Grok OAuth)
+  See docs/hermes-grok-harvest-setup.md."
 }
 
-# Probe the gateway with a one-token completion and classify the outcome.
-# Echoes ok | degraded | unreachable | error:<code>; never exits on its own.
-probe_grok() {
-  if ! curl -fsS -m 5 "$MODELS_ENDPOINT" -H "Authorization: Bearer ${GATEWAY_BEARER}" >/dev/null 2>&1; then
-    echo "unreachable"; return 0
+# Portable one-shot: use timeout/gtimeout if present, else run directly.
+TIMEOUT_BIN=""
+for t in timeout gtimeout; do command -v "$t" >/dev/null 2>&1 && { TIMEOUT_BIN="$t"; break; }; done
+run_oneshot() { # run_oneshot <prompt>
+  if [[ -n "$TIMEOUT_BIN" ]]; then
+    "$TIMEOUT_BIN" "$HARVEST_TIMEOUT_SECS" "$HERMES_BIN" -z "${ONESHOT_ARGS[@]}" "$1"
+  else
+    "$HERMES_BIN" -z "${ONESHOT_ARGS[@]}" "$1"
   fi
-  local code
-  code="$(curl -s -o /dev/null -w '%{http_code}' -m 30 "$CHAT_ENDPOINT" \
-    -H "Authorization: Bearer ${GATEWAY_BEARER}" -H 'Content-Type: application/json' \
-    -d '{"model":"hermes-agent","max_tokens":1,"messages":[{"role":"user","content":"ping"}]}' 2>/dev/null || true)"
-  case "$code" in
-    200) echo "ok" ;;
-    403) echo "degraded" ;;
-    *)   echo "error:${code}" ;;
-  esac
+}
+
+# Classify a probe: echoes ok | degraded | error; never exits on its own.
+probe_grok() {
+  local out rc
+  out="$(run_oneshot 'Reply with exactly: OK' 2>&1)"; rc=$?
+  if [[ $rc -eq 0 && -n "$out" ]] && ! grep -qiE '403|forbidden|allowlist|unauthor|no active subscription' <<< "$out"; then
+    echo ok; return 0
+  fi
+  if grep -qiE '403|forbidden|allowlist|unauthor|no active subscription' <<< "$out"; then
+    echo degraded; return 0
+  fi
+  echo "error"; return 0
 }
 
 cmd_doctor() {
   require_hermes
-  log "hermes:  $(command -v hermes)"
+  log "hermes:  $(command -v "$HERMES_BIN")"
 
-  local cfg="${HOME}/.hermes/config.yaml"
-  if [[ -f "$cfg" ]]; then
-    log "config:  ${cfg} present"
+  # Hermes' own environment check. Advisory: report, do not fail the lane on it.
+  if "$HERMES_BIN" doctor >/dev/null 2>&1; then
+    log "hermes doctor: OK"
   else
-    log "config:  ${cfg} MISSING -- run 'hermes auth add xai-oauth', then 'hermes config set model.provider xai-oauth'"
+    log "hermes doctor: reported issues -- run '$HERMES_BIN doctor' for detail"
   fi
 
-  local status
-  status="$(probe_grok)"
-  case "$status" in
+  case "$(probe_grok)" in
     ok)
-      log "gateway: up at ${GATEWAY_URL}"
-      log "grok:    OK (one-token probe returned 200)"
+      log "grok:    OK (one-shot probe returned text)"
       return 0 ;;
-    unreachable)
-      log "gateway: NOT reachable at ${GATEWAY_URL} -- start it with '$0 gateway'"
-      return 3 ;;
     degraded)
-      log "gateway: up at ${GATEWAY_URL}"
-      log "grok:    DEGRADED -- HTTP 403 from the xAI OAuth allowlist."
-      log "         A valid SuperGrok / X Premium+ subscription can still be refused on"
-      log "         this surface. Skip the social lane this cycle; harvest primary sources only."
+      log "grok:    DEGRADED -- the xAI OAuth surface refused the request (403 / allowlist)."
+      log "         A valid SuperGrok / X Premium+ subscription can still be rejected here."
+      log "         Skip the social lane this cycle; harvest primary sources only."
       return 3 ;;
-    error:*)
-      log "gateway: up at ${GATEWAY_URL}"
-      log "grok:    probe returned HTTP ${status#error:} -- check 'hermes gateway' logs and auth."
+    *)
+      log "grok:    probe failed -- check '$HERMES_BIN model' (provider = xai-oauth) and auth."
       return 2 ;;
   esac
-}
-
-cmd_models() {
-  require_cmd curl
-  curl -fsS -m 10 "$MODELS_ENDPOINT" -H "Authorization: Bearer ${GATEWAY_BEARER}" \
-    || die "could not reach ${MODELS_ENDPOINT} -- is the gateway running ('$0 gateway')?"
-}
-
-cmd_gateway() {
-  require_hermes
-  log "starting the Hermes agent API server (full agent + web/X search tools) on ${GATEWAY_URL}"
-  log "model/provider comes from ~/.hermes/config.yaml; the request 'model' field is ignored"
-  exec hermes gateway
 }
 
 # Emit the harvest instruction for one source. The agent starts from the source
@@ -122,43 +102,35 @@ render_prompt() {
   local source="$1" start="$2" end="$3"
   cat <<EOF
 You are a scout for Bitter Frontier's X social-discovery lane. This is DISCOVERY
-ONLY: you produce candidate leads, never receipts. Nothing you return may be
-stated as a verified fact.
+ONLY: you produce candidate leads, never receipts. Do not state anything as a
+verified fact and do not tell an operator to upgrade, migrate, or trust anything.
 
-Source: ${source} (its contract is sources/${source}.yml in the repo you were
-started in; read it first so you begin from official surfaces and its accepted /
-rejected evidence rules).
+Source: ${source} (its contract is sources/${source}.yml in this repo; read it
+first so you begin from official surfaces and its accepted/rejected evidence).
 
 Window: ${start} to ${end}.
 
-Search public X/Twitter for posts in the window that may reveal maintainer
-intent, adoption signals, user pain, ecosystem tension, benchmark discourse, or
-unverified feature chatter about this source. Use your web and X search tools.
+Use your web and X search tools to find public X/Twitter posts in the window that
+may reveal maintainer intent, adoption, user pain, ecosystem tension, benchmark
+discourse, or unverified feature chatter about this source.
 
 For every item, output one YAML record with exactly these fields:
   claim_id, source, claim, primary_url, author, observed_at, event_date,
   date_precision (day|month_only|year_only|unknown), date_note, evidence_kind,
   channel (x.com), status (candidate|needs_primary_crosscheck|single-source-unconfirmed),
   crosscheck_status (needs_primary_crosscheck by default), release_channel,
-  operator_consequence (cautious; a lead to investigate, not an instruction),
-  notes.
+  operator_consequence (cautious; a lead to investigate, not an instruction), notes.
 
-Rules:
-- Persist exact public post URLs, never paraphrased search snippets.
-- Resolve each post date to full ISO YYYY-MM-DD when possible; otherwise set
-  date_precision and explain in date_note.
-- Mark every product or version claim needs_primary_crosscheck.
-- Reputational or conduct claims about named people or organizations stay as
-  journal notes unless a direct primary post supports the exact claim.
-- Do not tell an operator to upgrade, migrate, or trust anything.
-Return only the YAML records.
+Rules: persist exact public post URLs, never paraphrased snippets; resolve each
+date to full ISO YYYY-MM-DD when possible, else set date_precision and explain in
+date_note; mark every product/version claim needs_primary_crosscheck; keep
+reputational or conduct claims about named people or organizations as notes unless
+a direct primary post supports the exact claim. Return only the YAML records.
 EOF
 }
 
 cmd_harvest() {
   require_hermes
-  require_cmd curl
-  require_cmd jq
   local source="${1:-}"
   [[ -n "$source" ]] || die "usage: $0 harvest <source-id> [<start> <end>]"
   local contract="${REPO_ROOT}/sources/${source}.yml"
@@ -174,7 +146,7 @@ cmd_harvest() {
   mkdir -p "${run_dir}/harvest"
 
   # Gate on Grok health. A degraded lane records the gap and exits soft (3) so the
-  # surrounding cycle can proceed with primary sources rather than fail.
+  # surrounding cycle proceeds with primary sources rather than failing.
   if ! cmd_doctor; then
     log "---"
     log "social-discovery lane unavailable for '${source}'. Recording the gap and exiting soft."
@@ -189,17 +161,16 @@ cmd_harvest() {
     return 3
   fi
 
-  local prompt_file="${run_dir}/harvest/${source}.prompt.txt"
-  render_prompt "$source" "$start" "$end" > "$prompt_file"
-
-  log "driving Hermes (Grok) to harvest X discovery signals for '${source}' [${start}..${end}]"
-  local payload
-  payload="$(jq -Rs '{model:"hermes-agent", messages:[{role:"user", content:.}]}' < "$prompt_file")"
-  curl -fsS -m 900 "$CHAT_ENDPOINT" \
-    -H "Authorization: Bearer ${GATEWAY_BEARER}" -H 'Content-Type: application/json' \
-    -d "$payload" \
-    | jq -r '.choices[0].message.content' \
-    > "${run_dir}/harvest/${source}.raw.md"
+  local prompt out
+  prompt="$(render_prompt "$source" "$start" "$end")"
+  log "driving Hermes (Grok) to dig X for '${source}' [${start}..${end}] -- this can take a few minutes"
+  if ! out="$(run_oneshot "$prompt")" || [[ -z "$out" ]]; then
+    log "harvest returned nothing (timeout, refusal, or error). Recording the gap."
+    printf 'lane: x-social-discovery\nsource: %s\nwindow: %s..%s\nstatus: empty\nobserved_at: %s\n' \
+      "$source" "$start" "$end" "$today" > "${run_dir}/harvest/${source}.UNAVAILABLE.md"
+    return 3
+  fi
+  printf '%s\n' "$out" > "${run_dir}/harvest/${source}.raw.md"
 
   log "wrote ${run_dir}/harvest/${source}.raw.md"
   log "NEXT: run the cross-check pass in docs/x-social-harvest-workflow.md. Keep only"
@@ -207,18 +178,18 @@ cmd_harvest() {
   log "      needs_primary_crosscheck. Nothing here is a receipt until a source clears it."
 }
 
+usage() {
+  sed -n '17,20p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'
+}
+
 main() {
   local sub="${1:-help}"
   shift || true
   case "$sub" in
-    doctor)  cmd_doctor "$@" ;;
-    gateway) cmd_gateway "$@" ;;
-    models)  cmd_models "$@" ;;
-    harvest) cmd_harvest "$@" ;;
-    help|-h|--help)
-      sed -n '2,20p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'
-      ;;
-    *) die "unknown subcommand '${sub}' (try: doctor | gateway | models | harvest | help)" ;;
+    doctor)        cmd_doctor "$@" ;;
+    harvest)       cmd_harvest "$@" ;;
+    help|-h|--help) usage ;;
+    *) die "unknown subcommand '${sub}' (try: doctor | harvest | help)" ;;
   esac
 }
 

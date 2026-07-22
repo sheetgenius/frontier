@@ -155,6 +155,35 @@ Use the other objects according to the job:
 The chain is `source -> finding -> signal -> digest -> profile`. Most findings
 never become signals. The gap is the editing, and it protects reader attention.
 
+## Running the research toolchain
+
+The weekly cycle is produced by the `frontier-cycle` skill, source-backed from
+primary changelogs, commits, and releases. One standard harvest step also digs
+public X for leads: the loop drives the
+[Hermes agent](https://hermes-agent.nousresearch.com/) as a one-shot sub-agent on
+Grok, through a SuperGrok or X Premium+ subscription. Those leads are discovery
+only. They never enter the record without a primary-source cross-check.
+
+To stand that lane up on a fresh clone (Hermes installs globally, not into this
+repo; the OAuth step needs a browser and your subscription login):
+
+```bash
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash   # global install
+exec "$SHELL" -l                                                      # reload PATH
+hermes auth add xai-oauth --type oauth                               # or: hermes model
+hermes model                                                         # pick a Grok model
+ops/hermes/grok-harvest.sh doctor                                    # confirm the lane
+```
+
+Then dig one source over the reporting window:
+
+```bash
+ops/hermes/grok-harvest.sh harvest codex 2026-07-02 2026-07-21
+```
+
+Full setup, the subscription path's two limits, and the secret boundary are in
+[docs/hermes-grok-harvest-setup.md](./docs/hermes-grok-harvest-setup.md).
+
 ## Contributing
 
 Corrections, coverage gaps, new-source proposals, and mechanical fixes are
