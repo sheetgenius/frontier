@@ -50,12 +50,19 @@ primary_surfaces:
       - examples
   - id: npm
     kind: package_registry
-    url: https://www.npmjs.com/package/@mariozechner/pi-coding-agent
+    url: https://www.npmjs.com/package/@earendil-works/pi-coding-agent
     priority: 2
     watch:
       - package_version
       - publication_date
       - dist_tags
+    notes: >
+      Corrected 2026-07-27. This contract previously watched
+      @mariozechner/pi-coding-agent, which has been frozen at 0.73.1 since
+      2026-05-07 while the live package moved to the @earendil-works scope.
+      Watching the abandoned name meant this source read as static for eleven
+      weeks and missed the protobufjs fix. Anyone still installing the old scope
+      is many minors behind.
 accepted_evidence:
   - official_docs
   - official_site

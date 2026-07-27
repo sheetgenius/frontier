@@ -322,3 +322,67 @@ a known-vulnerable build.
   v2026.416.0. Fixed three months before disclosure. A Critical CVSS number that
   does not describe any shipping version is exactly the kind of thing this
   publication exists to check.
+
+## Hermes and OpenClaw: the argument gets its sharpest single case
+
+Hermes flipped approvals from human to model by default. PR #62661 sets
+`approvals.mode: smart` for default configs; ancestry puts it in v2026.7.20
+(2026-07-20) and not in v2026.7.7. Then within seven days Hermes merged the
+policy override, the consecutive-denial circuit breaker, `approvals suggest`, and
+the docker-daemon-redirect and recursive-rm detectors. Every one of those is
+main-unreleased.
+
+That is the line: **the release that flipped the default is the one without the
+guardrails that were built for it.** An operator who upgraded to the current tag
+moved their approval decision from a human to a classifier and did not receive
+the circuit breaker, the override, or the detectors that make that safe. This is
+the window's best Amdahl case too, and it points the opposite way from the
+usual: the human gate was not overwhelmed, it was removed by default.
+
+Hermes' egress firewall repeats the shape with a twist: #30179 merged
+2026-07-04T20:29:24Z, was reverted by #58489 twelve minutes later, and the
+REVERT is what shipped in v2026.7.20. It re-landed on main 2026-07-24. The
+strongest sandbox credential-containment control Hermes has is in no tag.
+
+OpenClaw supplies three more, and one of them is methodological:
+
+- Its stable tag is not cut from main. v2026.7.1 points at 2d2ddc43d; the stable
+  line forked from main on 2026-07-08T18:19:05Z and took 215 of its own commits,
+  none carrying PR numbers. A PR merged to main on 2026-07-10 is NOT in a tag
+  published 2026-07-13. Date reasoning gives the wrong answer here. This is the
+  cleanest possible vindication of the house rule that channel is resolved by
+  ancestry and not by date, and it belongs in the piece as evidence that the rule
+  earns its keep.
+- The GitHub releases page is a false view of what OpenClaw ships. `npm install
+  openclaw` yields 2026.7.1-2, an untagged respin published 2026-07-18 with no
+  git tag, no GitHub release, no notes and no gitHead; two respins went out 28
+  minutes apart. Tags v2026.7.2-beta.4 and beta.5 exist with no GitHub release,
+  and there is an undocumented extended-stable line at 2026.6.33. A harvest that
+  trusted the releases API would have reported beta.3 and been nine days stale.
+- A confirmed workspace sandbox escape is in no release on any channel. PR
+  #113405 (merged 2026-07-27): `sub/up/../outside/secret.txt` with `sub/up -> ..`
+  reads a planted sibling file while `assertSandboxPath` returns SUCCESS. The
+  check says yes while the escape works, which is the thesis in one function
+  call. Maintainers state it is defence-in-depth only and the TOCTOU window stays
+  open, so report it at exactly that scope.
+- Also a privilege escalation still not in stable after 13 days: PR #107403
+  fixes channel-allowlist membership being treated as global command ownership,
+  permitting owner-gated /allowlist and /config mutations, with a real
+  before/after proof.
+
+Backlog asymmetry worth a line: Pi has 2 commits unreleased, Hermes 1712,
+OpenClaw 2110 on top of a stable line that forked mid-window.
+
+## Fixed a defect in our own record
+
+`sources/pi-coding-agent.yml` was watching `@mariozechner/pi-coding-agent`,
+frozen at 0.73.1 since 2026-05-07, while the live package moved to
+`@earendil-works/pi-coding-agent` (0.82.1). We were watching an abandoned name,
+so the source read as static for eleven weeks and we missed the protobufjs fix.
+Corrected the contract with a dated note explaining the miss.
+
+This is worth saying out loud in the digest's uncertainty section rather than
+quietly fixing. The publication spent this window documenting providers whose
+stated surfaces did not match their shipping reality, and its own source contract
+had the same defect. That is not an embarrassment to hide; it is the argument
+demonstrating itself, and admitting it is what earns the right to make it.
