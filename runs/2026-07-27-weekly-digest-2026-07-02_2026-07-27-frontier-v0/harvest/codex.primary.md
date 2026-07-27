@@ -17,9 +17,14 @@ date:
 - `main-unreleased` -- the commit is on `main` and in no tag at all.
 
 Ancestry probe used: `gh api repos/openai/codex/compare/<base>...<head> --jq .status`.
-At window close `main` was 221 commits ahead of `rust-v0.145.0`; 210 of those were
-also in `rust-v0.146.0-alpha.10.1`, leaving 14 main-only commits (11 unique after
-overlap with the alpha compare boundary).
+At window close `main` was 221 commits ahead of `rust-v0.145.0` (HEAD
+`95637f7056835fea66bdd0044414af480fc0fd74`), and `rust-v0.146.0-alpha.10.1` was
+210 commits ahead of the same base. By SHA the two sets share 207 commits, leaving
+14 main-only and 3 alpha-branch-only. The 3 alpha-only commits are two release
+version bumps plus one cherry-pick of #35364, which also exists on `main` under a
+different SHA -- so exactly one of the 14 "main-only" commits is in the preview
+tag by content while diverging by SHA. That caveat is flagged where it applies;
+every other channel call below is a clean ancestry result.
 
 Stable tags published in window (9): `rust-v0.143.0`, `rust-v0.144.0`,
 `rust-v0.144.1`, `rust-v0.144.2`, `rust-v0.144.3`, `rust-v0.144.4`,
@@ -828,10 +833,14 @@ actual build -- and write the empty list explicitly if deny-all is what you mean
 
 ## 32. Main-unreleased: remaining main-only commits
 
-**What changed.** Eleven further commits sit on `main` in no tag at window close.
-The operator-relevant ones: exec-server network policy requests handled in the
-client (#35359), the MCP server recursion limit raised (#35414), and generated
-system skills ignored by the skills watcher (#35408).
+**What changed.** Twelve further commits sit on `main` in no tag at window close
+(14 main-only total, minus #35537 and #35280 covered above). The
+operator-relevant ones: exec-server network policy requests handled in the client
+(#35359), the MCP server recursion limit raised (#35414), and generated system
+skills ignored by the skills watcher (#35408). One of the 14, #35364 (bound Code
+Mode metadata compatibility headers, `5c36e869c1a7`), was cherry-picked onto the
+alpha branch as `27c0bb330bac` and so is in `rust-v0.146.0-alpha.10.1` by content
+even though it diverges from that tag by SHA.
 
 **Receipt.** <https://github.com/openai/codex/commit/3a08af44b2a4> (#35359),
 <https://github.com/openai/codex/commit/61a44880a85d> (#35414),
@@ -865,13 +874,15 @@ Package page: <https://www.npmjs.com/package/@openai/codex>
 
 **Event date.** Observed 2026-07-27. `latest` = `0.145.0` matches the stable tag
 of 2026-07-21; `alpha` = `0.146.0-alpha.10.1` published 2026-07-25T20:33:52Z.
+Registry publish timestamps for the stale tags: `0.1.2505172116` at
+2025-05-18T04:20:43Z and `0.1.2505291658` at 2025-05-30T00:10:01Z.
 
 **Release channel.** `latest` tracks `tagged-release`; `alpha` tracks
-`preview-or-beta`; `beta` and `native` track builds from May 2025.
+`preview-or-beta`; `beta` and `native` track builds published in May 2025.
 
 **Operator consequence.** `npm install -g @openai/codex@beta` installs a build
-from 2025-05-17, not a recent prerelease. If any of your install docs or Docker
-images reference `@beta` or `@native`, they are pinning a fourteen-month-old
+published 2025-05-18, not a recent prerelease. If any of your install docs or
+Docker images reference `@beta` or `@native`, they are pinning a fourteen-month-old
 binary with none of this window's command-safety work. Use an explicit version or
 `@latest`.
 

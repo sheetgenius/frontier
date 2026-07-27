@@ -124,3 +124,60 @@ is one a provider just closed under pressure.
 
 Carry both. The counter-current is not a footnote, it is the evidence that the
 lens is a question and not a verdict.
+
+## The thesis is now cross-provider and overwhelming
+
+Codex and Claude Code returned findings that turn "documented is not enforced"
+from a suggestive pattern into the window's clear argument, receipted across four
+providers.
+
+Claude Code, and this is the sharpest case in the window: a batch of
+permission-check bypasses was fixed in v2.1.214 on 2026-07-18. The rules that did
+not bind include `Edit(src/**)` auto-approving a nested `dir/` anywhere in the
+tree, a Windows PowerShell 5.1 bypass, Bash fd-redirect forms failing open,
+commands over 10,000 characters running unprompted, zsh subscripts treated as
+inert, `help` and `man` auto-approving, remote prompts proceeding before local
+confirmation, and docker/Podman daemon-redirect flags. An operator who wrote
+`Edit(src/**)` believed they had scoped write access to one directory. They did
+not.
+
+And the fix did not reach the channel most people run. At window close the
+`stable` endpoint served 2.1.212 (2026-07-17) while `latest` served 2.1.220
+(2026-07-25). Anyone on `stable`, the Homebrew cask, or the apt/dnf/apk stable
+suite had none of it. Both gaps in one case: the rule did not bind, and the fix
+that made it bind was not in the channel you install from.
+
+Supporting, same pattern, other providers:
+
+- Zero security advisories were published for either project in 25 days during
+  which eight Claude Code releases fixed authority boundaries. Newest GHSA on
+  anthropics/claude-code is 2026-06-25; openai/codex has one, from 2025. The
+  advisory process fired zero times while the boundary was repeatedly repaired.
+- Claude Code managed settings were auto-consented in non-interactive runs before
+  v2.1.207: remote managed settings from `claude -p` or the SDK were recorded as
+  consented without the consent dialog ever appearing.
+- Worktree and directory isolation leaked three separate ways in eleven days
+  (v2.1.210 git-mutating commands against the main checkout, v2.1.216
+  `git -C`/`--git-dir`/`GIT_DIR` redirection, v2.1.217 uncanonicalized symlinked
+  working directories).
+- Codex rust-v0.145.0 silently rewrites the operator's exec policy file on first
+  session start, stripping exact `allow` entries from `rules/default.rules`. The
+  legacy engine was deleted, not deprecated.
+- Codex's entire network-authority hardening wave is preview-only, in no stable
+  tag, resolved by ancestry rather than date.
+
+The shape of the argument: an operator's control surface is a set of promises
+made in config files and docs. This window, at four providers, those promises
+were not what executed, and in most cases nothing announced the discrepancy. No
+advisory, no consent dialog, no note that your policy file was rewritten.
+
+Editorial note on fairness: the harshest finding in this window is about Claude
+Code, an Anthropic product, and the drafting agent is Claude. Report it exactly
+as the receipts support, with no softening. The trust firewall is only worth
+anything when it costs something. Same standard applies in the other direction:
+do not sharpen it for show either.
+
+Title candidates (must be an argument a reader could dispute): "The Rule You
+Wrote", "Nobody Told You It Stopped Binding", "Configured, Not Enforced".
+Leading candidate for the lede: `Edit(src/**)`, because it is one line an
+operator actually types and believed was a boundary.
