@@ -261,3 +261,64 @@ Recorded so the phases do not blur:
    is the existing precedent for person-level analysis. The X lane surfaces
    individuals naturally: maintainers, prolific builders, sharp critics. A
    publication that reads the conversation layer should know who is in it.
+
+## Correcting my own entry above: the OpenHands freeze did not resolve, it reopened
+
+Earlier in this journal I wrote that the OSS freeze "broke" and the running story
+"resolved." That was premature and the digest must not repeat it.
+
+What actually happened: the freeze broke on 2026-07-06 with 1.9.0, six tags
+landed in four days through 1.11.0 on 2026-07-09, and then it closed again. No
+OSS tag since 2026-07-09. `main` is 50 commits ahead of 1.11.0 while six cloud
+tags shipped in the same period.
+
+The mechanism is pinned, and it is the sharpest single artifact in the harvest:
+PR #15217, "chore(main): release 1.12.0", has been open in DRAFT since
+2026-07-09 with `mergeable_state=clean`, while cloud release PRs merged normally
+throughout. The OSS release is not blocked on a problem. It is sitting there,
+clean and mergeable, undrafted for eighteen days.
+
+And the same shape recurred with a new advisory. vite CVE-2026-53571
+(GHSA-fx2h-pf6j-xcff, HIGH, CVSS 7.5) is an unauthenticated arbitrary file read
+that bypasses `server.fs.deny` through Windows NTFS `::$DATA` streams, exposing
+`.env` files and TLS keys. Merged 2026-07-16, shipped in cloud-1.47.0 and
+1.47.1, in no OSS tag. `frontend/package.json` at 1.11.0 pins vite 7.3.2, inside
+the vulnerable range; cloud-1.47.1 pins 7.3.5.
+
+Do not overclaim a correction where none is owed. On the authlib CVE the
+previously published text said the fix "sits on main after cloud-1.40.0,
+untagged," which the ancestry confirms. The new nuance is that OSS 1.9.0 was the
+first tag on ANY line to carry it, about ten minutes before cloud-1.41.0, and it
+was main-only for seven days rather than weeks. That complicates the
+cloud-patches-first reading without contradicting what we printed. Say it as a
+sharpening, not a retraction, and do not manufacture a ledger entry for it.
+
+## The purest case of the thesis in the whole harvest
+
+OpenHands' own docs still ship `docker.openhands.dev/openhands/openhands:1.8`
+and call it "the most recent stable release." Last version bump was 6087832ee on
+2026-06-10. A self-hoster following the official install instructions today
+inherits every one of the 21 advisories that 1.9.0 closed.
+
+That is "documented is not enforced" with nothing left to interpret. The document
+is not merely out of step with the runtime; it actively instructs the reader into
+a known-vulnerable build.
+
+## Two counterweights, both worth crediting
+
+- Agent Zero: `compare/v2.6...main` returns `status=identical`. Zero
+  main-unreleased work, four tags in the window. On the channel question it is
+  the cleanest source in the harvest, alongside eve (3 docs-only commits ahead of
+  34 tags). Name them; the argument is stronger when it admits who is doing it
+  right. Caveat to carry: v2.5 added secret masking and v2.6 deliberately
+  narrowed it to API-key and login/password shapes, so non-credential-shaped
+  values in `usr/.env` are no longer redacted.
+- Paperclip: the harvest's most rigorous piece of verification. GHSA-x8hx-rhr2-9rf7
+  is Critical (CVSS 9.6), a drive-by RCE via DNS rebinding against the default
+  `local_trusted` mode. Rather than trusting advisory metadata, the researcher
+  probed the source: `shouldEnablePrivateHostnameGuard` in `server/src/app.ts`
+  was `authenticated && private` at v2026.318.0 (vulnerable, matching the
+  advisory) and became `private && (local_trusted || authenticated)` at
+  v2026.416.0. Fixed three months before disclosure. A Critical CVSS number that
+  does not describe any shipping version is exactly the kind of thing this
+  publication exists to check.
