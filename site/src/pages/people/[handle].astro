@@ -1,0 +1,91 @@
+---
+import Base from "../../layouts/Base.astro";
+import { metaDescription } from "../../lib/seo";
+import { GH_BLOB_BASE } from "../../lib/site";
+import { formatDate, getPerson, listPeople, sourceLabel } from "../../lib/frontier";
+
+export function getStaticPaths() {
+  return listPeople().map((person) => ({ params: { handle: person.slug } }));
+}
+
+const person = getPerson(Astro.params.handle!);
+if (!person) throw new Error("Person not found");
+
+const d = person.data;
+const related: string[] = d.related_sources ?? [];
+const window = d.window_observed;
+const description = metaDescription(
+  d.tagline ?? `Public statements by ${d.name}, observed and receipted by Bitter Frontier.`,
+);
+---
+
+<Base
+  title={`${d.name} | Bitter Frontier`}
+  description={description}
+  publishedDate={d.first_tracked}
+  modifiedDate={d.last_updated}
+  articleSection="Bitter Frontier people"
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">Key player</p>
+    <h1 class="issue-title">{d.name}</h1>
+    {d.handle && (
+      <p class="person-handle font-mono">
+        <a href={d.canonical_url}>@{d.handle}</a>
+      </p>
+    )}
+    {d.tagline && <p class="profile-dek">{d.tagline}</p>}
+
+    <dl class="rule mt-8 grid gap-y-6 py-6 md:grid-cols-3 md:gap-x-10">
+      {d.role && (
+        <div>
+          <dt class="small-caps text-muted">Role</dt>
+          <dd class="mt-2">{d.role}</dd>
+        </div>
+      )}
+      {window && (
+        <div>
+          <dt class="small-caps text-muted">Observed</dt>
+          <dd class="mt-2 font-mono text-sm">{formatDate(window.start)} to {formatDate(window.end)}</dd>
+        </div>
+      )}
+      {d.posts_observed && (
+        <div>
+          <dt class="small-caps text-muted">Public posts read</dt>
+          <dd class="mt-2 font-serif text-xl font-semibold tracking-tight">{d.posts_observed}</dd>
+        </div>
+      )}
+    </dl>
+
+    {related.length > 0 && (
+      <p class="mt-6 font-mono text-sm text-muted">
+        Related coverage:{" "}
+        {related.map((id, i) => (
+          <>
+            <a href={`/profiles/${id}/`}>{sourceLabel(id)}</a>
+            {i < related.length - 1 ? ", " : ""}
+          </>
+        ))}
+      </p>
+    )}
+
+    <div class="prose-frontier mt-9" set:html={person.html} />
+
+    <aside class="person-standard mt-10">
+      <p class="small-caps text-muted">How to read this page</p>
+      <p>
+        Every link here is a receipt for what a person said, on the date shown. None
+        of it is a receipt for what is true of any software. Where a statement can be
+        checked against a primary source, the check sits beside it and the primary
+        source wins. We do not publish conduct claims or infer motive.
+      </p>
+    </aside>
+
+    <div class="rule mt-9 pt-5">
+      <p class="font-mono text-sm text-muted">
+        <a href="/people/">All tracked people</a> /
+        <a href={`${GH_BLOB_BASE}/content/people/${person.slug}.md`}>Source of this page</a>
+      </p>
+    </div>
+  </article>
+</Base>

@@ -6,7 +6,7 @@ owner: Nous Research
 source_contract: sources/hermes-agent.yml
 homepage: https://hermes-agent.nousresearch.com/docs
 docs: https://hermes-agent.nousresearch.com/docs
-tagline: "A twenty-platform agent whose security fixes always land one binary behind."
+tagline: "The approval decision moved from you to a classifier, and the controls written to bound it are still on main."
 compared_with:
   - paperclip
 x:
@@ -18,8 +18,8 @@ repo: https://github.com/NousResearch/hermes-agent
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-23
-last_full_review: 2026-06-03
+last_updated: 2026-07-27
+last_full_review: 2026-07-27
 claims:
   - id: curator-autonomous-skill-maintenance
     finding_id: 2026-05-06-hermes-curator-and-service-surfaces
@@ -129,269 +129,264 @@ posture_basis:
     - 2026-06-23-hermes-managed-scope-etc-hermes
     - 2026-06-23-hermes-background-async-subagents-tagged
 stance:
-  use_for: "Use Hermes when worker completion needs independent verification -- the Kanban gate blocks phantom card claims before a worker can move state. Also when chat or voice bridging is a primary surface, not an afterthought."
-  avoid_for: "Avoid it if your log pipelines depend on unredacted agent output -- v0.13.0 makes redaction default-on. The old 'no centralized governance' caveat is now narrower: as of v0.17.0 (tag v2026.6.19) Hermes has a centralized, OS-permission-backed config/secret pin (root-owned `/etc/hermes`) IT can use to fix a baseline a non-root user cannot override -- but it is still not human-SSO/role-mapping tooling, so skip it if you need IdP-driven role services rather than an admin-pinned policy layer."
-  watch_next: "Whether the June 21-22 MCP-persistence mitigation wave reaches a tagged binary before operators exposing a dashboard/API server are caught by the campaign the commit narrative describes; whether background fan-out subagents regain a wall-clock or cost ceiling; and how the managed `/etc/hermes` scope interacts with the exposed-control-plane threat."
+  use_for: "A multi-platform gateway you run and inspect yourself. As of v2026.7.20 one bot token routes specific guilds, channels, and threads to separate profiles with isolated config, skills, memory, and secrets; a durable delivery ledger means a gateway crash no longer discards an answer you already paid for; and every delegated subagent writes a live transcript you can tail while it runs. Vault-backed secrets (Bitwarden, 1Password) replace the plaintext `.env` as the default credential path."
+  avoid_for: "Unattended work where you must be the approver. From v2026.7.20 the shipped default is `approvals.mode: smart`, so a model reviews each flagged command unless you pin `manual` -- and the policy override, denial circuit breaker, and dangerous-command detectors written for that default are in no tag. Also avoid it where a compromised Docker sandbox must not yield usable credentials: the egress firewall that makes lifted tokens worthless outside the box is on main and shipped in no release. Still not IdP or role-mapping tooling; the centralized control is an admin-pinned `/etc/hermes` config layer, not SSO."
+  watch_next: "Whether the smart-approval policy override, the consecutive-denial circuit breaker, `hermes approvals suggest`, and the docker-daemon-redirect and recursive-`rm` detectors reach a tagged binary; whether the egress firewall re-land is tagged and stays default-off; and whether the 1712-commit gap between the newest tag and main narrows or is simply the normal state of this project."
 ---
 
 # Hermes Agent
 
 ## Operator Read
 
-Hermes is a broad-surface personal agent -- twenty-plus messaging
-platforms, voice, browser, mobile -- and as of v0.14.0
-("Foundation Release", 2026-05-16) it has also become an *installable
-provider router with identity / isolation primitives*. The release
-ships PyPI distribution (`pip install hermes-agent`), lazy adapter
-install with a supply-chain advisory checker, a native Windows beta,
-Zed ACP Registry listing, and `hermes proxy` -- a local
-OpenAI-compatible endpoint that lets a bounded set of wire-compatible
-clients (Codex CLI, Aider, Cline, Continue, custom scripts) route
-through whichever OAuth provider the operator is signed into. The
-"broad-surface personal agent" framing is still load-bearing -- Hermes
-did not stop being that -- but the installable surface and adjacency
-to other tools changed substantially in this window. The serious bet
-is still durable coordination with receipts.
+The default approver in Hermes is no longer you. As of
+[v0.19.0, "The Quicksilver Release", tag v2026.7.20](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.20)
+(published 2026-07-20),
+[`approvals.mode` defaults to `smart`](https://github.com/NousResearch/hermes-agent/pull/62661)
+for new and default configurations: a language model assesses each flagged
+command instead of a person approving it. That is a defensible design and
+Hermes documents it plainly. The problem is the sequencing. The operator policy
+override, the consecutive-denial circuit breaker, the `approvals suggest`
+command, and the detectors for docker daemon redirection and recursive `rm`
+were all written for that default and all merged after the tag. None of them is
+in a release. **The binary that moved the decision off the human is the binary
+without the guardrails.**
 
-As of [v0.17.0 ("The Reach Release", tag v2026.6.19, June 19)](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.6.19)
-the picture shifts on three axes an operator must read by channel. The
-fail-closed security wave that sat main-unreleased past v0.16.0 last
-window is now *tagged* in this binary. The same tag adds two governance
-firsts: an admin-pinned, root-owned config/secret pin
-([managed `/etc/hermes`](https://github.com/NousResearch/hermes-agent/pull/49098))
-and [background fire-and-forget fan-out subagents](https://github.com/NousResearch/hermes-agent/pull/49734)
-with the default wall-clock timeout removed. And a *fresher*, more
-urgent MCP-persistence security wave (June 21-22) is already
-main-unreleased past v0.17.0 -- so the most recent mitigations are not in
-the tagged binary. Read each claim below by its channel marker.
-*Findings: 2026-06-23-hermes-v0.17.0-reach-release.*
+The same window has the cleanest merged-is-not-released case we have recorded.
+Hermes's strongest credential-containment control, an egress firewall that makes
+tokens lifted from a compromised sandbox useless anywhere else, was
+[merged on 2026-07-04](https://github.com/NousResearch/hermes-agent/pull/30179),
+[reverted twelve minutes later](https://github.com/NousResearch/hermes-agent/pull/58489),
+and the revert is what shipped in v2026.7.20. It
+[re-landed on main on 2026-07-24](https://github.com/NousResearch/hermes-agent/pull/70848)
+and is still untagged.
 
-## Coordination Claims
+Read every claim below by its channel, because the distance between the two is
+large:
+[1712 commits](https://github.com/NousResearch/hermes-agent/compare/v2026.7.20...main)
+separate the newest tag from main, accumulated in seven days. Hermes remains a
+broad-surface personal agent across twenty-plus messaging platforms, voice,
+browser, and mobile, and the coordination work underneath it is serious. But
+the tag you install is a historical artifact of a fast branch, and this window
+that gap sat on top of the approval gate itself.
 
-The [Kanban board](https://github.com/NousResearch/hermes-agent/pull/17805)
-is the production claim to watch. Hermes is trying to make worker handoffs
-durable enough that stale workers get reclaimed (heartbeat), failed exits
-block automatically, zombie processes are detected on both platforms, and
-per-task `max_retries` prevent silent cascades.
+## The Default That Moved
 
-The
-[**hallucination gate**](https://github.com/NousResearch/hermes-agent/pull/20232)
-(v2026.5.7) tightens this further: the kernel checks `created_cards` IDs,
-blocks phantom and cross-worker claims, and records an audit event before a
-worker can move state. Phantom card references are rejected before state
-moves. The gate is an integrity check on card references -- not a verifier
-of work quality or completeness, but a structural answer to "did this worker
-actually produce what it claims?"
+[PR #62661](https://github.com/NousResearch/hermes-agent/pull/62661) (merged
+2026-07-12) carries its own before/after table: the default moves from `manual`
+to `smart`, and the smart path narrows from "approve this detector pattern for
+the session" to "approve this command only," so a later command matching the
+same broad pattern gets its own review rather than riding a session-wide pass.
+Explicit `manual` and `off` are unchanged. The change is absent from
+`v2026.7.1` and `v2026.7.7` and present in `v2026.7.20`, resolved by ancestry
+rather than by merge date.
 
+The action is one line of config and it is worth taking deliberately: set
+`approvals.mode` yourself instead of inheriting it. If you want a person on the
+gate, `v2026.7.7` is the last tag whose default is `manual`.
+
+What is not in any tag is everything built to bound the new default:
+[`approvals.smart_policy`](https://github.com/NousResearch/hermes-agent/pull/72186)
+for operator-customizable review policy, a
+[consecutive-denial circuit breaker](https://github.com/NousResearch/hermes-agent/pull/72203),
+[`hermes approvals suggest`](https://github.com/NousResearch/hermes-agent/pull/72259)
+mining approval history into allowlist proposals, an
+[approval requirement for docker and podman daemon-redirect commands](https://github.com/NousResearch/hermes-agent/pull/71092),
+a [detector for recursive `rm` when the flags follow the operands](https://github.com/NousResearch/hermes-agent/pull/68996),
+and a [restored session approval tier for flagged prompts](https://github.com/NousResearch/hermes-agent/pull/68664).
+Every one is ahead of `v2026.7.20`.
+
+There is one approval control that does hold in the shipped binary, and it is
+the right place to encode a prohibition you never want negotiated:
+[user-defined deny rules block commands even under yolo mode](https://github.com/NousResearch/hermes-agent/pull/59164),
+and [`/deny <reason>`](https://github.com/NousResearch/hermes-agent/pull/54518)
+relays the refusal back to the agent so it course-corrects instead of retrying
+blind. Both shipped in `v2026.7.7`.
+
+One more fact about this change, stated with its bound. Across the 35 public
+posts about Hermes we adjudicated for this window, not one mentions the
+approvals default, smart approvals, auto-approval, or a changed gate. The same
+sweep captured a stale installer, a Telegram gateway crash, a WSL2 database
+corruption, and a Discord routing complaint. That is a statement about the set
+we harvested, not proof that nobody anywhere noticed. It is still the shape an
+operator should plan around: nobody is going to tell you when a default like
+this moves. See the
+[signal](/signals/2026-07-27-hermes-approvals-default-flipped-without-guardrails/)
+for the upgrade decision on its own.
+
+## The Egress Firewall That Shipped As A Revert
+
+The mechanism is good and worth understanding even though you cannot yet run
+it in a release. Docker sandboxes receive per-provider stand-in proxy tokens
+under the standard environment names; a managed iron-proxy daemon at the
+network boundary swaps them for real credentials on the way out. A token lifted
+from a compromised sandbox is then worthless anywhere else. It is disabled by
+default behind `hermes egress setup` and `hermes egress start`, and the re-land
+records fail-closed behavior: with `proxy.enabled: true`, the daemon down, and
+`enforce_on_docker`, the call raises rather than falling through.
+
+The timeline is the finding.
+[Merged 2026-07-04T20:29:24Z](https://github.com/NousResearch/hermes-agent/pull/30179).
+[Reverted 2026-07-04T20:41:25Z](https://github.com/NousResearch/hermes-agent/pull/58489),
+twelve minutes later, and the v0.19.0 notes list the revert under "Reverted in
+this window (for the record)."
+[Re-landed 2026-07-24T16:49:01Z](https://github.com/NousResearch/hermes-agent/pull/70848)
+and ahead of the tag. If you are running `v2026.7.20`, you have the revert.
+Public announcements of the feature describe main, not a release.
+
+## What The Tags Did Give You
+
+`v2026.7.7` (2026-07-08) is the credential-boundary tag. It carries Vertex
+credentials
+[stripped from the subprocess environment](https://github.com/NousResearch/hermes-agent/pull/56582),
+[six P1 hardening fixes salvaged in one pass](https://github.com/NousResearch/hermes-agent/pull/57660)
+(browser guards, MEDIA anchoring, `.env` lockdown, delegate ACP transport,
+matrix sync isolation), media-tool local reads
+[routed through the shared credential-read guard](https://github.com/NousResearch/hermes-agent/pull/58709),
+a [webhook body-cap sweep](https://github.com/NousResearch/hermes-agent/pull/59215),
+and [CI untrusted refs passed through the environment](https://github.com/NousResearch/hermes-agent/pull/57842)
+rather than shell interpolation. It also carries the credential change that
+matters most day to day: a
+[pluggable `SecretSource`](https://github.com/NousResearch/hermes-agent/pull/59498)
+that reads keys from Bitwarden and 1Password (`op://` references) at load time
+across multiple vaults, with deterministic precedence, conflict warnings, and
+per-variable provenance. The plaintext `.env` is now the legacy path, and you
+can audit which vault supplied which credential. Separately, a plugin
+[`pre_tool_call` approve action can escalate to a human gate](https://github.com/NousResearch/hermes-agent/pull/60504),
+which makes a plugin a governance surface and worth reviewing as one.
+
+`v2026.7.20` is the delegation and durability tag. `delegate_task` dispatches
+now return
+[live transcript files](https://github.com/NousResearch/hermes-agent/pull/67479)
+you can tail the moment subagents launch, one human-readable log per child
+carrying every tool call, result, and streamed reply; background delegation
+completions became
+[durable across process restart](https://github.com/NousResearch/hermes-agent/pull/63494)
+through an ownership-checked ledger. That turns fan-out from a trust exercise
+into an auditable one, and it creates a new log surface holding whatever the
+child saw, which is why the same tag also
+[redacts credentials in live subagent transcripts](https://github.com/NousResearch/hermes-agent/pull/67635)
+and stops
+[mounting master credential stores into skill sandboxes](https://github.com/NousResearch/hermes-agent/pull/67640).
+A [durable delivery-obligation ledger](https://github.com/NousResearch/hermes-agent/pull/67181)
+records final responses in `state.db` around the platform send and redelivers
+on next boot, closing a P1 window in which a gateway death between generating a
+response and confirming delivery lost an answer you had already paid for.
+Unexplained missing replies before `v2026.7.20` now have a named cause.
+
+The same tag ends the standing reason to run several gateways.
+[Profile-based inbound routing](https://github.com/NousResearch/hermes-agent/pull/64835)
+lets one multiplexed gateway on a single bot token send specific guilds,
+channels, or threads to different profiles, each with isolated config, skills,
+memory, and secrets, and a
+[multiplex hardening pass](https://github.com/NousResearch/hermes-agent/pull/65700)
+means one misconfigured profile no longer takes down the whole gateway. Secret
+and memory isolation is now expressible per channel.
+
+One loosening in the same tag, flagged rather than buried: the
+[browser eval denylist became opt-in](https://github.com/NousResearch/hermes-agent/pull/65923).
+Teams that treated it as a default guardrail now have to set it explicitly.
+`computer_use` gained a
+[verify-then-escalate ladder](https://github.com/NousResearch/hermes-agent/pull/67123)
+in the same release.
+
+## The Tag With No Notes
+
+Two of the window's three tags are worth knowing about mainly as a reading
+problem. [`v2026.7.7`](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.7)
+is described by its own maintainers as an infrastructure-driven patch tag cut so
+downstream consumers have a stable point, not a curated release. It carries
+roughly 660 merged pull requests with no notes, and the maintainers say the
+readable account will arrive with v0.19.0 -- which it did, twelve days later.
+[`v2026.7.7.2`](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.7.2)
+is a same-day patch that unpins the WhatsApp Baileys dependency from a git
+commit to a published release so Docker builds resolve. Anyone who upgraded on
+2026-07-08 ran 660 merges whose only description arrived on 2026-07-20.
+
+A date-discipline note that matters if you are reconstructing this yourself:
+both release bodies print "Release Date: July 7, 2026" while the API publish
+timestamps are 2026-07-08 UTC. The timestamp governs.
+
+## Still Untagged Besides The Approvals Wave
+
+Four more security fixes sit ahead of `v2026.7.20`:
+[DNS-pinned SSRF-safe fetches with a Slack CDN allowlist](https://github.com/NousResearch/hermes-agent/pull/70193),
+a [lock on the public credential-pool query surface](https://github.com/NousResearch/hermes-agent/pull/70154),
+a fix to
+[stop printing secret names during environment load](https://github.com/NousResearch/hermes-agent/pull/69054),
+and a correction that
+[stops masking prose words that merely embed a secret keyword](https://github.com/NousResearch/hermes-agent/pull/67776).
+If your Hermes fetches URLs an outsider can influence, main and `v2026.7.20`
+differ on a security boundary.
+
+## Coordination And Delegation
+
+The durable-coordination bet is unchanged and still the reason to take Hermes
+seriously for multi-worker work. The
+[Kanban board](https://github.com/NousResearch/hermes-agent/pull/17805) reclaims
+stale workers by heartbeat, blocks failed exits, detects zombie processes on
+both platforms, and bounds retries per task. The
+[hallucination gate](https://github.com/NousResearch/hermes-agent/pull/20232)
+checks `created_cards` IDs and rejects phantom and cross-worker claims before a
+worker can move state, with an audit event recorded. It is an integrity check on
+card references, not a verifier of work quality.
 [`/goal`](https://github.com/NousResearch/hermes-agent/pull/18262) locks the
-agent onto a target that persists across turns (Ralph loop). Goals survive
-context compression and turn budget management. Pair it with the Kanban gate
-when running multi-worker sessions where individual workers should not be
-able to abandon their assigned target.
+agent onto a target that survives context compression and turn-budget
+management; pair it with the gate when individual workers should not be able to
+abandon their assignment.
 
-**Background fan-out subagents (tagged, v0.17.0).** `delegate_task(background=true)`
-([PR #40946](https://github.com/NousResearch/hermes-agent/pull/40946))
-dispatches a subagent that returns a handle immediately and re-enters the
-conversation as a new turn when it finishes; a window follow-up
-([PR #49734](https://github.com/NousResearch/hermes-agent/pull/49734))
-extends this to background *fan-out* -- N parallel subagents, one
-consolidated return -- and makes backgrounding automatic for any top-level
-delegation rather than a per-call model decision. The governance cost: the
-default subagent wall-clock timeout was
-[removed](https://github.com/NousResearch/hermes-agent/pull/45149)
-(`DEFAULT_CHILD_TIMEOUT` 600 → None) with no replacement bound this window.
-A heartbeat/inactivity backstop *remains* -- the staleness monitor still
-lets the gateway inactivity timeout fire on a wedged worker -- so this is not
-"no runaway detection at all." What is gone and not replaced is a wall-clock
-or cost ceiling on a *productively busy but runaway* background worker.
-Window safety work was Kanban worker-reclaim and cascade-delete prevention,
-not a subagent time/cost bound. Operators running unattended background
-fan-out should assume no built-in wall-clock guard.
-*Findings: 2026-06-23-hermes-background-async-subagents-tagged.*
+Background fan-out remains the sharpest autonomy edge.
+[`delegate_task(background=true)`](https://github.com/NousResearch/hermes-agent/pull/40946)
+returns a handle immediately and re-enters the conversation when it finishes;
+[fan-out](https://github.com/NousResearch/hermes-agent/pull/49734) extends that
+to N parallel subagents with one consolidated return and makes backgrounding
+automatic for top-level delegations. The default wall-clock timeout was
+[removed](https://github.com/NousResearch/hermes-agent/pull/45149) and has not
+been replaced. A heartbeat and inactivity backstop still fires on a wedged
+worker, so this is not "no runaway detection." What is missing is a wall-clock
+or cost ceiling on a *productively busy* runaway. This window improved what you
+can see (live transcripts) and what survives a crash (durable completions), not
+what stops a long one.
 
-## Distribution And Provider Routing (v0.14.0)
+## Governance Boundaries
 
-The 2026-05-16 v0.14.0 "Foundation Release" shipped 808 commits and
-633 merged PRs since v0.13.0. Several distinct vectors:
+Four controls define the current authority model, and they do not live in one
+document.
 
-**Distribution.** Hermes ships as a PyPI package
-([PR #26593](https://github.com/NousResearch/hermes-agent/pull/26593))
-for the first time. The `[all]` extras are removed in favor of lazy
-install of heavy adapters on first use
-([PR #24220](https://github.com/NousResearch/hermes-agent/pull/24220),
-[PR #24515](https://github.com/NousResearch/hermes-agent/pull/24515));
-cold-start drops ~19s. Native Windows beta ships
-([PR #21561](https://github.com/NousResearch/hermes-agent/pull/21561)).
-Hermes is listed in the Zed ACP Registry via `uvx`
-([PR #26079](https://github.com/NousResearch/hermes-agent/pull/26079)).
-A supply-chain advisory checker accompanies the lazy-install pattern.
-
-**Provider routing.** `hermes proxy`
-([PR #25969](https://github.com/NousResearch/hermes-agent/pull/25969))
-exposes a local OpenAI-compatible endpoint backed by whichever OAuth
-provider the operator is signed into (Nous Portal in the initial
-shipped form, with the PR explicitly framing "more providers later").
-A bounded set of wire-compatible clients (Codex CLI, Aider, Cline,
-Continue, custom scripts) can route through a Hermes subscription
-rather than maintain separate API keys. The PR explicitly documents
-the default bind as `--host 127.0.0.1` (loopback only) and the auth
-model: client-side `Authorization` headers are accepted and *stripped
-before the upstream call*, then the Hermes OAuth credentials are
-attached on the way out. Loopback-only is the documented default;
-operators changing the bind to a non-loopback address are responsible
-for placing their own auth in front, and should treat the proxy as a
-credential router exposed to anyone who can reach the bind address
-once it leaves loopback.
-
-**Identity mapping.** A new Honcho identity-mapping layer
-(commits `0bac8809`, `58987cb8`, `c03960de`, `6feb2afd`, week of
-2026-05-21) adds `pinUserPeer` / `pinPeerName` aliases and includes
-user-id in agent cache signatures to prevent shared-thread peer
-contamination. A separate commit (`2e181602`, 2026-05-27) isolates
-the credential pool on provider fallback, closing a quiet credential
-bleed when the agent fails over between providers.
-
-**Reliability.** A sustained wave of `fix(kanban)` commits between
-2026-05-23 and 2026-05-27 hardened SQLite against torn-write
-corruption (`secure_delete + cell_size_check + synchronous=FULL`),
-preserved exceptions on write-txn rollback failures, refused to
-silently downgrade WAL to DELETE on transient EIO, and added
-post-commit invariant checks. The Kanban primitive the prior digest
-named as load-bearing is still settling; the post-v0.14.0 line is
-the integrity-floor baseline.
-
-## Access Surfaces and Setup Burden
-
-Use [Curator](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.4.30)
-only if you are willing to let Hermes maintain its own tool layer: it grades,
-consolidates, and prunes skills on a default seven-day cycle, with
-`logs/curator/run.json` and `REPORT.md` as the operator's review surface.
-Bundled and hub skills are protected behind defense-in-depth gates. The
-operator's job shifts from hand-cleaning skills to reviewing Curator outputs.
-
-Manual Curator operations are now synchronous (`hermes curator run`) with
-`archive`, `prune`, and `list-archived`
-[subcommands](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.7) -- useful when you want to inspect rather than wait on the scheduled run. A
-[background review loop](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.4.30)
-applies the same grading to agent-created skills outside the scheduled cycle.
-
-Gateway durability is the other accessibility lever: the gateway registers with
-[systemd restart readiness](https://github.com/NousResearch/hermes-agent/commit/d797755a1c17566b0aef4d77548a4b460142d26a),
-and sessions interrupted by
-[restart, `/update`, or source-file reload](https://github.com/NousResearch/hermes-agent/pull/21192)
-are automatically resumed when the gateway comes back. The API server accepts
-an [`X-Hermes-Session-Key` header](https://github.com/NousResearch/hermes-agent/commit/fe8560fc1249b4a7e448b5c3b80a7d213df9d78f)
-to give memory providers a stable session identifier. Third-party inference
-providers can drop into
-[pluggable model provider modules](https://github.com/NousResearch/hermes-agent/commit/9022804d78e88253d138d448e9107a3884b2b96c)
-without touching core.
-
-[`allowed_channels`/`allowed_chats`/`allowed_rooms`](https://github.com/NousResearch/hermes-agent/pull/21251)
-limit which Slack, Telegram, Mattermost, Matrix, or DingTalk channels the
-agent responds in -- scope narrowing without disabling platforms. Cron
-[`no_agent` mode](https://github.com/NousResearch/hermes-agent/pull/19709) lets
-operators run a script directly with non-empty stdout delivered verbatim to
-the home channel, skipping LLM cost or non-determinism for pure-automation
-watchdog patterns.
-
-## Security Defaults
-
-After v0.13.0, assume logs are redacted unless you have explicitly designed
-around that default;
-[redaction is on by default](https://github.com/NousResearch/hermes-agent/pull/21193)
-where it was previously opt-in. Pipelines that depended on raw agent output
-need a migration plan. Discord `DISCORD_ALLOWED_ROLES` is now
-[scoped to the originating guild](https://github.com/NousResearch/hermes-agent/pull/21241)
- -- the CVSS 8.1 cross-guild DM bypass (issue #12136) is closed. MCP OAuth and
-`auth.json` credential writers
-[close TOCTOU windows](https://github.com/NousResearch/hermes-agent/pull/21176),
-and cron
-scans assembled prompt + skill content for
-[prompt injection](https://github.com/NousResearch/hermes-agent/pull/21350)
-before execution. The pattern: fail-closed on credentials and message
-security; explicit opt-in for scope reduction.
-
-When PyPI quarantined `mistralai` 2.4.6 as a malicious release,
-[Hermes removed the package from `[all]` extras](https://github.com/NousResearch/hermes-agent/pull/24205)
-(commit `99ad2d1`, 2026-05-12). Mistral Voxtral TTS returns a "temporarily
-disabled" status rather than importing the cached package. The `[mistral]`
-extra is preserved for explicit opt-in once PyPI restores the package. Not yet
-in a tagged release.
-
-## Fail-Closed Wave -- Now Tagged (v0.17.0)
-
-The June-13 fail-closed security wave that last window sat *main-unreleased*
-past v0.16.0 is now contained in the
-[v0.17.0 tag (v2026.6.19)](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.6.19),
-ancestry-proven (merge-base equals each commit; absent from prior tag
-v2026.6.5). That wave: the
-[`cp`/`mv`/`install`-into-`~/.ssh` gate](https://github.com/NousResearch/hermes-agent/commit/da28d5d113956dcf803d5cff552a120740a96a59)
-a maintainer had called "theater," the
-[`/api/status` host-path + gateway-PID leak fix](https://github.com/NousResearch/hermes-agent/commit/3380563d946b26cb5ae630811f95d2833ba5254b),
-and
-[fail-closed own-policy gateway adapters](https://github.com/NousResearch/hermes-agent/commit/fc463545804692c16f842aac58d681d96dd3fe6a)
-with no allowlist.
-Operators upgrading to v0.17.0 finally run these in a binary, not on main.
-*Findings: 2026-06-23-hermes-v0.17.0-reach-release.*
-
-## MCP-Persistence Mitigation Wave (main-unreleased, June 21-22)
-
-This is the carry-forward pattern repeating one binary later: a fresh
-security wave landed on `main` *after* the v0.17.0 cut and is
-**not** in the tagged binary (ancestry-proven: every commit is ahead of
-v2026.6.19). Per the project's own commit narrative -- a single, self-interested
-primary source citing a Reddit thread (`r/hermesagent`) and a self-named
-"854.media" instance, **not** independently confirmed in-the-wild
-exploitation -- scanners find exposed Hermes dashboards/API servers and drive
-the root agent to plant a `command: bash` MCP entry that appends an attacker
-SSH key to `authorized_keys`, which cron + startup re-execute every tick.
-The mitigations:
-[`validate_mcp_server_entry`](https://github.com/NousResearch/hermes-agent/commit/7726ce304)
-rejects shell payloads writing to OS persistence surfaces
-(`authorized_keys`/`.ssh`/`pam.d`/`sudoers`/cron/rc) and hard-rejects an IOC
-blocklist (attacker SSH key + source IPs) at save *and* spawn time; the
-dashboard `--insecure` flag no longer disables the auth gate (a public bind
-always requires an auth provider); the `API_SERVER_KEY` network-bind entropy
-floor is raised 8 → 16; and a new
-[startup security posture audit](https://github.com/NousResearch/hermes-agent/commit/f45ace931)
-(warn-on-load, never blocking) flags running as root, SSH
-`PasswordAuthentication`, a container with no persistent volume over
-`HERMES_HOME`, and a network-accessible API server with no `API_SERVER_KEY`.
-Note: the unrelated memory-write hardening commit (`fix(memory): fail closed
-on unclear write results`) is *not* part of this 0day cluster and is not
-cited here as a mitigation. Operators who deploy the v0.17.0 binary and expose
-a dashboard/API server should run `main` or wait for the next tag to get these
-guards.
-*Findings: 2026-06-23-hermes-0day-mitigation-wave-main-unreleased.*
-
-## Managed Scope -- Centralized Policy Pin (tagged, v0.17.0)
-
-Hermes's standing posture -- "governs through allowlists, not SSO or role
-services" -- is now narrower. The
-[managed `/etc/hermes` scope](https://github.com/NousResearch/hermes-agent/pull/49098)
-(merged before the tag cut, listed in the release body) adds an
-administrator-pushed, **user-immutable** layer of config and secrets read from
-a root-owned system directory that wins *per-leaf-key* over the user's
-`~/.hermes/config.yaml` and `~/.hermes/.env`. This is Hermes's first
-centralized, root-owned, OS-permission-backed policy pin: IT can fix a baseline
-(provider, shared base URL, `security.redact_secrets`) that a non-root user
-cannot override. It is not human-SSO or IdP role mapping -- it is an
-admin-pinned config/secret layer -- but it directly revises the old "no
-centralized governance tooling" caveat (see `avoid_for`). The open question is
-how this interacts with the exposed-control-plane threat in the wave above.
-*Findings: 2026-06-23-hermes-managed-scope-etc-hermes.*
+- **Approvals.** `smart` by default from `v2026.7.20`; `manual` and `off`
+  explicit. Deny rules hold under yolo mode. The policy override and circuit
+  breaker are on main.
+- **Admin-pinned config.** The
+  [managed `/etc/hermes` scope](https://github.com/NousResearch/hermes-agent/pull/49098)
+  (tagged since `v2026.6.19`) reads an administrator-pushed, user-immutable
+  layer of config and secrets from a root-owned system directory that wins
+  per-leaf-key over the user's `~/.hermes/config.yaml` and `~/.hermes/.env`. IT
+  can fix a baseline (provider, shared base URL, `security.redact_secrets`) a
+  non-root user cannot override. This is a policy pin, not identity: there is
+  still no SSO or IdP role mapping.
+- **Redaction.**
+  [On by default since v0.13.0](https://github.com/NousResearch/hermes-agent/pull/21193).
+  Pipelines that depend on raw agent output need a migration plan.
+- **Scope narrowing.**
+  [`allowed_channels` / `allowed_chats` / `allowed_rooms`](https://github.com/NousResearch/hermes-agent/pull/21251)
+  limit which Slack, Telegram, Mattermost, Matrix, or DingTalk channels the
+  agent answers in. Per-profile routing now sits above this for operators who
+  want isolation rather than only restriction.
 
 ## Known Limits
 
-The Kanban gate is structural, not semantic: it does not verify result
-quality, work completeness, or its own false-positive rate under concurrent
-multi-worker workloads. The PR #20232 mechanism -- what is checked, what
-audit events are recorded, how operators read them -- is not yet fully
-documented in official docs. `/goal` survival semantics under compression are
-not specified. The governance map (which controls fail-closed vs.
-empty-until-configured vs. explicit opt-in) is not documented in one place,
-and the Curator skill protection tiers (bundled vs. hub vs. user) are
-described as defense-in-depth without published rules.
+The Kanban gate is structural, not semantic: it does not verify result quality,
+work completeness, or its own false-positive rate under concurrent multi-worker
+load, and the mechanism is still not fully described in official docs. `/goal`
+survival semantics under compression are unspecified. The governance map --
+which controls fail closed, which are empty until configured, which require
+opt-in -- is not documented in one place, and the Curator skill protection tiers
+are described as defense-in-depth without published rules. Curator itself
+remains an opt-in bet: it grades, consolidates, and prunes the agent's own skill
+layer on a
+[default seven-day cycle](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.4.30),
+with `logs/curator/run.json` and `REPORT.md` as your review surface. That trade
+moves your attention from hand-cleaning skills to reviewing Curator output; it
+does not remove it.
 
 *Posture basis: `2026-05-06-hermes-curator-and-service-surfaces`,
 `2026-05-07-hermes-gateways-skills-and-service-operation`,
@@ -401,84 +396,79 @@ described as defense-in-depth without published rules.
 `2026-06-23-hermes-v0.17.0-reach-release`,
 `2026-06-23-hermes-0day-mitigation-wave-main-unreleased`,
 `2026-06-23-hermes-managed-scope-etc-hermes`,
-`2026-06-23-hermes-background-async-subagents-tagged`.*
+`2026-06-23-hermes-background-async-subagents-tagged`. The 2026-07-02 to
+2026-07-27 material above is carried in prose with inline receipts.*
 
 ## Open Questions
 
-- `hermes proxy` provider scope: the PR ships Nous Portal as the
-  initial routing provider with "more providers later" framed. Which
-  providers actually land, on what cadence, and whether any require
-  per-provider auth shapes that complicate the `Authorization`-strip
-  pattern is open.
-- `hermes proxy` non-loopback exposure: the documented default is
-  `--host 127.0.0.1` and client `Authorization` headers are stripped
-  before upstream credential attach. The operator-side question is
-  what protection model exists when the bind is changed (a recommended
-  reverse-proxy / mTLS pattern, an option to require a shared bearer
-  before strip, etc.) -- the PR does not specify a non-loopback
-  posture.
-- Lazy adapter install under fail-closed credential doctrine: could
-  a missing-backend state at runtime silently degrade a
-  security-relevant code path before the backend is installed?
-- Are the Honcho identity-mapping primitives now the canonical
-  Hermes identity layer, or a Honcho-integration-specific feature?
-  Source contract should be updated to name "identity mapping" as a
-  high-signal pattern if so.
-- The Kanban hallucination gate (PR #20232) verifies `created_cards` IDs and
-  blocks phantom and cross-worker claims. What does the gate NOT verify: result
-  quality, work completeness, or false-positive behavior under concurrent
-  multi-worker workloads?
-- How does `/goal` survive context compression? What mechanism preserves the
-  goal target when the conversation is compressed, and what happens when the
-  goal budget is exhausted?
-- Which Hermes controls are default-on (fail-closed), which are
-  empty-until-configured (no restriction by default), and which require
-  explicit opt-in? The governance map is not documented in one place.
-- The `no_agent` cron mode delivers non-empty stdout verbatim. Are there size
-  limits on delivery, and what happens on a large output burst?
-- The Curator skill protection gates (bundled/hub skills) are documented as
-  defense-in-depth. What are the tiers, and can a malicious skill attempt to
-  bypass protection by claiming hub status in its frontmatter?
+- **Answered this window.** The June 21-22 MCP-persistence mitigation wave that
+  sat main-unreleased for a full cycle reached a tag: `v2026.7.1` (2026-07-01)
+  closed it along with the credential-exfiltration, Slack-token redaction,
+  browser-metadata, and session-scope work, and left nothing from that wave
+  behind. The carry-forward pattern we flagged did resolve. It then repeated
+  one binary later with the approvals wave.
+- What does the smart approval reviewer do when it cannot reach a model --
+  refuse, prompt, or allow? Nothing in the release record states the fail
+  direction, and it is the single most consequential undocumented behavior in
+  the shipped default. A local probe with the provider unreachable would settle
+  it.
+- Can an operator audit what the smart reviewer decided and why? The mechanism
+  that would answer this (`approvals suggest`, mining approval history) is on
+  main and in no tag.
+- [`hermes proxy`](https://github.com/NousResearch/hermes-agent/pull/25969),
+  the local OpenAI-compatible endpoint that lets wire-compatible clients route
+  through whichever provider the operator is signed into, binds to
+  `--host 127.0.0.1` by default and strips client `Authorization` headers before
+  attaching Hermes credentials upstream. The PR specifies no protection model
+  for a non-loopback bind. Until one exists, treat it as a credential router
+  exposed to anyone who can reach the address the moment it leaves loopback.
+- `hermes proxy` provider scope: Nous Portal shipped as the initial routing
+  provider with "more providers later" framed. Which arrive, and whether any
+  need auth shapes that complicate the header-strip pattern, is open.
+- Whether background fan-out regains a wall-clock or cost ceiling, or the
+  heartbeat backstop remains the only bound.
+- Whether the managed `/etc/hermes` scope becomes a real organizational control
+  surface rather than a single-host config pin.
+- Whether lazy adapter install can leave a security-relevant path degraded at
+  runtime before the backend is installed.
+- What the Kanban gate does *not* verify, and how `/goal` survives compression.
+  Both are still undocumented.
 
 ## What To Watch Next
 
-- Whether the June 21-22 MCP-persistence mitigation wave reaches a tagged
-  binary, and whether any second source corroborates the commit narrative's
-  "in-the-wild campaign" before exposed operators are caught.
-- Whether background fan-out subagents regain a wall-clock or cost ceiling, or
-  the autonomy surface keeps widening with only the heartbeat/inactivity
-  backstop.
-- Whether the managed `/etc/hermes` scope becomes a real org-control surface,
-  and how an admin-pinned immutable policy layer interacts with the
-  exposed-dashboard threat.
-- Kanban hallucination gate documentation: the mechanism is not yet fully
-  described in official docs.
-- Whether `/goal` is extended to multi-agent Kanban contexts (a board-level
-  goal that persists across worker handoffs).
-- Trajectory generation and RL: the source contract lists these as high-signal
-  patterns; no public feature has shipped yet.
-- Checkpoint v2 behavior in practice: real pruning + disk guardrails are the
-  claim; the behavior under varied session lengths needs operator verification.
-- Whether the pluggable provider surface generates a third-party provider
-  ecosystem, and whether those providers follow the same security patterns as
-  core.
+- Whether the smart-approval containment wave (`smart_policy`, circuit breaker,
+  `approvals suggest`, docker-daemon-redirect and recursive-`rm` detectors)
+  reaches a tag, and whether that tag keeps `smart` as the default.
+- Whether the egress firewall re-land is tagged, and whether it stays
+  disabled-by-default when it gets there.
+- Whether the 1712-commit gap between tag and main narrows, or whether Hermes
+  is simply a project whose released artifact is permanently a week behind its
+  own security work.
+- Whether the untagged SSRF and credential-surface fixes ship before anyone
+  running the tag is caught by the boundary they close.
+- Whether background fan-out gets a time or cost bound to match its new
+  observability.
+- Whether the fast-moving approval surface gets a single documented governance
+  map, which is the cheapest fix available for the whole class of confusion
+  above.
 
 ## Profile Hygiene
 
 This profile follows the profile discipline defined in
-[METHOD.md](../../METHOD.md#the-object-grammar): every
-concrete claim in the prose has an inline source link and an entry in the
-`claims:` block; posture sections may interpret freely but must cite finding IDs
-when naming a specific feature, behavior change, or cross-project comparison.
+[METHOD.md](../../METHOD.md#the-object-grammar): every concrete claim in the
+prose carries an inline source link, and posture sections may interpret freely
+but must stay inside what the receipts support.
 
-Five claims are seeded from prior findings
-(`2026-05-06-hermes-curator-and-service-surfaces` and
-`2026-05-07-hermes-gateways-skills-and-service-operation`). Four claims are
-from the current window (`2026-05-12-hermes-tenacity-kanban-and-security`,
-evidence: release notes + merged PRs). All evidence is at or above the
-`release_note` floor.
+The `claims:` block records claims promoted from individual findings in earlier
+cycles. The 2026-07-02 to 2026-07-27 research produced consolidated harvest and
+cross-check artifacts rather than individual finding files, so this window's
+material is carried in prose with inline receipts and is not represented in that
+block. Channel calls in this window were resolved by git ancestry against each
+tag, not by merge date. All evidence is at or above the `release_note` floor.
 
-Note: The prior manual finding was written before the `finding_id` field
-convention existed. Its ID (`2026-05-06-hermes-curator-and-service-surfaces`)
-was added retroactively in this cycle. This is the same Gap 10 pattern
-applied previously to the Claude Code manual finding.
+---
+
+*Revised 2026-07-27. The profile now leads with the approvals default and the
+egress-firewall revert. The v0.14.0 distribution detail, the v0.17.0 fail-closed
+wave, and the June MCP-persistence wave were collapsed or retired: the first is
+no longer the current read, and the last two are resolved and in tags.*

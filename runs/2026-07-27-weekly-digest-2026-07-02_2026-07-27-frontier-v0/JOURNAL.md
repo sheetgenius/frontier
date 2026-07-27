@@ -678,3 +678,37 @@ sitting in our own test suite.
 
 The site is not less secure than it was an hour ago. It is exactly as secure and
 now honestly described.
+
+## P2 shipped: the people layer exists
+
+New public artifact type at /people/, seeded with @doodlestein (Jeffrey Emanuel).
+Data in content/people/<handle>.md, loaders listPeople/getPerson in frontier.ts,
+routes at /people/ and /people/<handle>/, styling deliberately plainer than a
+provider profile because the subject is a person and the design should not
+editorialize about them. Linked from primary nav and the About page's reading
+guide.
+
+The governing rule is stated on the page itself, not just in the run artifacts:
+every link is a receipt for what a person SAID on the date shown, never a receipt
+for what is true of any software. Where a statement can be checked against a
+primary source, the check sits beside it and the primary source wins. No conduct
+claims, no motive inference.
+
+Two qualifications carried, both narrow and both receipted. He described ACFS as
+free and open-source; the tagged LICENSE is "MIT with OpenAI/Anthropic Rider" and
+withholds the grant from named parties, which is what OSD clause 5 excludes, so
+the unqualified label does not hold against the license text. Stated as a bounded
+observation about a document, with no opinion on enforceability or motivation.
+And the posts describe main while the documented install delivers the June 26
+tag, 73 commits behind, where the safe-mode sudo gap is still open.
+
+The page's center is his own word: he called his file-reservation layer
+"advisory." That is the most precise term anyone used about a coordination
+control this window, offered unprompted by the person who built it, in a window
+where we documented control after control that did not bind. Most of what the
+field calls a guardrail is advisory in exactly that sense and almost nobody says
+so.
+
+Why this belongs in the publication rather than in a notebook: the digest argues
+that nobody is watching enforcement. Emanuel is watching it, out loud, and using
+the honest word. Tracking people is how you notice that.

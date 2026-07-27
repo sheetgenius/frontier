@@ -1020,6 +1020,25 @@ function readProfile(file: string): MarkdownArtifact {
   return { ...artifact, body: stripped, html: marked.parse(stripped) as string };
 }
 
+// People are tracked the same way providers are: as a dated posture backed by
+// receipts. The difference is what a receipt proves. A post proves that a person
+// said something on a date; it never proves the software behaves that way. The
+// page prose carries that distinction, and nothing here promotes a person's
+// statement into a product claim.
+export function listPeople(): MarkdownArtifact[] {
+  const dir = repoPath("content", "people");
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((file) => file.endsWith(".md"))
+    .map((file) => readProfile(path.join(dir, file)))
+    .sort((a, b) => String(a.data.name ?? a.slug).localeCompare(String(b.data.name ?? b.slug)));
+}
+
+export function getPerson(slug: string): MarkdownArtifact | undefined {
+  return listPeople().find((person) => person.slug === slug);
+}
+
 export function listProfiles(): MarkdownArtifact[] {
   const dir = repoPath("content", "profiles");
   if (!fs.existsSync(dir)) return [];

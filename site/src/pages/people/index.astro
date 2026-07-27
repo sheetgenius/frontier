@@ -1,0 +1,45 @@
+---
+import Base from "../../layouts/Base.astro";
+import { listPeople, sourceLabel } from "../../lib/frontier";
+
+const people = listPeople();
+---
+
+<Base
+  title="People | Bitter Frontier"
+  description="The people whose public work and public statements shape how coding agents are built and run, tracked with the same receipt discipline as the projects."
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">People</p>
+    <h1 class="issue-title">The people in the conversation.</h1>
+    <p class="profile-dek">
+      Some of the most useful thinking in this field arrives as a person's running
+      commentary rather than as a release note. These pages track that, with one
+      rule that does not bend: a post is a receipt for what was said, never for
+      what is true.
+    </p>
+
+    {people.length === 0 ? (
+      <p class="mt-8 text-muted">No one is tracked yet.</p>
+    ) : (
+      <ul class="mt-9 people-list">
+        {people.map((person) => (
+          <li>
+            <a href={`/people/${person.slug}/`} class="no-underline">
+              <span class="people-name">{person.data.name}</span>
+              {person.data.handle && (
+                <span class="people-handle font-mono">@{person.data.handle}</span>
+              )}
+            </a>
+            {person.data.tagline && <p class="people-tagline">{person.data.tagline}</p>}
+            {(person.data.related_sources ?? []).length > 0 && (
+              <p class="people-related font-mono text-sm text-muted">
+                {(person.data.related_sources ?? []).map((id: string) => sourceLabel(id)).join(", ")}
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    )}
+  </article>
+</Base>

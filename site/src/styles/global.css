@@ -2709,3 +2709,72 @@ code {
 .xpost-evidence a {
   color: var(--color-bitter);
 }
+
+/* People pages. Deliberately plainer than a provider profile: the subject is a
+   person, and the design should not editorialize about them. Identity, then the
+   words, then the standard that governs how we handled them. */
+
+.person-handle {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
+
+.person-handle a {
+  color: var(--color-bitter);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-bitter) 40%, transparent);
+}
+
+.person-standard {
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--color-line);
+  border-left-width: 3px;
+  border-left-color: var(--color-bitter);
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.person-standard p:last-child {
+  margin-bottom: 0;
+}
+
+.people-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.people-list > li {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.people-name {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.people-handle {
+  margin-left: 0.6rem;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.people-list a:hover .people-name {
+  color: var(--color-bitter);
+}
+
+.people-tagline {
+  max-width: 42rem;
+  margin: 0.5rem 0 0;
+  line-height: 1.55;
+}
+
+.people-related {
+  margin: 0.45rem 0 0;
+}
