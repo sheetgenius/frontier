@@ -256,7 +256,8 @@ preventing `/dev/ptmx` exhaustion under sustained use.
 
 ## Profile Hygiene
 
-This profile follows the discipline in `RESEARCH_CONTRACT.md#profile`: every
+This profile follows the profile discipline defined in
+[METHOD.md](../../METHOD.md#the-object-grammar): every
 concrete claim in the prose has an inline source link and an entry in the
 `claims:` block; posture sections may interpret freely but must cite finding IDs
 when naming a specific feature, behavior change, or cross-project comparison.

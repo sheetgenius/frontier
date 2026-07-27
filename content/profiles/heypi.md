@@ -368,7 +368,8 @@ own; eve makes the gate a durable platform primitive. Same axis, opposite emphas
 
 ## Profile Hygiene
 
-This profile follows the discipline in `RESEARCH_CONTRACT.md#profile`: every
+This profile follows the profile discipline defined in
+[METHOD.md](../../METHOD.md#the-object-grammar): every
 concrete claim in the prose carries an inline source link and a `claims:` entry;
 posture sections interpret freely but cite finding IDs when naming a specific
 feature, behavior change, or cross-project comparison. Cross-project editorial

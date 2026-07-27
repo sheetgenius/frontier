@@ -436,3 +436,24 @@ The paperclip/agent-zero/heypi/agent-flywheel cross-check agent died mid-task on
 an expired login before writing any output. Per anti-stall rule 2 this is logged
 and relaunched rather than treated as a blocker. The other three cross-check
 agents are unaffected and still running.
+
+## P3: fixed the dangling profile reference; corrected my own claim about the jsonl
+
+Repointed all 12 `RESEARCH_CONTRACT.md#profile` references across 11 profiles to
+`METHOD.md#the-object-grammar`, which is where the profile object is actually
+defined. That file was renamed to METHOD.md long ago and an earlier pass caught
+only some of the footers, so eleven of fourteen public profiles cited a document
+that does not exist. First flagged in the deep assessment weeks ago; now closed.
+
+Correcting an earlier claim of mine in the process. I twice described
+`data/frontier_signals.jsonl` as "dead" and queued it for deletion. It is not
+dead. `site/src/lib/frontier.ts:392`, `site/scripts/check-integrity.mjs:27`, and
+`site/scripts/og-cards.mjs:146` all read it, and its twelve records are the
+earliest published signals, rendering as live pages (/signals/2026-05-06-worker-native-goals/
+and siblings). Deleting it would have removed real pages from the site.
+
+The right description is not "dead file" but "superseded input format still
+serving the first two runs." Leaving it in place and noting it. This is the
+second time this session that a confident claim of mine about the repo did not
+survive contact with the code, after the security-headers case. Both were caught
+by checking before acting, which is the argument for checking before acting.
