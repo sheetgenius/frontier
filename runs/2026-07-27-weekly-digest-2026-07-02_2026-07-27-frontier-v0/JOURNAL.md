@@ -181,3 +181,83 @@ Title candidates (must be an argument a reader could dispute): "The Rule You
 Wrote", "Nobody Told You It Stopped Binding", "Configured, Not Enforced".
 Leading candidate for the lede: `Edit(src/**)`, because it is one line an
 operator actually types and believed was a boundary.
+
+## The gun fired: eve, the governance-first counterexample, did not bind either
+
+This is the evidence cutting against the house thesis that THESIS.md promises to
+publish and that this publication has never once produced in eleven issues.
+
+eve is the publication's standing counterexample: the platform-hosted,
+human-in-the-loop-first vendor whose controls, we wrote in "Patched for Whom,"
+were "the ones you could actually run." This window, inside that product:
+
+1. A declined budget gate did not bind. 0.21.0 (2026-07-07) guaranteed a
+   delegation tree "can never outspend the budget configured at its root."
+   0.27.1 (2026-07-22) fixed the fact that declining a child's prompt let the
+   parent retry that child against a fresh quota share. For fifteen days, "Stop"
+   was a hiccup rather than a boundary.
+2. Denied approvals rendered as successful. 0.26.1 (2026-07-20) made the dev TUI
+   show rejected tool approvals as denied "instead of successful." The operator's
+   only window onto the decision displayed its inverse.
+3. Stale approvals could authorize. 0.25.0 (2026-07-17) states "a stale approval
+   never authorizes the earlier tool call" as a new guarantee, which means it was
+   not one before.
+4. Approving did not run the tool. 0.24.2 (2026-07-14) fixed approvals from
+   channels like Linear leaving a dangling call. The gate failed open in both
+   directions inside a single window.
+
+This kills the comfortable version of the story. The read-versus-run gap is not
+self-hosters being sloppy while platforms are safe. It reached the vendor that
+sells governance as the product. Any framing that lets platform-hosted
+governance off the hook is now unsupported by our own receipts, and the previous
+issue's axis needs revisiting rather than repeating.
+
+## And eve also supplies the constructive answer
+
+The same window, same vendor: 0.22.5 tightened `maxSubagentDepth` to 1, then
+0.23.0 deleted the knob entirely and replaced it with a structural root-only
+constraint. A governance-first vendor concluded that a tunable policy number was
+worse than an architectural invariant.
+
+That is the closing verdict the window has been asking for. If the problem is
+that configured controls do not bind, the fix is not more configuration. It is
+fewer knobs and more invariants: a control that cannot be misconfigured because
+it is not a setting. Every case in this issue is a promise made in a config file
+that the runtime did not keep. eve's answer is to stop making the promise in a
+config file.
+
+Other supporting material from this batch:
+
+- eve 0.22.3 closed an RCE-class path where a `---js` frontmatter fence in a
+  NETWORK-FETCHED OpenAPI spec was eval()'d. No CVE, no advisory, one patch-note
+  bullet. Same silence pattern as Claude Code's eight authority releases.
+- flue's marketing sells a product main deleted: flueframework.com still badges
+  "1.0 Beta" and headlines Workflows, while main removed workflows entirely with
+  no compatibility stubs and no replacement for code-first entrypoints
+  (b814b82b, +60,306/-95,918). Plus a telemetry privacy inversion: trace content
+  including prompts, tool arguments and results, and exception stacks is now
+  captured by default, with "installing an instrumentation is the consent."
+- heypi has the harvest's strongest enforcement contract (approvals fail closed,
+  the audit write is a precondition for execution) but the identity half is
+  advisory: omit both `admins` and `approvers` and any actor who can reach the
+  approval UI may respond, with only a startup warning. Non-loopback admin binds
+  were unauthenticated until 2026-07-21.
+- eve's released-is-not-merged gap is essentially zero (main is 3 docs-only
+  commits ahead of the last of 34 tags). Worth crediting explicitly: on the
+  channel question, eve is the model.
+
+## Editor's sequencing for the rest of the session
+
+Recorded so the phases do not blur:
+
+1. Coverage pass: thorough and meticulous. Finish all 14 sources on both lanes.
+2. Editorial and presentation: write it, and build the X-native design.
+3. Then REREAD everything and do synthesis properly: form a hypothesis and a
+   high-level read of how these frameworks are unfolding and what it implies.
+   Synthesis is a separate deliberate pass over the assembled record, not
+   something assembled incrementally while harvesting.
+4. Key players: begin tracking the people, not only the projects. @doodlestein
+   (Jeffrey Emanuel, Agent Flywheel) is the seed; docs/doodlestein-agency-study.md
+   is the existing precedent for person-level analysis. The X lane surfaces
+   individuals naturally: maintainers, prolific builders, sharp critics. A
+   publication that reads the conversation layer should know who is in it.
