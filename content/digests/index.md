@@ -1,5 +1,6 @@
 # Bitter Frontier Digests
 
+- [Assume the Rule Does Not Bind](2026-07-02_2026-07-27-weekly.md) -- 2026-07-02 to 2026-07-27
 - [Foreground Attention Is No Longer the Control](2026-07-01_2026-07-02-weekly.md) -- special brief, 2026-07-01 to 2026-07-02
 - [Patched for Whom](2026-06-24_2026-07-01-weekly.md) -- 2026-06-24 to 2026-07-01
 - [Governance, Sold Separately](2026-06-23_2026-06-24-weekly.md) -- special brief, 2026-06-23 to 2026-06-24

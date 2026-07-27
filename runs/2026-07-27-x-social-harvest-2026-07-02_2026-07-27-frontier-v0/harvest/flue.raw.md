@@ -1,443 +1,358 @@
 ```yaml
-- claim_id: flue-next-composable-agents-2026-07-22
+- claim_id: flue-x-20260721-react-for-agents
   source: flue
-  claim: Maintainer post previews next-version Flue "composable agents" defined in code not config, with condition-reactive behavior as conversations evolve.
-  primary_url: https://x.com/FredKSchott/status/2079979676911714379
-  author: "@FredKSchott"
-  observed_at: 2026-07-27
-  event_date: 2026-07-22
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2079979676911714379 as 2026-07-22T17:19:33Z.
-  evidence_kind: maintainer_authored_post
-  channel: x.com
-  status: needs_primary_crosscheck
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: High-engagement maintainer intent lead on API surface and philosophy; product/version claim is social-only and needs CHANGELOG/docs/main cross-check.
-
-- claim_id: flue-self-upgrading-agents-2026-07-22
-  source: flue
-  claim: Maintainer follow-up in the composable-agents thread asks "what if your agent could upgrade itself?" with accompanying media.
-  primary_url: https://x.com/FredKSchott/status/2079980482868183368
-  author: "@FredKSchott"
-  observed_at: 2026-07-27
-  event_date: 2026-07-22
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2079980482868183368 as 2026-07-22T17:22:45Z.
-  evidence_kind: maintainer_authored_post
-  channel: x.com
-  status: needs_primary_crosscheck
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Unverified feature chatter / intent teaser tied to next-version thread; not a shipped-capability receipt.
-
-- claim_id: flue-multi-step-workflow-agents-2026-07-22
-  source: flue
-  claim: Maintainer post asks whether an agent can be represented as a multi-step workflow, with accompanying media.
-  primary_url: https://x.com/FredKSchott/status/2080033139267682450
-  author: "@FredKSchott"
-  observed_at: 2026-07-27
-  event_date: 2026-07-22
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2080033139267682450 as 2026-07-22T20:52:00Z.
-  evidence_kind: maintainer_authored_post
-  channel: x.com
-  status: needs_primary_crosscheck
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Workflow/orchestration primitive intent lead; cross-check docs/CHANGELOG for Workflow vs Agent surface.
-
-- claim_id: flue-mcp-dynamic-auth-composable-2026-07-24
-  source: flue
-  claim: Maintainer post claims composable agents can go as far as MCP support with dynamic auth, with accompanying media.
-  primary_url: https://x.com/FredKSchott/status/2080670327903052046
-  author: "@FredKSchott"
-  observed_at: 2026-07-27
-  event_date: 2026-07-24
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2080670327903052046 as 2026-07-24T15:03:57Z.
-  evidence_kind: maintainer_authored_post
-  channel: x.com
-  status: needs_primary_crosscheck
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Protocol/auth surface chatter; verify whether MCP dynamic auth is shipped, experimental, or demo-only.
-
-- claim_id: flue-pi-as-vite-for-agents-2026-07-21
-  source: flue
-  claim: Maintainer reply endorses "Pi is the new Vite for building agents," saying people use Pi directly while frameworks (including Flue) build on top.
-  primary_url: https://x.com/FredKSchott/status/2079642575263375411
+  claim: Maintainer @FredKSchott posts a "React for Agents" framing for Flue, showing hook-style agent definitions (useModel, useSkill, useTool, usePersistentState, useSandbox) and code-first composition rather than pure config.
+  primary_url: https://x.com/FredKSchott/status/2079630772928147676
   author: "@FredKSchott"
   observed_at: 2026-07-27
   event_date: 2026-07-21
   date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2079642575263375411 as 2026-07-21T19:00:02Z.
-  evidence_kind: maintainer_authored_post
-  channel: x.com
-  status: needs_primary_crosscheck
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Ecosystem/philosophy lead on harness layering (Pi base vs Flue framework); not a versioned product claim.
-
-- claim_id: flue-rails-laravel-next-react-analogy-2026-07-21
-  source: flue
-  claim: Maintainer reply positions Flue directionally among Rails vs Laravel vs Next.js vs React-style roles and says which fit is still unsettled.
-  primary_url: https://x.com/FredKSchott/status/2079643013970878490
-  author: "@FredKSchott"
-  observed_at: 2026-07-27
-  event_date: 2026-07-21
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2079643013970878490 as 2026-07-21T19:01:47Z.
+  date_note: Derived from Twitter snowflake timestamp on status id 2079630772928147676 (UTC day).
   evidence_kind: maintainer_authored_post
   channel: x.com
   status: candidate
   crosscheck_status: needs_primary_crosscheck
   release_channel: social_only
   operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Maintainer framing/category discourse rather than a ship claim; useful for philosophy lens only.
+  notes: High-engagement philosophy/API-direction signal. Product/API surface is social-only until docs/CHANGELOG/tag crosscheck. Related reply discourse includes non-Flue "React for agents" reinterpretations.
 
-- claim_id: flue-official-node-vite-build-selfhost-2026-07-24
+- claim_id: flue-x-20260721-framework-category-analogy
   source: flue
-  claim: Official @flueai post claims Node is a first-class build target and that the next version uses "vite build" directly for more natural self-hosting, linking Node target docs.
+  claim: Maintainer @FredKSchott positions Flue directionally among "Rails vs Laravel vs Next.js vs React.js" style framework analogies, saying which fit is still playing out but the directional answer is yes.
+  primary_url: https://x.com/FredKSchott/status/2079643013970878490
+  author: "@FredKSchott"
+  observed_at: 2026-07-27
+  event_date: 2026-07-21
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2079643013970878490 (UTC day).
+  evidence_kind: maintainer_authored_post
+  channel: x.com
+  status: candidate
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: social_only
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Category/positioning intent, not a shipped feature claim. Useful as maintainer framing for model+harness / framework discourse.
+
+- claim_id: flue-x-20260722-composable-agents-next-version
+  source: flue
+  claim: Maintainer @FredKSchott teases "in the next version of flue: composable agents" — define agents with code not config, and react to conditions to customize behavior as a conversation evolves.
+  primary_url: https://x.com/FredKSchott/status/2079979676911714379
+  author: "@FredKSchott"
+  observed_at: 2026-07-27
+  event_date: 2026-07-22
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2079979676911714379 (UTC day).
+  evidence_kind: maintainer_authored_post
+  channel: x.com
+  status: needs_primary_crosscheck
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: social_only
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Explicit "next version" / unreleased-direction language. Do not treat as tagged release. Thread companions include self-upgrade and workflow teasers.
+
+- claim_id: flue-x-20260722-self-upgrading-agent-tease
+  source: flue
+  claim: Maintainer follow-up in the composable-agents series asks "what if your agent could upgrade itself?" with accompanying code/image example in the Flue API style.
+  primary_url: https://x.com/FredKSchott/status/2079980482868183368
+  author: "@FredKSchott"
+  observed_at: 2026-07-27
+  event_date: 2026-07-22
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2079980482868183368 (UTC day).
+  evidence_kind: maintainer_authored_post
+  channel: x.com
+  status: candidate
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: social_only
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Feature chatter only; needs primary docs/CHANGELOG before any capability claim. Companion to composable-agents post.
+
+- claim_id: flue-x-20260722-agent-as-multistep-workflow
+  source: flue
+  claim: Maintainer @FredKSchott teases representing an agent as a multi-step workflow (useWorkflow-style steps with dependencies/onComplete), with the agent navigating steps autonomously.
+  primary_url: https://x.com/FredKSchott/status/2080033139267682450
+  author: "@FredKSchott"
+  observed_at: 2026-07-27
+  event_date: 2026-07-22
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2080033139267682450 (UTC day).
+  evidence_kind: maintainer_authored_post
+  channel: x.com
+  status: candidate
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: social_only
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Workflow/session primitive direction. Social-only until primary surface confirms API and stability.
+
+- claim_id: flue-x-20260722-1-0-branch-mention
+  source: flue
+  claim: Maintainer @FredKSchott reply mentions active work "on the 1.0 branch" and a dependency version lag to update, implying a 1.0 line in progress rather than a finished public receipt.
+  primary_url: https://x.com/FredKSchott/status/2080042265985405294
+  author: "@FredKSchott"
+  observed_at: 2026-07-27
+  event_date: 2026-07-22
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2080042265985405294 (UTC day).
+  evidence_kind: maintainer_authored_post
+  channel: x.com
+  status: needs_primary_crosscheck
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: social_only
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Version-line chatter only. Crosscheck tags/CHANGELOG/homepage beta announcement; do not treat as shipped 1.0.
+
+- claim_id: flue-x-20260724-mcp-dynamic-auth-composable
+  source: flue
+  claim: Maintainer @FredKSchott extends composable-agents direction with "MCP support with dynamic auth" (useMcpConnection / composable MCP hooks style examples).
+  primary_url: https://x.com/FredKSchott/status/2080670327903052046
+  author: "@FredKSchott"
+  observed_at: 2026-07-27
+  event_date: 2026-07-24
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2080670327903052046 (UTC day).
+  evidence_kind: maintainer_authored_post
+  channel: x.com
+  status: needs_primary_crosscheck
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: social_only
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Protocol/integration surface claim from social preview. Needs docs/code crosscheck for MCP auth model and package names (e.g. @flue/mcp) before any operator guidance.
+
+- claim_id: flue-x-20260724-nightly-subdomain-docs
+  source: flue
+  claim: Maintainer @FredKSchott states "all new stuff is on `nightly` subdomain atm" when discussing a possibly broken/missing docs link, signaling preview docs channel separation.
+  primary_url: https://x.com/FredKSchott/status/2080671702854545914
+  author: "@FredKSchott"
+  observed_at: 2026-07-27
+  event_date: 2026-07-24
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2080671702854545914 (UTC day).
+  evidence_kind: maintainer_authored_post
+  channel: x.com
+  status: candidate
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: preview-or-beta
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Preview/docs channel signal. Pair with community nightly changelog mentions; confirm actual nightly host/path on primary site.
+
+- claim_id: flue-x-20260724-official-node-vite-target
+  source: flue
+  claim: Official @flueai account posts that Node is a first-class build target and that the next version uses "vite build" directly for a more natural self-host path, linking Node target docs.
   primary_url: https://x.com/flueai/status/2080756571840331786
   author: "@flueai"
   observed_at: 2026-07-27
   event_date: 2026-07-24
   date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2080756571840331786 as 2026-07-24T20:46:39Z.
+  date_note: Derived from Twitter snowflake timestamp on status id 2080756571840331786 (UTC day).
   evidence_kind: official_account_post
   channel: x.com
   status: needs_primary_crosscheck
   crosscheck_status: needs_primary_crosscheck
   release_channel: social_only
   operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Deployment/runtime lead; cross-check flueframework.com Node docs, @flue/vite, and CHANGELOG before treating as shipped.
+  notes: Deployment/target direction. Post cites https://flueframework.com/docs/guide/targets/node/ — still needs primary docs/CHANGELOG verification for current vs next-version behavior.
 
-- claim_id: flue-rivet-agentos-sandbox-integration-2026-07-23
+- claim_id: flue-x-20260722-community-react-api-skepticism
   source: flue
-  claim: Community/ecosystem account @rivet_dev announces "Flue x agentOS" with V8-isolate plus Wasm sandbox framing (~22MB RAM, ~4.8ms startup, Linux-compatible tooling).
-  primary_url: https://x.com/rivet_dev/status/2080313743813255611
-  author: "@rivet_dev"
-  observed_at: 2026-07-27
-  event_date: 2026-07-23
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2080313743813255611 as 2026-07-23T15:27:01Z.
-  evidence_kind: community_account_post
-  channel: x.com
-  status: needs_primary_crosscheck
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Third-party sandbox ecosystem tension/adoption lead; verify against Rivet docs and any Flue connector/example primary surfaces. Benchmark-like numbers are social-only.
-
-- claim_id: flue-rivet-point-flue-at-library-sandbox-2026-07-23
-  source: flue
-  claim: @rivet_dev thread follow-up claims agentOS is a library you register then point Flue at as the agent sandbox inside an existing backend process, with no separate sandbox service.
-  primary_url: https://x.com/rivet_dev/status/2080313749655945453
-  author: "@rivet_dev"
-  observed_at: 2026-07-27
-  event_date: 2026-07-23
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2080313749655945453 as 2026-07-23T15:27:02Z.
-  evidence_kind: community_account_post
-  channel: x.com
-  status: needs_primary_crosscheck
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Integration-surface lead on sandbox attach model; needs primary docs/code cross-check on both Flue and Rivet sides.
-
-- claim_id: flue-harness-category-eve-pi-2026-07-24
-  source: flue
-  claim: @NathanFlurry post places agent frameworks like Eve (custom) and Flue (Pi) under the "harness" category.
-  primary_url: https://x.com/NathanFlurry/status/2080646277965189132
-  author: "@NathanFlurry"
-  observed_at: 2026-07-27
-  event_date: 2026-07-24
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2080646277965189132 as 2026-07-24T13:28:23Z.
-  evidence_kind: community_account_post
-  channel: x.com
-  status: candidate
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Category/benchmark discourse on model+harness framing; Flue linked to Pi in community taxonomy.
-
-- claim_id: flue-adoption-over-other-harnesses-2026-07-26
-  source: flue
-  claim: Community user says their team picked "flue from astro" when about five other agent harnesses were available, citing team/vision/shipping-velocity framing in surrounding discussion.
-  primary_url: https://x.com/arielchouminov/status/2081471778866561296
-  author: "@arielchouminov"
-  observed_at: 2026-07-27
-  event_date: 2026-07-26
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2081471778866561296 as 2026-07-26T20:08:38Z.
-  evidence_kind: community_discussion
-  channel: x.com
-  status: candidate
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Adoption/ecosystem tension lead only; single-team anecdote, not a usage metric.
-
-- claim_id: flue-community-feature-summary-2026-07-26
-  source: flue
-  claim: Community post summarizes Flue as an Astro-team TypeScript agent harness with sandboxed tools, durable execution across restarts, subagents and MCP, deploy targets Node/Cloudflare Workers/CI, and Apache-2.0.
-  primary_url: https://x.com/JustinMiddler/status/2081180663806357627
-  author: "@JustinMiddler"
-  observed_at: 2026-07-27
-  event_date: 2026-07-26
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2081180663806357627 as 2026-07-26T00:51:51Z.
-  evidence_kind: community_discussion
-  channel: x.com
-  status: needs_primary_crosscheck
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Capability laundry-list is third-party social summary; every feature bullet needs primary README/CHANGELOG/docs cross-check.
-
-- claim_id: flue-openclaw-style-cloudflare-webby-2026-07-24
-  source: flue
-  claim: Community user says they are building an OpenClaw-style agent on Flue plus Cloudflare and plans to name it "Webby."
-  primary_url: https://x.com/theozero/status/2080711699724906582
-  author: "@theozero"
-  observed_at: 2026-07-27
-  event_date: 2026-07-24
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2080711699724906582 as 2026-07-24T17:48:21Z.
-  evidence_kind: community_discussion
-  channel: x.com
-  status: candidate
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Adoption and OpenClaw-comparison chatter; no verified product claim about Flue shipping OpenClaw parity.
-
-- claim_id: flue-sim-one-autonomous-employee-2026-07-24
-  source: flue
-  claim: Community user claims they are using the Flue Framework to build an autonomous AI employee ("SIM-ONE Alpha") and frames it as moving off OpenClaw.
-  primary_url: https://x.com/dansasser_/status/2080707874833969660
-  author: "@dansasser_"
-  observed_at: 2026-07-27
-  event_date: 2026-07-24
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2080707874833969660 as 2026-07-24T17:33:09Z.
-  evidence_kind: community_discussion
-  channel: x.com
-  status: single-source-unconfirmed
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: User-project adoption anecdote and competitive framing vs OpenClaw; treat as chatter only.
-
-- claim_id: flue-job-search-agent-build-2026-07-22
-  source: flue
-  claim: Community user says Flue by @FredKSchott is "pretty cool" while building a small job-search agent.
-  primary_url: https://x.com/nick_radford/status/2080067038563942778
-  author: "@nick_radford"
-  observed_at: 2026-07-27
-  event_date: 2026-07-22
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2080067038563942778 as 2026-07-22T23:06:42Z.
-  evidence_kind: community_discussion
-  channel: x.com
-  status: candidate
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Lightweight adoption signal; no versioned capability claim.
-
-- claim_id: flue-durability-on-pi-custom-harness-2026-07-23
-  source: flue
-  claim: Community user recommends "Astro flue" for custom harness work, citing resume/durability features bolted onto Pi agent libraries.
-  primary_url: https://x.com/NateHelmig/status/2080286867841323390
-  author: "@NateHelmig"
-  observed_at: 2026-07-27
-  event_date: 2026-07-23
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2080286867841323390 as 2026-07-23T13:40:13Z.
-  evidence_kind: community_discussion
-  channel: x.com
-  status: needs_primary_crosscheck
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Architecture lead on Flue-as-Pi-layer plus durability; verify against primary docs/code.
-
-- claim_id: flue-hono-react-pi-cloudflare-workers-2026-07-23
-  source: flue
-  claim: Community user describes a project built with Hono + React + Pi (Flue) agent running on Cloudflare Workers.
-  primary_url: https://x.com/Go7hic/status/2080304152337674656
-  author: "@Go7hic"
-  observed_at: 2026-07-27
-  event_date: 2026-07-23
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2080304152337674656 as 2026-07-23T14:48:54Z.
-  evidence_kind: community_discussion
-  channel: x.com
-  status: candidate
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Stack/deployment adoption chatter; Pi/Flue naming is community conflation to untangle against primaries.
-
-- claim_id: flue-react-like-api-skepticism-2026-07-22
-  source: flue
-  claim: Community reply says the author enjoys building with Flue but is not convinced by a React-like API and directive-style "use agent" syntax.
+  claim: Community reply to composable-agents post reports enjoying building with Flue but not liking the React-like "use agent" syntax/directives.
   primary_url: https://x.com/beaussan/status/2079983086851195118
   author: "@beaussan"
   observed_at: 2026-07-27
   event_date: 2026-07-22
   date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2079983086851195118 as 2026-07-22T17:33:06Z.
-  evidence_kind: community_discussion
-  channel: x.com
-  status: candidate
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: User-pain / DX tension lead on composable-agent API shape; not a bug report.
-
-- claim_id: flue-conditional-migrate-from-agent-sdk-2026-07-21
-  source: flue
-  claim: Community user says they will quickly migrate a project ("smithers") from Agent SDK to Flue if the teased direction ships.
-  primary_url: https://x.com/FUCORY/status/2079710374006317391
-  author: "@FUCORY"
-  observed_at: 2026-07-27
-  event_date: 2026-07-21
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2079710374006317391 as 2026-07-21T23:29:26Z.
+  date_note: Derived from Twitter snowflake timestamp on status id 2079983086851195118 (UTC day).
   evidence_kind: community_discussion
   channel: x.com
   status: single-source-unconfirmed
   crosscheck_status: needs_primary_crosscheck
   release_channel: social_only
   operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Hypothetical migration intent only; not evidence of completed migration or shipped feature.
+  notes: User-pain / DX tension lead around API ergonomics. Single-voice; not a product defect receipt.
 
-- claim_id: flue-vs-vercel-lockin-comparison-2026-07-14
+- claim_id: flue-x-20260722-pi-extension-reuse-question
   source: flue
-  claim: Community post questions Vercel agent lock-in and asks why use that path over Flue if deploy-anywhere is the goal.
-  primary_url: https://x.com/sergiodn_/status/2076932892505047040
-  author: "@sergiodn_"
+  claim: Community user praises "pi core" and asks whether Pi extensions/hooks can be reused inside Flue.
+  primary_url: https://x.com/blaiym/status/2080057177516261588
+  author: "@blaiym"
   observed_at: 2026-07-27
-  event_date: 2026-07-14
+  event_date: 2026-07-22
   date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2076932892505047040 as 2026-07-14T07:32:43Z.
+  date_note: Derived from Twitter snowflake timestamp on status id 2080057177516261588 (UTC day).
   evidence_kind: community_discussion
   channel: x.com
   status: candidate
   crosscheck_status: needs_primary_crosscheck
   release_channel: social_only
   operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Ecosystem tension lead (portability vs platform DX); opinion, not a primary product receipt.
+  notes: Ecosystem tension / harness-layering lead (Flue on Pi). Signals operator curiosity about extension compatibility; no verified answer in this scout item.
 
-- claim_id: flue-h4cker-app-product-on-flue-2026-07-14
+- claim_id: flue-x-20260722-job-search-agent-adoption
   source: flue
-  claim: Community user says they built h4cker.app to explore shipping a complete product with Flue (@flueai) and chose it partly because it is built on Pi Agent.
-  primary_url: https://x.com/Go7hic/status/2076973081621623267
+  claim: Community builder @nick_radford describes Flue as "pretty cool" for a job-search agent where the agentic part is roughly one TypeScript tool plus a behavior string, with planned schedule + browser tooling expansion.
+  primary_url: https://x.com/nick_radford/status/2080067038563942778
+  author: "@nick_radford"
+  observed_at: 2026-07-27
+  event_date: 2026-07-22
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2080067038563942778 (UTC day).
+  evidence_kind: community_discussion
+  channel: x.com
+  status: candidate
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: social_only
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Adoption/ergonomics anecdote only. Not a capability receipt.
+
+- claim_id: flue-x-20260723-hono-for-agents-praise
+  source: flue
+  claim: Community @NathanFlurry says they finally "mess with Flue (inside and out)" and likens its composability to "hono for agents."
+  primary_url: https://x.com/NathanFlurry/status/2080315708513378789
+  author: "@NathanFlurry"
+  observed_at: 2026-07-27
+  event_date: 2026-07-23
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2080315708513378789 (UTC day).
+  evidence_kind: community_discussion
+  channel: x.com
+  status: candidate
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: social_only
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Category analogy from community, not maintainer claim. Useful as adoption/positioning discourse.
+
+- claim_id: flue-x-20260723-rivet-agentos-sandbox-integration
+  source: flue
+  claim: Community/product account @rivet_dev announces "Flue × agentOS" sandbox integration using V8 isolates + WebAssembly (~22MB RAM, ~4.8ms startup, Linux-compatible tools), with changelog and Flue framework integration guide links.
+  primary_url: https://x.com/rivet_dev/status/2080313743813255611
+  author: "@rivet_dev"
+  observed_at: 2026-07-27
+  event_date: 2026-07-23
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2080313743813255611 (UTC day).
+  evidence_kind: community_account_post
+  channel: x.com
+  status: needs_primary_crosscheck
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: social_only
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Ecosystem integration lead. Thread companions include https://x.com/rivet_dev/status/2080313747768512559 and https://x.com/rivet_dev/status/2080313749655945453. Social cites https://rivet.dev/changelog/2026-07-23-flue-now-supports-agentos/ and https://agentos-sdk.dev/docs/frameworks/flue/ — still third-party until Flue primary surfaces acknowledge support.
+
+- claim_id: flue-x-20260714-h4cker-production-agent-writeup
+  source: flue
+  claim: Community @Go7hic describes putting Flue into practice via h4cker, a production-style HN research agent with persistent memory, workflows, skills, bounded subagents, and scheduled digests (not an isolated demo).
+  primary_url: https://x.com/Go7hic/status/2077058769570382054
   author: "@Go7hic"
   observed_at: 2026-07-27
   event_date: 2026-07-14
   date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2076973081621623267 as 2026-07-14T10:12:25Z.
+  date_note: Derived from Twitter snowflake timestamp on status id 2077058769570382054 (UTC day).
   evidence_kind: community_discussion
   channel: x.com
   status: candidate
   crosscheck_status: needs_primary_crosscheck
   release_channel: social_only
   operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: End-to-end product adoption anecdote and Pi-dependency motivation; verify stack claims independently if promoted.
+  notes: Adoption/architecture anecdote. Related same-author detail post https://x.com/Go7hic/status/2076975160331325642 and later stack mention https://x.com/Go7hic/status/2080304152337674656 (Hono/React/Pi-Flue on Cloudflare Workers). Unverified product claims.
 
-- claim_id: flue-quick-automation-recommendation-2026-07-06
+- claim_id: flue-x-20260703-atom-eve-registry-dual-support
   source: flue
-  claim: Community user claims that for a quick AI-powered repeatable automation you "can't go wrong with flue."
-  primary_url: https://x.com/lucasmeijer/status/2074159062288109732
-  author: "@lucasmeijer"
+  claim: Community @elie2222 introduces Atom Eve as an open-source agent registry supporting both Eve and Flue, framing Flue as the Astro-team agent framework structured differently and less tied to Vercel than Eve.
+  primary_url: https://x.com/elie2222/status/2073003457221382611
+  author: "@elie2222"
   observed_at: 2026-07-27
-  event_date: 2026-07-06
+  event_date: 2026-07-03
   date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2074159062288109732 as 2026-07-06T15:50:31Z.
+  date_note: Derived from Twitter snowflake timestamp on status id 2073003457221382611 (UTC day).
   evidence_kind: community_discussion
   channel: x.com
   status: candidate
   crosscheck_status: needs_primary_crosscheck
   release_channel: social_only
   operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Soft adoption/endorsement chatter; not a capability receipt.
+  notes: Ecosystem tension/adoption lead (Eve vs Flue category pairing). Third-party registry claim; not a Flue primary receipt.
 
-- claim_id: flue-cloudflare-workers-coding-harness-2026-07-05
+- claim_id: flue-x-20260726-prefer-flue-over-file-based
   source: flue
-  claim: Community user describes using Flue Framework and Cloudflare Workers to deploy a simple agent coding harness, with screenshots referenced in-thread.
-  primary_url: https://x.com/rg5353070/status/2073829384218415496
-  author: "@rg5353070"
+  claim: Community @arnvbnsl states preference for Flue (or plain AI SDK) over file-based agent frameworks, wanting something more declarative.
+  primary_url: https://x.com/arnvbnsl/status/2081457182848254066
+  author: "@arnvbnsl"
   observed_at: 2026-07-27
-  event_date: 2026-07-05
+  event_date: 2026-07-26
   date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2073829384218415496 as 2026-07-05T18:00:29Z.
+  date_note: Derived from Twitter snowflake timestamp on status id 2081457182848254066 (UTC day).
+  evidence_kind: community_discussion
+  channel: x.com
+  status: single-source-unconfirmed
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: social_only
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Comparative DX opinion in Eve-vs-Flue discourse. Single-source preference, not a verified product comparison.
+
+- claim_id: flue-x-20260726-buyer-chose-flue-among-harnesses
+  source: flue
+  claim: Community @arielchouminov says their team "picked flue from astro" among roughly five other agent harnesses, citing team/vision/shipping velocity over feature parity.
+  primary_url: https://x.com/arielchouminov/status/2081471778866561296
+  author: "@arielchouminov"
+  observed_at: 2026-07-27
+  event_date: 2026-07-26
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2081471778866561296 (UTC day).
+  evidence_kind: community_discussion
+  channel: x.com
+  status: single-source-unconfirmed
+  crosscheck_status: needs_primary_crosscheck
+  release_channel: social_only
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes: Adoption/selection anecdote only. No independent confirmation of deployment scale or alternatives considered.
+
+- claim_id: flue-x-20260726-community-harness-feature-summary
+  source: flue
+  claim: Community summary post describes Flue as an open-source TypeScript agent harness from the Astro team with sandboxed tool execution, durable execution across restarts, subagents and MCP, deploying to Node, Cloudflare Workers, or CI.
+  primary_url: https://x.com/JustinMiddler/status/2081180663806357627
+  author: "@JustinMiddler"
+  observed_at: 2026-07-27
+  event_date: 2026-07-26
+  date_precision: day
+  date_note: Derived from Twitter snowflake timestamp on status id 2081180663806357627 (UTC day).
   evidence_kind: community_discussion
   channel: x.com
   status: needs_primary_crosscheck
   crosscheck_status: needs_primary_crosscheck
   release_channel: social_only
   operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Deployment-target adoption lead; confirm against Flue Cloudflare docs/examples rather than screenshots alone.
+  notes: Compact public capability laundry list circulating on X. Every product bullet needs primary docs/CHANGELOG/repo crosscheck.
 
-- claim_id: flue-skill-forces-custom-workflow-2026-07-03
+- claim_id: flue-x-20260724-nightly-vite-and-ship-1-0-chatter
   source: flue
-  claim: Community user claims a skill that forces the agent to write a custom workflow using the Flue framework seems like a huge unlock.
-  primary_url: https://x.com/ditorodev/status/2073101767877763539
-  author: "@ditorodev"
+  claim: Community @hossein761 notes seeing Vite-related items in nightly build changelogs in conversation with official Node/Vite target chatter, contributing to 1.0/nightly shipping discourse.
+  primary_url: https://x.com/hossein761/status/2080759310879998180
+  author: "@hossein761"
   observed_at: 2026-07-27
-  event_date: 2026-07-03
+  event_date: 2026-07-24
   date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2073101767877763539 as 2026-07-03T17:49:12Z.
-  evidence_kind: community_discussion
-  channel: x.com
-  status: single-source-unconfirmed
-  crosscheck_status: needs_primary_crosscheck
-  release_channel: social_only
-  operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Skill-system / workflow composition chatter; mechanism not independently verified here.
-
-- claim_id: flue-finsight-workflow-vs-custom-harness-2026-07-03
-  source: flue
-  claim: Community user thanks @FredKSchott for Flue, says Finsight Analyse on web used a Flue workflow, while the main agent used a custom harness.
-  primary_url: https://x.com/raghavb/status/2072997648051945940
-  author: "@raghavb"
-  observed_at: 2026-07-27
-  event_date: 2026-07-03
-  date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2072997648051945940 as 2026-07-03T10:55:28Z.
+  date_note: Derived from Twitter snowflake timestamp on status id 2080759310879998180 (UTC day).
   evidence_kind: community_discussion
   channel: x.com
   status: candidate
   crosscheck_status: needs_primary_crosscheck
   release_channel: social_only
   operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Mixed-architecture adoption lead (Flue workflow for part of product, custom harness elsewhere); single-source product anecdote.
+  notes: Pairs with @flueai Node/Vite post and maintainer nightly/1.0-branch replies. Unverified changelog contents.
 
-- claim_id: flue-sandbox-from-start-newsletter-2026-07-09
+- claim_id: flue-x-20260724-eve-vs-flue-discourse
   source: flue
-  claim: Community account says Flue appeared in a weekly issue as an open agent framework that treats execution as something you sandbox from the start.
-  primary_url: https://x.com/gorunmvm/status/2075263966415339995
-  author: "@gorunmvm"
+  claim: Community posts frame "Eve vs Flue" as a hot comparison in agent-framework discourse during the window, pairing Flue with competing harness narratives.
+  primary_url: https://x.com/Vishal_anton16/status/2080677430420025668
+  author: "@Vishal_anton16"
   observed_at: 2026-07-27
-  event_date: 2026-07-09
+  event_date: 2026-07-24
   date_precision: day
-  date_note: Exact post timestamp resolved from snowflake ID 2075263966415339995 as 2026-07-09T17:01:00Z.
-  evidence_kind: community_account_post
+  date_note: Derived from Twitter snowflake timestamp on status id 2080677430420025668 (UTC day).
+  evidence_kind: community_discussion
   channel: x.com
   status: candidate
   crosscheck_status: needs_primary_crosscheck
   release_channel: social_only
   operator_consequence: cautious; a lead to investigate, not an instruction
-  notes: Secondary commentary amplifying sandbox-first framing; needs primary docs/README cross-check if used beyond discovery.
+  notes: Discourse/tension lead, not a product claim. Adjacent comparison chatter includes https://x.com/wgw_eth/status/2080061032140075145. Keep reputational/competitive framing as notes unless primaries support specifics.
 ```

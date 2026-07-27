@@ -1,0 +1,139 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-07-27-weekly-digest-2026-07-02_2026-07-27-frontier-v0
+window:
+  start: 2026-07-02
+  end: 2026-07-27
+note: >
+  A 25-day window, the longest this publication has covered, across 14 sources and
+  two research lanes: primary sources for what shipped, and a public X sweep for
+  what it cost the people running it. Six accepted signals. The window's shared
+  movement is that configured controls did not bind: permission rules that did not
+  refuse, headless modes that honored no policy at all, an approval default that
+  moved from a human to a classifier without its guardrails, and gates that failed
+  open inside the vendor that sells governance. The counter-current is real and is
+  reported: OpenHands broke its open-source tag freeze, and two providers kept
+  near-zero gaps between merged and released.
+
+signals:
+
+  - id: 2026-07-27-hermes-approvals-default-flipped-without-guardrails
+    status: accepted
+    section: control-plane
+    source: hermes-agent
+    channel: tagged-release
+    title: "Hermes moved the approval decision from a human to a model, and shipped it without the guardrails built for it"
+    summary: >
+      v2026.7.20 sets approvals.mode to smart for default configurations, so a
+      classifier decides what would previously have reached a person. The policy
+      override, the consecutive-denial circuit breaker, the approvals suggest
+      command, and the docker-daemon-redirect and recursive-rm detectors that were
+      written for that change are all merged to main and in no tag. The release
+      that flipped the default is the one without the safety net.
+    why_action_bearing:
+      - "Anyone upgrading to the current tag hands a decision to a classifier and does not receive the controls intended to bound it. Pin to v2026.7.7 if you need the human default, or upgrade deliberately and set approvals.mode explicitly rather than inheriting it."
+    receipts:
+      - url: https://github.com/NousResearch/hermes-agent/pull/62661
+        precision: git_commit
+      - url: https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.20
+        precision: github_release
+
+  - id: 2026-07-27-antigravity-headless-honored-no-policy
+    status: accepted
+    section: control-plane
+    source: antigravity
+    channel: tagged-release
+    title: "Antigravity headless runs honored no configured policy at all until 1.1.4"
+    summary: >
+      Version 1.1.4 states that headless runs began honoring persisted
+      settings.json policies including permissions, file access, sandbox mode,
+      auto-execution, and artifact review. Before it, every governance control an
+      operator had configured was inert in exactly the mode continuous integration
+      uses. A maintainer post two days earlier announced a narrower fix in 1.1.3,
+      which sat on top of that total non-enforcement.
+    why_action_bearing:
+      - "1.1.4 is the hard floor for any unattended or CI use of the agy binary. If you ran headless before it, your permissions, sandbox, and artifact review were not applied, so re-audit what those runs were allowed to touch rather than assuming the configuration held."
+    receipts:
+      - url: https://github.com/google-antigravity/antigravity-cli/blob/1.1.4/CHANGELOG.md
+        precision: tagged_commit_file
+
+  - id: 2026-07-27-claude-code-permission-rules-did-not-refuse
+    status: accepted
+    section: control-plane
+    source: claude-code
+    channel: mixed
+    title: "Claude Code permission rules did not refuse what they described, and the fix missed the channel most people run"
+    summary: >
+      v2.1.214 repairs a batch of permission checks that failed open: an
+      Edit(src/**) rule auto-approving a nested directory anywhere in the tree, a
+      Windows PowerShell 5.1 bypass, Bash file-descriptor redirect forms, commands
+      over ten thousand characters running unprompted, zsh subscripts treated as
+      inert, and help and man auto-approving. At window close the stable channel
+      still served 2.1.212 while latest served 2.1.220.
+    why_action_bearing:
+      - "Move to the latest channel or pin minimumVersion to 2.1.214, then re-test any rule you rely on by writing a deny and confirming the action is actually refused. An operator who wrote Edit(src/**) believed they had scoped write access to one directory and did not have it."
+    receipts:
+      - url: https://code.claude.com/docs/en/changelog#2-1-214
+        precision: official_changelog
+
+  - id: 2026-07-27-eve-governance-gates-failed-open-and-closed
+    status: accepted
+    section: control-plane
+    source: eve
+    channel: tagged-release
+    title: "The governance-first platform had four human gates that did not bind"
+    summary: >
+      Inside the vendor whose product is human-in-the-loop control: 0.21.0
+      guaranteed a delegation tree could never outspend its root budget, and 0.27.1
+      fixed a path where declining a child let the parent retry that child against
+      a fresh quota share, fifteen days later. 0.26.1 made the developer interface
+      show rejected tool approvals as denied instead of successful. 0.25.0 states
+      that a stale approval never authorizes an earlier call, which means it
+      previously could. 0.24.2 fixed approvals that left the tool unrun.
+    why_action_bearing:
+      - "Platform-hosted governance is not a substitute for testing the gate. If you chose a managed runtime specifically for its approval and budget controls, verify each one behaves as documented on the version you run, including what a denial actually does."
+    receipts:
+      - url: https://github.com/vercel/eve/releases/tag/eve%400.27.1
+        precision: github_release
+      - url: https://github.com/vercel/eve/releases/tag/eve%400.26.1
+        precision: github_release
+
+  - id: 2026-07-27-openhands-oss-tags-thawed-then-refroze
+    status: accepted
+    section: platform
+    source: openhands
+    channel: mixed
+    title: "OpenHands thawed its open-source tags for four days, then refroze with the release sitting in draft"
+    summary: >
+      The open-source line, frozen at 1.8.0 since 2026-06-10, took six tags between
+      2026-07-06 and 2026-07-09 through 1.11.0, shipping the authlib fix and
+      draining the backlog. Nothing has been tagged since. The 1.12.0 release pull
+      request has been open in draft with a clean mergeable state since 2026-07-09
+      while cloud tags continued to ship, and a new high-severity vite advisory
+      reached cloud only. The install documentation still directs self-hosters to
+      the 1.8 image.
+    why_action_bearing:
+      - "Self-hosters should move to 1.11.0 rather than following the documented 1.8 image, which carries every advisory 1.9.0 closed, and should decide whether to track main for the vite fix or accept the exposure until a tag arrives."
+    receipts:
+      - url: https://github.com/OpenHands/OpenHands/releases/tag/1.9.0
+        precision: github_release
+      - url: https://nvd.nist.gov/vuln/detail/CVE-2026-53571
+        precision: canonical_advisory
+
+  - id: 2026-07-27-openclaw-sandbox-check-returns-success-while-escaping
+    status: accepted
+    section: runtime
+    source: openclaw
+    channel: main-unreleased
+    title: "OpenClaw's sandbox check returned success while the escape worked"
+    summary: >
+      A path built from a symlinked subdirectory reads a planted sibling file while
+      the sandbox assertion returns success. The fix is merged to main and is in no
+      release on any channel; the maintainers describe it as defence in depth and
+      state the check-to-use window remains open. Separately, the project's release
+      page is not a reliable view of what installs: the npm tag serves an untagged
+      respin with no git tag, no release, and no notes.
+    why_action_bearing:
+      - "Do not treat the workspace boundary as a containment barrier on any current release, and resolve which build you are actually running from the package registry rather than the release page."
+    receipts:
+      - url: https://github.com/openclaw/openclaw/pull/113405
+        precision: git_commit

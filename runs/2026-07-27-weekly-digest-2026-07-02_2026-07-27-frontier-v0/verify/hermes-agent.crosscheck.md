@@ -15,8 +15,11 @@ detector built to contain it, all of which are still `main-unreleased`. Where
 the conversation did engage the release, it was mostly wrong in a specific and
 provable direction: it described a shipped isolation feature as a sharing
 feature, and it asserted a gateway limitation that the tag it was running had
-removed five days earlier. Verdicts: 1 confirmed, 6 partial, 1 refuted, 18
-unconfirmed, 9 social_fact. Conduct language from the ProAgentBench exchange and
+removed five days earlier. Verdicts: 0 confirmed, 5 partial, 1 refuted, 21
+unconfirmed, 8 social_fact. Not one Hermes social claim survives contact with a
+primary source intact -- every product claim either narrows or finds no receipt
+at all, which is what a source with 1712 commits between its tag and its `main`
+does to anyone trying to describe it from outside. Conduct language from the ProAgentBench exchange and
 the third-party-repo allegation stays journal-only under the reputational-claims
 rule; both are recorded here as disputes, not as findings about people.
 

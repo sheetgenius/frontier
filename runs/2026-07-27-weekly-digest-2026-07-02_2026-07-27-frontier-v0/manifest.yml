@@ -1,0 +1,68 @@
+schema_version: bitter.frontier_run_manifest.v0
+run_id: 2026-07-27-weekly-digest-2026-07-02_2026-07-27-frontier-v0
+mode: frontier-weekly
+title: "Assume the Rule Does Not Bind"
+window:
+  start: 2026-07-02
+  end: 2026-07-27
+status: published
+artifact_version: 1
+parent_window: 2026-07-01_2026-07-02
+finding_count: 203
+social_claim_count: 314
+signal_count: 6
+sources:
+  - claude-code
+  - codex
+  - gemini-cli
+  - antigravity
+  - hermes-agent
+  - openclaw
+  - pi-coding-agent
+  - openhands
+  - paperclip
+  - agent-zero
+  - eve
+  - flue
+  - heypi
+  - agent-flywheel
+note: >
+  The longest window this publication has covered: 25 days across 14 projects,
+  after a three-week gap in publication. Two research lanes ran in parallel. The
+  primary lane resolved what shipped, with receipts pinned to tags or commits and
+  release channel resolved by git ancestry rather than by date. The social lane
+  swept public X discussion for every watched project and produced 314 claims,
+  each carrying a post URL and a date, each adjudicated against the primary record
+  before anything reached the published piece. A post is a receipt for what was
+  said, never for what is true; no product or version claim in the digest rests on
+  a post alone.
+
+  The window's shared movement is that configured controls did not bind. The
+  counter-currents are reported rather than buried: OpenHands broke its
+  open-source tag freeze, Agent Zero and eve keep near-zero gaps between merged
+  and released, and a critical advisory turned out to describe no shipping
+  version.
+
+lanes:
+  primary:
+    description: "Official surfaces per source contract: releases, tags, changelog, default-branch commits, docs."
+    artifacts: harvest/<source>.primary.md
+  social:
+    description: "Public X discussion swept per source, discovery only, adjudicated against the primary record."
+    artifacts: social/<source>.raw.md, verify/<source>.crosscheck.md
+    tooling: "ops/hermes/grok-harvest.sh, driving the Hermes agent as a one-shot sub-agent on Grok via an X subscription."
+
+quality_gates:
+  channel_by_ancestry: "Resolved for every change. OpenClaw demonstrated why: its stable line forked from the default branch mid-window and took 215 of its own commits, so a change merged on the 10th is genuinely absent from a tag published on the 13th. Date reasoning would have given the wrong answer."
+  dates_verified_to_year: true
+  signals_rarer_than_findings: "6 signals from 203 findings and 314 social claims."
+  social_claims_adjudicated: "All 314 assigned confirmed, partial, refuted, unconfirmed, or social_fact against the primary record."
+  contrary_evidence_published: "Yes. eve, the publication's standing governance-first counterexample, had four gates that did not bind. Reported as the correction it is."
+  self_correction: "sources/pi-coding-agent.yml watched an abandoned package name frozen since 2026-05-07, so Pi read as static for eleven weeks. Fixed 2026-07-27 and disclosed in the digest's uncertainty section."
+
+carry_forward_checks:
+  - "Whether OpenHands tags its open-source line again, or the 1.12.0 release stays in draft."
+  - "Whether the Hermes approval guardrails (policy override, denial circuit breaker, approvals suggest, dangerous-command detectors) reach a tag."
+  - "Whether the OpenClaw sandbox-assertion fix reaches any channel."
+  - "Whether Codex's network-authority hardening wave leaves alpha."
+  - "Whether Gemini's zero-click a2a-server fix reaches stable."
