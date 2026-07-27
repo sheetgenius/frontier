@@ -1,0 +1,275 @@
+---
+import Base from "../../layouts/Base.astro";
+import { GH_BLOB_BASE, GH_REPO_URL } from "../../lib/site";
+import { gitRevisionDate } from "../../lib/revision";
+
+const modifiedDate = gitRevisionDate("site/src/pages/conversation-layer/index.astro", "2026-07-27");
+
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Can a social media post be a source for a technical claim?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A post is a receipt for what was said, not for what is true. It proves a statement was made on a date by an account. It does not establish that the software behaves that way. Bitter Frontier publishes posts as statements and requires a primary source, such as a changelog entry, commit, or release, before any product or version claim enters the record.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do developers on X find out about software changes before the changelog?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Mostly no. Across 55 adjudicated claims about two major coding agents in July 2026, exactly one public post described a change before the primary source that confirmed it. Version-tracker accounts typically post two to seven minutes after the release they summarize, so the conversation follows the changelog rather than leading it.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is the value of monitoring developer discussion if it is not early warning?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Three things. It is the only running summary when a vendor stops publishing one. It misreads fixes as bugs in ways that reveal what changed underneath users. And its silences are measurable: the topics a community never discusses show which classes of risk are going unwatched.",
+      },
+    },
+  ],
+};
+---
+
+<Base
+  title="How Bitter Frontier Reads the Conversation Layer | Bitter Frontier"
+  description="Why a social post is a receipt for what was said and never for what is true, what a systematic sweep of developer discussion actually found, and why the silences matter more than the scoops."
+  publishedDate="2026-07-27"
+  modifiedDate={modifiedDate}
+  articleSection="Bitter Frontier method"
+  authorName="Michael Ruescher"
+  keywords={["social media as a source", "developer conversation", "coding agents", "research method", "verification"]}
+  structuredData={faq}
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">Method</p>
+    <h1 class="issue-title">How we read the conversation layer.</h1>
+    <p class="profile-dek">
+      A post is a receipt for what was said. It is never a receipt for what is true.
+    </p>
+    <p class="issue-meta">
+      Published July 27, 2026. Last revised {modifiedDate}.
+      <a href={`${GH_REPO_URL}/commits/main/site/src/pages/conversation-layer/index.astro`}>Revision history</a>.
+    </p>
+
+    <div class="prose-frontier mt-9">
+      <p>
+        Most people who work with coding agents learn things from the public
+        conversation before they learn them anywhere else, and they learn them by
+        accident. Something crosses a timeline. You were not looking for it, you
+        cannot reconstruct how you found it, and you have no idea what you missed
+        on the days you were not scrolling.
+      </p>
+
+      <p>
+        That is a bad way to run an intelligence function, and it is the reason
+        Frontier now sweeps public developer discussion across its whole watchlist
+        every cycle rather than reading it opportunistically. This page explains
+        how, what the sweep is allowed to prove, and what it actually turned out to
+        be good for, which was not what we expected.
+      </p>
+
+      <h2>The rule that makes this publishable</h2>
+
+      <blockquote>
+        A post is a receipt for what was said. It is never a receipt for what is
+        true.
+      </blockquote>
+
+      <p>
+        That single distinction is what lets a source-cited publication report
+        rumor, argument, complaint, and gossip without lowering its evidence bar.
+        Those things are not held to a weaker standard. They are treated as a
+        different kind of object.
+      </p>
+
+      <p>
+        When someone posts that a tool shipped a feature, the post fully
+        establishes one fact: that this account said that, on that date, at that
+        URL. It establishes nothing whatever about the software. So the statement
+        can be reported with complete confidence as a statement, while the claim
+        underneath it stays marked unverified until a changelog entry, a commit, a
+        release, or a reproducible observation settles it.
+      </p>
+
+      <p>
+        In practice every claim from the sweep carries a public post URL, a full
+        date, and a verification status, and every product or version claim starts
+        at "not checked against the source" and has to earn its way out. The
+        <a href="/digests/2026-07-02_2026-07-27-weekly/">first issue built this way</a>
+        adjudicated 314 claims across fourteen projects on exactly that basis.
+      </p>
+
+      <p>
+        The interesting cases are the ones where the two layers disagree. When the
+        conversation believes something the receipts contradict, that gap is more
+        informative than either half, and it is usually the story.
+      </p>
+
+      <h2>What we expected, and what we found</h2>
+
+      <p>
+        The premise was early warning. Practitioners hit broken things in
+        production long before a vendor writes them down, so a systematic sweep
+        should surface problems weeks ahead of the official record.
+      </p>
+
+      <p>
+        It does not. Across 55 adjudicated claims about two major coding agents,
+        exactly one post described something before the primary source that later
+        confirmed it. The accounts that look like early warning are mostly
+        automated release trackers, and they post two to seven minutes
+        <em>after</em> the release they summarize. Where a project publishes
+        same-day and has no public commit stream to run ahead of, the conversation
+        never got in front of the changelog at all.
+      </p>
+
+      <p>
+        We are stating that plainly because the alternative is selling a capability
+        the evidence does not support. The sweep buys latency, not foresight.
+      </p>
+
+      <h2>What it is actually for</h2>
+
+      <p>
+        Three things, and they are more useful than scoops.
+      </p>
+
+      <p>
+        <strong>It is the only running summary when a vendor stops writing one.</strong>
+        One major agent's own weekly digest stopped publishing partway through the
+        window while its releases kept shipping. For that stretch, the public
+        conversation was the sole continuous narrative of what had changed, and it
+        filled a one-line release note with a fix description borrowed from a
+        different product's changelog.
+      </p>
+
+      <p>
+        <strong>It misreads fixes as bugs, which is diagnostic.</strong> When a
+        permission rule silently means one thing and then starts meaning what it
+        said, users experience the repair as a regression and report it as one. A
+        cluster of complaints that a tool "suddenly keeps asking permission" is not
+        noise. It is the shape a security fix makes when it lands on people who did
+        not know the old behavior was wrong.
+      </p>
+
+      <p>
+        <strong>Its silences are measurable, and they are the finding.</strong> This
+        is the part we did not anticipate. Because the sweep is systematic rather
+        than opportunistic, absence becomes evidence: you can say with a bounded
+        claim that a topic never came up.
+      </p>
+
+      <p>
+        In the July window, no post in the harvested set mentioned that one agent
+        had moved its approval decision from the human operator to a model by
+        default. None mentioned a critical severity advisory published against a
+        live agent runtime. None mentioned that a project's open-source release
+        line had frozen while its commercial line kept shipping fixes. The
+        conversation was busy, accurate, and engaged, and it was discussing model
+        quality, pricing, and features.
+      </p>
+
+      <p>
+        That is the durable result. The conversation covers capability. The
+        changelog covers shipping. Neither covers enforcement, which is the thing
+        an operator is actually betting on, and the gap between those three is
+        where this publication does its work.
+      </p>
+
+      <h2>What we refuse to publish</h2>
+
+      <p>
+        Reading the conversation layer means encountering claims about people, and
+        those get a harder rule rather than a softer one.
+      </p>
+
+      <ul>
+        <li>
+          Claims about a person's conduct, motives, or character stay out of public
+          artifacts unless a direct primary receipt supports the exact claim. That
+          bar is one that gossip about people almost never clears and that product
+          behavior often does.
+        </li>
+        <li>
+          Criticism targets systems, defaults, and institutions. Not hobbyists, not
+          individuals, and not someone having a bad week in public.
+        </li>
+        <li>
+          Any cluster of user pain or public argument gets a counterweight search
+          before it is written up: maintainer replies, subsequent fixes,
+          disconfirming posts. A one-sided pile-on is not reporting.
+        </li>
+        <li>
+          Where we track a person, as on our
+          <a href="/people/">people pages</a>, every link is a receipt for what
+          they said, and their statements are never promoted into facts about
+          software.
+        </li>
+      </ul>
+
+      <h2>How the sweep runs</h2>
+
+      <p>
+        Each cycle, an agent with search tools works the watchlist project by
+        project, from several angles rather than one query: maintainer intent,
+        adoption, user pain and workarounds, benchmark argument, ecosystem tension,
+        security chatter. It returns structured candidate records, never prose.
+        Those records are then adjudicated one at a time against the primary
+        harvest, and the verdict, not the post, is what reaches the page.
+      </p>
+
+      <p>
+        The posts you see rendered on this site are static. They are built from
+        data in the
+        <a href={GH_BLOB_BASE}>repository</a> and make no request to any social
+        platform when you load the page, so reading Frontier does not report your
+        attention to anyone. The status line on each card tells you how far the
+        claim was checked.
+      </p>
+
+      <p>
+        Everything the sweep produced, including the claims we declined, is in the
+        <a href="/runs/">research trail</a>.
+      </p>
+
+      <h2>Why bother</h2>
+
+      <p>
+        Because the alternative is what most of us do now: scroll, hope, and
+        privately suspect we are missing things. That is an expensive way to stay
+        informed, and it fails silently, which is the worst property a system can
+        have.
+      </p>
+
+      <p>
+        A sweep that finds nothing on a project is a result. A sweep that finds the
+        field never once discussed the control that changed under it is a bigger
+        one. Neither is available to someone reading a timeline.
+      </p>
+    </div>
+
+    <aside class="publisher-note mt-9">
+      <p class="small-caps text-muted">From the publisher</p>
+      <p>
+        Frontier studies where the agent-operable boundary moves and what it costs
+        the people running it. <a href="https://bitter.sh">Bitter</a> is the
+        harness-agnostic operating environment built around that diagnosis.
+      </p>
+    </aside>
+
+    <div class="rule mt-9 pt-5">
+      <p class="font-mono text-sm text-muted">
+        <a href="/digests/2026-07-02_2026-07-27-weekly/">Read the first issue built this way</a> /
+        <a href={`${GH_BLOB_BASE}/METHOD.md`}>The full method</a> /
+        <a href="/people/">People we track</a>
+      </p>
+    </div>
+  </article>
+</Base>
