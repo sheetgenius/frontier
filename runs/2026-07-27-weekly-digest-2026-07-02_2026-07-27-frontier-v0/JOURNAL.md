@@ -871,3 +871,40 @@ where the wrong thing cannot happen. From here, every publish is gated on the
 build's exit status in the same command (`if [ $BUILD -eq 0 ]; then ... else do
 not push`), which is how the corrected version above was published. Do not write
 `build; push` as a sequence again.
+
+## The method has a public page, and the digest has its posts
+
+Two things shipped since the profile work.
+
+**/conversation-layer/** states publicly what the X sweep is and is not. The rule
+first (a post is a receipt for what was said, never for what is true), then the
+finding that does not flatter it: we expected early warning, and across 55
+adjudicated claims exactly one post preceded its confirming source. The
+tracker accounts that look like early warning post two to seven minutes AFTER the
+release. Saying that plainly is cheaper than selling a capability the evidence
+does not support, and it makes the three things the lane IS good for land harder:
+sole running summary when a vendor's digest goes dark, fixes misreported as bugs
+in diagnostic ways, and measurable silence. The page also states what we refuse
+to publish about people, and that the cards are static so reading Frontier does
+not report anyone's attention to a platform. Linked from the digest and About.
+
+**The digest now carries four post cards**, rendered from the run's own
+social-cards file through the component built earlier. Chosen for argument rather
+than popularity, and the statuses do the editorial work: two refuted, one
+conversation-only, one unverified.
+
+The set is deliberately unflattering to the conversation. The lede card is the
+maintainer announcement that was refuted by his own vendor's changelog two days
+later. The auto-mode card is a widely shared claim that a receipt settles against.
+The Paperclip card is a post reciting release highlights while a Critical advisory
+against that same tag went unmentioned across all fourteen social files. Only the
+"advisory" quote is included for being right, and it is marked social_context
+rather than confirmed because it is a description of a design, not a product
+claim.
+
+That is the honest shape of what a sweep returns, and showing it is better than
+curating four scoops we did not have.
+
+Placement note: cards render AFTER the body, not inside it. The reader should
+meet the reporting first and the raw material second, which is also why the
+component's status line exists.

@@ -1,0 +1,112 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-07-27-weekly-digest-2026-07-02_2026-07-27-frontier-v0
+note: >
+  Four posts from the window's 314 adjudicated claims, chosen because each one
+  carries a piece of the issue's argument rather than because it was popular.
+  Every card is a receipt for what was said. None is a receipt for what is true.
+cards:
+  - id: antigravity-1-1-3-headless-announcement
+    title: "The announcement that sat on top of no enforcement"
+    kind: capability_announcement
+    status: refuted
+    date: 2026-07-16
+    date_precision: day
+    source_ids: [antigravity]
+    authors: ["shengzheyao"]
+    source_urls:
+      - https://x.com/shengzheyao/status/2077576699571741008
+      - https://github.com/google-antigravity/antigravity-cli/blob/1.1.4/CHANGELOG.md
+    excerpt: >
+      Antigravity CLI 1.1.3 changes headless (-p) so it no longer hangs or
+      silently auto-approves permissioned tools, with soft-deny plus exact
+      allow-rule guidance.
+    summary: >
+      A maintainer announcing a narrow headless fix.
+    why_it_matters: >
+      Two days later, 1.1.4 recorded that headless runs only then began honoring
+      settings.json policies at all, including permissions, file access, sandbox
+      mode, auto-execution, and artifact review. This post was made on top of a
+      mode that enforced none of them. 1.1.4 received no post.
+    verification_needed: >
+      Settled. The vendor's own changelog is the refutation.
+    caveats: >
+      The 1.1.3 fix itself is real. What the post does not convey, and could not
+      have, is that the surrounding mode was unenforced.
+    tags: [headless, permissions, announcement-asymmetry]
+
+  - id: doodlestein-advisory-reservation
+    title: "The window's most precise word, from the person who built the mechanism"
+    kind: maintainer_intent
+    status: social_context
+    date: 2026-07-25
+    date_precision: day
+    source_ids: [agent-flywheel]
+    authors: ["doodlestein"]
+    source_urls:
+      - https://x.com/doodlestein/status/2080966833830539655
+    excerpt: >
+      File-reservation and concurrency concerns are handled by an advisory file
+      reservation system in agent mail.
+    summary: >
+      The author of Agent Flywheel describing how his system keeps parallel
+      agents from colliding on the same files.
+    why_it_matters: >
+      Advisory is the honest label for most of what this field calls a guardrail,
+      and almost nobody uses it. Offered unprompted, in a window where control
+      after control turned out not to bind.
+    verification_needed: >
+      Nothing to verify. It is a description of a design, and its value is the
+      candour rather than the claim.
+    tags: [coordination, advisory-locks, candour]
+
+  - id: claude-code-auto-mode-psa
+    title: "Confidently wrong, and a receipt settles it"
+    kind: community_discussion
+    status: refuted
+    date: 2026-07-20
+    date_precision: day
+    source_ids: [claude-code]
+    authors: ["lkr"]
+    source_urls:
+      - https://code.claude.com/docs/en/changelog#2-1-211
+    excerpt: >
+      Auto mode is mostly bypass permissions with less risk.
+    summary: >
+      A widely shared characterization of how one agent's automatic approval mode
+      compares to its explicit bypass flag.
+    why_it_matters: >
+      Backwards on the point that matters. Under the bypass flag a PreToolUse
+      hook is not consulted and the operator knows it. Under auto mode the hook
+      was consulted and overruled, which v2.1.211 had just fixed. A reader who
+      believed the post thought they had less risk than they had.
+    verification_needed: >
+      Settled against the changelog entry for v2.1.211.
+    caveats: >
+      The post is paraphrased here from the adjudicated claim record rather than
+      quoted, and the receipt is the vendor changelog that refutes it.
+    tags: [auto-mode, hooks, misreading]
+
+  - id: paperclip-critical-advisory-silence
+    title: "The Critical nobody mentioned"
+    kind: adoption_signal
+    status: needs_primary_crosscheck
+    date: 2026-07-25
+    date_precision: day
+    source_ids: [paperclip]
+    authors: ["aronprins"]
+    source_urls:
+      - https://github.com/advisories/GHSA-x8hx-rhr2-9rf7
+    excerpt: >
+      Release highlights for v2026.722.0.
+    summary: >
+      A community post reciting a release's highlights, two days and seventeen
+      hours after a Critical advisory was published against that same tag.
+    why_it_matters: >
+      Across all fourteen social files in this sweep, no post mentions the
+      advisory, its identifier, DNS rebinding, or the severity score. We searched
+      expecting to debunk a panic. There was no panic. Separately, the advisory
+      turns out to describe a condition fixed 97 days before disclosure.
+    verification_needed: >
+      The silence is bounded to the harvested set and is not proof that nobody
+      anywhere discussed it.
+    tags: [advisory, silence, severity-inflation]

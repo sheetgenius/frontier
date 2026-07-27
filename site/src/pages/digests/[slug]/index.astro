@@ -3,12 +3,13 @@ import Base from "../../../layouts/Base.astro";
 import FrontierLens from "../../../components/FrontierLens.astro";
 import NotPromoted from "../../../components/NotPromoted.astro";
 import OperatorBrief from "../../../components/OperatorBrief.astro";
+import SocialReceiptCards from "../../../components/SocialReceiptCards.astro";
 import SourceTrail from "../../../components/SourceTrail.astro";
 import VersionList from "../../../components/VersionList.astro";
 import { metaDescription } from "../../../lib/seo";
 import { gitRevisionDate } from "../../../lib/revision";
 import { GH_BLOB_BASE, SITE_URL } from "../../../lib/site";
-import { canonicalRunForDigest, formatDate, getDigest, getSignal, listDigests, listProfiles, signalIdsFromOperatorBrief, sourceLabel, versionsForDigest } from "../../../lib/frontier";
+import { canonicalRunForDigest, formatDate, getDigest, getSignal, listDigests, listProfiles, listRunSocialCards, signalIdsFromOperatorBrief, sourceLabel, versionsForDigest } from "../../../lib/frontier";
 
 export function getStaticPaths() {
   return listDigests().map((digest) => ({ params: { slug: digest.slug } }));
@@ -28,6 +29,7 @@ const coveredProfiles = (digest.data.sources ?? [])
 const topSignalIds: string[] = digest.data.top_signal_ids?.length
   ? digest.data.top_signal_ids
   : signalIdsFromOperatorBrief(digest.data.operator_brief);
+const socialCards = digest.data.run_id ? listRunSocialCards(digest.data.run_id) : [];
 const topSignals = topSignalIds
   .map((id) => getSignal(id))
   .filter((signal) => signal && signal.status !== "withdrawn");
@@ -103,6 +105,8 @@ const topSignalsItemList = topSignals.length > 0 ? {
     <p class="issue-meta">Edited by Michael Ruescher / revised {digestModifiedDate}</p>
     <OperatorBrief brief={digest.data.operator_brief} />
     <div class="prose-frontier mt-7" set:html={digestBodyHtml} />
+
+    <SocialReceiptCards cards={socialCards} />
 
     {topSignals.length > 0 && (
       <div class="rule mt-10 pt-6">
