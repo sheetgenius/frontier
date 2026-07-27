@@ -535,3 +535,59 @@ It is benign: the string is a Claude Code CLI flag name quoted inside editorial
 analysis comparing auto mode to bypass-permissions mode. Treated as reporting,
 not as a directive. Worth remembering that any lane ingesting public text can
 carry instruction-shaped strings, and the harness caught it correctly.
+
+## The lede is found: Antigravity's selective silence
+
+The strongest single artifact in the harvest, and it carries both halves of the
+issue at once.
+
+On 2026-07-16 @shengzheyao announced that Antigravity 1.1.3 fixed headless `-p`
+runs "silently auto-approving" permissioned tools. Two days later, 1.1.4
+(2026-07-18) states that headless runs only THEN began honoring persisted
+settings.json policies "including permissions, file access, sandbox mode,
+auto-execution, and artifact review."
+
+So the 07-16 announcement sat on top of total non-enforcement in that exact mode.
+The vendor's own changelog refutes the vendor's own X post, 48 hours later.
+
+And 1.1.4 got no post at all.
+
+That is not an isolated omission. Five of nine Antigravity releases in the window
+produced NO maintainer or official post: 1.0.16, 1.1.1, 1.1.2, 1.1.4, 1.1.7.
+Those five are precisely the releases that loosened a control or admitted one had
+not been binding. 1.1.1 let the allowlist bypass diff-review. 1.1.4 admitted
+headless honored nothing. 1.1.7 truncates its own changelog clause about
+ineligible accounts bypassing a check. Meanwhile every release that hardened
+something got a post within minutes to hours.
+
+Whether that is deliberate or simply the ordinary gravity of good news traveling
+faster does not change the operator consequence, and the piece should say so
+plainly without imputing motive: **an operator following the vendor's own X
+account sees the hardening and never the loosening.** The cross-check file holds
+the timing table.
+
+This is the lede. It is one concrete case, it contains a reversal, the cost is
+visible inside it, and it earns the window's argument without needing to be told.
+
+## Two more findings that sharpen the frame
+
+The conversation is blind to release-channel asymmetry. Zero of 24 OpenHands
+claims mention the OSS tag freeze, the draft release PR #15217, the install docs
+still pointing at 1.8, or CVE-2026-53571 being cloud-only. Combined with zero of
+20 codex claims mentioning any authority change, the pattern is consistent across
+providers: the crowd tracks capability, never channel, never enforcement.
+
+A structural rule falls out of it, worth stating as method: with no OpenHands OSS
+tag after 1.11.0 (2026-07-09), every "OpenHands shipped X" claim dated later is
+false on the open-source line BY CONSTRUCTION. That silently reclassifies five
+claims in the set, none of which carried a channel qualifier. The sharpest
+instance is @repojournal reporting a real fix as "v1.37.1," a version that does
+not exist on the OpenHands line.
+
+Counterweight for fairness: on Gemini the conversation was RIGHT and the docs were
+wrong. @codewith_ahsan named the exact 2026-06-18 consumer cutoff and the
+Antigravity replacement on 2026-07-09; the first in-product receipt is PR 28304 in
+v0.52.0 on 2026-07-22, thirteen days later. And authentication.mdx at that tag
+still lists consumer free-tier eligibility, so X has been more accurate than the
+shipped versioned docs for over three weeks. When the docs rot, the conversation
+is the better source. Say it.
