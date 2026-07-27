@@ -591,3 +591,64 @@ v0.52.0 on 2026-07-22, thirteen days later. And authentication.mdx at that tag
 still lists consumer free-tier eligibility, so X has been more accurate than the
 shipped versioned docs for over three weeks. When the docs rot, the conversation
 is the better source. Say it.
+
+## Digest published, and immediately owed a correction
+
+Shipped "Assume the Rule Does Not Bind" at 7623aac. Then the pattern-history
+research landed and it corrects the piece's framing on its central question.
+
+The finding: **permanent-but-newly-measured. Not emerging, not accelerating.**
+Three receipts, each closing an easier answer:
+
+1. The pattern is in issue one. Gemini CLI v0.41.0 shipped "workspace trust in
+   headless mode" inside the 2026-04-22..05-06 window and Frontier reported it as
+   a feature. It was a fix: before it, configured workspace trust did not bind in
+   exactly the mode CI uses. The pattern predates the lens and we missed it.
+2. This is the THIRD time it has led a digest. "The Policy You Wrote Wasn't the
+   Policy You Had" (2026-06-03) has a body section titled "The enforcement gap"
+   and a lede counting six ways across six makers. "Protected on Paper"
+   (2026-06-23) has "The authority that didn't bind." A piece calling this new is
+   refuted by its own back catalogue.
+3. Normalized, the rate is FLAT and this window is the LOWEST since the instrument
+   stabilized: 3.7 cases per 100 source-days against a peak of 11.7. The series
+   from 2026-05-28 excluding briefs runs 11.7, 7.5, 4.3, 6.0, 3.7. What is unusual
+   about this window is its size, 350 source-days, not its density.
+
+The instrumentation caveat is the strongest single result and it must be in the
+piece. The measured rate quadrupled in the exact cycle the instrument became
+about nine times more sensitive, with the watchlist held constant: the 05-27 run
+harvested 11 findings, the 06-03 run harvested 99 using 85 agents, and its own
+audit says it "ran hot." That run produced the digest that first named the
+pattern. The variable that moved was the instrument.
+
+Deeper and worse: the pattern is only observable retrospectively, through the fix.
+An unenforced control emits nothing. Every count is a count of vendor disclosures
+we happened to notice. So **Claude Code carries the most rows because Anthropic
+writes them down.** A vendor that ships the same bug silently scores zero. That
+inverts the naive reading of the piece and has to be said plainly.
+
+What IS new is the class of surface, not the frequency. Through June nearly every
+case was a permission rule inside a running binary. This window adds failures of
+the read surface itself: docs pinning a vulnerable image, a release body
+truncating its own security clause, marketing selling a deleted subsystem, an
+advisory channel silent across eight authority-fixing releases.
+
+Prior art, so we stop inventing synonyms: incomplete mediation (Saltzer and
+Schroeder 1975; CWE-638, CWE-424), CWE-693's ignored-mechanism branch, vacuity
+(Kupferman and Vardi 2003, the only literature naming the operator's misbelief),
+and fail-open (CWE-636). NOT TOCTOU for the general case, though the OpenClaw
+assertSandboxPath case genuinely is TOCTOU, so it must not be used as the
+counterexample. Not configuration drift, which presumes a binding that decayed;
+here there was never a binding.
+
+Also arXiv:2607.13718 (July 2026) independently documents Claude auto-approving
+despite a "Needs approval" setting. That answers the reader who suspects we found
+this because we went looking.
+
+And a direct correction to my own draft: eve is CONFIRMATION, not revelation. It
+had a Class A instance on 2026-07-01 and a flagged approval-surface caveat on
+2026-06-17. The honest line is "survived a harder test," not "we discovered this."
+
+Revising the digest now. Publishing first and correcting second is the right order
+when the correction is this substantive; the alternative was sitting on a finished
+piece for an hour.
