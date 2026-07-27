@@ -652,3 +652,29 @@ had a Class A instance on 2026-07-01 and a flagged approval-surface caveat on
 Revising the digest now. Publishing first and correcting second is the right order
 when the correction is this substantive; the alternative was sitting on a finished
 piece for an hour.
+
+## P4 done: the publication stopped shipping the failure it reports on
+
+Confirmed the edge serves zero declared security headers on every path checked
+(/, /digests/, /og.png, /rss.xml). Radicchio consumes public/_headers without
+applying it; the file itself 404s, so it is being read as configuration and
+ignored rather than served as content. The declaration files are correct. They
+are simply not enforced.
+
+I cannot fix the platform from here. What I can fix is the repository claiming a
+control it does not have, which is precisely the defect this window's digest
+spends four thousand words on. Added site/scripts/check-served-headers.mjs, which
+fetches the live site and asserts the SERVED response against what
+public/_headers declares, across four paths chosen to cover distinct handling (a
+prerendered page, a nested route, a static asset, a generated endpoint) because a
+platform can apply rules to one class and not another. Advisory by default,
+--strict for a scheduled audit. Wired as `npm run check:served-headers`.
+
+Also put a warning at the top of static-headers.test.mjs, since that file is what
+a future reader would trust: everything it asserts is one declaration file
+against another, which proves internal consistency and nothing about
+enforcement. That is the vacuity case from the digest's own prior-art section,
+sitting in our own test suite.
+
+The site is not less secure than it was an hour ago. It is exactly as secure and
+now honestly described.
