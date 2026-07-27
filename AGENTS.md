@@ -29,6 +29,9 @@ attention bottleneck move?
 ## The non-negotiables
 
 - No claim without a primary-source receipt on the claim-bearing words.
+- A post is a receipt for what was said, never for what is true. Social evidence
+  is reported as a statement and never promoted into a product fact without a
+  primary source.
 - No signal without a concrete consequence for an operator, the larger system,
   or scarce human attention.
 - Released is not merged. State the channel an operator can actually run.

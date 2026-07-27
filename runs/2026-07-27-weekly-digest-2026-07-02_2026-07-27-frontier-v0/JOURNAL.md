@@ -935,3 +935,27 @@ the pitch: every cycle sweeps public developer discussion across the whole
 watchlist, so what the field is saying arrives adjudicated rather than at random.
 Styled quieter than the two axioms above it, because it is a capability claim and
 not doctrine.
+
+## Doctrine caught up with practice, which is the whole point
+
+The gap worth closing: METHOD.md defines the object grammar in six objects and
+described neither the social lane nor the person object. The publication has now
+run a standing conversation sweep, published 314 adjudicated claims, shipped a
+people layer, and written a public method page -- while its own authoritative
+method document said none of that existed.
+
+That is precisely the failure this window's digest is about, in our own
+documentation. The practice was ahead of the doctrine, so a reader auditing the
+method against the artifacts would have found the artifacts describing rules the
+method never stated.
+
+METHOD.md now adds two objects to the grammar (social claim, person) and a
+"conversation layer" section carrying the rule as a blockquote, the four
+commitments that govern the lane, and the honest account of what it is for --
+including that it does not reliably run ahead of changelogs, and that its
+measurable silence is the more useful property. AGENTS.md's non-negotiables carry
+the one-line version, since that file is what an agent reads first.
+
+Deliberately did NOT make it a fourth rule. It is a refinement of the first rule
+about what a receipt proves, not a new commitment, and inflating the three rules
+to four would weaken the three.

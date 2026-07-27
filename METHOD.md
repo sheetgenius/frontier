@@ -80,10 +80,56 @@ distinctions between them are load-bearing.
 - **Run artifact** is the reproducible record of a research cycle: what was read,
   what was found, what was accepted, how receipts and channels were verified,
   and what remained uncertain.
+- **Social claim** is something a person said in public, captured with the post's
+  URL and date. It is evidence of a statement and never, on its own, evidence of
+  the thing stated. Every social claim carries a verification status against the
+  primary record.
+- **Person** answers "who is arguing this, and what did they actually say." Like a
+  profile it is a dated posture; unlike a profile its subject is a human being,
+  which makes the restraints tighter rather than looser.
 
 The public reader should benefit from this grammar without needing to learn it.
 Findings, schemas, and run vocabulary stay behind the glass until a reader asks
 to audit the work.
+
+## The conversation layer
+
+Frontier sweeps public developer discussion across the whole watchlist each
+cycle, because the alternative is what most operators do now: read a timeline,
+hope the useful thing crosses it, and never learn what was missed. A systematic
+sweep replaces that lottery, and it does so under one rule that does not bend.
+
+> A post is a receipt for what was said. It is never a receipt for what is true.
+
+That distinction is what lets a source-cited publication report rumor, argument,
+complaint, and gossip without lowering its evidence bar. Those are not held to a
+weaker standard. They are a different kind of object. A post fully establishes
+that an account said something on a date. It establishes nothing about the
+software, so the statement may be reported with confidence as a statement while
+the claim underneath it stays unverified until a primary source settles it.
+
+Where the conversation and the receipts disagree, that gap is usually the story,
+and it is more informative than either half alone.
+
+Four commitments govern the lane:
+
+- Every social claim carries a public post URL, a full ISO date, and a
+  verification status. Product, version, and capability claims start unverified
+  and must be cleared against a primary source before entering the record.
+- Claims about a person's conduct, motives, or character are not published
+  without a direct primary receipt for the exact claim. Criticism targets
+  systems, defaults, and institutions rather than individuals.
+- Any cluster of user pain or public argument gets a counterweight search before
+  it is written up: maintainer replies, subsequent fixes, disconfirming posts. A
+  one-sided pile-on is not reporting.
+- Rendered posts are static, built from repository data, and make no request to
+  any platform when a reader loads the page.
+
+The lane is worth running for what it is, not for what it was assumed to be. It
+does not reliably run ahead of changelogs. What it does supply is the only
+running summary when a vendor stops publishing one, misreadings that diagnose
+what changed underneath users, and measurable silence: because the sweep is
+systematic, the absence of a topic is itself a finding.
 
 ## The minimum signal packet
 
