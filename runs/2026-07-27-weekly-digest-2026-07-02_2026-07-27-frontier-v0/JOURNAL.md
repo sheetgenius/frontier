@@ -959,3 +959,37 @@ the one-line version, since that file is what an agent reads first.
 Deliberately did NOT make it a fourth rule. It is a refinement of the first rule
 about what a receipt proves, not a new commitment, and inflating the three rules
 to four would weaken the three.
+
+## The people we quote now have a way to reach us
+
+The publication started reproducing other people's public statements tonight and
+gave them no documented path to respond. That is a fairness gap rather than a
+docs gap, and it was the most important thing left.
+
+CONTRIBUTING gains two sections, and the public /conversation-layer/ page carries
+the same promises where a quoted person would actually land. Three distinct
+answers, because conflating them would be dishonest:
+
+1. **We got your words wrong.** Fixed quickly, logged in the ledger, and no
+   receipt required beyond pointing at your own post. Stated as the correction we
+   most want to receive, which is true: misquotation is the failure this lane is
+   most likely to produce.
+2. **You want a card taken down.** Removed on request, without argument and
+   without asking why. The reasoning matters: reproducing someone's words
+   prominently is a presentation choice we made and can unmake. What does NOT go
+   is the underlying claim record, the public URL, and our verdict, because that
+   is the audit trail. So a person can decline to be featured and nobody can
+   quietly edit the record of what was researched. Both halves are load-bearing.
+3. **You disagree with our reading.** Not a correction, and we say so rather than
+   pretending. Argue it in the open; if it changes our mind we say so publicly.
+
+Also documented where a social correction actually lands (social-cards yml, the
+raw claim record, the crosscheck verdict, the person page) and added a section on
+correcting a claim's verification STATUS, since those verdicts are checkable and a
+claim we left unconfirmed that a primary source actually settles is a real gap in
+our cross-check.
+
+The reason to write this down rather than handle it ad hoc: the publication's
+whole argument is that a control which exists only as intention is not a control.
+"We would obviously fix it if someone complained" is an intention. A documented
+path with a named file and a stated promise is a mechanism.

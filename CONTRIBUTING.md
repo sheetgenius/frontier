@@ -51,6 +51,56 @@ A correction must carry:
   (see "Dates" below);
 - what is wrong: the exact field, file, and current-versus-correct values.
 
+### 1a. Corrections to something you said, or to how we quoted you
+
+This publication reproduces public posts and maintains dated pages about people.
+If you are the person we quoted, you have the shortest path here, and you do not
+need a receipt to use it.
+
+Three separate things, with different answers:
+
+- **We got your words wrong.** Misquotation, a paraphrase that changes your
+  meaning, the wrong date, the wrong account, or a characterization your post
+  does not support. Tell us and we fix it, quickly, and log it in the
+  [corrections ledger](./content/corrections.md). You do not need to prove
+  anything beyond pointing at your own post. This is the correction we most want
+  to receive and the one we are most likely to have gotten wrong.
+- **You want a card taken down.** We will remove the rendered card on request,
+  without argument and without asking why. Reproducing someone's words
+  prominently is a presentation choice we made, and it is one we can unmake. What
+  we do not remove is the underlying claim record in the research artifacts,
+  including the public URL and our verification verdict, because that is the
+  audit trail of what we actually read and it is how a reader checks our work.
+  The distinction is deliberate: you can decline to be featured, and nobody can
+  quietly edit the record of what was researched.
+- **You disagree with our reading.** That is not a correction, and we will not
+  pretend otherwise. Open an issue and argue it. If you change our mind we will
+  say so in public; if you do not, the disagreement is welcome and the reading
+  stays. See "What stays owned" below.
+
+The same three answers apply to a
+[person page](https://frontier.bitter.sh/people/). A person page is a dated
+posture about what someone said, held to the rule that a post is a receipt for
+what was said and never for what is true. If a page states something about you
+that your own posts do not support, that is a factual error and we fix it.
+
+We do not publish claims about anyone's conduct, motives, or character without a
+direct primary receipt for the exact claim, so if you find one, treat it as a
+serious defect and say so plainly. We would rather hear it from you than not
+hear it.
+
+### 1b. Corrections to a social claim's status
+
+Every social claim carries a verification status against the primary record:
+confirmed, partial, refuted, unconfirmed, or conversation-only. Those verdicts
+are checkable, and getting one wrong is an ordinary correction like any other.
+
+The valuable report is a claim we marked unconfirmed that a primary source
+actually settles, in either direction. If a changelog entry, commit, or release
+confirms or refutes something we left open, that is a real gap in our
+cross-check and we want it. Bring the post URL, the primary source, and which
+way it cuts.
+
 ### 2. Coverage gaps
 
 A real, dated, source-backed change inside a published window that the digest,
@@ -259,7 +309,12 @@ file. Corrections to a signal's factual fields edit
 `runs/<run>/signals/frontier-signals.yml`. Corrections to a profile fact edit
 `content/profiles/<id>.md`. Corrections to a published digest's facts edit
 `content/digests/*.md`, but a digest's reading is owned; keep the edit to the
-fact. When in doubt, file the issue and let a maintainer point you at the file.
+fact. Corrections to a quoted post or a rendered card edit
+`runs/<run>/social-cards/*.yml`, and the underlying claim record lives in
+`runs/<run>/social/<source>.raw.md` with its verdict in
+`runs/<run>/verify/<source>.crosscheck.md`. Corrections to a person page edit
+`content/people/<handle>.md`. When in doubt, file the issue and let a maintainer
+point you at the file.
 
 ### A coverage gap
 
