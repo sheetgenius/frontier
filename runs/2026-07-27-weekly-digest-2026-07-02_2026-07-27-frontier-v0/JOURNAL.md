@@ -809,3 +809,39 @@ Notable in this batch:
 
 The artifact_version bump to 4 on agent-flywheel is correct convention: it
 carries a dated revision footer, so the version should move with it.
+
+## Corrections ledger: the eve reversal is logged
+
+Checked whether the ledger records readings or only facts before deciding. It has
+precedent for framing corrections: the Gemini entry logs "framed as prospective"
+becoming "the consumer service was already discontinued," under kind other-fact
+with verdict "under-called -> corrected." So a reversed reading belongs.
+
+Entered the eve correction, which is the most consequential the publication has
+made. Before: "the platform side was the one whose controls you could actually
+run." After: four gates that did not bind, itemized with dates. The verdict field
+carries the part that matters, which is that evidence complicating the reading
+existed in our own record when we published it -- a comparable eve instance dated
+2026-07-01 and an approval-surface caveat flagged 2026-06-17. We did not lack the
+evidence. We drew the contrast too cleanly.
+
+## The oldest digest: closing the item as a decision, not a fix
+
+Third time this session a confident claim of mine did not survive checking, after
+the security headers and the "dead" jsonl.
+
+I have twice described the oldest digest as carrying internal "worker-native"
+framing on the public surface. It does not. The prose is clean -- a grep for
+worker-native, product framing, and pipeline vocabulary across the body returns
+nothing. The string survives only in four signal IDs, and the titles those IDs
+carry are ordinary reader-facing sentences ("Persistent goals move coding agents
+beyond single sessions").
+
+So what remains is the identifier layer, and identifiers are supposed to be
+immutable. Renaming them would break permanent URLs, require rewriting the jsonl
+and the digest's references, and buy nothing a reader would notice, because a
+reader sees the title and not the slug. The earlier scrub already did the work
+that mattered; I was reading its residue as unfinished.
+
+Decision: leave the IDs. Item closed as considered and declined rather than
+carried forward as debt. Removing it from the backlog.

@@ -6,7 +6,7 @@ description: >
   source-cited publication keeps its own receipts: when a date, version,
   channel, or claim is fixed, the fix is itself part of the record. This page
   is the audit trail of the publication correcting itself.
-last_updated: 2026-07-12
+last_updated: 2026-07-27
 ---
 
 # Corrections ledger
@@ -173,6 +173,20 @@ corrections:
     reporter: adversarial-verify
     provenance: internal/adversarial-verify
     pr: run 2026-07-12-exemplar-pass-agent-flywheel-frontier-v0
+
+  - corrected_on: 2026-07-27
+    object: digest 2026-06-24_2026-07-01-weekly (eve as the governance counterexample)
+    field: the comparative reading of platform-hosted versus self-hosted governance
+    kind: other-fact
+    before: "Where the self-hostable harnesses shipped their governance fixes to main-but-not-tagged, the platform-hosted one shipped containment to its runtime ... This window, the platform side was the one whose controls you could actually run."
+    after: "The reading overstated what shipping a control to a runtime guarantees. Across 2026-07-02..2026-07-27, four human gates inside eve did not bind: 0.21.0 guaranteed a delegation tree could never outspend its root budget and 0.27.1 fixed that declining a child let the parent retry it against a fresh quota share, fifteen days later; 0.26.1 made the developer interface show rejected tool approvals as denied instead of successful; 0.25.0 introduced the guarantee that a stale approval never authorizes an earlier call, which means it previously could; and 0.24.2 fixed approvals that left the tool unrun. Platform-hosted governance is not a substitute for testing the gate."
+    receipt: "https://github.com/vercel/eve/releases/tag/eve%400.27.1"
+    event_date: 2026-07-22
+    artifact_url: /digests/2026-06-24_2026-07-01-weekly/
+    verdict: overstated reading -> corrected (the contrast between platform and self-hosted governance was drawn too cleanly. Evidence complicating it existed in our own record when the reading was published: a comparable eve instance dated 2026-07-01 and an approval-surface caveat flagged 2026-06-17. The 2026-07-02..2026-07-27 digest carries the reversal in the body rather than a footnote, and the eve profile now opens by naming it.)
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-07-27-weekly-digest-2026-07-02_2026-07-27-frontier-v0
 ```
 
 <!--
