@@ -1138,3 +1138,46 @@ never joins them -- Gemini CLI shipped a headless-trust fix in April, and
 Antigravity, the same vendor's replacement product, shipped the same class of
 headless failure in July. That is the historical-precedent synthesis EDITORIAL
 names as the premium unit, and it is one sentence of connective tissue.
+
+## The two halves joined (artifact_version 4), and the session is done
+
+Verified the April half from three independent places before writing a word,
+because eight of my claims failed on contact tonight and this one is load-bearing:
+the original 2026-04-22 digest reports v0.41.0 as having "added ... workspace
+trust in headless mode" with a pinned changelog link; the gemini-cli profile
+carries a claim id `workspace-trust-headless-enforcement`; and the profile prose
+states, against a pinned commit, that `--non-interactive` no longer skips the
+trust prompt silently. Before that release it did.
+
+So the synthesis holds and it is now one paragraph in "This is not new," where the
+April half already lived. In April Google fixed headless mode not honoring a
+configured trust boundary in Gemini CLI. In July it fixed headless mode not
+honoring any configured policy at all in Antigravity, the closed-source
+replacement those same consumers were moved to. Same vendor, same failure mode,
+same mode of operation, one quarter apart, in the successor product.
+
+The line that earns it: whatever produced the first one was not fixed by
+replacing the product it happened in. That is the strongest available evidence
+that this is structural rather than a run of unrelated bugs, and EDITORIAL names
+historical precedent as the premium editorial unit. The piece had both halves and
+never introduced them.
+
+## Session summary
+
+Started with a publication that had shipped nothing for 25 days. Ending with:
+
+- A 25-day mega-digest published and corrected twice in the open, now at av4.
+- The X sweep built, run across 13 of 14 projects, 314 claims adjudicated, and
+  honestly described including where it fell short.
+- A people layer, a public method page, and one post-card design used everywhere.
+- All 14 profiles current, two corrections ledger entries, GA4 actually
+  collecting, and a served-headers check that proves the edge ignores our CSP.
+- Doctrine caught up to practice in METHOD, EDITORIAL, CONTRIBUTING, AGENTS, and
+  the cycle skill -- including a documented path for anyone we quote to correct
+  us or have a card removed.
+
+The session's real lesson is not any artifact. Eight times tonight a confident
+claim of mine did not survive contact with the code, and the only reason any of
+them got caught is that something checked: a build, a grep, a subagent, a cold
+read. The digest argues that a control which exists only as intention is not a
+control. That was true of my own claims all night.
