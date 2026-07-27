@@ -101,3 +101,26 @@ Note for the X lane: this thesis is exactly where social evidence earns its plac
 Practitioners hit inert controls in CI long before a changelog admits it. Look for
 posts reporting the headless-permissions failure, the maxSessionTurns truncation,
 and Gemini preview-versus-stable confusion.
+
+## The running story resolved, and it cuts against us
+
+OpenHands broke its OSS freeze. Six open-source tags between 2026-07-06 and
+2026-07-09 (1.9.0 through 1.11.0), draining the enterprise/ACP/sandbox backlog
+that sat on main across two prior windows. The gap from 1.8.0 was 25 days 22
+hours. CVE-2026-44681 (the unauthenticated authlib open redirect) shipped in
+1.9.0, so it is no longer main-only, and self-hosters have a supported tag.
+
+This publication spent three issues warning that self-hosters were stranded on a
+frozen 1.8.0 while cloud tenants got patched, and framed it as a billing boundary
+hardening into structure. It resolved. Report that plainly and prominently: a
+warning that came good is exactly the kind of thing a publication is tempted to
+bury, and burying it would be the dishonest move.
+
+It also disciplines the window's thesis. "Documented is not enforced" stays the
+argument, but the channel gap is demonstrably not permanent, so the piece must
+not imply providers are on a one-way slide away from open channels. The honest
+shape: the read-versus-run gap is the new problem; the merged-versus-released gap
+is one a provider just closed under pressure.
+
+Carry both. The counter-current is not a footnote, it is the evidence that the
+lens is a question and not a verdict.
