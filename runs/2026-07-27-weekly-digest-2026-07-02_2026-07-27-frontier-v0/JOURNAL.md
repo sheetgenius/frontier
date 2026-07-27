@@ -58,3 +58,46 @@ Two corrections to earlier claims in this session, both mine:
 
 Queued as a follow-up, not chased now: ask whether Radicchio applies `_headers`
 at all, and add a check that asserts served headers rather than file parity.
+
+## Emerging thesis candidate: documented is not enforced
+
+The Gemini CLI and Antigravity primary harvest returned a pattern sharp enough to
+be the window's argument, and it is the natural successor to the channel-split
+story the last three issues told.
+
+"Released is not merged" asks whether the fix is in the binary you run. This
+window asks a harder question: **the control surface an operator reads is not the
+control surface that executes.**
+
+Evidence so far, all receipted:
+
+- Antigravity 1.1.4 (2026-07-18): headless `-p` runs did not honor `settings.json`
+  permissions, file access, sandbox mode, auto-execution, or artifact review AT
+  ALL. Every governance control an operator configured was inert in exactly the
+  mode CI uses. That is the hard upgrade floor for unattended use.
+- Antigravity hardened and loosened the same gate in two days: 1.1.0 made
+  diff-review the default before writes, 1.1.1 let the allowlist bypass it.
+- Antigravity 1.1.7's GitHub release body truncates its own changelog item,
+  dropping the clause explaining that ineligible accounts could bypass a check the
+  interactive UI enforces. For a closed-source tool the changelog IS the evidence
+  surface, and its two official surfaces disagree with each other.
+- Gemini stable runs structurally about two weeks behind its own security merges.
+  A zero-click a2a-server RCE fix reached preview only; an ADC cleartext
+  credential fix is in neither stable nor preview. On 2026-07-08 the stable was
+  less patched than a preview published 46 minutes earlier.
+- Gemini's shipped docs at the v0.52.0 tag still describe consumer auth as live,
+  with a banner in future tense over a month after the service was discontinued.
+
+Why it matters on the Amdahl lens: when the read surface and the run surface
+disagree, human attention stops being spent on direction and starts being spent
+re-verifying that the controls you configured actually bind. That is a pure
+attention tax, and it is invisible until someone tests it.
+
+Contrary evidence to hunt before committing to this: eve is the governance-first
+counterexample and may show the opposite. Check whether any provider's documented
+posture matched its runtime exactly, and say so if it did.
+
+Note for the X lane: this thesis is exactly where social evidence earns its place.
+Practitioners hit inert controls in CI long before a changelog admits it. Look for
+posts reporting the headless-permissions failure, the maxSessionTurns truncation,
+and Gemini preview-versus-stable confusion.
