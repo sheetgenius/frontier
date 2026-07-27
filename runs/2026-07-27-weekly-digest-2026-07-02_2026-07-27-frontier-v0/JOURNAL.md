@@ -457,3 +457,81 @@ serving the first two runs." Leaving it in place and noting it. This is the
 second time this session that a confident claim of mine about the repo did not
 survive contact with the code, after the security-headers case. Both were caught
 by checking before acting, which is the argument for checking before acting.
+
+## The "conversation knew first" hypothesis mostly FAILED, and that is the finding
+
+The premise behind the X lane was that practitioners hit broken things before
+changelogs admit them. Tested against 55 adjudicated claims on codex and
+claude-code, it holds ONCE.
+
+The single case: @thsottiaux posted 2026-07-13 that the GPT-5.6 Sol context limit
+had been reverted from 372k to 272k after unintended usage drain. rust-v0.144.6,
+published 2026-07-18, "corrected their context windows to 272,000 tokens." Same
+number, same models, same direction, five days earlier, and the post explains a
+change the release note only records.
+
+Everything else fails, and the reason is structural: the tracker accounts post
+2 to 7 minutes AFTER the GitHub release they summarize. The lane buys latency,
+not foresight. On Claude Code the conversation never got ahead of the changelog
+once, because Anthropic publishes same-day and there is no public commit stream
+to run ahead of.
+
+Do not bury this and do not stretch the one case into a trend. A negative result
+honestly reported is worth more than a flattering one, and it forces the real
+question: if the conversation does not know first, what is it actually for?
+
+## What the conversation IS for, on this evidence
+
+Three things, all receipted, and they are better than precognition:
+
+1. **It is the only running summary when the vendor stops writing one.** Claude
+   Code's What's New stopped at Week 29, so the conversation became the sole
+   narrative covering v2.1.214 through v2.1.220. It filled v2.1.220's one-line
+   release note with a stdin fix lifted from the Agent SDK changelog. When the
+   official digest goes dark, the crowd writes the changelog, imperfectly.
+
+2. **It reliably misinterprets, and the misinterpretation is publishable.** Users
+   reporting since ~2026-07-19 that auto mode "still constantly asks for file-edit
+   permissions" are describing v2.1.214 NARROWING Edit(src/**) to <cwd>/src. They
+   filed a fix as a bug. The correct operator action is auditing allow rules, not
+   waiting for a patch. A publication that reads both surfaces can say that; a
+   reader watching only one cannot.
+
+3. **It is confidently wrong in ways a receipt settles.** The 2026-07-20 PSA that
+   "auto mode is mostly bypass permissions with less risk" is refuted on its
+   premise by v2.1.211, which fixed auto mode OVERRIDING a PreToolUse hook's
+   `ask` decision. Under the bypass flag the hook is not consulted and the
+   operator knows; under auto mode it was consulted and overruled, and the
+   operator did not. And a 2026-07-26 complaint that competitors "at least expose
+   a fast mode" is refuted by v2.1.219 two days earlier documenting /fast, whose
+   own note that Opus 4.7 was removed from fast mode proves the feature predates
+   the complaint.
+
+## The finding that reframes the whole issue
+
+**Zero of 20 codex social claims mention any authority change.** Not the
+rules/default.rules rewrite in rust-v0.145.0. Not the removal of "don't ask
+again." Not denial text reaching the model. Not that the entire network-authority
+wave is alpha-only.
+
+The conversation talks about models, context windows, pricing, and features. The
+changelog records authority changes without explaining them. Neither talks about
+whether the control actually binds.
+
+That is the unifying thesis for this issue, and it earns the publication's
+existence in one line: the conversation covers capability, the changelog covers
+shipping, and NOBODY is watching enforcement. Both vendors even shipped a
+security PRODUCT this window (Codex Security plugin 07-17, Claude Security plugin
+beta 07-22) while publishing zero security ADVISORIES across eight releases that
+repaired authority boundaries.
+
+Title candidates strengthen accordingly: "Nobody Is Watching the Gap",
+"The Rule You Wrote", "Capability, Shipping, Enforcement: Pick Two".
+
+## Note on a flagged subagent output
+
+The harness flagged instruction-shaped text in the codex/claude-code cross-check.
+It is benign: the string is a Claude Code CLI flag name quoted inside editorial
+analysis comparing auto mode to bypass-permissions mode. Treated as reporting,
+not as a directive. Worth remembering that any lane ingesting public text can
+carry instruction-shaped strings, and the harness caught it correctly.
