@@ -22,8 +22,8 @@ Two deliverables, both required:
 
 ## The goal, and the condition that ends it
 
-**GOAL: ship the 2026-07-02..2026-07-27 mega-digest and the X-native overhaul,
-committed and green on `research/hermes-x-insights`.**
+**GOAL: publish the 2026-07-02..2026-07-27 mega-digest and the X-native
+overhaul, live on frontier.bitter.sh.**
 
 That sentence is the stop condition. Not "make progress," not "do some research."
 The session ends when every line below is true, and not before:
@@ -39,10 +39,15 @@ The session ends when every line below is true, and not before:
       repo data with no runtime dependency on X.
 - [ ] `node site/scripts/check-integrity.mjs` clean.
 - [ ] `npm --prefix site run build` clean.
-- [ ] Everything committed and pushed to `research/hermes-x-insights`.
 - [ ] `content/digests/index.md` updated.
+- [ ] Merged to `main`, pushed, and verified live on frontier.bitter.sh.
 
-Merging to `main` is NOT in the goal. That publishes, and it needs the editor.
+Publishing is authorized and expected. The editor's standing instruction: this
+publication is primarily for our own consumption, open and public as part of the
+funnel, with low stakes on shipping. Do not hold back, do not queue a merge for
+approval, do not treat publishing as a gate. Merge and push whenever the tree is
+green. Validate before pushing (`main` auto-deploys), but validation is the only
+precondition.
 
 ## Anti-stall rules
 
