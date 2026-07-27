@@ -751,3 +751,24 @@ Both failures were recoverable and neither reached the published site, but the
 pattern is clearly unsafe. Parallel research agents are fine: they read the world
 and write to separate files. Parallel EDITING agents in one working tree are not.
 Serializing the remaining six profile refreshes.
+
+## P1 complete: one card design, used everywhere
+
+SocialReceiptCards rendered its own grid -- kind label, byline, excerpt, summary,
+why it matters, verification needed, status, tags, caveat, each as a labelled
+field. It carried the data correctly and read like a spreadsheet of somebody's
+posts. Two card designs for the same artifact was the real defect.
+
+It is now a thin wrapper around SocialPostEmbed in a new `research` mode. One
+card design across the publication: the post is the hero, the status line answers
+how far the claim was checked, and the two fields a run page owes a reader that an
+editorial embed does not (why it matters, what would settle it) sit beneath the
+post in subordinate type rather than competing with it. Tags render as quiet
+pills. Laid out as a feed at one measure, not a two-column grid: a grid of
+quotations forces the eye to choose and makes short posts look like filler.
+
+Verified on the 2026-06-24 run page: three cards render confirmed, four render
+unverified, and the tones are visually distinct at a glance while scrolling.
+
+That closes P1. The X presentation is now genuinely designed rather than bolted
+on, and the same component serves editorial embeds and research surfaces.

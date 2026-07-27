@@ -2778,3 +2778,78 @@ code {
 .people-related {
   margin: 0.45rem 0 0;
 }
+
+/* Research mode on a post card: the two questions a run page owes a reader that
+   an editorial embed does not. Kept visually subordinate to the post itself --
+   the words came first, our reading of them comes second. */
+
+.xpost-research {
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--color-line);
+  color: var(--color-muted);
+  font-size: 0.87rem;
+  line-height: 1.55;
+}
+
+.xpost-research p {
+  margin: 0.4rem 0;
+}
+
+.xpost-research-label {
+  display: block;
+  color: var(--color-faint);
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.xpost-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.7rem;
+}
+
+.xpost-tags span {
+  padding: 0.12rem 0.5rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.03em;
+}
+
+/* A feed, not a grid. Posts read in sequence at one measure; a two-column grid
+   of quotations forces the eye to choose and makes short posts look like
+   filler. */
+.social-receipt-feed {
+  display: grid;
+  gap: 0;
+  max-width: 42rem;
+  margin-top: 1.2rem;
+}
+
+.social-receipts-head {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.social-receipts-title {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.social-receipts-note {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}

@@ -6,7 +6,7 @@ owner: Paperclip
 source_contract: sources/paperclip.yml
 homepage: https://paperclip.ing/
 docs: https://docs.paperclip.ing/
-tagline: "Agent labor as governed operating state: roles, budgets, and review gates that bind."
+tagline: "Governs agent labor as operating state. Its one Critical advisory this window described a hole it had already closed 97 days earlier."
 compared_with:
   - hermes-agent
 x:
@@ -18,8 +18,8 @@ repo: https://github.com/paperclipai/paperclip
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-23
-last_full_review: 2026-06-03
+last_updated: 2026-07-27
+last_full_review: 2026-07-27
 claims:
   - id: adapter-runtime-command-spec
     finding_id: 2026-05-07-paperclip-agent-company-control-plane
@@ -142,9 +142,9 @@ posture_basis:
     - 2026-06-23-paperclip-task-watchdog-control-plane
     - 2026-06-23-paperclip-same-company-ceo-authz-centralization
 stance:
-  use_for: "Teams treating agents as governed labor -- Paperclip's own framing is now 'the open source app people use to manage AI agents for work', and the controls match: roles, issues, budgets, review gates, hire approvals, and a per-company tenant boundary as first-class objects. Operations centralizing secrets across multiple agent adapters in one vault layer. Shared/cloud-tenant pools that need per-company isolation (v2026.618.0)."
-  avoid_for: "Solo developers with a single agent: Paperclip's model assumes there are several agents to coordinate. Anyone running a shared or cloud-tenant pool below v2026.618.0 should upgrade -- earlier versions made every cloud tenant an instance admin (provision a separate non-cloud-tenant admin identity first, since the deprivileging purges stale instance-admin rows). Anyone running v2026.511.0 or earlier with SSH adapters should upgrade -- the prior version forwarded host env (including API keys) to remote targets."
-  watch_next: "Which tag carries the master-unreleased control wave (preflight budget-cap enforcement, the task watchdog, centralized CEO-agent authz), and whether Paperclip's review-gate state machine generalizes past its own workflow model."
+  use_for: "Teams that want agent work to be operating state rather than a chat session -- roles, issues, budgets, review gates, and a per-company tenant boundary as first-class objects -- and who will track the calendar tag line. v2026.722.0 is the current floor: it replaces ambient environment injection with run-bound, dual-audited secret reads, and it carries the cross-tenant and log-redaction fixes from the two tags before it."
+  avoid_for: "Solo developers with one agent -- the model assumes several to coordinate. Anyone who needs a pre-release channel to track: there is none, the npm/canary line has been dead since 2026-03-12, and preview work ships inside stable tags behind experimental settings. And do not read Paperclip's advisory feed as a measure of your own exposure: the window's one Critical describes a code path closed 97 days before disclosure, under a version range no operator can map onto their build."
+  watch_next: "Whether the open-by-default company skill policy gets inverted, given Paperclip's own April advisory about malicious skills exfiltrating user data; whether the run-bound secret-access audit trail gains a read surface rather than only two write paths; whether the new agent-writes-to-human-inbox grant becomes auditable before something is tidied away; and whether the dormant npm line is formally retired or left to rot as a distribution channel."
 ---
 
 # Paperclip

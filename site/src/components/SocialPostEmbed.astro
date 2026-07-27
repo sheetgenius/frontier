@@ -1,7 +1,14 @@
 ---
 import { sourceLabel, type SocialReceiptCard } from "../lib/frontier";
 
-const { card, caption } = Astro.props as { card: SocialReceiptCard; caption?: string };
+// `research` shows the fields a run page needs (why the post matters, what would
+// settle it, tags) and an editorial embed does not. Same card either way: the
+// research surface should look like the feed it came from, not like a table.
+const { card, caption, research = false } = Astro.props as {
+  card: SocialReceiptCard;
+  caption?: string;
+  research?: boolean;
+};
 
 // A post card carries someone's words, so the words are the hero. Everything
 // else exists to tell the reader how much weight those words can bear. Where a
@@ -98,6 +105,23 @@ const hasEvidenceNote = Boolean(card.caveats || card.dateNote || supportingUrls.
   </div>
 
   {(caption || card.title) && <figcaption class="xpost-caption">{caption ?? card.title}</figcaption>}
+
+  {research && (card.whyItMatters || card.verificationNeeded) && (
+    <div class="xpost-research">
+      {card.whyItMatters && (
+        <p><span class="xpost-research-label">Why it matters</span>{card.whyItMatters}</p>
+      )}
+      {card.verificationNeeded && (
+        <p><span class="xpost-research-label">What would settle it</span>{card.verificationNeeded}</p>
+      )}
+    </div>
+  )}
+
+  {research && card.tags?.length > 0 && (
+    <div class="xpost-tags">
+      {card.tags.map((tag) => <span>{tag}</span>)}
+    </div>
+  )}
 
   {hasEvidenceNote && (
     <details class="xpost-evidence">
