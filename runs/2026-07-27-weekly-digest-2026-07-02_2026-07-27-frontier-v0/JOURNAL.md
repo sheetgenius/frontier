@@ -845,3 +845,29 @@ that mattered; I was reading its residue as unfinished.
 
 Decision: leave the IDs. Item closed as considered and declined rather than
 carried forward as debt. Removing it from the backlog.
+
+## I published a broken build, and the fix is procedural not just textual
+
+The eve ledger entry's verdict text contained "published: a comparable eve
+instance," and an unquoted YAML scalar containing ": " parses as a nested
+mapping. The corrections page failed to render.
+
+The content error is trivial. The process error is not: I wrote the build and the
+push into one chained command without gating the push on the build's exit code,
+so a build that exited 1 was followed immediately by a push to main, which
+auto-deploys. The corrections page was briefly unrendered on the live site.
+Caught it in the same turn and fixed forward in a few minutes, since the content
+was right and only the quoting was wrong.
+
+Worth naming precisely because of what this publication just spent four thousand
+words on. I had a control -- "validate before pushing" -- written into the
+charter, the loop prompt, and AGENTS.md. It did not bind, because nothing
+enforced it: the shell ran the next command regardless. A rule that lives in a
+document and not in the mechanism is exactly the failure mode of the issue I
+published tonight, reproduced by its author within the hour.
+
+The fix is the one the digest recommends. Not a firmer intention: a structure
+where the wrong thing cannot happen. From here, every publish is gated on the
+build's exit status in the same command (`if [ $BUILD -eq 0 ]; then ... else do
+not push`), which is how the corrected version above was published. Do not write
+`build; push` as a sequence again.
