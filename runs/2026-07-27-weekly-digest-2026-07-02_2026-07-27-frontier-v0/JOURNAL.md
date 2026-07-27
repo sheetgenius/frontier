@@ -1033,3 +1033,46 @@ procedure. Each carries a pointer stating that if it contradicts the public page
 the public page wins and the doc is the thing that needs fixing. Duplicating the
 rule into three files would have guaranteed they drift, which is the same class
 of failure as everything else this window documented.
+
+## Live verification, and declining the second person page
+
+Verified the live site end to end rather than trusting the pushes: homepage,
+the new digest, /people/, /people/doodlestein/, /conversation-layer/,
+/corrections/, a refreshed profile, and /llms.txt all return 200 with the
+expected content. The digest carries its four post cards, GA is present, the
+person page renders all five prose sections and states its governing rule, and
+the conversation-layer page carries both the rule and the correction path. One
+grep miss was mine, not the site's: markdown bold splits a phrase across tags.
+
+**Declining a second person page for @Teknium, and the reasoning is the point.**
+
+The volume looks compelling: 41 mentions across the Hermes social file, more than
+doodlestein's 13. But the person bar I wrote into EDITORIAL.md an hour ago asks
+whether a person's public work is shaping how operators build, and whether the
+receipts support a page rather than a paragraph.
+
+Reading the claims, they are maintainer communications: Kimi support is welcome,
+Hermes is supported in Raft 1.0, the desktop app has fixes, subagent visibility
+improved, and one piece of commercial positioning about Nous cloud pricing and
+enterprise customers. That is a maintainer announcing his product, competently.
+It belongs on the Hermes profile, where it already is.
+
+The contrast with doodlestein is the whole test. He published thirteen posts in a
+window containing zero releases: a method that exists independently of any
+artifact, including an orchestration topology, an economics argument, and the
+"advisory" concession. His ideas are the artifact. Teknium's posts are about a
+product we already profile.
+
+So the receipts support a paragraph, not a page, and the bar says a thin page is
+worse than none because it implies a significance the evidence does not carry.
+Declined. Writing a standard and then exempting myself from it the same night
+would have made the standard decorative, which is the exact failure this window
+documented.
+
+## The session has reached a natural stopping point
+
+The backlog is genuinely clear. What remains is one item worth doing well: the
+digest was written in a single pass and patched twice by its own author, and a
+cold read by someone who has not been staring at it is the only way to find what
+that author cannot see. Dispatching a read-only reviewer for that rather than
+re-reading my own prose, which is the least reliable review available.
