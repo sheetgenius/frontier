@@ -404,3 +404,35 @@ well suited to answering it.
 Sleep prevention active (caffeinate, AC power) so the loop survives the night.
 The loop dies if the terminal session closes; nothing I can do about that from
 inside.
+
+## X sweep complete at 14/14; post cards rebuilt
+
+All fourteen sources swept. Total social claims across the window: see
+social/*.raw.md. eve and flue relaunched successfully after wave 2.
+
+P1 design pass, first iteration. Rebuilt SocialPostEmbed.astro from a research
+artifact into an actual post card. The design idea that makes it Frontier rather
+than a screenshot of X: **where a real post shows likes and reposts, this shows
+how far the claim has been verified.** The form is borrowed; the social proof is
+replaced by evidentiary proof, which is the only kind this publication trades in.
+
+Specifics: avatar monogram derived from the handle so no remote image is ever
+fetched, name and @handle in the identity block, the X glyph as an inline SVG,
+the post text as the visual hero at 1.09-1.14rem, and a status row across a
+hairline rule carrying one of four tones -- confirmed (green), refuted (red),
+open (bitter gold), context (muted). Confirmed and refuted also take a 2px left
+border so the strongest verdicts are legible at a glance while scrolling.
+Light and dark are both handled through the existing token system, with the dark
+variants of the status colors lightened for contrast on the night ground.
+
+Static by construction: no embed script, no remote avatar, no network call at
+render time. It cannot leak a request to X and cannot violate the CSP.
+
+Verified rendering in the built output on the 2026-06-24 X-social run page.
+
+## Agent failure, routed around
+
+The paperclip/agent-zero/heypi/agent-flywheel cross-check agent died mid-task on
+an expired login before writing any output. Per anti-stall rule 2 this is logged
+and relaunched rather than treated as a blocker. The other three cross-check
+agents are unaffected and still running.

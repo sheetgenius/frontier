@@ -2518,3 +2518,194 @@ code {
   color: var(--color-bitter);
   border-bottom-color: var(--color-bitter);
 }
+
+/* ---------------------------------------------------------------------------
+   X post cards.
+
+   The form is borrowed from a social post because that is what the artifact is:
+   somebody said something in public. The chrome is Frontier's. Where a real
+   post shows likes and reposts, this shows how far the claim has been verified,
+   which is the only kind of social proof this publication trades in.
+
+   Static by construction: no embed script, no remote avatar, no network call at
+   render time. The monogram is derived from the handle, so the card cannot leak
+   a request to X and cannot break the CSP.
+   --------------------------------------------------------------------------- */
+
+.xpost {
+  --xpost-accent: var(--color-muted);
+  margin: 2.1rem 0;
+  padding: 1.15rem 1.25rem 1.05rem;
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--color-ground) 55%, white);
+}
+
+:root.dark .xpost {
+  background: color-mix(in srgb, var(--color-ground) 78%, white);
+  border-color: color-mix(in srgb, var(--color-line) 88%, white);
+}
+
+.xpost-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.xpost-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-bitter) 16%, transparent);
+  color: var(--color-bitter);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.xpost-identity {
+  display: grid;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.xpost-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.xpost-handle {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.xpost-glyph {
+  margin-left: auto;
+  align-self: flex-start;
+  color: var(--color-faint);
+  line-height: 0;
+}
+
+.xpost-body {
+  margin: 0.85rem 0 0;
+  font-size: 1.09rem;
+  line-height: 1.52;
+  letter-spacing: -0.003em;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 760px) {
+  .xpost-body {
+    font-size: 1.14rem;
+  }
+}
+
+.xpost-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.7rem;
+  margin-top: 0.9rem;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+}
+
+.xpost-meta > * + *::before {
+  content: "/";
+  margin-right: 0.7rem;
+  color: var(--color-faint);
+}
+
+.xpost-link {
+  color: var(--color-bitter);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-bitter) 40%, transparent);
+}
+
+.xpost-link:hover {
+  border-bottom-color: var(--color-bitter);
+}
+
+/* The status row is the editorial payload: it replaces engagement metrics with
+   the reader's actual question, which is whether the post can be believed. */
+.xpost-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--color-line);
+  color: var(--xpost-accent);
+  font-family: var(--font-mono);
+  font-size: 0.71rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.xpost-status-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+.xpost-confirmed { --xpost-accent: #4b7a3f; }
+.xpost-refuted   { --xpost-accent: #9c3b2e; }
+.xpost-open      { --xpost-accent: var(--color-bitter); }
+.xpost-context   { --xpost-accent: var(--color-muted); }
+
+:root.dark .xpost-confirmed { --xpost-accent: #8fbe7e; }
+:root.dark .xpost-refuted   { --xpost-accent: #e0806f; }
+
+.xpost-confirmed,
+.xpost-refuted {
+  border-left: 2px solid var(--xpost-accent);
+}
+
+.xpost-caption {
+  margin-top: 0.75rem;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.xpost-evidence {
+  margin-top: 0.6rem;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.xpost-evidence summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.71rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.xpost-evidence > div {
+  margin-top: 0.5rem;
+  padding-left: 0.8rem;
+  border-left: 1px solid var(--color-line);
+}
+
+.xpost-evidence p {
+  margin: 0.3rem 0;
+}
+
+.xpost-evidence a {
+  color: var(--color-bitter);
+}

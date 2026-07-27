@@ -3,36 +3,107 @@ import { sourceLabel, type SocialReceiptCard } from "../lib/frontier";
 
 const { card, caption } = Astro.props as { card: SocialReceiptCard; caption?: string };
 
-const kindLabel = card.kind.replace(/_/g, " ");
-const primaryUrl = card.sourceUrls[0];
-const supportingUrls = card.sourceUrls.slice(1);
-const sourceNames = card.sourceIds.map((sourceId) => sourceLabel(sourceId)).join(" / ");
-const authors = card.authors.join(" / ");
-const evidenceLabel = card.status === "verified_secondary"
-  ? "cross-checked"
-  : card.status === "needs_primary_crosscheck"
-    ? "needs source check"
-    : card.status.replace(/_/g, " ");
+// A post card carries someone's words, so the words are the hero. Everything
+// else exists to tell the reader how much weight those words can bear. Where a
+// real post shows engagement counts, this shows evidentiary status: the form is
+// borrowed from X, the social proof is replaced by proof.
+const STATUS_COPY: Record<string, { label: string; tone: string; note: string }> = {
+  verified_secondary: {
+    label: "Confirmed by a primary source",
+    tone: "confirmed",
+    note: "A changelog, commit, or release supports the specific claim in this post.",
+  },
+  refuted: {
+    label: "Refuted by a primary source",
+    tone: "refuted",
+    note: "The primary record contradicts this post.",
+  },
+  needs_primary_crosscheck: {
+    label: "Unverified against the source",
+    tone: "open",
+    note: "Reported as something that was said, not as something established.",
+  },
+  single_source_unconfirmed: {
+    label: "Single source, unconfirmed",
+    tone: "open",
+    note: "One account, no independent support. Treat it as a lead.",
+  },
+  social_context: {
+    label: "Conversation, not evidence",
+    tone: "context",
+    note: "Included because the discussion itself is the point.",
+  },
+  candidate: {
+    label: "Unverified against the source",
+    tone: "open",
+    note: "Reported as something that was said, not as something established.",
+  },
+  superseded: {
+    label: "Superseded",
+    tone: "context",
+    note: "Later evidence has overtaken this post.",
+  },
+};
+
+const authors = card.authors ?? [];
+const primaryAuthor = authors[0] ?? "";
+// Handles arrive as "@name" or "name"; render both forms from the one value.
+const handle = primaryAuthor.replace(/^@/, "").trim();
+const displayName = handle
+  .replace(/[_-]+/g, " ")
+  .replace(/\b\w/g, (c) => c.toUpperCase())
+  .trim();
+const monogram = (handle.match(/[A-Za-z0-9]/)?.[0] ?? "?").toUpperCase();
+
+const status = STATUS_COPY[card.status] ?? {
+  label: card.status.replace(/_/g, " "),
+  tone: "open",
+  note: "",
+};
+const body = card.displayText ?? card.excerpt ?? card.summary ?? "";
+const primaryUrl = card.sourceUrls?.[0];
+const supportingUrls = (card.sourceUrls ?? []).slice(1);
+const sourceNames = (card.sourceIds ?? []).map((id) => sourceLabel(id)).join(", ");
+const hasEvidenceNote = Boolean(card.caveats || card.dateNote || supportingUrls.length || status.note);
 ---
 
-<figure class={`editorial-social-embed editorial-social-embed-${card.kind}`}>
-  <div class="editorial-social-shell">
-    <div class="editorial-social-topline">
-      <span>{authors || sourceNames || "Public post"}</span>
-      <span>{card.date}</span>
-    </div>
-    <div class="editorial-social-body">
-      <p class="editorial-social-label">{kindLabel}</p>
-      <p class="editorial-social-text">{card.displayText ?? card.excerpt ?? card.summary}</p>
-    </div>
-    <figcaption>
-      <span>{caption ?? card.title}</span>
-      <a href={primaryUrl}>Open source post</a>
-    </figcaption>
-    <details class="editorial-social-evidence">
-      <summary>Evidence note</summary>
+<figure class={`xpost xpost-${status.tone}`}>
+  <div class="xpost-head">
+    <span class="xpost-avatar" aria-hidden="true">{monogram}</span>
+    <span class="xpost-identity">
+      <span class="xpost-name">{displayName || "Public post"}</span>
+      {handle && <span class="xpost-handle">@{handle}</span>}
+    </span>
+    <span class="xpost-glyph" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="15" height="15" focusable="false">
+        <path
+          fill="currentColor"
+          d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+        ></path>
+      </svg>
+    </span>
+  </div>
+
+  {body && <p class="xpost-body">{body}</p>}
+
+  <div class="xpost-meta">
+    <time datetime={card.date}>{card.date}</time>
+    {sourceNames && <span class="xpost-topic">{sourceNames}</span>}
+    {primaryUrl && <a class="xpost-link" href={primaryUrl}>View on X</a>}
+  </div>
+
+  <div class="xpost-status">
+    <span class="xpost-status-dot" aria-hidden="true"></span>
+    <span class="xpost-status-label">{status.label}</span>
+  </div>
+
+  {(caption || card.title) && <figcaption class="xpost-caption">{caption ?? card.title}</figcaption>}
+
+  {hasEvidenceNote && (
+    <details class="xpost-evidence">
+      <summary>How we handled this</summary>
       <div>
-        <p><strong>{evidenceLabel}</strong>{card.confidence ? `: ${card.confidence}` : ""}</p>
+        {status.note && <p>{status.note}</p>}
         {card.caveats && <p>{card.caveats}</p>}
         {card.dateNote && <p>{card.dateNote}</p>}
         {supportingUrls.length > 0 && (
@@ -48,5 +119,5 @@ const evidenceLabel = card.status === "verified_secondary"
         )}
       </div>
     </details>
-  </div>
+  )}
 </figure>
