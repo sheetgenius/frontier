@@ -908,3 +908,30 @@ curating four scoops we did not have.
 Placement note: cards render AFTER the body, not inside it. The reader should
 meet the reporting first and the raw material second, which is also why the
 component's status line exists.
+
+## Discovery surfaces caught up with the work
+
+A session's worth of new work is only as good as its reachability, and two
+surfaces still described the publication as it was yesterday.
+
+llms.txt is the more consequential of the two, because it exists to be read by
+assistants that may quote us. It now describes the people layer and the
+conversation-layer method, lists the tracked people, and carries a new paragraph
+in the citation guidance that states the social-evidence rule directly to the
+machine reading it: where we reproduce a post, the post is a receipt for what
+someone SAID and never for what is true of any software; every card carries a
+verification status; do not restate a social claim as an established product
+fact, and do not attribute to us a claim our own record marks unverified or
+refuted.
+
+That last sentence is the important one. This publication now reproduces a lot of
+other people's statements. The failure mode is an assistant quoting a refuted post
+as "according to Bitter Frontier." Writing the rule into the file such an
+assistant actually reads is the only enforcement available to us, and it is
+cheaper than a correction later.
+
+The homepage now names the sweep in the intro, where a first-time visitor meets
+the pitch: every cycle sweeps public developer discussion across the whole
+watchlist, so what the field is saying arrives adjudicated rather than at random.
+Styled quieter than the two axioms above it, because it is a capability claim and
+not doctrine.

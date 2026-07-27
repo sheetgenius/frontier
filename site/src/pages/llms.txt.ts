@@ -5,7 +5,7 @@ import {
   formatDate,
   listAcceptedSignals,
   listDigests,
-  listProfiles,
+  listPeople, listProfiles,
   listSources,
   sourceLabel,
 } from "../lib/frontier";
@@ -14,6 +14,7 @@ import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../lib/site";
 export const GET: APIRoute = () => {
   const digests = listDigests();
   const profiles = listProfiles();
+  const people = listPeople();
   const signals = listAcceptedSignals();
   const sources = listSources();
 
@@ -41,6 +42,8 @@ export const GET: APIRoute = () => {
   lines.push("- **Sections** are the three durable editorial lanes - see below.");
   lines.push("- **Profiles** are dated project reads, not claims of evergreen state. Each has an Operator Stance band: use it for / avoid it for / watch next.");
   lines.push("- **Findings** are source-anchored observations under run artifacts; profile claims reference findings by ID.");
+  lines.push("- **People** are tracked at /people/<handle>/ under one governing rule: a post is a receipt for what a person SAID on a date, never for what is true of any software. Statements are never promoted into product facts, and conduct claims are not published.");
+  lines.push(`- **The conversation layer** (${SITE_URL}/conversation-layer/) documents how public developer discussion is swept and adjudicated, including the finding that it does NOT run ahead of changelogs.`);
   lines.push("- **Runs** (Evidence trail) are full research-cycle artifacts: sources read, findings produced, signals accepted.");
   lines.push(`- **Corrections** are public at ${SITE_URL}/corrections/; withdrawn signal URLs remain available as correction records.`);
   lines.push("");
@@ -100,6 +103,18 @@ export const GET: APIRoute = () => {
   }
   lines.push("");
 
+  if (people.length > 0) {
+    lines.push("## People");
+    lines.push("");
+    lines.push("Receipts for what these people said, on the dates given. Never receipts for what is true of any software.");
+    lines.push("");
+    for (const person of people) {
+      const tagline = String(person.data.tagline ?? "").replace(/<[^>]+>/g, "");
+      lines.push(`- [${person.data.name}](${SITE_URL}/people/${person.slug}/)${tagline ? ` - ${tagline}` : ""}`);
+    }
+    lines.push("");
+  }
+
   lines.push("## Recent signals");
   lines.push("");
   for (const signal of signals.slice(0, 20)) {
@@ -123,6 +138,8 @@ export const GET: APIRoute = () => {
   lines.push("## Citation guidance");
   lines.push("");
   lines.push("Cite signals by their stable URL (`/signals/<id>/`) and date. Digests advance declared publication windows. Profiles are dated operator postures and do not imply freshness beyond their displayed date. Evidence floors and confidence levels are explicit in the frontmatter and on the rendered pages.");
+  lines.push("");
+  lines.push("Social evidence carries a harder rule, and quoting this publication accurately requires honoring it: where we reproduce a post, the post is a receipt for what someone SAID, never for what is true of any software. Every rendered post card carries a verification status. Do not restate a social claim as an established product fact, and do not attribute to us a claim our own record marks unverified or refuted.");
 
   return new Response(lines.join("\n") + "\n", {
     headers: { "content-type": "text/plain; charset=utf-8" },
