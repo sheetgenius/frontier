@@ -20,6 +20,53 @@ Two deliverables, both required:
 2. **The X-native overhaul.** The conversation layer becomes a first-class part
    of the publication, designed properly, not bolted on.
 
+## The goal, and the condition that ends it
+
+**GOAL: ship the 2026-07-02..2026-07-27 mega-digest and the X-native overhaul,
+committed and green on `research/hermes-x-insights`.**
+
+That sentence is the stop condition. Not "make progress," not "do some research."
+The session ends when every line below is true, and not before:
+
+- [ ] `content/digests/2026-07-02_2026-07-27-*.md` exists, with an operator brief,
+      one cross-provider argument, and a closing verdict that resolves its title.
+- [ ] Every claim in it carries a primary-source receipt on the claim-bearing words.
+- [ ] Every social claim carries a post URL, an ISO date, and a resolved
+      `crosscheck_status`. No product or version claim rides on a post alone.
+- [ ] Signals are curated and rarer than findings.
+- [ ] The X-native presentation is designed and rendering: post-shaped cards,
+      correct light and dark treatment, readable at every width, self-hosted from
+      repo data with no runtime dependency on X.
+- [ ] `node site/scripts/check-integrity.mjs` clean.
+- [ ] `npm --prefix site run build` clean.
+- [ ] Everything committed and pushed to `research/hermes-x-insights`.
+- [ ] `content/digests/index.md` updated.
+
+Merging to `main` is NOT in the goal. That publishes, and it needs the editor.
+
+## Anti-stall rules
+
+The failure mode of a long autonomous session is not crashing. It is quietly
+deciding it is finished when it is not. Guard against that:
+
+1. **Never end a turn in an undecided state.** Either the stop condition above is
+   fully met, or the loop is re-armed. There is no third option.
+2. **Route around failures, do not halt on them.** A refused API, a dead agent, a
+   403 from the Grok lane, a source that will not yield: record the gap in
+   `JOURNAL.md`, mark it degraded, and move to the next incomplete step. A missing
+   source is a line in the digest's uncertainty section, not a reason to stop.
+3. **A blocked step never blocks the session.** If something genuinely needs the
+   editor, do every unblocked thing first and leave the decision queued in
+   `JOURNAL.md` with the options laid out. Idling while waiting is the one
+   unacceptable outcome.
+4. **Partial beats pending.** Prefer a committed draft to an uncommitted perfect
+   one. Every turn should leave the tree green and the work durable.
+5. **Re-check the goal, not the vibe.** On re-entry, walk the checklist above
+   literally. "Feels close" is not a completion criterion.
+6. **Do not expand the goal.** New ideas go to `JOURNAL.md` as follow-ups. The
+   session ships this digest and this overhaul. Scope growth is another way to
+   never finish.
+
 ## What good looks like (the editor's own words)
 
 > I get a lot of my alpha from X, but it is a crapshoot. I do not search for it,

@@ -14,3 +14,17 @@ loses nothing.
 - Hermes/Grok lane validated live: grok-4.5 over the X subscription, preflight
   green, one real harvest returned 21 well-formed leads.
 - Launching wave 1 of the X sweep (tier-1 sources) in background.
+
+## Context strategy for the long run
+
+The `/loop` prompt is the one artifact that arrives uncompacted on every
+re-entry, so it carries the full operating brief rather than a pointer to it:
+goal and stop condition, the doctrine, the editor's definition of good, the
+baseline versions the window advances from, and the hard-won operational facts
+(hermes invocation, the bash 3.2 empty-array trap, the three CSP files that must
+stay identical, UTC run-dir naming). CHARTER.md remains the authoritative long
+form on disk; the prompt is the anti-drift copy that survives compaction.
+
+Goal primitive set: the session runs against a named stop condition (digest +
+X-native overhaul shipped green on the branch) with explicit anti-stall rules,
+rather than an open-ended "make progress."
