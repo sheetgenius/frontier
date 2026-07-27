@@ -183,7 +183,7 @@ corrections:
     receipt: "https://github.com/vercel/eve/releases/tag/eve%400.27.1"
     event_date: 2026-07-22
     artifact_url: /digests/2026-06-24_2026-07-01-weekly/
-    verdict: overstated reading -> corrected (the contrast between platform and self-hosted governance was drawn too cleanly. Evidence complicating it existed in our own record when the reading was published: a comparable eve instance dated 2026-07-01 and an approval-surface caveat flagged 2026-06-17. The 2026-07-02..2026-07-27 digest carries the reversal in the body rather than a footnote, and the eve profile now opens by naming it.)
+    verdict: "overstated reading -> corrected (the contrast between platform and self-hosted governance was drawn too cleanly. Evidence complicating it existed in our own record when the reading was published: a comparable eve instance dated 2026-07-01 and an approval-surface caveat flagged 2026-06-17. The 2026-07-02..2026-07-27 digest carries the reversal in the body rather than a footnote, and the eve profile now opens by naming it.)"
     reporter: adversarial-verify
     provenance: internal/adversarial-verify
     pr: run 2026-07-27-weekly-digest-2026-07-02_2026-07-27-frontier-v0
