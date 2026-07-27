@@ -6,7 +6,7 @@ owner: Ronan Berder (hunvreus)
 source_contract: sources/heypi.yml
 homepage: https://heypi.dev/
 docs: https://heypi.dev/docs/
-tagline: "The part of an agent that says no, packaged and sold separately."
+tagline: "The strongest fail-closed approval contract in the field, wrapped around an approver identity check that is only a startup warning."
 compared_with:
   - pi-coding-agent
   - openclaw
@@ -15,8 +15,8 @@ repo: https://github.com/hunvreus/heypi
 surface_class: open_source_commits
 evidence_floor: official_docs
 status: active_watch
-last_updated: 2026-06-24
-last_full_review: 2026-06-24
+last_updated: 2026-07-27
+last_full_review: 2026-07-27
 claims:
   - id: governance-shell-built-on-pi
     finding_id: 2026-06-24-heypi-governance-shell-on-pi
@@ -118,273 +118,302 @@ posture_basis:
     - 2026-06-24-heypi-sandbox-runtimes
     - 2026-06-24-heypi-durability-disclaimer
 stance:
-  use_for: "Teams that want one shared chat-ops agent in Slack/Discord/Telegram with a code-owned, self-hosted footprint, and who will wire their own per-tool approvals and operate the admin panel to get the reviewable record."
-  avoid_for: "Operators who expect approvals, an audit trail, and isolation to be on by default; anyone who needs crash-replay durability from the framework; production deployments unwilling to track a beta line or pin a stable 0.1.x tag."
-  watch_next: "Whether 0.2.0 leaves beta with a stable support contract; whether the audit trail becomes a first-class, default-on, tamper-evident record rather than trace events in a default-off panel; whether approvals ever ship as a default posture rather than a primitive; and whether the Pi dependency pin drifts."
+  use_for: "Teams that want one shared chat-ops agent in Slack, Discord, or Telegram on a host they own, and who will set `admins` and `approvers` explicitly and opt each consequential tool into an approval policy. The enforcement half of that contract is the strongest on this watchlist: approvals run at the Pi tool-call boundary, the audit write is a precondition for execution, and rejection, timeout, missing adapter UI, and process shutdown all fail closed."
+  avoid_for: "Anyone on the 0.2.x line expecting an upgrade -- 0.3.0-beta.0 removed the previous runtime, config format, persistence, CLI, admin app, and the migration path itself, so every existing deployment is a rebuild. Anyone treating a `-beta.N` git tag as a supported stable line: there is no stable 0.3.0 and no GitHub Releases page at all. And anyone who bound the admin surface to a non-loopback interface before 2026-07-21, which was serving unauthenticated with no advisory."
+  watch_next: "Whether approver identity becomes enforced rather than warned -- omitting both `admins` and `approvers` still degrades the gate to anyone who can reach the approval UI; whether the 0.3.0 line reaches stable with a support and upgrade contract; whether a security fix ever gets an advisory rather than one bullet inside a rewrite changelog; and whether the clean Pi-delegation split survives Pi's own SDK churn, which broke twice in nine days this window."
 ---
 
 # heypi
 
 ## Operator Read
 
-heypi is the part of an agent that says *no* -- packaged and sold separately. It
-is a TypeScript framework that takes a minimal coding harness and wraps it in the
-machinery a team needs before letting an agent touch a shared channel: approvals,
-an audit record, sandboxed tools, encrypted secret handoff, scoped memory, and an
-admin panel. The harness it wraps is [Pi](https://pi.dev/) -- heypi pins
-[`@earendil-works/pi-coding-agent`](https://raw.githubusercontent.com/hunvreus/heypi/0.2.0-beta.0/packages/heypi/package.json)
-as a hard dependency -- and that pairing is the whole thesis. Pi deliberately
-refuses to bake governance into its core and tells you to *build your own
-confirmation flow*. heypi is that flow, productized: the [governed chat-ops
-layer](https://heypi.dev/docs/) above a harness that declines to govern.
+heypi is the part of an agent that says *no*, packaged and sold separately. Our
+baseline expected it to be holding at its 0.2.0 beta. It did not hold. Across the
+2026-07-02 to 2026-07-27 window heypi shipped 105 commits on `main`, a wholesale
+Pi-native rewrite, and a new
+[0.3.0 beta line](https://github.com/hunvreus/heypi/tags) tagged
+`0.3.0-beta.0`, `.1`, and `.2` on 2026-07-21 and 2026-07-22.
 
-That is a genuinely useful position, and the project is honest about its edges in
-a way the frontier mostly is not. But the operator read has to separate the
-landing page from the docs, because they do not say the same thing. The landing
-page promises *a multiplayer chat agent for your team* with *approvals, an audit
-trail, and sandboxed tools*. The docs describe a kit of governance primitives with
-conservative-but-low-capability defaults, where the headline controls are things
-you assemble rather than things that are on. The gap is not dishonesty. It is the
-difference between what a framework *can* enforce and what it enforces *out of the
-box* -- and for a tool whose entire pitch is governance, that difference is the
-product.
+The rewrite draws an explicit authority line, and it is the clearest statement of
+purpose the project has made. From the
+[tagged CHANGELOG](https://github.com/hunvreus/heypi/blob/436da22ceab0bc4e2db133e8626649b4bf76286d/CHANGELOG.md):
+Pi now owns model execution, transcripts, compaction, retries, tools, extensions,
+and session state; heypi owns chat transport, policy, resource staging, and
+coordination. heypi has stopped being a harness and become a pure policy shell
+over a harness that
+[deliberately refuses to govern](/profiles/pi-coding-agent/). That makes it the
+cleanest available test of whether a policy layer can bind an agent it does not
+run.
 
-## What heypi Actually Ships On Top Of Pi
+On the enforcement question the answer this window is: yes, and better than
+anyone else on the watchlist. On the identity question the answer is: not yet,
+and the gap is the finding.
 
-The substrate is the story. Pi gives heypi the agent loop and the tool contract;
-heypi's own packages add the operational shell around it. The dependency is
-explicit and pinned --
-[`@earendil-works/pi-coding-agent: ^0.79.6`](https://raw.githubusercontent.com/hunvreus/heypi/0.2.0-beta.0/packages/heypi/package.json)
--- and the sandbox is a second earendil-works package,
-[`@earendil-works/gondolin`](https://raw.githubusercontent.com/hunvreus/heypi/0.2.0-beta.0/packages/heypi-runtime-gondolin/package.json),
-a warm QEMU virtual machine per runtime scope. An agent is a folder:
-[`instructions.md`](https://heypi.dev/docs/configuration/agent) for identity and
-standing rules, `tools/` for trusted TypeScript tools, `skills/` for bundled Pi
-skills, `jobs/` for scheduled work, and `extensions/` for explicit Pi extensions.
-State -- sessions, approvals, trace events -- lives in a local
-[SQLite store](https://heypi.dev/docs/). There is no configuration dashboard -- the
-app is code you own and deploy, and the admin panel that does exist is for
-inspection, not setup.
+> **Current release**: `0.3.0-beta.2` (git tagger date 2026-07-22), on npm as
+> `@hunvreus/heypi@0.3.0-beta.2`. There are still **no GitHub Releases** -- the
+> releases endpoint returns nothing -- so the annotated git tag is the ship
+> signal, and npm agrees with it. There is no stable 0.3.0. Work after
+> `0.3.0-beta.2` is unreleased; the CHANGELOG's `[Unreleased]` section was empty
+> at the tag.
 
-This matters because it inverts Pi's refusal without hiding it. The author said it
-plainly when introducing the project: *it's built on Pi, so you can use Pi
-extensions (ish)*. The "(ish)" is the honest part, and the maintenance risk worth
-tracking -- heypi rides Pi's fast release churn, and a Pi breaking change can
-surface as a heypi break.
+## The enforcement contract, and the hole in it
 
-*Findings: 2026-06-24-heypi-governance-shell-on-pi,
-2026-06-24-heypi-sandbox-runtimes.*
+Take the good half first, because it is genuinely rare.
 
-## The Approval That Isn't On Yet
+The
+[tagged approvals doc](https://github.com/hunvreus/heypi/blob/436da22ceab0bc4e2db133e8626649b4bf76286d/packages/heypi/docs/configuration/approvals.md)
+states that heypi records `approval_requested` before posting the approval UI and
+`approval_resolved` before continuing the tool, and that **if either canonical
+write fails, the call is blocked**. Rejection, timeout, missing adapter UI, and
+process shutdown all fail closed. Policies are first-class:
+`approval.never()`, `approval.always(reason)`, `approval.once(reason)`,
+`approval.when(predicate, reason)`, and `approval.command(config)`, which
+classifies shell commands with `allow`, `approve`, and `block` patterns. All of
+it runs at the Pi tool-call boundary.
 
-heypi's headline feature is approvals, and the single most important sentence in
-its documentation is the one that walks the headline back:
-[*approval does not make every tool call require approval. Tool confirmation does
-that.*](https://heypi.dev/docs/configuration/approvals) Out of the box there is no
-global approval posture. The one automatic gate is the bash runtime's
-[`approval.command()`](https://heypi.dev/docs/configuration/approvals) classifier,
-which blocks destructive commands, pauses for approval on risky ones, and allows the
-low-risk rest. Every other tool runs ungated until the operator wires an `approval` policy
-or a custom-tool `confirm` function by hand.
+Read what that buys. You cannot end up with an executed call that has no
+corresponding approval record, because the record is the precondition, not a
+side effect. Across a window in which this publication documented gate after
+gate that read like a boundary and was not one, heypi wrote down the property
+that makes an audit trail worth having and enforced it in the direction that
+costs the vendor something: failure blocks work rather than letting it through.
 
-This is not a bug, and it is not hidden -- it sits in the docs in the second
-paragraph. But it means an operator who reaches for heypi *because* of approvals is
-buying a kit, not a posture. The human-in-the-loop that a Show HN commenter rightly
-called [the key feature](https://news.ycombinator.com/item?id=48327336) -- *most
-agent frameworks forget the human-in-the-loop part, which is critical for anything
-with real side-effects* -- exists as a first-class, documented primitive. It does
-not exist as a default. Before exposing a heypi bot to a channel, enumerate the
-tools that must gate on a named approver and wire each one. The framework makes
-that easy. It does not make it automatic.
+Now the hole, from the same document. Approvals are **opt-in per tool** --
+"configuring approvers alone does not make tools require approval." And if
+`admins` and `approvers` are both omitted, **any actor who can reach the approval
+UI may respond**, with a startup warning as the only guardrail. The CHANGELOG's
+own Security section files that under "warned on," alongside unrestricted host
+execution, rather than under anything enforced.
 
-*Findings: 2026-06-24-heypi-approvals-opt-in-not-default,
-2026-06-24-heypi-admin-panel-and-audit-default-off.*
+So the enforcement half is a property of the tool and the identity half is a
+property of your config. In a multiplayer chat agent that distinction is not
+academic: omit both lists and every member of the channel is an approver, which
+means the fail-closed machinery faithfully records that somebody approved and
+tells you nothing about whether that somebody was allowed to. Set `admins` and
+`approvers` explicitly. Then enumerate the tools that must gate and opt each one
+in. The framework makes both easy and neither automatic.
 
-## Where The Conservatism Is Real
+*Findings: `2026-06-24-heypi-approvals-opt-in-not-default`,
+`2026-06-24-heypi-admin-panel-and-audit-default-off`.*
 
-The defaults that *are* safe are the quieter ones, and they are well chosen. The
-default runtime,
-[`just-bash`](https://heypi.dev/docs/configuration/runtime), is an in-process bash
-interpreter over a virtual filesystem with the network off, so the easy path is
-also the contained one. Docker and the Gondolin VM are there when a deployment
-needs a real boundary. The host runtimes that run against the actual machine
-(`host-bash`, `guarded-bash`) are reachable, but they
-[announce themselves](https://heypi.dev/docs/configuration/runtime): *for shared or
-team-facing bots, prefer just-bash, Docker, or Gondolin.* That is the right
-default and the right warning. But a warning is not a boundary, and for any
-multiplayer bot the runtime should be an explicit, isolating choice rather than an
-inherited one.
+## The admin surface was unauthenticated, and nobody said so
 
-The [admin panel](https://heypi.dev/docs/configuration/admin) is disabled by
-default, binds to loopback `127.0.0.1:4321`, and authenticates through a one-time
-login URL that expires in five minutes, with the documentation warning *never set
-it on a public host*. [Memory is off by default](https://heypi.dev/docs/configuration/agent),
-and where it can be enabled the docs are blunt that write validation is *a hygiene
-check, not a security boundary*. None of these will impress a demo. All of them are
-the difference between a chat-ops agent that survives contact with a real team and
-one that becomes an incident.
+[Commit `2dd2456e00`](https://github.com/hunvreus/heypi/commit/2dd2456e00)
+("Require auth for exposed admin", 2026-07-10, touching
+`packages/heypi/src/admin.ts` and its tests) sat unreleased for eleven days
+before the 2026-07-21 tag. Before that fix shipped, anyone who bound the heypi
+admin surface to a non-loopback interface was serving it with no authentication
+at all. The same release
+[prevented host-path disclosure and unsafe wildcard admin hosts](https://github.com/hunvreus/heypi/blob/436da22ceab0bc4e2db133e8626649b4bf76286d/CHANGELOG.md),
+constrained runtime file access and mirrors to declared roots, bounded attachment
+downloads, and added webhook signatures. A companion commit `5f3f324c9b`
+hardened runtime tool path guards on the same day.
 
-*Findings: 2026-06-24-heypi-sandbox-runtimes,
-2026-06-24-heypi-admin-panel-and-audit-default-off.*
+There is no advisory. The fix is one bullet inside the Security section of a
+changelog that is otherwise announcing a rewrite, which means the upgrade urgency
+is invisible unless you read that section line by line. If you exposed the admin
+panel beyond loopback at any point before 2026-07-21, treat everything it could
+reach as disclosed and rotate accordingly. This is a small project and the
+honest framing is that it is not unusual here -- it is representative of the
+disclosure gap this publication found across the whole field this window.
 
-## The Audit Trail, Read Closely
+## There is no migration path
 
-The landing page lists an audit trail as a headline feature. In the docs there is
-no audit-trail page. What exists is
-[typed trace event persistence](https://raw.githubusercontent.com/hunvreus/heypi/0.2.0-beta.0/CHANGELOG.md)
--- messages, turns, tool calls, and approvals recorded as structured events, added
-in 0.2.0-beta.0 with secret redaction -- surfaced through the admin panel's
-conversation view and the [`heypi events`](https://heypi.dev/docs/configuration/admin)
-command. That is a real and useful record. But it is assembled from a default-off
-panel and a CLI, not delivered as an always-on, tamper-evident ledger. An operator
-who wants the reviewable history the marketing implies has to turn the panel on and
-operate it. "Audit trail" is the right ambition, stated one product generation
-early.
+Say this plainly because a reader upgrading on the strength of the release
+announcement will be surprised. The CHANGELOG opens by declaring
+`0.3.0-beta.0` "intentionally incompatible with the previous beta architecture,
+configuration, persistence, and package layout," and the Removed section lists
+the previous database-backed runtime, the config format, **the migration path**,
+the CLI and admin application, compatibility shims, the generic progress API, and
+the obsolete examples.
 
-*Findings: 2026-06-24-heypi-admin-panel-and-audit-default-off,
-2026-06-24-heypi-0.2.0-beta-governance-hardening.*
+Every existing heypi deployment is a rebuild, not an upgrade. The public
+announcement described this as "cleaned-up config."
 
-## Secrets: Honest About The Boundary
+One more thing that release tells you in passing. The Fixed section hardens
+"durable message intake, redelivery deduplication, queue dispatch, cancellation,
+**approval recovery**, schedule claims, and truncated log recovery." A release
+that hardens approval recovery is a release admitting the prior durability story
+was weaker than the docs implied. That is a fair thing for a beta to do; it is
+also a reason not to treat a `-beta.N` tag as a supported line.
 
-The secret handoff is the cleanest piece of the design and a fair model for the
-rest of it. The managed
-[`secret_request`](https://heypi.dev/docs/configuration/secrets) flow encrypts a
-credential in the browser with WebCrypto so it is *not stored as chat history and
-is not sent to the model* -- a real improvement over the universal bad habit of
-pasting a token into a channel. Then the docs immediately name the limit: secrets
-land as files in the scoped runtime workspace, and *anyone who can read the scoped
-runtime workspace can read saved secrets*; pending requests are *lost on process
-restart*. The encryption protects the handoff, not the storage. Treat heypi's
-secret handling as a way to keep credentials out of the transcript and the model
-context -- not as a vault -- and isolate the runtime workspace accordingly.
+## What the rewrite ships
 
-*Findings: 2026-06-24-heypi-secret-handoff.*
+**A six-package workspace.** The repo is now a pnpm monorepo:
+[`packages/heypi`](https://github.com/hunvreus/heypi/blob/436da22ceab0bc4e2db133e8626649b4bf76286d/package.json),
+`heypi-runtime-cloudflare`, `heypi-runtime-gondolin`, `heypi-runtime-just-bash`,
+`heypi-runtime-vercel`, and `create-heypi`. The standalone Docker runtime package
+is gone; Docker execution is exported by `@hunvreus/heypi` itself. Runtime paths
+are model-visible as `/workspace`, `/shared`, and `/agent`, and built-in command
+execution uses Bash where the selected image or provider supports it. Commits
+`2bb96276bc` ("feat(runtime): add sandbox providers", 2026-07-15) and
+`015388d9be` ("fix(runtime): enforce sandbox path and shell contracts",
+2026-07-16) are the substance.
 
-## Reach: One Command, One Host, Your Code
+This resolves a standing question. **Gondolin is no longer a name in the docs**;
+it is a shipped, installable runtime package sitting alongside just-bash, Docker,
+Vercel Sandbox, and Cloudflare Sandbox. An operator now picks an isolation
+backend the same way they pick a chat adapter. Worth one clarification the
+project's own public conversation never made: the Vercel and Cloudflare packages
+are *Sandbox* primitives -- long-running containers -- not serverless functions,
+which is why they do not contradict the maintainer's loudly stated position that
+agents should not run on serverless infrastructure.
 
-For accessibility, heypi's pitch is the inverse of a hosted workflow platform: you
-own the app. [`npm create heypi@latest`](https://raw.githubusercontent.com/hunvreus/heypi/0.2.0-beta.0/CHANGELOG.md)
-scaffolds a TypeScript app, prompts for an adapter, runtime, and model, and writes
-starter files; the curated model picker spans OpenAI, Anthropic, Google, and xAI.
-What you deploy is [one long-running Node service](https://heypi.dev/docs/) with a
-persistent state directory, where an app lock prevents a second process -- *a
-guardrail, not a scaling mechanism*. The accessibility win is genuine for a team
-with a developer: a shared agent in the channels people already use, with no
-multi-tenant SaaS in the path and no canvas to configure. The ceiling is just as
-clear. This is an owned codebase on a single host, not a click-to-deploy product,
-and a team without an operator to run the Node service is not the audience.
+**Encrypted secret ingress.** Commits `280b7a4034` ("Add encrypted secret
+exchange primitive") and `e30790608f` ("Add chat secret request flow"), both
+2026-07-10, land in the tagged Added list. This closes the loop the source
+contract asked about: how a credential reaches a tool without passing through
+chat. The handoff is protected; treat storage separately and isolate the runtime
+workspace.
 
-*Findings: 2026-06-24-heypi-scaffolder-onboarding,
-2026-06-24-heypi-governance-shell-on-pi.*
+**Webhooks return on durable intake.** Webhook requests now require stable
+message ids and return after durable intake rather than waiting for model
+completion. For anyone integrating heypi behind an external system with a
+timeout, that is the difference between a working integration and a mysterious
+one. Schedules arrived alongside it (commits `3cc887baf4` and `5f103765ec`,
+2026-07-15).
 
-## What heypi Refuses To Own
+*Findings: `2026-06-24-heypi-sandbox-runtimes`,
+`2026-06-24-heypi-secret-handoff`,
+`2026-06-24-heypi-governance-shell-on-pi`.*
 
-heypi names its non-features, which is rarer than it should be. It explicitly
-[does not replay in-flight agent turns after a crash](https://heypi.dev/); on
-restart it *fails stale running calls* rather than resuming them, and pending
-secret requests are dropped. This is the sharpest line between heypi and the
-durability-first framing of a tool like
-[eve](https://github.com/vercel/eve), whose entire headline is checkpointed,
-crash-surviving execution. heypi has decided that recovery is the operator's to
-own, and says so. An operator should take it at its word and not build a workflow
-that assumes an interrupted turn will come back.
+## The one place the conversation ran ahead
 
-*Findings: 2026-06-24-heypi-durability-disclaimer.*
+This is worth recording precisely, because it is the only genuine early-warning
+result in a fourteen-source social sweep.
 
-## Channel Discipline
+Three maintainer posts predate their confirming tags: a 2026-07-08 post about the
+rewrite, thirteen days ahead; a 2026-07-15 post about the sandbox runtimes, six
+days ahead; and a 2026-07-16 post about the 0.3.0 delegation split, five days
+ahead. An operator watching only tags saw nothing until 2026-07-21. An operator
+watching the maintainer knew on 2026-07-08 that the 0.2.x line was finished, and
+that is what corrected this publication's own baseline.
 
-heypi ships [git tags and a CHANGELOG but no GitHub Releases](https://github.com/hunvreus/heypi/tags)
-at all. The line so far runs 0.1.0 (2026-05-29) through four stable patch tags to
-0.2.0-beta.0 on 2026-06-23 -- and that current ship is a *beta*, with roughly two
-dozen further commits sitting on `main` past the tag (admin and CSRF fixes, a dev
-hot-reload toggle). The newest governance shell on the watchlist therefore exhibits
-the same merged-versus-shipped gap as everything it sits beside: the most recent
-work is one channel ahead of the most recent release. Pin 0.1.3 for a stable
-surface, or adopt the beta and track `main` deliberately -- but do not run a beta
-as though it were a supported stable line.
+Two caveats, because only genuine matters count. In two of the three cases the
+underlying commit landed the *same day* as the post, so the interval measures
+distance ahead of the shippable receipt rather than ahead of the code. And all
+three are the builder narrating his own unreleased work. This is a maintainer
+telling you what he is about to ship, not a practitioner detecting something a
+vendor concealed. It is early warning of a real kind. It is not the crowd
+catching anything.
 
-*Findings: 2026-06-24-heypi-channel-discipline-tags-no-releases,
-2026-06-24-heypi-0.2.0-beta-governance-hardening.*
+The same lane is reliably wrong about one thing: dates. Two "this week" ship
+promises missed by nine days and two days respectively. And on the substance that
+matters, the silence is total -- a search of every heypi social claim for
+`approv`, `admin`, `audit`, and `migrat` returns nothing. The governance shell's
+own conversation contains no governance.
+*See the window digest,
+[Assume the Rule Does Not Bind](/digests/2026-07-02_2026-07-27-weekly/).*
 
-## How heypi Differs From Its Neighbors
+## How heypi differs from its neighbors
 
-heypi is legible mostly by contrast, and three contrasts matter.
+Three contrasts still locate it, and the rewrite sharpened all three.
 
-Against [**Pi**](https://pi.dev/), the substrate: Pi is a minimal harness that
-refuses governance in its core and hands you the agent loop. heypi is the
-governance layer Pi told you to build yourself. They are not competitors; one is
-the floor the other stands on.
+Against [**Pi**](/profiles/pi-coding-agent/), the substrate: the relationship is
+now formal rather than implied. Pi owns the agent loop and everything stateful
+about a conversation; heypi owns transport, policy, staging, and coordination.
+They are not competitors; one is the floor the other stands on. The dependency
+risk is correspondingly sharper -- Pi's SDK took two breaking changes in nine days
+this window, and credential storage stopped being a public Pi surface, so heypi's
+delegation bet is also a churn bet.
 
-Against [**OpenClaw**](https://docs.openclaw.ai/), its own stated reference point:
-the project began as *Openclaw, but for teams*. OpenClaw is a single-user gateway
-that puts a personal assistant in your chat apps; heypi is multiplayer by
-construction -- one agent a whole team shares, with approver and admin identities
-scoped per adapter. Where OpenClaw's authority model is per-sender, heypi's unit is
-the shared channel.
+Against [**OpenClaw**](https://docs.openclaw.ai/), its own stated starting point:
+OpenClaw is a single-user gateway putting a personal assistant in your chat apps.
+heypi is multiplayer by construction, with approver and admin identities scoped
+per adapter. Where OpenClaw's authority model is per-sender, heypi's unit is the
+shared channel -- which is exactly why the unenforced approver list matters more
+here than it would there.
 
-Against [**eve**](https://github.com/vercel/eve), the durability-first foil: eve is
-*the framework for building agents* in the Next.js mold -- filesystem-defined,
-durable by default, running on a managed platform. heypi is governance-first and
-ownership-first: an app you self-host, centered on approvals and an audit record,
-that explicitly disclaims the crash-replay durability eve leads with. The contrast
-is not that one governs and the other does not -- both document human-in-the-loop.
-eve's [HITL docs](https://eve.dev/docs/human-in-the-loop) make approval gates
-(`needsApproval`, with `always`/`once`/`never` and custom predicates) and an
-`ask_question` pause-the-agent tool first-class, and tie them to a durable
-pause-and-resume that parks the run at `session.waiting` until a human answers,
-then continues -- across a crash. The divergence is the default and the locus:
-heypi documents its approvals but ships them off until you wire them, on a host you
-own; eve makes the gate a durable platform primitive. Same axis, opposite emphases.
+Against [**eve**](/profiles/eve/), the durability-first foil: eve makes the
+approval gate a durable platform primitive that parks a run and resumes it across
+a crash. heypi makes it an enforced-but-opt-in policy on a host you own, and
+explicitly declines crash replay. Both document human-in-the-loop; the divergence
+is the default and the locus. And it is worth noting which one had the better
+window on this axis. eve found four ways its gate did not bind. heypi wrote a
+contract in which the gate cannot fail open, and left the identity check to
+configuration. Neither is finished.
 
-*Findings: 2026-06-24-heypi-governance-shell-on-pi,
-2026-06-24-heypi-approvals-opt-in-not-default,
-2026-06-24-heypi-durability-disclaimer.*
+## Open questions
 
-## Open Questions
+Answered this window, so they stop being asked:
 
-- Is the git tag or the npm publish the canonical ship signal, given heypi cuts no
-  GitHub Releases? The channel an operator should track is not yet stated.
-- Which governance surfaces will become default-on rather than opt-in as the
-  project matures -- approvals especially? Today only the bash classifier gates
-  anything automatically.
-- Will the audit trail become a first-class, default-on, tamper-evident record, or
-  remain typed trace events viewed through a default-off panel?
-- What exactly does Gondolin isolate relative to Docker and `just-bash`? The
-  runtime docs name it; the isolation depth is not described.
-- **Adoption is unproven (open_question, verified 2026-06-24).** heypi is small and
-  early -- on the order of 100 GitHub stars at first harvest, with a 3-point Show HN.
-  Its editorial value here is category position, not demonstrated team uptake; the
-  "multiplayer chat agent for your team" claim has no public deployment evidence yet.
+- **Is the git tag or the npm publish the ship signal?** The git tag, and npm
+  agrees with it. There are still no GitHub Releases at all.
+- **What does Gondolin actually ship as?** A first-party runtime package in the
+  workspace, installable alongside just-bash, Docker, Vercel Sandbox, and
+  Cloudflare Sandbox.
+- **Does heypi inherit Pi's no-governance-in-core posture?** It formally accepts
+  the split and keeps zero harness responsibility, which makes it a policy shell
+  by design rather than by omission.
+- **Does encrypted secret handoff reach the tool without passing through chat?**
+  Yes, as of the tagged encrypted secret ingress.
 
-## What To Watch Next
+Still open:
 
-- Whether 0.2.0 leaves beta with a stated support and upgrade contract.
-- Whether approvals or the audit trail ever ship as a default posture rather than a
-  wired-by-the-operator primitive.
-- Pi dependency drift: heypi pins `^0.79.6`; a Pi breaking change is a heypi risk.
-- Whether the secret-at-rest story tightens beyond plaintext files in the workspace.
-- Any move from single-host ownership toward a managed or multi-tenant surface,
-  which would change the "an app you own" positioning.
+- Will approver identity ever be enforced rather than warned? Today an empty
+  `admins` and `approvers` pair produces a startup warning and a gate anyone in
+  the channel can answer.
+- Does the audit record become queryable and tamper-evident, or does it remain
+  typed events you inspect through local administration? The write-before-execute
+  guarantee is excellent; the read surface is where the operator's confidence
+  actually comes from.
+- Will a security fix ever get an advisory? An unauthenticated admin bind
+  disclosed as one bullet in a rewrite changelog is a disclosure practice, not an
+  accident.
+- Does the 0.3.0 line reach stable, and with what support and upgrade contract?
+  The 0.2.x demolition means the next incompatible rewrite would cost operators
+  the same again.
+- **Adoption remains unproven** (carried as `open_question`). heypi is small and
+  early. Its editorial value here is category position, not demonstrated team
+  uptake, and the "multiplayer chat agent for your team" claim still has no
+  public deployment evidence.
+- Which of the five runtimes are actually exercised in practice? Shipping five
+  isolation backends in one beta is a lot of surface for a project this size to
+  keep honest.
 
-## Profile Hygiene
+## What to watch next
 
-This profile follows the profile discipline defined in
-[METHOD.md](../../METHOD.md#the-object-grammar): every
-concrete claim in the prose carries an inline source link and a `claims:` entry;
-posture sections interpret freely but cite finding IDs when naming a specific
-feature, behavior change, or cross-project comparison. Cross-project editorial
-belongs in the weekly digest; the contrasts here are scoped to locating heypi, not
-to synthesizing the field.
+- **Whether the identity half catches up to the enforcement half.** This is the
+  single change that would make heypi's governance claim complete rather than
+  conditional, and it is the reason this profile is not simply positive.
+- **Whether the beta line stabilizes.** A `-beta.N` git tag with no release page
+  is a thin surface to run a team's shared agent on.
+- **Pi dependency churn.** The delegation split is elegant and it means Pi's
+  breaking changes are heypi's breaking changes.
+- **Whether the durability disclaimers hold** now that approval recovery, queue
+  dispatch, and schedule claims have all been hardened. A project that keeps
+  repairing recovery is a project discovering it needs one.
+- **Any move toward a managed or multi-tenant surface**, which would change the
+  "an app you own" positioning that is currently the clearest reason to pick it.
 
-Note on `evidence_floor: official_docs` despite `surface_class: open_source_commits`:
-heypi is an early project whose operator-visible behavior (approval semantics,
-sandbox runtimes, secret handling, admin/audit) is canonically described in its
-maintainer-authored docs at heypi.dev. Version, channel, and dependency claims are
-sourced more precisely -- tags and CHANGELOG at `release_note`, the Pi/Gondolin
-dependency pins at `commit` precision from `package.json`. Per the contract
-clarification, the floor matches the strictest precision the source can be
-reasonably harvested at; a future cycle can upgrade specific behavior claims to
-`commit_diff_reviewed` against the heypi source tree. All claims are seeded from
-the 2026-06-23..2026-06-24 introduction run; the `no-team-adoption-signal-yet`
-claim is carried as an `open_question` (an absence asserted from the absence of
-public adoption evidence).
+## Profile hygiene
+
+This profile follows the discipline in
+[METHOD.md](../../METHOD.md#the-object-grammar): every concrete claim in the
+prose carries an inline source link, and posture sections cite finding IDs when
+naming a specific feature, behavior change, or cross-project comparison.
+Cross-project editorial belongs in the weekly digest; the contrasts here are
+scoped to locating heypi.
+
+Note on `evidence_floor: official_docs` despite `surface_class:
+open_source_commits`: heypi's operator-visible behavior is canonically described
+in maintainer-authored docs, which for the 0.3.0 line live in the repository at
+`packages/heypi/docs/` and are cited above pinned to the `0.3.0-beta.2` commit
+rather than to the live site. Version and channel claims are sourced at
+`release_note` precision from annotated tags and the CHANGELOG; per-change claims
+at `commit` precision.
+
+Note on this revision, and it is a large one. The `claims:` block holds the
+register from the 2026-06-23 introduction run, taken against the 0.2.x line. The
+0.3.0-beta.0 rewrite is **intentionally incompatible** with that architecture,
+configuration, persistence, and package layout, so several of those claims
+describe a codebase that no longer exists -- the 0.2.0-era adapter permissions,
+admin panel, and secret-storage specifics in particular should be read as
+historical rather than current until a future cycle re-registers them. Three hold
+and were re-verified against `0.3.0-beta.2`: heypi is still a governance shell
+built on Pi, approvals are still not required by default, and the project still
+ships tags with no GitHub Releases. All 2026-07-02 to 2026-07-27 material is
+carried in prose with pinned receipts and is not registered as claims. One
+receipt-hygiene note: the CHANGELOG dates all three betas 2026-07-21 while the
+git tagger timestamps put `beta.1` and `beta.2` at 2026-07-22T01:35Z. The git
+object timestamps are authoritative; nothing material turns on the difference.

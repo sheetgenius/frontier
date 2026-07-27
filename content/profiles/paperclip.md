@@ -152,285 +152,326 @@ stance:
 ## Operator Read
 
 Paperclip models agent work as a company: agents have roles, work items are
-issues, work happens in workspaces, progress moves through a board. The bet
-is that multi-agent operations should look like operating a team -- issues,
-budgets, reviewers, audit trails -- not like running a chat session. The
-research question Paperclip raises: can agent labor be governed as operating
-state, with auditable credentials and enforced review gates, rather than a
-dashboard built on top of an honor system?
+issues, work happens in workspaces, progress moves through a board. The bet is
+that multi-agent operations should look like operating a team, with issues,
+budgets, reviewers and audit trails, rather than like running a chat session.
+That bet has not moved. What moved in the 2026-07-02 to 2026-07-27 window is
+where secrets live, which protocol the local adapters speak, and how much you
+should trust a security advisory with this project's name on it.
 
-The product's self-description has consolidated around a human-in-the-loop
-framing: "the open source app people use to **manage AI agents for work**" is
-now pervasive boilerplate across this window's PRs, a continuation of the move
-*away from* the earlier "zero-human companies" positioning. The company
-metaphor persists -- companies, CEO agents, hiring, a board -- but is
-consistently subordinated to operator approval, budget, and authority controls
-rather than to autonomy.
-*Findings: 2026-06-23-paperclip-same-company-ceo-authz-centralization.*
+Three calendar tags shipped:
+[`v2026.707.0`](https://github.com/paperclipai/paperclip/releases/tag/v2026.707.0)
+(July 7),
+[`v2026.720.0`](https://github.com/paperclipai/paperclip/releases/tag/v2026.720.0)
+(July 20), and
+[`v2026.722.0`](https://github.com/paperclipai/paperclip/releases/tag/v2026.722.0)
+(July 22). `master` sat 53 commits past the newest tag at window close. On a
+watchlist where the recurring hazard is a fix stranded on a branch, Paperclip's
+release cadence is genuinely good: roughly a tag every eight days, and every
+security change described below is in one an operator can install.
 
-## Coordination and Adapter Surface
+The window's loudest event was a Critical advisory that, read carefully, is not
+an emergency. The window's most useful event was quieter: secret delivery
+stopped being ambient.
 
-Configure Paperclip when you want one control plane in front of multiple
-coding agents. Adapters declare a
-[runtime command spec](https://github.com/paperclipai/paperclip/commit/90631b09b36fa028ad24ca5375bfa50e3602799c)
-that carries its own install recipe for remote provisioning -- operators do
-not hand-write provisioning scripts per CLI. Remote execution targets reach
-the host through a
-[scoped sandbox callback bridge](https://github.com/paperclipai/paperclip/commit/a4ac6ff133fbe8bdb82f4046fda85f7cb372b6a9)
-with serialization against concurrent heartbeats and env sanitization at the
-boundary. The bridge is the only documented path; remote targets cannot
-reach arbitrary host state.
+> **Current floor**: `v2026.722.0` (2026-07-22). It is the first tag with
+> run-bound agent secret reads and with `Cookie` headers redacted from server
+> logs, and it inherits the cross-tenant and invite-token fixes from
+> `v2026.720.0`. It also carries two unconditional database migrations and one
+> two-sided environment-variable break -- see *Upgrade notes* below.
 
-Sandbox providers are pluggable -- [E2B](https://github.com/paperclipai/paperclip/commit/4ef969f0840810527333aa6ee44fed89f4551f7c),
-[Daytona](https://github.com/paperclipai/paperclip/pull/5580),
-[Cloudflare](https://github.com/paperclipai/paperclip/pull/5687),
-[exe.dev](https://github.com/paperclipai/paperclip/pull/5688) -- and the
-[`cursor_cloud` adapter](https://github.com/paperclipai/paperclip/pull/5664)
-routes work to Cursor's hosted-agent platform through `@cursor/sdk`, mapping
-Paperclip heartbeats to Cursor's durable-agent and per-run model with session
-reuse, streaming, and cancellation.
+## The Critical that was already fixed
 
-## Governance Made Mechanical
+On 2026-07-22, seven minutes after `v2026.722.0` went out, Paperclip published
+[`GHSA-x8hx-rhr2-9rf7`](https://github.com/paperclipai/paperclip/security/advisories/GHSA-x8hx-rhr2-9rf7):
+"Drive-by RCE Against Local Paperclip Instances via DNS Rebinding," severity
+Critical, CVSS 3.1 base score 9.6, no CVE assigned. The mechanism is real and
+nasty. In `local_trusted` deployment mode every request is auto-authenticated as
+instance admin with no token or session; the private-hostname guard did not run
+in that mode; and the `process` adapter executes arbitrary commands via
+`spawn()`. Chain those and a web page you merely visit can rebind a hostname to
+`127.0.0.1`, reach your local instance on the same origin so no CORS applies,
+create an agent backed by the `process` adapter, and wake it. Arbitrary command
+execution as the OS user running Paperclip. The victim sees a loading spinner.
 
-The thesis Paperclip is testing: governance should be enforced, not
-documented. Agents cannot self-transition an issue to `in_review` by
-[asserting it in output](https://github.com/paperclipai/paperclip/pull/5292)
- -- the state change requires the configured review workflow. The shared
-principle with Hermes' Kanban gate is "no evidence, no state change," enforced
-at different layers: Paperclip at the issue state machine, Hermes at the
-multi-worker Kanban task.
+Now the arithmetic. The advisory's own suggested fix was to enable the
+private-hostname guard for `local_trusted`. That was already in the tree.
+Reading `server/src/app.ts` at pinned tags, `shouldEnablePrivateHostnameGuard`
+is `deploymentMode === "authenticated" && deploymentExposure === "private"` at
+[`v2026.318.0`](https://github.com/paperclipai/paperclip/blob/v2026.318.0/server/src/app.ts),
+which matches the advisory exactly, and
+`deploymentExposure === "private" && (deploymentMode === "local_trusted" || deploymentMode === "authenticated")`
+at [`v2026.416.0`](https://github.com/paperclipai/paperclip/blob/v2026.416.0/server/src/app.ts),
+published 2026-04-16, and at every tag since including `master`. Fix to
+disclosure: **97 days**. No tag that shipped in this window was ever exposed.
 
-Operators get budget surfacing as a control-plane primitive.
-[Per-issue cost summaries](https://github.com/paperclipai/paperclip/commit/c4269bab59fff7a73ff31797578cc97ece7f160f)
-roll up token and runtime spend; agents can be
-[paused and resumed from the sidebar](https://github.com/paperclipai/paperclip/pull/4616);
-budget-paused agents are surfaced explicitly and require a non-sidebar resume
-path -- budget exhaustion is not silently ignored.
+The second defect is worse for operators than the first. The advisory's declared
+vulnerable range is `<0.3.1`. That range belongs to the npm packages
+(`paperclipai@*`, `@paperclipai/server@*`, `@paperclipai/shared@*`), whose last
+tag `paperclipai@0.3.1-canary.1` is commit-dated 2026-03-12 and which has not
+moved since. Every release Paperclip actually ships is on the calendar line
+`v2026.MMDD.0`. An operator holding `v2026.720.0` cannot compare their version
+string to `<0.3.1` at all. The range is not merely imprecise; it is
+uninterpretable from the build you are running.
 
-Budget is now moving from *surfacing* to *enforcement* -- though on master, not
-yet in a tag (see the master-unreleased section below).
+Two operator consequences, and they point in the same direction. If you are on
+`v2026.416.0` or later you were never exposed to this and should not upgrade in
+a panic. If you are still on a `v2026.318.0`-era build or the retired npm line,
+any page you visit can own your workstation, and the advisory is the least of
+your problems. Either way, resolve an affected range against your actual tag
+before you act on a severity score.
 
-Issues carry a
-[`standard` / `planning` work mode](https://github.com/paperclipai/paperclip/pull/5353)
-through the full stack -- database, validators, server, plugin protocol,
-heartbeats, board UI -- and the mode is preserved through suggested follow-up
-issues. Routines keep an
-[append-only revision log](https://github.com/paperclipai/paperclip/pull/5285)
-so operators can preview prior revisions, see structured change summaries,
-restore older definitions, and recover webhook secrets after restore.
+The last piece is the one worth carrying into how you read this field. We
+searched all fourteen social files in this cycle's sweep for `advisor`, `CVE`,
+`CVSS`, `GHSA`, `rebind`, `RCE`, `drive-by`, `vulnerab`, `exploit`, and `9.6`.
+Nothing. A Critical 9.6 landed against a live agent runtime and the public
+conversation did not register it in either direction. Sharper still: a
+maintainer post on 2026-07-25 reciting `v2026.722.0`'s highlights lists granted
+secrets and Connections v3 and omits the Critical published against that same
+tag two days earlier. We came prepared to debunk a panic and found no panic to
+debunk, which is the less comfortable finding.
+*See the window digest,
+[Assume the Rule Does Not Bind](/digests/2026-07-02_2026-07-27-weekly/).*
 
-## Structural Governance Generalizes (v2026.517-v2026.525)
+## Secrets stopped being ambient
 
-The 2026-05-13 → 2026-05-27 window extends the structural-not-asserted
-thesis from `in_review` issue transitions to two new surfaces.
+This is the substantive change of the window, and it arrived as an arc across
+two tags rather than as a feature.
 
-**Scoped agent permissions with protected assignments**
-([PR #6386](https://github.com/paperclipai/paperclip/pull/6386),
-v2026.525.0) routes issue and agent-assignment mutations through a
-real authorization service with protected-assignment enforcement.
-Assignment is no longer "agent declared, server believed." Plugin
-SDK and host APIs gain company-settings slots and policy/grant
-management. Blocked issues get retry-now affordances; an incremental
-principal-access compatibility backfill runs against pre-existing
-data.
+**Per-human scoping first.**
+[User-specific runtime secrets](https://github.com/paperclipai/paperclip/pull/8825)
+(merged 2026-07-05, shipped in `v2026.707.0`) let a secret be defined against an
+individual operator rather than only against the company, with per-user values,
+environment bindings, and a deterministic pre-dispatch check that the human
+responsible for a run actually supplied the value that run needs. A run no
+longer starts and then dies deep inside the agent loop on a missing credential.
 
-**Routine env secrets with documented precedence**
-([PR #6212](https://github.com/paperclipai/paperclip/pull/6212),
-v2026.525.0) make routine env flow through the runtime contract
-with persisted revisions and `agent < project < routine` precedence.
-Safe secret metadata surfaces in routine UI/history without exposing
-secret values in logs or `secret_access_events`. The precedence is
-named in release notes -- it is meant to be an operator concept.
+**Then the environment stopped being the delivery mechanism.**
+[Run-bound agent secret access](https://github.com/paperclipai/paperclip/pull/9921)
+(merged and tagged 2026-07-22, first in `v2026.722.0`) adds an `access.*`
+delivery mode for secrets that are never injected into the environment at all.
+`GET /api/agents/me/secrets` lists only the aliases that agent was granted;
+`POST /api/agents/me/secrets/:key/value` returns a value with
+`Cache-Control: no-store`. Every read is written to both the security audit
+trail and the operator activity log. Low-trust review and skill-test tokens stay
+denied. The PR states the motivation plainly: environment injection is "ambient,
+long-lived, and not suitable for every secret consumer."
 
-**Board-managed document locks**
-([PR #6009](https://github.com/paperclipai/paperclip/pull/6009),
-v2026.517.0) preserve approved snapshots, route agent writes to
-derived documents, expose lock state in UI and API, and record lock
-activity. Approved documents cannot be overwritten by an agent
-in-place; agent writes are diverted to a derived document.
+That is the first Paperclip primitive where *which agent read which secret, and
+when* is answerable after the fact. It is a real advance on the vault work from
+May, which centralized storage without making individual reads attributable.
 
-Together: governance is enforced at the structural layer, not
-asserted by the agent. Assignment goes through authz; secrets layer
-with documented precedence; documents lock at approval.
+The boundary it does not cover: the PR describes two write paths and no read
+surface. An audit trail nobody can query is a liability record, not a control.
+That is now the standing open question on this subsystem.
 
-**Modal as a first-party sandbox plugin and ACPX-Claude settings
-deference.** Modal joins E2B, Cloudflare, Daytona, and exe.dev as a
-first-party sandbox plugin
-([PR #6245](https://github.com/paperclipai/paperclip/pull/6245)),
-with cold-start-friendly probe timeouts. The ACPX-Claude adapter
-now resolves bare Claude model IDs, surfaces real diagnostic detail
-instead of opaque "Internal error", and **respects user
-`~/.claude/settings.json` permissions**
-([PR #6590](https://github.com/paperclipai/paperclip/pull/6590)) -- the control plane defers to the agent-owned permission file rather
-than owning permissions top-down. This composition pattern is the
-shape captured in proposed amendment-006 (composition findings).
+## ACP became the default lane
 
-## Multi-Tenant Authority, Now Tagged (v2026.618.0)
+[PR #9238](https://github.com/paperclipai/paperclip/pull/9238) (merged
+2026-07-09, shipped in `v2026.720.0`) makes ACP, not the CLI lane, the default
+execution engine for local coding adapters -- Claude, Codex, Gemini, and custom
+-- with local coding processes confined. A
+[companion change](https://github.com/paperclipai/paperclip/pull/9390) relays the
+ACP stdio session into sandbox execution targets over the existing sandbox
+runner contract. Its body is the useful disclosure: sandbox targets previously
+exposed only one-shot command execution, so every ACP-capable adapter refused
+remote targets and silently fell back to the CLI lane with a "supports only the
+local Paperclip host" warning. Sandboxed runs were quietly on a different
+protocol than local ones.
 
-The default branch is `master`; channel matters here, so PRs are cited with
-ancestry. The multi-tenant authority cluster that sat master-only last window
-has **landed in tagged release v2026.618.0** (June 18). Every PR below is an
-ancestor of `v2026.618.0` and is absent from the prior tag `v2026.609.0`. For
-shared or cloud-tenant operators this is the mandatory upgrade target.
+This is not billed as breaking and for most operators it will not be. But the
+default protocol between Paperclip and every local coding agent changed inside
+one release. Streaming updates and structured events now arrive over ACP. If you
+built anything that parses CLI-lane output, re-check it against `v2026.720.0`
+rather than assuming.
 
-Cloud tenants are now
-[strictly company-scoped, never instance-admin](https://github.com/paperclipai/paperclip/pull/7525),
-closing a privilege-escalation class where every tenant on a shared pool was
-an instance admin. The fix **purges stale instance-admin rows on apply**, so
-provision a separate non-cloud-tenant admin identity before upgrading. Each
-company gets its own
-[per-company JWT signing keys](https://github.com/paperclipai/paperclip/pull/5864),
-and
-[plugin tables carry a `company_id` foreign key](https://github.com/paperclipai/paperclip/pull/5865)
-so plugin data is isolated per tenant. A
-[negated-phrasing review fix](https://github.com/paperclipai/paperclip/pull/5839)
-makes approved review comments auto-complete (a comment reading "NOT APPROVED"
-could previously auto-complete an issue), and
-[HTTP error log lines now redact passwords and tokens](https://github.com/paperclipai/paperclip/pull/8013)
-so credentials don't leak into logs.
-*Findings: 2026-06-23-paperclip-v2026.618.0-multitenant-cluster-tagged.*
+## Multi-tenancy hardening, all tagged
 
-## Master-Unreleased Controls (ahead of v2026.618.0)
+Three fixes, none announced as security events, all installable.
 
-The sharpest new controls this window are **on master and in no tag** as of
-2026-06-23 -- each is proven `ahead` of `v2026.618.0` by compare. Operators
-auditing `master` see protections an operator running the binary does not yet
-have. Treat these as not-yet-shipped.
+The [cross-tenant existence oracle](https://github.com/paperclipai/paperclip/pull/3967)
+is closed: the API now returns `404` rather than `403` for another tenant's
+resources, so an authenticated caller can no longer enumerate the existence of
+another tenant's issues, agents, or projects by probing IDs and reading the
+status code. Merged 2026-07-14, shipped in `v2026.720.0`.
+[Invite-token entropy is widened and the public invite endpoints rate-limited](https://github.com/paperclipai/paperclip/pull/8979)
+in the same tag, which makes guessing a company invite token materially harder
+and throttles the endpoint that accepts the guesses. And
+[`Cookie` headers are redacted from server logs](https://github.com/paperclipai/paperclip/pull/7977)
+as of `v2026.722.0`; before it, session material was recoverable by anyone with
+read access to server logs or a log-shipping pipeline. That completes the
+credential-redaction work started in June, which covered passwords and tokens in
+HTTP error lines but not cookies.
 
-**Budget enforcement at the heartbeat preflight.**
-[Preflight budget caps](https://github.com/paperclipai/paperclip/pull/8347)
-move budget from *surfacing* to *enforcement*: per-agent daily run-count and
-daily cost caps are checked at the heartbeat preflight boundary -- **before an
-adapter starts** -- not only after model usage is recorded. A run queued before
-a cap was hit is cancelled cleanly at claim time rather than invoking the
-adapter; an opt-in timer no-work fast-exit keeps routine schedules from paying
-for no-op model turns. This is the realization of the profile's standing
-"budget governance expansion" watch-item (cost summaries → enforced caps).
-*Findings: 2026-06-23-paperclip-heartbeat-preflight-budget-caps.*
+## Where agent authority expanded
 
-**A task watchdog whose recovery actors cannot mutate approvals.**
-[A first-class per-task watchdog control plane](https://github.com/paperclipai/paperclip/pull/8339)
-inspects stopped or stalled work and creates scoped follow-ups without
-bypassing task ownership. The structural boundary is the point: recovery and
-status-only runs **cannot mutate approvals or perform deliverable work**,
-preserving the single-assignee and governance invariants. This extends the
-structural-not-asserted pattern to recovery -- a review/recovery actor with
-permissions strictly narrower than a work actor, enforced by a scoped mutation
-guard rather than by convention.
-*Findings: 2026-06-23-paperclip-task-watchdog-control-plane.*
+Two changes went the other way, and neither drew a single post in the sweep.
 
-**Centralized same-company CEO-agent authorization.**
-[A shared `assertSameCompanyCeoAgentOrBoard` route guard](https://github.com/paperclipai/paperclip/pull/8276)
-centralizes same-company CEO-or-board authorization across company-settings,
-branding, and portability (export/import) routes that previously did per-route
-checks prone to drift. Regression coverage proves a CEO agent from one company
-cannot read, mutate, archive, delete, export, or import against another
-company. This hardens the agent-as-principal authority model one layer above
-the v2026.618.0 cloud-tenant fix -- a CEO agent is a first-class authority role
-with bounded, tested cross-tenant denial.
-*Findings: 2026-06-23-paperclip-same-company-ceo-authz-centralization.*
+**Agents can now write to a human's inbox.**
+[PR #9724](https://github.com/paperclipai/paperclip/pull/9724) (merged
+2026-07-16, `v2026.720.0`) lets agents archive and tidy user inboxes, gated by
+an inbox-archive access policy. Framed as a convenience, it is the most
+consequential authority grant in the window: an agent removing items from a
+human's attention queue is an agent editing the channel through which that human
+learns anything is wrong. The governance question is not whether the policy
+exists but whether it is auditable *before* an operator discovers something was
+tidied away.
 
-## Credential Trust Boundaries
+**Skills became an authorable subsystem with an open-by-default policy.** The
+[three-pane Skill Studio](https://github.com/paperclipai/paperclip/pull/9241)
+with sandboxed test runs and
+[nested folders plus a My Skills view](https://github.com/paperclipai/paperclip/pull/9633)
+both landed in `v2026.720.0`, and
+[company skills honor responsible-user grants](https://github.com/paperclipai/paperclip/pull/9571)
+in the same tag. The release note states that company skill policy ships
+**open-by-default**, with core UX available for tightening it. Skills are
+executable agent instructions, and Paperclip's own April advisory batch includes
+[`GHSA-w8hx-hqjv-vjcq`](https://github.com/paperclipai/paperclip/security/advisories/GHSA-w8hx-hqjv-vjcq),
+"Malicious skills able to exfiltrate and destroy all user data." An
+open-by-default authoring policy sits directly on that threat model. If you
+upgrade to `v2026.720.0` and want authorship restricted, you go tighten it
+after, not before.
 
-Treat the SSH host-env isolation fix as a security advisory if you are below
-v2026.511.0. SSH remote execution prior to
-[that fix](https://github.com/paperclipai/paperclip/pull/5142) forwarded host
-API keys, tokens, and paths to remote execution targets -- the host
-environment was not a safe passthrough to remote workers. After the fix, env
-is stripped at the boundary.
+## Channel reality: one line, and no canary
 
-Centralize credentials in the new
-[provider-vault configuration](https://github.com/paperclipai/paperclip/pull/5429)
-when you have multiple agents needing the same secret. AWS Secrets Manager is
-the first remote-import backend; operators import credentials, preview changes
-before committing, track binding usage, record `secret_access_events`, and
-configure rotation guards. Rotation is tracked with fingerprints and
-timestamps per secret version.
+The standing question about an "untagged canary operating state" is **resolved,
+and the answer is that the lane is dead**. The npm tag line stops at `0.3.1`,
+with the newest canary tag `paperclipai@0.3.1-canary.1` commit-dated
+2026-03-12. Nothing has been cut there in over four months. There is no
+`preview-or-beta` release channel in tag form at all.
 
-## Deployment Reality
+Preview work ships *inside* stable tags behind experimental settings. In this
+window that includes the
+[MCP Tool Gateway and Apps](https://github.com/paperclipai/paperclip/pull/9556)
+eight-part split, where a named gateway brokers every tool call and a
+tool-access policy decides which agents and profiles may use which tools; plus
+Cases, Decision Training, and a built-in Summarizer. The MCP gateway is the
+first Paperclip design where tool calls are brokered and policy-gated rather
+than direct. Worth studying now. Not worth adopting yet.
 
-Paperclip is not a two-minute install. It requires Postgres, a running server,
-and a configured set of adapter environments. The cloud deployment path
-addresses this; local deployment assumes the operator already runs that kind
-of infrastructure. Treat Paperclip as a system you adopt deliberately, not a
-tool you bolt on.
+The practical consequence is blunt: an operator who wants early sight of
+Paperclip changes must run `master` or enable experimental settings on a stable
+tag. There is no third option. Paperclip is meanwhile investing in *identifying*
+untagged builds rather than tagging them -- builds off a formal release surface
+now report their source SHA even without git metadata.
 
-*Findings: 2026-05-07-paperclip-agent-company-control-plane,
-2026-05-12-paperclip-secrets-vaults-and-cursor-cloud,
-2026-05-27-paperclip-scoped-permissions-and-routine-env-secrets,
-2026-06-23-paperclip-v2026.618.0-multitenant-cluster-tagged,
-2026-06-23-paperclip-heartbeat-preflight-budget-caps,
-2026-06-23-paperclip-task-watchdog-control-plane,
-2026-06-23-paperclip-same-company-ceo-authz-centralization.*
+## Upgrade notes for v2026.722.0
 
-## Open Questions
+- **`PAPERCLIP_*` env bindings now reach runs.**
+  [PR #9974](https://github.com/paperclipai/paperclip/pull/9974) scopes the strip
+  to reserved keys. Previously the heartbeat dropped every `PAPERCLIP_`-prefixed
+  binding before resolution, silently discarding operator-named secrets such as
+  `PAPERCLIP_CLOUD_PROD_PROVIDER_RAILWAY_TOKEN`. Now only `PAPERCLIP_API_KEY` is
+  categorically rejected and everything else flows through. This breaks in two
+  directions: undo any rename workaround you built, and expect to lose a static
+  `PAPERCLIP_API_KEY` override, because the harness-minted run token is now the
+  only source of the run API key.
+- **Two migrations run whether or not you enable the feature.**
+  [Connections v3](https://github.com/paperclipai/paperclip/pull/9958) adds
+  `0182_connections_v3_schema_core` and
+  `0183_connection_user_authorization_state`, which execute automatically on
+  startup, backfill connection UIDs, create default workspace grants, and rename
+  the legacy `remote_http` transport to `mcp_remote`. The UI is gated. The schema
+  change is not.
+- **Re-check anything parsing CLI-lane adapter output**, per the ACP default
+  change in `v2026.720.0`.
 
-- The principal-access compatibility backfill (PR #6386) suggests
-  pre-existing data without principal-access metadata. What was the
-  pre-backfill governance baseline, and what should operators on
-  older versions do to be safe? Possible security-advisory shape.
-- How does Paperclip's authz service compose with the agent-owned
-  permission file (`~/.claude/settings.json` via ACPX-Claude)?
-  Disjoint surfaces or composing layers? Resolution rule not in
-  release notes. Linked to proposed amendment-006.
-- Modal cold-start probe timeout at 120s: sandbox-class characteristic
-  or Modal-specific quirk? Affects timeout settings for other
-  cold-start providers.
-- What constitutes a "real review path" for the `in_review` restriction? Does it
-  require a human reviewer, a configured approval workflow, or just a non-agent
-  state transition? The enforcement criteria are not documented outside the PR.
-  *Advanced this window:* the task watchdog (PR #8339, master-unreleased) supplies
-  one concrete answer to the dual question of *who may move state* -- recovery and
-  status-only actors structurally cannot mutate approvals -- even though the
-  human-vs-workflow criteria for `in_review` itself remain undocumented.
-- The secrets rotation guard is visible in the database schema. What triggers a
-  rotation pull from AWS Secrets Manager -- polling, webhook, or manual import?
-- Planning mode carries a `work_mode` flag through the stack. Does the flag
-  change agent behavior during execution (tool restrictions, output format), or
-  is it purely a classification signal for the UI and workflow?
-- The `cursor_cloud` adapter maps Paperclip heartbeats to Cursor's durable-agent
-  model. What is Cursor's durable-agent model, and how does its cancellation
-  semantics compare to Paperclip's local agent pause/resume?
-- The plugin host surface now allows plugins to declare managed agents and
-  routines. How does plugin-managed agent lifecycle interact with the control
-  plane's heartbeat and recovery systems?
+## Still true from earlier windows
 
-## What To Watch Next
+Collapsed, because it has not changed and should not bury the current read. The
+architecture registered in this profile's `claims:` block still holds: adapters
+declare a runtime command spec carrying their own install recipe; remote targets
+reach the host only through a scoped sandbox callback bridge with env
+sanitization; sandbox providers are pluggable across E2B, Daytona, Cloudflare,
+exe.dev, and Modal; the `cursor_cloud` adapter routes work to Cursor's hosted
+agents; agents cannot self-transition an issue to `in_review` by asserting it in
+output; assignment mutations route through a real authorization service;
+approved documents lock and agent writes divert to a derived document; routine
+env layers with documented `agent < project < routine` precedence; and the
+v2026.618.0 multi-tenant cluster (cloud-tenant deprivileging, per-company JWT
+signing keys, plugin `company_id` isolation) is tagged and installable.
 
-- Whether the `in_review` enforcement criteria get documented in the main docs
-  or remain implicit in the PR.
-- Secrets rotation automation: whether the AWS Secrets Manager integration gains
-  an automatic pull path (webhook, scheduled import) vs. remaining manual.
-- The planning mode flag's behavioral impact: whether it affects agent execution
-  or is purely a classification layer.
-- Budget governance expansion (**advanced -- enforcement now on master**):
-  per-issue cost summaries have evolved into enforced preflight budget caps that
-  stop capped agents before an adapter starts and cancel queued work at claim time
-  (PR #8347). What remains to watch is *which tag* carries it off master, and
-  whether budget-pause automation follows.
-- Whether multi-user access control (v2026.427.0, company memberships, invites)
-  integrates with the review and approval workflow to enable role-based
-  governance of agent authority.
-- Which tag carries the master-unreleased control wave (preflight budget caps
-  #8347, task watchdog #8339, centralized CEO-agent authz #8276). As of
-  2026-06-23 all three are `ahead` of v2026.618.0 with no carrying tag -- the
-  release-channel gap to track for shared/cloud operators.
+One staleness note an operator should carry. The three claims tagged
+`channel: main-unreleased` in the block above -- preflight budget-cap
+enforcement, the task watchdog, and centralized same-company CEO-agent authz --
+were verified against `v2026.618.0` on 2026-06-23. Four tags have shipped since.
+This window's harvest did not re-probe their ancestry, so treat that channel
+label as **stale rather than current**: those controls may well be tagged now,
+and we have not confirmed it either way.
 
-## Profile Hygiene
+Deployment reality is also unchanged. Paperclip wants Postgres, a running
+server, and a configured set of adapter environments. It is a system you adopt
+deliberately, not a tool you bolt on.
 
-This profile follows the profile discipline defined in
-[METHOD.md](../../METHOD.md#the-object-grammar): every
-concrete claim in the prose has an inline source link and an entry in the
-`claims:` block; posture sections may interpret freely but must cite finding IDs
-when naming a specific feature, behavior change, or cross-project comparison.
+## Open questions
 
-Earlier claims are seeded from prior findings (control-plane, secrets/vaults,
-scoped permissions/routine env). This window adds eight claims, channel-tagged:
-five **tagged-release** claims for the v2026.618.0 multi-tenant authority cluster
-(`2026-06-23-paperclip-v2026.618.0-multitenant-cluster-tagged`, evidence
-precision: `release_note`, corroborated by per-PR ancestry) and three
-**main-unreleased** claims for the post-tag master controls (preflight budget
-caps, task watchdog, centralized CEO authz -- each a `merged_pr` proven `ahead`
-of v2026.618.0 by compare). The `channel` field on each new claim separates
-what an operator running the binary has (tagged) from what only exists on
-master. All evidence is at or above the `release_note` floor.
+Answered this window, so they stop being asked:
+
+- **Is the canary lane quiet or abandoned?** Abandoned. Last tag 2026-03-12, no
+  preview channel exists in tag form, and preview work ships gated inside stable
+  tags instead.
+- **Does budget surfacing become budget enforcement?** Advanced in June and not
+  re-probed here; see the staleness note above rather than treating the
+  main-unreleased label as current.
+
+Still open:
+
+- Are the run-bound secret-access audit trails **queryable**, or only written?
+  Two ledgers with no described read surface is a record, not a control.
+- Does the open-by-default company skill policy get inverted, given Paperclip's
+  own advisory about malicious skills exfiltrating and destroying user data?
+- Will Connections v3 grants supersede the per-agent secret grants added in
+  `v2026.722.0`, or will operators maintain two authorization models
+  indefinitely?
+- Is the inbox-archive policy auditable from the human's side? An agent that can
+  quietly clear an attention queue needs a record the human, not the agent, can
+  read.
+- What counts as a "real review path" for the `in_review` restriction -- a human
+  reviewer, a configured approval workflow, or any non-agent transition? Still
+  undocumented outside the original PR, and still the load-bearing ambiguity in
+  Paperclip's governance story.
+- Does the dormant npm line get formally retired, or does a distribution channel
+  quietly rot while an advisory keeps pointing at it?
+- How does Paperclip's own authz service compose with agent-owned permission
+  files such as `~/.claude/settings.json` via the ACPX-Claude adapter, now that
+  ACP is the default lane for every local adapter? The resolution rule is in no
+  release note, and the default change makes the question load-bearing rather
+  than academic.
+
+## What to watch next
+
+- **Whether the secret-access audit trail gets a read surface.** This is the
+  single change that would turn `v2026.722.0`'s best feature from a compliance
+  artifact into an operator control.
+- **Whether skill policy defaults invert.** Paperclip has both the threat model
+  and the advisory in its own repository. Shipping open is a decision, and the
+  next release either revisits it or confirms it.
+- **Whether the MCP Tool Gateway leaves experimental.** A brokered, policy-gated
+  tool lane is the most interesting authority design Paperclip has drafted; it
+  is also gated, so it currently governs nobody.
+- **Whether advisory hygiene improves.** This window produced a Critical whose
+  affected range cannot be resolved against the shipping version line and whose
+  fix predated disclosure by 97 days. Both are fixable with editorial care, and
+  both determine whether Paperclip's next advisory is actionable.
+- **Whether the tag cadence holds** at roughly one every eight days as the
+  experimental surface grows. Fifty-three commits sat past the newest tag at
+  window close, which is fine at this cadence and would not be at a slower one.
+
+## Profile hygiene
+
+This profile follows the discipline in
+[METHOD.md](../../METHOD.md#the-object-grammar): every concrete claim in the
+prose carries an inline source link, and posture sections cite finding IDs when
+naming a specific feature, behavior change, or cross-project comparison.
+
+Note on this revision. The 2026-07-02 to 2026-07-27 material is carried in prose
+with pinned receipts -- release tags, merged pull requests with ancestry
+resolved by compare, a published repository advisory, and two source reads of
+`server/src/app.ts` at pinned tags -- and is **not** registered in the `claims:`
+block. That block continues to hold the register from the May and June windows,
+whose architectural claims still hold at `v2026.722.0`; the three entries marked
+`channel: main-unreleased` carry the staleness qualifier described above.
+Paperclip's default branch is `master` and it publishes per-release notes, so
+version-level claims are cited at `release_note` precision against the tag and
+per-change claims against the merged pull request. Paperclip ships roughly
+weekly; re-verify against the current tag.

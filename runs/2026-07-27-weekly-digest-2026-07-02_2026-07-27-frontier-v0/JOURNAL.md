@@ -772,3 +772,40 @@ unverified, and the tones are visually distinct at a glance while scrolling.
 
 That closes P1. The X presentation is now genuinely designed rather than bolted
 on, and the same component serves editorial embeds and research surfaces.
+
+## P3 profile freshness complete: all 14 current
+
+paperclip, agent-zero, pi-coding-agent, heypi, flue, and agent-flywheel refreshed
+by a single serialized agent. No stash, no reset, no concurrent builds, no
+incidents. The serialization lesson held.
+
+Verified independently rather than on report: zero new finding_ids across all
+six, claims and posture_basis blocks byte-identical to HEAD in every file, all
+fourteen profiles now at last_updated 2026-07-27, all ASCII clean, integrity
+clean, build clean.
+
+Every profile in the publication is now a current dated posture rather than a
+June read wearing a July link. That closes the freshness half of P3.
+
+Notable in this batch:
+
+- paperclip resolves the canary-lane question as dead and carries the advisory
+  arithmetic in full: Critical 9.6 against a condition fixed 97 days before
+  disclosure, with the declared vulnerable range pointing at an npm line
+  abandoned in March. It also names the two places authority EXPANDED, which is
+  the fair counterweight to a profile that otherwise reads as vindication.
+- agent-zero leads with the structural credit (compare/v2.6...main identical)
+  before naming the subtraction nobody noticed: v2.5 added .env masking and v2.6
+  narrowed it to credential shapes. Zero social hits for mask, redact, secret, or
+  .env. The best-behaved project on the watchlist quietly removed a protection
+  and the field did not register it.
+- pi states our own defect plainly and once, without dwelling: we watched an
+  abandoned package name and read Pi as static for eleven weeks.
+- heypi corrects its own baseline in the first line ("It did not hold"), concedes
+  the strongest enforcement contract in the harvest in full, and only then names
+  the identity hole. That is the right order and worth keeping as a model.
+- agent-flywheel links to /people/doodlestein/, so the person layer and the
+  project layer now reference each other.
+
+The artifact_version bump to 4 on agent-flywheel is correct convention: it
+carries a dated revision footer, so the version should move with it.
