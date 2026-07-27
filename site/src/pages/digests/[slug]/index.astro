@@ -3,6 +3,7 @@ import Base from "../../../layouts/Base.astro";
 import FrontierLens from "../../../components/FrontierLens.astro";
 import NotPromoted from "../../../components/NotPromoted.astro";
 import OperatorBrief from "../../../components/OperatorBrief.astro";
+import SocialPostEmbed from "../../../components/SocialPostEmbed.astro";
 import SocialReceiptCards from "../../../components/SocialReceiptCards.astro";
 import SourceTrail from "../../../components/SourceTrail.astro";
 import VersionList from "../../../components/VersionList.astro";
@@ -74,6 +75,24 @@ const digestModifiedDate = gitRevisionDate(
   digest.data.last_updated ?? digest.data.window?.end ?? digest.data.window?.start ?? "2026-01-01",
 );
 const digestBodyHtml = digest.html.replace(/^<h1[^>]*>.*?<\/h1>\s*/s, "");
+
+// Authors place a card with `<!--card:some-card-id-->` in the markdown. Split the
+// rendered HTML on those markers and interleave the real component, so the post
+// sits in the passage that discusses it rather than in a pile at the end.
+const cardById = new Map(socialCards.map((c: any) => [c.id, c]));
+const placedIds = new Set<string>();
+const bodySegments: { html: string; card?: any }[] = [];
+{
+  const parts = digestBodyHtml.split(/<!--\s*card:([a-z0-9-]+)\s*-->/i);
+  for (let i = 0; i < parts.length; i += 2) {
+    const id = parts[i + 1];
+    const card = id ? cardById.get(id) : undefined;
+    if (card) placedIds.add(id);
+    bodySegments.push({ html: parts[i], card });
+  }
+}
+// Anything the author did not place still renders, so a card is never lost.
+const unplacedCards = socialCards.filter((c: any) => !placedIds.has(c.id));
 const topSignalsItemList = topSignals.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -104,9 +123,16 @@ const topSignalsItemList = topSignals.length > 0 ? {
     <h1 class="issue-title mt-3">{digest.data.title}</h1>
     <p class="issue-meta">Edited by Michael Ruescher / revised {digestModifiedDate}</p>
     <OperatorBrief brief={digest.data.operator_brief} />
-    <div class="prose-frontier mt-7" set:html={digestBodyHtml} />
+    <div class="prose-frontier mt-7">
+      {bodySegments.map((seg) => (
+        <>
+          <Fragment set:html={seg.html} />
+          {seg.card && <SocialPostEmbed card={seg.card} />}
+        </>
+      ))}
+    </div>
 
-    <SocialReceiptCards cards={socialCards} />
+    <SocialReceiptCards cards={unplacedCards} />
 
     {topSignals.length > 0 && (
       <div class="rule mt-10 pt-6">

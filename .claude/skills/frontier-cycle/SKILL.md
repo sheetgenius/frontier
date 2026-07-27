@@ -123,6 +123,12 @@ digest renders fine without them:
 
 - `runs/<run_id>/social-cards/x-cards.yml` -- a small set of posts, chosen for
   what they carry rather than for reach, which the digest renders as post cards.
+  **Place each one in the passage that discusses it** by putting
+  `<!--card:the-card-id-->` on its own line in the digest markdown. A post that
+  refutes the lede belongs at the lede; collecting them at the end turns the
+  conversation into an appendix and wastes the whole point of reading it. Any
+  card left unplaced still renders after the body, but that is a fallback rather
+  than the design.
   Include the ones that carry the window's argument, including any that are
   refuted or that the record contradicts. A card set that only shows the
   conversation being right is a worse artifact than one that shows it being
