@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { GH_BLOB_BASE, GH_REPO_URL, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../lib/site";
+import { GA_MEASUREMENT_ID, GH_BLOB_BASE, GH_REPO_URL, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../lib/site";
 import { ogImageForPath } from "../lib/og";
 
 const {
@@ -107,6 +107,29 @@ if (jsonLdType === "Article") {
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         if (stored === "dark" || (!stored && prefersDark)) document.documentElement.classList.add("dark");
       })();
+    </script>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ measurementId: GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", measurementId);
+      // The reading signal that matters here is descent, not scroll depth: this
+      // publication is built for a one-minute Operator Brief read, so a short
+      // visit is the design working. Record when a reader follows a receipt or
+      // a signal instead.
+      document.addEventListener("click", (event) => {
+        const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+        if (!link) return;
+        const href = link.getAttribute("href") || "";
+        if (/^\/signals\//.test(href)) {
+          gtag("event", "signal_open", { link_url: href, from_path: location.pathname });
+        } else if (/^https?:/i.test(href) && !href.includes("frontier.bitter.sh")) {
+          gtag("event", "receipt_open", { link_url: href, from_path: location.pathname });
+        }
+      });
     </script>
   </head>
   <body>
