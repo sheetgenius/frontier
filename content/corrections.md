@@ -187,6 +187,20 @@ corrections:
     reporter: adversarial-verify
     provenance: internal/adversarial-verify
     pr: run 2026-07-27-weekly-digest-2026-07-02_2026-07-27-frontier-v0
+
+  - corrected_on: 2026-07-27
+    object: digest 2026-07-02_2026-07-27-weekly (research-method description and four claims)
+    field: completeness of the social sweep, and four claims that outran their receipts
+    kind: other-fact
+    before: "'we swept public X discussion across the whole watchlist ... 314 public claims, each carrying a post URL and a date, each adjudicated against the primary record', plus 'Every release that hardened something was posted within minutes', 'they are precisely the ones that loosened a control', 'our thesis leans on the idea that platform-hosted operating environments are where durable authority should live', and 'Claude Code carries the most rows in our evidence not because it is the worst offender but because Anthropic writes the most down'"
+    after: "The sweep covered thirteen of fourteen projects: the eve run failed with an API timeout and returned nothing, and flue's twenty-six claims were never adjudicated. Hardening releases were posted at lags from six minutes to about a day. Three of the five unannounced releases can be characterized as loosening a control, not all five. The platform-governance claim was this publication's own one-window reading in the prior issue, not a standing thesis, and the link implying otherwise is removed. The documentation comparison is stated as undecidable, which is what the issue's own argument requires."
+    receipt: "https://github.com/sheetgenius/frontier/blob/main/runs/2026-07-27-weekly-digest-2026-07-02_2026-07-27-frontier-v0/verify/antigravity.crosscheck.md"
+    event_date: 2026-07-27
+    artifact_url: /digests/2026-07-02_2026-07-27-weekly/
+    verdict: "overclaimed against our own evidence -> corrected. Found by a cold read against the house bar the same day the issue published. The method claim is the serious one: an issue arguing that stated controls do not match executing behavior described its own research as more complete than it was."
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-07-27-weekly-digest-2026-07-02_2026-07-27-frontier-v0
 ```
 
 <!--

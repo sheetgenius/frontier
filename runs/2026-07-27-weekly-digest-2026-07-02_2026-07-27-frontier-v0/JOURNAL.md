@@ -1076,3 +1076,65 @@ digest was written in a single pass and patched twice by its own author, and a
 cold read by someone who has not been staring at it is the only way to find what
 that author cannot see. Dispatching a read-only reviewer for that rather than
 re-reading my own prose, which is the least reliable review available.
+
+## The cold read found what I could not, including a false claim about our own rigor
+
+Dispatched a read-only reviewer against EDITORIAL.md and the exemplar bar,
+because the digest was written in one pass and patched twice by its own author.
+It returned correction-grade findings, and I verified the serious ones myself
+before acting rather than taking them on trust.
+
+The worst is mine and it is the one that matters. The digest said we "swept
+public X discussion across the whole watchlist" and that all 314 claims were
+"each adjudicated against the primary record." Neither is true. `social/eve.raw.md`
+is 111 bytes containing an API timeout error, so eve was never swept and
+contributed zero claims; I had logged "X sweep complete at 14/14" in this very
+journal without opening the file. And flue produced 26 claims that no crosscheck
+ever adjudicated.
+
+An issue whose entire argument is that stated controls do not match executing
+behavior described its own research as more complete than it was. That is the
+eighth time tonight one of my claims failed on contact, and it is the most
+serious, because it was published and it was about our own rigor.
+
+Corrected in the body rather than a footnote, disclosed again in the uncertainty
+list, and logged in the public ledger. The honest number is thirteen of fourteen
+projects swept, twelve of thirteen adjudicated, and every claim that reached the
+page came from an adjudicated set.
+
+Five more claims outran their receipts and are fixed:
+
+- "Every release that hardened something was posted within minutes" -- the run's
+  own crosscheck records lags of seven hours and 22.5 hours. The journal had it
+  right ("minutes to hours"); the digest dropped the qualifier. This was the
+  sentence the whole selective-silence argument landed on.
+- "precisely the ones that loosened a control" -- the release table supports
+  three of five, and two unannounced releases are uncharacterized while two
+  announced ones did disclose loosenings. Narrowed to what the table carries.
+- The eve reversal was attributed to a standing thesis on the amdahls-law page.
+  That claim is not on that page, in THESIS.md, or in METHOD.md. I inflated a
+  one-window editorial reading into doctrine and linked a page that would refute
+  a reader who clicked it, which converts accountability into performance of it.
+  Now stated as what it was.
+- The Agent Flywheel line called a harvester paraphrase a verbatim quote, read a
+  standard term of art (advisory locking) as a confession, and attributed a
+  mental posture to a named living person "without anyone pressing him on it."
+  That last clause violates the person bar I wrote into EDITORIAL.md hours
+  earlier. Rewritten to credit precise vocabulary rather than stage a concession.
+- The sentence resolving whether Claude Code carries the most rows because it is
+  worst or because Anthropic documents most. The piece's own governing insight
+  two sentences earlier makes that undecidable, and I decided it in Anthropic's
+  favour. Now says we cannot tell.
+
+Also fixed the highest-leverage cold-read failure: fourteen projects named and
+zero profile links, where the piece's own exemplar carries eight. All eleven
+unlinked projects now resolve to their dated profiles, the lede identifies
+Antigravity as Google's replacement for Gemini CLI (previously discoverable only
+from a URL slug), and two banned backstage terms are gone.
+
+Left for a later pass, recorded so it is not lost: the reviewer's strongest
+editorial note is that the piece contains both halves of its best argument and
+never joins them -- Gemini CLI shipped a headless-trust fix in April, and
+Antigravity, the same vendor's replacement product, shipped the same class of
+headless failure in July. That is the historical-precedent synthesis EDITORIAL
+names as the premium unit, and it is one sentence of connective tissue.
