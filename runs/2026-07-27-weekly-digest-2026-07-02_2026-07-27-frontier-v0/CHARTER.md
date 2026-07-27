@@ -49,6 +49,90 @@ approval, do not treat publishing as a gate. Merge and push whenever the tree is
 green. Validate before pushing (`main` auto-deploys), but validation is the only
 precondition.
 
+## What this session is
+
+An extended session of **search and learning, orchestrated, whose output is a
+high-quality editorial product.** Not a checklist worked to exhaustion. The
+backlog below is scaffolding; the actual work is continuously finding out what is
+true about how these frameworks are unfolding, and turning that into writing a
+reader is glad they read.
+
+Practically that means: keep dispatching researchers and keep driving Grok at new
+angles rather than treating the sweep as finished. Every answer should generate a
+better question. When a thread gets interesting, follow it. Depth on one real
+idea beats another lap of coverage.
+
+**Standing research agenda** (open questions worth real digging, beyond the
+per-source sweep):
+
+- Is "documented is not enforced" new, or has it always been true and this is the
+  first window anyone measured it? Look for precedent in the archive and upstream
+  history. A pattern that turns out to be permanent is a different story from one
+  that is emerging, and the piece should know which it is.
+- Is there a common upstream cause? Eight providers hit the same wall in 25 days.
+  Coincidence, a shared dependency, a shared architectural pressure, or a shared
+  incentive to ship authority features faster than they can be verified?
+- What should an operator actually DO in a world where configured controls may
+  not bind? The piece owes more than diagnosis. Candidate answers to test against
+  evidence: prefer invariants to knobs (eve's own conclusion), test the rule
+  rather than trust the release note, pin to the channel that actually carries
+  fixes, treat an unadvertised authority fix as the signal that the surface is
+  unreliable. Find which of these the receipts support.
+- Who are the people driving this? The X lane surfaces them. Build the key-players
+  read from what they actually say and ship.
+- What did the conversation know before the changelog admitted it? This is the
+  X lane's highest-value question and the whole reason the lane exists. If
+  practitioners were reporting a broken gate weeks before a release note
+  acknowledged it, that is the strongest possible argument for reading the
+  conversation layer at all.
+
+## The backlog (work top-down; never stop because one item is done)
+
+P0 is the session's headline. Everything below it is real, already-identified work
+that raises the publication. Finishing P0 is not finishing the session: drop to
+the next incomplete item and keep going. The session ends when the editor says
+so, not when a checkbox clears.
+
+**P0 -- Ship the mega-digest.** Finish the X sweep, cross-check social against
+primary, findings to signals (the editing is the product), the deliberate
+synthesis pass, write it, publish it. 25 days unreported is the thing that most
+needs fixing.
+
+**P1 -- X-native presentation.** Post-shaped cards with real design: correct
+light and dark treatment, typographic care, readable at every width, self-hosted
+from repo data, no runtime dependency on X and no CSP violation. Integrate into
+the digest rendering rather than bolting a widget on. `SocialPostEmbed.astro` and
+`SocialReceiptCards.astro` exist as a starting point and need a genuine pass.
+
+**P2 -- Key players.** Track people, not only projects. Seed `@doodlestein`
+(Jeffrey Emanuel, Agent Flywheel); `docs/doodlestein-agency-study.md` is the
+existing precedent for person-level analysis. The X lane surfaces maintainers,
+prolific builders, and sharp critics naturally. Needs a data shape, a rendering,
+and the same receipt discipline: a person's claim is receipted as a statement,
+never as fact about a product.
+
+**P3 -- Editorial quality across the archive.** All identified, none speculative:
+- Profile freshness. Several profiles sit at `last_full_review: 2026-06-03`,
+  roughly eight weeks stale. This window moved almost every provider materially.
+- The dangling `RESEARCH_CONTRACT.md#profile` reference in the Profile Hygiene
+  footer of 11 of 14 profiles. That file does not exist; it was renamed to
+  METHOD.md. Repoint or drop the sentence.
+- The oldest digest (`2026-04-22_2026-05-06-frontier-rollup.md`) and its five
+  sibling signal pages still carry internal "worker-native" framing that later
+  passes scrubbed everywhere else. Decide: label as a historical artifact, or
+  bring to the bar.
+- `data/frontier_signals.jsonl` is dead. 12 lines, all from the first run,
+  superseded by per-run YAML and never appended to since.
+- Corrections ledger: add anything this window genuinely warrants, and nothing it
+  does not.
+
+**P4 -- Infrastructure honesty.** The live edge serves none of the security
+headers the repo declares; Radicchio consumes `_headers` without applying it.
+`static-headers.test.mjs` only asserts the two declaration files agree with each
+other. Investigate whether Radicchio honors the file at all, and add a check that
+asserts what the response actually carries rather than what the repo intends. A
+publication that reports on unenforced controls should not ship one.
+
 ## Anti-stall rules
 
 The failure mode of a long autonomous session is not crashing. It is quietly

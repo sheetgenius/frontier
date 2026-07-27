@@ -386,3 +386,21 @@ quietly fixing. The publication spent this window documenting providers whose
 stated surfaces did not match their shipping reality, and its own source contract
 had the same defect. That is not an embarrassment to hide; it is the argument
 demonstrating itself, and admitting it is what earns the right to make it.
+
+## Session reframed: search and learning, editorial product as output
+
+The editor is stepping away overnight and wants the session to run as an extended
+orchestrated research effort, not a checklist. Charter updated with a standing
+research agenda and a P0-P4 backlog deep enough that finishing any one item is
+not a reason to stop.
+
+The load-bearing question added to the agenda, because it is the entire
+justification for the X lane: what did the conversation know before the changelog
+admitted it? If practitioners reported a broken gate weeks before a release note
+acknowledged it, that is the strongest argument this publication can make for
+reading the conversation layer at all, and this window's material is unusually
+well suited to answering it.
+
+Sleep prevention active (caffeinate, AC power) so the loop survives the night.
+The loop dies if the terminal session closes; nothing I can do about that from
+inside.
