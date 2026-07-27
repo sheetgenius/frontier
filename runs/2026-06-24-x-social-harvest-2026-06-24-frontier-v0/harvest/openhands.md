@@ -1,4 +1,4 @@
-# Harvest — openhands (X Social Signals)
+# Harvest -- openhands (X Social Signals)
 
 ## Claim 1
 claim_id: openhands-acp-2026-06-18

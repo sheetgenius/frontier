@@ -750,7 +750,7 @@ export function runArtifacts(runId: string): RunArtifact[] {
     for (const file of fs.readdirSync(socialCardsDir).filter((f) => f.endsWith(".yml") || f.endsWith(".yaml")).sort()) {
       artifacts.push({
         kind: "social cards",
-        label: `Static social cards — ${file.replace(/\.(ya?ml)$/, "")}`,
+        label: `Static social cards -- ${file.replace(/\.(ya?ml)$/, "")}`,
         repoPath: rel(path.join(socialCardsDir, file)),
       });
     }
@@ -760,7 +760,7 @@ export function runArtifacts(runId: string): RunArtifact[] {
     for (const file of fs.readdirSync(verifyDir).filter((f) => f.endsWith(".md")).sort()) {
       artifacts.push({
         kind: "verification",
-        label: `Verification notes — ${file.replace(/\.md$/, "")}`,
+        label: `Verification notes -- ${file.replace(/\.md$/, "")}`,
         repoPath: rel(path.join(verifyDir, file)),
       });
     }

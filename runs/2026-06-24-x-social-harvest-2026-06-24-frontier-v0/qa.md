@@ -1,4 +1,4 @@
-# QA Report — 2026-06-24 X Social Harvest
+# QA Report -- 2026-06-24 X Social Harvest
 
 ## Scope
 This run performed discovery-only harvesting of X posts for all 10 watchlist projects. No claims were promoted to findings.

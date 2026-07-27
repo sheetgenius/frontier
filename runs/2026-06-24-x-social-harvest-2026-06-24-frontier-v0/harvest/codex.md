@@ -1,4 +1,4 @@
-# Harvest — codex (X Social Signals)
+# Harvest -- codex (X Social Signals)
 
 ## Claim 1
 claim_id: codex-disk-bug-2026-06

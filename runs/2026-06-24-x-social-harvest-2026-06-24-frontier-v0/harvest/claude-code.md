@@ -1,4 +1,4 @@
-# Harvest — claude-code (X Social Signals)
+# Harvest -- claude-code (X Social Signals)
 
 ## Claim 1
 claim_id: claude-code-takedown-2026

@@ -23,7 +23,7 @@ const kindLabel = (kind: string) => kind.replace(/_/g, " ");
           <li class={`social-receipt-card social-receipt-${card.kind}`}>
             <div class="social-receipt-meta">
               <span>{kindLabel(card.kind)}</span>
-              <span>{card.date}{card.datePrecision ? ` · ${card.datePrecision}` : ""}</span>
+              <span>{card.date}{card.datePrecision ? ` / ${card.datePrecision}` : ""}</span>
             </div>
             <h3 class="social-receipt-title">{card.title}</h3>
             <div class="social-receipt-byline">

@@ -1,4 +1,4 @@
-# Harvest — gemini-cli (X Social Signals)
+# Harvest -- gemini-cli (X Social Signals)
 
 ## Claim 1
 claim_id: gemini-antigravity-migration-2026-06-18

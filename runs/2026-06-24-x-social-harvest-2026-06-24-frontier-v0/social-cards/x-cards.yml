@@ -141,7 +141,7 @@ cards:
     tags: [governance, transparency, voting]
 
   - id: paperclip-maximizer-maintainer-post
-    title: Paperclip maintainer describes “Maximizer mode”
+    title: Paperclip maintainer describes "Maximizer mode"
     kind: maintainer_intent
     status: needs_primary_crosscheck
     date: 2026-06-19

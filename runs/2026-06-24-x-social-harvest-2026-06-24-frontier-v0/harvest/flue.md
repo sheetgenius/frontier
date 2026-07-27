@@ -1,4 +1,4 @@
-# Harvest — flue (X Social Signals)
+# Harvest -- flue (X Social Signals)
 
 ## Claim 1
 claim_id: flue-1.0-beta-2026-06

@@ -1,4 +1,4 @@
-# Harvest — openclaw (X Social Signals)
+# Harvest -- openclaw (X Social Signals)
 
 ## Claim 1
 claim_id: openclaw-founder-openai-2026
@@ -34,4 +34,4 @@ status: single-source-unconfirmed
 crosscheck_status: single_source_unconfirmed
 release_channel: not_applicable
 operator_consequence: Candidate ecosystem-color item; do not promote without direct primary posts or independent confirmation.
-notes: Drama claim — kept as discovery.
+notes: Drama claim -- kept as discovery.

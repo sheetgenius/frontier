@@ -1,4 +1,4 @@
-# Harvest — hermes-agent (X Social Signals)
+# Harvest -- hermes-agent (X Social Signals)
 
 ## Claim 1
 claim_id: hermes-learn-2026-06

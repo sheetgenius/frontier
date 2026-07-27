@@ -1,4 +1,4 @@
-# Harvest — pi-coding-agent (X Social Signals)
+# Harvest -- pi-coding-agent (X Social Signals)
 
 ## Claim 1
 claim_id: pi-v0.80.0-2026-06-23

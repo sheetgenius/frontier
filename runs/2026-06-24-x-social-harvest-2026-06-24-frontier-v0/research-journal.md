@@ -1,4 +1,4 @@
-# R&D Journal — Deep X/Social Research Loop
+# R&D Journal -- Deep X/Social Research Loop
 
 Run: `2026-06-24-x-social-harvest-2026-06-24-frontier-v0`
 
@@ -6,7 +6,7 @@ This journal records the editorial loop used to turn public X/social material
 into Frontier research context. It is not a digest and does not promote any
 claim into findings, signals, or profiles.
 
-## 2026-06-24 — Loop Setup
+## 2026-06-24 -- Loop Setup
 
 Objective: make the journal more grounded in the public conversation around
 agentic coding frameworks while keeping runtime independent from X and keeping

@@ -1,4 +1,4 @@
-# Harvest — agent-zero (X Social Signals)
+# Harvest -- agent-zero (X Social Signals)
 
 ## Claim 1
 claim_id: agent-zero-governance-vote-2026-06

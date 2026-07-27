@@ -1,4 +1,4 @@
-# Harvest — paperclip (X Social Signals)
+# Harvest -- paperclip (X Social Signals)
 
 ## Claim 1
 claim_id: paperclip-maximizer-mode-2026
