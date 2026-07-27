@@ -2873,3 +2873,29 @@ code {
 .publication-method-link a:hover {
   border-bottom-color: var(--color-bitter);
 }
+
+/* A description of a post is not a quotation of it. When we do not hold the
+   person's verbatim words, the card says so in the reader's face rather than
+   letting our summary sit under their handle looking like their sentence. */
+.xpost-described {
+  margin: 0.85rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.xpost-described-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--color-faint);
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+blockquote.xpost-body {
+  margin: 0.85rem 0 0;
+  padding: 0;
+  border: 0;
+}

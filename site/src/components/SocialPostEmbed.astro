@@ -56,10 +56,10 @@ const authors = card.authors ?? [];
 const primaryAuthor = authors[0] ?? "";
 // Handles arrive as "@name" or "name"; render both forms from the one value.
 const handle = primaryAuthor.replace(/^@/, "").trim();
-const displayName = handle
-  .replace(/[_-]+/g, " ")
-  .replace(/\b\w/g, (c) => c.toUpperCase())
-  .trim();
+// Never derive a display name from a handle. Title-casing "@shengzheyao" into
+// "Shengzheyao" invents a name for a real person. Use a verified name if the
+// data carries one, otherwise show the handle and nothing else.
+const displayName = String(card.displayName ?? "").trim();
 const monogram = (handle.match(/[A-Za-z0-9]/)?.[0] ?? "?").toUpperCase();
 
 const status = STATUS_COPY[card.status] ?? {
@@ -67,7 +67,12 @@ const status = STATUS_COPY[card.status] ?? {
   tone: "open",
   note: "",
 };
-const body = card.displayText ?? card.excerpt ?? card.summary ?? "";
+// Quote position is for the person's ACTUAL words only. `excerpt` and `summary`
+// are our descriptions of a post, and rendering them under someone's handle
+// attributes to them words they did not write. If there is no verbatim text,
+// the card carries our description explicitly labelled as ours.
+const verbatim = String(card.verbatim ?? card.displayText ?? "").trim();
+const described = String(card.summary ?? card.paraphrase ?? "").trim();
 const primaryUrl = card.sourceUrls?.[0];
 const supportingUrls = (card.sourceUrls ?? []).slice(1);
 const sourceNames = (card.sourceIds ?? []).map((id) => sourceLabel(id)).join(", ");
@@ -78,8 +83,8 @@ const hasEvidenceNote = Boolean(card.caveats || card.dateNote || supportingUrls.
   <div class="xpost-head">
     <span class="xpost-avatar" aria-hidden="true">{monogram}</span>
     <span class="xpost-identity">
-      <span class="xpost-name">{displayName || "Public post"}</span>
-      {handle && <span class="xpost-handle">@{handle}</span>}
+      {displayName && <span class="xpost-name">{displayName}</span>}
+      <span class="xpost-handle">@{handle}</span>
     </span>
     <span class="xpost-glyph" aria-hidden="true">
       <svg viewBox="0 0 24 24" width="15" height="15" focusable="false">
@@ -91,7 +96,14 @@ const hasEvidenceNote = Boolean(card.caveats || card.dateNote || supportingUrls.
     </span>
   </div>
 
-  {body && <p class="xpost-body">{body}</p>}
+  {verbatim
+    ? <blockquote class="xpost-body">{verbatim}</blockquote>
+    : described && (
+        <p class="xpost-described">
+          <span class="xpost-described-label">Our summary, not a quotation</span>
+          {described}
+        </p>
+      )}
 
   <div class="xpost-meta">
     <time datetime={card.date}>{card.date}</time>

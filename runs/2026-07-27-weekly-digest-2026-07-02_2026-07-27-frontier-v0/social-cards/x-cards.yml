@@ -5,6 +5,11 @@ note: >
   carries a piece of the issue's argument rather than because it was popular.
   Every card is a receipt for what was said. None is a receipt for what is true.
 cards:
+# Field discipline, added 2026-07-27 after these cards were found rendering
+# paraphrases in quote position. `paraphrase` and `summary` are OUR words about
+# a post. Only a `verbatim` field holds the poster's own text, and only
+# `verbatim` may ever be rendered as a quotation. None of these records carry
+# verbatim text, so none of them quotes anyone.
   - id: antigravity-1-1-3-headless-announcement
     title: "The announcement that sat on top of no enforcement"
     kind: capability_announcement
@@ -16,7 +21,7 @@ cards:
     source_urls:
       - https://x.com/shengzheyao/status/2077576699571741008
       - https://github.com/google-antigravity/antigravity-cli/blob/1.1.4/CHANGELOG.md
-    excerpt: >
+    paraphrase: >
       Antigravity CLI 1.1.3 changes headless (-p) so it no longer hangs or
       silently auto-approves permissioned tools, with soft-deny plus exact
       allow-rule guidance.
@@ -44,7 +49,7 @@ cards:
     authors: ["doodlestein"]
     source_urls:
       - https://x.com/doodlestein/status/2080966833830539655
-    excerpt: >
+    paraphrase: >
       File-reservation and concurrency concerns are handled by an advisory file
       reservation system in agent mail.
     summary: >
@@ -69,7 +74,7 @@ cards:
     authors: ["lkr"]
     source_urls:
       - https://code.claude.com/docs/en/changelog#2-1-211
-    excerpt: >
+    paraphrase: >
       Auto mode is mostly bypass permissions with less risk.
     summary: >
       A widely shared characterization of how one agent's automatic approval mode
@@ -96,7 +101,7 @@ cards:
     authors: ["aronprins"]
     source_urls:
       - https://github.com/advisories/GHSA-x8hx-rhr2-9rf7
-    excerpt: >
+    paraphrase: >
       Release highlights for v2026.722.0.
     summary: >
       A community post reciting a release's highlights, two days and seventeen
