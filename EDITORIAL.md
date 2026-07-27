@@ -222,6 +222,42 @@ questions, and the last material change easy to find. It must not imply freshnes
 beyond its displayed date. When the prose grows, old facts should be retired or
 collapsed rather than allowed to bury the current read.
 
+## The person bar
+
+A person page is a dated posture about what someone said. Its subject is a human
+being, which makes every restraint tighter than on a profile rather than looser.
+
+Write one only when a person's public work is genuinely shaping how operators
+build, and when the receipts support a page rather than a paragraph. One good
+person page is worth more than three thin ones, and a thin one is worse than
+none, because it implies a significance the evidence does not carry.
+
+The bar:
+
+- **Every claim is a statement, attributed and dated.** Link the post, give the
+  date, and quote or summarize faithfully. A person's claim about their own
+  software is not evidence about that software. Where a primary source checks it,
+  the check sits beside it and the primary source wins.
+- **Explain why this person, in the piece itself.** A reader should finish the
+  first section knowing what makes the subject worth tracking. If that cannot be
+  said plainly, the page should not exist.
+- **Nothing about conduct, motive, or character.** Not without a direct primary
+  receipt for the exact claim, which is a bar gossip about people almost never
+  clears. Absent that, we do not speculate about why someone did something, and
+  we do not characterize them.
+- **Qualify narrowly and factually.** When a person's statement does not survive
+  contact with a receipt, say exactly what the receipt shows and stop there.
+  Bound the observation to the document or artifact that supports it, and decline
+  the adjacent questions we cannot settle.
+- **Steelman before you qualify.** Give the strongest version of what the person
+  is arguing before naming where the evidence diverges. A page that only
+  catalogues someone's errors is not reporting; it is a prosecution.
+- **The subject can correct it.** Person pages carry a standing correction path
+  and it is honored quickly. See [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+The test: would you be comfortable if the subject read the page, and would they
+recognize their own position in it, including the parts they would dispute?
+
 ## The trust firewall
 
 The Bitter Lesson and Amdahl's law determine questions, not conclusions. A good

@@ -1,5 +1,13 @@
 # Deep Social Research Loop
 
+> **The rule lives on the public page.**
+> [How we read the conversation layer](https://frontier.bitter.sh/conversation-layer/)
+> is canonical for what social evidence proves, what we refuse to publish about
+> people, and the correction path for anyone we quote. `METHOD.md` carries the
+> object grammar. This document is canonical for procedure only: run shape,
+> fields, and the cross-check pass. If it ever contradicts the public page, the
+> public page wins and this file is the thing that needs fixing.
+
 This workflow turns public X/social material into a richer research layer for
 Bitter Frontier without relaxing the evidence floor for product claims.
 

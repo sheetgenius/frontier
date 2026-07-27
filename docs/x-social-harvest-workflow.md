@@ -1,5 +1,13 @@
 # X Social Harvest Workflow
 
+> **The rule lives on the public page.**
+> [How we read the conversation layer](https://frontier.bitter.sh/conversation-layer/)
+> is canonical for what social evidence proves, what we refuse to publish about
+> people, and the correction path for anyone we quote. `METHOD.md` carries the
+> object grammar. This document is canonical for procedure only: run shape,
+> fields, and the cross-check pass. If it ever contradicts the public page, the
+> public page wins and this file is the thing that needs fixing.
+
 This workflow captures public X/social signals as discovery input for Bitter
 Frontier. It does not create findings, signals, digests, or profile updates by
 itself. Promotion happens only in a later source-contract pass.

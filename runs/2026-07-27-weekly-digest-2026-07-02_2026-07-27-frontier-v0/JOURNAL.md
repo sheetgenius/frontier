@@ -993,3 +993,43 @@ The reason to write this down rather than handle it ad hoc: the publication's
 whole argument is that a control which exists only as intention is not a control.
 "We would obviously fix it if someone complained" is an intention. A documented
 path with a named file and a stated promise is a mechanism.
+
+## The doctrine stack is now consistent with itself
+
+Three files closed the last of the documented-versus-actual gaps the session
+opened in its own repository.
+
+**EDITORIAL.md gains a person bar.** It had a digest bar and a profile bar and
+said nothing about an artifact type the publication now ships. Six points, all
+tighter than the profile bar because the subject is a person: every claim is a
+dated attributed statement and a person's claim about their own software is not
+evidence about that software; the page must explain why this person in its own
+first section, and if that cannot be said plainly the page should not exist;
+nothing about conduct, motive, or character without a direct primary receipt;
+qualifications bounded to the document that supports them; and steelman before
+qualifying, because a page that only catalogues someone's errors is a prosecution
+rather than reporting.
+
+The test at the end is the one I actually want future passes to apply: would you
+be comfortable if the subject read it, and would they recognize their own
+position in it, including the parts they would dispute?
+
+Also added the guard against dilution, since the temptation next cycle will be to
+add three more people: one good person page is worth more than three thin ones,
+and a thin one is worse than none because it implies a significance the evidence
+does not carry.
+
+**frontier-cycle SKILL.md now names the two artifacts** the lane should produce,
+because both are easy to forget: the digest renders perfectly well without a
+social-cards file, and nobody notices a person page that was never written. The
+instruction about card selection is the important half -- include the posts the
+record contradicts, because a card set that only shows the conversation being
+right is a worse artifact than one showing it being wrong. The second is what the
+sweep actually found.
+
+**The two internal workflow docs now say what they are canonical for.** The
+public page owns the rule, METHOD.md owns the object grammar, and the docs own
+procedure. Each carries a pointer stating that if it contradicts the public page,
+the public page wins and the doc is the thing that needs fixing. Duplicating the
+rule into three files would have guaranteed they drift, which is the same class
+of failure as everything else this window documented.

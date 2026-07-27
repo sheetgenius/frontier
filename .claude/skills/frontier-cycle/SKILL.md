@@ -118,6 +118,20 @@ Run `ops/hermes/grok-harvest.sh harvest <source> <start> <end>` per watched sour
 it writes candidate claims into an `x-social-harvest` run. Setup is in
 `docs/hermes-grok-harvest-setup.md`.
 
+Two artifacts come out of this lane, and both are easy to forget because the
+digest renders fine without them:
+
+- `runs/<run_id>/social-cards/x-cards.yml` -- a small set of posts, chosen for
+  what they carry rather than for reach, which the digest renders as post cards.
+  Include the ones that carry the window's argument, including any that are
+  refuted or that the record contradicts. A card set that only shows the
+  conversation being right is a worse artifact than one that shows it being
+  wrong, because the second is what the sweep actually found.
+- A person page at `content/people/<handle>.md`, **only when the window earned
+  one**. Ask whether someone's public work genuinely shaped how operators build
+  this window. If the answer needs an argument, the answer is no. See the person
+  bar in `EDITORIAL.md`.
+
 This lane runs every cycle, but it is **discovery only**: its output is leads,
 never receipts. No X or Grok claim becomes a finding, signal, digest, or profile
 until it clears the source contract's evidence floor against a primary source, per
