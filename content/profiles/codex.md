@@ -5,10 +5,10 @@ label: Codex
 owner: OpenAI
 source_contract: sources/codex.yml
 homepage: https://developers.openai.com/codex/
-docs: https://developers.openai.com/codex/
-changelog: https://developers.openai.com/codex/changelog
+docs: https://learn.chatgpt.com/docs
+changelog: https://learn.chatgpt.com/docs/changelog
 repo: https://github.com/openai/codex
-tagline: "OpenAI builds the authority machinery, then keeps the keys to the control plane."
+tagline: "The hardening is on alpha. The stable upgrade edits your policy file."
 compared_with:
   - claude-code
   - gemini-cli
@@ -17,8 +17,8 @@ x:
 surface_class: mixed_official_docs
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-23
-last_full_review: 2026-06-03
+last_updated: 2026-07-27
+last_full_review: 2026-07-27
 claims:
   - id: goal-persistent-validation
     finding_id: 2026-05-07-codex-stateful-control-plane
@@ -144,289 +144,329 @@ posture_basis:
     - 2026-06-23-codex-rollout-token-budgets
     - 2026-06-23-codex-multi-agent-delegation-modes
 stance:
-  use_for: "Teams who want OpenAI's read on long-running goals, plugin permissions, and visible authority state. Codex is editorially useful as a directional indicator for how a major closed-source coding-agent vendor shapes these surfaces -- directional, not predictive. Treat the design choices as evidence of where one large vendor is going, not as a forecast of where the category lands."
-  avoid_for: "Anyone who needs to fork or audit the agent itself -- Codex is watched as platform behavior, not a CLI you own. Hook authors using PreToolUse rewrites should re-test after v0.130.x; the rewrite path now actually rewrites."
-  watch_next: "Whether environment-scoped approvals become the per-environment authority model for mixed local+remote execution, how tight the turn-aborting token budget proves under real multi-agent load, and whether the app-server delegation-authority mode surfaces an equivalent end-operator control. Chronicle GA and the Developer-mode CDP boundary both remain open."
+  use_for: "Teams who want OpenAI's read on long-running goals, permission profiles, and visible authority state, and who will own the configuration that state now implies: an explicit sub-agent model and concurrency under the `agents` key, a marketplace source policy for a remote plugin catalog that is on by default with npm as a source, and a retention answer for memories that are now on by default on stable. Codex remains editorially useful as a directional indicator of how one large closed-source vendor shapes these surfaces -- directional, not predictive."
+  avoid_for: "Do not upgrade to rust-v0.145.0 without first backing up `rules/default.rules`; it strips exact `allow` entries from that file on the next session start and records `.sandbox_migration` so it happens silently and once. Do not rely on Codex network egress policy for containment on stable -- the entire network and proxy hardening wave is `rust-v0.146.0-alpha` only, with no stable tag as of 2026-07-27. Do not install `@openai/codex@beta` or `@native`; both dist-tags still point at May 2025 builds. And do not treat Codex as a separable endpoint decision on macOS or Windows: it ships inside the ChatGPT desktop app, so allowing that app allows Codex."
+  watch_next: "Whether a `0.146` stable tag lands and carries the network-authority wave intact, whether the `in_app_updates` requirements-only feature that would let an administrator pin Codex versions ever leaves `main`, and whether trusted-plugin-script attribution on approval dialogs reaches stable. The managed `requirements.toml` distribution and signing model is still undocumented while more policy keeps being routed through it."
 ---
 
 # Codex
 
 ## Operator Read
 
-Codex is OpenAI's bet on a stateful agent control plane, not a terminal
-prompt. Goals, sessions, threads, memory, plugin sets, permission profiles,
-sandboxes, and authority posture are all becoming first-class persistent
-state -- and as of the 2026-05-21 product launch (26.519 + CLI 0.133.0),
-goal mode reaches a **stable, default-exposed persistent-objective
-baseline**: it graduates out of experimental, ships with dedicated
-storage and progress tracking, and turns on by default across app, IDE,
-and CLI. The default-on move and a second piece -- *permission profile
-inheritance plus a managed `requirements.toml` enforcement file* -- shipped together in the same release bundle. They are operationally
-complementary, not causally chained: the policy substrate is real
-policy substrate, but the framing that goal-default-on *required* it is
-softer than the release notes literally claim. The 2026-06-16 to
-2026-06-23 window extends the authority machinery rather than the
-agent's reach: CLI 0.142.0 keys command and network approvals to the
-execution environment (fail-closed on ambiguous attribution), adds a
-turn-aborting rollout token budget as a hard spend cap, and gates
-multi-agent delegation as disabled/explicit-request/proactive. The
-browser/computer-use frontier did **not** move -- Chronicle stayed an
-opt-in macOS research preview (regionalized, not GA), and the
-Developer-mode CDP boundary stayed unclarified. Watch Codex as one
-large vendor's directional read on where closed-source coding agents
-go -- directional, not predictive.
+**Last material change: [`rust-v0.145.0`](https://github.com/openai/codex/releases/tag/rust-v0.145.0),
+2026-07-21. It edits your exec policy file the first time you start a session.**
+
+Back up `rules/default.rules` before you upgrade. On session startup
+`rust-v0.145.0` [removes exact `allow` entries](https://github.com/openai/codex/pull/34271)
+from that file for command prefixes Codex no longer suggests as policy
+amendments, records the migration in `.sandbox_migration` so it runs once, and
+skips itself only where user and project exec policy rules are already ignored.
+Diff the file after the first run and confirm `.sandbox_migration` exists. If
+your sandbox policy lives in version control or configuration management, expect
+drift you did not author. The same release
+[deletes the legacy exec policy engine](https://github.com/openai/codex/pull/32093)
+outright -- the crate, its default policy, and its documentation reference are
+gone, not deprecated, so any dependence on its matcher semantics ends here.
+
+The second thing to know is where the hardening went. This window's substantial
+network-authority work -- keyed shell environment policy filters, explicitly
+permitted loopback proxy targets, Windows sandbox proxy traffic routed by
+restricting SID, hardened elevated-sandbox startup and managed proxy setup for
+sandboxed executions, network approval cancellation and concurrency -- exists
+only on the
+[`rust-v0.146.0-alpha`](https://github.com/openai/codex/releases/tag/rust-v0.146.0-alpha.10.1)
+line. Channel here was resolved by git ancestry against the `openai/codex` tag
+graph rather than by date, and no `0.146` stable tag existed at window close. If
+you rely on Codex network egress policy for containment, `rust-v0.145.0` is what
+you are running and this wave is not in it. Accept the alpha channel
+deliberately or treat Codex network policy as unhardened.
+
+Two distribution facts change how you install and how you cite. Every
+`developers.openai.com/codex/*` URL now returns a 308 to
+[`learn.chatgpt.com/docs/*`](https://learn.chatgpt.com/docs/changelog), so a
+`developers.openai.com` Codex link is no longer a stable receipt; the rendered
+changelog exposes no per-entry permalinks, and the
+[RSS feed](https://learn.chatgpt.com/docs/changelog/rss.xml) is the only source
+of anchors. And the [`@openai/codex` npm dist-tags](https://www.npmjs.com/package/@openai/codex)
+are not what they look like: `latest` is `0.145.0` and `alpha` is
+`0.146.0-alpha.10.1`, but `beta` points at a build published 2025-05-18 and
+`native` at one from 2025-05-30. `npm install -g @openai/codex@beta` installs a
+fourteen-month-old binary with none of this window's command-safety work. If a
+Dockerfile or an install doc of yours references either tag, it is pinning
+2025.
+
+Codex also stopped being a separable install decision. As of
+[2026-07-09](https://learn.chatgpt.com/docs/changelog#codex-2026-07-09-app) it is
+part of the ChatGPT desktop app on macOS and Windows, so an endpoint policy that
+enumerates approved binaries now needs re-checking: allowing that app allows
+Codex. The
+[2026-07-23 entry](https://learn.chatgpt.com/docs/changelog#codex-2026-07-23-app)
+adds multi-folder local projects with a designated primary folder driving chats,
+Git operations, and automatic feature discovery, which widens a session's blast
+radius past a single repository root. Both are changelog-only claims; the
+desktop app ships on a release train with no public tag or commit, which is a
+lower receipt quality than the CLI's and should be said rather than smoothed
+over.
+
+Underneath the upgrade hazards, the direction is unchanged and the state got
+less optional. Codex is OpenAI's bet on a stateful agent control plane rather
+than a terminal prompt, and this window
+[automatic compaction lost its off switch](https://github.com/openai/codex/pull/29815)
+(the `auto_compaction` feature flag and its config schema entry were deleted;
+`--disable auto_compaction` no longer suppresses it),
+[memories were stabilized](https://github.com/openai/codex/pull/31804) and are on
+by default on the stable line,
+[remote plugins became default-on](https://github.com/openai/codex/pull/30297)
+with npm as a marketplace source, and multi-agent v2 went
+[stable](https://github.com/openai/codex/pull/34383) with its settings unified
+under an `agents` key. Watch Codex as one large vendor's directional read on
+where closed-source coding agents go. The cross-project reading of this window is
+in [Assume the Rule Does Not Bind](/digests/2026-07-02_2026-07-27-weekly/).
 
 ## Run Codex Differently
 
-Use `/goal` as a persistent objective, not a prompt extension.
-[TUI-side validation](https://github.com/openai/codex/commit/f09e1936e0fd464dcea78fe55b84bd20f721cad6)
-handles paste, queued goal commands, length limits, and explicit operator
-guidance for longer instructions. The goal lifecycle is
-[instrumented](https://github.com/openai/codex/commit/91b735018779daed7c40f86aab9bec9abc9922e8) -- goals are observable durable objects, not chat-local state.
+Treat [`/import`](https://learn.chatgpt.com/docs/import) output as an untrusted
+configuration diff. `rust-v0.145.0` expanded it to migrate settings, MCP
+servers, plugins, sessions, commands, hooks, subagents, and project-scoped
+memories from Cursor and Claude Code in one step. That is another agent's
+authority configuration entering yours. OpenAI's own doc calls out reviewing
+tool restrictions and permissions in imported skills and agents, and MCP server
+settings using custom authentication, headers, environment variables, or
+transports. Review before you run a turn, not after.
 
-Treat each session as identified runtime state, not ambient context.
-Sessions carry [a session id](https://github.com/openai/codex/commit/a98623511ba433154ec811fc63091617f5945438)
-through the runtime, making "which session is this" answerable; MCP turns
-carry [thread metadata](https://github.com/openai/codex/commit/fe24a180ab6f6b3639b682cc6a1e71150fea6d48)
-linking tool calls back to the conversational thread they belong to. Memory
-itself runs as
-[a spawned MCP](https://github.com/openai/codex/commit/ca257b6ce5db5c2710ec8da290b25b263154e402)
-rather than being bolted into the agent -- memory is a swap-able surface,
-not a fixed component.
+Move multi-agent configuration under the `agents` key and price the fan-out
+before enabling it. Multi-agent v2 is stable with sub-agent model overrides,
+reasoning levels, and concurrency configurable, spawned-agent models restricted
+to the active backend, agent roles restored on reload, and parent-owned
+sub-agent threads read-only in the TUI. `rust-v0.144.0` ships a warning for
+exactly the expensive combination: Ultra reasoning at high multi-agent
+concurrency.
 
-If your hook layer rewrote tool inputs by returning `updatedInput` but the
-agent kept using the original, you have a behavior shift to verify.
-[`PreToolUse` hooks now apply `updatedInput` rewrites](https://github.com/openai/codex/pull/20527)
-before tool dispatch when the hook also returns `permissionDecision: "allow"`.
-Hook authors can now sanitize, normalize, or redirect tool arguments before
-execution -- the hook surface is no longer just allow/deny.
+Tell approvers that the rejection box is a prompt.
+[`ReviewDecision::Denied` now carries a rejection string](https://github.com/openai/codex/pull/34400),
+preserved through command, patch, network, MCP, delegated, and automatic
+approval flows and returned to the model in tool results. Whatever a reviewer
+types is model-visible context; keep secrets and internal ticket text out of it.
 
-## Authority Made Visible
+Expect the transcript to branch.
+[Editing an earlier prompt or retrying a safety-buffered turn](https://github.com/openai/codex/pull/33201)
+creates a contextual branch preserving the original conversation, attachments,
+and mention bindings, and interrupted prompts stay in history. If your review
+process assumed the transcript is what happened, a reviewer reading one branch
+has not read the session.
 
-The TUI status line carries
-[`permissions` and `approval-mode`](https://github.com/openai/codex/commit/e6312d44f073)
-as separately configurable items. Authority that used to live behind
-`/permissions` and `/status` now sits in peripheral vision. Standard states
-render compactly (`Read Only`, `Workspace`, `Full Access`); user-defined
-permission profile names are preserved; non-standard shapes render as
-`Custom permissions`. Add both to your status line if you run more than one
-permission profile.
+Do not put an audit upload behind `SessionEnd`. The
+[new teardown hook](https://github.com/openai/codex/pull/33895) fires on
+app-server archive, delete, idle unload, and graceful shutdown with the
+transcript flushed first, but its output is advisory, its default timeout is one
+second, configured timeouts are capped at three, and async hooks are forced
+synchronous with a warning.
 
-Plugin sharing has matured into a governance surface, not just a feature.
-Share carries
-[explicit access controls](https://github.com/openai/codex/commit/5119680f85ed01fe039ee8fba0245de24f3a5e37)
-separated from raw permissions. Share-context APIs are
-[role-aware](https://github.com/openai/codex/commit/479491ed8925) -- "who can
-see this plugin" is a first-class question, not a binary access flag -- and
-share settings have
-[discoverability work](https://github.com/openai/codex/commit/ae15343243ee)
-on top of the role-aware context.
+Re-derive two budgets. GPT-5.6 Sol, Terra, and Luna context windows were
+[corrected to 272,000 tokens](https://github.com/openai/codex/releases/tag/rust-v0.144.6)
+in `rust-v0.144.6`, so any prompt sizing, chunking, or compaction threshold set
+against the earlier bundled figure was wrong. And cost attribution changed
+shape: [prompt cache keys moved to session IDs](https://github.com/openai/codex/pull/33035)
+and [cache-write token usage is now tracked](https://github.com/openai/codex/pull/33454)
+in the raw response schema and app-server events. Add the cache-write field
+before comparing a `0.145.0` bill against a `0.144.x` one, or the delta is new
+fields rather than new usage.
 
-## Platform Surfaces
+Grep your `config.toml` and CI wrappers for two removals.
+[`AskForApproval::OnFailure`](https://github.com/openai/codex/pull/28418) no
+longer exists, and
+[`--permission-profile`](https://github.com/openai/codex/pull/30095) (singular)
+is the canonical flag; `--permissions-profile` survives only as a hidden
+backwards-compatible alias with no deprecation clock. Migrate rather than lean
+on the alias.
 
-A [bundled Linux sandbox](https://github.com/openai/codex/commit/26f355b67b75b040ff16990d1b2e4e8093479213)
-ships with Codex, removing the host-dependent sandbox setup step Linux
-operators used to maintain. The skills watcher
-[runs in the app-server](https://github.com/openai/codex/commit/408e6218ab7f),
-consolidating skills management with the broader app-server direction the
-repo has been pursuing. Each of these refines a previously coarse property
-(implicit host sandbox setup, scattered skills management) into structured
-runtime state.
+## Authority On Stable
 
-## Goal Mode And Versioned Policy
+Full access always confirms now.
+[Selecting it opens the confirmation dialog](https://github.com/openai/codex/pull/32989)
+whenever user-reviewed approvals are active, regardless of
+`notices.hide_full_access_warning`, and the persistent "don't ask again" option
+and its acknowledgement events were removed. Any runbook that told users to tick
+that box is wrong, and a scripted flow expecting no dialog will hang.
 
-Goal mode is no longer a research preview. The
-[26.519 product launch](https://developers.openai.com/codex/changelog)
-graduates it across app, IDE extension, and CLI; CLI 0.133.0 turns
-goals on by default with dedicated storage and progress tracking
-across active turns. Operators can point Codex at an objective
-spanning "hours or even days" without the prior opt-in ceremony.
-The same launch ships **remote computer use after Mac lock** as a new
-opt-in authority surface. The locked-host boundary is the load-bearing
-piece: the host's lock state is normally a hard signal that no agent
-should be operating; this feature lets that signal be overridden, with
-documented safeguards -- short-lived authorization, scoping to active
-trusted computer-use turns, covered displays, relock on local input,
-manual-unlock fallback, and per-task enable. The capability is narrow
-and opt-in, not a default category event. The operator-facing rule of
-thumb: default-deny locked-host computer use for sensitive hosts and
-allow only scoped task classes after verifying stop/relock and
-display-cover behavior end to end.
+Two defaults moved toward more surface rather than less.
+[MCP authentication elicitation is on by default](https://github.com/openai/codex/pull/28772),
+so an MCP server can put an auth prompt in front of a user mid-run without you
+having enabled anything -- your MCP allowlist is the control now, because the
+opt-in is not. And the remote plugin catalog is
+[default-on with npm marketplace sources](https://github.com/openai/codex/pull/29375),
+with [admission requirements](https://github.com/openai/codex/pull/29753) and a
+[runtime source policy](https://github.com/openai/codex/pull/29691), and locally
+curated plugins ignored while the remote catalog is active. Decide your
+marketplace source policy, verify it is enforced at runtime rather than at
+install, and check whether local plugins you depend on are being shadowed.
 
-The computer-use frontier did **not** advance in the 2026-06-16 to
-2026-06-23 window -- we looked and found no boundary movement. The only
-in-window change is a regional availability rollout: desktop Computer
-Use (macOS/Windows), the signed-in-Chrome extension, opt-in Memories
-(off by default in these regions), and the
-[Chronicle screen-context preview](https://developers.openai.com/codex/changelog)
-reaching the EEA, UK, and Switzerland on 2026-06-16. Chronicle remains
-an **opt-in macOS research preview** for ChatGPT Pro subscribers -- it
-was regionalized, not graduated to GA. Separately, the Developer-mode
-["controlled" Chrome DevTools Protocol boundary](https://developers.openai.com/codex/changelog)
-introduced at app 26.609 was **not clarified** this window; the scope
-of "controlled" CDP access remains an open question. Both claims carry
-an unadvanced last_verified of 2026-06-23: we checked, and the answer
-is still what it was.
+Repository-resident files now carry authority. The multi-agent v2 prompt was
+updated so
+[`AGENTS.md` and skills can explicitly authorize delegation](https://github.com/openai/codex/pull/30274)
+to subagents, which makes them code-review artifacts rather than documentation.
+Separately, hooks from materialized workspace plugins are
+[recorded as trusted after a successful plugin refresh](https://github.com/openai/codex/pull/32301),
+with the trust write serialized against config mutations and left untrusted on
+failure or account change -- so installing or updating a remote workspace plugin
+can cause its hooks to become trusted without a separate prompt.
 
-*Findings: `2026-05-27-codex-goal-mode-graduated-and-remote-computer-use`,
-`2026-06-23-codex-eea-uk-swiss-feature-rollout`.*
+The [`writes` app-approval mode](https://github.com/openai/codex/pull/30482) is
+the middle setting many teams were hand-rolling: declared read-only actions are
+allowed, writes prompt. Test it before granting it. The boundary depends on an
+app *declaring* an action read-only, which is a claim the app makes, not a
+property Codex verifies.
 
-[CLI 0.133.0](https://github.com/openai/codex/releases/tag/rust-v0.133.0)
-ships the new policy substrate alongside the goal-default-on move:
-permission profile **inheritance hierarchies** (a profile can derive
-from another), **managed `requirements.toml` integration** as an
-org-level enforcement file, runtime profile refresh, and list APIs
-for profile discovery. CLI 0.134.0 then makes `--profile` the
-canonical permission selector across CLI, TUI, and sandbox flows,
-**rejecting legacy profile configs** with migration guidance.
-Enterprise operators can now prototype base profile + per-team
-derivations rather than maintain flat grant lists. The discipline
-constraint: prototype but do not rely on managed `requirements.toml`
-as enforceable policy until the file's *distribution, signing, and
-inheritance merge semantics* are documented or verified through
-adoption -- the underlying policy mechanism is real, but the category
-claim ("this is the enterprise policy model for coding agents") is
-not yet receipt-backed and should not be made.
+The one unambiguous command-safety fix on the stable line is
+[expanded `is_dangerous_command` coverage of forced `rm` forms](https://github.com/openai/codex/pull/33455),
+with clearer rejection reasons, backported to `rust-v0.144.5` and present
+independently on the `0.145` line. If you are pinned below `rust-v0.144.5` the
+older forms are still accepted. It shipped with no CVE and no GHSA:
+`openai/codex` published no advisory in the window, and the repository's only
+advisory remains one from 2025-09-19, so a vulnerability feed would have told
+you nothing.
 
-*Findings: `2026-05-27-codex-permission-profile-inheritance-and-managed-requirements`.*
+Windows and managed-laptop operators have two couplings to test. The
+[elevated Windows sandbox is now required for and selected for network proxies](https://github.com/openai/codex/pull/32857),
+and [Windows sandboxing moved into the exec server](https://github.com/openai/codex/pull/34423);
+if your fleet blocks elevation, test before rolling out `rust-v0.145.0`, because
+the proxy enforcement and the sandbox are now coupled. And Codex can resolve
+[macOS](https://github.com/openai/codex/pull/26709) and
+[Windows](https://github.com/openai/codex/pull/26708) system proxy
+configuration, including PAC and WPAD, and routes both authentication and
+Responses traffic through it. On a managed laptop with a WPAD-published proxy,
+model traffic will now traverse your inspecting proxy where it previously may
+not have. Verify the CA chain and confirm with your network team what that proxy
+logs, before this lands via auto-update.
 
-## Environment-Scoped Authority And Spend Caps
+One credential-path change is worth an explicit owner:
+[app-server hosts can supply Codex authentication at runtime](https://github.com/openai/codex/pull/31274)
+and successful logins can redirect to a hosted success page. If you embed Codex
+behind your own app-server you can own the credential path -- and so can anyone
+else who controls the host process. Audit which host may supply auth and where
+the login redirect terminates.
 
-CLI 0.142.0 (2026-06-22) narrows authority along a new axis: the
-execution environment. Command and network approvals are now
-[scoped to the environment they were granted in](https://github.com/openai/codex/pull/28899) -- the selected environment ID is folded into shell, unified-exec, and
-network approval cache keys, so an `echo ok` approved in local
-`/workspace` no longer auto-extends to the same command and path on a
-remote executor. This closes an authority-leak class: a grant made in
-one environment stops silently authorizing another. The network path
-**fails closed** on ambiguity -- it preserves a legacy fallback for
-unattributed requests but **denies when active-call attribution is
-ambiguous**, and fails closed if an environment-specific proxy endpoint
-cannot be prepared. Operators running mixed local+remote execution
-should re-test approval reuse: previously-shared approvals will now
-re-prompt per environment. This is a genuine narrowing, not a UI
-refinement -- it changes how an operator reasons about "is my grant
-where I think it is."
+## What Ships Only In Preview
 
-The same release adds a **hard runtime spend cap**. Configurable
-[rollout token budgets](https://github.com/openai/codex/releases/tag/rust-v0.142.0)
-track usage across agent threads, surface remaining-budget reminders,
-and **abort turns when the budget is exhausted** -- a cap that refuses,
-not a warning that nags. The enforcement is precise about its
-boundary: it is a hard cap on spend but a **soft boundary in timing**.
-There is no cross-thread `Op::Interrupt` fan-out; an in-flight thread
-can finish its current response, and every thread aborts at its next
-usage-accounting boundary rather than being killed mid-call. The
-ledger is shared, so sub-agent usage draws against the same budget.
-For anyone running long-horizon or fan-out work, this is the first
-first-class containment lever that actually stops a run rather than
-reporting on it -- bound a multi-thread autonomous run with it, but
-size the budget knowing an expensive in-flight call can still complete
-past the line.
+Channel matters more than usual on this source right now. Everything below was
+resolved by git ancestry against the tag graph, not by publication date.
 
-Codex also gains a **delegation-authority gate**. App-server clients
-can set
-[multi-agent delegation](https://github.com/openai/codex/releases/tag/rust-v0.142.0)
-to **disabled, explicit-request-only, or proactive** at both thread
-and turn granularity -- a knob over whether Codex may spawn delegated
-sub-work on its own or only when explicitly asked. This is the
-"does the agent get to recruit more agents" question made
-configurable. The reach is softened by surface: it is an app-server
-client config, not yet an end-operator CLI flag, so the operator
-exposure depends on the client. Note 0.143.0 is alpha-only as of
-2026-06-23 -- none of its contents are asserted here as shipped.
+**Preview only** (`rust-v0.146.0-alpha`, no stable tag at window close): the
+entire network and proxy policy hardening wave described above;
+[trusted plugin script attribution](https://github.com/openai/codex/commit/5bdbd3ee90d7),
+which means that on stable an approval prompt does not tell you which plugin
+script originated the command; and switches to disable the `update_plan` tool,
+the multi-agent wait tool, and the
+[in-process code-mode host fallback](https://github.com/openai/codex/commit/cba0e2701c9e).
+That last one is the operator-relevant one: on stable, if the external code-mode
+host is unavailable, Codex silently falls back to the embedded V8 runtime
+shipped in `rust-v0.144.1`, and only the alpha line lets you turn the fallback
+off. Note also that
+[shell approval keys moved to path URIs](https://github.com/openai/codex/commit/a59a419afa34)
+on that line, so previously remembered approvals may not match after a `0.146`
+upgrade.
 
-*Findings: `2026-06-23-codex-environment-scoped-approvals`,
-`2026-06-23-codex-rollout-token-budgets`,
-`2026-06-23-codex-multi-agent-delegation-modes`.*
+**Main-unreleased** (in no tag, stable or prerelease): a default-enabled
+[`in_app_updates` requirements-only feature](https://github.com/openai/codex/pull/35537)
+letting administrators disable in-app updates through `[features]` in
+`requirements.toml`, and an explicit distinction between an
+[omitted and an empty `mcp_servers` allowlist](https://github.com/openai/codex/pull/35280)
+for plugin MCP servers. The managed control that would let an enterprise pin
+Codex versions from `requirements.toml` exists in no shipped build. Do not plan
+a rollout around it; hold versions with OS-level package management.
 
 ## Open Questions
 
-- Chronicle (screen-context memory) status: still an opt-in macOS
-  research preview as of 2026-06-23. It was regionalized to the EEA,
-  UK, and Switzerland on 2026-06-16 but not graduated to GA. Open
-  until a GA or a behavior change lands. Tracked as `open_question`;
-  we looked this window and the answer is unchanged.
-- Developer-mode "controlled" Chrome DevTools Protocol boundary
-  (app 26.609): the scope of what "controlled" CDP access permits was
-  not clarified this window. Open until the boundary is documented or
-  observed.
-- Rollout token-budget tightness under real multi-agent load: the cap
-  aborts at the next usage-accounting boundary with no cross-thread
-  interrupt, so an expensive in-flight call can still complete. How
-  tight the effective bound is in practice is not documented.
-- Multi-agent delegation reach: the disabled/explicit-request/proactive
-  modes are an app-server client config, not an end-operator CLI flag.
-  Whether an equivalent end-operator control surfaces is open.
-- What is the distribution and signing model for managed
-  `requirements.toml`? Release notes describe org-level enforcement
-  but do not document whether the file is repo-rooted, org-rooted
-  via a central distribution mechanism, signed against tampering,
+- **Partly resolved: which surface is canonical when they disagree.** The source
+  contract asked which GitHub releases, tags, and npm versions to trust. For npm
+  the answer is now receipted: `latest` tracks the stable tag and `alpha` tracks
+  the newest prerelease, but `beta` and `native` are frozen at May 2025 builds
+  and are not release channels in any useful sense. GitHub tags resolved by
+  ancestry remain canonical; npm dist-tags are not.
+- **Partly resolved: multi-agent delegation reach.** June's question was whether
+  the app-server-only disabled / explicit-request / proactive delegation gate
+  would surface an end-operator equivalent. Operators now get stable
+  configuration under the `agents` key -- sub-agent model, reasoning level,
+  concurrency, restored roles -- but the three-mode authority gate itself is
+  still an app-server client config, so end-operator exposure still depends on
+  the client.
+- **What is the distribution and signing model for managed
+  `requirements.toml`?** Still undocumented, and the question grew: the in-app
+  update kill switch and the plugin MCP allowlist semantics are both being
+  routed through that file while nothing states whether it is repo-rooted,
+  org-rooted through a central distribution mechanism, signed against tampering,
   or watched at runtime.
-- Profile inheritance semantics: does a derived profile only *add*
-  to the base, or can it *subtract*? Subtraction is the harder and
-  safer feature; the release notes do not say.
-- Runtime profile-refresh consistency under in-flight tool calls is
-  unspecified -- what happens to a tool call that started under a
-  loosened profile that tightens mid-call?
-- For remote computer use after Mac lock: can operators narrow the
-  permission per-task / per-tool / per-domain beyond the documented
-  short-lived authorization + relock-on-input + covered-display
-  safeguards?
-- Carried from the source contract: which GitHub releases, tags, and
-  npm package versions should be treated as canonical when they
-  disagree with the official Codex changelog? Which provider-native
-  long-horizon features should Bitter detect through local probes
-  rather than relying on release notes? See
-  `sources/codex.yml#discovery`.
-- `surface_class` migration trigger: Codex is currently classified
-  `mixed_official_docs`. PR-level receipts for semantics-heavy
-  features (permission profile inheritance, managed `requirements.toml`,
-  goal lifecycle metrics) remain visible on `openai/codex`, so the
-  classification holds. The pressure-test surfaced an open question
-  for *when* migration to `closed_source_release_notes` would be
-  triggered. Proposed trigger: when two consecutive cycles produce
-  no semantics-heavy claim that can be anchored above
-  `release_note` precision, the classification should move. Until
-  then, `evidence_floor: release_note` stays, but profile claims
-  reaching above release-note precision should cite the PR or docs
-  page explicitly.
+- **Does the exec policy migration run again, and is anything recoverable?**
+  `.sandbox_migration` is described as making the rewrite run once. Whether a
+  later release adds a second migration, and whether stripped `allow` entries
+  are recoverable from anything other than your own backup, is not stated
+  anywhere in the release record.
+- **Where do memories live, and who owns them?** Memories are stabilized and
+  enabled for paginated threads on the stable line. Which artifacts persist,
+  where, and whether they fall inside a data-retention policy is an operator
+  question the release notes do not answer.
+- Profile inheritance semantics: does a derived profile only *add* to the base,
+  or can it *subtract*? Subtraction is the harder and safer feature; the release
+  notes still do not say. Runtime profile-refresh consistency under in-flight
+  tool calls is likewise unspecified.
+- Rollout token-budget tightness under real multi-agent load: the cap aborts at
+  the next usage-accounting boundary with no cross-thread interrupt, so an
+  expensive in-flight call can still complete past the line.
+- For remote computer use after Mac lock, whether an operator can narrow the
+  permission per-task, per-tool, or per-domain beyond the documented short-lived
+  authorization, relock-on-input, and covered-display safeguards is still
+  unanswered.
+- Chronicle (screen-context memory) and the Developer-mode "controlled" Chrome
+  DevTools Protocol boundary were last checked on 2026-06-23 and were open then.
+  Neither appeared in this window's primary harvest in either direction, so
+  nothing here should be read as a fresh check on them.
+- `surface_class` holds at `mixed_official_docs`. This window produced abundant
+  PR-level receipts for semantics-heavy behavior -- the exec policy rules
+  migration, the network hardening wave, plugin hook trust -- so the
+  classification is still earning its keep. The standing migration trigger is
+  unchanged: two consecutive cycles with no semantics-heavy claim anchorable
+  above `release_note` precision.
 
 ## What To Watch Next
 
-- Whether goal-mode-default-on is reversed or refined under operator
-  pushback. The default-on move puts Codex in a small group with
-  Claude Code and Gemini CLI; whether one of them reverses creates
-  a marker for the industry.
-- Adoption of `requirements.toml` outside OpenAI's own enterprise
-  customers -- distribution and trust model decisions will mostly
-  emerge through adopters, not changelog entries.
-- Whether plugin marketplace sharing (ChatGPT Business launched
-  2026-05-21; Enterprise "coming soon") materializes meaningful
-  distribution mass; the surface exists but the adoption is the
-  signal.
-- `codex exec resume --output-schema` (CLI 0.132.0): a contract-bearing
-  resume surface that lets a CI caller enforce schema on continuation
-  of an existing session. Watch for adoption patterns and whether
-  the schema-on-resume becomes standard for non-interactive callers.
-- Conversation history search (CLI 0.134.0): a small surface, but
-  the first time sessions are treated as searchable artifacts
-  rather than ephemeral logs.
-- `readOnlyHint` concurrency for MCP tools (CLI 0.134.0): possible
-  cross-vendor convention candidate. Cross-provider probe worth
-  scheduling.
-- App-server consolidation (skills watcher, app-server pagination) is
-  ongoing. Likely to absorb more surfaces.
-- Remote control surfaces mentioned in the 0.130.0 changelog are
-  worth a diff-level probe.
+- Whether a `0.146` stable tag lands, and whether it carries the network and
+  proxy hardening wave intact.
+- Whether `in_app_updates` reaches a tag. It is the managed control an
+  enterprise would use to hold a version, and it currently exists only on
+  `main`.
+- Whether trusted plugin script attribution reaches stable, closing the gap
+  where an approval dialog cannot name the plugin that asked for the command.
+- Adoption of `requirements.toml` outside OpenAI's own enterprise customers.
+  Distribution and trust model decisions will emerge through adopters, not
+  changelog entries.
+- Whether the default-on remote catalog produces meaningful third-party
+  distribution mass, and what admission policy actually gets enforced at
+  runtime rather than at install.
+- Whether `learn.chatgpt.com` gains per-entry permalinks in rendered HTML, or
+  whether the RSS feed stays the only anchor source. The published `llms.txt`
+  index still lists `developers.openai.com/codex/*.md` URLs.
+- Guardian auto-review prompting, shipped in `rust-v0.144.0` and
+  [reverted in `rust-v0.144.2`](https://github.com/openai/codex/pull/32672). Any
+  auto-review benchmark run between 2026-07-09 and 2026-07-13 measured a
+  configuration that no longer exists; `0.144.3` and `0.144.4` are empty
+  releases and should not be read as safety patches.
+- Whether the ChatGPT desktop app train ever publishes tags or commits. Its
+  claims are changelog-only today, which is a materially weaker receipt than the
+  CLI's.
 
 ## Profile Hygiene
 
 This profile follows the profile discipline defined in
-[METHOD.md](../../METHOD.md#the-object-grammar):
-every concrete claim has an inline source link and an entry in the
-`claims:` block; posture sections may interpret freely but must cite
-finding IDs when naming a specific feature, behavior change, or
-cross-project comparison. Cross-project editorial belongs in the
-weekly digest, not here. Git history is the audit trail; removed
-claims live in the diff log.
+[METHOD.md](../../METHOD.md#the-object-grammar): posture sections may interpret
+freely, but every concrete claim carries an inline link to the release, pull
+request, or documentation page it rests on. Cross-project editorial belongs in
+the weekly digest, not here. Git history is the audit trail; removed claims live
+in the diff log.
+
+The `claims:` block is unchanged from 2026-06-23. The 2026-07-27 research cycle
+published its record as per-source harvest and cross-check artifacts rather than
+individual finding files, so this window's material is carried in the prose with
+inline receipts on the claim-bearing words instead of new `claims:` entries.
+
+The `docs` and `changelog` links above were moved to `learn.chatgpt.com` because
+the previous `developers.openai.com` URLs now answer 308.

@@ -6,7 +6,7 @@ owner: OpenClaw
 source_contract: sources/openclaw.yml
 homepage: https://openclaw.ai
 docs: https://docs.openclaw.ai/
-tagline: "Familiar access with the authority left visible -- until one gate quietly opened."
+tagline: "The fixes are real, and they are on a channel you are probably not running."
 compared_with:
   - codex
 x:
@@ -18,8 +18,8 @@ repo: https://github.com/openclaw/openclaw
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-06-23
-last_full_review: 2026-06-03
+last_updated: 2026-07-27
+last_full_review: 2026-07-27
 claims:
   - id: channel-recovery-self-healing
     finding_id: 2026-05-07-openclaw-everyday-agent-surfaces
@@ -126,201 +126,226 @@ posture_basis:
     - 2026-06-23-openclaw-codex-auto-plugin-approvals-stable
     - 2026-06-23-openclaw-clawhub-skill-provenance-stable
 stance:
-  use_for: "Teams running their own bridge between chat or voice platforms and an agent, where the data has to stay on-prem. Operators who need to scope what any individual agent can say back, in which thread, in which channel."
-  avoid_for: "Cloud-first teams who already standardized on a hosted control plane. Workflows that depend on uploaded skill archives until OpenClaw documents its signing and sandbox-isolation model."
-  watch_next: "How the skill-archive trust model lands -- signing, sandbox, signed catalog -- and whether voice-channel allowlists mature past the initial permission shape."
+  use_for: "Teams running their own bridge between chat or voice platforms and an agent, where the data has to stay on-prem and the operator wants to scope what any individual agent can say back, in which thread, in which channel. The stable tag v2026.7.1 adds session-scoped grants for external harnesses, so an outside tool can be bound to one Gateway session instead of holding process-wide credentials."
+  avoid_for: "Anything where the workspace root is your containment barrier. A path built from a symlink plus `..` reads outside the workspace while the sandbox assertion reports success, and that fix is in no release on any channel. Also avoid relying on channel allowlists as your authority model on stable or on the npm default: the fix separating channel access from global command ownership is thirteen days old and beta-only. And do not cite a GitHub release as your version -- state the npm version, because the two disagree."
+  watch_next: "Whether the stable line rejoins main or keeps forking with its own unattributed commits; whether the beta tags that carry the privilege-escalation and ACP fixes ever become the npm default; and whether atomic fs-safe adoption closes the check-to-use window the sandbox fix leaves open."
 ---
 
 # OpenClaw
 
 ## Operator Read
 
-OpenClaw's real frontier signal is familiar access with visible authority:
-chat, voice, mobile, and gateway setup make agents easier to reach, but the
-operator still needs clear permission, skill-install, and multi-channel trust
-boundaries. The thesis it's testing: agentic work belongs in the surfaces
-people already use, without hiding what the agent can do.
+Two facts should govern how you read anything else about OpenClaw right now,
+including this profile.
 
-## Reach Operators Where They Already Work
+**The version you install is not the version on the releases page.** As of
+2026-07-27, `npm install openclaw` gives
+[`2026.7.1-2`](https://www.npmjs.com/package/openclaw/v/2026.7.1-2), an untagged
+respin published 2026-07-18 with no git tag, no GitHub release, no release
+notes, and no `gitHead` -- there is no published commit pointer for the artifact
+most users actually run. Two respins went out twenty-eight minutes apart that
+morning. Meanwhile `v2026.7.2-beta.4` and `v2026.7.2-beta.5` are real git tags
+with no GitHub release at all, and an undocumented `extended-stable` line sits
+at [`2026.6.33`](https://www.npmjs.com/package/openclaw/v/2026.6.33). State your
+OpenClaw version as an npm version. A release page will describe software nobody
+is running.
 
-The [`openclaw onboard --install-daemon`](https://docs.openclaw.ai/start/getting-started)
-wizard takes operators through provider selection, API key entry, and
-gateway configuration in roughly two minutes. The gateway starts on port
-18789 with a browser Control UI at `openclaw dashboard`. CLI setup,
-onboarding, configure, and channel commands now explain the next useful
-command at each step rather than leaving operators with
-[terse setup labels](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5) -- first-run operators are told what to run next at each stage.
+**The stable tag is not cut from main.**
+[`v2026.7.1`](https://github.com/openclaw/openclaw/releases/tag/v2026.7.1) points
+at commit `2d2ddc43d`, and the
+[comparison against main](https://github.com/openclaw/openclaw/compare/b81666ca6af25c86cc099983a4358cdc5ea9ced8...v2026.7.1)
+shows the stable line forked on 2026-07-08 and then took 215 commits of its own,
+none carrying a pull-request number. So a change merged to main on 2026-07-10 is
+genuinely absent from a tag published on 2026-07-13, and reasoning from merge
+dates gives you the wrong answer about your own build. Every channel call below
+was resolved against the maintainers' PR manifest and the fork point, not the
+calendar.
 
-The accessibility ceiling is breadth, not first install. Ten-plus messaging
-channels, voice, mobile (iOS / Android), and a browser Control UI all add
-to setup complexity once you're past the first connection. The onboarding
-wizard handles a single channel cleanly; the second and third require more
-operator knowledge.
+Those two facts are why this window reads the way it does. A confirmed workspace
+sandbox escape is fixed in no release on any channel. A privilege escalation
+from channel-allowlist membership to global command authority merged on
+2026-07-14 and is still not in stable. Two approval defaults were deliberately
+loosened, on beta only. And
+[2110 commits](https://github.com/openclaw/openclaw/compare/v2026.7.2-beta.3...main)
+separate the newest GitHub-published preview from main.
 
-## Authority At The Gateway Edge
+The read to take away is narrow, and it is not that OpenClaw is careless. The
+project ships a large, sustained volume of real security work, and its thesis --
+familiar access with the authority left visible -- is still the right one. The
+problem is that the fixes and the installable artifact are on different channels,
+and nothing on the surfaces a normal operator reads will tell you which one you
+have.
 
-The 2026-05-12 baseline pushed authority control to the agent level. The
-[v2026.5.12-beta.3 release](https://github.com/openclaw/openclaw/releases/tag/v2026.5.12-beta.3)
-(published 2026-05-12T23:38Z) pushes it further: authority moves to the
-requester. New
-[per-sender tool policies (PR #66933)](https://github.com/openclaw/openclaw/pull/66933)
-let operators restrict dangerous tools by requester identity using
-canonical channel-scoped sender keys, across global, agent, group, core,
-bundled, and plugin tool surfaces. A public-facing OpenClaw deployment can
-now allow or deny specific tools to specific senders in specific channels,
-without modifying the global tool surface or relying on per-agent guards.
+## The Sandbox Check That Returned Success
 
-The earlier per-agent layer remains. Use per-agent
-[`tools.message.crossContext`](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5)
-overrides when you want to deploy a sandboxed or public-facing agent that
-can only reply in the conversation it was addressed in -- without modifying
-global policy. Pair with
-[`tools.message.actions.allow`](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5)
-to expose and enforce send-only message tools. The per-sender layer
-extends what the per-agent layer started: authority decisions now
-compose across (channel × sender × agent) rather than landing on agent
-alone.
+[PR #113405](https://github.com/openclaw/openclaw/pull/113405) (merged
+2026-07-27) documents a reproduced probe on a fresh `origin/main`: a POSIX
+workspace path of the form `sub/up/../outside/secret.txt`, where `sub/up` is a
+symlink to `..`, reads a planted sibling file *while* `assertSandboxPath` returns
+success and reports the normalized in-root path `sub/outside/secret.txt`. The
+shipped read, write, and edit tools all route filesystem operations through the
+same `@openclaw/fs-safe` `Root`.
 
-Lock voice joins to specific channels with
-[`voice.allowedChannels`](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5);
-the same allowlist constrains bot voice-state moves on Discord.
-[Sub-agent security boundaries](https://github.com/openclaw/openclaw/commit/33b112ad314dc8d9dfe0f5a68caed4811a23245a)
-are documented per session scope.
+The maintainers are candid about the fix in a way worth quoting back: it is
+defense-in-depth and it is not race-safe. It blocks the demonstrated escape at
+validation time, it does not close the check-to-use window, and a symlink
+validated as in-root can still be swapped before a later operation on the raw
+path. Atomic adoption is tracked in
+[#114382](https://github.com/openclaw/openclaw/issues/114382) and the broader
+work in [#113705](https://github.com/openclaw/openclaw/issues/113705).
 
-Skill archive upload is gated behind
-[`skills.install.allowUploadedArchives`](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5)
-with default closed. Do not enable this surface until OpenClaw documents
-its signing and sandbox-isolation model -- the gate is correct, the trust
-model behind it is not yet public.
+The operator consequence is one sentence: on every current OpenClaw release, on
+every channel, the workspace boundary is a hygiene measure and not a containment
+barrier. Treat what the agent can reach as what the process can reach. The
+[signal](/signals/2026-07-27-openclaw-sandbox-check-returns-success-while-escaping/)
+carries the upgrade decision on its own.
 
-## Content Boundaries Pre-Dispatch
+## Channel Membership Was Global Command Authority
 
-The 2026-05-13 → 2026-05-27 window pushed the authority story from
-"who can ask?" (per-sender tool policies, per-agent restrictions) to
-"what content can reach the agent at all?" The
-[v2026.5.26](https://github.com/openclaw/openclaw/releases/tag/v2026.5.26)
-release lands a multi-front content-safety push: browser snapshot
-reads now honor SSRF policy before reading tab URLs
-([PR #78526](https://github.com/openclaw/openclaw/pull/78526));
-queued system-event text is sanitized so untrusted plugin or channel
-labels cannot spoof nested prompt markers
-([PR #87094](https://github.com/openclaw/openclaw/pull/87094));
-fetched file text and metadata are wrapped as external content
-(#87062); ClickClack `allowFrom` sender allowlists run **before**
-agent dispatch ([PR #83741](https://github.com/openclaw/openclaw/pull/83741)),
-not as post-dispatch blocking; RPCs from invalidated device-token
-clients are rejected during rotation (#70707); serialized tool-call
-text is scrubbed from replies (#86924). A separate `memory_store`
-prompt-like-text reject matches the auto-capture filter (#87142).
+The window's highest-severity authority fix, and the clearest illustration of
+the channel problem. A sender allowed to use one channel could be treated as a
+global command owner; with config commands enabled that permitted owner-gated
+mutations such as `/allowlist` and `/config`.
+[PR #107403](https://github.com/openclaw/openclaw/pull/107403) separates
+transport-level command access from global owner authority: only an explicit
+`commands.ownerAllowFrom` identity or an internal `operator.admin` session
+grants owner status, owner wildcards are ignored consistently with the
+documented contract, and doctor treats wildcard-only owner configuration as
+missing. The PR carries a before/after Telegram proof in which an
+`allowFrom`-listed non-owner runs `/activation always`: accepted on main,
+refused on the branch.
 
-Gateway auth rate-limiter defaults on for remote non-browser/HTTP
-auth failures when `gateway.auth.rateLimit` is unset (#87148).
-Operators should verify whether their config left this unset -- the
-on-by-default ratelimit changes observable behavior for non-browser
-auth flows.
+It merged 2026-07-14. Thirteen days later it is diverged from `v2026.7.1`,
+absent from that release's PR manifest, and present only in the beta line. If
+your OpenClaw is on stable or on the npm default, a channel allowlist is not an
+authority boundary.
 
-The structural choice that matters: **pre-dispatch allowlists**.
-Denying unauthorized senders the chance to influence agent behavior
-*at all* is the right primitive for authority over inbound senders,
-versus blocking specific actions after the agent has already been
-biased.
+There is a tell that this is being hit in the field rather than found in review:
+the maintainers also
+[wrote the trap down in prose](https://github.com/openclaw/openclaw/pull/113692),
+documenting Discord channel-allowlist and ambient room-event pitfalls. That
+documentation is itself main-unreleased.
 
-## Reliability As Accessibility
+## What Reached Stable
 
-Predictable surfaces are safer than capable-but-mysterious ones. When a
-channel plugin configuration goes stale, the gateway
-[attempts recovery](https://github.com/openclaw/openclaw/commit/329580c64d13657592c3fabb97ff567c2e292bb6)
-by reinstalling from a trusted catalog while preserving explicit
-disabled-channel guards -- stale configuration is treated as recoverable
-state, not a fatal failure. Live agent execution output events are
-[bounded](https://github.com/openclaw/openclaw/commit/3ee7c02bcacfdf6327747c1fe24dd6d11de8612a)
-so runaway processes can't drown the gateway in event floods.
+`v2026.7.1` (published 2026-07-13) is the one clean promotion of the window, and
+it is a good one. The scoped-capability work the previous cycle flagged as
+beta-only is now in a stable tag:
+[scoped attach grants](https://github.com/openclaw/openclaw/pull/96351) give
+external MCP loopback clients session-scoped Gateway access without process-wide
+credentials or permission to impersonate another session;
+[`openclaw attach`](https://github.com/openclaw/openclaw/pull/96454) launches an
+external harness bound to a Gateway session, keeps credentials out of arguments,
+and revokes the grant when the session ends; the
+[Control UI shows execution approvals](https://github.com/openclaw/openclaw/pull/100505)
+for supported desktop nodes and rejects pending, unsupported, or policy-blocked
+requests before they reach the node; and
+[mobile pairing is admin-gated](https://github.com/openclaw/openclaw/pull/100157),
+with non-admin operators shown a disabled action and an access explanation.
+The [docs release page](https://docs.openclaw.ai/releases/2026.7.1) and the
+release-body PR manifest agree on all of it.
 
-Auto-promoted memory is now bounded too. The gateway compacts the oldest
-auto-promoted sections of
-[`MEMORY.md`](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5)
-when memory hits the bootstrap budget, preserving user-authored notes.
-Long-running agents stop silently accumulating unlimited memory.
+That is the version to cite for session-scoped external harness access. It is
+also the version that does not contain anything in the two sections above.
 
-Compaction itself is also more careful now.
-[PR #79307](https://github.com/openclaw/openclaw/pull/79307) preserves
-scoped background `exec` and `process` session references across
-embedded compaction and after-turn runtime contexts -- without exposing
-sessions from unrelated scopes. Multi-step background work survives
-compaction with cleaner scope boundaries.
+## What Is Only In Beta
 
-## A Recognized Accessibility Baseline, In The Default Build
+Everything here is `preview-or-beta`, which in practice means the npm `beta`
+tag, currently
+[`2026.7.2-beta.4`](https://www.npmjs.com/package/openclaw/v/2026.7.2-beta.4),
+not the default install. Note that `v2026.7.2-beta.5` exists as a git tag only:
+it was never published to npm, so anything that landed there is not installable
+on any channel.
 
-OpenClaw's strongest accessibility claim this cycle is no longer a beta opt-in.
-The WCAG 2.1 AA pass
-([PR #89822](https://github.com/openclaw/openclaw/pull/89822)) -- dark-mode
-contrast lifted to a `>=4.5:1` floor, visible keyboard focus rings, and a 12px
-minimum font size across 136 prior sub-12px elements -- reached
-[**stable v2026.6.8**](https://github.com/openclaw/openclaw/releases/tag/v2026.6.8)
-(published 2026-06-16), having shipped beta-only last cycle. What got easier:
-reading the Control UI and navigating it by keyboard. Who can use it now:
-low-vision and keyboard-only operators, on the channel an ordinary operator
-runs by default rather than behind a beta flag. Authority stayed visible -- no
-control, approval, or permission surface was hidden to reach the baseline. For
-the calibration source whose whole thesis is familiar access with visible
-authority, this is the cleanest "reached the operator" event of the window: the
-agent Control UI crosses from "capable but partly unusable" to "meets a
-recognized baseline" in the binary, not the branch.
+- [Requester-scoped MCP server connections](https://github.com/openclaw/openclaw/pull/106359),
+  so one session can no longer reach another session's MCP connections
+  ([docs follow-up](https://github.com/openclaw/openclaw/pull/113400)).
+- [`operator.admin` required to approve `fs.listDir` nodes](https://github.com/openclaw/openclaw/pull/106004)
+  and a
+  [prototype-pollution guard on migration config merge](https://github.com/openclaw/openclaw/pull/106116).
+  Both merged 2026-07-13, after the stable fork and before the stable publish --
+  exactly the case where date reasoning misleads.
+- [Plugin install provenance warnings](https://github.com/openclaw/openclaw/pull/102197):
+  arbitrary executable plugin sources require explicit `--force` acknowledgement
+  while trusted ClawHub, bundled, official-catalog, and tracked-update flows stay
+  frictionless. On stable, arbitrary executable plugin sources still install
+  without the acknowledgement step, which means the trusted-lane distinction
+  ClawHub advocates rely on is not enforced there.
+- [`/acp sessions` no longer lists every gateway session to non-owner senders](https://github.com/openclaw/openclaw/pull/110745).
+  Anyone who enabled ACP on stable or on beta.3 to try the advertised interop is
+  running the disclosure.
+- [`OPENCLAW_SUPERVISOR_MODE=external`](https://github.com/openclaw/openclaw/releases/tag/v2026.7.2-beta.3),
+  the first supported way to hand lifecycle ownership to an outside supervisor
+  while blocking native service mutation and self-update. This is what a platform
+  team needs before putting the Gateway under existing orchestration.
+- An exec-approval hardening wave, split across three channels. Beta.4 carries
+  [rejection of unsafe explicit approval IDs](https://github.com/openclaw/openclaw/pull/111055),
+  [admin required for keyed session model changes](https://github.com/openclaw/openclaw/pull/111651),
+  and [scoped exec approval carriers](https://github.com/openclaw/openclaw/pull/111652).
+  The tag-only beta.5 adds
+  [approval for opaque exec wrappers](https://github.com/openclaw/openclaw/pull/112953)
+  plus AWS and GitLab secret redaction. Still on main only:
+  [approval for escaped newline shell words](https://github.com/openclaw/openclaw/pull/114134).
+  The exec approval gate was bypassable through wrapper binaries and shell-word
+  forms, the fixes are spread across three channels, and no single installable
+  OpenClaw artifact carries all of them.
 
-ClawHub skill installs now also tell the operator where a skill came from.
-ClawHub-sourced installs
-[retain verified source provenance](https://github.com/openclaw/openclaw/releases/tag/v2026.6.9),
-the origin is preserved on readback, and verified source is surfaced in
-[`skill verify`](https://github.com/openclaw/openclaw/pull/93532) output
-(stable v2026.6.9). A non-expert deciding whether to trust a catalog skill can
-now read recorded provenance rather than installing opaquely -- trust legibility
-without hiding the trust boundary.
+Two approval defaults moved the other way in the same line, both documented as
+deliberate. Agent-initiated Skill Workshop apply, reject, and quarantine
+[now run without an approval prompt by default](https://github.com/openclaw/openclaw/pull/107690),
+with `skills.workshop.approvalPolicy: "pending"` available as an opt-in gate --
+so on beta the agent can edit its own skill library without asking. And
+[curated read-only boolean flags on default stdin-only safe bins are auto-approved](https://github.com/openclaw/openclaw/pull/88953),
+with unknown flags, tail follow and retry modes, file operands, and custom
+profiles left fail-closed. Check `skills.workshop.approvalPolicy` before moving
+to 2026.7.2.
 
-*Findings: 2026-06-23-openclaw-wcag-aa-reaches-stable,
-2026-06-23-openclaw-clawhub-skill-provenance-stable.*
+## The Authority Model, Compressed
 
-## A Gate That Loosened
+The standing design is unchanged and remains the reason to choose OpenClaw.
+Authority composes across channel, sender, and agent:
+[per-sender tool policies](https://github.com/openclaw/openclaw/pull/66933)
+restrict dangerous tools by requester identity using canonical channel-scoped
+sender keys; per-agent
+[`tools.message.crossContext` and `tools.message.actions.allow`](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5)
+overrides keep a public-facing agent replying only in the conversation it was
+addressed in; [`voice.allowedChannels`](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5)
+locks voice joins and bot voice-state moves; and
+[ClickClack `allowFrom` allowlists run before agent dispatch](https://github.com/openclaw/openclaw/pull/83741)
+rather than blocking actions after the agent has already been influenced.
+Pre-dispatch is the correct primitive and OpenClaw picked it.
 
-Against the consent-over-default and fail-closed grain that runs through the
-rest of this profile, one gate moved the other way this window. OpenClaw shipped
+The accessibility baseline is in the default build, not behind a flag: the
+[WCAG 2.1 AA pass](https://github.com/openclaw/openclaw/pull/89822) reached
+[stable v2026.6.8](https://github.com/openclaw/openclaw/releases/tag/v2026.6.8)
+with a 4.5:1 dark-mode contrast floor, visible keyboard focus rings, and a 12px
+minimum font size, and no control or approval surface was hidden to get there.
+ClawHub installs
+[retain verified source provenance](https://github.com/openclaw/openclaw/releases/tag/v2026.6.9)
+surfaced in `skill verify`. Running the other way, and still unresolved:
 [automatic Codex plugin approvals](https://github.com/openclaw/openclaw/pull/92625)
-in stable [v2026.6.9](https://github.com/openclaw/openclaw/releases/tag/v2026.6.9)
-(PR #92625) -- convenience that reduces a human approval checkpoint in the Codex
-integration. This is the one item in the window that loosens rather than
-tightens authority, and it cuts directly against OpenClaw's otherwise
-consistent posture (per-sender tool policies, pre-dispatch allowlists, key-free
-web-search providers kept opt-in). Operators using the Codex path should confirm
-what "automatic plugin approvals" actually auto-approves and whether it can be
-scoped or disabled before treating plugin loads as gated. The team appears aware
-of the surface's fragility -- a later beta keeps composed hook registries
-enforcing trusted tool policies for approval-sensitive flows -- but at
-release-note granularity this is a loosened gate, flagged as a tension, not a
-clean win. Evidence is release-note level here; the PR diff was not individually
-reviewed.
+shipped in stable v2026.6.9 and remain the one gate in recent memory that
+loosened without a documented scope.
 
-*Findings: 2026-06-23-openclaw-codex-auto-plugin-approvals-stable.*
+Uploaded skill archives are still gated closed behind
+[`skills.install.allowUploadedArchives`](https://github.com/openclaw/openclaw/releases/tag/v2026.5.10-beta.5).
+The gate is correct; the trust model behind it is still not public.
 
-## Where Accessibility Still Leaks Complexity
+## Where It Still Leaks Complexity
 
-The gateway's authority model (permissions, approvals, channel
-restrictions, skill gates) is correct but not yet simple. Per-agent
-restriction overrides and the new per-sender layer are in release notes
-but not in the main docs. The skill-archive trust model is gated but
-undocumented. The new memory-wiki access scopes ("admin scope" for
-ingest, "write scope" for Obsidian search per
-[PR #80897](https://github.com/openclaw/openclaw/pull/80897) and
-[PR #80904](https://github.com/openclaw/openclaw/pull/80904)) reference
-a scope hierarchy that is not formally documented either. Multi-channel
-setup complexity grows linearly with the number of platforms. The release-
-note evidence floor -- appropriate for OpenClaw's commit volume -- means
-some operator-relevant intermediate-beta changes likely don't surface
-until the consolidated release notes ship.
+The authority model is correct and not yet simple. Per-agent overrides, the
+per-sender layer, and the memory-wiki access scopes live in release notes rather
+than the main docs. Multi-channel setup cost grows with each platform; the
+onboarding wizard handles the first connection cleanly and the second and third
+require real operator knowledge. And the release-note evidence floor this profile
+uses -- appropriate for OpenClaw's commit volume -- now has a second failure
+mode beyond missed intermediate betas: release notes describe a channel that is
+not the one npm serves.
 
-One more setup-script-affecting change to flag: `openclaw models auth
-login --provider openai` now defaults to the ChatGPT/Codex account login
-flow. API-key setup is still available behind `--method api-key`, but
-any onboarding script or playbook assuming API-key-first OpenAI auth
-needs to be checked.
+One setup-script change still worth checking: `openclaw models auth login
+--provider openai` defaults to the ChatGPT and Codex account login flow. API-key
+setup remains behind `--method api-key`, but any playbook assuming API-key-first
+OpenAI auth needs updating.
 
 *Posture basis: `2026-05-07-openclaw-everyday-agent-surfaces`,
 `2026-05-12-openclaw-agent-permissions-and-onboarding`,
@@ -328,78 +353,84 @@ needs to be checked.
 `2026-05-27-openclaw-content-boundary-hardening-suite`,
 `2026-06-23-openclaw-wcag-aa-reaches-stable`,
 `2026-06-23-openclaw-clawhub-skill-provenance-stable`,
-`2026-06-23-openclaw-codex-auto-plugin-approvals-stable`.*
+`2026-06-23-openclaw-codex-auto-plugin-approvals-stable`. The 2026-07-02 to
+2026-07-27 material above is carried in prose with inline receipts.*
 
 ## Open Questions
 
-- The 2026.5.22 change "remove the old sender-owner tool gating
-  path so configured tools stay visible for trusted sessions"
-  overlaps with the 2026-05-13 per-sender tool policies. Does
-  this loosen something the per-sender policies tightened, or are
-  they complementary? Worth re-reading PR #66933 alongside the
-  2026.5.22 change.
-- Browser snapshot SSRF policy (#78526): what is the default and
-  how does it interact with operator-configured allow-domains?
-  Not in release notes.
-- Plugin SDK additions in 2026.5.22 (`embeddingProviders`,
-  `defineToolPlugin`, `openclaw plugins build|validate|init`) open
-  the typed-plugin-author surface. Is there a documented signing
-  or trust model for typed tool plugins? The skill-archive
-  question from the prior cycle remains open and now extends to
-  typed plugins.
-- What is the trust model for skill archive uploads when
-  `skills.install.allowUploadedArchives` is enabled? Are archives signature-checked
-  or sandbox-isolated before install? **Partially advanced (2026-06-23):**
-  ClawHub-sourced installs now persist and surface verified source provenance in
-  [`skill verify`](https://github.com/openclaw/openclaw/pull/93532)
-  (stable v2026.6.9), so a catalog skill's origin is now legible. This does NOT
-  resolve the separate uploaded-archive question -- signing and sandbox-isolation
-  for `allowUploadedArchives` are still undocumented, and the gate remains the
-  relevant control for that surface.
-- The `tools.message.crossContext` and `tools.message.actions.allow` overrides
-  are in the release notes but not yet in the main OpenClaw docs. Are there
-  additional per-agent permission overrides not yet surfaced publicly?
-- The onboarding flow is two minutes for a single-channel setup. What is the
-  realistic completion time for a three-channel setup (Discord + Slack +
-  Telegram), and at which step does operator knowledge become a prerequisite?
-- At what commit volume does OpenClaw's release-note harvest miss operator-visible
-  changes? The v2026.5.10 beta.5 release notes cover approximately 60 items;
-  intermediate beta releases may have additional operator-relevant changes not
-  consolidated into the final notes.
+- **Answered this window.** The prior cycle asked whether the beta-only scoped
+  capability line would promote before we treated it as shipped. It did:
+  `v2026.7.1` on 2026-07-13 carries scoped attach grants, `openclaw attach`,
+  Control UI execution approvals, and admin-gated mobile pairing. The newer beta
+  line did not repeat the trick inside this window.
+- **Partially answered.** The plugin and skill trust model advanced: arbitrary
+  executable plugin sources now require `--force` while trusted catalog flows
+  stay frictionless ([#102197](https://github.com/openclaw/openclaw/pull/102197)).
+  It is beta-only, and it does not touch the separate uploaded-archive question --
+  signing and sandbox isolation for `allowUploadedArchives` are still
+  undocumented.
+- Which commit is `2026.7.1-2`? The npm records publish no `gitHead`, so the
+  artifact most operators run cannot be mapped to source from public data. This
+  is answerable only by the project.
+- Is `extended-stable` a supported line with a stated policy, or an internal
+  convenience? Its release-tooling commit describes it as a frozen pre-AI
+  publish, and there is no documentation.
+- Does the forked stable line receive security backports systematically, or only
+  whatever the fork happened to include? PR #107403 suggests the latter, but one
+  case is not a policy.
+- Will atomic `fs-safe` adoption actually close the check-to-use window, and what
+  is the interim guidance for operators who treated the workspace root as a
+  boundary?
+- Codex automatic plugin approvals: what exactly is auto-approved, and can it be
+  scoped or disabled? Unanswered since the prior cycle.
+- Browser snapshot SSRF policy: default behavior and interaction with
+  operator-configured allow-domains are still not in the release notes.
 
 ## What To Watch Next
 
-- The v2026.6.10 beta series (fast-talks auto mode, bounded-input rejection,
-  device-backed node pairing removal) is beta-only as of this cycle -- track
-  whether it promotes to a stable tag next window before treating it as shipped.
-- Codex automatic plugin approvals (stable v2026.6.9): whether the auto-approval
-  scope is documented, can be disabled, and whether it stays an isolated
-  convenience or signals a broader relaxation of OpenClaw's consent-over-default
-  posture.
-- Trust model documentation for skill archive upload -- the ClawHub provenance
-  work is in; the uploaded-archive signing/sandbox model is still the gap.
-- Whether per-agent permission overrides expand to cover tool access beyond
-  message sends (file writes, exec, MCP calls).
-- Whether the onboarding wayfinding improvements extend to multi-channel setup
-  or remain focused on first-channel completion.
-- Memory dreaming semantics: what counts as "user-authored" vs. auto-promoted,
-  and whether the compaction priority is stable across versions.
+- Whether the stable line rejoins main, or keeps forking and carrying its own
+  unattributed commits. This single decision determines whether merge dates ever
+  become readable for OpenClaw again.
+- Whether the beta tags carrying the privilege-escalation, ACP, and MCP-scoping
+  fixes reach the npm default, and how long that takes from merge.
+- Whether the untagged respins get release notes, git tags, or a `gitHead`. Any
+  of the three would restore the version-to-source mapping.
+- Whether the sandbox fix is followed by the atomic work that closes the race,
+  and whether the maintainers publish interim guidance in the meantime.
+- Whether `skills.workshop.approvalPolicy` and the safe-bin auto-approval
+  defaults survive into stable unchanged, and whether the loosening trend
+  continues.
+- Whether external supervisor mode reaches stable, which is the gate on running
+  the Gateway under existing platform orchestration.
 
 ## Profile Hygiene
 
 This profile follows the profile discipline defined in
-[METHOD.md](../../METHOD.md#the-object-grammar): every
-concrete claim in the prose has an inline source link and an entry in the
-`claims:` block; posture sections may interpret freely but must cite finding IDs
-when naming a specific feature, behavior change, or cross-project comparison.
-Cross-project editorial belongs in the weekly digest, not here. Git history is
-the audit trail; removed claims live in the diff log.
+[METHOD.md](../../METHOD.md#the-object-grammar): every concrete claim in the
+prose carries an inline source link, and posture sections may interpret freely
+but must stay inside what the receipts support. Cross-project editorial belongs
+in the weekly digest, not here. Git history is the audit trail; removed claims
+live in the diff log.
+
+The `claims:` block records claims promoted from individual findings in earlier
+cycles. The 2026-07-02 to 2026-07-27 research produced consolidated harvest and
+cross-check artifacts rather than individual finding files, so this window's
+material is carried in prose with inline receipts and is not represented in that
+block.
 
 Note on evidence_floor: this profile uses `evidence_floor: release_note` despite
-`surface_class: open_source_commits`. OpenClaw's commit volume (8000+ per harvest
-window) makes individual commit diff review impractical as the primary harvest
-method. Release notes are the highest-precision evidence consistently available
-at scale. This is consistent with the METHOD.md clarification that the
-floor should match the strictest precision the source can be reasonably harvested
-at. A future cycle with more focused scope could upgrade specific claims to
-`commit_diff_reviewed`.
+`surface_class: open_source_commits`. OpenClaw's commit volume makes individual
+commit diff review impractical as the primary harvest method, and release notes
+are the highest-precision evidence consistently available at scale. This window
+exposed the limit of that choice: OpenClaw's release notes describe a channel
+that is not the one its package registry serves, so stable-channel membership is
+now resolved against the release-body PR manifest and the stable fork point
+rather than against notes or dates.
+
+---
+
+*Revised 2026-07-27. The profile now leads with the channel map and the two
+authority holes it hides. The per-sender, content-boundary, accessibility, and
+ClawHub provenance material from earlier cycles was collapsed into a single
+standing-posture section: it is all still true, and none of it is the current
+operator decision.*

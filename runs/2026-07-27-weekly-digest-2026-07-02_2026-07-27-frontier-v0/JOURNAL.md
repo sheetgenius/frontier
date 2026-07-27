@@ -712,3 +712,42 @@ so.
 Why this belongs in the publication rather than in a notebook: the digest argues
 that nobody is watching enforcement. Emanuel is watching it, out loud, and using
 the honest word. Tracking people is how you notice that.
+
+## P3: eight profiles refreshed to the window
+
+antigravity, claude-code, codex, eve, gemini-cli, hermes-agent, openclaw, and
+openhands now carry last_updated and last_full_review of 2026-07-27. The digest's
+findings propagate into the dated posture pages, so a reader who follows a link
+from the issue into a profile no longer lands on a June read.
+
+Verified myself rather than trusting the agents' reports: no new finding_id was
+introduced in any of the four uncommitted files, so nothing dangles. The one
+claims-block change flagged by an agent is exactly what it said it was, a
+staleness qualifier appended to an existing gemini-cli note recording that the
+skill path-traversal item was not re-verified this window and five stable tags
+have shipped since. Carrying "open security exposure on stable" forward silently
+would have been a false current reading. Good catch by that agent and the right
+call.
+
+Two profiles did the hardest work. eve now opens by naming our own correction
+rather than burying it, and holds both truths: four gates that did not hold, and
+the best channel discipline on the watchlist. It also argues something worth
+keeping, that the count of fixes is the price of eve being legible rather than
+proof it is worse than quieter vendors. openhands carries an explicit
+self-correction that we framed the authlib fix as cloud-ahead-of-OSS when
+ancestry shows OSS 1.9.0 was the first tag on any line to carry it. antigravity
+went from a 5KB stub to 22KB, which it earned by being the window's lede.
+
+## Operational lesson: do not run concurrent agents in one repo
+
+Three profile agents working the same checkout collided in two ways. One ran
+`git stash` to isolate a build failure and swept up two siblings' in-progress
+work; it recovered everything and reported the incident honestly, and I confirmed
+the stash list is empty and nothing was lost. Separately, concurrent `astro build`
+runs against a shared site/dist produced missing-chunk errors on unrelated pages,
+which look exactly like content defects and are not.
+
+Both failures were recoverable and neither reached the published site, but the
+pattern is clearly unsafe. Parallel research agents are fine: they read the world
+and write to separate files. Parallel EDITING agents in one working tree are not.
+Serializing the remaining six profile refreshes.

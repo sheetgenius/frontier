@@ -182,7 +182,8 @@ rather than by merge date.
 
 The action is one line of config and it is worth taking deliberately: set
 `approvals.mode` yourself instead of inheriting it. If you want a person on the
-gate, `v2026.7.7` is the last tag whose default is `manual`.
+gate, `v2026.7.7.2` (v0.18.2) is the newest tag whose default is still
+`manual`.
 
 What is not in any tag is everything built to bound the new default:
 [`approvals.smart_policy`](https://github.com/NousResearch/hermes-agent/pull/72186)
@@ -203,7 +204,7 @@ relays the refusal back to the agent so it course-corrects instead of retrying
 blind. Both shipped in `v2026.7.7`.
 
 One more fact about this change, stated with its bound. Across the 35 public
-posts about Hermes we adjudicated for this window, not one mentions the
+claims about Hermes we adjudicated for this window, not one mentions the
 approvals default, smart approvals, auto-approval, or a changed gate. The same
 sweep captured a stale installer, a Telegram gateway crash, a WSL2 database
 corruption, and a Discord routing complaint. That is a statement about the set
