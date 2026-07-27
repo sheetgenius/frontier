@@ -31,9 +31,10 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 HERMES_BIN="${HERMES_BIN:-hermes}"
 HARVEST_TIMEOUT_SECS="${HARVEST_TIMEOUT_SECS:-900}"
-# Extra flags for `hermes -z`. Empty by default: the model/provider come from
-# `hermes model` config. Set this to override per run without editing config.
-read -r -a ONESHOT_ARGS <<< "${HERMES_ONESHOT_ARGS:-}"
+# Extra flags for `hermes -z` live in HERMES_ONESHOT_ARGS (empty by default: the
+# model/provider come from `hermes model` config). They are split inside
+# run_oneshot rather than here, because macOS ships bash 3.2, where expanding an
+# empty array under `set -u` is an "unbound variable" error.
 
 log() { printf '%s\n' "$*" >&2; }
 die() { printf 'error: %s\n' "$*" >&2; exit 2; }
@@ -50,22 +51,32 @@ require_hermes() {
 TIMEOUT_BIN=""
 for t in timeout gtimeout; do command -v "$t" >/dev/null 2>&1 && { TIMEOUT_BIN="$t"; break; }; done
 run_oneshot() { # run_oneshot <prompt>
+  local -a args=()
+  if [[ -n "${HERMES_ONESHOT_ARGS:-}" ]]; then
+    read -r -a args <<< "$HERMES_ONESHOT_ARGS"
+  fi
+  # ${args[@]+"${args[@]}"} expands to nothing when empty; plain "${args[@]}"
+  # would abort under `set -u` on bash 3.2 (the macOS system bash).
   if [[ -n "$TIMEOUT_BIN" ]]; then
-    "$TIMEOUT_BIN" "$HARVEST_TIMEOUT_SECS" "$HERMES_BIN" -z "${ONESHOT_ARGS[@]}" "$1"
+    "$TIMEOUT_BIN" "$HARVEST_TIMEOUT_SECS" "$HERMES_BIN" -z ${args[@]+"${args[@]}"} "$1"
   else
-    "$HERMES_BIN" -z "${ONESHOT_ARGS[@]}" "$1"
+    "$HERMES_BIN" -z ${args[@]+"${args[@]}"} "$1"
   fi
 }
 
 # Classify a probe: echoes ok | degraded | error; never exits on its own.
+# The raw text is kept in PROBE_OUTPUT so a failure can show why instead of
+# guessing at auth. Never let a silent classifier hide the actual error.
+PROBE_OUTPUT=""
 probe_grok() {
   local out rc
   out="$(run_oneshot 'Reply with exactly: OK' 2>&1)"; rc=$?
-  if [[ $rc -eq 0 && -n "$out" ]] && ! grep -qiE '403|forbidden|allowlist|unauthor|no active subscription' <<< "$out"; then
-    echo ok; return 0
-  fi
+  PROBE_OUTPUT="$out"
   if grep -qiE '403|forbidden|allowlist|unauthor|no active subscription' <<< "$out"; then
     echo degraded; return 0
+  fi
+  if [[ $rc -eq 0 && -n "$out" ]]; then
+    echo ok; return 0
   fi
   echo "error"; return 0
 }
@@ -92,6 +103,8 @@ cmd_doctor() {
       return 3 ;;
     *)
       log "grok:    probe failed -- check '$HERMES_BIN model' (provider = xai-oauth) and auth."
+      log "         raw output from '$HERMES_BIN -z':"
+      printf '%s\n' "${PROBE_OUTPUT:-(no output)}" | sed 's/^/           /' | head -20 >&2
       return 2 ;;
   esac
 }
@@ -114,12 +127,30 @@ Use your web and X search tools to find public X/Twitter posts in the window tha
 may reveal maintainer intent, adoption, user pain, ecosystem tension, benchmark
 discourse, or unverified feature chatter about this source.
 
-For every item, output one YAML record with exactly these fields:
-  claim_id, source, claim, primary_url, author, observed_at, event_date,
-  date_precision (day|month_only|year_only|unknown), date_note, evidence_kind,
-  channel (x.com), status (candidate|needs_primary_crosscheck|single-source-unconfirmed),
-  crosscheck_status (needs_primary_crosscheck by default), release_channel,
-  operator_consequence (cautious; a lead to investigate, not an instruction), notes.
+For every item, output one YAML record with exactly these fields. Use ONLY the
+listed values for enumerated fields; do not invent new ones, and pick the closest
+listed value when an item does not fit cleanly:
+  claim_id
+  source
+  claim
+  primary_url
+  author
+  observed_at
+  event_date
+  date_precision:    day | month_only | year_only | unknown
+  date_note
+  evidence_kind:     maintainer_authored_post | official_account_post
+                     | community_discussion | community_account_post
+  channel:           x.com
+  status:            candidate | needs_primary_crosscheck | single-source-unconfirmed
+  crosscheck_status: needs_primary_crosscheck (default for anything not yet checked
+                     against a primary source)
+  release_channel:   tagged-release | main-unreleased | preview-or-beta | social_only
+                     | not_applicable | mixed
+                     (use social_only for anything evidenced only by a post,
+                     including posts from an official account)
+  operator_consequence: cautious; a lead to investigate, not an instruction
+  notes
 
 Rules: persist exact public post URLs, never paraphrased snippets; resolve each
 date to full ISO YYYY-MM-DD when possible, else set date_precision and explain in

@@ -36,28 +36,29 @@ OpenAI-compatible server on `127.0.0.1:8642`) is only useful if you want a
 *different* application to borrow the subscription; driving Hermes from the loop
 is a plain `hermes -z` call.
 
-## The access path, and its two known limits
+## The access path, and what to watch
 
 We drive Grok through Hermes' `xai-oauth` provider, which authenticates against a
-SuperGrok or X Premium+ **subscription**, not a metered xAI API key. Two
-consequences, both landing where an automated cycle is weakest:
+SuperGrok or X Premium+ **subscription**, not a metered xAI API key.
 
-1. **The subscription catalog is not the API catalog.** Grok 4.5 and the newest
-   models are API-only; the OAuth surface exposes an older, cache-derived list.
-   Per the
-   [xAI Grok OAuth guide](https://hermes-agent.nousresearch.com/docs/guides/xai-grok-oauth),
-   known chat models include `grok-build-0.1` (auto-selected on login),
-   `grok-4.3`, and the `grok-4.20-0309-*` reasoning variants. Pick the best model
-   the catalog actually exposes with `hermes model`; do not assume a version.
-2. **A valid subscriber can still be refused.** xAI "enforces its own allowlist on
-   the OAuth API surface and has been seen to reject standard SuperGrok subscribers
-   with `HTTP 403`" even with an active subscription. `grok-harvest.sh` treats a
-   403 as a degraded lane, not a cycle failure: it records the gap and lets the
-   primary-source harvest proceed.
+**The model catalog is live, so do not hardcode a version.** Hermes derives the
+chat catalog from an on-disk `models.dev` cache, and new xAI releases appear once
+that cache refreshes. The
+[xAI Grok OAuth guide](https://hermes-agent.nousresearch.com/docs/guides/xai-grok-oauth)
+lists older entries (`grok-build-0.1`, `grok-4.3`, the `grok-4.20-0309-*`
+variants), but that list goes stale: verified on 2026-07-22 with Hermes v0.19.0,
+`grok-4.5` was offered by `hermes model` and served normally over the subscription.
+Run `hermes model` and take the best model the catalog actually shows you.
 
-The metered xAI API key is the alternative if you later need the newest model or a
-hard reliability guarantee for unattended runs. This runbook deliberately runs on
-the existing X subscription per the current operating choice.
+**A valid subscriber can still be refused.** xAI enforces its own allowlist on the
+OAuth API surface and has been reported to reject active SuperGrok subscribers with
+`HTTP 403`. Not encountered on this account as of 2026-07-22, but treat it as a
+live failure mode: `grok-harvest.sh` classifies a 403 as a degraded lane rather
+than a cycle failure, records the gap, and lets the primary-source harvest proceed.
+
+The metered xAI API key remains the alternative if the subscription surface ever
+becomes unreliable for unattended runs. This runbook deliberately runs on the
+existing X subscription per the current operating choice.
 
 ## Bootstrap (fresh machine)
 
