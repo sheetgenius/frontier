@@ -2477,6 +2477,111 @@ code {
    type on the page and the words carry the weight.
    --------------------------------------------------------------------------- */
 
+/* The who's-who. A directory, not a leaderboard: same treatment for everyone,
+   ordered by how often we have quoted them, with no scores on the page. */
+.cited-section {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.cited-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cited-note {
+  max-width: 34rem;
+  margin: 0.5rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.cited-list {
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.cited-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.cited-face {
+  flex: none;
+  display: block;
+  line-height: 0;
+  border: 0;
+}
+
+.cited-face img,
+.cited-monogram {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cited-monogram {
+  display: grid;
+  place-items: center;
+  background: var(--color-line);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.cited-body {
+  min-width: 0;
+}
+
+.cited-who {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.5rem;
+  align-items: baseline;
+}
+
+.cited-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-ink);
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+a.cited-name:hover {
+  color: var(--color-bitter);
+}
+
+.cited-handle {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+.cited-handle:hover {
+  color: var(--color-bitter);
+}
+
+.cited-where {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
 /* THE INLINE CITATION
    Somebody's exact words running inside our sentence. No box, no rule, no
    block -- the paragraph does not break for it. The quotation marks come from

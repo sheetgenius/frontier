@@ -1,8 +1,11 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { listPeople, sourceLabel } from "../../lib/frontier";
+import { listCitedPeople, listPeople, sourceLabel } from "../../lib/frontier";
 
 const people = listPeople();
+// Computed from the cards, so this cannot drift from who we actually quote.
+const cited = listCitedPeople();
+const tracked = new Set(people.map((person) => person.slug));
 ---
 
 <Base
@@ -40,6 +43,48 @@ const people = listPeople();
           </li>
         ))}
       </ul>
+    )}
+
+    {cited.length > 0 && (
+      <section class="cited-section">
+        <h2 class="cited-title">Everyone we quote</h2>
+        <p class="cited-note">
+          Derived from the cards in every issue, not maintained by hand. It is a
+          record of whose words we have reproduced and where, not a ranking and
+          not an endorsement. A post is a receipt for what was said, never for
+          what is true.
+        </p>
+        <ul class="cited-list">
+          {cited.map((person) => (
+            <li class="cited-item">
+              <a class="cited-face" href={`https://x.com/${person.handle}`} aria-label={`@${person.handle} on X`}>
+                {person.avatar
+                  ? <img src={person.avatar} alt="" width="34" height="34" loading="lazy" />
+                  : <span class="cited-monogram" aria-hidden="true">{person.handle[0]?.toUpperCase()}</span>}
+              </a>
+              <div class="cited-body">
+                <p class="cited-who">
+                  {person.displayName && (
+                    person.personSlug
+                      ? <a class="cited-name" href={`/people/${person.personSlug}/`}>{person.displayName}</a>
+                      : <span class="cited-name">{person.displayName}</span>
+                  )}
+                  <a class="cited-handle" href={`https://x.com/${person.handle}`}>@{person.handle}</a>
+                </p>
+                <p class="cited-where">
+                  {person.posts} {person.posts === 1 ? "post" : "posts"} quoted in{" "}
+                  {person.citations.map((c, i) => (
+                    <>
+                      {i > 0 && ", "}
+                      <a href={`/digests/${c.slug}/`}>{c.title}</a>
+                    </>
+                  ))}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
     )}
   </article>
 </Base>

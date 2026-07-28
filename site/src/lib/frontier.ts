@@ -1167,6 +1167,63 @@ function readProfile(file: string): MarkdownArtifact {
 // said something on a date; it never proves the software behaves that way. The
 // page prose carries that distinction, and nothing here promotes a person's
 // statement into a product claim.
+export type CitedPerson = {
+  handle: string;
+  displayName?: string;
+  avatar?: string;
+  personSlug?: string;
+  posts: number;
+  citations: { slug: string; title: string; date: string }[];
+};
+
+// The who's-who, derived rather than written.
+//
+// A person page is a dated posture about a human being and the bar for one is
+// deliberately high -- a thin page implies a significance the evidence does not
+// carry. But readers reasonably want to know who this publication actually
+// listens to, and that question has an answer we can compute: everyone we have
+// quoted, and the issues where we quoted them.
+//
+// No biography, no characterisation, no ranking. Just the receipt trail.
+export function listCitedPeople(): CitedPerson[] {
+  const digests = listDigests();
+  const people = new Map<string, CitedPerson>();
+
+  for (const digest of digests) {
+    const runId = String(digest.data.run_id ?? "");
+    if (!runId) continue;
+    for (const card of listRunSocialCards(runId)) {
+      const handle = (card.authors?.[0] ?? "").replace(/^@/, "").trim();
+      if (!handle) continue;
+      const key = handle.toLowerCase();
+      const existing = people.get(key) ?? {
+        handle,
+        posts: 0,
+        citations: [],
+        avatar: localAvatar(handle),
+        personSlug: listPeople().find(
+          (person) => String(person.data.handle ?? "").toLowerCase() === key,
+        )?.slug,
+      };
+      // Only a verified name is ever shown. Never derived from the handle.
+      if (card.displayName && !existing.displayName) existing.displayName = card.displayName;
+      existing.posts += 1;
+      if (!existing.citations.some((c) => c.slug === digest.slug)) {
+        existing.citations.push({
+          slug: digest.slug,
+          title: String(digest.data.title ?? digest.slug),
+          date: formatDate(digest.data.window?.end ?? digest.data.last_updated),
+        });
+      }
+      people.set(key, existing);
+    }
+  }
+
+  return [...people.values()].sort(
+    (a, b) => b.posts - a.posts || a.handle.localeCompare(b.handle),
+  );
+}
+
 export function listPeople(): MarkdownArtifact[] {
   const dir = repoPath("content", "people");
   if (!fs.existsSync(dir)) return [];
