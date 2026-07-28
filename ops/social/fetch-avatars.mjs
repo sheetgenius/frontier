@@ -20,6 +20,12 @@
 // CONTRIBUTING.md. If we cannot get an image, the card falls back to a monogram
 // rather than showing a gap.
 //
+// Rate limits: the service throttles hard above roughly thirty requests in a
+// burst and keeps returning 429 for a while afterwards. There is backoff and
+// pacing below, but a large batch will still leave some handles unfetched. That
+// is fine -- the card falls back to a monogram -- so re-run it later rather than
+// hammering it.
+//
 // Usage:
 //   node ops/social/fetch-avatars.mjs                 # every handle in every run
 //   node ops/social/fetch-avatars.mjs <handle> [...]  # specific handles

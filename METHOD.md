@@ -99,6 +99,19 @@ because the alternative is what most operators do now: read a timeline, hope the
 useful thing crosses it, and never learn what was missed. A systematic sweep
 replaces that lottery, and it does so under one rule that does not bend.
 
+Harvest is not capture. The discovery lane returns posts that are real but not
+exact: in a 108-post run it silently expanded `t.co` links to their targets,
+dropped trailing hashtags, and truncated long posts. None of that is fabrication
+and none of it is visible without a second look, which is what makes it
+dangerous -- a quotation assembled from harvest output can be wrong in the
+characters while being right in the substance.
+
+So nothing is quoted from a harvest. Every post that reaches a page is re-fetched
+by URL in an independent pass that is given no expected text to anchor on, and
+that second copy is the one stored as `verbatim`. Posts that cannot be re-fetched
+are dropped rather than quoted. Of 108 posts checked this way, 108 were real and
+9 differed from the harvest -- all of them in the direction above.
+
 A sweep that reaches every project is the intent, not a standing fact. What any
 given cycle actually covered is computed from the run by `sweepCoverage()` and
 rendered wherever the publication states it. This document does not carry a
