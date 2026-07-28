@@ -4,7 +4,7 @@ import FrontierLens from "../../../components/FrontierLens.astro";
 import NotPromoted from "../../../components/NotPromoted.astro";
 import OperatorBrief from "../../../components/OperatorBrief.astro";
 import SocialPostEmbed from "../../../components/SocialPostEmbed.astro";
-import SocialReceiptCards from "../../../components/SocialReceiptCards.astro";
+import SourceNotes from "../../../components/SourceNotes.astro";
 import SourceTrail from "../../../components/SourceTrail.astro";
 import VersionList from "../../../components/VersionList.astro";
 import { metaDescription } from "../../../lib/seo";
@@ -132,7 +132,7 @@ const topSignalsItemList = topSignals.length > 0 ? {
       ))}
     </div>
 
-    <SocialReceiptCards cards={unplacedCards} />
+    <SourceNotes cards={socialCards} />
 
     {topSignals.length > 0 && (
       <div class="rule mt-10 pt-6">

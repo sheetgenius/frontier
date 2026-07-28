@@ -823,6 +823,82 @@ for (const [id, entry] of sourceRegistry.adjacentEntries.entries()) {
   }
 }
 
+// --- Quotation integrity ---------------------------------------------------
+//
+// A social card may carry `verbatim` (the poster's whole text, as captured) and
+// `quoted` (the run of it we set in the feature). The rule this enforces is the
+// one the publication argues for elsewhere: a control that exists only as an
+// intention is not a control. So rather than trusting an editor to excerpt
+// faithfully, the build fails when `quoted` is not a contiguous run of
+// `verbatim`.
+//
+// Whitespace is normalized on both sides -- a post's line breaks are not part of
+// its wording, and our YAML wraps long lines. Nothing else is normalized: a
+// changed colon, a smoothed apostrophe, or a dropped word is a failure, which is
+// the point. Masson v. New Yorker is the case where altered quotation marks
+// became actionable, and the distance between "close enough" and "his words" is
+// exactly what a publication like this one has to hold.
+{
+  const runsDir = RUNS_DIR;
+  const squash = (s) => String(s).replace(/\s+/g, " ").trim();
+
+  if (fs.existsSync(runsDir)) {
+    for (const runId of fs.readdirSync(runsDir)) {
+      const cardsDir = path.join(runsDir, runId, "social-cards");
+      if (!fs.existsSync(cardsDir)) continue;
+
+      for (const name of fs.readdirSync(cardsDir).filter((f) => /\.ya?ml$/.test(f))) {
+        const file = path.join(cardsDir, name);
+        let parsed;
+        try {
+          parsed = YAML.parse(fs.readFileSync(file, "utf8"));
+        } catch (error) {
+          pushIssue({
+            kind: "social-card-unparseable",
+            file,
+            context: runId,
+            field: "(file)",
+            ref: name,
+            expected: "valid YAML",
+            fix: `parse error: ${error.message}`,
+          });
+          continue;
+        }
+
+        for (const card of parsed?.cards ?? []) {
+          const quoted = card?.quoted;
+          if (!quoted) continue;
+
+          if (!card.verbatim) {
+            pushIssue({
+              kind: "quote-without-source-text",
+              file,
+              context: card.id ?? "(unnamed card)",
+              field: "quoted",
+              ref: squash(quoted).slice(0, 60),
+              expected: "a `verbatim` field to excerpt from",
+              fix: "add the captured post text as `verbatim`, or drop `quoted`",
+            });
+            continue;
+          }
+
+          if (!squash(card.verbatim).includes(squash(quoted))) {
+            pushIssue({
+              kind: "quote-not-found-in-source",
+              file,
+              context: card.id ?? "(unnamed card)",
+              field: "quoted",
+              ref: squash(quoted).slice(0, 80),
+              expected: "a contiguous run of characters from `verbatim`",
+              fix: "copy the excerpt from `verbatim` exactly; do not repunctuate or join separated passages",
+            });
+          }
+        }
+      }
+    }
+  }
+}
+
 // --- Report ---
 if (issues.length === 0) {
   const acceptedSignalIds = [...signalStatusById.values()].filter((status) => status !== "withdrawn").length;

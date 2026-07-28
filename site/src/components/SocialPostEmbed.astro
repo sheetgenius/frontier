@@ -1,159 +1,98 @@
 ---
-import { sourceLabel, type SocialReceiptCard } from "../lib/frontier";
+import { listPeople, localAvatar, type SocialReceiptCard } from "../lib/frontier";
 
-// `research` shows the fields a run page needs (why the post matters, what would
-// settle it, tags) and an editorial embed does not. Same card either way: the
-// research surface should look like the feed it came from, not like a table.
-const { card, caption, research = false } = Astro.props as {
-  card: SocialReceiptCard;
-  caption?: string;
-  research?: boolean;
-};
+// The feature treatment: one post per issue, at most, given its own space.
+//
+// No box, no rule, no tint, no platform logo. Separation is created entirely by
+// air, a tighter measure, and a step up in size -- the way a book sets an
+// extract. The avatar is the one non-typographic element, and it is served from
+// our own origin so the page makes no request to any platform and the archive
+// still shows the right face in five years.
+//
+// Every element in the attribution line is functional: the avatar and handle go
+// to the person, the date goes to the artifact, the markers go to the apparatus.
+// The full identifier is printed once, at the foot of the piece, where a reader
+// who is checking our work will look for it and where it survives print and
+// copy-paste. Repeating it here made it the loudest thing in the line.
+const { card } = Astro.props as { card: SocialReceiptCard };
 
-// A post card carries someone's words, so the words are the hero. Everything
-// else exists to tell the reader how much weight those words can bear. Where a
-// real post shows engagement counts, this shows evidentiary status: the form is
-// borrowed from X, the social proof is replaced by proof.
-const STATUS_COPY: Record<string, { label: string; tone: string; note: string }> = {
-  verified_secondary: {
-    label: "Confirmed by a primary source",
-    tone: "confirmed",
-    note: "A changelog, commit, or release supports the specific claim in this post.",
-  },
-  refuted: {
-    label: "Refuted by a primary source",
-    tone: "refuted",
-    note: "The primary record contradicts this post.",
-  },
-  needs_primary_crosscheck: {
-    label: "Unverified against the source",
-    tone: "open",
-    note: "Reported as something that was said, not as something established.",
-  },
-  single_source_unconfirmed: {
-    label: "Single source, unconfirmed",
-    tone: "open",
-    note: "One account, no independent support. Treat it as a lead.",
-  },
-  social_context: {
-    label: "Conversation, not evidence",
-    tone: "context",
-    note: "Included because the discussion itself is the point.",
-  },
-  candidate: {
-    label: "Unverified against the source",
-    tone: "open",
-    note: "Reported as something that was said, not as something established.",
-  },
-  superseded: {
-    label: "Superseded",
-    tone: "context",
-    note: "Later evidence has overtaken this post.",
-  },
-};
-
-const authors = card.authors ?? [];
-const primaryAuthor = authors[0] ?? "";
-// Handles arrive as "@name" or "name"; render both forms from the one value.
-const handle = primaryAuthor.replace(/^@/, "").trim();
-// Never derive a display name from a handle. Title-casing "@shengzheyao" into
-// "Shengzheyao" invents a name for a real person. Use a verified name if the
-// data carries one, otherwise show the handle and nothing else.
-const displayName = String(card.displayName ?? "").trim();
+const handle = (card.authors?.[0] ?? "").replace(/^@/, "").trim();
 const monogram = (handle.match(/[A-Za-z0-9]/)?.[0] ?? "?").toUpperCase();
+const avatar = localAvatar(handle);
 
-const status = STATUS_COPY[card.status] ?? {
-  label: card.status.replace(/_/g, " "),
-  tone: "open",
-  note: "",
-};
-// Quote position is for the person's ACTUAL words only. `excerpt` and `summary`
-// are our descriptions of a post, and rendering them under someone's handle
-// attributes to them words they did not write. If there is no verbatim text,
-// the card carries our description explicitly labelled as ours.
-const verbatim = String(card.verbatim ?? card.displayText ?? "").trim();
-const described = String(card.summary ?? card.paraphrase ?? "").trim();
-const primaryUrl = card.sourceUrls?.[0];
-const supportingUrls = (card.sourceUrls ?? []).slice(1);
-const sourceNames = (card.sourceIds ?? []).map((id) => sourceLabel(id)).join(", ");
-const hasEvidenceNote = Boolean(card.caveats || card.dateNote || supportingUrls.length || status.note);
+// A stable hue per handle, used for the monogram fallback and the ring.
+let hash = 0;
+for (const ch of handle) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+const hue = hash % 360;
+
+// If we keep a person page for this handle, the name points there instead of
+// off-site: our own dated read is more useful to a reader than a timeline.
+const person = listPeople().find(
+  (p) => String(p.data.handle ?? "").toLowerCase() === handle.toLowerCase(),
+);
+
+const profileUrl = `https://x.com/${handle}`;
+const postUrl = card.sourceUrls?.[0] ?? "";
+
+// Quoting discipline. `verbatim` is the poster's own text and the archival
+// record; `quoted` is the part we set in the feature when the post is longer
+// than the point it is being cited for. Excerpting is ordinary editorial
+// practice, but it has to be visible: the ellipsis marks the cut and the
+// apparatus says so in words. `paraphrase` is OURS and can never sit in a
+// blockquote -- it renders as description, in a different voice.
+const full = String(card.verbatim ?? card.displayText ?? "").trim();
+const quoted = String(card.quoted ?? "").trim();
+const shown = quoted || full;
+const described = String(card.paraphrase ?? card.summary ?? "").trim();
+
+// Locate the excerpt inside the original so the ellipses are derived rather
+// than asserted. Whitespace is normalized on both sides because a post's line
+// breaks are not part of its wording, but nothing else is: if `quoted` is not
+// found here, we do not know where the cut is and we say nothing about it.
+// check-integrity.mjs fails the build when a quote is not a run of the source.
+const squash = (s: string) => s.replace(/\s+/g, " ").trim();
+const at = quoted && full ? squash(full).indexOf(squash(quoted)) : -1;
+const cutBefore = at > 0;
+const cutAfter = at >= 0 && at + squash(quoted).length < squash(full).length;
 ---
 
-<figure class={`xpost xpost-${status.tone}`}>
-  <div class="xpost-head">
-    <span class="xpost-avatar" aria-hidden="true">{monogram}</span>
-    <span class="xpost-identity">
-      {displayName && <span class="xpost-name">{displayName}</span>}
-      <span class="xpost-handle">@{handle}</span>
+<figure class="xpost" style={`--xpost-accent: oklch(0.62 0.13 ${hue});`}>
+  {shown ? (
+    <blockquote class="xpost-quote" cite={postUrl}>
+      {cutBefore && <span class="xpost-elision">&hellip;</span>}{shown}{cutAfter && <span class="xpost-elision xpost-elision--after">&hellip;</span>}
+    </blockquote>
+  ) : (
+    <p class="xpost-quote xpost-quote--described">{described}</p>
+  )}
+
+  <figcaption class="xpost-attribution">
+    <a class="xpost-avatar-link" href={profileUrl} aria-label={`@${handle} on X`}>
+      {avatar ? (
+        <img class="xpost-avatar" src={avatar} alt="" width="40" height="40" loading="lazy" />
+      ) : (
+        <span class="xpost-avatar xpost-avatar--monogram" aria-hidden="true">{monogram}</span>
+      )}
+    </a>
+
+    <span class="xpost-who">
+      {card.displayName && (
+        person
+          ? <a class="xpost-name" href={`/people/${person.slug}/`}>{card.displayName}</a>
+          : <span class="xpost-name">{card.displayName}</span>
+      )}
+      <a class="xpost-handle" href={profileUrl}>@{handle}</a>
     </span>
-    <span class="xpost-glyph" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="15" height="15" focusable="false">
-        <path
-          fill="currentColor"
-          d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-        ></path>
-      </svg>
+
+    <span class="xpost-meta">
+      {postUrl
+        ? <a class="xpost-date" href={postUrl}><time datetime={card.date}>{card.date}</time></a>
+        : <time class="xpost-date" datetime={card.date}>{card.date}</time>}
+      {card.sourceNote && (
+        <sup class="note-ref note-ref--source"><a href={`#source-${card.sourceNote}`}>{card.sourceNote}</a></sup>
+      )}
+      {card.handlingNote && (
+        <sup class="note-ref note-ref--handling"><a href={`#handling-${card.handlingNote}`}>{card.handlingNote}</a></sup>
+      )}
     </span>
-  </div>
-
-  {verbatim
-    ? <blockquote class="xpost-body">{verbatim}</blockquote>
-    : described && (
-        <p class="xpost-described">
-          <span class="xpost-described-label">Our summary, not a quotation</span>
-          {described}
-        </p>
-      )}
-
-  <div class="xpost-meta">
-    <time datetime={card.date}>{card.date}</time>
-    {sourceNames && <span class="xpost-topic">{sourceNames}</span>}
-    {primaryUrl && <a class="xpost-link" href={primaryUrl}>View on X</a>}
-  </div>
-
-  <div class="xpost-status">
-    <span class="xpost-status-dot" aria-hidden="true"></span>
-    <span class="xpost-status-label">{status.label}</span>
-  </div>
-
-  {(caption || card.title) && <figcaption class="xpost-caption">{caption ?? card.title}</figcaption>}
-
-  {research && (card.whyItMatters || card.verificationNeeded) && (
-    <div class="xpost-research">
-      {card.whyItMatters && (
-        <p><span class="xpost-research-label">Why it matters</span>{card.whyItMatters}</p>
-      )}
-      {card.verificationNeeded && (
-        <p><span class="xpost-research-label">What would settle it</span>{card.verificationNeeded}</p>
-      )}
-    </div>
-  )}
-
-  {research && card.tags?.length > 0 && (
-    <div class="xpost-tags">
-      {card.tags.map((tag) => <span>{tag}</span>)}
-    </div>
-  )}
-
-  {hasEvidenceNote && (
-    <details class="xpost-evidence">
-      <summary>How we handled this</summary>
-      <div>
-        {status.note && <p>{status.note}</p>}
-        {card.caveats && <p>{card.caveats}</p>}
-        {card.dateNote && <p>{card.dateNote}</p>}
-        {supportingUrls.length > 0 && (
-          <p>
-            Supporting links:{" "}
-            {supportingUrls.map((url, index) => (
-              <>
-                <a href={url}>{index + 1}</a>
-                {index < supportingUrls.length - 1 ? ", " : ""}
-              </>
-            ))}
-          </p>
-        )}
-      </div>
-    </details>
-  )}
+  </figcaption>
 </figure>

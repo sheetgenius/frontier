@@ -1599,181 +1599,11 @@ code {
   margin-top: 0.25rem;
 }
 
-.social-receipts-head {
-  display: grid;
-  gap: 0.85rem;
-}
-
 @media (min-width: 760px) {
   .social-receipts-head {
     grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
     align-items: end;
   }
-}
-
-.social-receipts-title {
-  margin: 0.45rem 0 0;
-  font-family: var(--font-serif);
-  font-size: clamp(1.18rem, 1.4vw, 1.36rem);
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 1.25;
-  text-wrap: balance;
-}
-
-.social-receipts-note {
-  margin: 0;
-  color: var(--color-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.social-receipt-grid {
-  display: grid;
-  gap: 1rem;
-  margin: 1.35rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.social-receipt-card {
-  display: grid;
-  gap: 0.75rem;
-  padding: 1rem 1rem 0.95rem;
-  border: 1px solid var(--color-line);
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--color-ground) 92%, white), var(--color-ground));
-}
-
-:root.dark .social-receipt-card {
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--color-ground) 94%, white), var(--color-ground));
-}
-
-.social-receipt-card.social-receipt-ecosystem_drama,
-.social-receipt-card.social-receipt-public_exchange {
-  border-left: 2px solid var(--color-bitter);
-}
-
-.social-receipt-meta,
-.social-receipt-byline,
-.social-receipt-status,
-.social-receipt-links,
-.social-receipt-tags {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.38rem 0.7rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-}
-
-.social-receipt-meta {
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.social-receipt-title {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: clamp(1.04rem, 1.1vw, 1.18rem);
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 1.28;
-  text-wrap: balance;
-}
-
-.social-receipt-excerpt {
-  margin: 0.05rem 0 0;
-  padding: 0.2rem 0 0.2rem 0.85rem;
-  border-left: 2px solid color-mix(in srgb, var(--color-bitter) 55%, var(--color-line));
-  color: var(--color-ink);
-}
-
-.social-receipt-excerpt p {
-  margin: 0;
-  font-size: 0.98rem;
-  line-height: 1.55;
-}
-
-.social-receipt-summary,
-.social-receipt-why,
-.social-receipt-verification,
-.social-receipt-date-note,
-.social-receipt-caveat {
-  margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.55;
-  color: var(--color-muted);
-}
-
-.social-receipt-why,
-.social-receipt-verification,
-.social-receipt-date-note {
-  display: grid;
-  gap: 0.18rem;
-}
-
-.social-receipt-why span,
-.social-receipt-verification span,
-.social-receipt-date-note span {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-bitter);
-}
-
-.social-receipt-footer {
-  display: grid;
-  gap: 0.65rem;
-  padding-top: 0.7rem;
-  border-top: 1px solid var(--color-line);
-}
-
-@media (min-width: 640px) {
-  .social-receipt-footer {
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-  }
-}
-
-.social-receipt-links {
-  justify-content: flex-start;
-}
-
-@media (min-width: 640px) {
-  .social-receipt-links {
-    justify-content: flex-end;
-  }
-}
-
-.social-receipt-links a {
-  color: var(--color-bitter);
-  text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-bitter) 45%, transparent);
-  padding-bottom: 0.1rem;
-}
-
-.social-receipt-links a:hover {
-  border-bottom-color: var(--color-bitter);
-}
-
-.social-receipt-tags {
-  gap: 0.32rem;
-}
-
-.social-receipt-tags span {
-  padding: 0.08rem 0.45rem;
-  border: 1px solid var(--color-line);
-  color: var(--color-muted);
-}
-
-.social-receipt-caveat {
-  font-size: 0.86rem;
 }
 
 .source-footer {
@@ -2519,197 +2349,6 @@ code {
   border-bottom-color: var(--color-bitter);
 }
 
-/* ---------------------------------------------------------------------------
-   X post cards.
-
-   The form is borrowed from a social post because that is what the artifact is:
-   somebody said something in public. The chrome is Frontier's. Where a real
-   post shows likes and reposts, this shows how far the claim has been verified,
-   which is the only kind of social proof this publication trades in.
-
-   Static by construction: no embed script, no remote avatar, no network call at
-   render time. The monogram is derived from the handle, so the card cannot leak
-   a request to X and cannot break the CSP.
-   --------------------------------------------------------------------------- */
-
-.xpost {
-  --xpost-accent: var(--color-muted);
-  margin: 2.1rem 0;
-  padding: 1.15rem 1.25rem 1.05rem;
-  border: 1px solid var(--color-line);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--color-ground) 55%, white);
-}
-
-:root.dark .xpost {
-  background: color-mix(in srgb, var(--color-ground) 78%, white);
-  border-color: color-mix(in srgb, var(--color-line) 88%, white);
-}
-
-.xpost-head {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-.xpost-avatar {
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--color-bitter) 16%, transparent);
-  color: var(--color-bitter);
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.xpost-identity {
-  display: grid;
-  gap: 0.05rem;
-  min-width: 0;
-}
-
-.xpost-name {
-  font-weight: 700;
-  font-size: 0.95rem;
-  line-height: 1.25;
-  overflow-wrap: anywhere;
-}
-
-.xpost-handle {
-  color: var(--color-muted);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  line-height: 1.3;
-  overflow-wrap: anywhere;
-}
-
-.xpost-glyph {
-  margin-left: auto;
-  align-self: flex-start;
-  color: var(--color-faint);
-  line-height: 0;
-}
-
-.xpost-body {
-  margin: 0.85rem 0 0;
-  font-size: 1.09rem;
-  line-height: 1.52;
-  letter-spacing: -0.003em;
-  overflow-wrap: anywhere;
-}
-
-@media (min-width: 760px) {
-  .xpost-body {
-    font-size: 1.14rem;
-  }
-}
-
-.xpost-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem 0.7rem;
-  margin-top: 0.9rem;
-  color: var(--color-muted);
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.02em;
-}
-
-.xpost-meta > * + *::before {
-  content: "/";
-  margin-right: 0.7rem;
-  color: var(--color-faint);
-}
-
-.xpost-link {
-  color: var(--color-bitter);
-  text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-bitter) 40%, transparent);
-}
-
-.xpost-link:hover {
-  border-bottom-color: var(--color-bitter);
-}
-
-/* The status row is the editorial payload: it replaces engagement metrics with
-   the reader's actual question, which is whether the post can be believed. */
-.xpost-status {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.85rem;
-  padding-top: 0.7rem;
-  border-top: 1px solid var(--color-line);
-  color: var(--xpost-accent);
-  font-family: var(--font-mono);
-  font-size: 0.71rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.xpost-status-dot {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: currentColor;
-  flex: none;
-}
-
-.xpost-confirmed { --xpost-accent: #4b7a3f; }
-.xpost-refuted   { --xpost-accent: #9c3b2e; }
-.xpost-open      { --xpost-accent: var(--color-bitter); }
-.xpost-context   { --xpost-accent: var(--color-muted); }
-
-:root.dark .xpost-confirmed { --xpost-accent: #8fbe7e; }
-:root.dark .xpost-refuted   { --xpost-accent: #e0806f; }
-
-.xpost-confirmed,
-.xpost-refuted {
-  border-left: 2px solid var(--xpost-accent);
-}
-
-.xpost-caption {
-  margin-top: 0.75rem;
-  color: var(--color-muted);
-  font-size: 0.88rem;
-  line-height: 1.5;
-}
-
-.xpost-evidence {
-  margin-top: 0.6rem;
-  color: var(--color-muted);
-  font-size: 0.8rem;
-  line-height: 1.55;
-}
-
-.xpost-evidence summary {
-  cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 0.71rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.xpost-evidence > div {
-  margin-top: 0.5rem;
-  padding-left: 0.8rem;
-  border-left: 1px solid var(--color-line);
-}
-
-.xpost-evidence p {
-  margin: 0.3rem 0;
-}
-
-.xpost-evidence a {
-  color: var(--color-bitter);
-}
-
 /* People pages. Deliberately plainer than a provider profile: the subject is a
    person, and the design should not editorialize about them. Identity, then the
    words, then the standard that governs how we handled them. */
@@ -2779,59 +2418,6 @@ code {
   margin: 0.45rem 0 0;
 }
 
-/* Research mode on a post card: the two questions a run page owes a reader that
-   an editorial embed does not. Kept visually subordinate to the post itself --
-   the words came first, our reading of them comes second. */
-
-.xpost-research {
-  margin-top: 0.8rem;
-  padding-top: 0.7rem;
-  border-top: 1px dashed var(--color-line);
-  color: var(--color-muted);
-  font-size: 0.87rem;
-  line-height: 1.55;
-}
-
-.xpost-research p {
-  margin: 0.4rem 0;
-}
-
-.xpost-research-label {
-  display: block;
-  color: var(--color-faint);
-  font-family: var(--font-mono);
-  font-size: 0.67rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
-
-.xpost-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: 0.7rem;
-}
-
-.xpost-tags span {
-  padding: 0.12rem 0.5rem;
-  border: 1px solid var(--color-line);
-  border-radius: 999px;
-  color: var(--color-muted);
-  font-family: var(--font-mono);
-  font-size: 0.67rem;
-  letter-spacing: 0.03em;
-}
-
-/* A feed, not a grid. Posts read in sequence at one measure; a two-column grid
-   of quotations forces the eye to choose and makes short posts look like
-   filler. */
-.social-receipt-feed {
-  display: grid;
-  gap: 0;
-  max-width: 42rem;
-  margin-top: 1.2rem;
-}
-
 .social-receipts-head {
   display: grid;
   gap: 0.6rem;
@@ -2874,28 +2460,290 @@ code {
   border-bottom-color: var(--color-bitter);
 }
 
-/* A description of a post is not a quotation of it. When we do not hold the
-   person's verbatim words, the card says so in the reader's face rather than
-   letting our summary sit under their handle looking like their sentence. */
-.xpost-described {
-  margin: 0.85rem 0 0;
-  color: var(--color-muted);
-  font-size: 0.98rem;
-  line-height: 1.55;
+
+/* ---------------------------------------------------------------------------
+   Featured post, and the apparatus at the foot.
+
+   The rule here is that space and type are the only devices. No box, no border,
+   no tint, no platform logo. An extract is set the way a book sets one: air
+   above and below, a tighter measure, a step up in size. The single
+   non-typographic element is the monogram, carrying a hue derived from the
+   handle so one person reads the same across every issue.
+
+   The apparatus is deliberately quiet -- roughly 10px at 60% grey. What makes a
+   status line read like a database row is not the box around it but the ratio of
+   label prominence to content prominence, so the labels here are the smallest
+   type on the page and the words carry the weight.
+   --------------------------------------------------------------------------- */
+
+.xpost {
+  margin: 3.4rem 0;
+  padding: 0;
+  border: 0;
+  background: none;
 }
 
-.xpost-described-label {
+.xpost-quote {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  font-size: 1.28rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.006em;
+  text-wrap: pretty;
+}
+
+@media (min-width: 760px) {
+  .xpost-quote {
+    font-size: 1.42rem;
+  }
+}
+
+/* Marks a quote that begins mid-post. Set slightly away from the text so the
+   reader sees a cut rather than a stray character. */
+.xpost-elision {
+  color: var(--color-faint);
+  margin-right: 0.2em;
+}
+
+.xpost-elision--after {
+  margin-right: 0;
+  margin-left: 0.2em;
+}
+
+.xpost-quote--described {
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+.xpost-attribution {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem 0.6rem;
+  max-width: 34rem;
+  margin: 1.15rem auto 0;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.015em;
+}
+
+/* The one point of colour in the piece. */
+.xpost-avatar-link {
   display: block;
-  margin-bottom: 0.25rem;
+  flex: none;
+  align-self: center;
+  border: 0;
+  text-decoration: none;
+  line-height: 0;
+}
+
+.xpost-avatar {
+  display: block;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  object-fit: cover;
+  /* The one spot of color in the piece. A hairline in the person's own hue
+     rather than a border on a box: it reads as part of the portrait. */
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--xpost-accent) 35%, transparent);
+  transition: box-shadow 0.15s ease;
+}
+
+.xpost-avatar-link:hover .xpost-avatar {
+  box-shadow: 0 0 0 2px var(--xpost-accent);
+}
+
+.xpost-avatar--monogram {
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--xpost-accent) 15%, transparent);
+  color: var(--xpost-accent);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.xpost-who {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  align-self: center;
+  min-width: 0;
+}
+
+.xpost-name {
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: -0.004em;
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+a.xpost-name:hover {
+  color: var(--color-bitter);
+}
+
+.xpost-handle {
+  color: var(--color-muted);
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+.xpost-handle:hover {
+  color: var(--color-bitter);
+}
+
+/* The date and its markers sit at the far end of the line. The full identifier
+   is not repeated here -- it is printed once in the Sources apparatus, where a
+   reader checking our work will look for it. */
+.xpost-meta {
+  align-self: center;
+  margin-left: auto;
+  padding-left: 0.75rem;
+  white-space: nowrap;
+}
+
+.xpost-date {
+  color: var(--color-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+a.xpost-date:hover {
+  color: var(--color-bitter);
+  border-bottom-color: var(--color-bitter);
+}
+
+.note-ref {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  line-height: 0;
+  letter-spacing: 0.02em;
+}
+
+.note-ref a {
+  color: var(--color-bitter);
+  text-decoration: none;
+  padding: 0 0.06rem;
+}
+
+.note-ref a:hover {
+  border-bottom: 1px solid var(--color-bitter);
+}
+
+.note-ref--handling a {
+  font-style: italic;
+}
+
+.post-notes {
+  max-width: 38rem;
+  margin: 3.2rem 0 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--color-line);
+  color: var(--color-muted);
+}
+
+.post-notes-title {
+  margin: 1.5rem 0 0.7rem;
   color: var(--color-faint);
   font-family: var(--font-mono);
-  font-size: 0.67rem;
-  letter-spacing: 0.07em;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
-blockquote.xpost-body {
-  margin: 0.85rem 0 0;
+.post-notes-title:first-child {
+  margin-top: 0;
+}
+
+.post-notes-list {
+  margin: 0;
   padding: 0;
-  border: 0;
+  list-style: none;
+  font-size: 0.78rem;
+  line-height: 1.62;
+}
+
+.post-notes-list > li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.35rem;
+  margin: 0 0 0.5rem;
+  counter-increment: post-note;
+}
+
+.post-notes-list:not(.post-notes-list--alpha) > li::before {
+  content: counter(post-note);
+  flex: none;
+  width: 1.2rem;
+  color: var(--color-bitter);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.post-notes-list--alpha {
+  counter-reset: none;
+}
+
+.post-notes-marker {
+  flex: none;
+  width: 1.2rem;
+  color: var(--color-bitter);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-style: italic;
+}
+
+.post-notes-list > li > span:last-child {
+  flex: 1 1 16rem;
+}
+
+.post-notes-who {
+  font-family: var(--font-mono);
+}
+
+.post-notes-sep {
+  color: var(--color-faint);
+}
+
+.post-notes-id {
+  color: var(--color-muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-line);
+  overflow-wrap: anywhere;
+}
+
+.post-notes-id:hover {
+  color: var(--color-bitter);
+  border-bottom-color: var(--color-bitter);
+}
+
+.post-notes-captured,
+.post-notes-caveat {
+  color: var(--color-faint);
+}
+
+/* The apparatus must survive the page leaving the browser. */
+@media print {
+  .post-notes {
+    break-inside: avoid;
+  }
+  /* The identifiers are already printed as text in the Sources list, so a
+     stylesheet that appends href in parentheses would print each one twice. */
+  .post-notes-id::after,
+  .xpost-handle::after,
+  .xpost-date::after {
+    content: none;
+  }
+  /* Ink, not color. */
+  .xpost-avatar {
+    box-shadow: none;
+    filter: grayscale(1);
+  }
 }

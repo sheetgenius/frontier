@@ -668,8 +668,17 @@ export type SocialReceiptCard = {
   authors: string[];
   sourceUrls: string[];
   displayText?: string;
+  verbatim?: string;
+  /** The portion of `verbatim` actually set in the feature, when we excerpt. */
+  quoted?: string;
+  paraphrase?: string;
   excerpt?: string;
   summary: string;
+  displayName?: string;
+  verdict?: string;
+  capturedOn?: string;
+  sourceNote?: string;
+  handlingNote?: string;
   whyItMatters?: string;
   verificationNeeded?: string;
   confidence?: string;
@@ -839,6 +848,21 @@ function normalizeStringArray(value: unknown): string[] {
   return [];
 }
 
+// Avatars are served from our own origin or not at all. A remote URL would
+// break both the CSP and the promise on /conversation-layer/ that reading a page
+// reports nothing to any platform. Returns undefined when we hold no image, and
+// the card falls back to a monogram.
+export function localAvatar(handle: string): string | undefined {
+  const clean = String(handle ?? "").replace(/^@/, "").toLowerCase();
+  if (!clean) return undefined;
+  for (const ext of ["jpg", "png", "webp"]) {
+    if (fs.existsSync(repoPath("site", "public", "avatars", `${clean}.${ext}`))) {
+      return `/avatars/${clean}.${ext}`;
+    }
+  }
+  return undefined;
+}
+
 export function listRunSocialCards(runId: string): SocialReceiptCard[] {
   const dir = repoPath("runs", runId, "social-cards");
   if (!fs.existsSync(dir)) return [];
@@ -860,8 +884,21 @@ export function listRunSocialCards(runId: string): SocialReceiptCard[] {
         authors: normalizeStringArray(card.authors ?? card.author),
         sourceUrls: normalizeStringArray(card.source_urls ?? card.source_url ?? card.primary_url),
         displayText: card.display_text ? String(card.display_text) : undefined,
+        // Only `verbatim` may ever be rendered as a quotation. `paraphrase` is
+        // our description of a post and must never sit under someone's handle
+        // looking like their sentence.
+        verbatim: card.verbatim ? String(card.verbatim) : undefined,
+        quoted: card.quoted ? String(card.quoted) : undefined,
+        paraphrase: card.paraphrase ? String(card.paraphrase) : undefined,
         excerpt: card.excerpt ? String(card.excerpt) : undefined,
         summary: String(card.summary ?? ""),
+        // A display name is only ever a verified one. Never derive it from a handle.
+        displayName: card.display_name ? String(card.display_name) : undefined,
+        // A verdict is a sentence written for this post, not a token from a list.
+        verdict: card.verdict ? String(card.verdict) : undefined,
+        capturedOn: card.captured_on ? String(card.captured_on) : undefined,
+        sourceNote: card.source_note !== undefined ? String(card.source_note) : undefined,
+        handlingNote: card.handling_note !== undefined ? String(card.handling_note) : undefined,
         whyItMatters: card.why_it_matters ? String(card.why_it_matters) : undefined,
         verificationNeeded: card.verification_needed ? String(card.verification_needed) : undefined,
         confidence: card.confidence ? String(card.confidence) : undefined,

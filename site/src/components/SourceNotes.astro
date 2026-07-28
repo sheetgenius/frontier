@@ -1,0 +1,82 @@
+---
+import type { SocialReceiptCard } from "../lib/frontier";
+
+// The apparatus, at the foot of the piece.
+//
+// Two registers, deliberately separated. SOURCES are receipts: where the thing
+// is, printed as a resolvable identifier rather than hidden in an href, plus the
+// date we captured it so a deleted post does not hollow out the citation.
+// OUR HANDLING is our judgment: a sentence written for this post, never a token
+// selected from a list.
+//
+// The split exists because the cost of a reference is the decision, not the
+// click. A reader who never opens a note still pays for every marker, so the
+// marker itself should say what is on the other end. A numeral means "a source
+// is over there"; a letter means "we have something to say about this."
+const { cards = [] } = Astro.props as { cards: SocialReceiptCard[] };
+
+const sources = cards
+  .filter((c) => c.sourceNote)
+  .sort((a, b) => Number(a.sourceNote) - Number(b.sourceNote));
+
+const handling = cards
+  .filter((c) => c.handlingNote && c.verdict)
+  .sort((a, b) => String(a.handlingNote).localeCompare(String(b.handlingNote)));
+---
+
+{
+  (sources.length > 0 || handling.length > 0) && (
+    <aside class="post-notes">
+      {sources.length > 0 && (
+        <>
+          <h2 class="post-notes-title">Sources</h2>
+          <ol class="post-notes-list">
+            {sources.map((card) => (
+              <li id={`source-${card.sourceNote}`} value={Number(card.sourceNote)}>
+                <span class="post-notes-who">@{(card.authors?.[0] ?? "").replace(/^@/, "")}</span>
+                <span class="post-notes-sep">/</span>
+                <span>{card.date}</span>
+                {card.sourceUrls?.[0] && (
+                  <>
+                    {" "}
+                    <a class="post-notes-id" href={card.sourceUrls[0]}>
+                      {card.sourceUrls[0].replace(/^https?:\/\/(www\.)?/, "").replace(/\?.*$/, "")}
+                    </a>
+                  </>
+                )}
+                {card.capturedOn && <span class="post-notes-captured">Captured {card.capturedOn}.</span>}
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+
+      {handling.length > 0 && (
+        <>
+          <h2 class="post-notes-title">Our handling</h2>
+          <ol class="post-notes-list post-notes-list--alpha">
+            {handling.map((card) => (
+              <li id={`handling-${card.handlingNote}`}>
+                <span class="post-notes-marker">{card.handlingNote}</span>
+                <span>
+                  {card.verdict}
+                  {!card.verbatim && (
+                    <span class="post-notes-caveat">
+                      {" "}We hold no verbatim text for this post; wording shown above is our description of it.
+                    </span>
+                  )}
+                  {card.verbatim && card.quoted && card.quoted.trim() !== card.verbatim.trim() && (
+                    <span class="post-notes-caveat">
+                      {" "}The feature quotes part of a longer post. Every character shown is the
+                      poster's; the ellipses mark where the rest continues.
+                    </span>
+                  )}
+                </span>
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+    </aside>
+  )
+}
