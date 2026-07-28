@@ -866,7 +866,8 @@ for (const [id, entry] of sourceRegistry.adjacentEntries.entries()) {
         }
 
         for (const card of parsed?.cards ?? []) {
-          const quoted = card?.quoted;
+          for (const field of ["quoted", "inline"]) {
+          const quoted = card?.[field];
           if (!quoted) continue;
 
           if (!card.verbatim) {
@@ -874,7 +875,7 @@ for (const [id, entry] of sourceRegistry.adjacentEntries.entries()) {
               kind: "quote-without-source-text",
               file,
               context: card.id ?? "(unnamed card)",
-              field: "quoted",
+              field,
               ref: squash(quoted).slice(0, 60),
               expected: "a `verbatim` field to excerpt from",
               fix: "add the captured post text as `verbatim`, or drop `quoted`",
@@ -887,14 +888,72 @@ for (const [id, entry] of sourceRegistry.adjacentEntries.entries()) {
               kind: "quote-not-found-in-source",
               file,
               context: card.id ?? "(unnamed card)",
-              field: "quoted",
+              field,
               ref: squash(quoted).slice(0, 80),
               expected: "a contiguous run of characters from `verbatim`",
               fix: "copy the excerpt from `verbatim` exactly; do not repunctuate or join separated passages",
             });
           }
+          }
         }
       }
+    }
+  }
+}
+
+// --- Coverage-claim drift ---------------------------------------------------
+//
+// "We swept the whole watchlist" was published, corrected in the digest, and
+// left standing on the homepage, on the method page the digest cites as its
+// authority, in METHOD.md, and in the run manifest. Four live copies of a claim
+// we had already retracted, because the correction edited prose instead of a
+// fact.
+//
+// Coverage is now computed by sweepCoverage() and rendered. This check stops
+// anyone -- including a future me at 3am -- from typing it back in.
+{
+  const banned = [
+    /\bthe whole watchlist\b/i,
+    /\bevery watched project\b/i,
+    /\ball (?:fourteen|14) (?:projects|sources)\b/i,
+    /\bacross the entire watchlist\b/i,
+  ];
+  const searchRoots = [
+    path.join(REPO_ROOT, "site", "src", "pages"),
+    path.join(REPO_ROOT, "site", "src", "components"),
+    path.join(REPO_ROOT, "content"),
+  ];
+  // The ledger records what we used to say, and METHOD/CONTRIBUTING describe
+  // the method rather than a run's result.
+  const exempt = /corrections\.md$/;
+
+  const walk = (dir) => {
+    if (!fs.existsSync(dir)) return [];
+    return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) return walk(full);
+      return /\.(astro|md)$/.test(entry.name) ? [full] : [];
+    });
+  };
+
+  for (const file of searchRoots.flatMap(walk)) {
+    if (exempt.test(file)) continue;
+    const text = fs.readFileSync(file, "utf8");
+    for (const pattern of banned) {
+      const hit = text.match(pattern);
+      if (!hit) continue;
+      // A line that quotes the retracted phrase in order to correct it is fine.
+      const line = text.split("\n").find((l) => pattern.test(l)) ?? "";
+      if (/would be the wrong|we published|retract|corrected/i.test(line)) continue;
+      pushIssue({
+        kind: "coverage-claim-hardcoded",
+        file,
+        context: line.trim().slice(0, 80),
+        field: "(prose)",
+        ref: hit[0],
+        expected: "coverage rendered from sweepCoverage(), not asserted in prose",
+        fix: "import sweepCoverage(runId) and render the counted values",
+      });
     }
   }
 }

@@ -2,8 +2,15 @@
 import Base from "../../layouts/Base.astro";
 import { GH_BLOB_BASE, GH_REPO_URL } from "../../lib/site";
 import { gitRevisionDate } from "../../lib/revision";
+import { canonicalRunForDigest, listDigests, sweepCoverage } from "../../lib/frontier";
 
 const modifiedDate = gitRevisionDate("site/src/pages/conversation-layer/index.astro", "2026-07-27");
+
+// This page is cited by the issue as the rule the sweep followed, so it is the
+// last place that should carry a coverage number somebody typed from memory.
+const latestDigest = listDigests()[0];
+const latestRun = latestDigest ? canonicalRunForDigest(latestDigest) : undefined;
+const coverage = latestRun ? sweepCoverage(latestRun.id) : undefined;
 
 const faq = {
   "@context": "https://schema.org",
@@ -69,11 +76,20 @@ const faq = {
 
       <p>
         That is a bad way to run an intelligence function, and it is the reason
-        Frontier now sweeps public developer discussion across its whole watchlist
-        every cycle rather than reading it opportunistically. This page explains
+        Frontier now sweeps public developer discussion across its watchlist every
+        cycle rather than reading it opportunistically. This page explains
         how, what the sweep is allowed to prove, and what it actually turned out to
         be good for, which was not what we expected.
       </p>
+
+      {coverage && (
+        <p class="coverage-note">
+          {`Last cycle the sweep reached ${coverage.swept} of ${coverage.watched} watched projects and adjudicated ${coverage.adjudicated} of them`}
+          {coverage.failed.length > 0 && `, ${coverage.failed.join(", ")} returned nothing`}
+          {coverage.unadjudicated.length > 0 && `, and ${coverage.unadjudicated.join(", ")} was swept but never cross-checked, so nothing sourced from it reached the issue`}.
+          These numbers are counted from the run, not written by hand.
+        </p>
+      )}
 
       <h2>The rule that makes this publishable</h2>
 

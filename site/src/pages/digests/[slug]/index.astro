@@ -10,7 +10,7 @@ import VersionList from "../../../components/VersionList.astro";
 import { metaDescription } from "../../../lib/seo";
 import { gitRevisionDate } from "../../../lib/revision";
 import { GH_BLOB_BASE, SITE_URL } from "../../../lib/site";
-import { canonicalRunForDigest, formatDate, getDigest, getSignal, listDigests, listProfiles, listRunSocialCards, signalIdsFromOperatorBrief, sourceLabel, versionsForDigest } from "../../../lib/frontier";
+import { canonicalRunForDigest, formatDate, getDigest, getSignal, listDigests, listProfiles, listRunSocialCards, renderInlineQuotes, signalIdsFromOperatorBrief, sourceLabel, versionsForDigest } from "../../../lib/frontier";
 
 export function getStaticPaths() {
   return listDigests().map((digest) => ({ params: { slug: digest.slug } }));
@@ -74,7 +74,10 @@ const digestModifiedDate = gitRevisionDate(
   digest.relativePath,
   digest.data.last_updated ?? digest.data.window?.end ?? digest.data.window?.start ?? "2026-01-01",
 );
-const digestBodyHtml = digest.html.replace(/^<h1[^>]*>.*?<\/h1>\s*/s, "");
+const digestBodyHtml = renderInlineQuotes(
+  digest.html.replace(/^<h1[^>]*>.*?<\/h1>\s*/s, ""),
+  socialCards,
+);
 
 // Authors place a card with `<!--card:some-card-id-->` in the markdown. Split the
 // rendered HTML on those markers and interleave the real component, so the post

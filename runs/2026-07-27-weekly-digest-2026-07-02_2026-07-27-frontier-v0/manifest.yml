@@ -31,8 +31,11 @@ note: >
   after a three-week gap in publication. Two research lanes ran in parallel. The
   primary lane resolved what shipped, with receipts pinned to tags or commits and
   release channel resolved by git ancestry rather than by date. The social lane
-  swept public X discussion for every watched project and produced 314 claims,
-  each carrying a post URL and a date, each adjudicated against the primary record
+  swept public X discussion for 13 of the 14 watched projects and produced 314
+  claims, each carrying a post URL and a date. The eve sweep failed with an API
+  timeout and returned nothing. Twelve of the thirteen were adjudicated against
+  the primary record; flue's claims were not, so nothing sourced from them
+  reached the issue
   before anything reached the published piece. A post is a receipt for what was
   said, never for what is true; no product or version claim in the digest rests on
   a post alone.
@@ -56,7 +59,7 @@ quality_gates:
   channel_by_ancestry: "Resolved for every change. OpenClaw demonstrated why: its stable line forked from the default branch mid-window and took 215 of its own commits, so a change merged on the 10th is genuinely absent from a tag published on the 13th. Date reasoning would have given the wrong answer."
   dates_verified_to_year: true
   signals_rarer_than_findings: "6 signals from 203 findings and 314 social claims."
-  social_claims_adjudicated: "All 314 assigned confirmed, partial, refuted, unconfirmed, or social_fact against the primary record."
+  social_claims_adjudicated: "Claims from 12 of the 13 swept projects assigned confirmed, partial, refuted, unconfirmed, or social_fact against the primary record. Flue's 26 were not adjudicated and nothing sourced from them appears in the issue."
   contrary_evidence_published: "Yes. eve, the publication's standing governance-first counterexample, had four gates that did not bind. Reported as the correction it is."
   self_correction: "sources/pi-coding-agent.yml watched an abandoned package name frozen since 2026-05-07, so Pi read as static for eleven weeks. Fixed 2026-07-27 and disclosed in the digest's uncertainty section."
 

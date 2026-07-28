@@ -43,6 +43,8 @@ cards:
     quoted: >-
       Headless (-p) no longer hangs or silently auto-approves tools that need
       permission. It soft-denies and tells you exactly which allow-rule to add.
+    inline: >-
+      no longer hangs or silently auto-approves tools that need permission
     paraphrase: >
       Antigravity CLI 1.1.3 changes headless mode so it no longer hangs or
       silently auto-approves permissioned tools, with soft-deny and exact

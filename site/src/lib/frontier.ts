@@ -671,6 +671,8 @@ export type SocialReceiptCard = {
   verbatim?: string;
   /** The portion of `verbatim` actually set in the feature, when we excerpt. */
   quoted?: string;
+  /** A short exact fragment for running inside a sentence. Also a run of `verbatim`. */
+  inline?: string;
   paraphrase?: string;
   excerpt?: string;
   summary: string;
@@ -863,6 +865,108 @@ export function localAvatar(handle: string): string | undefined {
   return undefined;
 }
 
+export type SweepCoverage = {
+  watched: number;
+  swept: number;
+  adjudicated: number;
+  failed: string[];
+  unadjudicated: string[];
+  complete: boolean;
+};
+
+// What the conversation sweep actually covered, counted from the run rather
+// than remembered.
+//
+// This exists because the sentence "we swept the whole watchlist" was published
+// once, corrected in the digest, and left standing in four other places --
+// the homepage, the method page the digest cites as its authority, METHOD.md,
+// and the run manifest. Correcting prose in one file does not correct a fact.
+// So the number is computed here, rendered everywhere it appears, and nobody
+// gets to type it again.
+//
+// A sweep that returned an API error is not a sweep. A project whose claims
+// were never cross-checked was not adjudicated.
+// The inline citation, and the reason it exists.
+//
+// A featured post carries 3.4rem of air above and below it. That is right for
+// four posts an issue and wrong for twenty: the page turns into a stack of
+// islands with prose stranded between them. The inline form puts somebody's
+// exact words inside our sentence, marks whose they are, and links to the post,
+// without interrupting the paragraph at all.
+//
+// Written in the markdown as [[q:card-id]]. The text comes from the card's
+// `inline` field, which check-integrity.mjs verifies is a contiguous run of
+// `verbatim` -- the same rule the featured quotes live under. Nothing here can
+// print a word the poster did not write.
+export function renderInlineQuotes(html: string, cards: SocialReceiptCard[]): string {
+  if (!html.includes("[[q:")) return html;
+  const byId = new Map(cards.map((c) => [c.id, c]));
+
+  return html.replace(/\[\[q:([a-z0-9-]+)\]\]/gi, (whole, id: string) => {
+    const card = byId.get(id);
+    const text = String(card?.inline ?? "").trim();
+    // An unresolved token is a content bug; leave it visible rather than
+    // silently dropping a citation the prose is relying on.
+    if (!card || !text) return whole;
+
+    const handle = (card.authors?.[0] ?? "").replace(/^@/, "").trim();
+    const url = card.sourceUrls?.[0] ?? `https://x.com/${handle}`;
+    const avatar = localAvatar(handle);
+    const esc = (s: string) =>
+      s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+    const face = avatar
+      ? `<img class="xq-avatar" src="${esc(avatar)}" alt="" width="18" height="18" loading="lazy">`
+      : "";
+
+    return (
+      `<span class="xq">` +
+      `<q class="xq-text">${esc(text)}</q>` +
+      `<a class="xq-cite" href="${esc(url)}" title="${esc(card.displayName ? `${card.displayName} (@${handle})` : `@${handle}`)} on X">` +
+      `${face}<span class="xq-handle">@${esc(handle)}</span>` +
+      `</a>` +
+      `</span>`
+    );
+  });
+}
+
+export function sweepCoverage(runId: string): SweepCoverage {
+  const socialDir = repoPath("runs", runId, "social");
+  const verifyDir = repoPath("runs", runId, "verify");
+  if (!fs.existsSync(socialDir)) {
+    return { watched: 0, swept: 0, adjudicated: 0, failed: [], unadjudicated: [], complete: true };
+  }
+
+  const projects = fs
+    .readdirSync(socialDir)
+    .filter((f) => f.endsWith(".raw.md"))
+    .map((f) => f.replace(/\.raw\.md$/, ""));
+
+  const failed: string[] = [];
+  const swept: string[] = [];
+  for (const name of projects) {
+    const body = fs.readFileSync(path.join(socialDir, `${name}.raw.md`), "utf8");
+    // A harvest that produced only an error string is a failure, however the
+    // runner exited. Length alone is not the test; a genuinely quiet project
+    // could be short.
+    const errored = body.length < 500 && /api call failed|error|timeout/i.test(body);
+    (errored ? failed : swept).push(name);
+  }
+
+  const unadjudicated = swept.filter(
+    (name) => !fs.existsSync(path.join(verifyDir, `${name}.crosscheck.md`)),
+  );
+
+  return {
+    watched: projects.length,
+    swept: swept.length,
+    adjudicated: swept.length - unadjudicated.length,
+    failed,
+    unadjudicated,
+    complete: failed.length === 0 && unadjudicated.length === 0,
+  };
+}
+
 export function listRunSocialCards(runId: string): SocialReceiptCard[] {
   const dir = repoPath("runs", runId, "social-cards");
   if (!fs.existsSync(dir)) return [];
@@ -889,6 +993,7 @@ export function listRunSocialCards(runId: string): SocialReceiptCard[] {
         // looking like their sentence.
         verbatim: card.verbatim ? String(card.verbatim) : undefined,
         quoted: card.quoted ? String(card.quoted) : undefined,
+        inline: card.inline ? String(card.inline) : undefined,
         paraphrase: card.paraphrase ? String(card.paraphrase) : undefined,
         excerpt: card.excerpt ? String(card.excerpt) : undefined,
         summary: String(card.summary ?? ""),

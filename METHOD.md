@@ -94,10 +94,15 @@ to audit the work.
 
 ## The conversation layer
 
-Frontier sweeps public developer discussion across the whole watchlist each
-cycle, because the alternative is what most operators do now: read a timeline,
-hope the useful thing crosses it, and never learn what was missed. A systematic
-sweep replaces that lottery, and it does so under one rule that does not bend.
+Frontier sweeps public developer discussion across the watchlist each cycle,
+because the alternative is what most operators do now: read a timeline, hope the
+useful thing crosses it, and never learn what was missed. A systematic sweep
+replaces that lottery, and it does so under one rule that does not bend.
+
+A sweep that reaches every project is the intent, not a standing fact. What any
+given cycle actually covered is computed from the run by `sweepCoverage()` and
+rendered wherever the publication states it. This document does not carry a
+number, because a number in a doctrine file is a number nobody updates.
 
 > A post is a receipt for what was said. It is never a receipt for what is true.
 

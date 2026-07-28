@@ -2,13 +2,15 @@
 import Base from "../layouts/Base.astro";
 import VersionList from "../components/VersionList.astro";
 import { GH_BLOB_BASE, GH_REPO_URL } from "../lib/site";
-import { canonicalRunForDigest, formatDate, listAcceptedSignals, listDigests, listProfiles, logLinkGraphReportOnce, sourceLabel, versionsForDigest } from "../lib/frontier";
+import { canonicalRunForDigest, formatDate, listAcceptedSignals, listDigests, listProfiles, logLinkGraphReportOnce, sourceLabel, sweepCoverage, versionsForDigest } from "../lib/frontier";
 import { marked } from "marked";
 
 logLinkGraphReportOnce();
 
 const [latest] = listDigests();
 const canonicalRun = latest ? canonicalRunForDigest(latest) : undefined;
+// Counted from the run, never typed. See sweepCoverage() for why.
+const coverage = canonicalRun ? sweepCoverage(canonicalRun.id) : undefined;
 const versions = latest ? versionsForDigest(latest.id) : [];
 const signals = listAcceptedSignals().slice(0, 6);
 const profiles = listProfiles();
@@ -43,8 +45,9 @@ const latestThesisHtml = latest?.data.operator_brief?.thesis
       <a href="/letter/">A pinned letter from the founder: an ode to the Bitter Lesson and Amdahl's law maximalism -&gt;</a>
     </p>
     <p class="publication-method-link">
-      Every cycle also sweeps public developer discussion across the whole watchlist, so what the field
-      is saying arrives adjudicated against primary sources instead of at random.
+      Every cycle sweeps public developer discussion across the watchlist{coverage && !coverage.complete
+        ? ` -- ${coverage.swept} of ${coverage.watched} projects last cycle, ${coverage.adjudicated} of them adjudicated`
+        : ""}, so what the field is saying arrives checked against primary sources instead of at random.
       <a href="/conversation-layer/">How we read the conversation layer -&gt;</a>
     </p>
     <p class="issue-meta">
