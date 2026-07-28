@@ -234,3 +234,134 @@ cards:
       Codex, Cursor, and Gemini CLI. Three of the four are on our watchlist. Our
       own conversation sweep did not surface any of it.
     tags: [sandbox-escape, default-configuration]
+
+  - id: bcherny-default-to-auto-mode
+    title: "Default to auto mode"
+    kind: maintainer_intent
+    date: 2026-05-28
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["bcherny"]
+    source_note: 7
+    handling_note: g
+    source_urls:
+      - https://x.com/bcherny/status/2060048877944778995
+    verbatim: |
+      We also shipped dynamic workflows in Claude Code (research preview), for tasks too big for one pass. Make sure to default to auto mode so Claude isn't stopping for permissions.
+
+      It's token-intensive, so save it for your biggest jobs: migrations, refactors, perf optimization, batch bug fixes.
+    inline: >-
+      Make sure to default to auto mode so Claude isn't stopping for permissions.
+    summary: >
+      Guidance from Claude Code's creator to make automatic approval the default.
+    verdict: >
+      Quoted as guidance, not as a product claim. What it is set against is our
+      own adjudicated record: v2.1.211 on 2026-07-15 fixed auto mode consulting a
+      PreToolUse hook and overriding its `ask` decision for unsandboxed Bash. The
+      guidance is dated seven weeks before that fix. We make no claim about what
+      anyone knew.
+    tags: [auto-mode, vendor-guidance, sequencing]
+
+  - id: claudedevs-shift-tab
+    title: "Shift+tab, and let Claude run"
+    kind: maintainer_intent
+    date: 2026-05-22
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["ClaudeDevs"]
+    source_note: 8
+    handling_note: h
+    source_urls:
+      - https://x.com/ClaudeDevs/status/2057946803685974482
+    verbatim: |
+      Two updates to auto mode:
+
+      · Now available on the Pro plan
+      · Sonnet 4.6 is now supported, alongside Opus 4.7
+
+      Shift+tab, and let Claude run.
+    inline: >-
+      Shift+tab, and let Claude run.
+    summary: >
+      The official account extending auto mode to the Pro plan.
+    verdict: >
+      Included to date the guidance, not to characterise it. Auto mode reached a
+      wider plan on 2026-05-22; the hook-override repair landed 2026-07-15.
+    tags: [auto-mode, vendor-guidance]
+
+  - id: delba-auto-mode-classifier
+    title: "What auto mode actually is"
+    kind: maintainer_intent
+    date: 2026-06-11
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["delba_oliveira"]
+    source_note: 9
+    handling_note: i
+    source_urls:
+      - https://x.com/delba_oliveira/status/2065106020347613598
+    verbatim: |
+      Claude Code: Auto mode
+
+      Auto mode lets Claude safely complete long-running tasks without asking permission for every action. But how does it work?
+
+      4 key terms:
+
+      • Classifier: a separate model that approves or denies each action based on your intent and scope
+      • Filtering: the classifier only sees your messages and Claude's tool calls, not Claude’s reasoning or tool outputs, so it isn't influenced when making decisions
+      • Tier check: read-only and easily-undone actions (like edits inside your repo) skip the classifier; everything else goes through it
+      • Probe: a server-side check that scans incoming content, like web pages, for prompt injection and flags it to Claude
+
+      I'm working on a longer video that explains how auto mode works and how to configure it.
+
+      What questions do you have about it?
+    inline: >-
+      a separate model that approves or denies each action based on your intent and scope
+    summary: >
+      A vendor explainer describing the classifier that decides in auto mode.
+    verdict: >
+      The clearest public description of the mechanism we found, and useful
+      precisely because it is the vendor's own. A classifier deciding on intent
+      and scope is a different kind of object from a rule an operator wrote, and
+      the difference is what v2.1.211 turned out to be about.
+    tags: [auto-mode, classifier]
+
+  - id: bcherny-checkup-enable-auto-mode
+    title: "A command that turns it on for you"
+    kind: maintainer_intent
+    date: 2026-07-08
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["bcherny"]
+    source_note: 10
+    handling_note: j
+    source_urls:
+      - https://x.com/bcherny/status/2074997570317779038
+    verbatim: |
+      New in Claude Code: /checkup
+
+      Run /checkup to:
+
+      1. Clean up unused skills/MCPs/plugins and save context
+      2. Dedup your local CLAUDE.md against the checked in CLAUDE.md
+      3. Break up root CLAUDE.md into nested CLAUDE.md's + skills
+      4. Turn off slow hooks
+      5. Update your Claude Code to the latest version
+      6. Enable auto mode by default
+      7. Pre-approve frequently denied read-only commands
+
+      .. And a few other goodies.
+
+      /checkup confirms with you before making any changes. Enjoy!
+    inline: >-
+      Enable auto mode by default
+    summary: >
+      The /checkup command's list of things it will change for you, item six.
+    verdict: >
+      Dated one week before v2.1.211 repaired auto mode overriding a PreToolUse
+      hook. Quoted as guidance. We assert nothing about what was known when.
+    tags: [auto-mode, vendor-guidance, sequencing]
