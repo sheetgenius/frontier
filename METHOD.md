@@ -92,6 +92,30 @@ The public reader should benefit from this grammar without needing to learn it.
 Findings, schemas, and run vocabulary stay behind the glass until a reader asks
 to audit the work.
 
+## Instrument drift, and why it stays backstage
+
+The rate this publication measures is a property of the instrument as much as of
+the field, and the clearest demonstration is our own record.
+
+In the 2026-07-02 to 2026-07-27 window, normalized for window length and
+watchlist size, the measured rate was the lowest on record: 3.7 cases per 100
+source-days against a peak of 11.7 in early June. What was unusual about that
+issue was its size -- 350 source-days, two and a half times the next largest --
+not its density.
+
+The June spike is the cautionary one. The rate quadrupled in the same cycle the
+instrument became roughly nine times more sensitive with the watchlist held
+constant: the May 27 run harvested 11 findings, the June 3 run harvested 99 using
+85 parallel agents, and that run produced the digest that first named the
+enforcement pattern. The variable that moved was us.
+
+This belongs here and not in an issue. A reader came to learn what happened in
+the field, and 200 words of our own calibration in the middle of a piece is the
+publication grading its apparatus in front of an audience that did not ask. Say
+in the issue only what changes how much weight a reader should put on a claim --
+usually a clause, occasionally a sentence -- and keep the calibration in METHOD
+and the research trail, where somebody checking our work will look for it.
+
 ## The capability lane
 
 The release-tracking apparatus is a defect detector. Changelogs, advisory
