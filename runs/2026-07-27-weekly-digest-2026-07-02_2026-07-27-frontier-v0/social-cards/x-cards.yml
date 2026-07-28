@@ -138,3 +138,99 @@ cards:
       silence is bounded to what we harvested and is not proof that nobody
       anywhere discussed it.
     tags: [advisory, silence, severity-inflation]
+
+  - id: pillar-gitpwned-allowlist-rce
+    title: "The allowlist that trusted a name"
+    kind: advisory_discussion
+    date: 2026-07-27
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [codex]
+    authors: ["Pillar_sec"]
+    display_name: Pillar Security
+    source_note: 5
+    handling_note: e
+    source_urls:
+      - https://x.com/Pillar_sec/status/2081729523825946910
+    verbatim: |
+      𝗧𝗵𝗲 𝗳𝗶𝗳𝘁𝗵 𝗱𝗲𝗲𝗽 𝗱𝗶𝘃𝗲 𝗶𝗻 𝗧𝗵𝗲 𝗪𝗲𝗲𝗸 𝗼𝗳 𝗦𝗮𝗻𝗱𝗯𝗼𝘅 𝗘𝘀𝗰𝗮𝗽𝗲𝘀 𝗶𝘀 𝗹𝗶𝘃𝗲.
+
+      Today's finding: Codex CLI trusts "git show" as a safe, read-only command. It isn't.
+
+      Codex ships with a safe-command allowlist, on by default. Anything on it skips the sandbox and skips the approval prompt, on the theory that these commands can't do harm no matter the arguments.
+
+      git show is on that list because it displays a commit. Except git show --output can write to any file, and --format controls the content. Point it at .git/config, and you can inject a malicious external diff tool.
+
+      Nothing runs yet. Then the developer runs git diff, also on the allowlist, and the payload executes with their full privileges, with no prompt and no sandbox in the way. A poisoned README is enough to plant it.
+
+      When we first reported this, the triage team couldn't reproduce it, because the model refused the injected instruction. That is the point. Model refusal is probabilistic. Run the prompt enough times, and it complies, and when it does, nothing catches the command.
+
+      OpenAI rated it CVSS 8.6 and patched it in v0.95.0.
+
+      The allowlist trusted a name. The risk was always in the invocation.
+
+      𝗥𝗲𝗮𝗱 𝘁𝗵𝗲 𝗳𝘂𝗹𝗹 𝗯𝗿𝗲𝗮𝗸𝗱𝗼𝘄𝗻 𝗵𝗲𝗿𝗲:
+      https://t.co/Uvz6JzAS2x
+
+      𝗦𝘁𝗮𝗿𝘁 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝘀𝗲𝗿𝗶𝗲𝘀 𝗶𝗻𝘁𝗿𝗼:
+      https://t.co/c1MR3Q1SIG
+    quoted: >-
+      Model refusal is probabilistic. Run the prompt enough times, and it
+      complies, and when it does, nothing catches the command.
+    inline: >-
+      The allowlist trusted a name. The risk was always in the invocation.
+    summary: >
+      Day five of a seven-part disclosure series, on a Codex CLI allowlist entry
+      that permitted arbitrary file writes.
+    verdict: >
+      Adjudicated against Pillar's own writeup and OpenAI's advisory database.
+      The research checks out: OpenAI confirmed CVSS 8.6 on 2026-01-29, shipped
+      the fix in v0.95.0 on 2026-02-04, and paid a bounty on 2026-02-17. The
+      GitHub advisory list for openai/codex still carries nothing newer than
+      2025-09-19. Rated, fixed, paid for, and never announced.
+    tags: [allowlist, sandbox-escape, disclosure-asymmetry]
+
+  - id: pillar-antigravity-seatbelt
+    title: "Allow first, deny later"
+    kind: advisory_discussion
+    date: 2026-07-21
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [antigravity]
+    authors: ["Pillar_sec"]
+    display_name: Pillar Security
+    source_note: 6
+    handling_note: f
+    source_urls:
+      - https://x.com/Pillar_sec/status/2079552284422209899
+    verbatim: |
+      𝗧𝗵𝗲 𝗳𝗶𝗿𝘀𝘁 𝗱𝗲𝗲𝗽-𝗱𝗶𝘃𝗲 𝗶𝗻 𝗧𝗵𝗲 𝗪𝗲𝗲𝗸 𝗼𝗳 𝗦𝗮𝗻𝗱𝗯𝗼𝘅 𝗘𝘀𝗰𝗮𝗽𝗲𝘀 𝗶𝘀 𝗹𝗶𝘃𝗲.
+
+      Today's finding: escaping Google Antigravity's allow-default Seatbelt sandbox.
+
+      A sandbox is supposed to define what an AI coding agent cannot do. In this case, the problem started with the default configuration of the sandbox itself: allow first, deny later.
+
+      That design forces the sandbox to anticipate every dangerous OS capability, local service, launch path, mount behavior, and interaction an agent might combine. With an adaptive agent inside the environment, that list is always one entry short.
+
+      Pillar Research showed how an agent could use allowed macOS behavior to cross the expected boundary and execute outside the sandbox.
+
+      The bigger lesson is that denylist sandboxes are structurally fragile for agentic systems.
+
+      This is the first post in our Week of Sandbox Escapes series, where we are publishing seven boundary failures across Cursor, Codex, Gemini CLI, and Antigravity.
+
+      𝗥𝗲𝗮𝗱 𝘁𝗵𝗲 𝗳𝗶𝗿𝘀𝘁 𝗱𝗲𝗲𝗽-𝗱𝗶𝘃𝗲 𝗵𝗲𝗿𝗲:
+      https://t.co/QtA3zujWDz
+
+      𝗦𝘁𝗮𝗿𝘁 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝘀𝗲𝗿𝗶𝗲𝘀 𝗶𝗻𝘁𝗿𝗼:
+      https://t.co/c1MR3Q1SIG
+    inline: >-
+      denylist sandboxes are structurally fragile for agentic systems
+    summary: >
+      Day one of the same series, on escaping Antigravity's allow-by-default
+      Seatbelt sandbox.
+    verdict: >
+      The series is real and primary-sourced: seven writeups published on
+      pillar.security between 2026-07-20 and 2026-07-27, covering Antigravity,
+      Codex, Cursor, and Gemini CLI. Three of the four are on our watchlist. Our
+      own conversation sweep did not surface any of it.
+    tags: [sandbox-escape, default-configuration]
