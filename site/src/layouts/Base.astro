@@ -140,14 +140,21 @@ if (jsonLdType === "Article") {
         <span class="wordmark-tag">What agents made cheaper, where the bottleneck moved, and what deserves attention.</span>
       </a>
       <nav class="site-nav" aria-label="Primary">
+        {/* Named for what a reader came to do, not for our object model.
+            "Digests", "Profiles", "Signals", "Research trail" are the names of
+            things we produce. Nobody arrives wanting a digest; they arrive
+            wanting to know what happened, whether the thing they run is safe,
+            who to follow, and whether we can be trusted.
+
+            Signals and the research trail did not disappear -- they are linked
+            from every issue and project that uses them, which is where someone
+            actually meets them. */}
         <span class="nav-sections">
-          <a href="/digests/">Digests</a>
-          <a href="/profiles/">Profiles</a>
+          <a href="/digests/">Issues</a>
+          <a href="/profiles/">Projects</a>
           <a href="/people/">People</a>
-          <a href="/signals/">Signals</a>
-          <a href="/letter/">Thesis</a>
-          <a href="/runs/">Research trail</a>
-          <a href="/about/">About</a>
+          <a href="/corrections/">Corrections</a>
+          <a href="/about/">Method</a>
         </span>
         <span class="nav-controls">
           <a class="nav-github" href={GH_REPO_URL} aria-label="Bitter Frontier on GitHub">
@@ -189,13 +196,17 @@ if (jsonLdType === "Article") {
           Open source on GitHub
         </a>
         <span class="footer-sep" aria-hidden="true">/</span>
-        <a href="/letter/">Founder's letter</a>
+        <a href="/letter/">Thesis</a>
         <span class="footer-sep" aria-hidden="true">/</span>
         <a href="/bitter-lesson/">Bitter Lesson</a>
         <span class="footer-sep" aria-hidden="true">/</span>
         <a href="/amdahls-law/">Amdahl's Law</a>
         <span class="footer-sep" aria-hidden="true">/</span>
-        <a href="/corrections/">Corrections</a>
+        <a href="/signals/">Signals</a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="/runs/">Research trail</a>
+        <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="/conversation-layer/">Conversation layer</a>
         <span class="footer-sep" aria-hidden="true">/</span>
         <a href={`${GH_BLOB_BASE}/CONTRIBUTING.md`}>Contribute</a>
         <span class="footer-sep" aria-hidden="true">/</span>
