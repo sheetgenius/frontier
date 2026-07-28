@@ -190,8 +190,3 @@ contract defines no public commit stream. OpenClaw's high commit volume means
 its durable product movement is the hardest to separate from rapid
 stabilization; that caveat stands until a release-note review.*
 
----
-
-*Revised 2026-07-02 (artifact_version 4): editorial pass to the current house
-standard -- lede, structure, and operator brief. Claims, receipts, and window
-judgments are unchanged from the 2026-05-07 publication.*

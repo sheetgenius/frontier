@@ -427,10 +427,3 @@ that is not the one its package registry serves, so stable-channel membership is
 now resolved against the release-body PR manifest and the stable fork point
 rather than against notes or dates.
 
----
-
-*Revised 2026-07-27. The profile now leads with the channel map and the two
-authority holes it hides. The per-sender, content-boundary, accessibility, and
-ClawHub provenance material from earlier cycles was collapsed into a single
-standing-posture section: it is all still true, and none of it is the current
-operator decision.*

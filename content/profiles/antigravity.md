@@ -364,12 +364,3 @@ Antigravity finding because 1.0.15 and 1.0.16 had no public tags or release
 pages. That was wrong. Both have git tags and GitHub release pages with binary
 assets, created and published on 2026-07-01 and 2026-07-02 respectively.
 
----
-
-*Revised 2026-07-27. The profile was expanded from a seeded intake into a full
-dated posture. It now leads with the headless enforcement gap, documents the
-evidence surface and its internal contradiction, records the announcement
-asymmetry without imputing motive, and states the governance boundary an
-operator actually configures. The 1.0.13 and 1.0.14 release-train framing that
-carried the previous version has been retired: it is superseded by the 1.1.x
-line.*

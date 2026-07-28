@@ -467,9 +467,3 @@ material is carried in prose with inline receipts and is not represented in that
 block. Channel calls in this window were resolved by git ancestry against each
 tag, not by merge date. All evidence is at or above the `release_note` floor.
 
----
-
-*Revised 2026-07-27. The profile now leads with the approvals default and the
-egress-firewall revert. The v0.14.0 distribution detail, the v0.17.0 fail-closed
-wave, and the June MCP-persistence wave were collapsed or retired: the first is
-no longer the current read, and the last two are resolved and in tags.*

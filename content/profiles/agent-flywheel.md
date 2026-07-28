@@ -371,16 +371,3 @@ Still open:
   is the test worth learning from, and no receipt in this window advances it
   either way.
 
----
-
-*Revised 2026-07-27 (artifact_version 4) for the 2026-07-02 to 2026-07-27 window.
-The headline is a no-change finding: no tag shipped, ACFS still holds at v0.7.0,
-and `main` is 73 commits ahead with `VERSION` unchanged at both ends, so the
-safe-mode gap remains open by default rather than by decision. Added the
-changelog receipt-hygiene defect that explains the discoverability complaints,
-the author's own "advisory" description of the coordination layer, the bounded
-license-label qualification against clause 5 of the Open Source Definition, and a
-link to the new [/people/doodlestein/](/people/doodlestein/) page. Per this
-source's contract, the 67 in-window main-branch commits were used only to
-establish the channel picture and are not cited as posture. No prior receipt or
-judgment was withdrawn.*
