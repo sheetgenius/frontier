@@ -51,9 +51,17 @@ function handlesFromRuns() {
   return found;
 }
 
-async function fetchAvatar(handle) {
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function fetchAvatar(handle, attempt = 0) {
   const url = `https://unavatar.io/x/${encodeURIComponent(handle)}?fallback=false`;
   const res = await fetch(url, { redirect: "follow" });
+  // The service throttles a burst of thirty. Back off and try again rather than
+  // leaving a real person as a monogram because we asked too fast.
+  if (res.status === 429 && attempt < 4) {
+    await sleep(2000 * 2 ** attempt);
+    return fetchAvatar(handle, attempt + 1);
+  }
   if (!res.ok) return { ok: false, reason: `HTTP ${res.status}` };
   const type = res.headers.get("content-type") ?? "";
   if (!type.startsWith("image/")) return { ok: false, reason: `not an image (${type})` };
@@ -87,6 +95,7 @@ async function main() {
       writeFileSync(file, result.buf);
       console.log(`  ok    @${handle} -> avatars/${path.basename(file)} (${result.buf.length}B)`);
       saved += 1;
+      await sleep(700);
     } catch (error) {
       console.log(`  skip  @${handle} -- ${error.message} (card will use a monogram)`);
     }
