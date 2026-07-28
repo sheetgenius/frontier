@@ -1,7 +1,7 @@
 import {
   formatDate,
   listDigests,
-  listCanonicalFindings,
+  listPeople,
   listProfiles,
   listSignalSourceSlugs,
   listSignals,
@@ -24,6 +24,7 @@ const staticEntries: SitemapEntry[] = [
   { path: "/digests/", priority: "0.8", changefreq: "weekly", lastmod: gitRevisionDate("site/src/pages/digests/index.astro", "2026-07-12") },
   { path: "/profiles/", priority: "0.8", changefreq: "weekly", lastmod: gitRevisionDate("site/src/pages/profiles/index.astro", "2026-07-12") },
   { path: "/signals/", priority: "0.7", changefreq: "weekly", lastmod: gitRevisionDate("site/src/pages/signals/index.astro", "2026-07-12") },
+  { path: "/people/", priority: "0.7", changefreq: "weekly", lastmod: gitRevisionDate("site/src/pages/people/index.astro", "2026-07-12") },
   { path: "/findings/", priority: "0.6", changefreq: "weekly", lastmod: gitRevisionDate("site/src/pages/findings/index.astro", "2026-07-12") },
   { path: "/sources/", priority: "0.5", changefreq: "monthly", lastmod: gitRevisionDate("sources/index.yml", "2026-07-12") },
   { path: "/corrections/", priority: "0.6", changefreq: "monthly", lastmod: gitRevisionDate("content/corrections.md", "2026-07-12") },
@@ -60,16 +61,18 @@ export function GET() {
     });
   }
 
-  for (const finding of listCanonicalFindings()) {
-    entries.set(`/findings/${finding.finding}/`, {
-      path: `/findings/${finding.finding}/`,
-      priority: "0.6",
+  // Individual findings are deliberately absent. They carry noindex,follow --
+  // 658 receipts at ~140 machine-written words each were 70% of the site and
+  // the first thing a stranger met from search. Listing a noindex page in a
+  // sitemap also asks a crawler to do two contradictory things. The /findings/
+  // index stays, so the apparatus is still browsable.
+
+  for (const person of listPeople()) {
+    entries.set(`/people/${person.slug}/`, {
+      path: `/people/${person.slug}/`,
+      priority: "0.7",
       changefreq: "weekly",
-      lastmod: formatDate(
-        finding.data.corrected_on
-        ?? finding.data.last_updated
-        ?? finding.data.window?.end,
-      ),
+      lastmod: formatDate(person.data.last_updated),
     });
   }
 

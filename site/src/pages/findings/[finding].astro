@@ -40,6 +40,11 @@ const findingModifiedDate = finding.data.corrected_on
 ---
 
 <Base
+  {/* A finding is a receipt, not an article. 658 of them at ~140 machine-voiced
+      words each were 70% of the site and the first thing search showed a
+      stranger. They stay reachable from every piece that cites them, and they
+      stop competing with the writing. */}
+  robots="noindex,follow"
   title={`${findingTitle} | Source-Backed Finding | Bitter Frontier`}
   description={findingDescription}
   publishedDate={finding.data.window?.end}
