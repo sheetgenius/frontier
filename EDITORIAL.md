@@ -183,6 +183,79 @@ Color must never inflate certainty, invent motive, conceal a caveat, or turn a
 vendor into a caricature. The test is whether the sentence becomes less precise
 when the color is removed. If not, the color is decoration and should probably go.
 
+## How the field actually writes
+
+Read from a verified corpus of 42 posts harvested 2026-07-28 across the
+watchlist and its commentators. Every quotation below was independently
+re-fetched before being reproduced here. This section exists because a
+publication about a community that does not sound like that community reads
+as an outsider describing it, however good the reporting is.
+
+**They open at the point.** No warm-up clause, no "I've been thinking about."
+Robert Nowell, on the two products' bypass flags: `codex's fully permissioned
+mode being --yolo while claude code's is --dangerously-skip-permissions could
+not be more on brand for both products.` The observation is the first thing in
+the sentence.
+
+**The literal invocation is the evidence.** They quote the flag, not a
+description of the flag: `claude --permission-mode bypassPermissions`,
+`codex --yolo`, `Read(/)`, `claude -p`, `--allowedTools`. Naming the command
+is how you show you have run it. Prefer the string an operator would type over
+our paraphrase of what it does.
+
+**Confession is credibility, and it is one line long.** This is the most
+useful thing in the corpus. rcmisk: `the honest reason i kept approving every
+agent action by hand: i had no boundary, so every click was the boundary.`
+ashkmb_tech opens with `I gave an AI agent passwordless sudo on a box in my
+house, on purpose.` The admission comes first, flat, unhedged, and is never
+apologised for. Our own error notes should sound like this -- "We filed it as
+a feature. It was a fix." -- and not like a disclosure statement.
+
+**Sections end on a couplet.** Two short parallel clauses, the second
+correcting or completing the first. It is the single most repeated structure
+in the corpus. Pillar Security: `The allowlist trusted a name. The risk was
+always in the invocation.` omidsaffari: `A sandbox is useful containment. The
+application still owns permission.` rcmisk: `safety is a wall, not a habit.`
+We already do this occasionally by instinct ("An unenforced control emits
+nothing"). Do it on purpose, at the ends of sections.
+
+**Diagnose sequencing, not character.** rcmisk again: `wrong order. put the os
+sandbox first, then auto approve inside it.` The failure is that two correct
+things happened in the wrong order. That is nearly always the more accurate
+and more useful reading, and it is the one this field reaches for.
+
+**Numbers are exact or absent.** CVSS 8.6. v0.95.0. 40 CLI changes. Eleven
+agents, ten bypassed. Nobody writes "several" or "a number of."
+
+**Frustration is specific and unhedged.** _xjdr, to a vendor, in lowercase:
+`creating a new, empty , read-only .git/ dir on every sandbox op breaks an
+unbelievable amount of tooling. please dont do that . that is bad`. "That is
+bad" is a complete verdict. We are allowed to reach a verdict.
+
+**Humour is deadpan and comes from stating the absurd thing plainly.** Never a
+constructed joke. maxi, in German: `wie soll man noch zeit zum kochen finden
+wenn man den ganzen tag claude code permissions granten muss` -- how are you
+supposed to find time to cook when you spend all day granting Claude Code
+permissions.
+
+**What they treat as settled, and we should stop explaining:** that most
+people bypass the prompts; that the sandbox, not the prompt, is the boundary;
+that the agent will eventually do something stupid. Explaining these reads as
+condescension. Advisory locking does not need defining for this audience.
+
+**The conversation is not in English.** Japanese, Arabic, German, and Chinese
+posts all appear in a 42-post sample. A sweep that only reads English is
+reading a fraction.
+
+### What this does not license
+
+Native is not imitation. A 3,000-word argument written in tweet register is
+exhausting and reads as costume. Take the directness, the exact command
+strings, the flat verdicts, and the closing couplets. Leave the lowercase
+affectation, the fragments for their own sake, the in-group signalling, and
+the dunking. The test is whether a sentence would embarrass the editor in a
+year.
+
 ## Severity and skepticism
 
 Write like a skeptical engineer, not a press release and not a sneering critic.
