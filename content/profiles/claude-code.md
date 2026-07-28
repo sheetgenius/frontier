@@ -183,7 +183,7 @@ posture, and this window auto mode
 [absorbed three more decisions that used to reach a human](https://github.com/anthropics/claude-code/releases/tag/v2.1.218):
 dangerous `rm`, background `&`, and suspicious Windows paths now go to the
 classifier instead of a dialog. The cross-project reading of this window is in
-[Assume the Rule Does Not Bind](/digests/2026-07-02_2026-07-27-weekly/); the
+[Rules Became Judgment](/digests/2026-07-02_2026-07-27-weekly/); the
 Claude Code case is written up as its own
 [signal](/signals/2026-07-27-claude-code-permission-rules-did-not-refuse/).
 

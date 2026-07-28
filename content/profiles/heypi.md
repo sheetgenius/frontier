@@ -303,7 +303,7 @@ matters, the silence is total -- a search of every heypi social claim for
 `approv`, `admin`, `audit`, and `migrat` returns nothing. The governance shell's
 own conversation contains no governance.
 *See the window digest,
-[Assume the Rule Does Not Bind](/digests/2026-07-02_2026-07-27-weekly/).*
+[Rules Became Judgment](/digests/2026-07-02_2026-07-27-weekly/).*
 
 ## How heypi differs from its neighbors
 

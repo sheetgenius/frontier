@@ -1,7 +1,7 @@
 # How Bitter Frontier works
 
 Bitter Frontier is a receipted editorial publication on coding agents and the
-harnesses around them. It asks what general agents just made cheaper, what
+harnesses around them. It asks what general agents just made possible, what
 became the new bottleneck, and where operators should spend scarce human
 attention.
 
@@ -91,6 +91,34 @@ distinctions between them are load-bearing.
 The public reader should benefit from this grammar without needing to learn it.
 Findings, schemas, and run vocabulary stay behind the glass until a reader asks
 to audit the work.
+
+## The capability lane
+
+The release-tracking apparatus is a defect detector. Changelogs, advisory
+databases and channel comparisons emit a record when something went wrong and
+stay silent when something went right, so a cycle that only runs those lanes can
+only produce a defect log.
+
+The capability lane exists to ask the other question, on the same evidence
+standard:
+
+- What became possible this window that was not possible before it?
+- What scaffolding got deleted, and what does its removal say about what the
+  model can now be trusted to do unassisted?
+- What did somebody build, or ship, or measure, that is worth an operator's
+  attention?
+- Which constraint stopped being the binding one?
+
+The receipts are the same kind: a changelog entry removing a workaround, a
+release that deletes a setting rather than adding one, a maintainer describing
+what they stopped needing, a practitioner who measured their own system rather
+than repeating a number. A vendor's enthusiasm is not a capability, and a
+capability claim is adjudicated against the primary record exactly like a defect
+claim.
+
+The lane has a specific failure mode worth naming: it is easy to fill with
+vendor announcements, which are marketing with a version number attached. The
+test is whether an operator could act differently on Monday because of it.
 
 ## The conversation layer
 

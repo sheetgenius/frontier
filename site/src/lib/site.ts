@@ -8,5 +8,5 @@ export const GA_MEASUREMENT_ID = "G-H0F0J0EBHP";
 export const GH_BLOB_BASE = `${GH_REPO_URL}/blob/main`;
 export const SITE_TITLE = "Bitter Frontier";
 export const SITE_DESCRIPTION =
-  "Source-backed, cross-project reporting on what coding agents made cheaper, where the bottleneck moved, and what deserves human attention.";
+  "Source-backed, cross-project reporting on what coding agents just made possible, where the bottleneck moved, and what deserves human attention.";
 export const SITE_IMAGE = `${SITE_URL}/og.png`;

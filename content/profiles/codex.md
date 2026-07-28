@@ -221,7 +221,7 @@ with npm as a marketplace source, and multi-agent v2 went
 [stable](https://github.com/openai/codex/pull/34383) with its settings unified
 under an `agents` key. Watch Codex as one large vendor's directional read on
 where closed-source coding agents go. The cross-project reading of this window is
-in [Assume the Rule Does Not Bind](/digests/2026-07-02_2026-07-27-weekly/).
+in [Rules Became Judgment](/digests/2026-07-02_2026-07-27-weekly/).
 
 ## Run Codex Differently
 

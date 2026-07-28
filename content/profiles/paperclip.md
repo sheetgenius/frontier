@@ -231,7 +231,7 @@ secrets and Connections v3 and omits the Critical published against that same
 tag two days earlier. We came prepared to debunk a panic and found no panic to
 debunk, which is the less comfortable finding.
 *See the window digest,
-[Assume the Rule Does Not Bind](/digests/2026-07-02_2026-07-27-weekly/).*
+[Rules Became Judgment](/digests/2026-07-02_2026-07-27-weekly/).*
 
 ## Secrets stopped being ambient
 

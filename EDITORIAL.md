@@ -256,6 +256,50 @@ affectation, the fragments for their own sake, the in-group signalling, and
 the dunking. The test is whether a sentence would embarrass the editor in a
 year.
 
+## Both halves of the frontier
+
+A frontier is dangerous and it is also the place worth going. An issue that
+carries only the danger is not the rigorous version of this publication. It is
+the incomplete one.
+
+We drifted. In the 2026-07-02 window, sixteen of the eighteen posts we quoted
+were exhibits in a prosecution -- including posts whose authors were excited,
+which we repurposed as evidence against them. We harvested 108 posts, 54 of them
+people describing things they had built, and published none of it. We quoted a
+practitioner complaining that the timeline is all complaining, and did not notice
+he was describing us. Meanwhile the best story of the window sat unwritten: a
+vendor deleting scaffolding because the model had outgrown it, which is this
+publication's founding thesis happening in public, with receipts.
+
+The cause is structural, not tonal, which is why it cannot be fixed by softening
+prose. Our instrument is a defect detector. Release channels, changelogs and
+advisory databases only emit when something went wrong, so an editorial layer
+that faithfully reports what the instrument found will publish a defect log
+forever. **An unenforced control emits nothing** is our own sentence about
+selection bias in counting. It applies to what we choose to write about too.
+
+The bar:
+
+- **Every issue carries both halves, on the same receipts.** What became
+  possible, and what stopped holding. If a cycle genuinely produced only one,
+  say so and show what you looked for.
+- **Report what became possible, not what got cheaper.** Cheaper connotes
+  devaluation. The claim is that something is now within reach that was not, and
+  that is the more interesting and more accurate framing.
+- **A positive finding needs a receipt like any other.** Enthusiasm is not
+  evidence and a vendor's excitement is not a capability. Adjudicate the good
+  news against the primary record exactly as hard.
+- **Do not title an issue like an indictment.** One gotcha title is a finding.
+  Four consecutive ones are a posture, and readers correctly read a posture as
+  bias. Title the finding, not the verdict on the vendor.
+- **Quote builders, not only complainants.** If every voice in an issue is
+  unhappy, the sweep was read selectively, because half the conversation is
+  people shipping things.
+
+The test: would somebody working at the frontier recognise their own week in
+this, including the parts that went well? If the honest answer is that they would
+recognise only their worst day, the issue is not finished.
+
 ## Severity and skepticism
 
 Write like a skeptical engineer, not a press release and not a sneering critic.

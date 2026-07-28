@@ -1,6 +1,6 @@
 # Bitter Frontier
 
-**Source-backed reporting on what coding agents just made cheaper, what became
+**Source-backed reporting on what coding agents just made possible, what became
 the new bottleneck, and where operators should spend scarce human attention.**
 
 Bitter Frontier reads the coding agents and harnesses together. It turns their

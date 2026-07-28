@@ -531,3 +531,125 @@ cards:
     verdict: >
       A voice post, quoted for the observation rather than the joke. The names are accurate: `codex --yolo` and `claude --dangerously-skip-permissions` are both documented flags, and both vendors chose a word that tells you what they think of the choice.
     tags: [naming, bypass]
+
+  - id: trq-eighty-percent-system-prompt
+    title: "Eighty percent of it, gone"
+    kind: maintainer_intent
+    date: 2026-07-24
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["trq212"]
+    source_note: 17
+    handling_note: q
+    source_urls:
+      - https://x.com/trq212/status/2080710971228918066
+    verbatim: |
+      We removed ~80% of the Claude Code system prompt for our newest models, this is what we've learned about writing system prompts, skills and Claude.MDs for them.
+    inline: >-
+      We removed ~80% of the Claude Code system prompt for our newest models
+    summary: >
+      An Anthropic engineer on cutting most of the Claude Code system prompt for
+      the newest models.
+    verdict: >
+      Quoted as a claim, not established as a measurement. We searched the Claude
+      Code changelog for v2.1.179 through v2.1.220 and it records no eighty
+      percent reduction; the closest receipted entry is v2.1.201 on 2026-07-03,
+      which removed the mid-conversation system role for harness reminders in
+      Sonnet 5 sessions. So the direction is receipted and the magnitude is the
+      vendor's own account of its own work. Three practitioners independently
+      report the same direction, which is corroboration of a trend rather than
+      confirmation of a number.
+    tags: [scaffolding, bitter-lesson, context-engineering]
+
+  - id: simonw-loops-short-lived-patch
+    title: "A patch for models that could not keep going"
+    kind: prediction
+    date: 2026-07-23
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["simonw"]
+    source_note: 18
+    handling_note: r
+    source_urls:
+      - https://x.com/simonw/status/2080102848050933904
+    verbatim: |
+      I think loops were a short-lived patch for models that couldn't reliably keep working on long problems until they hit a defined goal
+
+      Fable and GPT-5.6 (and probably Kimi K3 as well) can just do that out of the box, unassisted
+    inline: >-
+      loops were a short-lived patch for models that couldn't reliably keep working on long problems
+    summary: >
+      A read on agent loops as scaffolding that newer models make unnecessary.
+    verdict: >
+      A voice post and a forecast, quoted as his argument rather than as a
+      finding. We hold no measurement either way. It is here because it names the
+      mechanism the rest of this section describes, and because it is falsifiable
+      in a way we can check next quarter.
+    tags: [scaffolding, bitter-lesson, loops]
+
+  - id: povilas-fewer-skills
+    title: "Fewer skills, shorter files"
+    kind: adoption_signal
+    date: 2026-07-27
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["PovilasKorop"]
+    source_note: 19
+    handling_note: s
+    source_urls:
+      - https://x.com/PovilasKorop/status/2081794303362302349
+    verbatim: |
+      With new models like Fable 5 and now Opus 5, you need to act differently. 
+
+      Quite a few people report they need fewer skills and shorter claude(.)md file. 
+
+      Even Thariq from Anthropic reported they shortened their system prompt heavily. 
+
+      Models are better at figuring stuff out.
+    inline: >-
+      Models are better at figuring stuff out.
+    summary: >
+      A practitioner reporting that newer models need less configuration.
+    verdict: >
+      Reported experience, not measurement, and he says so himself by attributing
+      it to what others report. Included as one of three independent voices
+      moving the same direction in the same fortnight.
+    tags: [scaffolding, adoption]
+
+  - id: mattpocock-thirteen-k
+    title: "Thirteen thousand tokens"
+    kind: workflow_practice
+    date: 2026-07-07
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["mattpocockuk"]
+    source_note: 20
+    handling_note: t
+    source_urls:
+      - https://x.com/mattpocockuk/status/2074464823232888987
+    verbatim: |
+      Here's a step-by-step process to kill all the bloat from your Claude Code system prompt:
+
+      1. Run a proxy so you can see exactly what gets sent to Claude Code (included in the article)
+      2. "Fuck, there is so much cruft in there"
+      3. Use my settings.json to kill all the bloat
+
+      Down to a clean 13K tokens to start each session with. Nice.
+
+      Full process here:
+
+      https://www.aihero.dev/how-to-kill-the-bloat-in-claude-codes-system-prompt
+    inline: >-
+      Down to a clean 13K tokens to start each session
+    summary: >
+      An operator proxying his own sessions to see and cut what gets sent.
+    verdict: >
+      The most checkable thing in this section, because he did not take the
+      vendor's word for it either: he ran a proxy, read what was actually being
+      sent, and measured the result. We have not reproduced his number. The
+      method is the point.
+    tags: [scaffolding, measurement]
