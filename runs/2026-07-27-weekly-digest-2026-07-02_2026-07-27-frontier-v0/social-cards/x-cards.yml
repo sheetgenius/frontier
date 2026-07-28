@@ -365,3 +365,169 @@ cards:
       Dated one week before v2.1.211 repaired auto mode overriding a PreToolUse
       hook. Quoted as guidance. We assert nothing about what was known when.
     tags: [auto-mode, vendor-guidance, sequencing]
+
+  - id: povilas-conversation-is-complaints
+    title: "What the timeline is actually made of"
+    kind: community_discussion
+    date: 2026-07-21
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code, codex]
+    authors: ["PovilasKorop"]
+    source_note: 11
+    handling_note: k
+    source_urls:
+      - https://x.com/PovilasKorop/status/2079598143063085200
+    verbatim: |
+      Pretty sad to scroll Twitter for Claude Code / Codex content.
+
+      Claude Code users: "WHY ANTHROPIC TAKES AWAY OUR FABLE / PLAN USAGE??!!"
+
+      Codex users: "Tibo, when another reset please bro?!"
+
+      And only a handful of people tweet about something USEFUL they're BUILDING with AI.
+    inline: >-
+      And only a handful of people tweet about something USEFUL they're BUILDING with AI.
+    summary: >
+      A practitioner's read on what the Claude Code and Codex conversation
+      consists of.
+    verdict: >
+      A voice post. We assert only that he said it, and we quote it because it
+      is the same finding our sweep reached from the outside, reached from
+      inside the community and before we published. His complaint is about usage
+      limits crowding out substance; ours is that enforcement never came up at
+      all. Different targets, same shape.
+    tags: [conversation-layer, signal-to-noise]
+
+  - id: malm-sandbox-settings-broken-twice
+    title: "For a second time"
+    kind: bug_report
+    date: 2026-07-21
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["malm_magnus"]
+    source_note: 12
+    handling_note: l
+    source_urls:
+      - https://x.com/malm_magnus/status/2079528191706759489
+    verbatim: |
+      Claude Code update breaks sandbox settings for a second time.
+
+      I am frustrated.
+
+      Grok Build takes over Claude sessions.
+
+      I am happy.
+    inline: >-
+      Claude Code update breaks sandbox settings for a second time.
+    summary: >
+      An operator reporting that an update broke sandbox settings, twice.
+    verdict: >
+      A voice post, quoted for what it is: one operator's report, in-window, of
+      the exact failure mode this issue documents. We did not reproduce it and
+      we have not matched it to a specific release, so it stands as testimony
+      rather than a receipt.
+    tags: [sandbox, operator-report]
+
+  - id: rcmisk-sandbox-first
+    title: "Wrong order"
+    kind: workflow_practice
+    date: 2026-07-25
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["rcmisk"]
+    source_note: 13
+    handling_note: m
+    source_urls:
+      - https://x.com/rcmisk/status/2080941147455664256
+    verbatim: |
+      the honest reason i kept approving every agent action by hand:
+
+      i had no boundary, so every click was the boundary.
+
+      wrong order. put the os sandbox first, then auto approve inside it.
+
+      the risky stuff still asks. deploys, deletes, publishes.
+
+      safety is a wall, not a habit.
+    inline: >-
+      put the os sandbox first, then auto approve inside it
+    summary: >
+      An operator describing why he stopped approving every action by hand.
+    verdict: >
+      A voice post, and the clearest statement of this issue's own conclusion that we found anywhere -- reached independently, by someone who had been clicking approve for months. We quote it because he got there first.
+    tags: [sandbox, approvals, sequencing]
+
+  - id: zby-is-everybody-doing-that
+    title: "Is everybody doing that now?"
+    kind: bug_report
+    date: 2026-07-27
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["zby"]
+    source_note: 14
+    handling_note: n
+    source_urls:
+      - https://x.com/zby/status/2081817203855286756
+    verbatim: |
+      Claude Code now constantly runs short bash scripts with pipes and stuff. Very annoying as it means  constant need for approval.
+
+      Should I use --dangerously-skip-permissions? Is everybody doing that now?
+    inline: >-
+      Should I use --dangerously-skip-permissions? Is everybody doing that now?
+    summary: >
+      An operator worn down by approval prompts, asking whether bypassing is the norm.
+    verdict: >
+      A voice post. We assert only that he asked. It is here because the question answers itself: the pressure to turn the prompts off comes from the prompts, not from the vendor alone.
+    tags: [approvals, adoption]
+
+  - id: niels-blast-radius
+    title: "The one step that was protecting you"
+    kind: criticism
+    date: 2026-07-23
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code]
+    authors: ["NielsAbdellatif"]
+    source_note: 15
+    handling_note: o
+    source_urls:
+      - https://x.com/NielsAbdellatif/status/2080256611936068041
+    verbatim: |
+      Every Claude Code tips list opens with the same alias: skip all permission prompts.
+
+      In a sandbox, fine. Anywhere near a multisig or a key, it removes the one step that was protecting you.
+
+      Adopt the subset that doesn't assume the blast radius is a git branch.
+    inline: >-
+      it removes the one step that was protecting you
+    summary: >
+      A counter-argument to the standard advice to alias away the prompts.
+    verdict: >
+      A voice post, and the other side of the same question. Quoted because the sandbox-first answer and the do-not-skip answer are both in circulation, and this issue's finding is that neither survives if the sandbox itself does not enforce.
+    tags: [approvals, blast-radius]
+
+  - id: robertnowell-on-brand
+    title: "--yolo"
+    kind: community_discussion
+    date: 2026-07-21
+    date_precision: day
+    captured_on: 2026-07-28
+    source_ids: [claude-code, codex]
+    authors: ["RobertNowell1"]
+    source_note: 16
+    handling_note: p
+    source_urls:
+      - https://x.com/RobertNowell1/status/2079708536138076630
+    verbatim: |
+      codex's fully permissioned mode being --yolo while claude code's is --dangerously-skip-permissions could not be more on brand for both products.
+    inline: >-
+      could not be more on brand for both products
+    summary: >
+      On the two products' names for full permission.
+    verdict: >
+      A voice post, quoted for the observation rather than the joke. The names are accurate: `codex --yolo` and `claude --dangerously-skip-permissions` are both documented flags, and both vendors chose a word that tells you what they think of the choice.
+    tags: [naming, bypass]
