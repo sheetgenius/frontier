@@ -1,0 +1,85 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-05-06-goal-weighted-2026-04-22_2026-05-06-frontier-v2
+note: >
+  This window predates the standing social lane by two months, so there is no
+  contemporaneous sweep to draw on. These three posts come from a 2026-05-06 to
+  05-12 archive search run on 2026-07-29 and fall on the window's final day;
+  every one was independently re-fetched by URL before quoting. The rest of the
+  fortnight has no social record here and we would rather say so than pad it.
+cards:
+  - id: claude-dreaming-preview
+    title: "Curates memories so your agents learn"
+    kind: capability_announcement
+    date: 2026-05-06
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["claudeai"]
+    display_name: Claude
+    source_note: 1
+    handling_note: a
+    source_urls:
+      - https://x.com/claudeai/status/2052067400690851842
+    verbatim: |
+      Dreaming reviews your agent's past sessions, extracts patterns, and curates memories so your agents learn over time.
+
+      Request access: https://claude.com/form/claude-managed-agents
+    inline: >-
+      Dreaming reviews your agent's past sessions, extracts patterns, and curates memories so your agents learn over time
+    summary: >
+      Anthropic launching a research preview that edits an agent's memory between sessions.
+    verdict: >
+      A vendor announcing its own research preview, quoted as that. It lands on the last day of this window and on this issue's argument exactly: another process deciding what the agent knows, with no line in the transcript.
+    tags: [memory, background-process, research-preview]
+
+  - id: paperclip-12-hour-runs
+    title: "Run for 12 hours or more"
+    kind: capability_announcement
+    date: 2026-05-06
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [paperclip]
+    authors: ["dotta"]
+    display_name: dotta 📎
+    source_note: 2
+    handling_note: b
+    source_urls:
+      - https://x.com/dotta/status/2051989277228044423
+    verbatim: |
+      We've done a lot to improve planning and execution in Paperclip
+
+      You can easily plan features that delegate across the agents organization and run for 12 hours or more
+    inline: >-
+      plan features that delegate across the agents organization and run for 12 hours or more
+    summary: >
+      Paperclip on delegated work running half a day unattended.
+    verdict: >
+      The vendor's own description of its planning work, unmeasured by us. Carried because a twelve-hour delegated run is the practical reason the furniture in this issue matters: nobody is watching the transcript for twelve hours.
+    tags: [long-horizon, delegation]
+
+  - id: claude-limits-doubled
+    title: "Doubling Claude Code's 5-hour rate limits"
+    kind: capability_announcement
+    date: 2026-05-06
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["claudeai"]
+    display_name: Claude
+    source_note: 3
+    handling_note: c
+    source_urls:
+      - https://x.com/claudeai/status/2052060693269008586
+    verbatim: |
+      Effective today, we are:
+
+      1) Doubling Claude Code’s 5-hour rate limits for Pro, Max, and Team plans;
+
+      2) Removing the peak hours limit reduction on Claude Code for Pro and Max plans; and
+
+      3) Substantially raising our API rate limits for Opus models.
+    summary: >
+      Rate limits doubled and peak-hour reductions removed, the same day.
+    verdict: >
+      A vendor announcement, and the plainest available marker of the window's direction: the constraint that used to bound a long run was compute, and compute got cheaper on 2026-05-06.
+    tags: [rate-limits, capacity]

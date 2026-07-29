@@ -1,0 +1,60 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-05-07-commit-harvest-2026-04-23_2026-05-07-frontier-v1
+note: >
+  This window predates the standing social lane. These two posts fall on its
+  final days and come from a 2026-05-06 to 05-12 archive search run on
+  2026-07-29; both were independently re-fetched by URL before quoting. The
+  earlier fortnight has no social record here, and saying so is better than
+  padding it.
+cards:
+  - id: codex-chrome-parallel-tabs
+    title: "In parallel across tabs, in the background"
+    kind: capability_announcement
+    date: 2026-05-07
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [codex]
+    authors: ["OpenAI"]
+    display_name: OpenAI
+    source_note: 1
+    handling_note: a
+    source_urls:
+      - https://x.com/OpenAI/status/2052480800004956323
+    verbatim: |
+      Codex now works directly in Chrome on macOS and Windows.
+
+      It’s even better at working with apps and sites in Chrome, and now works in parallel across tabs in the background without taking over your browser.
+
+      To get started, install the Chrome plugin in the Codex app.
+    inline: >-
+      now works in parallel across tabs in the background without taking over your browser
+    summary: >
+      Codex reaching Chrome on the final day of this window.
+    verdict: >
+      A vendor announcement, quoted as that. The phrase that matters is the last one: the agent works the browser without taking it over, which is the visible computer this issue describes arriving as a shipped default.
+    tags: [computer-use, browser]
+
+  - id: claude-dreaming-preview-0507
+    title: "Curates memories so your agents learn"
+    kind: capability_announcement
+    date: 2026-05-06
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["claudeai"]
+    display_name: Claude
+    source_note: 2
+    handling_note: b
+    source_urls:
+      - https://x.com/claudeai/status/2052067400690851842
+    verbatim: |
+      Dreaming reviews your agent's past sessions, extracts patterns, and curates memories so your agents learn over time.
+
+      Request access: https://claude.com/form/claude-managed-agents
+    inline: >-
+      extracts patterns, and curates memories so your agents learn over time
+    summary: >
+      Anthropic's research preview that edits an agent's memory between sessions.
+    verdict: >
+      A vendor research preview, quoted as its own description. It lands inside this window and on its argument: agent-side state that no transcript records and no operator approved.
+    tags: [memory, background-process]

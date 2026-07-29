@@ -82,9 +82,11 @@ smeared into hidden context. Hermes added memory scoping and
 [Curator](https://github.com/NousResearch/hermes-agent/commit/fe8560fc1249b4a7e448b5c3b80a7d213df9d78f)
 commands; OpenClaw put agent progress into the chat itself with
 [timeline spans](https://github.com/openclaw/openclaw/commit/61223a74a43fd8768c426d5b22f1633dbad37477).
-Agent-side state is becoming durable, visible, and operational -- which means
-a serious run now has to be able to answer what goal, memory, session, or
-thread state shaped it.
+On the window's last day Anthropic previewed the version of this that asks
+nobody: dreaming, which [[q:claude-dreaming-preview-0507]]. Agent-side state is
+becoming durable, visible, and operational -- and in one case, curated by a
+process the operator never sees -- which means a serious run now has to be able
+to answer what goal, memory, session, or thread state shaped it.
 
 ## The visible computer
 
@@ -99,6 +101,12 @@ hardening its sandbox. The chat box is not enough for serious agent work, and
 the projects that understand that are racing to show the operator the actual
 machine: the browser, the files, the runtime, the screenshots, the
 credentials, the artifacts.
+
+It shipped on the last day of the window. Codex reached Chrome on macOS and
+Windows and [[q:codex-chrome-parallel-tabs]]. The clause worth keeping is the
+final one. An agent that drives your browser while you keep using it is not a
+demo of computer use; it is computer use as a background process, which is a
+different thing to supervise.
 
 ## The authority model comes to the foreground
 
