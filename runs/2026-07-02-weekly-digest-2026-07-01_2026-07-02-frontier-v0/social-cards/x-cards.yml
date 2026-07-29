@@ -1,0 +1,139 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-07-02-weekly-digest-2026-07-01_2026-07-02-frontier-v0
+note: >
+  Backfilled 2026-07-29. This window predates the standing social lane, so the
+  posts were found by a dated archive search and every one was independently
+  re-fetched by URL before anything here was quoted. Only `verbatim` holds a
+  poster's own words; `inline` and `quoted` must be contiguous runs of it.
+cards:
+  - id: bcherny-artifacts-life-changing
+    title: "Life changing"
+    kind: capability_announcement
+    date: 2026-07-02
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["bcherny"]
+    display_name: Boris Cherny
+    source_note: 1
+    handling_note: a
+    source_urls:
+      - https://x.com/bcherny/status/2072777472970563995
+    verbatim: |
+      Artifacts in Claude Code have been life changing. Excited to expand to Pro and Max!
+    inline: >-
+      Artifacts in Claude Code have been life changing.
+    summary: >
+      Claude Code's creator on Artifacts reaching Pro and Max.
+    verdict: >
+      A voice post, quoted as enthusiasm rather than as a measurement. It is here for what happened underneath it in the same thread.
+    tags: [artifacts, capability]
+
+  - id: mikeyoon-routines-permission-friction
+    title: "Which kinda defeats the point"
+    kind: bug_report
+    date: 2026-07-02
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["mikeyoon_"]
+    display_name: Mike Yoon
+    source_note: 2
+    handling_note: b
+    source_urls:
+      - https://x.com/mikeyoon_/status/2072791890685235613
+    verbatim: |
+      @bcherny I tried pushing to Artifacts from Claude Code Routines but it asked for permissions everytime, which kinda defeats the point of Routines.
+      Is there away to give routines auto-permissions or is this a bug. Thanks!
+    inline: >-
+      it asked for permissions everytime, which kinda defeats the point of Routines
+    summary: >
+      An operator replying that Routines asked for permission on every push.
+    verdict: >
+      A voice post and an operator report; we did not reproduce it. Quoted because it is this issue's argument arriving as lived friction: a capability that has to stop and ask is not yet the capability that was announced.
+    tags: [routines, approvals, friction]
+
+  - id: isacciobota-trusted-projects-bypass
+    title: "On projects I trust"
+    kind: workflow_practice
+    date: 2026-07-02
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["isacciobota"]
+    display_name: Isac Ciobota
+    source_note: 3
+    handling_note: c
+    source_urls:
+      - https://x.com/isacciobota/status/2072621302041718881
+    verbatim: |
+      Small Claude Code tip that saves me a surprising amount of time.
+
+      On projects I trust, I often launch Claude with:
+
+      claude --dangerously-skip-permissions
+
+      No more approving every edit or command.
+
+      I only do this on my own local projects that I understand. I wouldn't use it on unfamiliar codebases or commands I haven't reviewed.
+
+      Do you keep permissions on or off?
+    inline: >-
+      No more approving every edit or command.
+    summary: >
+      An operator's habit of launching with permissions skipped on local projects.
+    verdict: >
+      A voice post. Quoted for the shape of the decision rather than the advice: he bounds it to code he owns and understands, which is exactly the judgment the prompt used to make for him.
+    tags: [approvals, bypass, operator-practice]
+
+  - id: openclaw-boring-release
+    title: "Beware, this release is boring"
+    kind: capability_announcement
+    date: 2026-07-01
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [openclaw]
+    authors: ["openclaw"]
+    display_name: OpenClaw🦞
+    source_note: 4
+    handling_note: d
+    source_urls:
+      - https://x.com/openclaw/status/2072137139937325558
+    verbatim: |
+      v2026.6.11 has dropped.
+
+      This release focuses on the rough edges that make OpenClaw feel less dependable: misplaced replies, stuck sends, reconnects, model setup failures, and more.
+
+      Beware, this release is boring.
+
+      https://t.co/GAosf5zCgA
+    inline: >-
+      Beware, this release is boring.
+    summary: >
+      OpenClaw shipping a reliability release and saying so.
+    verdict: >
+      A vendor describing its own release, quoted as that. Included because a changelog of misplaced replies, stuck sends and failed reconnects is what the unglamorous half of this field looks like when someone does it.
+    tags: [reliability, release-notes]
+
+  - id: mitsuhiko-pi-fewer-tokens
+    title: "Fewer tokens for similar results"
+    kind: workflow_practice
+    date: 2026-07-02
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [pi-coding-agent, codex]
+    authors: ["mitsuhiko"]
+    display_name: Armin Ronacher ⇌
+    source_note: 5
+    handling_note: e
+    source_urls:
+      - https://x.com/mitsuhiko/status/2072525284415328676
+    verbatim: |
+      @LoopOnChain Than codex? Absolutely not my experience. I have been dual running gpt 5.5 between pi and codex for a while on the same problems and pi routinely finishes faster and in fewer tokens for similar results.
+    inline: >-
+      pi routinely finishes faster and in fewer tokens for similar results
+    summary: >
+      Armin Ronacher comparing Pi and Codex on the same problems.
+    verdict: >
+      Reported experience from dual-running the same model across two harnesses, not a benchmark, and he frames it as his experience. Quoted because the harness-not-the-model claim keeps recurring and this is a practitioner putting his own name on a direction.
+    tags: [harness, tokens, comparison]
