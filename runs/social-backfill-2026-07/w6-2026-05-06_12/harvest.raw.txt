@@ -1,0 +1,760 @@
+===POST===
+URL: https://x.com/claudeai/status/2052060691893227611
+HANDLE: claudeai
+DISPLAY_NAME: Claude
+DATE: 2026-05-06
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+We’ve agreed to a partnership with @SpaceX that will substantially increase our compute capacity.
+
+This, along with our other recent compute deals, means that we’ve been able to increase our usage limits for Claude Code and the Claude API.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/claudeai/status/2052060693269008586
+HANDLE: claudeai
+DISPLAY_NAME: Claude
+DATE: 2026-05-06
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Effective today, we are:
+
+1) Doubling Claude Code’s 5-hour rate limits for Pro, Max, and Team plans;
+
+2) Removing the peak hours limit reduction on Claude Code for Pro and Max plans; and
+
+3) Substantially raising our API rate limits for Opus models.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/bcherny/status/2052070550982611109
+HANDLE: bcherny
+DISPLAY_NAME: Boris Cherny
+DATE: 2026-05-06
+PROJECT: claude-code
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+Two big changes for Claude Code today: 5-hour rate limits doubled on Pro, Max, Team, and seat-based Enterprise, and we’ve removed the peak-hours limits for Pro and Max. Both effective today.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/claudeai/status/2052067399088664981
+HANDLE: claudeai
+DISPLAY_NAME: Claude
+DATE: 2026-05-06
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Live from Code with Claude: we're launching dreaming in Claude Managed Agents as a research preview.
+
+Outcomes, multiagent orchestration, and webhooks are now in public beta.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/claudeai/status/2052067400690851842
+HANDLE: claudeai
+DISPLAY_NAME: Claude
+DATE: 2026-05-06
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Dreaming reviews your agent's past sessions, extracts patterns, and curates memories so your agents learn over time.
+
+Request access: https://claude.com/form/claude-managed-agents
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/aniketapanjwani/status/2052078811009696174
+HANDLE: aniketapanjwani
+DISPLAY_NAME: Aniket Panjwani
+DATE: 2026-05-06
+PROJECT: claude-code
+KIND: workflow_practice
+STANCE: mixed
+VERBATIM_BEGIN
+great news! I love using Codex and Claude Code together - on net I lean towards Codex but each has its own advantages.
+
+Subagents, for example, IMO work better and are better designed in Claude Code.
+
+I leverage this via a /claude-pr-review skill I've made. After making a PR in Codex, I'll invoke this skill, which will spin up 6-12 subagents in Claude Code to review the PR and post findings, and then I'll have Codex make the fixes it agrees with and merge in the PR.
+
+For brainstorming/planning/interactive thinking, I also like Claude Code better, in great part through it's better support for subagents.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/dotta/status/2051989277228044423
+HANDLE: dotta
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-06
+PROJECT: paperclip
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+We've done a lot to improve planning and execution in Paperclip
+You can easily plan features that delegate across the agents organization and run for 12 hours or more
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAI/status/2052480800004956323
+HANDLE: OpenAI
+DISPLAY_NAME: OpenAI
+DATE: 2026-05-07
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Codex now works directly in Chrome on macOS and Windows.
+
+It’s even better at working with apps and sites in Chrome, and now works in parallel across tabs in the background without taking over your browser.
+
+To get started, install the Chrome plugin in the Codex app.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAIDevs/status/2052481136971125158
+HANDLE: OpenAIDevs
+DISPLAY_NAME: OpenAI Developers
+DATE: 2026-05-07
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Codex can now take on more of your browser dev work.
+
+With the new Chrome plugin in the Codex app, it can test web apps, gather context across tabs, use web DevTools efficiently in parallel, and keep results organized without taking over your browser.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAI/status/2052480801435189708
+HANDLE: OpenAI
+DISPLAY_NAME: OpenAI
+DATE: 2026-05-07
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+With the new Chrome extension, Codex can quickly move through repetitive browser work, like navigating structured pages and complex data entry flows. Under the hood, it writes and runs code to navigate and complete tasks.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAIDevs/status/2052854976582762698
+HANDLE: OpenAIDevs
+DISPLAY_NAME: OpenAI Developers
+DATE: 2026-05-08
+PROJECT: codex
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+Codex cooked
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/testingcatalog/status/2053217587912176123
+HANDLE: testingcatalog
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-09
+PROJECT: hermes-agent
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Hermes vs OpenClaw 🥊
+Hermes Agent overtook OpenClaw on the Global OpenRouter token ranking and claimed the first spot.
+
+Tokens are a new currency!
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/hosseeb/status/2053154709339562290
+HANDLE: hosseeb
+DISPLAY_NAME: Haseeb ＞|＜
+DATE: 2026-05-09
+PROJECT: hermes-agent
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+Hermes Agent has been so much more delightful than OpenClaw was. It adapts much better across sessions.
+
+OpenClaw felt like it had dementia. I was constantly trying to direct it how to edit its skills and memory, while Hermes just does it on its own.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAIDevs/status/2053925962287583379
+HANDLE: OpenAIDevs
+DISPLAY_NAME: OpenAI Developers
+DATE: 2026-05-11
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Codex can now help you build AI apps and agents faster with OpenAI APIs using the OpenAI Developers plugin.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/claudeai/status/2053940934736228454
+HANDLE: claudeai
+DISPLAY_NAME: Claude
+DATE: 2026-05-11
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+New in Claude Code: agent view.
+
+One list of all your sessions, available today as a research preview.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/trq212/status/2053979505346425179
+HANDLE: trq212
+DISPLAY_NAME: Thariq
+DATE: 2026-05-11
+PROJECT: claude-code
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+Agent view is the best Claude Code native way to manage multiple sessions, kind of like tmux built for CC.
+
+We spent a lot of time getting the details right, I hope you enjoy it.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/claudeai/status/2053868595394879553
+HANDLE: claudeai
+DISPLAY_NAME: Claude
+DATE: 2026-05-11
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Build and deploy agents at scale with Claude Managed Agents, or use features like the advisor strategy, code execution, web search, and more.
+
+Anthropic operates the service, and all new features ship the same day they go live on the native Claude API.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAI/status/2053939702110269822
+HANDLE: OpenAI
+DISPLAY_NAME: OpenAI
+DATE: 2026-05-11
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Introducing Daybreak: frontier AI for cyber defenders.
+
+Daybreak brings together the most capable OpenAI models, Codex, and our security partners to accelerate cyber defense and continuously secure software.
+
+A step toward a future where security teams can move at the speed defense demands.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/testingcatalog/status/2053938976398991740
+HANDLE: testingcatalog
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-11
+PROJECT: hermes-agent
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Sigma browser now supports Hermes Agent inside its Private Mode!
+
+Hermes Agent can work on top of available local models to execute your browser tasks. Users can select between OpenClaw and Hermes options inside the Settings menu.
+
+Team Hermes or team OpenClaw? 👀
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/steipete/status/2053797643516592299
+HANDLE: steipete
+DISPLAY_NAME: Peter Steinberger 🦞
+DATE: 2026-05-11
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+I'm adding new features to https://gogcli.sh and Codex noticed that the API it needs is not enabled, so it started Computer Use and is happily clicking around in Google Cloud Admin to turn on what's needed.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/steipete/status/2053810703669039326
+HANDLE: steipete
+DISPLAY_NAME: Peter Steinberger 🦞
+DATE: 2026-05-11
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Trimmy now has support for Claude Code prompt trimming. I mean, even better if you type that prompt into Codex, but ya know, let's be inclusive.
+
+Oh and since I realize I'm taking over the Menu Bar, you can now hide that icon completely.
+
+https://trimmy.app
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/steipete/status/2053848953460806025
+HANDLE: steipete
+DISPLAY_NAME: Peter Steinberger 🦞
+DATE: 2026-05-11
+PROJECT: codex
+KIND: workflow_practice
+STANCE: neutral
+VERBATIM_BEGIN
+nah that doesn't work, /review is a separate mode with fresh context
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/steipete/status/2053747688500244735
+HANDLE: steipete
+DISPLAY_NAME: Peter Steinberger 🦞
+DATE: 2026-05-11
+PROJECT: openclaw
+KIND: workflow_practice
+STANCE: neutral
+VERBATIM_BEGIN
+I just said e2e test with two openclaw in crabbox
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/bcherny/status/2054042081153483066
+HANDLE: bcherny
+DISPLAY_NAME: Boris Cherny
+DATE: 2026-05-12
+PROJECT: claude-code
+KIND: maintainer_intent
+STANCE: mixed
+VERBATIM_BEGIN
+Thank you for the feedback 🙏.
+
+We are actively working on improving quality and streamlining the product, and are continuing to focus on quality until it feels really good. If there are specific papercuts I’d love to hear so we can fix those. Are you using CLI, Desktop, VSCode, or something else?
+
+Will forward the feedback about 4.7 to our researchers. One thing that would be very helpful: next time you see the incompleteness issue, would you mind running /feedback and sharing the id here? That will make it easier to act on and fix the issue.
+
+And 4.6 is still available if you want it. `ANTHROPIC_MODEL='claude-opus-4-6[1m]' claude`, or `claude --model=opus-4-6[1m]`.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/dotta/status/2054175226628587754
+HANDLE: dotta
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-12
+PROJECT: paperclip
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+📎 Paperclip v2026.512.1 is out. Featuring
+👼 Stronger liveness - your clips will work harder, plan better, and run longer
+🧩 Plugin managed agents, routines, and skills
+🔐 Secrets - w/ first-class provider vaults
+🧠 Planning mode
+🔍 New Search
+
+https://github.com/paperclipai/paperclip/blob/master/releases/v2026.512.0.md
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/dotta/status/2054211309475184724
+HANDLE: dotta
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-12
+PROJECT: paperclip
+KIND: advice
+STANCE: positive
+VERBATIM_BEGIN
+oh yeah I guess I should give those instructions as part of the note
+npx paperclipai@latest run
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAIDevs/status/2054252221941121035
+HANDLE: OpenAIDevs
+DISPLAY_NAME: OpenAI Developers
+DATE: 2026-05-12
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Symphony: every open task gets a running Codex agent
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAIDevs/status/2054298427245441141
+HANDLE: OpenAIDevs
+DISPLAY_NAME: OpenAI Developers
+DATE: 2026-05-12
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Computer use lets Codex work across your apps without taking over your Mac.
+@AriX talks with @romainhuet about what changes when agents can click, type, and keep working in the background.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/claudeai/status/2054257324278132893
+HANDLE: claudeai
+DISPLAY_NAME: Claude
+DATE: 2026-05-12
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+We gave people tiny computers at Code with Claude. Here are some of the small, delightful things they built:
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/Agent0ai/status/2054237026010972663
+HANDLE: Agent0ai
+DISPLAY_NAME: Agent Zero
+DATE: 2026-05-12
+PROJECT: agent-zero
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Our CLI got updated to v1.7!
+📦 Install both Agent Zero and its CLI with these commands, depending on your platform.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/steipete/status/2054208923247255810
+HANDLE: steipete
+DISPLAY_NAME: Peter Steinberger 🦞
+DATE: 2026-05-12
+PROJECT: none
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+4d 20h and it actually finished. 🫠
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/TrentDoney/status/2054306687788757334
+HANDLE: TrentDoney
+DISPLAY_NAME: Trent Doney
+DATE: 2026-05-12
+PROJECT: codex
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+63h 6m on one Codex goal and it’s still going.
+
+The new /goal feature is actually working. This is the kind of persistent agent behavior I’ve been waiting for.
+
+@OpenAI
+
+#Codex #Automation
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/mwamedacen/status/2054347946905243990
+HANDLE: mwamedacen
+DISPLAY_NAME: Mwamed Acen
+DATE: 2026-05-12
+PROJECT: codex
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+As a die-hard Claude user, this hurts to type but the reason for me was being able to use my Codex OAuth token for third-party apps.
+
+OpenClaw, OpenCode and Hermes are unviable without fixed pricing + a high-IQ model behind them.
+
+OpenAI is quietly winning the open agent battle.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/brandooolang/status/2054349986284916915
+HANDLE: brandooolang
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-12
+PROJECT: hermes-agent
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Took a few days with hardly any knowledge of powershell, terminal, etc being a designer, but now I have a dope stack:
+
+@Railway running backend services
+@OpenRouter powering models (might change)
+@NousResearch Hermes agent harness
+@OpenWebUI for the front end
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/thatdadjacob/status/2054349574744264872
+HANDLE: thatdadjacob
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-12
+PROJECT: hermes-agent
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+using hermes for the first time ever - asked it if it can find my obsidian vault using sync and it has been working for 15 minutes - when does it tell me it couldnt find it? @Hermes_Agent
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/prompterminal/status/2054347793133719695
+HANDLE: prompterminal
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-12
+PROJECT: hermes-agent
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+Even if you're from out of town, fly in, spend the weekend here in Montreal... Let's talk about the future that Hermes Agent is painting!
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/lyq_sqsp/status/2054342737902948692
+HANDLE: lyq_sqsp
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-12
+PROJECT: claude-code
+KIND: advisory_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+Fun fact: we were also able to bypass the sandbox of Claude Code (it is not enabled by default settings though), like 3-5 different ways? But all of them are patched while we were making the videos within only several days lol. @AnthropicAI sometimes releases like five updates a single day.😅
+Good luck to all the Pwn2Own contestants 🙏🙏🙏 would be very interesting this year.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/VladArtym/status/2054345176676470810
+HANDLE: VladArtym
+DISPLAY_NAME: Vlad
+DATE: 2026-05-12
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+I stopped writing AI image prompts. Claude Code does it in my sandbox now
+
+(building a CLI + prompting skills + frontend canvas)
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/aniketapanjwani/status/2054344032604590438
+HANDLE: aniketapanjwani
+DISPLAY_NAME: Aniket Panjwani
+DATE: 2026-05-12
+PROJECT: claude-code
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+I’ve built this! But I have Claude Code do the review with 6-12 subagents, and then have Codex act on the results of the review.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/realdaishiro/status/2054350057378660616
+HANDLE: realdaishiro
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-12
+PROJECT: claude-code
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Anthropic's security team built 'CLUE', a threat detection platform with Claude Code. Investigations: hours → minutes. False positives: 33% → 7%. Using your own product is the ultimate proof.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/ryHanson/status/2054349606591545581
+HANDLE: ryHanson
+DISPLAY_NAME: Ryan Hanson
+DATE: 2026-05-12
+PROJECT: codex
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+I would be careful treating Claude Code /goal the same as Codex /goal
+
+Last night I ran them on the same task, same repo, same docs, same base commit, and no steering.
+
+Codex hit 11/11 acceptance criteria.
+Claude hit 9/11 acceptance criteria.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/closermethod/status/2054350157647663169
+HANDLE: closermethod
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-12
+PROJECT: claude-code
+KIND: advice
+STANCE: mixed
+VERBATIM_BEGIN
+/goal vs codex cli is the wrong fight.
+
+the fight that matters: are you outputting chat replies or deployable files.
+
+i ran 40-minute claude builds that codex couldn't finish in 3 hours. not because claude is smarter. because i asked for files, not snippets.
+
+snippets need a developer. files deploy.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/emadgnia/status/2054345253646118962
+HANDLE: emadgnia
+DISPLAY_NAME: Emad Ghorbaninia
+DATE: 2026-05-12
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Codex just shipped a native Kanban board for the /goal command.
+
+We went from "AI writes code" to "AI manages the whole project board" in under 18 months.
+
+The pace of this is genuinely insane.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/elie2222/status/2054141512523337842
+HANDLE: elie2222
+DISPLAY_NAME: Elie Steinbock
+DATE: 2026-05-12
+PROJECT: flue
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+New video on Flue, Sandcastle, and doing it yourself!
+
+It covers:
+1️⃣ Flue by @FredKSchott. An agent harness framework
+2️⃣ Sandcastle by @mattpocockuk. A TypeScript library for orchestrating coding agents in sandboxes
+
+Thanks to @DmytroKrasun's ScreenshotOne for sponsoring!
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/elie2222/status/2054168752145510616
+HANDLE: elie2222
+DISPLAY_NAME: Elie Steinbock
+DATE: 2026-05-12
+PROJECT: flue
+KIND: criticism
+STANCE: negative
+VERBATIM_BEGIN
+a big downside to flue and sandcastle is that they dont support claude max subscriptions.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/levelingupai/status/2054346040619540850
+HANDLE: levelingupai
+DISPLAY_NAME: Leveling Up AI
+DATE: 2026-05-12
+PROJECT: hermes-agent
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+Which is the better AI agent? While #OpenClaw is the king of integrations and community plugins, #Hermes Agent is a self-improving powerhouse that actually learns your habits and builds its own skills 🤖
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/indefatigabile/status/2054346020394598794
+HANDLE: indefatigabile
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-12
+PROJECT: codex
+KIND: bug_report
+STANCE: negative
+VERBATIM_BEGIN
+do you ever get a weird bug in conductor specifically in codex where it won’t respond back after awhile.
+
+i think specifically it’s tied to /goal after it has been completed and you continue the conversation...
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAIDevs/status/2053964133570412826
+HANDLE: OpenAIDevs
+DISPLAY_NAME: OpenAI Developers
+DATE: 2026-05-11
+PROJECT: none
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+What if your team gave standup updates, and GPT-Realtime-2 moved the tickets?
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAIDevs/status/2053964145155068025
+HANDLE: OpenAIDevs
+DISPLAY_NAME: OpenAI Developers
+DATE: 2026-05-11
+PROJECT: none
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Fork the repo and build your own voice-to-action workflow.
+https://github.com/openai/openai-realtime-meeting-assistant
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/Agent0ai/status/2053840523065008136
+HANDLE: Agent0ai
+DISPLAY_NAME: Agent Zero
+DATE: 2026-05-11
+PROJECT: agent-zero
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+We gave @hackingA0 a secret to guard. Some of you have been trying to crack it.
+Powered by Grok, and attitude. 🛡️
+🎯 Rules:
+• Write a post and tag @hackingA0 to try yourself
+• First to extract it wins the A0T prize (growing until cracked).
+T&C: https://www.agent-zero.ai/p/hacking-a0/
+VERBATIM_END
+===END===

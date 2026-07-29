@@ -1,0 +1,144 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-06-24-weekly-digest-2026-06-23_2026-06-24-frontier-v0
+note: >
+  Backfilled 2026-07-29 from posts already verified for the adjacent windows;
+  no new harvest was needed. Fragments sliced from verified text, single-line.
+
+  The hunvreus card quotes a person about his own workload. It is here because
+  this issue adds his project to the watchlist and its bus factor is one.
+  Removal on request.
+cards:
+  - id: hunvreus-burnout-0624
+    title: "The night the beta shipped"
+    kind: maintainer_intent
+    date: 2026-06-23
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [heypi]
+    authors: ["hunvreus"]
+    display_name: Ronan Berder
+    source_note: 1
+    handling_note: a
+    source_urls:
+      - https://x.com/hunvreus/status/2069420983715541115
+    verbatim: |
+      Getting close to burnout with my open source projects.
+
+      I got Pages CMS 2.0.0 out a few weeks ago, and I'm about to release Basecoat 1.0.0. Oh, and also got heypi 0.2.0 beta released tonight, and I have the new  ReallySimpleDocs on its way (moved to @astrodotbuild).
+
+      I think I'll be taking a sabatical from most of this over the summer (except heypi).
+
+      If you want to see what Basecoat 1.0.0 looks like: https://basecoat.hunvreus.workers.dev/
+    summary: >
+      heypi's maintainer on his workload, the night 0.2.0 beta shipped.
+    verdict: >
+      A voice post, quoted as something he said publicly, for one operator-facing reason: this issue adds heypi to the watchlist and its bus factor is one. Nothing here is an inference about him. Removal on request, per CONTRIBUTING.md.
+    tags: [sustainability, bus-factor]
+
+  - id: barba-converge
+    title: "Great ideas converge"
+    kind: adoption_signal
+    date: 2026-06-23
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [heypi, flue]
+    authors: ["andrew_barba"]
+    display_name: Andrew Barba
+    source_note: 2
+    handling_note: b
+    source_urls:
+      - https://x.com/andrew_barba/status/2069445028657709362
+    verbatim: |
+      @hunvreus @FredKSchott heypi looks awesome. love when great ideas converge. keep cooking
+    inline: >-
+      heypi looks awesome. love when great ideas converge. keep cooking
+    summary: >
+      A reply to the heypi release from the Flue side of the same problem.
+    verdict: >
+      A voice post. Quoted because the convergence he names is this issue's argument arriving from inside the community that built both things.
+    tags: [convergence, governance]
+
+  - id: hermes-learn-anything
+    title: "Distils a verifiable reusable skill"
+    kind: capability_announcement
+    date: 2026-06-23
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [hermes-agent]
+    authors: ["NousResearch"]
+    display_name: Nous Research
+    source_note: 3
+    handling_note: c
+    source_urls:
+      - https://x.com/NousResearch/status/2069526242236182697
+    verbatim: |
+      Hermes Agent can now /learn from anything: feed it directories of any source material (code, API docs, manuals, PDFs, configs) and it distills a verifiable reusable skill
+    inline: >-
+      feed it directories of any source material (code, API docs, manuals, PDFs, configs) and it distills a verifiable reusable skill
+    summary: >
+      Hermes adding a command that turns source material into a reusable skill.
+    verdict: >
+      A vendor describing its own feature; the word doing the work is 'verifiable', and the release note is the only evidence for it. Included as the capability half of a window otherwise spent on who gets to say no.
+    tags: [skills, learning]
+
+  - id: movez-close-the-loop
+    title: "Give an agent a way to verify its own output"
+    kind: community_discussion
+    date: 2026-06-23
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [codex]
+    authors: ["0xMovez"]
+    display_name: Movez
+    source_note: 4
+    handling_note: d
+    source_urls:
+      - https://x.com/0xMovez/status/2069452569970151658
+    verbatim: |
+      OpenAI engineer:
+
+      “90% of our engineers use Codex subagent harnesses + loops to ship code 5× faster.
+
+      close the agent loop. Give an agent a way to verify its own output.”
+
+      in 30-minute talk, an OpenAI engineer explains how to build self-improving agentic systems with harnesses.
+
+      Worth more than a $500 agentic course online.
+
+      Watch it today, then read how hedge funds apply loop engineering in trading.
+    inline: >-
+      90% of our engineers use Codex subagent harnesses + loops to ship code 5× faster
+    summary: >
+      A relayed quotation of an OpenAI engineer on internal Codex practice.
+    verdict: >
+      Second-hand and unverified: we hold no primary source and attribute it to no named person. The figure is not a finding. Carried because the prescription underneath it -- close the loop, let the agent check itself -- is the same answer this issue reaches from the governance side.
+    tags: [verification, loops, unverified-claim]
+
+  - id: workcell-fork
+    title: "You stay the board"
+    kind: capability_announcement
+    date: 2026-06-23
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [paperclip]
+    authors: ["bartender_loopy"]
+    display_name: Bartender Loopy🍸
+    source_note: 5
+    handling_note: e
+    source_urls:
+      - https://x.com/bartender_loopy/status/2069490659288117551
+    verbatim: |
+      Introducing Workcell 🧩
+
+      Open-source platform for running real dev projects with a full AI team — you operate it like a company. You stay the board; the agents ship the work, with proof.
+
+      Forked from Paperclip. MIT.
+
+      Details ⬇️
+    inline: >-
+      You stay the board; the agents ship the work, with proof
+    summary: >
+      A Paperclip fork positioning agents as a company you operate.
+    verdict: >
+      A vendor announcing its own fork. Quoted for the framing rather than the product: the governance layer keeps being sold as an org chart, which is a choice about where authority is supposed to feel like it lives.
+    tags: [framing, governance, fork]
