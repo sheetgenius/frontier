@@ -8,13 +8,15 @@ masthead: true
 canonical_url: https://x.com/ruemic
 first_tracked: 2026-07-28
 last_updated: 2026-07-28
-tagline: "Sets the watchlist, signs the corrections, and owns every call the agents do not get to make."
+tagline: "You can just make software now. Bitter Frontier is me keeping track of what that unlocks and what it breaks."
 ---
 
 # Michael Ruescher
 
-Michael edits Bitter Frontier. He sets the watchlist, decides what a cycle
-covers, and owns every editorial call in it.
+Michael edits Bitter Frontier. He builds [bitter.sh](https://bitter.sh) on the
+same class of agents this publication covers, daily, which is where the
+watchlist came from: it is the set of tools he was already reading about every
+morning. He decides what a cycle covers and owns every editorial call in it.
 
 The production method is unusual and worth stating plainly, because it is also
 this publication's thesis in practice. The research behind each issue is
