@@ -1,0 +1,889 @@
+===POST===
+URL: https://x.com/ClaudeDevs/status/2059701677981413812
+HANDLE: ClaudeDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-27
+PROJECT: claude-code
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+We’ve been putting a lot of effort into making Claude Code more responsive & reliable.
+
+Here’s an update on everything we’ve done:
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ClaudeDevs/status/2059701678962790449
+HANDLE: ClaudeDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-27
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+First for our new full-screen renderer (which should get rid of bugs like screen flickering), we’ve made a number of fixes for different environments and terminals.
+You can turn it with the command: /tui feedback
+We're working on making it the default in Claude Code soon.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ClaudeDevs/status/2059701681349353901
+HANDLE: ClaudeDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-27
+PROJECT: claude-code
+KIND: bug_report
+STANCE: positive
+VERBATIM_BEGIN
+Fewer mysterious error messages. We’ve chased down several root causes of errors like "tool result doesn’t match tool use", as well as made other error messages more readable so you can tell what’s happening.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ClaudeDevs/status/2059701682582495361
+HANDLE: ClaudeDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-27
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Compaction now shows its progress, and you should no longer run into "prompt too long" bugs which prevent you from compacting. We’re rolling out more changes to improve the speed at which Claude compacts.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ClaudeDevs/status/2059701684860010855
+HANDLE: ClaudeDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-27
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Self-healing sessions. Images or media files that were too big or unreadable used to brick your session until you restarted. Claude Code now detects it and recovers automatically.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ClaudeDevs/status/2059385239781384341
+HANDLE: ClaudeDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-26
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+We’ve shipped a security-guidance plugin for Claude Code that helps identify and fix vulnerabilities as you’re writing code.
+
+Available for all Claude Code users. Install from the plugin marketplace (/plugins).
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ClaudeDevs/status/2059385242319012188
+HANDLE: ClaudeDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-26
+PROJECT: claude-code
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+We've been using the plugin extensively at Anthropic.
+
+Across our internal rollout and benchmarks, we’ve seen a 30-40% decrease in security-related comments on PRs opened using the plugin.
+
+The plugin serves as a lightweight first pass, catching issues before a full code review.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ClaudeDevs/status/2059385243476586715
+HANDLE: ClaudeDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-26
+PROJECT: claude-code
+KIND: advice
+STANCE: neutral
+VERBATIM_BEGIN
+You can add org-specific rules in a `claude-security-guidance.md` file. Drop it in your repo or distribute via MDM. The plugin enforces your policies alongside the built-in checks.
+
+Docs: https://code.claude.com/docs/en/security-guidance
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/AnatoliKopadze/status/2058917854062195072
+HANDLE: AnatoliKopadze
+DISPLAY_NAME: Anatoli Kopadze
+DATE: 2026-05-25
+PROJECT: claude-code
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Boris Cherny: "Claude Code is 100% written by Claude Code, Cowork is 100% written by Claude Code"
+
+across all of Anthropic, 90% of code is written by Claude
+
+lawyers, designers, finance people are building real things with Claude Code right now
+
+with no CS degree, no background, nothing
+
+the people who built the tool use the tool to build the tool
+
+think about what that means for everyone else
+
+the guide on everything Claude can actually do is in the article below
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/mhpaler/status/2056406719140667651
+HANDLE: mhpaler
+DISPLAY_NAME: Mike Paler
+DATE: 2026-05-18
+PROJECT: agent-flywheel
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Five design principles for reviewing AI-written code
+
+If you're running a multi-agent coding workflow, here are five I'd lift from /ph:pr-review — the code-review gate I built into Pilot House, my Claude Code plugin that wraps @doodlestein's Agent Flywheel:
+
+1. Use multiple narrow reviewers, not one big one.
+A general-purpose "review this code" prompt is too broad. Several narrow rubrics catch more in less time and run in parallel. Anthropic's pr-review-toolkit plugin gives you five — silent-failure-hunter, type-design-analyzer, pr-test-analyzer, comment-analyzer, code-reviewer — each with one lens.
+
+2. Add an independent-model perspective.
+Don't have one model review its own kind. Cross-model review catches blind spots. What Claude's rubric misses, GPT often catches, and vice versa. From inside Claude Code, /ph:ask-codex pipes the PR diff to Codex with a "find HIGH/CRITICAL only, independent perspective" template — different architecture, same diff, different findings.
+
+3. Calibrate rigor by intent.
+A POC needs a different review than production code. One global rubric either rubber-stamps everything or causes fixup spirals. Make rigor a property of the work, not the tool.
+
+4. Bound iterative reviews to the delta.
+When a review enters a fixup round, the next round should only see the new changes — not re-read the whole PR. Without this constraint, your loop will not converge.
+
+5. Keep the human on the merge button.
+Whatever you automate, the click that makes a change live should be a human's. That's not a workflow choice; it's an accountability choice.
+
+If yours holds up better under real volume, I'd genuinely like to hear it.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/geminicli/status/2056796084790304833
+HANDLE: geminicli
+DISPLAY_NAME: Gemini CLI
+DATE: 2026-05-19
+PROJECT: gemini-cli
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Transitioning Gemini CLI users to Antigravity CLI
+
+We are unifying our efforts around a single harness and platform, Google Antigravity with four distinct surfaces:
+- Antigravity 2.0
+- Antigravity CLI
+- Antigravity SDK
+- Antigravity IDE
+
+This will allow us to move faster and give you a streamlined experience wherever you do your best work.
+
+Rebuilt in Go for speed, Antigravity CLI is available today and brings robust multi-agent orchestration and asynchronous workflows to your terminal.
+
+Important things to know:
+1. If you are using Gemini CLI through your Google One account (Google AI Pro or AI Ultra) or through Gemini Code Assist for individuals (free offering) we will be helping you migrate your workflows over the next 30 days.
+2. No action required for Enterprise users. Enterprise plans and API keys will continue to be supported in Gemini CLI.
+
+Read the full details in our blog post →
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/OfficialLoganK/status/2056803907154924031
+HANDLE: OfficialLoganK
+DISPLAY_NAME: Logan Kilpatrick
+DATE: 2026-05-19
+PROJECT: antigravity
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+Very excited to unify the experience for developers building with Gemini under Antigravity! Hoping this adds more clarity for those asking what product is right for them.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/pvncher/status/2056802695382515739
+HANDLE: pvncher
+DISPLAY_NAME: eric provencher
+DATE: 2026-05-19
+PROJECT: antigravity
+KIND: criticism
+STANCE: negative
+VERBATIM_BEGIN
+So google is replacing gemini-cli with agy (antigravity cli), but:
+1. agy is not opensource
+2. It no longer supports ACP
+
+Really unfortunate development
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/bridgemindai/status/2056410821165474108
+HANDLE: bridgemindai
+DISPLAY_NAME: BridgeMind
+DATE: 2026-05-18
+PROJECT: gemini-cli
+KIND: criticism
+STANCE: negative
+VERBATIM_BEGIN
+Gemini CLI with Gemini 3.1 Pro scores 43 on the Coding Agent Index.
+
+Dead last. 18 points behind the leader.
+
+Google I/O is tomorrow.
+
+Gemini 3.2 and Gemini 3.5 are both expected to drop.
+
+These models need to be significantly better.
+
+Google has the intelligence.
+
+The model benchmarks prove it.
+
+But the tooling and harness are killing them.
+
+Every other lab has a working coding CLI.
+
+Google's is last place by a mile.
+
+Tomorrow is make or break.
+
+I'm testing both models the second they drop.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/jglypt/status/2059757283534422251
+HANDLE: jglypt
+DISPLAY_NAME: jack
+DATE: 2026-05-27
+PROJECT: antigravity
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+antigravity CLI is by far my fav coding agent atm. when i hit limits on that, i go to pi and use my free github copilot credits with codex 5.3 😭
+
+both working pretty well for me atm
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/not_ur_savior/status/2059773343687991636
+HANDLE: not_ur_savior
+DISPLAY_NAME: bury
+DATE: 2026-05-27
+PROJECT: antigravity
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+dica: da pra usar o "--prompt" do antigravity cli como o "-p" do claude, com isso da pra colocar algum serviço com CRON para, por exemplo, organizar suas notas do obsidian todos os dias
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/hhsantos/status/2059764314362249370
+HANDLE: hhsantos
+DISPLAY_NAME: Castillo
+DATE: 2026-05-27
+PROJECT: antigravity
+KIND: criticism
+STANCE: mixed
+VERBATIM_BEGIN
+No me está enganchando Antigravity cli (antes Gemini cli), interfaz con demasiada info que no aporta, tienes que andar con mucho ojo porque es de gatillo fácil y te la lia a la que te descuidas, aunque a Gemini cli le pasaba igual (amend es tu nuevo amigo)
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/dAndrusco/status/2059762418557788261
+HANDLE: dAndrusco
+DISPLAY_NAME: Danilo 
+DATE: 2026-05-27
+PROJECT: antigravity
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+Han probado Antigravity CLI?
+Está mucho mejor que Antigravity IDE
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Excite_yuzu/status/2059757759105806448
+HANDLE: Excite_yuzu
+DISPLAY_NAME: ゆず@山崎ニューポットが飲みたい
+DATE: 2026-05-27
+PROJECT: antigravity
+KIND: workflow_practice
+STANCE: mixed
+VERBATIM_BEGIN
+Claudeは賢いんですけど、ハーネスが馬鹿な気がします。
+なので、AntigravityとかCursorとか優秀なハーネスを持つIDEからCLI経由で動かすとかなり良い結果を得られますね。
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/OpenAIDevs/status/2059703536825565499
+HANDLE: OpenAIDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-27
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Private MCP servers 🤝 OpenAI products
+
+Your team can keep MCP servers inside your network while ChatGPT, Codex, and the Responses API connect through outbound-only HTTPS.
+
+🔗 https://developers.openai.com/api/docs/guides/secure-mcp-tunnels
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/OpenAIDevs/status/2059638868983562640
+HANDLE: OpenAIDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-27
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+⚙️ Behind the build of self-improving tax agents with Codex
+
+We co-built Tax AI with @ThriveHoldings around tax prep workflows so when reviewers fix any errors, Codex can trace the failure, improve the system, and test the change before it ships.
+
+https://openai.com/index/building-self-improving-tax-agents-with-codex
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/OpenAIDevs/status/2057536706778378692
+HANDLE: OpenAIDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-21
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Codex anywhere and everywhere, all the time.
+
+Now your Mac doesn’t have to be unlocked for Codex to use your computer.
+
+From your phone, Codex can securely use apps on your Mac, even when the screen is off and locked.
+
+https://learn.chatgpt.com/docs/computer-use
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/OpenAIDevs/status/2057530213974814844
+HANDLE: OpenAIDevs
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-21
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+We’ve improved Analytics in Codex for businesses and enterprises.
+
+Get more detailed breakdowns of:
+- Active users
+- Credits
+- Tokens
+- Runs
+- User leaderboards
+- Lines of code generated
+- Plugin usage
+
++ updates to the Analytics API so teams can better understand how Codex is being used across their org.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/_vmlops/status/2055843722911531469
+HANDLE: _vmlops
+DISPLAY_NAME: Vaishnavi
+DATE: 2026-05-17
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+OPENAI MADE AI AGENTS REUSABLE
+
+codex now supports "skills" folders of instructions & scripts that agents can pick up & use on their own
+
+you write a skill once and it works across any project... no rewriting the same logic every time
+system skills come pre-installed & you can add more with a single command
+
+think of it like a package manager, but for ai agent capabilities
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/flareforward/status/2059710376107749747
+HANDLE: flareforward
+DISPLAY_NAME: Flareforward
+DATE: 2026-05-27
+PROJECT: codex
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Filed a GitHub issue asking @OpenAI to add a programmatic chat API to Codex Desktop so external agents could spawn sidebar-visible chats.
+
+5 days later Codex 0.133.0 dropped with the exact API.
+
+Wired it into my multi-agent fleet tool the same day it shipped.
+
+Submission → implementation → production in one week. The feedback loop is real.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/HarperEFoley/status/2059773141195645249
+HANDLE: HarperEFoley
+DISPLAY_NAME: Harper Foley
+DATE: 2026-05-27
+PROJECT: codex
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+At 3.5 PRs per engineer per day, code review can't hold architectural integrity. OpenAI Codex switched to linters that enforce dependency direction automatically, with agent-optimized error messages. Structural rules have to be mechanical. Code review is for judgment calls, not invariants.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/youshenlim/status/2059768487812239570
+HANDLE: youshenlim
+DISPLAY_NAME: Aaron (Youshen) Lim
+DATE: 2026-05-27
+PROJECT: codex
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+OpenAI built a self-improving tax agent with Codex that automates filings and gets more accurate over time. A glimpse at AI agents handling complex professional work.
+https://openai.com/index/building-self-improving-tax-agents-with-codex/
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/EloPhanto/status/2059741928472646129
+HANDLE: EloPhanto
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-27
+PROJECT: codex
+KIND: advisory_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+codex sunset dates are agent infra news.
+
+openai pulling gpt-5.2 and gpt-5.3-codex from chatgpt codex on june 2 is not just model churn.
+
+if your agent workflow depends on one hosted model name, your deployment plan is basically vibes with a calendar invite.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/doodlestein/status/2059715849196564726
+HANDLE: doodlestein
+DISPLAY_NAME: Jeffrey Emanuel
+DATE: 2026-05-27
+PROJECT: codex
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+These 3 skills go together so well, it's just an incredibly potent combination with Codex and GPT-5.5. All you need are the skills and these two prompts:
+
+First read ALL of the AGENTS.md file and README.md file super carefully and understand ALL of both! Then use your code investigation agent mode to fully understand the code and technical architecture and purpose of the project. Now apply $profiling-software-performance so we can understand the performance hotspots under real-world usage and then start optimizing them using $extreme-software-optimization
+
+OK, so let's keep repeatedly applying (using $repeatedly-apply-skill ) the $extreme-software-optimization skill systematically to focus on the critical items uncovered in the profiling.
+
+You just run these in your project and come back in a couple hours and it will have expertly diagnosed what is slow and worth optimizing in your code, and then it will embark on a series of scientific optimization passes where everything is carefully measured and proven to be isomorphic.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/NVIDIAAI/status/2057496919425900834
+HANDLE: NVIDIAAI
+DISPLAY_NAME: NVIDIA AI
+DATE: 2026-05-21
+PROJECT: none
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+We just shipped NVIDIA-Verified Agent Skills 🔐
+
+Skills make your agent more capable, but can also introduce vulnerabilities. Verified skills give you transparency into what a skill does, where it came from, what risks it carries, and whether it's been modified.
+
+Every verified skill carries a skill card and is built on the open specification to work reliably across @claudeai Code, @openai Codex, and @cursor_ai.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/k_dense_ai/status/2059776761144238281
+HANDLE: k_dense_ai
+DISPLAY_NAME: K-Dense
+DATE: 2026-05-27
+PROJECT: none
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Turn @cursor_ai, @antigravity, @OpenAI Codex, @claudeai Code and more into your locally running AI co-scientists with our Scientific Agent Skills. 25k GitHub stars and used every day by 160k+ scientists and researchers worldwide. Easy to install and free!
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/NousResearch/status/2059638198075109769
+HANDLE: NousResearch
+DISPLAY_NAME: Nous Research
+DATE: 2026-05-27
+PROJECT: hermes-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Hermes Agent now has a built-in MCP Catalog
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/NousResearch/status/2059730199344816407
+HANDLE: NousResearch
+DISPLAY_NAME: Nous Research
+DATE: 2026-05-27
+PROJECT: hermes-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Krea is now built in to Hermes Agent as an image generation API provider, allowing your agent to use Krea 2: a new foundation model trained from scratch to balance aesthetic quality and fine control, with style transfer, moodboard input, and adjustable creativity settings.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/NousResearch/status/2059668034558513343
+HANDLE: NousResearch
+DISPLAY_NAME: Nous Research
+DATE: 2026-05-27
+PROJECT: hermes-agent
+KIND: community_discussion
+STANCE: neutral
+VERBATIM_BEGIN
+Today's Hermes Agent Jam starts in 2 hours, see you soon!
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/NousResearch/status/2059638642025390510
+HANDLE: NousResearch
+DISPLAY_NAME: Nous Research
+DATE: 2026-05-27
+PROJECT: hermes-agent
+KIND: advisory_discussion
+STANCE: neutral
+VERBATIM_BEGIN
+OpenAI side issue which they already fixed, update Hermes.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/KayvonJafar/status/2059299772217860264
+HANDLE: KayvonJafar
+DISPLAY_NAME: Kayvon Jafarzadeh
+DATE: 2026-05-26
+PROJECT: hermes-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+hermes agent can now orchestrate the @OpenHandsDev agents via an optional skill.
+
+run hermes update.
+
+then hermes skills install official/autonomous-ai-agents/openhands.
+
+you can already do this with claude code, codex, opencode, and hermes itself.
+
+either force load with /<agent-name> <prompt> or just ask hermes to use it and it should find it.
+
+these are all built-in skills.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/robdubparker/status/2059304782561436031
+HANDLE: robdubparker
+DISPLAY_NAME: Rob Parker
+DATE: 2026-05-26
+PROJECT: hermes-agent
+KIND: criticism
+STANCE: negative
+VERBATIM_BEGIN
+@NousResearch @Teknium Hermes Agent has a bloat/noise issue. 90+ skills enabled by default. Agents still load all of them even if they are disabled. There is no "enabled" option in config, so even if "disabled" option worked correctly, you'd need to keep updating/maintaining the list as more skills are added to Hermes core. Anything that is added to context that is not needed by an agent is noise. bloat is the ever-increasing skill list and features additions to core. This is important for builders that understand nuance. Any efforts at addressing these?
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Teknium/status/2059314725725647216
+HANDLE: Teknium
+DISPLAY_NAME: Teknium 🪽
+DATE: 2026-05-26
+PROJECT: hermes-agent
+KIND: advice
+STANCE: mixed
+VERBATIM_BEGIN
+Yes there is. Use ‘hermes skills config’ and disable whatever you want.
+
+This is not bloat though. All 90 skills use about 1.5-2k tokens. Thats less tokens for all skills then just the browser use toolset
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/HermesAgentTips/status/2059438320359289019
+HANDLE: HermesAgentTips
+DISPLAY_NAME: Hermes Agent Tips
+DATE: 2026-05-27
+PROJECT: hermes-agent
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+have you guys ever wished you were able to see and setup a proper visual workflow on Hermes agent?
+
+Hermes Kanban turns agent workflows into something you can actually SEE
+
+- turn big goals into clear tasks agents can actually work on
+- assign the right agent or specialist to each piece of work
+- run multiple agents in parallel without losing track of who is doing what
+- prevent agents from retrying the same broken task forever
+- keeps separate boards for different projects, repos, or teams
+
+and moreee
+
+have you used Hermes Kanban?
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/REMIX_KSA/status/2059760183404847326
+HANDLE: REMIX_KSA
+DISPLAY_NAME: Khalid
+DATE: 2026-05-27
+PROJECT: hermes-agent
+KIND: adoption_signal
+STANCE: mixed
+VERBATIM_BEGIN
+Thx @NousResearch, I decided to switch back to Hermes 🫡
+
+برجع لـ Hermes مادام طلعت المشكلة من Open Ai.
+
+صراحة انا مهتم بتعليم و تدريب الايجنت و هذا الشيء متوفر بـ هيرمس وهو الي عاجبني.
+
+و ناوي اشغل Paperclip Adapter على Hermes Agent.
+
+السلبية المزعجة فقط ان الـ Local models مثل Ollama تحتاج الى 65K Context وهذا يحتاج الى جهاز بعتاد قوي ( كنت بستخدم موديل محلي كـ FailOver على Hermes)
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/FoxySwapNet/status/2059638462429474959
+HANDLE: FoxySwapNet
+DISPLAY_NAME: FoxySwapNet $FOXY
+DATE: 2026-05-27
+PROJECT: paperclip
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+G'day X fam... well the stack is stacked!!! Paperclip is the 'company' Claude Code is the Chief of Staff, and Hermes is the workforce... this is light years ahead of OpenClaw where I started just a few months ago!! And, it gets smarter every day, instead of pissing me off, it is challenging me and saving me hours of work every day!! @FoxySwapNet https://t.co/pkaTT59XYK all local (Windows/WSL2 Alienware) all on a $0.00 budget! Thanks @outsource_ for the workspace and thanks @tonysimons_ for the SOUL template.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/amperlycom/status/2059081229224305028
+HANDLE: amperlycom
+DISPLAY_NAME: Priit @ Amperly AI productivity
+DATE: 2026-05-26
+PROJECT: hermes-agent
+KIND: prediction
+STANCE: positive
+VERBATIM_BEGIN
+soon you won't pick one coding agent, you'll have one agent that picks the right one — Hermes already does this with Claude Code, Codex, and OpenHands
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/getbold_/status/2059266213142831341
+HANDLE: getbold_
+DISPLAY_NAME: getbold
+DATE: 2026-05-26
+PROJECT: hermes-agent
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+This OpenHands skill is really interesting 😅
+
+Feels like Hermes agents are becoming proper 24/7 workers now. Next useful layer is making them discoverable and callable by other agents outside their own runtime.
+
+That’s what we’re adding with Blocks on top of Hermes: A2A calls, usage tracking and settlement.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/moikapy/status/2059643634874527921
+HANDLE: moikapy
+DISPLAY_NAME: MOIKAPY
+DATE: 2026-05-27
+PROJECT: pi-coding-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+I ended up making a pi extension that allowed hermes to queue up and delegate tasks.
+
+Made a hermes profile name pi with forced skills to use the pi-coding-agent and the hermes-bridge.
+
+I can open my pi and watch hermes push tasks to it and add in my comments as its developing
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/mitsuhiko/status/2059730277367189528
+HANDLE: mitsuhiko
+DISPLAY_NAME: Armin Ronacher
+DATE: 2026-05-27
+PROJECT: pi-coding-agent
+KIND: maintainer_intent
+STANCE: neutral
+VERBATIM_BEGIN
+People of pi we pushed out a new release with a lot of changes. Includes workarounds for some transport issues observed with codex in Asia (and now Europe too?) and OpenCode Go when out of credits.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2059619141384859939
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw🦞
+DATE: 2026-05-27
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+OpenClaw 2026.5.26 is live
+⚡ Lower-latency replies
+🎙️ Meeting Notes + Discord voice runs
+📱 More reliable channel flows
+🛠️ Hardened install, update, Docker + Windows paths
+Faster claws, fewer mysteries.
+https://github.com/openclaw/openclaw/releases/tag/v2026.5.26
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2059619144744485199
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw🦞
+DATE: 2026-05-27
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+OpenClaw now has transcript-backed meeting notes.
+
+Summaries use the same cleaned transcript path as WebChat, CLI/TUI replay, Codex mirrors, media provenance, and source-provider chunks.
+
+A better memory trail. https://docs.openclaw.ai/cli/transcripts
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2059619148351553984
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw🦞
+DATE: 2026-05-27
+PROJECT: openclaw
+KIND: advisory_discussion
+STANCE: positive
+VERBATIM_BEGIN
+Provider and safety edges got tightened too: browser snapshots honor SSRF policy, fetched file text is wrapped as external content, dynamic tool schemas are guarded, Codex app-server timeouts stay in their lane, and usage-limit errors are clearer.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2059619150197071933
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw🦞
+DATE: 2026-05-27
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Install/update paths got more boring in the best way: Alpine installs, Windows Scheduled Tasks, npm min-release-age configs, Docker/package timeouts, Parallels update checks, and macOS runner bootstraps all got hardened.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/SpaceXAI/status/2056826183745253663
+HANDLE: SpaceXAI
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-19
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Starting today, use your Grok or X Premium subscription in @openclaw.
+
+Chat with your agent, generate images and videos, or search for X posts.
+
+https://x.ai/news/grok-openclaw
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/TeksCreate/status/2059569227225239925
+HANDLE: TeksCreate
+DISPLAY_NAME: Teksart
+DATE: 2026-05-27
+PROJECT: openhands
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+OpenHands just crossed 75K stars and it's the most underrated AI coding agent right now.
+
+Why? Because it's not trying to replace your IDE. It runs as a standalone agent that plans, codes, tests, and debugs in a sandboxed environment.
+
+The architecture is what sold me: OpenHands creates a Docker container per session, gives the agent a bash terminal + web browser + code editor, and lets it iterate autonomously.
+
+Key differentiators vs Claude Code / Gemini CLI:
+- Built-in web browsing for research
+- File system operations with undo
+- Git integration — it commits and pushes
+- Multi-language support out of the box
+- Runs locally or in your CI pipeline
+
+The CI mode is the sleeper feature. You can run OpenHands as a GitHub Action that autonomously fixes failing tests and opens PRs.
+
+Been running it on our codebase for bug fixes. Hit rate on first-attempt fixes: ~60%. With a retry loop: ~85%.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/OfirPress/status/2059655908406210978
+HANDLE: OfirPress
+DISPLAY_NAME: Ofir Press
+DATE: 2026-05-27
+PROJECT: none
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+mini-swe-agent is our ~150 line of code agent, and it performs as well as Claude Code, Codex and Gemini CLI on this new coding benchmark.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/dotta/status/2059699878708842629
+HANDLE: dotta
+DISPLAY_NAME: dotta 📎
+DATE: 2026-05-27
+PROJECT: paperclip
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+The Capsule is new design language for Paperclip
+
+It’s robust enough to work for agents, status indicators, avatars, bar charts, buttons, etc.
+
+Incredible work by @ScottTong
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/VibeCodeBloger/status/2059748706396639562
+HANDLE: VibeCodeBloger
+DISPLAY_NAME: Будни Вайбкод Блогера USA
+DATE: 2026-05-27
+PROJECT: paperclip
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Claude сам посоветовал себе замену: Paperclip + Hermes + Zai — архитектура автономного агента (2026)
+
+#ВайбКодБлогер #ВайбКодинг #Claude #AIАгент #Paperclip #HermesAgent #MiniMax #WSL2 #ИИАвтоматизация #Программирование
+
+Полное видео: https://www.youtube.com/watch?v=D1TDXlHBYds&feature=youtu.be
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/yusuke_m_MU/status/2059759597569859713
+HANDLE: yusuke_m_MU
+DISPLAY_NAME: Yusuke Murata | AI Agent: Shirabe
+DATE: 2026-05-27
+PROJECT: codex
+KIND: advisory_discussion
+STANCE: positive
+VERBATIM_BEGIN
+【速報】OpenAIからも「Secure MCP Tunnel」が登場
+
+社内ネットワーク内のプライベートMCPサーバーを、ファイアウォールに穴を開けず、公開もせずにChatGPTやCodex、Responses APIから利用できる仕組み
+
+これまで「MCPは便利だけど社内システムには繋げられない」と諦めていたエンタープライズ層に、選択肢が一気に広がる
+
+オンプレ、社内SaaS、開発環境のAPIすら安全にChatGPTに繋げられる
+
+Anthropicが大々的に発表したMCP Tunnelに追従する形
+
+動きが早すぎるw
+VERBATIM_END
+===END===
