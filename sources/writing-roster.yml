@@ -1,0 +1,122 @@
+# The writing lane's source roster: the people and publications whose posts and
+# essays are worth reading every cycle. This is the who's-who as infrastructure
+# -- person entries here should eventually mirror /people/ entries, and vice
+# versa.
+#
+# Every `feed` URL in this file was probed and returned a real RSS/Atom
+# document before being added. A feed that starts failing is a finding, not a
+# nuisance: note it, do not silently drop the source.
+#
+# kinds: person | vendor | publication | research
+# Discovery-only, like the X lane: nothing from a feed is quoted without
+# fetching the underlying piece.
+schema_version: bitter.frontier_writing_roster.v0
+sources:
+  - id: simonw
+    name: Simon Willison
+    kind: person
+    x_handle: simonw
+    feed: https://simonwillison.net/atom/everything/
+    why: "The working model for this beat: daily, specific, checks his own claims, quotes exactly."
+
+  - id: pragmatic-engineer
+    name: Gergely Orosz
+    kind: person
+    x_handle: GergelyOrosz
+    feed: https://newsletter.pragmaticengineer.com/feed
+    why: "Inside-the-industry reporting; periodic deep issues on agentic engineering practice."
+
+  - id: mattpocock
+    name: Matt Pocock
+    kind: person
+    x_handle: mattpocockuk
+    feed: https://www.aihero.dev/rss.xml
+    why: "Practitioner workflows; proxied his own sessions rather than repeat a vendor number."
+
+  - id: embrace-the-red
+    name: Johann Rehberger
+    kind: research
+    x_handle: wunderwuzzi23
+    feed: https://embracethered.com/blog/index.xml
+    why: "Prompt-injection and agent-security research with reproductions, directly on beat."
+
+  - id: ghuntley
+    name: Geoffrey Huntley
+    kind: person
+    x_handle: GeoffreyHuntley
+    feed: https://ghuntley.com/rss/
+    why: "Writes from inside coding-agent internals; strong opinions with receipts."
+
+  - id: sshh
+    name: Shrivu Shankar
+    kind: person
+    x_handle: sshh12
+    feed: https://blog.sshh.io/feed
+    why: "Agent security and architecture writeups grounded in shipped systems."
+
+  - id: crawshaw
+    name: David Crawshaw
+    kind: person
+    x_handle: davidcrawshaw
+    feed: https://crawshaw.io/atom.xml
+    why: "Programming-with-LLMs essays that age well; measured, first-person, exact."
+
+  - id: mitchellh
+    name: Mitchell Hashimoto
+    kind: person
+    x_handle: mitchellh
+    feed: https://mitchellh.com/feed.xml
+    why: "Tooling craftsman's view of AI-assisted development; writes rarely, lands hard."
+
+  - id: swyx
+    name: swyx
+    kind: person
+    x_handle: swyx
+    feed: https://www.swyx.io/rss.xml
+    why: "Named the agent-lab thesis and argues against himself in public."
+
+  - id: latent-space
+    name: Latent Space
+    kind: publication
+    x_handle: latentspacepod
+    feed: https://www.latent.space/feed
+    why: "Where the builders we quote go to explain themselves at length."
+
+  - id: lwn
+    name: LWN.net
+    kind: publication
+    feed: https://lwn.net/headlines/rss
+    why: "The craft standard for weekly technical journalism; occasional agent coverage."
+
+  - id: martin-fowler
+    name: martinfowler.com
+    kind: publication
+    feed: https://martinfowler.com/feed.atom
+    why: "Periodic essays on LLM-era engineering practice with a long half-life."
+
+  - id: openai-news
+    name: OpenAI News
+    kind: vendor
+    feed: https://openai.com/news/rss.xml
+    why: "Codex announcements land here before the changelog explains them."
+
+  - id: google-ai-blog
+    name: Google AI Blog
+    kind: vendor
+    feed: https://blog.google/technology/ai/rss/
+    why: "Gemini CLI and Antigravity positioning; read against what the code ships."
+
+  - id: cloudflare-ai
+    name: Cloudflare Blog (AI)
+    kind: vendor
+    feed: https://blog.cloudflare.com/tag/ai/rss/
+    why: "Agent infrastructure from the edge-provider side; sandboxing and egress posts."
+
+  # No feed exists; their X account announces every post and the X lane catches
+  # it. Kept here so the roster is honest about who we read.
+  - id: pillar-security
+    name: Pillar Security
+    kind: research
+    x_handle: Pillar_sec
+    html_watch: https://www.pillar.security/blog
+    why: "Seven sandbox escapes in seven days inside our July window; we missed it without this lane."

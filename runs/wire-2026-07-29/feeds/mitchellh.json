@@ -1,0 +1,14 @@
+{
+ "source": "mitchellh",
+ "feed": "https://mitchellh.com/feed.xml",
+ "swept_on": "2026-07-29",
+ "since": "2026-07-15",
+ "items": [
+  {
+   "title": "Everyone Should Know SIMD",
+   "url": "https://mitchellh.com/writing/everyone-should-know-simd",
+   "date": "2026-07-22",
+   "summary": ""
+  }
+ ]
+}

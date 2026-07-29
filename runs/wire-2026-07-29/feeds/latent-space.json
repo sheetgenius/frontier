@@ -1,0 +1,92 @@
+{
+ "source": "latent-space",
+ "feed": "https://www.latent.space/feed",
+ "swept_on": "2026-07-29",
+ "since": "2026-07-15",
+ "items": [
+  {
+   "title": "[AINews] Fearing RSI: OpenAI, Anthropic, GDM, Meta, Thinky cosign letter to \"Pace\" AI development, as HuggingFace details Machine-Speed Offensive Cyberattack",
+   "url": "https://www.latent.space/p/ainews-fearing-rsi-openai-anthropic",
+   "date": "2026-07-29",
+   "summary": "The Big Pause is coming."
+  },
+  {
+   "title": "Codex from 0 to 10M Users: Building ChatGPT Work — Akshay Nathan, OpenAI",
+   "url": "https://www.latent.space/p/chatgpt-work",
+   "date": "2026-07-28",
+   "summary": "OpenAI's core product engineering lead on how they are building ChatGPT Work to make AGI accessible to all of humanity: Sites, OpenClaw, Memory, Subagents, Finance, No-Code and advice."
+  },
+  {
+   "title": "[AINews] Much ado about Open Weights",
+   "url": "https://www.latent.space/p/ainews-much-ado-about-open-weights",
+   "date": "2026-07-28",
+   "summary": "Everyone is writing a lot, but only Kimi K3 shipped today"
+  },
+  {
+   "title": "[AINews] Claude Opus 5: Fable-level performance at Opus price (half Fable)",
+   "url": "https://www.latent.space/p/ainews-claude-opus-5-fable-level",
+   "date": "2026-07-25",
+   "summary": "ain't nobody beats Anthropic at distilling Fable!"
+  },
+  {
+   "title": "[AINews] Black Forest Labs FLUX 3 - Multimodal Flow Models that beat Seedance 2.0, Gemini Omni and Grok Imagine, and FLUX-mimic video-action robotics model",
+   "url": "https://www.latent.space/p/ainews-black-forest-labs-flux-3-multimodal",
+   "date": "2026-07-24",
+   "summary": "A HUGE win for BFL!"
+  },
+  {
+   "title": "[AINews] \"Laguna S 2.1 Released: Cheaper than Deepseek v4 Flash, Better than V4 Pro\"",
+   "url": "https://www.latent.space/p/ainews-laguna-s-21-released-cheaper",
+   "date": "2026-07-23",
+   "summary": "a quiet day lets us highlight a new neolab win."
+  },
+  {
+   "title": "Inside the Model Factory — Eiso Kant, Poolside AI",
+   "url": "https://www.latent.space/p/poolside",
+   "date": "2026-07-23",
+   "summary": "Poolside's co-CEO on how his small team of top researchers built a model factory capable of training Laguna S - a 118B MOE beating Thinky's ~1T open weights model... and this is just the beginning."
+  },
+  {
+   "title": "[AINews] AI Cybersecurity becomes top of mind",
+   "url": "https://www.latent.space/p/ainews-ai-cybersecurity-becomes-top",
+   "date": "2026-07-22",
+   "summary": "Several new Cyber headlines make us observe a trend"
+  },
+  {
+   "title": "🔬Causal Models Need Causal Data - Xaira’s X-Cell model for Drug Discovery (Bo Wang & Ci Chu, Chief Discovery Officer & Chief AI Scientist)",
+   "url": "https://www.latent.space/p/xaira",
+   "date": "2026-07-21",
+   "summary": "Xaira Therapeutics is all in on data generation for model building! We talk with Bo Wang and Ci Chu about how and why."
+  },
+  {
+   "title": "[AINews] not much happened today",
+   "url": "https://www.latent.space/p/ainews-not-much-happened-today-173",
+   "date": "2026-07-21",
+   "summary": "a quiet day."
+  },
+  {
+   "title": "[AINews] not much happened today",
+   "url": "https://www.latent.space/p/ainews-not-much-happened-today-830",
+   "date": "2026-07-18",
+   "summary": "a quiet day"
+  },
+  {
+   "title": "[AINews] Kimi K3 2.8T-A50B: the largest open model ever released; Opus 4.8-class at Sonnet 5 pricing",
+   "url": "https://www.latent.space/p/ainews-kimi-k3-28t-a50b-the-largest",
+   "date": "2026-07-17",
+   "summary": "a great week for open models continues."
+  },
+  {
+   "title": "🔬 The Lab of the Future Should Feel Like a Data Center — Andy Beam & Rafa Gómez-Bombarelli, Lila Sciences",
+   "url": "https://www.latent.space/p/the-lab-of-the-future-should-feel",
+   "date": "2026-07-16",
+   "summary": "Lila is betting that science, not the internet, is the last untapped source of training data. We went to find out what that actually looks like in a room full of robots."
+  },
+  {
+   "title": "[AINews] Thinky's Inkling: 975B-A41B multimodal, new best American Apache 2.0 open model (with Inkling-Small, 276B-A12B)",
+   "url": "https://www.latent.space/p/ainews-thinkys-inkling-975b-a41b",
+   "date": "2026-07-16",
+   "summary": "Thinky's first full LLM release is a banger and bonus: it's open weights!"
+  }
+ ]
+}

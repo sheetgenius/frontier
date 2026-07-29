@@ -1,0 +1,38 @@
+{
+ "source": "pragmatic-engineer",
+ "feed": "https://newsletter.pragmaticengineer.com/feed",
+ "swept_on": "2026-07-29",
+ "since": "2026-07-15",
+ "items": [
+  {
+   "title": "How building software is changing at Anthropic",
+   "url": "https://newsletter.pragmaticengineer.com/p/inside-anthropic",
+   "date": "2026-07-28",
+   "summary": "A deepdive on what&#8217;s changed in how the leading AI lab makes software. Ever more code review and testing is done by AI, two-pizza teams very much alive, and more. Details from inside of Anthropic"
+  },
+  {
+   "title": "The Pulse: Quitting Spotify Podcasts over reliability",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-quitting-spotify-podcasts",
+   "date": "2026-07-23",
+   "summary": "Also: Chinese open models match closed ones from Anthropic and OpenAI, AWS&#8217;s &#8220;heart-attack&#8221; billing error, and more"
+  },
+  {
+   "title": "Pushing software engineering limits with “napkin math”",
+   "url": "https://newsletter.pragmaticengineer.com/p/pushing-software-engineering-limits",
+   "date": "2026-07-21",
+   "summary": "Turbopuffer cofounder Simon Eskildsen on the benefits of longer tenure, using first principles to build durable software &#8211; and why founders should be cautious when raising VC money"
+  },
+  {
+   "title": "The Pulse: Grok’s CLI caught uploading all your local files to the cloud",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-groks-cli-caught-uploading",
+   "date": "2026-07-16",
+   "summary": "Also: engineering leaders concerned about continued increase in code review load, devs at enterprises surprised by high enterprise pricing, and more"
+  },
+  {
+   "title": "Context engineering with Dex Horthy",
+   "url": "https://newsletter.pragmaticengineer.com/p/context-engineering-with-dex-horthy",
+   "date": "2026-07-15",
+   "summary": "Dex Horthy explains why context engineering is key to building more effective AI-assisted software without sacrificing code quality."
+  }
+ ]
+}

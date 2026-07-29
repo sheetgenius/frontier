@@ -1,0 +1,98 @@
+{
+ "source": "lwn",
+ "feed": "https://lwn.net/headlines/rss",
+ "swept_on": "2026-07-29",
+ "since": "2026-07-15",
+ "items": [
+  {
+   "title": "[$] Progress toward compiling Linux with gccrs",
+   "url": "https://lwn.net/Articles/1083202/",
+   "date": "2026-07-28",
+   "summary": "<p> The <a href=\"https://rust-gcc.github.io/\"> <tt>gccrs</tt> project</a>, which is creating a Rust frontend for the GCC compiler, has spent the first half of 2026 focusing on compiling the Linux kernel. By testing the compiler against the kernel crates, the development team has made significant progress toward generating correct code for other Rust programs. As detailed in the project's <a href=\""
+  },
+  {
+   "title": "Wayfire 0.11 released",
+   "url": "https://lwn.net/Articles/1085894/",
+   "date": "2026-07-28",
+   "summary": "<p><a href=\"https://wayfire.org/2026/07/24/Wayfire-0-11.html\">Version 0.11</a> of the <a href=\"https://gitlab.freedesktop.org/wlroots/wlroots#wlroots\">wlroots</a>-based <a href=\"https://wayfire.org/\">Wayfire</a> Wayland compositor has been released. Notable changes include better fractional scaling, per-output <a href=\"https://en.wikipedia.org/wiki/ICC_profile\">ICC profiles</a>, support for additi"
+  },
+  {
+   "title": "[$] A report from Debian's new DFSG team",
+   "url": "https://lwn.net/Articles/1084499/",
+   "date": "2026-07-28",
+   "summary": "<p>The <a href=\"https://wiki.debian.org/Teams/DFSG\">DFSG, Licensing &amp; New Packages Team</a> (usually shortened to \"DFSG team\") was created in October 2025 as part of the <a href=\"https://lwn.net/Articles/1043364/\">ftpmaster team split</a>. Its job is to review packages in the <a href=\"https://wiki.debian.org/NewQueue\">new queue</a> for compliance with the <a href=\"https://wiki.debian.org/Debia"
+  },
+  {
+   "title": "Security updates for Tuesday",
+   "url": "https://lwn.net/Articles/1085855/",
+   "date": "2026-07-28",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (grafana and libreswan), <b>Debian</b> (openjdk-11 and openjdk-17), <b>Fedora</b> (opkssh, perl-Mojolicious, and rpm), <b>Mageia</b> (libyang, memcached, nginx, packages, and sqlite3), <b>Oracle</b> (.NET 8.0, acl, buildah, compat-openssl11, compat-poppler022, dogtag-pki, git-lfs, glibc, go-fdo-client, golang, httpd:2.4, jackson-annotations, ja"
+  },
+  {
+   "title": "[$] Hazard pointers for the kernel",
+   "url": "https://lwn.net/Articles/1084015/",
+   "date": "2026-07-27",
+   "summary": "The kernel's read-copy-update (RCU) subsystem ensures that data will not be deleted until it is known that there are no threads holding references to it. RCU works well and is widely used throughout the kernel, but it can increase memory use and add significant delays before unused kernel objects are cleaned up. <a href=\"https://en.wikipedia.org/wiki/Hazard_pointer\">Hazard pointers</a> are an alte"
+  },
+  {
+   "title": "GNU Binutils 2.47 released",
+   "url": "https://lwn.net/Articles/1085566/",
+   "date": "2026-07-27",
+   "summary": "<a href=\"https://inbox.sourceware.org/binutils/87o6fty5pz.fsf@redhat.com/\">Version 2.47</a> of <a href=\"https://www.gnu.org/software/binutils/\">GNU Binutils</a> has been released. In addition to the usual bug fixes there are some notable new features in this release including added support for a number of RISC-V standard extensions, a command-line option (<tt>-M&#160;annotate</tt>) which displays "
+  },
+  {
+   "title": "Security updates for Monday",
+   "url": "https://lwn.net/Articles/1085554/",
+   "date": "2026-07-27",
+   "summary": "Security updates have been issued by <b>Debian</b> (chromium, hplip, and linux-6.1), <b>Fedora</b> (firefox, GitPython, google-osconfig-agent, lego, libgit2, libreswan, libwebsockets, moby-engine, p11-kit, pam, python-idna, rust-libgit2-sys, skopeo, systemd, trafficserver, webkitgtk, and xrdp), <b>Mageia</b> (giflib, graphite2, libnfs, vorbis-tools, wget, and yelp), <b>Red Hat</b> (firefox, thunde"
+  },
+  {
+   "title": "Kernel prepatch 7.2-rc5",
+   "url": "https://lwn.net/Articles/1085422/",
+   "date": "2026-07-26",
+   "summary": "The <a href=\"https://lwn.net/Articles/1085421/\">7.2-rc5</a> kernel prepatch is out for testing. Linus said: \"<q>So it's a bit too big for my liking, but nothing in there strikes me as particularly strange or scary</q>\"."
+  },
+  {
+   "title": "A Debian general resolution on LLM usage",
+   "url": "https://lwn.net/Articles/1085314/",
+   "date": "2026-07-25",
+   "summary": "The Debian project is <a href=\"https://www.debian.org/vote/2026/vote_002\">considering a general resolution</a> on the use of large language models in the creation of the distribution. There are three alternatives to consider: a total ban on LLM usage, rejecting LLMs \"<q>as far as practical</q>\", or explicitly allowing LLM usage subject to a set of conditions. The discussion period has just begun; "
+  },
+  {
+   "title": "In remembrance of Dan Williams",
+   "url": "https://lwn.net/Articles/1085021/",
+   "date": "2026-07-25",
+   "summary": "On July 21, the kernel community lost Dan Williams, one of its most beloved contributors. Dave Hansen and Thomas Gleixner, both of whom worked with Williams extensively, have written an obituary and allowed LWN to publish it. He will be deeply missed, but he has left us with a lot to remember him by."
+  },
+  {
+   "title": "Security updates for Saturday",
+   "url": "https://lwn.net/Articles/1085272/",
+   "date": "2026-07-25",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (compat-openssl11, java-1.8.0-openjdk, java-17-openjdk, kernel, kernel-rt, and sssd), <b>Debian</b> (exim4), <b>Fedora</b> (chromium, dotnet10.0, mbedtls, mupdf, netatalk, python-django5, skopeo, sssd, and wget1), <b>Mageia</b> (libevent and transmission), <b>Oracle</b> (.NET 8.0, 389-ds-base, aardvark-dns, acl, buildah, cifs-utils, dovecot, dr"
+  },
+  {
+   "title": "GNU C Library 2.44 released",
+   "url": "https://lwn.net/Articles/1085030/",
+   "date": "2026-07-25",
+   "summary": "<a href=\"https://lwn.net/ml/all/teaVXxrfQH2qv0xBul7sXg@gentoo.org\">Version 2.44</a> of the GNU C Library has been released. Changes include a new <tt>/etc/tunables.conf</tt> file for the system-wide setting of tunable parameters, a new tunable to control the use of transparent huge pages for read-only executable segments, a number of math-function improvements, a handful of security fixes, and mor"
+  },
+  {
+   "title": "New stable kernel for ext4 users",
+   "url": "https://lwn.net/Articles/1085026/",
+   "date": "2026-07-25",
+   "summary": "<p>Greg Kroah-Hartman has released the <a href=\"https://lwn.net/Articles/1085025/\">6.12.98</a> stable Linux kernel with a single fix for a file descriptor leak in ext4. Users of the ext4 filesystem should upgrade.</p>"
+  },
+  {
+   "title": "Hefty stable kernel updates for Friday",
+   "url": "https://lwn.net/Articles/1084921/",
+   "date": "2026-07-24",
+   "summary": "<p>Greg Kroah-Hartman has announced the release of the <a href=\"https://lwn.net/Articles/1084922/\">7.1.5</a>, <a href=\"https://lwn.net/Articles/1084923/\">6.18.40</a>, <a href=\"https://lwn.net/Articles/1084924/\">6.12.97</a>, <a href=\"https://lwn.net/Articles/1084925/\">6.6.145</a>, <a href=\"https://lwn.net/Articles/1084926/\">6.1.178</a>, <a href=\"https://lwn.net/Articles/1084927/\">5.15.212</a>, and "
+  },
+  {
+   "title": "Linux Plumbers Conference 2026 registration open",
+   "url": "https://lwn.net/Articles/1084938/",
+   "date": "2026-07-24",
+   "summary": "<a href=\"https://lpc.events/event/20/page/267-attend\">Registration is now open</a> for the 2026 Linux Plumbers Conference, to be held October&#160;5 to&#160;7 in Prague, Czechia. Tickets to this event tend to sell out quickly, so interested attendees probably should not procrastinate."
+  }
+ ]
+}

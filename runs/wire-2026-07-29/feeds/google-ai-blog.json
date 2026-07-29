@@ -1,0 +1,44 @@
+{
+ "source": "google-ai-blog",
+ "feed": "https://blog.google/technology/ai/rss/",
+ "swept_on": "2026-07-29",
+ "since": "2026-07-15",
+ "items": [
+  {
+   "title": "Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+   "date": "2026-07-28",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/unnamed_2_vNnOv20.max-600x600.format-webp.webp\">We’re announcing even more new capabilities in Managed Agents in Gemini API so developers can build reliable, production-ready agents."
+  },
+  {
+   "title": "5 ways AI Mode in Search helps you enjoy the real world",
+   "url": "https://blog.google/products-and-platforms/products/search/ai-mode-real-world-tips/",
+   "date": "2026-07-28",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/AI_Mode_real_world.max-600x600.format-webp.webp\">It might sound counterintuitive, but Search's AI tools can actually help you make the most of your time offline whether you want to book concert tickets or find the perf…"
+  },
+  {
+   "title": "5 ways to host the ultimate dinner party with Google Search",
+   "url": "https://blog.google/products-and-platforms/products/search/dinner-party-hosting-tips/",
+   "date": "2026-07-28",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Dinner_parties.max-600x600.format-webp.webp\">These AI features can help you craft a menu, design a tablescape, and handle other party-planning tasks."
+  },
+  {
+   "title": "3 Google updates from Galaxy Unpacked 2026",
+   "url": "https://blog.google/products-and-platforms/platforms/android/galaxy-unpacked-2026/",
+   "date": "2026-07-22",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Unpacked_hero.max-600x600.format-webp.webp\">We shared how Samsung users can boost productivity and get time back on new foldables, watches, and glasses coming soon."
+  },
+  {
+   "title": "Connect more of your apps to Search",
+   "url": "https://blog.google/products-and-platforms/products/search/connected-apps/",
+   "date": "2026-07-16",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/ConnectedAppshero.max-600x600.format-webp.webp\">You’ll be able to securely link and interact with your go-to services directly in AI Mode."
+  },
+  {
+   "title": "Create, edit and star in videos with two Google Vids updates",
+   "url": "https://blog.google/products-and-platforms/products/workspace/gemini-omni-personal-avatars/",
+   "date": "2026-07-16",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/omni-blog-header_OarEe2t.max-600x600.format-webp.webp\">Gemini Omni and personal avatars in Google Vids make video creation easier than ever."
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "source": "martin-fowler",
+ "feed": "https://martinfowler.com/feed.atom",
+ "swept_on": "2026-07-29",
+ "since": "2026-07-15",
+ "items": [
+  {
+   "title": "The Orchestrator's Tax",
+   "url": "https://martinfowler.com/articles/orchestrator-tax.html",
+   "date": "2026-07-28",
+   "summary": "<p>Subagents get justified by time saved and parallel execution, but <b class = 'author'>Rahul Garg</b> explains that's not what matters most. Every token in the orchestrator's context is competing for its attention, and the real value of a subagent is what it keeps out of that context. Subagents should be treated as a tool for protecting the orchestrator's working memory, offloading reasoning it "
+  },
+  {
+   "title": "Why I’m Writing Rachel’s Ramblings",
+   "url": "https://martinfowler.com/rachels-ramblings/intro.html",
+   "date": "2026-07-28",
+   "summary": "<p class = 'precis'><b>TL;DR</b><br/><i>I have ideas. I haven’t been writing them. That’s about to change. I promise… myself.</i></p> <img src = 'https://martinfowler.com/rachels-ramblings/card.png'></img> <p>I’ve been thinking a lot about talent. Actually, I’ve been thinking a lot about thinking. And writing. Or more specifically, not writing. This really hit me earlier this year at the Future of"
+  },
+  {
+   "title": "Fragments: July 21",
+   "url": "https://martinfowler.com/fragments/2026-07-21.html",
+   "date": "2026-07-21",
+   "summary": "<p>With this post, I’ll wrap up my notes from the second <a href=\"https://martinfowler.com/bliki/FutureOfSoftwareDevelopment.html\">Future of Software Development Retreat</a>. But before I do, I should note that the <a href=\"https://www.thoughtworks.com/content/dam/thoughtworks/documents/report/tw_future_of_software_engineering_europe_2026.pdf\">full Thoughtworks report on the retreat is now availab"
+  },
+  {
+   "title": "The Archaeologist’s Copilot",
+   "url": "https://martinfowler.com/articles/archaeologist-copilot.html",
+   "date": "2026-07-16",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/archaeologist-copilot.html'><img src = 'https://martinfowler.com/articles/archaeologist-copilot/card.png' width = '350px'></img></a></div> <p>When people think of legacy modernization, most folks aren't imagining the target environment will be Java 8. But this was the challenge facing <b class = 'author'>Nik Malykhin</b> when he "
+  }
+ ]
+}

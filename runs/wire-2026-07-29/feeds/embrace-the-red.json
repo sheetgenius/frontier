@@ -1,0 +1,20 @@
+{
+ "source": "embrace-the-red",
+ "feed": "https://embracethered.com/blog/index.xml",
+ "swept_on": "2026-07-29",
+ "since": "2026-07-15",
+ "items": [
+  {
+   "title": "Autonomous AI Intrusions Are Here: Lessons from the Hugging Face Compromise",
+   "url": "https://embracethered.com/blog/posts/2026/ai-intrusion-are-now-real/",
+   "date": "2026-07-20",
+   "summary": "<p><a href=&#34;https://huggingface.co/blog/security-incident-july-2026&#34;>Hugging Face disclosed an intrusion</a> that, according to them, was driven end to end by an autonomous AI agent system.</p>&#xA;<p><a href=&#34;https://embracethered.com/blog/images/2026/ai-intrusions-are-here.png&#34;><img src=&#34;https://embracethered.com/blog/images/2026/ai-intrusions-are-here.png&#34; alt=&#34;ai in"
+  },
+  {
+   "title": "From Indirect Prompt Injection to DNS Exfiltration in macOS Terminal",
+   "url": "https://embracethered.com/blog/posts/2026/macos-terminal-dillma-dns-exfil-ansi-escape-code-fix/",
+   "date": "2026-07-16",
+   "summary": "<p>This is a follow-up to my previous <a href=&#34;https://embracethered.com/blog/posts/2024/terminal-dillmas-prompt-injection-ansi-sequences/&#34;>Terminal DiLLMa research</a>, and there is a positive outcome: Apple fixed a macOS Terminal behavior that enabled a DNS-based data exfiltration technique.</p>&#xA;<p><a href=&#34;https://embracethered.com/blog/images/2026/ansi-esc/dillma-fixed.png&#34;"
+  }
+ ]
+}
