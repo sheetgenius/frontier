@@ -1,0 +1,202 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-05-27-weekly-digest-2026-05-13_2026-05-27-frontier-v0
+note: >
+  Backfilled 2026-07-29 from a dated archive search; every post independently
+  re-fetched by URL before quoting, 32 of 32 found. Fragments sliced from
+  verified text, single-line only -- pvncher's two numbered objections sit on
+  separate lines, so only the first is inlined and the full text is in the card.
+cards:
+  - id: geminicli-unify-announcement
+    title: "Unifying our efforts"
+    kind: maintainer_intent
+    date: 2026-05-19
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [gemini-cli, antigravity]
+    authors: ["geminicli"]
+    display_name: Gemini CLI
+    source_note: 1
+    handling_note: a
+    source_urls:
+      - https://x.com/geminicli/status/2056796084790304833
+    verbatim: |
+      Transitioning Gemini CLI users to Antigravity CLI
+
+      We are unifying our efforts around a single harness and platform, Google Antigravity with four distinct surfaces:
+
+      • Antigravity 2.0
+      • Antigravity CLI
+      • Antigravity SDK
+      • Antigravity IDE
+
+      This will allow us to move faster and give you a streamlined experience wherever you do your best work.
+
+      Rebuilt in Go for speed, Antigravity CLI is available today and brings robust multi-agent orchestration and asynchronous workflows to your terminal.
+
+      Important things to know:
+      1. If you are using Gemini CLI through your Google one account (Google AI Pro or AI Ultra) or through Gemini Code Assist for individuals (free offering) we will be helping you migrate your workflows over the next 30 days.
+
+      2. No action required for Enterprise users. Enterprise plans and API keys will continue to be supported in Gemini CLI.
+
+      Read the full details in our blog post → https://goo.gle/4eWkUgK
+    inline: >-
+      We are unifying our efforts around a single harness and platform
+    summary: >
+      The Gemini CLI account announcing the move to Antigravity.
+    verdict: >
+      The vendor's own words and the receipt for the date this began. The consumer shutdown it set up executed on 2026-06-18, a month later.
+    tags: [succession, announcement]
+
+  - id: logank-unify-clarity
+    title: "Adds more clarity"
+    kind: maintainer_intent
+    date: 2026-05-19
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [gemini-cli, antigravity]
+    authors: ["OfficialLoganK"]
+    display_name: Logan Kilpatrick
+    source_note: 2
+    handling_note: b
+    source_urls:
+      - https://x.com/OfficialLoganK/status/2056803907154924031
+    verbatim: |
+      @geminicli Very excited to unify the experience for developers building with Gemini under Antigravity! Hoping this adds more clarity for those asking what product is right for them.
+    inline: >-
+      Very excited to unify the experience for developers building with Gemini under Antigravity
+    summary: >
+      Google's developer-experience lead welcoming the consolidation the same day.
+    verdict: >
+      A voice post from the vendor side, quoted as his framing, and set beside the objection published within hours of it.
+    tags: [succession, vendor-voice]
+
+  - id: pvncher-not-opensource
+    title: "agy is not opensource"
+    kind: criticism
+    date: 2026-05-19
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [gemini-cli, antigravity]
+    authors: ["pvncher"]
+    display_name: eric provencher
+    source_note: 3
+    handling_note: c
+    source_urls:
+      - https://x.com/pvncher/status/2056802695382515739
+    verbatim: |
+      So google is replacing gemini-cli with agy (antigravity cli), but:
+      1. agy is not opensource
+      2. It no longer supports ACP
+
+      Really unfortunate development
+    inline: >-
+      agy is not opensource
+    summary: >
+      The same-day objection to the announcement.
+    verdict: >
+      A voice post. Both of his points are checkable and correct: the replacement is closed-source and dropped Agent Client Protocol support. Quoted because the specific loss was named on day one, not discovered later.
+    tags: [succession, open-source, acp]
+
+  - id: robdubparker-skills-bloat
+    title: "90+ skills enabled by default"
+    kind: criticism
+    date: 2026-05-26
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [hermes-agent]
+    authors: ["robdubparker"]
+    display_name: Rob Parker
+    source_note: 4
+    handling_note: d
+    source_urls:
+      - https://x.com/robdubparker/status/2059304782561436031
+    verbatim: |
+      @NousResearch @Teknium Hermes Agent has a bloat/noise issue.  90+ skills enabled by default.  Agents still load all of them even if they are disabled.  There is no "enabled" option in config, so even if "disabled" option worked correctly, you'd need to keep updating/maintaining the list as more skills are added to Hermes core.  Anything that is added to context that is not needed by an agent is noise.  bloat is the ever-increasing skill list and features additions to core.  This is important for builders that understand nuance.  Any efforts at addressing these?
+    inline: >-
+      90+ skills enabled by default.  Agents still load all of them even if they are disabled
+    summary: >
+      A user reporting that Hermes loads its full skill set regardless of config.
+    verdict: >
+      A voice post and a user report we did not reproduce. Its value is what happened next: the maintainer answered in public with a number.
+    tags: [skills, configuration, context-cost]
+
+  - id: teknium-skills-token-cost
+    title: "About 1.5-2k tokens"
+    kind: maintainer_intent
+    date: 2026-05-26
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [hermes-agent]
+    authors: ["Teknium"]
+    display_name: Teknium 🪽
+    source_note: 5
+    handling_note: e
+    source_urls:
+      - https://x.com/Teknium/status/2059314725725647216
+    verbatim: |
+      @robdubparker @NousResearch Yes there is. Use ‘hermes skills config’ and disable whatever you want.
+
+      This is not bloat though. All 90 skills use about 1.5-2k tokens. Thats less tokens for all skills then just the browser use toolset
+    inline: >-
+      All 90 skills use about 1.5-2k tokens
+    summary: >
+      The Hermes maintainer answering the bloat complaint with a cost figure.
+    verdict: >
+      A maintainer's own measurement, published in reply, not independently checked by us. Carried because answering a context-cost complaint with a token count is the correct shape of argument, whatever the number turns out to be.
+    tags: [skills, token-cost, maintainer-response]
+
+  - id: ofirpress-150-lines
+    title: "As well as Claude Code, Codex and Gemini CLI"
+    kind: community_discussion
+    date: 2026-05-27
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code, codex, gemini-cli]
+    authors: ["OfirPress"]
+    display_name: Ofir Press
+    source_note: 6
+    handling_note: f
+    source_urls:
+      - https://x.com/OfirPress/status/2059655908406210978
+    verbatim: |
+      mini-swe-agent is our ~150 line of code agent, and it performs as well as Claude Code, Codex and Gemini CLI on this new coding benchmark.
+    inline: >-
+      it performs as well as Claude Code, Codex and Gemini CLI on this new coding benchmark
+    summary: >
+      A researcher reporting a roughly 150-line agent matching the major harnesses on a benchmark.
+    verdict: >
+      His claim about his own benchmark; we did not run it and one benchmark is one instrument. Carried because it is the sharpest available counter to this publication's harness-as-variable argument, and a thesis that only meets agreeable evidence is not being tested.
+    tags: [benchmarks, harness, counter-argument]
+
+  - id: cherny-written-by-itself
+    title: "100% written by Claude Code"
+    kind: adoption_signal
+    date: 2026-05-25
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["AnatoliKopadze"]
+    display_name: Anatoli Kopadze
+    source_note: 7
+    handling_note: g
+    source_urls:
+      - https://x.com/AnatoliKopadze/status/2058917854062195072
+    verbatim: |
+      Boris Cherny: "Claude Code is 100% written by Claude Code, Cowork is 100% written by Claude Code"
+
+      across all of Anthropic, 90% of code is written by Claude
+
+      lawyers, designers, finance people are building real things with Claude Code right now
+
+      with no CS degree, no background, nothing
+
+      the people who built the tool use the tool to build the tool
+
+      think about what that means for everyone else
+
+      the guide on everything Claude can actually do is in the article below
+    summary: >
+      A relayed quotation of Boris Cherny on how much Anthropic code is agent-written.
+    verdict: >
+      Second-hand: we hold no primary source and attribute nothing to a named person on this basis. The figures are not findings. Quoted as a claim that circulated widely during the window Auto mode became the default.
+    tags: [adoption, unverified-claim]
