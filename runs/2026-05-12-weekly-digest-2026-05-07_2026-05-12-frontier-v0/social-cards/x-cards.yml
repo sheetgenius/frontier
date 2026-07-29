@@ -190,6 +190,8 @@ cards:
       Will forward the feedback about 4.7 to our researchers. One thing that would be very helpful: next time you see the incompleteness issue, would you mind running /feedback and sharing the id here? That will make it easier to act on and fix the issue.
 
       And 4.6 is still available if you want it. ANTHROPIC_MODEL='claude-opus-4-6[1m]' claude, or claude --model=opus-4-6[1m].
+    inline: >-
+      actively working on improving quality and streamlining the product, and are continuing to focus on quality until it feels really good
     summary: >
       Claude Code's creator replying to a run of critical feedback.
     verdict: >

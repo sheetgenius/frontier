@@ -94,8 +94,35 @@ const bodySegments: { html: string; card?: any }[] = [];
     bodySegments.push({ html: parts[i], card });
   }
 }
-// Anything the author did not place still renders, so a card is never lost.
-const unplacedCards = socialCards.filter((c: any) => !placedIds.has(c.id));
+// A card that no marker places renders nowhere. That used to be described here
+// as "still renders, so a card is never lost", which was not true: the value was
+// computed and never used, so a verified quotation could be built and silently
+// vanish. check-integrity.mjs now fails the build on an unplaced card, which is
+// the enforcement this comment used to only promise.
+// placedIds only knows about <!--card:id--> markers, because that is what the
+// body split consumes. Inline [[q:id]] tokens place a card just as much, and a
+// footnote marker places it into the apparatus, so all three count here. A
+// warning that fires on correctly-placed cards is noise that teaches you to
+// ignore the warning.
+const inlinePlaced = new Set(
+  [...digest.body.matchAll(/\[\[q:([a-z0-9-]+)\]\]/gi)].map((m) => m[1]),
+);
+const notedRefs = new Set(
+  [...digest.body.matchAll(/href="#(?:source|handling)-([a-z0-9]+)"/gi)].map((m) => m[1].toLowerCase()),
+);
+const unplacedCards = socialCards.filter(
+  (c: any) =>
+    !placedIds.has(c.id) &&
+    !inlinePlaced.has(c.id) &&
+    !(c.sourceNote !== undefined && notedRefs.has(String(c.sourceNote).toLowerCase())) &&
+    !(c.handlingNote !== undefined && notedRefs.has(String(c.handlingNote).toLowerCase())),
+);
+if (unplacedCards.length > 0) {
+  console.warn(
+    `[digest ${digest.slug}] ${unplacedCards.length} social card(s) placed nowhere: ` +
+      unplacedCards.map((c: any) => c.id).join(", "),
+  );
+}
 const topSignalsItemList = topSignals.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "ItemList",

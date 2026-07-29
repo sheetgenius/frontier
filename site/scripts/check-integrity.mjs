@@ -958,6 +958,62 @@ for (const [id, entry] of sourceRegistry.adjacentEntries.entries()) {
   }
 }
 
+// --- Unplaced social cards ------------------------------------------------
+//
+// A card is a verified quotation with a receipt. If no [[q:id]] or
+// <!--card:id--> marker places it, it renders nowhere and the work is silently
+// lost. The digest template used to carry a comment claiming unplaced cards
+// "still render, so a card is never lost"; the value was computed and never
+// used. This is that promise, enforced.
+{
+  const digestDir = path.join(REPO_ROOT, "content", "digests");
+  if (fs.existsSync(digestDir)) {
+    for (const file of fs.readdirSync(digestDir).filter((f) => f.endsWith(".md") && f !== "index.md")) {
+      const body = fs.readFileSync(path.join(digestDir, file), "utf8");
+      const runId = (body.match(/^run_id:\s*(\S+)/m) ?? [])[1];
+      if (!runId) continue;
+      const cardsDir = path.join(RUNS_DIR, runId, "social-cards");
+      if (!fs.existsSync(cardsDir)) continue;
+
+      const placed = new Set([
+        ...[...body.matchAll(/\[\[q:([a-z0-9-]+)\]\]/gi)].map((m) => m[1]),
+        ...[...body.matchAll(/<!--\s*card:([a-z0-9-]+)\s*-->/gi)].map((m) => m[1]),
+      ]);
+      // A card can also be placed by its footnote marker alone: it then appears
+      // in the Sources / Our handling apparatus rather than inline, which is a
+      // legitimate way to carry a receipt the prose refers to without quoting.
+      const noteRefs = new Set(
+        [...body.matchAll(/href="#(?:source|handling)-([a-z0-9]+)"/gi)].map((m) => m[1].toLowerCase()),
+      );
+
+      for (const name of fs.readdirSync(cardsDir).filter((f) => /\.ya?ml$/.test(f))) {
+        let parsed;
+        try {
+          parsed = YAML.parse(fs.readFileSync(path.join(cardsDir, name), "utf8"));
+        } catch {
+          continue; // the quotation-integrity block already reports parse errors
+        }
+        for (const card of parsed?.cards ?? []) {
+          if (!card?.id || placed.has(card.id)) continue;
+          const noted =
+            (card.source_note !== undefined && noteRefs.has(String(card.source_note).toLowerCase())) ||
+            (card.handling_note !== undefined && noteRefs.has(String(card.handling_note).toLowerCase()));
+          if (noted) continue;
+          pushIssue({
+            kind: "social-card-placed-nowhere",
+            file: path.join(cardsDir, name),
+            context: file,
+            field: card.id,
+            ref: String(card.title ?? card.id),
+            expected: "a [[q:id]] or <!--card:id--> marker in the digest body",
+            fix: "place the card in the prose, or delete it if it is not being used",
+          });
+        }
+      }
+    }
+  }
+}
+
 // --- Report ---
 if (issues.length === 0) {
   const acceptedSignalIds = [...signalStatusById.values()].filter((status) => status !== "withdrawn").length;
