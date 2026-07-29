@@ -2582,6 +2582,141 @@ a.cited-name:hover {
   line-height: 1.5;
 }
 
+/* FRONT PAGE
+   The lead issue is the first thing on the page, set like a story rather than
+   like a product announcement: kicker, headline, standfirst, byline. The
+   publication's own description sits at the foot, where a reader who has
+   decided they are interested will go looking for it. */
+.lead-issue {
+  padding-top: 2.5rem;
+}
+
+.lead-issue-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0.6rem 0 0;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+a:hover > .lead-issue-title {
+  color: var(--color-bitter);
+}
+
+.lead-issue-dek {
+  max-width: 36rem;
+  margin: 1.1rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.08rem, 0.5vw + 1rem, 1.25rem);
+  line-height: 1.5;
+  color: var(--color-ink);
+  text-wrap: pretty;
+}
+
+.lead-issue-byline {
+  margin: 1rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+.lead-issue-byline a {
+  color: inherit;
+}
+
+/* Earlier issues get a title and a standfirst, so a reader can choose between
+   them. A list of dates is not a choice. */
+.earlier-issues {
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.4rem;
+}
+
+.earlier-issue-link {
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+.earlier-issue-title {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.earlier-issue-link:hover .earlier-issue-title {
+  color: var(--color-bitter);
+}
+
+.earlier-issue-date {
+  margin-left: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-faint);
+}
+
+.earlier-issue-dek {
+  margin: 0.3rem 0 0;
+  max-width: 34rem;
+  color: var(--color-muted);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+/* The watchlist carries each project's written line instead of fourteen copies
+   of the same date. */
+.watchlist {
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.15rem;
+}
+
+.watchlist-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+.watchlist-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.watchlist-link:hover .watchlist-name {
+  color: var(--color-bitter);
+}
+
+.watchlist-owner {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--color-faint);
+  text-transform: uppercase;
+}
+
+.watchlist-tagline {
+  margin: 0.2rem 0 0;
+  max-width: 34rem;
+  color: var(--color-muted);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.publication-about .publication-title {
+  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+  margin-top: 0.5rem;
+}
+
 /* THE INLINE CITATION
    Somebody's exact words running inside our sentence. No box, no rule, no
    block -- the paragraph does not break for it. The quotation marks come from

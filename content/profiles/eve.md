@@ -1,7 +1,7 @@
 ---
 schema_version: bitter.frontier_profile.v0
 profile_id: eve
-label: Eve
+label: eve
 owner: Vercel
 source_contract: sources/eve.yml
 homepage: https://eve.dev

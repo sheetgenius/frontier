@@ -1,76 +1,88 @@
 ---
 import Base from "../layouts/Base.astro";
-import VersionList from "../components/VersionList.astro";
-import { GH_BLOB_BASE, GH_REPO_URL } from "../lib/site";
-import { canonicalRunForDigest, formatDate, listAcceptedSignals, listDigests, listProfiles, logLinkGraphReportOnce, sourceLabel, sweepCoverage, versionsForDigest } from "../lib/frontier";
+import { GH_REPO_URL } from "../lib/site";
+import { canonicalRunForDigest, formatDate, listAcceptedSignals, listDigests, listProfiles, logLinkGraphReportOnce, sourceLabel } from "../lib/frontier";
 import { marked } from "marked";
 
 logLinkGraphReportOnce();
 
-const [latest] = listDigests();
+// The front page shows work, then says who made it. Everything about how the
+// publication operates -- the sweep's coverage arithmetic, the auditability
+// pitch, the version history of the current issue -- moved off this page or
+// below the fold.
+//
+// The comparison that settled it: LWN, Quanta, the Pragmatic Engineer and
+// Simon Willison's site carry zero methodology on their front pages between
+// them. This one carried 33% of its words. A publication that explains itself
+// before it reports is a journal expecting to be evaluated, not a publication
+// expecting to be read.
+const digests = listDigests();
+const [latest, ...earlier] = digests;
 const canonicalRun = latest ? canonicalRunForDigest(latest) : undefined;
-// Counted from the run, never typed. See sweepCoverage() for why.
-const coverage = canonicalRun ? sweepCoverage(canonicalRun.id) : undefined;
-const versions = latest ? versionsForDigest(latest.id) : [];
 const signals = listAcceptedSignals().slice(0, 6);
 const profiles = listProfiles();
 const profileSlugs = new Set(profiles.map((p) => p.slug));
 const latestThesisHtml = latest?.data.operator_brief?.thesis
   ? marked.parseInline(latest.data.operator_brief.thesis)
   : "";
+
+// Every project carries a written line about where it stands. Fourteen of those
+// beat fourteen copies of the same date.
+// No digest carries a `summary`, so the earlier-issues list would have been the
+// bare titles-and-dates problem all over again. Every issue does carry an
+// operator-brief thesis, and its first sentence is a written standfirst.
+function standfirst(digest: any): string {
+  const thesis = String(digest?.data?.operator_brief?.thesis ?? "").trim();
+  if (!thesis) return "";
+  // The thesis is markdown. A dek inside a linked list item should not carry
+  // its own links, so keep the link text and drop the syntax.
+  const flat = thesis
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/`([^`]*)`/g, "$1")
+    .replace(/[*_]{1,2}([^*_]+)[*_]{1,2}/g, "$1")
+    .replace(/\s+/g, " ");
+  const end = flat.search(/[.!?]\s/);
+  const first = end === -1 ? flat : flat.slice(0, end + 1);
+  return first.length > 200 ? first.slice(0, 197).trimEnd() + "..." : first;
+}
+
+const watchlist = profiles
+  .map((profile) => ({
+    slug: profile.slug,
+    label: sourceLabel(profile.slug),
+    owner: String(profile.data.owner ?? ""),
+    tagline: String(profile.data.tagline ?? "").trim(),
+  }))
+  .filter((p) => p.tagline);
 ---
 
 <Base
   title="Bitter Frontier | Coding Agents Through the Bottleneck"
   description="Source-backed analysis of what coding agents just made possible, where the bottleneck moved, and what deserves scarce human attention."
 >
-  <section class="measure publication-intro">
-    <p class="small-caps publication-kicker eyebrow">Bitter Frontier</p>
-    <h1 class="publication-title">Coding agents can create work faster than teams can verify it.</h1>
-    <p class="publication-dek">
-      Source-backed, cross-project reporting on what coding agents just made possible, what became the new
-      bottleneck, and where operators should spend scarce human attention.
-    </p>
-    <dl class="publication-axioms">
-      <div>
-        <dt><a href="/bitter-lesson/">Bitter Lesson Maxing</a></dt>
-        <dd>Build where improving general agents compound your advantage, not where their next release erases it.</dd>
-      </div>
-      <div>
-        <dt><a href="/amdahls-law/">Amdahl Maxing</a></dt>
-        <dd>Treat human attention as the scarce serial resource and spend it where judgment changes the outcome.</dd>
-      </div>
-    </dl>
-    <p class="publication-thesis-link">
-      <a href="/letter/">A pinned letter from the founder: an ode to the Bitter Lesson and Amdahl's law maximalism -&gt;</a>
-    </p>
-    <p class="publication-method-link">
-      Every cycle sweeps public developer discussion across the watchlist{coverage && !coverage.complete
-        ? ` -- ${coverage.swept} of ${coverage.watched} projects last cycle, ${coverage.adjudicated} of them adjudicated`
-        : ""}, so what the field is saying arrives checked against primary sources instead of at random.
-      <a href="/conversation-layer/">How we read the conversation layer -&gt;</a>
-    </p>
-    <p class="issue-meta">
-      Edited by Michael Ruescher. Published by <a href="https://bitter.sh">Bitter</a>.
-      <a href="/rss.xml">Subscribe by RSS</a>.
-    </p>
-  </section>
-
   {
     latest && (
-      <section class="measure rule featured-issue py-8">
-        <p class="small-caps eyebrow">Latest Published Brief</p>
-        <a href={`/digests/${latest.slug}/`} class="mt-4 block no-underline hover:underline">
-          <h2 class="issue-title">{latest.data.title}</h2>
+      <section class="measure lead-issue">
+        <p class="small-caps eyebrow">
+          {formatDate(latest.data.window?.start)} to {formatDate(latest.data.window?.end)}
+          {" / "}This week in agentic harnesses
+        </p>
+        <a href={`/digests/${latest.slug}/`} class="no-underline">
+          <h1 class="lead-issue-title">{latest.data.title}</h1>
         </a>
-        <p class="issue-meta">
-          Published {formatDate(latest.data.window?.end)} /
-          {canonicalRun && <><a href={`/runs/${canonicalRun.id}/`}>Research run</a> /</>}
+        {latestThesisHtml && <p class="lead-issue-dek" set:html={latestThesisHtml} />}
+        <p class="lead-issue-byline">
+          By Michael Ruescher
+          {canonicalRun && (
+            <>
+              {" / "}
+              <a href={`/runs/${canonicalRun.id}/`}>Research run</a>
+            </>
+          )}
+          {" / "}
           {latest.data.signal_count} signals
         </p>
-        {latestThesisHtml && (
-          <p class="homepage-thesis" set:html={latestThesisHtml} />
-        )}
+
         {latest.data.operator_brief && (
           <dl class="homepage-brief">
             {latest.data.operator_brief.upgrade_check?.length > 0 && (
@@ -100,42 +112,30 @@ const latestThesisHtml = latest?.data.operator_brief?.thesis
     )
   }
 
-  <section class="measure py-8">
-    <aside class="opensource-note">
-      <p class="small-caps eyebrow">Open by default</p>
-      <h2 class="opensource-title">Open source, and auditable by design.</h2>
-      <p class="opensource-body">
-        Every claim links to a primary source you can open and check, and the whole publication, source notes and all,
-        is on GitHub. Find something wrong? Send a correction.
-      </p>
-      <div class="opensource-actions">
-        <a class="action-primary" href={GH_REPO_URL}>
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-          </svg>
-          View on GitHub
-        </a>
-        <a class="action-secondary" href={`${GH_BLOB_BASE}/CONTRIBUTING.md`}>How to contribute</a>
-      </div>
-    </aside>
-  </section>
+  {
+    earlier.length > 0 && (
+      <section class="measure rule py-8">
+        <p class="small-caps eyebrow">Earlier issues</p>
+        <ul class="earlier-issues">
+          {earlier.slice(0, 4).map((digest) => (
+            <li>
+              <a href={`/digests/${digest.slug}/`} class="earlier-issue-link">
+                <span class="earlier-issue-title">{digest.data.title}</span>
+              </a>
+              <span class="earlier-issue-date">{formatDate(digest.data.window?.end)}</span>
+              {standfirst(digest) && <p class="earlier-issue-dek">{standfirst(digest)}</p>}
+            </li>
+          ))}
+        </ul>
+        <p class="mt-5 font-mono text-sm text-muted">
+          <a href="/digests/" class="hover:underline">All issues -&gt;</a>
+        </p>
+      </section>
+    )
+  }
 
   <section class="measure rule py-8">
-    <p class="small-caps eyebrow">Latest Profile Reviews</p>
-    <ul class="provider-updates">
-      {profiles.map((profile) => (
-        <li>
-          <a href={`/profiles/${profile.slug}/`} class="provider-update-link">
-            <span class="provider-update-name">{sourceLabel(profile.slug)}</span>
-            <span class="provider-update-date">{formatDate(profile.data.last_updated)}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section class="measure rule py-8">
-    <p class="small-caps eyebrow">Recent Signals</p>
+    <p class="small-caps eyebrow">What changed in the tools you run</p>
     <ol class="signal-list">
       {
         signals.map((signal) => (
@@ -172,5 +172,44 @@ const latestThesisHtml = latest?.data.operator_brief?.thesis
     </p>
   </section>
 
-  {latest && versions.length > 0 && <section class="measure pb-8"><VersionList versions={versions} currentRunId={canonicalRun?.id} /></section>}
+  <section class="measure rule py-8">
+    <p class="small-caps eyebrow">The watchlist</p>
+    <ul class="watchlist">
+      {watchlist.map((project) => (
+        <li>
+          <a href={`/profiles/${project.slug}/`} class="watchlist-link">
+            <span class="watchlist-name">{project.label}</span>
+            {project.owner && <span class="watchlist-owner">{project.owner}</span>}
+          </a>
+          <p class="watchlist-tagline">{project.tagline}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="measure rule py-8 publication-about">
+    <p class="small-caps eyebrow">About this publication</p>
+    <h2 class="publication-title">Coding agents can create work faster than teams can verify it.</h2>
+    <p class="publication-dek">
+      Source-backed, cross-project reporting on what coding agents just made possible, what became the new
+      bottleneck, and where operators should spend scarce human attention. Every claim links to a primary
+      source you can open and check, and the whole publication is on
+      <a href={GH_REPO_URL}>GitHub</a>, source notes and all.
+    </p>
+    <dl class="publication-axioms">
+      <div>
+        <dt><a href="/bitter-lesson/">Bitter Lesson Maxing</a></dt>
+        <dd>Build where improving general agents compound your advantage, not where their next release erases it.</dd>
+      </div>
+      <div>
+        <dt><a href="/amdahls-law/">Amdahl Maxing</a></dt>
+        <dd>Treat human attention as the scarce serial resource and spend it where judgment changes the outcome.</dd>
+      </div>
+    </dl>
+    <p class="issue-meta">
+      Edited by Michael Ruescher. Published by <a href="https://bitter.sh">Bitter</a>.
+      <a href="/rss.xml">Subscribe by RSS</a>.
+      <a href="/letter/">Read the thesis</a>.
+    </p>
+  </section>
 </Base>

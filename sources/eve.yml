@@ -1,6 +1,6 @@
 schema_version: bitter.frontier_source_contract.v0
 id: eve
-label: Eve
+label: eve
 owner: Vercel
 homepage: https://eve.dev
 primary_surfaces:

@@ -1,7 +1,7 @@
 schema_version: bitter.frontier_run_manifest.v0
 run_id: 2026-07-27-weekly-digest-2026-07-02_2026-07-27-frontier-v0
 mode: frontier-weekly
-title: "Assume the Rule Does Not Bind"
+title: "Rules Became Judgment"
 window:
   start: 2026-07-02
   end: 2026-07-27
