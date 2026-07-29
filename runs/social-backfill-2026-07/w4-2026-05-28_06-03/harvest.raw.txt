@@ -1,0 +1,1334 @@
+===POST===
+URL: https://x.com/_catwu/status/2060054180379689074
+HANDLE: _catwu
+DISPLAY_NAME: cat
+DATE: 2026-05-28
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Excited to share our most powerful new Claude Code feature: dynamic workflows!
+
+Mention "workflow" in a prompt and Claude will dynamically create an orchestration plan that it strictly follows, allowing you to confidently trust that every stage happens in the right order even across 100s of agents.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/bcherny/status/2060048877944778995
+HANDLE: bcherny
+DISPLAY_NAME: Boris Cherny
+DATE: 2026-05-28
+PROJECT: claude-code
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+We also shipped dynamic workflows in Claude Code (research preview), for tasks too big for one pass. Make sure to default to auto mode so Claude isn't stopping for permissions.
+
+It's token-intensive, so save it for your biggest jobs: migrations, refactors, perf optimization, batch bug fixes.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/PawelHuryn/status/2060063258527088984
+HANDLE: PawelHuryn
+DISPLAY_NAME: Paweł Huryn
+DATE: 2026-05-28
+PROJECT: claude-code
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Tested Claude Code's new dynamic workflows. 8 agents in 24.5s. 253k tokens.
+
+The launch post frames it as a large fleet of coordinated subagents. That part isn't new. The SDK has had parallel calls for years.
+
+The new part is where the orchestrator runs. It's JavaScript, not a Claude turn. The routing logic is code, so it doesn't spend model tokens.
+
+Each subagent keeps its own context, tools, and intermediate calls. The parent thread gets the return value. Not 8 transcripts. Not 50k tokens of grep noise. One object.
+
+A 20-agent audit can spend 600k tokens across isolated agents and return a 2k-token synthesis. Before this, "comprehensive review" meant filling the context you still needed for the fix.
+
+Scripts persist at .claude/workflows/<name>.js. Invoke by name with args. They're cron-schedulable and compose one level deep. It's like a function library.
+
+I've been treating subagents as context isolation, not delegation. Dynamic workflows move that from one agent to a fleet.
+
+Not fan-out. The mess stays out of the parent thread.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/antigravity/status/2060051630771286487
+HANDLE: antigravity
+DISPLAY_NAME: Google Antigravity
+DATE: 2026-05-28
+PROJECT: antigravity
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+How powerful is Gemini 3.5 Flash?
+
+In a recent research preview, we pushed it to the extreme, powering 93 subagents across 15,314 model calls that wrote a custom kernel, filesystem, and drivers from scratch. 12 hours later, it booted Doom. 🖥️
+
+This is just a glimpse of the model's reasoning depth and code generation capabilities. Full breakdown below 👇
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/shengzheyao/status/2059814938609332726
+HANDLE: shengzheyao
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-28
+PROJECT: antigravity
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Antigravity CLI 1.0.3 is just out!
+
+Now you can use Google AI credits when quota runs out.
+
+- ⁠/config -> UseF1Credits⁠ to turn it on.
+/credits⁠ to check balance.
+- Enhanced logo on Apple Terminal and more informational color scheme preview panels.
+- Improved ⁠/diff⁠ experience and various critical fixes.
+
+Getting started:
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/janotekk/status/2059878033499345176
+HANDLE: janotekk
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-28
+PROJECT: antigravity
+KIND: criticism
+STANCE: negative
+VERBATIM_BEGIN
+ok let's try gemini 3.5:  
+> what's their cli called again? gemini cli?  
+> download gemini cli  
+> huh only gemini 3 available?  
+> google why no 3.5 in cli available  
+> "Google has discontinued the Gemini CLI and replaced it with the Antigravity CLI."  
+> download antigravity app  
+> huh pop up in the top right "Try the new Antigravity 2.0"  
+> realize i downloaded the old version  
+> codex "Remove Antigravity and Gemini CLI"
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Marco_Ramilli/status/2059879066904232253
+HANDLE: Marco_Ramilli
+DISPLAY_NAME: Marco Ramilli
+DATE: 2026-05-28
+PROJECT: eve
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+🤖 eve-agent-v2-unleashed  
+⭐ 27 stars  
+
+Local soul, cloud muscle. Run a 40-round autonomous coding loop that scales to a 480B model mid-task. No accounts, no telemetry, no token fees.  
+
+🔗 https://github.com/JeffGreen311/eve-agent-v2-unleashed  
+
+#AI #MachineLearning
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/doodlestein/status/2060167261470486816
+HANDLE: doodlestein
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-29
+PROJECT: agent-flywheel
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+I've probably been asked by 100+ people over the past few months to record a screencast showing how I use my Agent Flywheel tooling and skills and other workflows in my day-to-day development work.
+
+I really hate making these things and find it stressful, but decided to do it anyway. This video doesn't get into the super nitty gritty, but shows enough to get a sense for my setup and tooling and general approach.
+
+Apologies for some choppy audio at parts; it should be pretty comprehensible despite that.
+
+I can't justify spending any real time scripting or editing this kind of thing because I'm too busy with real work, so you'll have to excuse some pauses and meandering here and there (plus I encountered a few bugs, the bane of all truly live demos).
+
+PS: If you prefer watching on YouTube, I'll post the link as a reply below.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/bcherny/status/2060390852619272526
+HANDLE: bcherny
+DISPLAY_NAME: Boris Cherny
+DATE: 2026-05-29
+PROJECT: claude-code
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Salesforce published a detailed writeup on going agentic with Claude Code. A couple things jumped out.
+
+A migration they'd scoped at 231 days shipped in 13. One PR delivered 21 endpoints at 100% test coverage.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/h100envy/status/2060378058863866264
+HANDLE: h100envy
+DISPLAY_NAME: h100envy
+DATE: 2026-05-29
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Anthropic shipped Opus 4.8 with a feature Boris Cherny just used to do something that should not be possible.
+
+Jarred Sumner rewrote the entire Bun runtime, Zig to Rust, a million lines, eleven days. Hundreds of Claude agents wrote it, adversarial agents reviewed it, a fix loop merged it. He watched.
+
+Boris, the head of Claude Code, shows you the exact workflow on stream.
+
+The engineers who learn this run teams of agents next year. The ones who don't compete with them.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/umbrel/status/2060378678941618558
+HANDLE: umbrel
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-29
+PROJECT: hermes-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+you might've noticed hermes and openclaw have just been… insanely reliable on umbrelOS lately, right?
+
+here's why: both apps now ship with managed umbrelOS runtime context injected into the agent's prompts
+
+the agent now knows it's running inside an umbrelOS app, where to correctly store data, that it shouldn't self-update, where the sandbox boundaries are, and when to load deeper umbrelOS-specific guidance
+
+basically, the agent stops doing weird stuff because it finally knows where it is
+
+you're welcome 🤝
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/umbrel/status/2060391151249891653
+HANDLE: umbrel
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-29
+PROJECT: paperclip
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Ok this one's dope - @papercliping is now live on the Umbrel App Store!
+
+It lets you run a whole team of AI agents like a company, right on your home server.
+
+Create agents with API keys, or login with your Codex/Claude Code subscription, or even onboard your existing OpenClaw/Hermes agent as an employee in your company!
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/0xCodez/status/2060732301672161516
+HANDLE: 0xCodez
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-30
+PROJECT: claude-code
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Anthropic senior engineer just revealed how to use Claude Code at 110% in a 47-minute session.
+
+47-minutes. free. by Anthropic team. 
+
+worth more than any $500 vibe-coding course
+
+here's what she covers:
+
+• 3 things Claude needs: access, knowledge, tooling 
+• git worktrees + one Claude each = a team you manage • /loop that babysits PRs and fixes CI overnight 
+• agents that message each other while you sleep
+
+most people use Claude on one repo in one window - while the people who get this run teams of agents in parallel
+
+watch the full talk, then read the article below
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Oluwaphilemon1/status/2060809932518084701
+HANDLE: Oluwaphilemon1
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-30
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+🤯This is the most interesting you will find… you can now run Codex inside Claude Code.
+
+No tab switching.
+No copy-pasting.
+No second IDE.
+
+Just one terminal — two AI agents working together.
+
+It’s called codex-plugin-cc.
+
+Here’s what this unlocks:
+
+• Delegate entire coding tasks from Claude → Codex
+• Ask Codex to review your changes before commit
+• Run adversarial design reviews on your architecture
+• Launch long-running fixes in the background
+• All using your existing ChatGPT subscription
+
+You literally get Claude planning + Codex executing in one workflow.
+
+Even wilder — this is officially built by OpenAI.
+Not a wrapper. Not a hack. Not a community fork.
+
+OpenAI shipped a plugin that connects their agent
+to Anthropic’s Claude Code environment.
+
+Two competing AI labs.
+One terminal.
+One codebase.
+
+That sentence shouldn’t exist in 2026.
+
+The commands are clean:
+
+/codex:review → full code review
+/codex:adversarial-review → challenge architecture decisions
+/codex:rescue → hand off bugs to Codex
+/codex:status → track background jobs
+/codex:result → fetch output
+
+You can literally say:
+
+“Ask Codex to investigate why tests are failing”
+
+…and it runs in the background while you keep coding.
+
+No API keys required.
+Works with ChatGPT subscription.
+Installs in one command.
+100% open source.
+
+This is the first real multi-agent coding workflow inside a single terminal.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/rohit4verse/status/2060911598248853908
+HANDLE: rohit4verse
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-31
+PROJECT: hermes-agent
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Hermes Agent just passed OpenClaw as the most-used open agent on OpenRouter.
+
+It writes its own skills from experience and remembers every session.
+
+New to it? Watch the 5-min explainer, then read this guide to run your own. 
+
+Best hour you’ll spend on agents this month.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Teknium/status/2060939163751592310
+HANDLE: Teknium
+DISPLAY_NAME: Teknium 🪽
+DATE: 2026-05-31
+PROJECT: hermes-agent
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+Just want to make this clear:  
+
+We didn't make Hermes Agent to be a "starts with nothing, you work it all out" agent. This is not the minimalist, start from nothing, agent. 
+
+We want Hermes to work out of the box for most people. So you aren't spending weeks just getting the agent to work, or have the capabilities you need.  
+
+This means that yes, there are more built in things then something like nanoclaw or pi, which start with nothing, and you just have to figure it out.  
+
+That is an intentional design decision.  
+
+You can from the modest baseline that has capabilities that are likely broader than you need, but not egregious, take it from there if you want to tinker with it.  
+
+Run `hermes skills config` or `hermes tools` to disable whatever you want. 
+
+We even have a way to upload your whole "Agent" as a github repo, so you can install hermes fresh with your exact setup again later or share them.  
+
+We have a massive interface for extensions so you can tinker with it to infinity. 
+
+But if you don't want to become an agent engineer - with Hermes, you don't have to.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/theo/status/2061020489246773436
+HANDLE: theo
+DISPLAY_NAME: Theo - t3.gg
+DATE: 2026-05-31
+PROJECT: openclaw
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+OpenClaw is Arch.
+
+Hermes is Omarchy.
+
+I will not elaborate further.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/KanikaBK/status/2061070268479721483
+HANDLE: KanikaBK
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-05-31
+PROJECT: hermes-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+I found this last night and I have not stopped thinking about it.
+
+HERMES JUST LAUNCHED HERMES DESKTOP. 100% FREE.
+
+It is a free desktop app that gives Hermes Agent a proper interface. One place for everything.
+
+What is inside:
+↳ Auto install and setup, no terminal needed
+↳ Streaming chat with token tracking
+↳ Multiple agent profiles
+↳ Memory you can actually see and edit
+↳ 14 tool categories including web, browser, image gen, and voice
+↳ Scheduler for automated tasks
+↳ 16 messaging gateways including Telegram, WhatsApp, Discord, Slack, and Signal
+↳ Full conversation history with search
+↳ Backups and logs in one settings screen
+
+Works with Anthropic, OpenAI, Gemini, Grok, Groq, Ollama, and more.
+Hermes Agent is the brain. Hermes Desktop is the cockpit.
+
+Free. Open source. Mac, Windows, and Linux.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/PrajwalTomar_/status/2061092845411594546
+HANDLE: PrajwalTomar_
+DISPLAY_NAME: Prajwal Tomar
+DATE: 2026-05-31
+PROJECT: claude-code
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+WAIT. This is actually insane.
+
+A solo dev just won the Anthropic hackathon, shipped a working product in 8 hours with Claude Code, and walked away with $15,000.
+
+Then he open-sourced the entire stack.
+
+153,000 stars on GitHub. Here's full setup:
+
+→ 38 specialized agents (planner, security reviewer, debugger, code reviewer)  
+→ 156 skills loaded on demand (/plan, /tdd, /security-scan, /quality-gate)  
+→ 72 custom slash commands  
+→ AgentShield: 1,282 security tests across CLAUDE .md, MCP configs, hooks, skills  
+→ 3 Opus 4.6 agents running red-team pipelines (Attacker, Defender, Auditor)  
+→ Continuous learning layer that builds confidence across sessions  
+→ Coverage across 12 language ecosystems
+
+This is what Claude Code looks like when someone treats it like infrastructure instead of a chatbot.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Teknium/status/2061098754909012436
+HANDLE: Teknium
+DISPLAY_NAME: Teknium 🪽
+DATE: 2026-05-31
+PROJECT: hermes-agent
+KIND: advice
+STANCE: neutral
+VERBATIM_BEGIN
+Yep 
+
+`hermes skills config`
+
+disable em all if ya like
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/akhilesh9235/status/2061266485385859283
+HANDLE: akhilesh9235
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-01
+PROJECT: claude-code
+KIND: advice
+STANCE: positive
+VERBATIM_BEGIN
+Most people use Claude Code like a basic AI assistant.
+
+But power users know the real advantage comes from mastering the commands behind the workflow.
+
+Here are 26 essential Claude Code commands every developer, builder, and AI workflow operator should know 👇
+
+━━━━━━━━━━━━━━━
+SESSION & WORKFLOW CONTROL
+━━━━━━━━━━━━━━━
+
+🔹 /clear → Reset conversation history instantly
+🔹 /resume → Continue previous coding sessions without losing context
+🔹 /branch → Create alternate conversation paths for experiments
+🔹 /rewind → Jump back to earlier checkpoints in your workflow
+🔹 /rename → Organize sessions with custom names
+🔹 /export → Save chats, outputs, and project discussions
+
+These commands make long AI-assisted projects far easier to manage.
+
+━━━━━━━━━━━━━━━
+MODEL & TOKEN MANAGEMENT
+━━━━━━━━━━━━━━━
+
+🔹 /model → Switch between Claude models depending on task complexity
+🔹 /cost → Estimate current session spending
+🔹 /usage → Track model and token usage
+🔹 /extra-usage → Detailed analytics for optimization
+
+Small monitoring habits can dramatically reduce wasted tokens and API costs.
+
+━━━━━━━━━━━━━━━
+PROJECT INITIALIZATION
+━━━━━━━━━━━━━━━
+
+🔹 /init → Start Claude Code inside a project directory
+🔹 /memory → Store persistent project instructions and context
+🔹 /add-dir → Include extra folders in the working environment
+🔹 /config → Modify project-level settings and preferences
+
+This is where Claude starts behaving more like an actual coding teammate.
+
+━━━━━━━━━━━━━━━
+CODE OPERATIONS & REVIEW
+━━━━━━━━━━━━━━━
+
+🔹 /diff → Compare generated changes against your codebase
+🔹 /security-review → Scan code for vulnerabilities and risky patterns
+🔹 /plan → Generate structured implementation roadmaps
+🔹 /permissions → Control file access permissions safely
+🔹 /compact → Compress project context for better efficiency
+
+These commands help maintain clean, scalable AI-assisted development workflows.
+
+━━━━━━━━━━━━━━━
+AGENTS & EXTENSIONS
+━━━━━━━━━━━━━━━
+
+🔹 /agents → View specialized AI agents
+🔹 /skills → Add or manage agent capabilities
+🔹 /plugin → Manage installed plugins
+🔹 /reload-plugins → Refresh plugin configurations
+🔹 /mcp → Connect external tools using Model Context Protocol
+
+This layer unlocks automation beyond simple prompting.
+
+━━━━━━━━━━━━━━━
+INTERFACE CUSTOMIZATION
+━━━━━━━━━━━━━━━
+
+🔹 /theme → Change terminal appearance
+🔹 /color → Customize terminal color schemes
+
+Because developer experience matters too.
+
+The biggest productivity jump in AI coding doesn’t come from better prompts alone.
+
+It comes from learning how to control the entire workflow system around the model.
+
+❤️ Like
+🔁 Retweet
+🔖 Bookmark
+
+Follow @akhilesh9235 for more AI Posts
+
+#AI #ArtificialIntelligence #AISkills #AIAgents #RAG #LLM #PromptEngineering
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/mikenevermiss/status/2061401069339431390
+HANDLE: mikenevermiss
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-01
+PROJECT: claude-code
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Anthropic Engineer:
+
+“You’re not supposed to watch Claude Code work. You’re supposed to wake up and review what it shipped.”
+
+In 22 minutes she builds the entire workflow live on camera.
+
+Most people close their terminal and everything stops.
+
+This setup keeps shipping while you sleep.
+
+Watch the video, then save the exact setup below:
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/eng_khairallah1/status/2061417057665847411
+HANDLE: eng_khairallah1
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-01
+PROJECT: claude-code
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Boris Cherny, the creator of Claude Code at Anthropic, just explained how he runs thousands of agents from his phone while he sleeps
+
+in this talk he breaks down exactly how he manages thousands of agents from his phone:
+
+- the 14% you lose to CLAUDE.md before typing a word
+- the architecture behind running a few thousand agents overnight
+- why the system matters more than the tool
+- the knowledge structure that makes everything findable, connected, and useful
+
+if you've been using Claude for months and every conversation still starts from scratch with zero memory and zero context, you don't have a system. you have a chat history
+
+instead of another show tonight, watch this
+
+make sure to bookmark it before it gets lost in your feed
+
+the guide is in the article below
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/omerokumusx/status/2061713689166704742
+HANDLE: omerokumusx
+DISPLAY_NAME: Omer Okumus
+DATE: 2026-06-02
+PROJECT: antigravity
+KIND: community_discussion
+STANCE: neutral
+VERBATIM_BEGIN
+Is Gemini CLI documentation valid for Antigravity CLI?  
+
+@JackWoth98
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/JackWoth98/status/2061715285594292345
+HANDLE: JackWoth98
+DISPLAY_NAME: Jack Wotherspoon
+DATE: 2026-06-02
+PROJECT: antigravity
+KIND: advice
+STANCE: neutral
+VERBATIM_BEGIN
+No, Antigravity CLI has it own documentation on Antigravity site  
+
+https://antigravity.google/docs/cli-overview
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/NousResearch/status/2061843507417944552
+HANDLE: NousResearch
+DISPLAY_NAME: Nous Research
+DATE: 2026-06-02
+PROJECT: hermes-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+The next evolution of Hermes Agent is here! 
+
+Introducing Hermes Desktop: everything you love about Hermes, now native on your machine.
+
+First demoed in Jensen's GTC keynote, it's now in public preview.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/JackWoth98/status/2061853206515167466
+HANDLE: JackWoth98
+DISPLAY_NAME: Jack Wotherspoon
+DATE: 2026-06-02
+PROJECT: antigravity
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Start a conversation in Antigravity and pick up where you left off in Antigravity CLI 💫
+
+As of yesterday's v1.0.4 release of the CLI you can now easily resume your sessions from @antigravity !
+
+Just run /resume and then tab over to the Antigravity tab to see and import your conversations. 🪄
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Agent0ai/status/2061862437679161385
+HANDLE: Agent0ai
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-02
+PROJECT: agent-zero
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Also in v1.19:
+
+Computer Use is stronger across Linux, Windows, and macOS, including background computer use.
+
+document_query now uses Liteparse for light-speed PDF parsing and better document Q&A.
+
+Useful for real work, not just demos.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/kevinhou22/status/2061880709418213776
+HANDLE: kevinhou22
+DISPLAY_NAME: Kevin Hou
+DATE: 2026-06-02
+PROJECT: antigravity
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+Why did we split the IDE from the Agent Manager?
+
+We launched Antigravity 2.0 at Google I/O a couple weeks ago. We made some bold choices and I wanted to share my thoughts...
+
+[1/4] Adapt or Die
+
+I’ve been working in the AI dev tool space for the last three years. Three years is an eternity in this space and I can confidently say that I’ve seen tools, startups, and workflows come and go. Many of the features our team helped pioneer such as autocomplete and RAG-based chat have fizzled away.
+
+Every few months there is a paradigm shift that redefines the AI developer tool landscape. Miss it, and you slowly fade into the backdrop. Time it well and you stay in the game. Invent it and you get catapulted into the spotlight. It’s a fast-paced, unforgiving industry. I love it. The team loves it.
+
+What do I mean by paradigm shifts?
+
+In the last three years, we’ve gone from: Autocomplete → Chat → Agents → Multi-Agents
+
+Each phase forced us to redefine ourselves: Codeium → Windsurf → Antigravity.
+
+The reason why I tell you this is because as painful as it is, we have to continuously evolve our products. The model and the product are increasingly synergistic. The product is only as good as the model and the model gets better with the product. AI technology moves too quickly to keep the status quo.
+
+For example, we deleted chat in Windsurf when we launched in November 2024 (x [dot] com/kevinhou22/status/1892246469303820745). It was a controversial move at the time since users only knew about chat and had never used an agent. But we trusted that the “future is agentic” and I’m glad we did not back down.
+
+My goal — our team’s goal — is to give our users the best dev tool on the market to let them build beyond their wildest dreams.
+
+To give our users the best product, the product must evolve.
+
+[2/4] Current Shift: Agents → Multi-Agents
+
+At Windsurf, we introduced the first agentic IDE. That was in November 2024. We’ve come a long way since then. Models have gotten stronger, users have gotten more tenacious, and expectations are higher than ever. It’s no longer enough to run just one agent. You are now an orchestrator of many agents: multiple conversations or agents spawning their own subagents.
+
+To bring this multi-agent paradigm to our users at Antigravity, we introduced Antigravity 1.0. Highly capable models made it possible for agents to do more complex work and work for longer.
+
+The benefit of working at a lab is seeing around the corner and molding the model to fit the product. We worked with the Gemini team for months before we felt that Antigravity was ready for prime time.
+
+On November 18, 2025, we released Antigravity 1.0 alongside Gemini 3 Pro. It had two surfaces:
+1) AGY IDE
+2) Agent Manager
+
+Two surfaces, bundled into one app.
+
+Some users loved both. Some only used one. Some just needed Gemini to get better.
+
+[3/4] Now: Better Models + Doubling Down
+
+Over the last 6 months, we’ve been working with the research team to help improve Gemini’s coding and agentic capabilities. We’ve also been dramatically improving our internal version of Antigravity, and as Sundar announced (youtube [dot] com/live/wYSncx9zLIU?si=8nXDk_WhvoCvx12k&t=1504), we're processing over 3 trillion tokens a day. Additional breakthroughs in model research enabled Gemini 3.5 Flash — a lightweight model at the Pareto frontier (performance vs. cost & speed).
+
+Based on internal usage, we knew there were two camps: IDE and Agent Manager (uppercase).
+
+Antigravity IDE is a great product. Good because it’s familiar. Good because you can manually edit your code. Great because of its agent.
+
+We started exporting our agent to other surfaces to build an ecosystem of tools backed by the same powerful Antigravity agent: IDE, Agent Manager, SDK, CLI. That ecosystem is what we announced on stage last week at Google I/O. But Agent Manager was pulling away.
+
+Agent Manager usage was increasing in dramatic fashion and we knew we wanted to double down on this experience. Both technical and non-technical folks are relying on Antigravity every day to not only write code, but also write docs, do competitive research, design prototypes, conduct user simulations, summarize 1:1s, learn new concepts, file expenses, the list goes on and on…
+
+So we made a bold choice to split the two surfaces into two apps.
+
+We now have two applications:
+1) Antigravity: unapologetically agent-first
+2) Antigravity IDE: the editor you know and love
+
+You can choose which product you want to use. You can switch between the products. Same agent, different surfaces.
+
+Now, I’ll admit we botched some details about the migration and we’re working day and night to make it right. We have plenty of exciting features in the pipeline and I’m excited for you all to get your hands on them.
+
+[4/4] Competition = Users Will Win
+
+Times are changing rapidly. AI dev tools are quickly becoming agent-first. Users are managing tens if not hundreds of agents. Antigravity 2.0 is our way of giving this power to our users.
+
+You can take a look at the competitive landscape and see this for yourself. IDE’s trying to evolve to a world where work is the product and not the code files. Labs releasing agent-first products, exploiting the model <> product synergies. Users spending more and more time and tokens in agent managers (lowercase). Antigravity Agent Manager (uppercase) might’ve been first, but ideas are cheap these days. The leader will not necessarily be the winner and products + models will be constantly evolving to meet growing expectations.
+
+Ultimately, users will win.
+
+—
+
+I want Google Antigravity to be the place where developers build. I also want Antigravity to be the place for knowledge work to get done. Code is becoming an implementation detail. People from all walks of life are and will use code to solve their problems, without necessarily knowing they are “coding”.
+
+Antigravity is at the frontier and will continue to innovate for you.
+
+Thanks for helping shape the future of the product. Keep the feedback coming. More soon.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Andre_Gusmao/status/2061886820527358066
+HANDLE: Andre_Gusmao
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-02
+PROJECT: gemini-cli
+KIND: advisory_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+Google is sunsetting Gemini CLI and folding it into Antigravity CLI — their new multi-agent terminal tool built in Go with async workflows and unified backend.
+
+Millions of users, 100k GitHub stars... and it's already being replaced. Oof.
+
+Transition hits June 18.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/OpenAI/status/2061887650391625870
+HANDLE: OpenAI
+DISPLAY_NAME: OpenAI
+DATE: 2026-06-02
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+We’re making Codex more useful for your work by expanding plugins beyond individual tools.
+
+These plugins turn Codex into a specialist for a specific role with a single install, no coding required.
+
+Codex can access 62 popular apps and 110 skills for work across sales, data analytics, creative production, product design, and public equity investing.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/billionaireops/status/2061908924102500730
+HANDLE: billionaireops
+DISPLAY_NAME: Billionaire Protocol
+DATE: 2026-06-02
+PROJECT: agent-flywheel
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Going bizzerk. I tried your agent flywheel + ntm + beads today on 2 vps' with local driver /goal agent. What a marveled creation. Thanks for the cracked infra
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/antigravity/status/2061928539499421968
+HANDLE: antigravity
+DISPLAY_NAME: Google Antigravity
+DATE: 2026-06-02
+PROJECT: antigravity
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Keep your Antigravity workflow unified. Sync conversations in Antigravity 2.0 with Antigravity CLI by simply confirming the import.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/_mohansolo/status/2061960989143441735
+HANDLE: _mohansolo
+DISPLAY_NAME: Varun Mohan
+DATE: 2026-06-02
+PROJECT: antigravity
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+We’ve rolled out a new version of Gemini 3.5 Flash in Antigravity that boasts much less and has higher endurance on harder tasks. Thanks for all of the feedback on the model. Keep it coming, we will act quickly across the stack to make the experience even better.
+
+We’ve also gone ahead and reset Gemini rate limits for all users so you can start running this new model immediately.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Alexia476334561/status/2062187447535177763
+HANDLE: Alexia476334561
+DISPLAY_NAME: みなみ アレクシア
+DATE: 2026-06-03
+PROJECT: gemini-cli
+KIND: criticism
+STANCE: negative
+VERBATIM_BEGIN
+github copilot，claude code，codex，antigravity全都涨价限流，gemini-cli本月内停用oauth登录。
+
+好日子要来了（
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/sourabhkapure/status/2062199418502418651
+HANDLE: sourabhkapure
+DISPLAY_NAME: Sourabh Kapure
+DATE: 2026-06-03
+PROJECT: none
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+Yo chat, we cool here? 
+
+Codex > Claude ~ Opencode > Cursor > antigravity > Gemini cli
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/NikMilanovic/status/2062218906497061053
+HANDLE: NikMilanovic
+DISPLAY_NAME: Nik
+DATE: 2026-06-03
+PROJECT: codex
+KIND: adoption_signal
+STANCE: neutral
+VERBATIM_BEGIN
+🚨 JUST IN: @OpenAI  is expanding its Codex agent beyond coding and into finance, banking, and sales – moving deeper into the enterprise market where it competes with Anthropic.
+
+On Tuesday, OpenAI unveiled Codex plugins built for specific tasks: public equity investment, banking, and sales, among other roles.
+
+Legal and corporate finance are planned next, and Codex is being integrated into @ChatGPTapp itself.
+
+The scale is already substantial.
+
+Codex launched last year and now has 5M+ weekly users, and by OpenAI's own count, about 20% aren't developers. It's reaching well beyond the engineers it was built for.
+
+There's a clear business goal behind it.
+
+OpenAI started as a consumer company and now says it wants half of revenue from enterprise customers by the end of this year. Expanding Codex into professional work is part of how it plans to get there.
+
+It also puts OpenAI in more direct competition with @AnthropicAI , which has previously rolled out its own agents and plugins for financial services and legal tasks.
+
+Both companies built early momentum selling AI tools to streamline software development, and both are now extending into higher-value professional work – while reportedly racing to go public as soon as this year.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ubermetroid/status/2062224255065231491
+HANDLE: ubermetroid
+DISPLAY_NAME: Jeryd
+DATE: 2026-06-03
+PROJECT: antigravity
+KIND: bug_report
+STANCE: mixed
+VERBATIM_BEGIN
+Can agy prompt me when I need to input sudo? Like Gemini cli can.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/pdxweb/status/2062226976845500598
+HANDLE: pdxweb
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-03
+PROJECT: antigravity
+KIND: community_discussion
+STANCE: neutral
+VERBATIM_BEGIN
+Is there an Antigravity CLI extension -- seeing as Gemini CLI is going away?
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/alessandro_a0/status/2062242760426405902
+HANDLE: alessandro_a0
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-03
+PROJECT: agent-zero
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Build your own durable LLM Wiki for free.
+
+No Docker volumes. No API keys. You don't even need to know what Obsidian is. 
+
+Sign in with ChatGPT or X, and jump into Agent Zero.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/akizakura0521/status/2062253958756966827
+HANDLE: akizakura0521
+DISPLAY_NAME: 秋桜🍥♨🎮️
+DATE: 2026-06-03
+PROJECT: gemini-cli
+KIND: community_discussion
+STANCE: neutral
+VERBATIM_BEGIN
+Gemini CLIが終わってAntigravity CLIになるのか  
+Gemini CLIは全然使ってなかったな(´･ω･`)
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/_mohansolo/status/2062254895475138873
+HANDLE: _mohansolo
+DISPLAY_NAME: Varun Mohan
+DATE: 2026-06-03
+PROJECT: antigravity
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+We’ve shipped a new release for the Antigravity IDE that significantly reduces cases of memory usage blowing up. We’ve been making a huge push to improve performance and reliability. The feedback is very helpful, we’ll get to all of it!
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/cansar/status/2062266176466739576
+HANDLE: cansar
+DISPLAY_NAME: Can Sar
+DATE: 2026-06-03
+PROJECT: codex
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+A personal update: I’m joining OpenAI to work on Codex, the best agent app in the industry.
+
+After years building consumer products, my obsession since September has been to make Block one of the most AI-native engineering orgs in the world.
+
+I’m proud of what we’ve built: faster Eng velocity with RPI in October, an internal multi-harness ADE in January, Slack-based cloud agents in February, and AI woven into every step of product development. The team is just getting started.
+
+Along the way I tried almost every agent orchestrator out there — 30+ over the past year. Codex felt special from the day it launched. Lately, it’s started to point at something much bigger.
+
+What used to be scattered across prompts, tabs, tools, files, and handoffs is starting to come together in one place. The app is becoming the single surface for knowledge work — letting you accomplish more than you ever thought possible, while staying calm and focused.
+
+You can already see the early signs: making a slideshow and editing it right there, working inside a custom site built just for you and your team, handing off to the browser and the computer while you watch it go.
+
+Getting this right takes powerful models. But it also takes taste, product thinking, and real care for the person on the other end. You see that in the product, and you feel it the moment you talk to the team.
+
+I couldn’t be more excited to join the Codex team. Together we’re going to build the future of computing and knowledge work, and we’re going to build it for you.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/_guillecasaus/status/2062275053106962853
+HANDLE: _guillecasaus
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-03
+PROJECT: claude-code
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+🚨 Han creado el sistema más completo para Claude Code.
+
+27 agentes, 64 skills y 33 comandos en un solo setup optimizado tras 10 meses construyendo productos reales.
+
+Es gratis, 100% open-source y funciona con múltiples herramientas.
+
+Aquí te explico todo lo que debes saber 👇
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/silver_samyak97/status/2062286483722252757
+HANDLE: silver_samyak97
+DISPLAY_NAME: Samyak Jain
+DATE: 2026-06-03
+PROJECT: codex
+KIND: prediction
+STANCE: neutral
+VERBATIM_BEGIN
+AI news worth watching:
+
+Codex is no longer just a coding-agent story. OpenAI says it has 5M+ weekly users, and knowledge workers are now ~20% of usage.
+
+My take: the next fight is who owns the workflow around docs, data, email, and decisions.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ClaudeCodeLog/status/2062288852740386830
+HANDLE: ClaudeCodeLog
+DISPLAY_NAME: Claude Code Changelog
+DATE: 2026-06-03
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: neutral
+VERBATIM_BEGIN
+Claude Code 2.1.162 is now available.
+
+28 CLI changes
+
+Highlights:
+• Explicit WebFetch(domain:NAME) deny/ask/allow rules now override preapproved hosts, enforcing access control
+• Startup uses in-memory config if config dir is read-only, avoiding a blank-screen hang and surfacing errors
+• Edit tool now makes exact string replacements in files, preventing unintended partial or pattern edits
+
+Complete details in thread ↓
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ClaudeCodeLog/status/2062288863528165527
+HANDLE: ClaudeCodeLog
+DISPLAY_NAME: Claude Code Changelog
+DATE: 2026-06-03
+PROJECT: claude-code
+KIND: advisory_discussion
+STANCE: neutral
+VERBATIM_BEGIN
+Claude Code CLI 2.1.162 changelog:
+
+Fixes:
+• Fixed a silent startup hang when the config directory is read-only or unwritable — Claude Code now starts with in-memory config and surfaces startup errors instead of showing a blank screen
+• Fixed WebFetch permission rules not being applied to built-in preapproved domains; explicit WebFetch(domain:...) deny/ask/allow rules now take precedence over the preapproved-host auto-allow
+• Fixed Windows permission rules never matching when spelled with backslashes (~\, \\server\share) or case-variant paths, and Read deny rules not hiding files from Glob/Grep results
+• Fixed an interrupt (Esc) sent at the very start of a turn being silently dropped in stream-json/SDK sessions, leaving the turn running with no "Interrupted" feedback
+• Fixed API 400 no low surrogate in string errors for classifier side-queries and MCP server descriptions containing emoji near a truncation boundary
+• Fixed MCP per-server timeout config values below 1000 ms being floored to a 1-second watchdog that aborted every tool call; sub-1000 ms values are now ignored (falling back to MCP_TOOL_TIMEOUT or default), and claude mcp get annotates them accordingly
+• Fixed the LSP tool's workspaceSymbol operation returning no results; it now accepts a query parameter and passes it to the language server
+• Fixed claude agents cutting live status text (tool args, replies, prompts, exec output) at 60–120 columns on wide terminals; the status detail now uses the full terminal width
+• Fixed claude agents truncating long session names at 40 columns; the name column now grows with terminal width
+• Fixed claude agents attach occasionally bouncing straight back to the session list on the first try after a background-service restart
+• Fixed claude agents Ctrl+V image paste doing nothing in the dispatch input and the session reply box; pasting with no image now shows a hint
+• Fixed backgrounding a session with ← silently losing the conversation when the background service cannot start; the session stays in the list as a failed row you can wake with Enter
+• Fixed replies from the agents view that fail to send being lost; they are now queued for delivery on the next session start
+• Fixed cross-session messaging (SendMessage) silently breaking when CLAUDE_CODE_TMPDIR or ＄TMPDIR points at a deep directory
+• Fixed opening a running background session from claude agents stalling for 5 seconds before attaching
+
+Improvement:
+• Improved background service startup and claude update verification to wait out endpoint-security scanning of new binaries instead of failing after 5 seconds
+
+Removal:
+• Removed the "Claude in Chrome enabled" and "marketplace installed" startup messages; model auto-updates and the team-onboarding tip now show as quiet notices under the logo
+
+Security/safety change:
+• claude agents --json now includes waitingFor showing what a waiting session is blocked on (e.g. permission prompt)
+
+Other changes:
+• --tools: explicitly listing Grep/Glob now provides the dedicated search tools on native builds with embedded search (previously these names were silently ignored)
+• /effort now confirms when your chosen level will persist as the default for new sessions
+• Clicking a slash command in the autocomplete menu now fills it into your prompt instead of running it immediately; press Enter to run
+• Remote Control now shows as a persistent footer pill (with a link to the session) instead of a startup message
+• Renamed Windsurf to Devin Desktop in the /ide menu, /terminal-setup, and /scroll-speed, following the editor's rebrand
+• Quieter startup: notices group by severity, and session info and announcements share a single line per launch
+• Startup warnings rewritten to be shorter and clearer, each with a concrete fix
+• Launch-prompt warnings (deep link/pre-filled prompt) now stay pinned below the input until you act instead of scrolling away
+• Failed turns now show a compact warning line instead of a multi-line red error block
+• Background dispatch spawn failures now report the error class name when no errno is available
+
+Source:
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/davidcv5/status/2062297560925024583
+HANDLE: davidcv5
+DISPLAY_NAME: David Cruz
+DATE: 2026-06-03
+PROJECT: codex
+KIND: bug_report
+STANCE: negative
+VERBATIM_BEGIN
+Codex app is not updating usage today. I noticed mine stuck at 55% after doing a lot of work.
+
+Looked suspicious, opened the codex cli, /status, and it shows 26% left on my 20x until Sunday 😞
+
+Now it's 20%, so I guess I'll stop early this week.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/reach_vb/status/2062302692542648490
+HANDLE: reach_vb
+DISPLAY_NAME: Vaibhav (VB) Srivastav
+DATE: 2026-06-03
+PROJECT: codex
+KIND: advice
+STANCE: positive
+VERBATIM_BEGIN
+Codex tip: one of the easiest ways to make Codex much more powerful is openai/plugins  
+there are now 100+ plugins for everything from building apps to working with Figma, Notion, Vercel, and more
+
+the best part: you do not even need to know which ones exist  
+open Codex and ask:  
+“take a look at openai/plugins, my repo, and how I work. which plugins should I install and set up?”  
+Codex will figure out what is useful, install the right ones, and make itself more powerful
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/HiPaperClip/status/2062305033761255777
+HANDLE: HiPaperClip
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-03
+PROJECT: paperclip
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+From Stripe card to running agent — in under 5 minutes.
+
+Sign up → workspace ready → first agent live. No keys. No config. No infra.
+
+https://usepaperclip.app/?utm_source=social&utm_medium=social&utm_campaign=paperclip-2026-06-03-thursday-tip-how-to-carousel-step-by-step-from-str
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2062307575870402862
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw🦞
+DATE: 2026-06-03
+PROJECT: openclaw
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+We have over 1300 people on the waitlist for today’s OpenClaw event - it will be live-streamed on Twitch and Discord tho! https://luma.com/OpenClaw-GitHub
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/DeMoDLLC/status/2062308430015312077
+HANDLE: DeMoDLLC
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-03
+PROJECT: claude-code
+KIND: bug_report
+STANCE: negative
+VERBATIM_BEGIN
+Letting the Claude code remote run on my laptop with no sandbox and it stopped responding
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2062308506632601857
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw🦞
+DATE: 2026-06-03
+PROJECT: openclaw
+KIND: maintainer_intent
+STANCE: neutral
+VERBATIM_BEGIN
+Starting with June, we will use YYYY. MM. PATCH (instead of DAY) in preparation of LTS-releases.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/NousResearch/status/2062308774350561590
+HANDLE: NousResearch
+DISPLAY_NAME: Nous Research
+DATE: 2026-06-03
+PROJECT: hermes-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+The Hermes Web Dashboard got a major overhaul: it is now a feature-complete admin panel that you can manage entirely from your browser.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/dotey/status/2062309301901721814
+HANDLE: dotey
+DISPLAY_NAME: 宝玉
+DATE: 2026-06-03
+PROJECT: claude-code
+KIND: bug_report
+STANCE: negative
+VERBATIM_BEGIN
+请教：Claude Code （Desktop）总是弹窗要确认权限，有没有办法避免总是要 Allow，很烦人，已经启用了 Bypass Permissions
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/onsails/status/2062313575096717519
+HANDLE: onsails
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-03
+PROJECT: codex
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Everyone fights Codex vs Claude Code. I use both for different parts of a big milestone.  
+
+Claude Opus 1M context holds the whole thing. Specs, plans, decisions, open questions. All in one place. Including the review.  
+
+The actual coding goes to Codex. Headless, in an isolated worktree.  
+
+So I shipped codex-sprint to wire it into one sprint flow.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/onsails/status/2062313587033739707
+HANDLE: onsails
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-03
+PROJECT: codex
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Per stage: brainstorm a spec. Write a plan. Isolate a worktree. Codex implements. Headless claude /code-review --fix loops the diff until clean. Verify. Commit. Land. Update the sprint doc. Next stage.
+
+Main context only holds the doc. No diffs, no build logs.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/cherry_mx_reds/status/2062315233226399904
+HANDLE: cherry_mx_reds
+DISPLAY_NAME: Tak 🦞
+DATE: 2026-06-03
+PROJECT: codex
+KIND: criticism
+STANCE: mixed
+VERBATIM_BEGIN
+in the codex app go to plugins, then, from the top right, press manage and then finally, gasp in horror. I apparently have  163 skills enabled! no wonder my codex is 🤪 lately...
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Teknium/status/2062315666439655499
+HANDLE: Teknium
+DISPLAY_NAME: Teknium 🪽
+DATE: 2026-06-03
+PROJECT: hermes-agent
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+Major overhaul of the Hermes Dashboard 
+
+It should now surface a complete management plane. Goal is to reduce or eliminate any needs to run a CLI command directly in your terminal.
+
+Let me know if we're missing anything!
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/yyamada_bigtree/status/2062321767314825722
+HANDLE: yyamada_bigtree
+DISPLAY_NAME: yyamada @Rimo
+DATE: 2026-06-03
+PROJECT: claude-code
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+github actionsのworkflow直して、みたいな指示でも発動しちゃうのが気になってたので、ありがたい
+claude codeはこの辺りのユーザーフィードバックへの対応が本当に早い
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/franciskhanchar/status/2062322112069791933
+HANDLE: franciskhanchar
+DISPLAY_NAME: Francisk Hanchar
+DATE: 2026-06-03
+PROJECT: openclaw
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Microsoft just launched Scout, an always-on AI agent that watches your screen and takes action on its own. But the real founder takeaway? It runs on OpenClaw, open-source. The moat was never the AI, it’s the distribution. 👀
+
+#microsoft #ai #aiagents #openclaw #startups
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/solidstate_cc/status/2062322649628295378
+HANDLE: solidstate_cc
+DISPLAY_NAME: Solid State
+DATE: 2026-06-03
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Every ClawHub release gets scanned. Fail, and your skill stays hidden.
+#1 cause: a credential the frontmatter never declared.
+publish-audit. The audit before you publish. Not after the rejection.
+Free. MIT-0. First skill it audited: itself.
+https://clawhub.ai/solidstate/skills/publish-audit
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/LucaCaponeX/status/2062322914700018161
+HANDLE: LucaCaponeX
+DISPLAY_NAME: Luca Capone | Vibe Coder
+DATE: 2026-06-03
+PROJECT: claude-code
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Funny timing. I couldn't write a line of code 18 months ago and Claude Code's been my whole stack ever since. Wild that approval committees move slower than someone learning to ship on lunch breaks.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/solidstate_cc/status/2062322992986697732
+HANDLE: solidstate_cc
+DISPLAY_NAME: Solid State
+DATE: 2026-06-03
+PROJECT: openclaw
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+One line to install on @openclaw:
+openclaw skills install publish-audit
+No network calls. No credentials. It reads files and reasons. Scan: Pass, first upload.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/LufzzLiz/status/2062323273233555932
+HANDLE: LufzzLiz
+DISPLAY_NAME: 岚叔
+DATE: 2026-06-03
+PROJECT: openclaw
+KIND: criticism
+STANCE: mixed
+VERBATIM_BEGIN
+openclaw也有重复工作转skill的能力了，不过看起来有点繁琐，我更希望自动化一些，不要让我审查提案，而是直接让我看结果👀
+VERBATIM_END
+===END===

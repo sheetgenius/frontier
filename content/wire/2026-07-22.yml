@@ -1,0 +1,120 @@
+schema_version: bitter.frontier_wire.v0
+wire_id: "2026-07-22"
+date: 2026-07-22
+lede: >
+  The week prompt injection reached the terminal emulator, an agent CLI got
+  caught uploading local files, and two of the field's better writers
+  independently argued that reading old code just got cheap.
+items:
+  - title: "From Indirect Prompt Injection to DNS Exfiltration in macOS Terminal"
+    url: https://embracethered.com/blog/posts/2026/macos-terminal-dillma-dns-exfil-ansi-escape-code-fix/
+    source: Johann Rehberger
+    date: 2026-07-16
+    tier: relayed
+    take: >
+      The attack does not need the agent to be tricked into running anything. It
+      needs the terminal to render what the agent printed. ANSI escape sequences
+      in model output, a DNS lookup, data gone. If your threat model stops at
+      the agent's tool calls, this is the boundary you were not modelling.
+
+  - title: "The Pulse: Grok's CLI caught uploading all your local files to the cloud"
+    url: https://newsletter.pragmaticengineer.com/p/the-pulse-groks-cli-caught-uploading
+    source: Pragmatic Engineer
+    date: 2026-07-16
+    tier: relayed
+    take: >
+      We have not adjudicated this and it is not in our record. Flagged because
+      wholesale local-file exfiltration by a coding CLI is the largest possible
+      version of the gap this publication tracks, and because it is on next
+      cycle's check list rather than in this one's findings.
+
+  - title: "Antigravity CLI 1.1.3 is out"
+    url: https://x.com/shengzheyao/status/2077576699571741008
+    source: "@shengzheyao"
+    date: 2026-07-16
+    tier: checked
+    receipt: https://github.com/google-antigravity/antigravity-cli/blob/1.1.4/CHANGELOG.md
+    take: >
+      The post says headless mode "no longer hangs or silently auto-approves
+      tools that need permission." Two days later 1.1.4's changelog recorded
+      that headless runs had only then begun honouring settings.json at all --
+      not permissions, not file access, not sandbox mode. The announcement sat
+      on top of a mode that enforced nothing, and 1.1.4 got no post.
+
+  - title: "The Archaeologist's Copilot"
+    url: https://martinfowler.com/articles/archaeologist-copilot.html
+    source: martinfowler.com
+    date: 2026-07-16
+    tier: relayed
+    take: >
+      On agents as a tool for understanding inherited code rather than producing
+      new code. Pairs with Willison's piece four days later almost as a
+      call-and-response: the cheap thing this year is not writing, it is reading
+      what somebody else wrote.
+
+  - title: "Reverse-engineering is cheap now"
+    url: https://simonwillison.net/2026/Jul/20/cheap-reverse-engineering/
+    source: Simon Willison
+    date: 2026-07-20
+    tier: relayed
+    take: >
+      The other half of the same argument, from someone who keeps doing it and
+      publishing the results. Worth reading against every "what became possible"
+      claim a vendor made this month, because this one arrives with worked
+      examples instead of a benchmark.
+
+  - title: "Claude Code uses Bun written in Rust now"
+    url: https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/
+    source: Simon Willison
+    date: 2026-07-19
+    tier: relayed
+    take: >
+      A runtime change in the tool most of this publication's rows are about.
+      Mostly here because the detail is the kind operators discover through a
+      startup regression rather than a release note.
+
+  - title: "A Fireside Chat with Cat and Thariq from the Claude Code team"
+    url: https://simonwillison.net/2026/Jul/21/cat-and-thariq/
+    source: Simon Willison
+    date: 2026-07-21
+    tier: relayed
+    take: >
+      An annotated transcript, which is the format more of this field should
+      use. The load-bearing claim inside it -- that Claude Code's system prompt
+      shrank by roughly 80% for newer models -- is the vendor's own account and
+      the changelog records no such reduction across v2.1.179 to v2.1.220. The
+      direction is receipted; the magnitude is theirs.
+
+  - title: "Pushing software engineering limits with napkin math"
+    url: https://newsletter.pragmaticengineer.com/p/pushing-software-engineering-limits
+    source: Pragmatic Engineer
+    date: 2026-07-21
+    tier: relayed
+    take: >
+      Estimation as the skill that survives. If an agent writes the code and you
+      review it, the question you have to answer fastest is whether the numbers
+      in front of you are the right order of magnitude. That is now a
+      load-bearing human capability rather than an interview exercise.
+
+  - title: "Everyone Should Know SIMD"
+    url: https://mitchellh.com/writing/everyone-should-know-simd
+    source: Mitchell Hashimoto
+    date: 2026-07-22
+    tier: relayed
+    take: >
+      Not an agent story, and that is why it is here. It is the counter-argument
+      to outsourcing all the typing: the parts of the machine worth
+      understanding do not stop being worth understanding because something
+      else can type them for you.
+
+  - title: "Claude Code 2.1.216: sandbox.filesystem.disabled"
+    url: https://x.com/ClaudeCodeLog/status/2079333123645485200
+    source: "@ClaudeCodeLog"
+    date: 2026-07-20
+    tier: checked
+    receipt: https://code.claude.com/docs/en/changelog
+    take: >
+      Forty CLI changes, and the one to read is a new setting that skips
+      filesystem isolation while keeping network egress control. That is a
+      legitimate configuration for some workloads and a foot-gun for others.
+      Know which one you are before you set it.
