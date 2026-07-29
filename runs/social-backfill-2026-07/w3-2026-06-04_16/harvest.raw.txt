@@ -1,0 +1,656 @@
+===POST===
+URL: https://x.com/emanncode/status/2062998116559630716
+HANDLE: emanncode
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-05
+PROJECT: gemini-cli
+KIND: criticism
+STANCE: negative
+VERBATIM_BEGIN
+Unpopular opinion:
+
+The lifespan of AI tools is getting ridiculous.
+One day you're happily using Gemini CLI…
+
+Next day your terminal casually tells you it’s dying on June 18 and you should move to Antigravity CLI.
+
+In 2026, keeping up with AI tools feels harder than keeping up with the models themselves.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/moonfarm_dev/status/2063627980706923007
+HANDLE: moonfarm_dev
+DISPLAY_NAME: Moonfarm 🇸🇪
+DATE: 2026-06-07
+PROJECT: gemini-cli
+KIND: criticism
+STANCE: negative
+VERBATIM_BEGIN
+Google kills gemini cli with over 100k github stars, in favor of their own closed source antigravity cli.
+
+Doesn't gemini cli get used by a lot of openclawers?
+
+RIP
+
+https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/moonfarm_dev/status/2063688686286299416
+HANDLE: moonfarm_dev
+DISPLAY_NAME: Moonfarm 🇸🇪
+DATE: 2026-06-07
+PROJECT: antigravity
+KIND: criticism
+STANCE: mixed
+VERBATIM_BEGIN
+Yeah I guess it makes sense in the end, although the antigravity cli is still missing a lot of features compared to gemini cli so I dont understand the rush 🤷‍♂️
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/gthimmes/status/2064056804552892619
+HANDLE: gthimmes
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-08
+PROJECT: gemini-cli
+KIND: advisory_discussion
+STANCE: negative
+VERBATIM_BEGIN
+Vendor risk used to mean "what if they raise the price." In 2026 it means "what if they delete the product." Gemini CLI got about a month's notice before it stops serving requests. Build your stack like every tool in it has a sunset date, because at least one of them does.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/pdxweb/status/2064127921779003810
+HANDLE: pdxweb
+DISPLAY_NAME: Christopher Carr
+DATE: 2026-06-08
+PROJECT: gemini-cli
+KIND: community_discussion
+STANCE: negative
+VERBATIM_BEGIN
+Gemini CLI is deprecated. They're pushing Antigravity CLI now.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/bcherny/status/2064327225504403752
+HANDLE: bcherny
+DISPLAY_NAME: Boris Cherny
+DATE: 2026-06-09
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Just landed nested subagent support in Claude Code
+Starting to experiment more with agents kicking off agents as a way to better manage context. Capped at depth=5 to start, going out in today’s release.
+Lmk what you think!
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/crepesupreme/status/2064337704201093413
+HANDLE: crepesupreme
+DISPLAY_NAME: Crepe Supreme
+DATE: 2026-06-09
+PROJECT: claude-code
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+Claude Code shipped nested subagent support, depth 5. An agent can now spawn an agent that spawns an agent, four layers down. Each invocation adds to the orchestration tab. Wrote on what recursive pipelines actually cost:
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/bcherny/status/2064402671898075579
+HANDLE: bcherny
+DISPLAY_NAME: Boris Cherny
+DATE: 2026-06-09
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Fable 5 is now available in Claude Code and Cowork
+Fable is the best model I have used for coding, by a wide margin. It is a big step up, enabling less prompts and steers, more efficient token use, better code quality, better tool use, more intelligent self-verification, longer running sessions, and higher trust & autonomy.
+Happy coding!
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/bcherny/status/2064405808532901933
+HANDLE: bcherny
+DISPLAY_NAME: Boris Cherny
+DATE: 2026-06-09
+PROJECT: claude-code
+KIND: advice
+STANCE: positive
+VERBATIM_BEGIN
+CLAUDE_CODE_NO_FLICKER=1 claude
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/doodlestein/status/2064494028171645003
+HANDLE: doodlestein
+DISPLAY_NAME: Jeffrey Emanuel
+DATE: 2026-06-09
+PROJECT: codex
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+I still use beads very extensively and use ntm for all my orchestration. It’s the best way I know of to be able to use Codex and CC together effectively.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/_halshin/status/2064896684749189280
+HANDLE: _halshin
+DISPLAY_NAME: Hal Shin
+DATE: 2026-06-11
+PROJECT: claude-code
+KIND: advice
+STANCE: positive
+VERBATIM_BEGIN
+If you ever get frustrated with Claude Code output getting messed up when you resize your terminal window, add this to your bashrc:
+
+export CLAUDE_CODE_NO_FLICKER=1
+
+This turns on full-screen rendering mode that re-renders your terminal on resize so your text stays nice and clean
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2065415971817283684
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw
+DATE: 2026-06-12
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Control UI starts faster and answers sooner: cached model metadata, no startup catalog wait, lazy slash commands, first-event tracing, and slow-reply diagnostics.
+https://docs.openclaw.ai/web/control-ui
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/doodlestein/status/2065480959462355408
+HANDLE: doodlestein
+DISPLAY_NAME: Jeffrey Emanuel
+DATE: 2026-06-12
+PROJECT: claude-code
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+I've been reluctant to "waste" my Fable usage on agent orchestration work, preferring to focus it on doing more theoretical and planning work. But I decided to try it today on a lark. Unsurprisingly, it's really good at swarm management (plus there are 3 Fable CCs in the swarm!).
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/blader/status/2066228765831950790
+HANDLE: blader
+DISPLAY_NAME: Siqi Chen
+DATE: 2026-06-14
+PROJECT: claude-code
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+after a few days with fable, going back to gpt 5.5 / opus 4.8 really makes those models feel like using gpt 3.5 or something
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/antigravity/status/2066588436748734796
+HANDLE: antigravity
+DISPLAY_NAME: Google Antigravity
+DATE: 2026-06-15
+PROJECT: antigravity
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Enhance your Antigravity CLI workflow with slash commands 🧵
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/bayeslord/status/2066618104457699620
+HANDLE: bayeslord
+DISPLAY_NAME: bayes
+DATE: 2026-06-15
+PROJECT: claude-code
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+Fascinating that a few days with Fable is making the subsequent days without it feel like an intelligence blackout
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/CodexReleases/status/2066629339287036036
+HANDLE: CodexReleases
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-15
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Codex CLI 0.140.0 is out.
+
+Highlights:
+- Added /usage views for daily, weekly, and cumulative account token activity
+- Permanent session deletion via `codex delete`, `/delete`, and app-server thread/delete (with confirmation)
+- `/import` for selectively importing setup, project configuration, and recent chats from Claude Code
+- Managed Amazon Bedrock API-key authentication and encrypted local storage for CLI and MCP OAuth credentials
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/NousResearch/status/2066647740801593377
+HANDLE: NousResearch
+DISPLAY_NAME: Nous Research
+DATE: 2026-06-15
+PROJECT: hermes-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+To install any of the new skills from the optional skills catalog, run 'hermes skills install official/payments/<skill>'
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/doodlestein/status/2066649262255931559
+HANDLE: doodlestein
+DISPLAY_NAME: Jeffrey Emanuel
+DATE: 2026-06-15
+PROJECT: claude-code
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+It’s not so much about orchestration, it’s making the individual agent in the swarm (well, the CC ones, because I always use a mixture of Codex and CC) smarter and more capable so they can solve harder problems in better ways.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Codex_Changelog/status/2066653211348406492
+HANDLE: Codex_Changelog
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-15
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+🚀 Codex CLI 0.140.0 is out!
+📊 /usage: daily, weekly & cumulative token stats
+📥 /import from Claude Code: setup, config & chats
+💬 @ now opens unified file, plugin & skill mentions
+Changelog: https://github.com/openai/codex/releases/tag/rust-v0.140.0
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ScottyBeamIO/status/2066911177133715771
+HANDLE: ScottyBeamIO
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-16
+PROJECT: hermes-agent
+KIND: criticism
+STANCE: mixed
+VERBATIM_BEGIN
+MOST PEOPLE ARE STILL USING OPENCLAW WHEN HERMES AGENT IS QUIETLY DOING THE SAME JOB BETTER
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/NousResearch/status/2066921443548348436
+HANDLE: NousResearch
+DISPLAY_NAME: Nous Research
+DATE: 2026-06-16
+PROJECT: hermes-agent
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+The Hermes Agent Accelerated Business Hackathon presented by @NVIDIAAI × @stripe × @NousResearch starts now...
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Teknium/status/2066923624167248133
+HANDLE: Teknium
+DISPLAY_NAME: Teknium
+DATE: 2026-06-16
+PROJECT: hermes-agent
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+Time to build your business with Hermes Agent.
+
+Two weeks to get your submissions in, 100% online, huge prizes.
+
+Learn more about the Hermes Agent Accelerated Business hackathon below - presented by NVIDIA, Stripe, and Nous Research.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Jadu100x/status/2066943178637455759
+HANDLE: Jadu100x
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-16
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+🚀 Codex CLI 0.140.0 is here!
+📊 /usage: daily, weekly & total token stats
+📥 /import from Claude Code: setup, config & chats
+💬 @ now opens unified file, plugin & skill mentions
+Changelog: https://github.com/openai/codex/releases/tag/rust-v0.140.0
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Jordanahardison/status/2066945282433249783
+HANDLE: Jordanahardison
+DISPLAY_NAME: Jordan Hardison
+DATE: 2026-06-16
+PROJECT: gemini-cli
+KIND: criticism
+STANCE: negative
+VERBATIM_BEGIN
+Google's killing Gemini CLI June 18. 2 days.
+
+AI Pro, Ultra, free tier. All migrating to Antigravity whether you want to or not.
+
+Second time this week we've watched an AI provider yank the floor out from under devs. Fable 5 was Friday. Now this.
+
+If you're betting your whole stack on one model, the platform owns your roadmap. Not you.
+
+#AI #buildinpublic
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Teknium/status/2066954081575592282
+HANDLE: Teknium
+DISPLAY_NAME: Teknium
+DATE: 2026-06-16
+PROJECT: hermes-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+GLM 5.2 is now available in Hermes Agent from Nous Portal and OpenRouter :)
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/Teknium/status/2066955629479293397
+HANDLE: Teknium
+DISPLAY_NAME: Teknium
+DATE: 2026-06-16
+PROJECT: hermes-agent
+KIND: maintainer_intent
+STANCE: neutral
+VERBATIM_BEGIN
+You do not have to use Stripe services or Nvidia models. Whatever you can use Hermes Agent for to improve business workflows, organizational management, or tooling for Hermes to enable that is all fair game.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/FredKSchott/status/2066962296119959581
+HANDLE: FredKSchott
+DISPLAY_NAME: fks
+DATE: 2026-06-16
+PROJECT: flue
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Just Shipped: Flue 1.0 Beta
+
+Flue is the TypeScript framework for building the next generation of agents, designed around an open agent harness with zero LLM lock-in. It’s like Astro, for agents.
+
+Flue 1.0 has been redesigned around three core primitives:
+🔁 Workflows — structured automations designed for background work, where your code drives the agent from start to finish.
+🧭 Agents (New!) — autonomous, stateful loops where the model drives itself to complete a given task.
+📡 Channels (New!) — connect agents to Slack, GitHub, Linear, Discord, Teams, and more. Flue handles the boilerplate for you.
+
+Everything shares the same durable foundation, powered internally by Pi, Vite, and Durable Streams. Deploy anywhere, use any LLM, and recover running agents across restarts and downtime.
+
+We’ve talked to a lot of teams building agents, and keep hearing the same thing: getting to production is hard work. We built Flue to help change that.
+
+Flue 1.0 Beta is available today. Give it a try and let me know what you think!
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/dillon_mulroy/status/2066965896388604244
+HANDLE: dillon_mulroy
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-16
+PROJECT: flue
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+flue. the open agent framework.
+i’ve been building a bunch of my agentic workflows on the primitives in the 1.0 beta - now you can too
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/L1AD/status/2066965134451388910
+HANDLE: L1AD
+DISPLAY_NAME: Liad Shababo
+DATE: 2026-06-16
+PROJECT: claude-code
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+Going back to Opus after a few days with Fable is akin to re-hiring an employee you fired for being stupid.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/elithrar/status/2066971518983098514
+HANDLE: elithrar
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-16
+PROJECT: flue
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+literally porting the code review agent we use across all of our OSS repos to Flue as we speak.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/NousResearch/status/2066972545526423677
+HANDLE: NousResearch
+DISPLAY_NAME: Nous Research
+DATE: 2026-06-16
+PROJECT: hermes-agent
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+Hermes Agent is whatever you want it to be.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/antigravity/status/2066988893681967382
+HANDLE: antigravity
+DISPLAY_NAME: Google Antigravity
+DATE: 2026-06-16
+PROJECT: antigravity
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Tips on subagent orchestration in Antigravity 2.0!
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/ScottyBeamIO/status/2066993626790629713
+HANDLE: ScottyBeamIO
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-16
+PROJECT: hermes-agent
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+A PERSONAL ASSISTANT COSTS $800-$8,000/MONTH. THIS CHINESE GUY BUILT HIS OWN WITH HERMES AGENT FOR $20.
+
+Hermes Agent just released a desktop app. No more terminal. Just download and run.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/FredKSchott/status/2066993864897077759
+HANDLE: FredKSchott
+DISPLAY_NAME: fks
+DATE: 2026-06-16
+PROJECT: flue
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Flue runs great on Cloudflare! Has an entire Cloudflare-specific runtime that uses DO, SQLite, etc. under the hood for maximum durability, recoverability, etc.
+
+probably the best experience atm vs. hooking that all up yourself
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/anakinHQ/status/2067007652400619700
+HANDLE: anakinHQ
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-16
+PROJECT: gemini-cli
+KIND: advisory_discussion
+STANCE: negative
+VERBATIM_BEGIN
+Gemini CLI dies tomorrow. If your agent was pulling web data through it, that part of your stack is now tied to the model. Swap models later and you're rebuilding it. Wire endpoints work the same from any model…
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/zats/status/2067009425718571462
+HANDLE: zats
+DISPLAY_NAME: UNKNOWN
+DATE: 2026-06-16
+PROJECT: codex
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+codex 0.140.0 got new nifty /usage command
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/OpenHandsDev/status/2067012207758418089
+HANDLE: OpenHandsDev
+DISPLAY_NAME: OpenHands
+DATE: 2026-06-16
+PROJECT: openhands
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+EOD for you. Not for your agent.
+
+Agent Canvas is live! Install it. Connect Slack and GitHub. Create your first automation.
+
+Get Started 👉 https://docs.openhands.dev/openhands/usage/agent-canvas/setup
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2067024929607008286
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw
+DATE: 2026-06-16
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+🦞 OpenClaw 2026.6.8 just dropped.
+
+💬 Richer Telegram + WhatsApp
+⚡️ Sharper agent & Gateway recovery
+🧠 New models + tougher memory
+📊 Native /usage footers
+📱 Smoother WebChat & iOS
+
+Let’s dig in!
+https://github.com/openclaw/openclaw/releases/tag/v2026.6.8
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2067024931674853441
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw
+DATE: 2026-06-16
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Messages got a serious glow-up 💬
+Telegram now delivers rich text with tables, lists, expandable quotes, and intentional line breaks intact. WhatsApp honors configured ACP bindings too.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2067024933952348179
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw
+DATE: 2026-06-16
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Agents are harder to knock off course ⚡️
+Cleaner recovery across Gateway restarts, yielded subagents and cron runs, generated media, final replies, reset archives, heartbeat dedupe, and account-scoped DMs.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2067024935915282532
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw
+DATE: 2026-06-16
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+More models. Safer routing. Better recovery.🧠
+OpenClaw 2026.6.8 adds GLM-5.2 and Claude Haiku 4.5, while tightening model IDs, Codex-routed OAuth image defaults, replay recovery, and tool-schema safety.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2067024937945338101
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw
+DATE: 2026-06-16
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+/usage got the full treatment 📊
+Native full footers, default templates, fixed-decimal formatting, credential-aware limits, and clearer handling of partial usage data.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2067024940365443276
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw
+DATE: 2026-06-16
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+The everyday UI feels steadier 📱
+WebChat keeps your backscroll while streaming. The desktop session picker stays clickable. Workspace files can start collapsed. Reset args survive dispatch. iOS reconnects stale Gateways.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2067024942764531814
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw
+DATE: 2026-06-16
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Memory and state recovery got tougher 🛡️
+Oversized embedding batches split before 431s, QMD search stays alive in transient mode, SQLite avoids WAL on NFS, and full reindexes preserve rollback + cache recovery.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2067024945016905832
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw
+DATE: 2026-06-16
+PROJECT: openclaw
+KIND: advisory_discussion
+STANCE: neutral
+VERBATIM_BEGIN
+One important default change 🔍
+Key-free web search providers now stay explicit opt-ins instead of being automatically selected. Choose the provider that fits your setup.
+VERBATIM_END
+===END===
+===POST===
+URL: https://x.com/openclaw/status/2067024947118231988
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw
+DATE: 2026-06-16
+PROJECT: openclaw
+KIND: advice
+STANCE: positive
+VERBATIM_BEGIN
+Ready to upgrade?
+```
+openclaw update --channel stable --yes
+openclaw --version
+```
+https://docs.openclaw.ai/install/updating | https://openclaw.ai/
+Huge thanks to everyone who contributed ♥️
+VERBATIM_END
+===END===

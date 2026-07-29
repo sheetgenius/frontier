@@ -2603,6 +2603,39 @@ a.cited-name:hover {
   line-height: 1.5;
 }
 
+/* EVIDENCE RECORDS
+   658 finding pages carry machine-compiled prose. They are not articles and
+   should not be set like one: the standfirst says what the page is, and the
+   body runs at reference weight so nobody mistakes a compiled record for
+   writing that was meant to be read. */
+.evidence-note {
+  max-width: 34rem;
+  margin: 0.6rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.evidence-body {
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.evidence-body h1 {
+  font-size: clamp(1.35rem, 2vw, 1.6rem);
+  margin-block: 0 1rem;
+}
+
+.evidence-body h2 {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 500;
+  margin-block: 2rem 0.5rem;
+}
+
 /* THE WIRE
    The aggregator's light unit. No boxes, no cards: item separation is air and
    a small-caps meta line, the same system as everything else. The tier is the

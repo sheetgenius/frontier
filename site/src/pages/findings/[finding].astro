@@ -14,7 +14,8 @@ export function getStaticPaths() {
 const finding = listCanonicalFindings().find((entry) => entry.finding === Astro.params.finding);
 if (!finding) throw new Error("Finding not found");
 
-const citedSignal = signalsCitingFinding(finding)[0];
+const citingSignals = signalsCitingFinding(finding);
+const citedSignal = citingSignals[0];
 const findingTitle = finding.title === finding.finding ? (citedSignal?.title ?? finding.title) : finding.title;
 const findingSourceLabel = sourceLabel(String(finding.data.source ?? "coding agent"));
 const findingKeywords = Array.from(new Set([
@@ -53,10 +54,21 @@ const findingModifiedDate = finding.data.corrected_on
   authorName="Michael Ruescher"
   keywords={findingKeywords}
 >
-  <article class="measure py-10">
-    <p class="small-caps text-muted">Finding / {finding.data.source}</p>
-    <p class="issue-meta">Edited by <a href="/people/ruemic/">Michael Ruescher</a></p>
-    <div class="prose-frontier mt-7" set:html={finding.html} />
+  {/* A finding is an evidence record, and it now presents as one.
+      It used to open with an editor's byline over machine-written prose in
+      article styling, which is the thing that reads as slop: not the sentences
+      themselves, but a generated record dressed as journalism. A reader who
+      clicks a receipt from an issue should know within a second that they have
+      landed on the receipt. */}
+  <article class="measure py-10 evidence-record">
+    <p class="small-caps text-muted">Evidence record / {finding.data.source}</p>
+    <p class="evidence-note">
+      A dated record of one change, kept so the writing that cites it can be
+      checked. Compiled from the sources listed below by the research run, not
+      written for reading. The judgment lives in
+      {citingSignals.length > 0 ? " the signals and issues that cite it" : " the issues that cite it"}, below.
+    </p>
+    <div class="prose-frontier evidence-body mt-7" set:html={finding.html} />
     <FindingFooter finding={finding} />
     <SourceTrail findings={[finding]} title="Source links" />
     <p class="rule mt-8 pt-5 font-mono text-sm text-muted">
