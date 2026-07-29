@@ -1,0 +1,182 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0
+note: >
+  Backfilled 2026-07-29 from a dated archive search; every post independently
+  re-fetched by URL before quoting, 32 of 32 found. Fragments sliced
+  programmatically from verified text, single-line only. Two candidate
+  fragments failed that rule here -- one contained a double space, one spanned
+  three paragraphs -- which is why nothing is retyped by hand.
+
+  The dotey card is in Chinese and stays in Chinese. Any English rendering in
+  our prose is our paraphrase and is marked as ours.
+cards:
+  - id: dotey-bypass-still-prompts
+    title: "Bypass Permissions is on and it still asks"
+    kind: bug_report
+    date: 2026-06-03
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["dotey"]
+    display_name: 宝玉
+    source_note: 1
+    handling_note: a
+    source_urls:
+      - https://x.com/dotey/status/2062309301901721814
+    verbatim: |
+      请教：Claude Code （Desktop）总是弹窗要确认权限，有没有办法避免总是要 Allow，很烦人，已经启用了 Bypass Permissions
+    summary: >
+      An operator asking how to stop Claude Code Desktop prompting for permission with Bypass Permissions already enabled.
+    verdict: >
+      Quoted in the language he wrote it in. Any English rendering in our prose is our paraphrase and is marked as ours. A voice post and an operator report we did not reproduce, here because it is this issue's thesis running the other way: a setting that did not produce the behaviour it names.
+    tags: [permissions, bypass, enforcement-gap]
+
+  - id: claudecodelog-webfetch-override
+    title: "Deny rules now override preapproved hosts"
+    kind: capability_announcement
+    date: 2026-06-03
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["ClaudeCodeLog"]
+    display_name: Claude Code Changelog
+    source_note: 2
+    handling_note: b
+    source_urls:
+      - https://x.com/ClaudeCodeLog/status/2062288852740386830
+    verbatim: |
+      Claude Code 2.1.162 is now available.
+
+      28 CLI changes
+
+      Highlights:
+      • Explicit WebFetch(domain:NAME) deny/ask/allow rules now override preapproved hosts, enforcing access control
+      • Startup uses in-memory config if config dir is read-only, avoiding a blank-screen hang and surfacing errors
+      • Edit tool now makes exact string replacements in files, preventing unintended partial or pattern edits
+
+      Complete details in thread ↓
+    inline: >-
+      Explicit WebFetch(domain:NAME) deny/ask/allow rules now override preapproved hosts, enforcing access control
+    summary: >
+      Claude Code 2.1.162 making explicit WebFetch rules win over preapproved hosts.
+    verdict: >
+      A relay of the vendor changelog; the release is the receipt. The shape is the one this issue is about: a rule an operator wrote was previously losing to a default they never set.
+    tags: [permissions, webfetch, precedence]
+
+  - id: pawelhuryn-workflow-cost
+    title: "8 agents in 24.5s. 253k tokens"
+    kind: workflow_practice
+    date: 2026-05-28
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["PawelHuryn"]
+    display_name: Paweł Huryn
+    source_note: 3
+    handling_note: c
+    source_urls:
+      - https://x.com/PawelHuryn/status/2060063258527088984
+    verbatim: |
+      Tested Claude Code's new dynamic workflows. 8 agents in 24.5s. 253k tokens.
+
+      The launch post frames it as a large fleet of coordinated subagents. That part isn't new. The SDK has had parallel calls for years.
+
+      The new part is where the orchestrator runs. It's JavaScript, not a Claude turn. The routing logic is code, so it doesn't spend model tokens.
+
+      Each subagent keeps its own context, tools, and intermediate calls. The parent thread gets the return value. Not 8 transcripts. Not 50k tokens of grep noise. One object.
+
+      A 20-agent audit can spend 600k tokens across isolated agents and return a 2k-token synthesis. Before this, "comprehensive review" meant filling the context you still needed for the fix.
+
+      Scripts persist at .claude/workflows/<name>.js. Invoke by name with args. They're cron-schedulable and compose one level deep. It's like a function library.
+
+      I've been treating subagents as context isolation, not delegation. Dynamic workflows move that from one agent to a fleet.
+
+      Not fan-out. The mess stays out of the parent thread.
+    inline: >-
+      8 agents in 24.5s. 253k tokens
+    summary: >
+      A practitioner measuring the new dynamic-workflows feature on launch day.
+    verdict: >
+      His measurement from a single run he describes, not ours. Quoted because somebody put a token number on a fleet feature within hours of the announcement, which is more than the announcement did.
+    tags: [workflows, cost, measurement]
+
+  - id: mikenevermiss-wake-up-and-review
+    title: "Wake up and review what it shipped"
+    kind: community_discussion
+    date: 2026-06-01
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["mikenevermiss"]
+    display_name: MIKE
+    source_note: 4
+    handling_note: d
+    source_urls:
+      - https://x.com/mikenevermiss/status/2061401069339431390
+    verbatim: |
+      Anthropic Engineer:
+
+      “You’re not supposed to watch Claude Code work. You’re supposed to wake up and review what it shipped.”
+
+      In 22 minutes she builds the entire workflow live on camera.
+
+      Most people close their terminal and everything stops.
+
+      This setup keeps shipping while you sleep.
+
+      Watch the video, then save the exact setup below:
+    inline: >-
+      You’re not supposed to watch Claude Code work. You’re supposed to wake up and review what it shipped
+    summary: >
+      A second-hand quotation of an Anthropic engineer on how the tool is meant to be used.
+    verdict: >
+      A relayed quotation. We hold no primary source for the sentence and attribute it to no named person. Quoted as a description of the posture being taught, which is what this issue measures the controls against.
+    tags: [posture, review, autonomy]
+
+  - id: cherrymx-163-skills
+    title: "163 skills enabled"
+    kind: criticism
+    date: 2026-06-03
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [codex]
+    authors: ["cherry_mx_reds"]
+    display_name: Tak 🦞
+    source_note: 5
+    handling_note: e
+    source_urls:
+      - https://x.com/cherry_mx_reds/status/2062315233226399904
+    verbatim: |
+      in the codex app go to plugins, then, from the top right, press manage and then finally, gasp in horror. I apparently have  163 skills enabled! no wonder my codex is 🤪 lately...
+    inline: >-
+      163 skills enabled
+    summary: >
+      An operator discovering how much was switched on in his Codex install.
+    verdict: >
+      A voice post about his own machine. Quoted for the shape rather than the number: configuration accretes silently, and nobody audits what they never chose.
+    tags: [configuration, sprawl]
+
+  - id: theo-arch-omarchy
+    title: "OpenClaw is Arch"
+    kind: community_discussion
+    date: 2026-05-31
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [openclaw, hermes-agent]
+    authors: ["theo"]
+    display_name: Theo - t3.gg
+    source_note: 6
+    handling_note: f
+    source_urls:
+      - https://x.com/theo/status/2061020489246773436
+    verbatim: |
+      OpenClaw is Arch.
+
+      Hermes is Omarchy.
+
+      I will not elaborate further.
+    summary: >
+      A one-line positioning of two harnesses against each other.
+    verdict: >
+      A joke, quoted as one, and featured rather than inlined because it is three short paragraphs and no contiguous single-line run carries it. The most compact description anyone wrote this window of the difference between a harness you assemble and one that arrives assembled.
+    tags: [positioning, harness]
