@@ -967,6 +967,60 @@ export function sweepCoverage(runId: string): SweepCoverage {
   };
 }
 
+export type WireItem = {
+  title: string;
+  url: string;
+  source: string;
+  date: string;
+  tier: "checked" | "relayed";
+  take: string;
+  receipt?: string;
+};
+
+export type WireIssue = {
+  id: string;
+  date: string;
+  lede?: string;
+  items: WireItem[];
+};
+
+// The wire: the aggregator's light unit. An item is a link, a two-or-three
+// sentence take in house voice, and a verification tier. `checked` means we
+// adjudicated the claim against the primary record and `receipt` points at it;
+// `relayed` means we are accurately reporting that somebody said or published
+// this, and are not vouching for the claim inside it. The tier prints. Blurring
+// the two is the same class of error as a paraphrase in quotation position.
+export function listWireIssues(): WireIssue[] {
+  const dir = repoPath("content", "wire");
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((file) => file.endsWith(".yml") || file.endsWith(".yaml"))
+    .map((file) => {
+      const y = readYaml(path.join(dir, file));
+      return {
+        id: String(y?.wire_id ?? file.replace(/\.ya?ml$/, "")),
+        date: formatDate(y?.date ?? y?.wire_id),
+        lede: y?.lede ? String(y.lede).trim() : undefined,
+        items: (y?.items ?? []).map((item: any) => ({
+          title: String(item.title ?? ""),
+          url: String(item.url ?? ""),
+          source: String(item.source ?? ""),
+          date: formatDate(item.date),
+          tier: item.tier === "checked" ? "checked" : "relayed",
+          take: String(item.take ?? "").trim(),
+          receipt: item.receipt ? String(item.receipt) : undefined,
+        })).filter((item: WireItem) => item.title && item.url && item.take),
+      };
+    })
+    .filter((issue) => issue.items.length > 0)
+    .sort((a, b) => b.id.localeCompare(a.id));
+}
+
+export function getWireIssue(id: string): WireIssue | undefined {
+  return listWireIssues().find((issue) => issue.id === id);
+}
+
 export function listRunSocialCards(runId: string): SocialReceiptCard[] {
   const dir = repoPath("runs", runId, "social-cards");
   if (!fs.existsSync(dir)) return [];

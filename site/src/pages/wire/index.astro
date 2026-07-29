@@ -1,0 +1,65 @@
+---
+import Base from "../../layouts/Base.astro";
+import { listWireIssues } from "../../lib/frontier";
+
+// The wire is the aggregator's weekly unit: what was worth your attention this
+// week, curated with the same receipt discipline as the issues but at reading
+// speed. No boxes, no cards -- items separated by rhythm, the way the rest of
+// the publication is set.
+const issues = listWireIssues();
+---
+
+<Base
+  title="The Wire | Bitter Frontier"
+  description="What was worth your attention this week in agentic coding: curated links from X, source code, and the writing, each with a take and a verification tier."
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted eyebrow">The Wire</p>
+    <h1 class="issue-title">What was worth your attention.</h1>
+    <p class="profile-dek">
+      The week's signal from X, the repos, and the writing, curated. Two tiers,
+      printed on every item: <strong>checked</strong> means we adjudicated the
+      claim against the primary record; <strong>relayed</strong> means we are
+      reporting accurately that it was said, and not vouching for what it says.
+    </p>
+
+    {issues.length === 0 ? (
+      <p class="mt-8 text-muted">Nothing yet.</p>
+    ) : (
+      <div class="wire-issues">
+        {issues.map((issue) => (
+          <section class="wire-issue">
+            <h2 class="wire-date">
+              <a href={`/wire/${issue.id}/`}>{issue.date}</a>
+            </h2>
+            {issue.lede && <p class="wire-lede">{issue.lede}</p>}
+            <ul class="wire-list">
+              {issue.items.map((item) => (
+                <li class="wire-item">
+                  <p class="wire-item-head">
+                    <a class="wire-item-title" href={item.url}>{item.title}</a>
+                  </p>
+                  <p class="wire-item-meta">
+                    {item.source} / {item.date} /{" "}
+                    <span class={`wire-tier wire-tier--${item.tier}`}>{item.tier}</span>
+                    {item.receipt && (
+                      <>
+                        {" / "}
+                        <a href={item.receipt}>receipt</a>
+                      </>
+                    )}
+                  </p>
+                  <p class="wire-take">{item.take}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    )}
+
+    <p class="mt-8 font-mono text-sm text-muted">
+      <a href="/wire.xml">Subscribe to the wire by RSS</a>
+    </p>
+  </article>
+</Base>

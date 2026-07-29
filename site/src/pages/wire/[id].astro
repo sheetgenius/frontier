@@ -1,0 +1,46 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getWireIssue, listWireIssues } from "../../lib/frontier";
+
+export function getStaticPaths() {
+  return listWireIssues().map((issue) => ({ params: { id: issue.id } }));
+}
+
+const issue = getWireIssue(Astro.params.id!);
+if (!issue) throw new Error("Wire issue not found");
+---
+
+<Base
+  title={`The Wire, ${issue.date} | Bitter Frontier`}
+  description={issue.lede ?? `Curated signal from agentic coding for the week of ${issue.date}.`}
+  publishedDate={issue.date}
+  articleSection="The Wire"
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted eyebrow">The Wire / {issue.date}</p>
+    {issue.lede && <p class="wire-lede wire-lede--page">{issue.lede}</p>}
+    <ul class="wire-list mt-8">
+      {issue.items.map((item) => (
+        <li class="wire-item">
+          <p class="wire-item-head">
+            <a class="wire-item-title" href={item.url}>{item.title}</a>
+          </p>
+          <p class="wire-item-meta">
+            {item.source} / {item.date} /{" "}
+            <span class={`wire-tier wire-tier--${item.tier}`}>{item.tier}</span>
+            {item.receipt && (
+              <>
+                {" / "}
+                <a href={item.receipt}>receipt</a>
+              </>
+            )}
+          </p>
+          <p class="wire-take">{item.take}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-8 font-mono text-sm text-muted">
+      <a href="/wire/">All wire issues</a> / <a href="/wire.xml">RSS</a>
+    </p>
+  </article>
+</Base>

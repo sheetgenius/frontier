@@ -2603,6 +2603,106 @@ a.cited-name:hover {
   line-height: 1.5;
 }
 
+/* THE WIRE
+   The aggregator's light unit. No boxes, no cards: item separation is air and
+   a small-caps meta line, the same system as everything else. The tier is the
+   one place color-adjacent emphasis is allowed, because it is load-bearing. */
+.wire-issues {
+  display: grid;
+  gap: 3rem;
+  margin-top: 2.5rem;
+}
+
+.wire-date {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.wire-date a {
+  color: var(--color-muted);
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+.wire-date a:hover {
+  color: var(--color-bitter);
+}
+
+.wire-lede {
+  max-width: 34rem;
+  margin: 0.6rem 0 0;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--color-ink);
+}
+
+.wire-lede--page {
+  font-size: 1.15rem;
+  margin-top: 0.75rem;
+}
+
+.wire-list {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.7rem;
+}
+
+.wire-item-head {
+  margin: 0;
+}
+
+.wire-item-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+.wire-item-title:hover {
+  color: var(--color-bitter);
+}
+
+.wire-item-meta {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--color-muted);
+}
+
+.wire-item-meta a {
+  color: inherit;
+}
+
+.wire-tier {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.wire-tier--checked {
+  color: var(--color-bitter);
+}
+
+.wire-tier--relayed {
+  color: var(--color-faint);
+}
+
+.wire-take {
+  max-width: 36rem;
+  margin: 0.45rem 0 0;
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--color-ink);
+}
+
 /* FRONT PAGE
    The lead issue is the first thing on the page, set like a story rather than
    like a product announcement: kicker, headline, standfirst, byline. The

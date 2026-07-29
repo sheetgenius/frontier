@@ -1,0 +1,125 @@
+schema_version: bitter.frontier_wire.v0
+wire_id: "2026-07-29"
+date: 2026-07-29
+lede: >
+  The week agent intrusion became a category with a case study, the harness got
+  named as a tax, and the scaffolding-shedding thesis picked up a model release
+  to test itself against.
+items:
+  - title: "Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident"
+    url: https://simonwillison.net/2026/Jul/28/anatomy-of-a-frontier-lab-agent-intrusion/
+    source: Simon Willison
+    date: 2026-07-28
+    tier: checked
+    receipt: https://openai.com/index/hugging-face-model-evaluation-security-incident
+    take: >
+      The incident is real: OpenAI and Hugging Face published a joint statement
+      on July 21 about an OpenAI agent reaching Hugging Face infrastructure
+      during a model evaluation. The timeline reconstruction is Willison's. Read
+      it as the first public case study of the thing every enforcement story
+      this month gestured at: an agent with real authority crossing a boundary
+      nobody thought to write down.
+
+  - title: "Autonomous AI Intrusions Are Here: Lessons from the Hugging Face Compromise"
+    url: https://embracethered.com/blog/posts/2026/ai-intrusion-are-now-real/
+    source: Johann Rehberger
+    date: 2026-07-20
+    tier: relayed
+    take: >
+      The defensive read on the same incident, from the researcher whose
+      prompt-injection work this field has been citing for two years. His frame:
+      the interesting failure was not model behavior but that nothing between
+      the agent and the target was checking authorization. Where have we heard
+      that before.
+
+  - title: "GitPwned: Allowlist to RCE"
+    url: https://www.pillar.security/blog/gitpwned-allowlist-to-rce
+    source: Pillar Security
+    date: 2026-07-27
+    tier: checked
+    receipt: https://github.com/openai/codex/security/advisories
+    take: >
+      We adjudicated this one fully for the July issue. Codex's safe-command
+      allowlist trusted `git show` by name; `git show --output` writes to any
+      path. OpenAI confirmed CVSS 8.6, patched v0.95.0, paid the bounty -- and
+      the advisory database still carries nothing newer than September 2025.
+      Rated, patched, paid for, never announced.
+
+  - title: "The Orchestrator's Tax"
+    url: https://martinfowler.com/articles/orchestrator-tax.html
+    source: martinfowler.com
+    date: 2026-07-28
+    tier: relayed
+    take: >
+      Names the overhead everyone benchmarks around: the harness, not the model,
+      decides how much context gets carried, re-sent, and burned. A practitioner
+      in our July corpus measured the same task at up to 4x runtime and token
+      cost across three harnesses with similar output quality. The tax now has a
+      name and a first estimate.
+
+  - title: "How building software is changing at Anthropic"
+    url: https://newsletter.pragmaticengineer.com/p/inside-anthropic
+    source: Pragmatic Engineer
+    date: 2026-07-28
+    tier: relayed
+    take: >
+      Inside reporting that lines up with what Anthropic's own people said in
+      posts we verified this month: auto mode as the default posture, most new
+      code agent-written, review as the human's job. Useful as the long-form
+      account of claims that have so far traveled as screenshots.
+
+  - title: "engineer away the slop"
+    url: https://ghuntley.com/slop/
+    source: Geoffrey Huntley
+    date: 2026-07-23
+    tier: relayed
+    take: >
+      The argument that slop is an engineering problem with engineering
+      remedies: constrain generation, verify continuously, delete what does not
+      earn its place. We spent this month applying the same doctrine to prose.
+      It generalizes.
+
+  - title: "Introducing Claude Opus 5"
+    url: https://simonwillison.net/2026/Jul/24/introducing-claude-opus-5/
+    source: Simon Willison
+    date: 2026-07-24
+    tier: relayed
+    take: >
+      The capability half of the scaffolding story this publication has been
+      tracking: practitioners were already reporting that newer models need
+      fewer skills, shorter configuration files, less prompt ceremony. A new
+      top-end model is the next test of whether the props keep dissolving.
+
+  - title: "Discovering cryptographic weaknesses with Claude"
+    url: https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/
+    source: Simon Willison
+    date: 2026-07-28
+    tier: relayed
+    take: >
+      An agent finding real cryptographic bugs is the other side of the
+      Hugging Face week: the same capability class doing exactly what its
+      operators pointed it at. What became possible and what stopped holding,
+      in the same news cycle, from the same underlying fact.
+
+  - title: "The Pulse: Grok's CLI caught uploading all your local files to the cloud"
+    url: https://newsletter.pragmaticengineer.com/p/the-pulse-groks-cli-caught-uploading
+    source: Pragmatic Engineer
+    date: 2026-07-16
+    tier: relayed
+    take: >
+      A coding CLI exfiltrating local files wholesale is the largest possible
+      version of the enforcement gap, and we have not adjudicated it -- the
+      claim is Orosz's reporting, relayed as such. It goes on next cycle's
+      check list, not in the record.
+
+  - title: "Codex from 0 to 10M Users: Building ChatGPT Work"
+    url: https://www.latent.space/p/chatgpt-work
+    source: Latent Space
+    date: 2026-07-28
+    tier: relayed
+    take: >
+      The builder's own account of the harness we spend the most rows on. Worth
+      an hour for one reason: the constraints he names -- approvals, sandboxes,
+      resumability -- are the exact surfaces where this publication keeps
+      finding the gaps. Hearing where the vendor thinks the hard parts are is
+      its own kind of receipt.
