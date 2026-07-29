@@ -1,0 +1,214 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-06-16-weekly-digest-2026-06-04_2026-06-16-frontier-v0
+note: >
+  Backfilled 2026-07-29 from a dated archive search; every post independently
+  re-fetched by URL before quoting, 32 of 32 found. Fragments are sliced
+  programmatically out of the verified text, never retyped.
+cards:
+  - id: bcherny-nested-subagents
+    title: "Agents kicking off agents"
+    kind: capability_announcement
+    date: 2026-06-09
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["bcherny"]
+    display_name: Boris Cherny
+    source_note: 1
+    handling_note: a
+    source_urls:
+      - https://x.com/bcherny/status/2064327225504403752
+    verbatim: |
+      Just landed nested subagent support in Claude Code
+
+      Starting to experiment more with agents kicking off agents as a way to better manage context. Capped at depth=5 to start, going out in today’s release.
+
+      Lmk what you think!
+    inline: >-
+      Just landed nested subagent support in Claude Code
+    summary: >
+      Claude Code's creator announcing nested subagent support.
+    verdict: >
+      The vendor announcing its own feature, quoted as that. What matters is the date: the cap this issue told operators to rely on did not bind for foreground spawns until 2.1.181, which our next issue reported.
+    tags: [subagents, depth-cap]
+
+  - id: crepesupreme-depth-five
+    title: "Four layers down"
+    kind: community_discussion
+    date: 2026-06-09
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["crepesupreme"]
+    display_name: Crepe Supreme
+    source_note: 2
+    handling_note: b
+    source_urls:
+      - https://x.com/crepesupreme/status/2064337704201093413
+    verbatim: |
+      Claude Code shipped nested subagent support, depth 5. An agent can now spawn an agent that spawns an agent, four layers down. Each invocation adds to the orchestration tab. Wrote on what recursive pipelines actually cost: https://crepesupreme.substack.com/p/the-arrows-arent-free
+    inline: >-
+      An agent can now spawn an agent that spawns an agent, four layers down
+    summary: >
+      A reader working out what depth five actually means.
+    verdict: >
+      A voice post doing arithmetic the announcement did not: each layer multiplies invocations and context. We did not verify his cost model; the structure he describes is what the release says it does.
+    tags: [subagents, context, cost]
+
+  - id: bcherny-fable-best-model
+    title: "By a wide margin"
+    kind: capability_announcement
+    date: 2026-06-09
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["bcherny"]
+    display_name: Boris Cherny
+    source_note: 3
+    handling_note: c
+    source_urls:
+      - https://x.com/bcherny/status/2064402671898075579
+    verbatim: |
+      Fable 5 is now available in Claude Code and Cowork
+
+      Fable is the best model I have used for coding, by a wide margin. It is a big step up, enabling less prompts and steers, more efficient token use, better code quality, better tool use, more intelligent self-verification, longer running sessions, and higher trust & autonomy. 
+
+      Happy coding!
+    inline: >-
+      Fable is the best model I have used for coding, by a wide margin
+    summary: >
+      Fable 5 arriving in Claude Code, in its maker's words.
+    verdict: >
+      A vendor assessment of its own model with no benchmark attached, quoted as the claim it is. Its value is as the first entry in a sequence: what practitioners said unprompted over the following week is the interesting part.
+    tags: [model-release, vendor-claim]
+
+  - id: l1ad-fired-for-being-stupid
+    title: "Re-hiring an employee you fired"
+    kind: community_discussion
+    date: 2026-06-16
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["L1AD"]
+    display_name: Liad Shababo
+    source_note: 4
+    handling_note: d
+    source_urls:
+      - https://x.com/L1AD/status/2066965134451388910
+    verbatim: |
+      Going back to Opus after a few days with Fable is akin to re-hiring an employee you fired for being stupid.
+    inline: >-
+      Going back to Opus after a few days with Fable is akin to re-hiring an employee you fired for being stupid
+    summary: >
+      A practitioner on going back to the previous model.
+    verdict: >
+      A voice post and the sharpest of several independent reactions in the same week. We assert only that he said it. It is here because a step change shows up in how people describe going backwards, not in a benchmark table.
+    tags: [model-release, practitioner-reaction]
+
+  - id: bayeslord-intelligence-blackout
+    title: "An intelligence blackout"
+    kind: community_discussion
+    date: 2026-06-15
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["bayeslord"]
+    display_name: bayes
+    source_note: 5
+    handling_note: e
+    source_urls:
+      - https://x.com/bayeslord/status/2066618104457699620
+    verbatim: |
+      Fascinating that a few days with Fable is making the subsequent days without it feel like an intelligence blackout
+    inline: >-
+      a few days with Fable is making the subsequent days without it feel like an intelligence blackout
+    summary: >
+      Another independent reaction to the same model, a day earlier.
+    verdict: >
+      A voice post. Quoted alongside the others because three people reached for the same shape of description without coordinating, which is worth more than any one of them.
+    tags: [model-release, practitioner-reaction]
+
+  - id: gthimmes-vendor-risk
+    title: "What if they delete the product"
+    kind: criticism
+    date: 2026-06-08
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [gemini-cli, antigravity]
+    authors: ["gthimmes"]
+    display_name: Glenn Thimmes
+    source_note: 6
+    handling_note: f
+    source_urls:
+      - https://x.com/gthimmes/status/2064056804552892619
+    verbatim: |
+      Vendor risk used to mean "what if they raise the price." In 2026 it means "what if they delete the product." Gemini CLI got about a month's notice before it stops serving requests. Build your stack like every tool in it has a sunset date, because at least one of them does.
+    inline: >-
+      Vendor risk used to mean "what if they raise the price." In 2026 it means "what if they delete the product.
+    summary: >
+      An operator reframing vendor risk after the Gemini CLI notice.
+    verdict: >
+      A voice post, and the best one-line statement of what the succession meant for anyone who had built on it. The notice period he references is checkable and correct.
+    tags: [vendor-risk, succession]
+
+  - id: fredkschott-flue-1-0
+    title: "Zero LLM lock-in"
+    kind: capability_announcement
+    date: 2026-06-16
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [flue]
+    authors: ["FredKSchott"]
+    display_name: fks
+    source_note: 7
+    handling_note: g
+    source_urls:
+      - https://x.com/FredKSchott/status/2066962296119959581
+    verbatim: |
+      Just Shipped: Flue 1.0 Beta
+
+      Flue is the TypeScript framework for building the next generation of agents, designed around an open agent harness with zero LLM lock-in. It’s like Astro, for agents.
+
+      Flue 1.0 has been redesigned around three core primitives:
+
+      🔁 Workflows — structured automations designed for background work, where your code drives the agent from start to finish.
+
+      🧭 Agents (New!) — autonomous, stateful loops where the model drives itself to complete a given task.
+
+      📡 Channels (New!) — connect agents to Slack, GitHub, Linear, Discord, Teams, and more. Flue handles the boilerplate for you.
+
+      Everything shares the same durable foundation, powered internally by Pi, Vite, and Durable Streams. Deploy anywhere, use any LLM, and recover running agents across restarts and downtime.
+
+      We’ve talked to a lot of teams building agents, and keep hearing the same thing: getting to production is hard work. We built Flue to help change that.
+
+      Flue 1.0 Beta is available today. Give it a try and let me know what you think!
+    inline: >-
+      designed around an open agent harness with zero LLM lock-in
+    summary: >
+      Flue 1.0 Beta, from its author.
+    verdict: >
+      A vendor announcing its own framework. Included because the design claim -- an open harness with no model lock-in -- is the counter-position to the week's other story, where the harness and the model shipped as one product.
+    tags: [framework, lock-in]
+
+  - id: elithrar-porting-to-flue
+    title: "Porting as we speak"
+    kind: adoption_signal
+    date: 2026-06-16
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [flue]
+    authors: ["elithrar"]
+    display_name: Matt Silverlock
+    source_note: 8
+    handling_note: h
+    source_urls:
+      - https://x.com/elithrar/status/2066971518983098514
+    verbatim: |
+      literally porting the code review agent we use across all of our OSS repos to Flue as we speak.
+    inline: >-
+      porting the code review agent we use across all of our OSS repos to Flue as we speak
+    summary: >
+      An engineer moving production code review onto Flue on launch day.
+    verdict: >
+      A voice post reporting his own work. We did not verify the port happened or landed. Quoted as same-day adoption, which is the only claim it makes.
+    tags: [adoption, code-review]
