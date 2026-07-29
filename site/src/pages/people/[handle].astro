@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import { metaDescription } from "../../lib/seo";
 import { GH_BLOB_BASE } from "../../lib/site";
-import { formatDate, getPerson, listPeople, sourceLabel } from "../../lib/frontier";
+import { formatDate, getPerson, listPeople, localAvatar, sourceLabel } from "../../lib/frontier";
 
 export function getStaticPaths() {
   return listPeople().map((person) => ({ params: { handle: person.slug } }));
@@ -13,6 +13,10 @@ if (!person) throw new Error("Person not found");
 
 const d = person.data;
 const related: string[] = d.related_sources ?? [];
+const avatar = localAvatar(String(d.handle ?? ""));
+// A masthead entry is who makes the publication; a key player is who it
+// covers. The apparatus is shared, the framing is not.
+const kicker = d.masthead ? "Masthead" : "Key player";
 const window = d.window_observed;
 const description = metaDescription(
   d.tagline ?? `Public statements by ${d.name}, observed and receipted by Bitter Frontier.`,
@@ -27,8 +31,11 @@ const description = metaDescription(
   articleSection="Bitter Frontier people"
 >
   <article class="measure py-10">
-    <p class="small-caps text-muted">Key player</p>
-    <h1 class="issue-title">{d.name}</h1>
+    <p class="small-caps text-muted">{kicker}</p>
+    <div class="person-head">
+      {avatar && <img class="person-avatar" src={avatar} alt="" width="56" height="56" />}
+      <h1 class="issue-title">{d.name}</h1>
+    </div>
     {d.handle && (
       <p class="person-handle font-mono">
         <a href={d.canonical_url}>@{d.handle}</a>

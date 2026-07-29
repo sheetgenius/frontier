@@ -1,8 +1,12 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { listCitedPeople, listPeople, sourceLabel } from "../../lib/frontier";
+import { listCitedPeople, listPeople, localAvatar, sourceLabel } from "../../lib/frontier";
 
-const people = listPeople();
+const all = listPeople();
+// Subjects and staff stay separate lists. Mixing the editor into "the people in
+// the conversation" would blur who covers and who is covered.
+const people = all.filter((person) => !person.data.masthead);
+const masthead = all.filter((person) => person.data.masthead);
 // Computed from the cards, so this cannot drift from who we actually quote.
 const cited = listCitedPeople();
 const tracked = new Set(people.map((person) => person.slug));
@@ -43,6 +47,30 @@ const tracked = new Set(people.map((person) => person.slug));
           </li>
         ))}
       </ul>
+    )}
+
+    {masthead.length > 0 && (
+      <section class="cited-section">
+        <h2 class="cited-title">Masthead</h2>
+        <ul class="cited-list mt-6">
+          {masthead.map((person) => (
+            <li class="cited-item">
+              <a class="cited-face" href={`/people/${person.slug}/`} aria-label={person.data.name}>
+                {localAvatar(String(person.data.handle ?? ""))
+                  ? <img src={localAvatar(String(person.data.handle ?? ""))} alt="" width="34" height="34" loading="lazy" />
+                  : <span class="cited-monogram" aria-hidden="true">{String(person.data.name ?? "?")[0]}</span>}
+              </a>
+              <div class="cited-body">
+                <p class="cited-who">
+                  <a class="cited-name" href={`/people/${person.slug}/`}>{person.data.name}</a>
+                  <a class="cited-handle" href={`https://x.com/${person.data.handle}`}>@{person.data.handle}</a>
+                </p>
+                {person.data.tagline && <p class="cited-where">{person.data.tagline}</p>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
     )}
 
     {cited.length > 0 && (

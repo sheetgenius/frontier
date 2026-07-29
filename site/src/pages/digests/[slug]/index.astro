@@ -124,7 +124,7 @@ const topSignalsItemList = topSignals.length > 0 ? {
       {digest.data.series ?? "Issue"} / Published {formatDate(digest.data.window?.end)}
     </div>
     <h1 class="issue-title mt-3">{digest.data.title}</h1>
-    <p class="issue-meta">Edited by Michael Ruescher / revised {digestModifiedDate}</p>
+    <p class="issue-meta">Edited by <a href="/people/ruemic/">Michael Ruescher</a> / revised {digestModifiedDate}</p>
     <OperatorBrief brief={digest.data.operator_brief} />
     <div class="prose-frontier mt-7">
       {bodySegments.map((seg) => (

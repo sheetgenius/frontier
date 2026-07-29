@@ -104,7 +104,7 @@ const profileSections = splitLeadingOperatorRead(profile.body);
       <p class="profile-dek">{profile.data.tagline.replace(/^"|"$/g, "")}</p>
     )}
     <p class="issue-meta">
-      Edited by Michael Ruescher / reviewed {formatDate(profile.data.last_full_review ?? profile.data.last_updated)}
+      Edited by <a href="/people/ruemic/">Michael Ruescher</a> / reviewed {formatDate(profile.data.last_full_review ?? profile.data.last_updated)}
     </p>
 
     {officialLinks.length > 0 && (

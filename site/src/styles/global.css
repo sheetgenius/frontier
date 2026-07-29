@@ -2477,6 +2477,27 @@ code {
    type on the page and the words carry the weight.
    --------------------------------------------------------------------------- */
 
+/* The person page head: the face beside the name, same discipline as the
+   cards -- served from our own origin or not at all. */
+.person-head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+.person-head .issue-title {
+  margin: 0;
+}
+
+.person-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+
 /* The who's-who. A directory, not a leaderboard: same treatment for everyone,
    ordered by how often we have quoted them, with no scores on the page. */
 .cited-section {
