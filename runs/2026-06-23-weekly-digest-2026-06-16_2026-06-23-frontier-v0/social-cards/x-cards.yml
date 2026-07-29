@@ -1,0 +1,205 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-06-23-weekly-digest-2026-06-16_2026-06-23-frontier-v0
+note: >
+  Backfilled 2026-07-29 from a dated archive search; every post independently
+  re-fetched by URL before quoting, 34 of 34 found with no drift.
+
+  Fragments here were sliced programmatically out of the verified text rather
+  than retyped, after a hand-typed one failed the integrity check on a curly
+  apostrophe.
+
+  The hunvreus card quotes a person describing his own workload. It is included
+  because the project is on our watchlist and its bus factor is one, and for no
+  other reason. Removal on request, per CONTRIBUTING.md.
+cards:
+  - id: geminicli-transition-day
+    title: "The official notice"
+    kind: maintainer_intent
+    date: 2026-06-18
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [gemini-cli, antigravity]
+    authors: ["geminicli"]
+    display_name: Gemini CLI
+    source_note: 1
+    handling_note: a
+    source_urls:
+      - https://x.com/geminicli/status/2067702889837953512
+    verbatim: |
+      Today, marks the official transition from Gemini CLI to the new Antigravity CLI for individual accounts. 
+
+      Gemini CLI has stopped serving requests for Google AI Pro, Google AI Ultra, and free tier individual accounts.
+
+      Enterprise users with Gemini Code Assist licenses and API key authentication remain completely unaffected.
+
+      Read the full details: https://github.com/google-gemini/gemini-cli/discussions/28017
+    inline: >-
+      Gemini CLI has stopped serving requests for Google AI Pro, Google AI Ultra, and free tier individual accounts
+    summary: >
+      The Gemini CLI account announcing the consumer shutdown on the day.
+    verdict: >
+      The vendor's own statement and the receipt for the date. Enterprise Code Assist and API-key authentication were explicitly excluded.
+    tags: [succession, shutdown]
+
+  - id: ntaylormullen-end-of-an-era
+    title: "End of an era"
+    kind: maintainer_intent
+    date: 2026-06-18
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [gemini-cli, antigravity]
+    authors: ["ntaylormullen"]
+    display_name: N. Taylor Mullen
+    source_note: 2
+    handling_note: b
+    source_urls:
+      - https://x.com/ntaylormullen/status/2067728389088362545
+    verbatim: |
+      End of an era, but the start of something even bigger. Today, Gemini CLI will stop serving requests for Google AI Pro, Google AI Ultra, and free tier individual accounts as we transition over to the Antigravity CLI!
+
+      It started with weekly Gemini CLI updates and grew to be bigger than I ever thought it would. I’m deeply grateful for the community, the code, and the absolute ride of the past year. Thank you all so much!!
+
+      Next stop: Antigravity SDK. Stoked to keep building with you all there and will be sharing more in the coming weeks! 🚀🚀🚀
+    inline: >-
+      End of an era, but the start of something even bigger
+    summary: >
+      A Gemini CLI maintainer on the transition day.
+    verdict: >
+      A voice post from someone who worked on it, quoted as his framing rather than as a claim about the product. It sits beside the community reading because both were published within hours of the same event.
+    tags: [succession, maintainer-voice]
+
+  - id: kilocode-closed-binary
+    title: "A closed binary they can't inspect"
+    kind: criticism
+    date: 2026-06-18
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [gemini-cli, antigravity]
+    authors: ["kilocode"]
+    display_name: Kilo (acq. by Anaconda)
+    source_note: 3
+    handling_note: c
+    source_urls:
+      - https://x.com/kilocode/status/2067626503328743710
+    verbatim: |
+      Gemini CLI stops serving free, Pro, and Ultra users today. The replacement, Antigravity CLI, is closed source.
+
+      The original was Apache 2.0 with over 6,000 community pull requests behind it. Those contributors now get a closed binary they can't inspect or fork.
+
+      This is the cost of building on tooling one vendor can retire on a schedule. Open source doesn't get sunset out from under you. Kilo is Apache 2.0, the full codebase is on GitHub, and the community keeps it running regardless of any single company's roadmap.
+    inline: >-
+      Those contributors now get a closed binary they can't inspect or fork
+    summary: >
+      The contributor-side objection to the succession.
+    verdict: >
+      A voice post. The Apache-2.0 licence and the contribution history are checkable and correct; the framing is theirs. Quoted because it names the specific loss this issue is about -- not the service, the readability.
+    tags: [succession, open-source, auditability]
+
+  - id: claudecodelog-sandbox-credentials
+    title: "sandbox.credentials"
+    kind: capability_announcement
+    date: 2026-06-23
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["ClaudeCodeLog"]
+    display_name: Claude Code Changelog
+    source_note: 4
+    handling_note: d
+    source_urls:
+      - https://x.com/ClaudeCodeLog/status/2069531604951687542
+    verbatim: |
+      Claude Code 2.1.187 has been released.
+
+      21 CLI changes
+
+      Highlights:
+      • Added sandbox.credentials to stop sandboxed commands reading credentials and secret env vars, protects secrets
+      • Remote MCP tool calls now abort after 5 minutes instead of hanging indefinitely, preventing long stalls
+
+      Full details available in thread ↓
+    inline: >-
+      Added sandbox.credentials to stop sandboxed commands reading credentials and secret env vars
+    summary: >
+      A changelog-tracking account on Claude Code 2.1.187.
+    verdict: >
+      A relay of the vendor changelog rather than an independent finding; the release is the receipt. Included as this window's clearest example of a control that shipped to the channel people actually run.
+    tags: [sandboxing, credentials, shipped]
+
+  - id: bcherny-65-percent-tag
+    title: "65% of our product team's new code"
+    kind: adoption_signal
+    date: 2026-06-23
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["bcherny"]
+    display_name: Boris Cherny
+    source_note: 5
+    handling_note: e
+    source_urls:
+      - https://x.com/bcherny/status/2069474683372839253
+    verbatim: |
+      This is the start of Claude Everywhere. It’s Claude Code under the hood so it’s just as good at writing code. 65% of our product team’s new code is created by our internal version of Claude Tag
+    inline: >-
+      65% of our product team’s new code is created by our internal version of Claude Tag
+    summary: >
+      Claude Code's creator on internal adoption of Claude Tag at launch.
+    verdict: >
+      A vendor adoption claim about its own internal usage, with no published method. We did not verify the number and it is not a finding. What it establishes is what the vendor believed was true enough to say on launch day.
+    tags: [adoption, vendor-claim, claude-tag]
+
+  - id: gneubig-benchmark-trends
+    title: "Outperforms on accuracy and cost"
+    kind: community_discussion
+    date: 2026-06-18
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [openhands, claude-code, codex, gemini-cli]
+    authors: ["gneubig"]
+    display_name: Graham Neubig
+    source_note: 6
+    handling_note: f
+    source_urls:
+      - https://x.com/gneubig/status/2067651021384413602
+    verbatim: |
+      The results are interesting. Overall the trends are:
+      - OpenHands generally outperforms Claude Code on both accuracy and cost when using Claude Opus
+      - OpenHands beats Codex on accuracy, but falls behind on cost when using GPT
+      - Gemini-CLI outperforms OpenHands when using Gemini
+    inline: >-
+      OpenHands generally outperforms Claude Code on both accuracy and cost when using Claude Opus
+    summary: >
+      A researcher summarising harness-versus-harness benchmark trends.
+    verdict: >
+      Reported results from a third-party evaluation we did not run or audit. Quoted because the interesting shape is that the ranking flips with the model, which is the harness-as-variable argument arriving with data attached.
+    tags: [benchmarks, harness, comparison]
+
+  - id: hunvreus-burnout
+    title: "Close to burnout"
+    kind: maintainer_intent
+    date: 2026-06-23
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [heypi]
+    authors: ["hunvreus"]
+    display_name: Ronan Berder
+    source_note: 7
+    handling_note: g
+    source_urls:
+      - https://x.com/hunvreus/status/2069420983715541115
+    verbatim: |
+      Getting close to burnout with my open source projects.
+
+      I got Pages CMS 2.0.0 out a few weeks ago, and I'm about to release Basecoat 1.0.0. Oh, and also got heypi 0.2.0 beta released tonight, and I have the new  ReallySimpleDocs on its way (moved to @astrodotbuild).
+
+      I think I'll be taking a sabatical from most of this over the summer (except heypi).
+
+      If you want to see what Basecoat 1.0.0 looks like: https://basecoat.hunvreus.workers.dev/
+    inline: >-
+      Getting close to burnout with my open source projects
+    summary: >
+      The heypi maintainer on his open-source workload, the night 0.2.0 beta shipped.
+    verdict: >
+      A voice post, quoted as something he said publicly and for one operator-facing reason: heypi is on this watchlist and its bus factor is one. Nothing here is an inference about him. If he would rather it were not reproduced, the correction path in CONTRIBUTING.md applies and we will remove it.
+    tags: [sustainability, bus-factor, maintainer-voice]
