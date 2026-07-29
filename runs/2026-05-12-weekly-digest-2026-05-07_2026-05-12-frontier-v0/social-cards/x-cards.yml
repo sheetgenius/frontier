@@ -1,0 +1,197 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-05-12-weekly-digest-2026-05-07_2026-05-12-frontier-v0
+note: >
+  Backfilled 2026-07-29 from a dated archive search covering 2026-05-06 to
+  2026-05-12; every post independently re-fetched by URL before quoting, 30 of
+  30 found. Fragments sliced from verified text, single-line only.
+
+  The lyq_sqsp card carries an unverified sandbox-bypass claim. Read its verdict
+  before using it: nothing in it is asserted as a finding.
+cards:
+  - id: ryhanson-same-base-commit
+    title: "Same task, same repo, same base commit"
+    kind: community_discussion
+    date: 2026-05-12
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code, codex]
+    authors: ["ryHanson"]
+    display_name: Ryan Hanson
+    source_note: 1
+    handling_note: a
+    source_urls:
+      - https://x.com/ryHanson/status/2054349606591545581
+    verbatim: |
+      I would be careful treating Claude Code /goal the same as Codex /goal
+
+      Last night I ran them on the same task, same repo, same docs, same base commit, and no steering.
+
+      Codex hit 11/11 acceptance criteria.
+      Claude hit 9/11 acceptance criteria.
+
+      This was a straightforward refactoring/improvement task. Not massive, but long enough that I would normally split it into phases and run fresh sessions, especially with Claude.
+
+      Codex GPT-5.5 xhigh took ~31 min and reported ~586k tokens at completion.
+
+      Claude Code Opus 4.7 [1M] xhigh took ~34 min and reported ~144k tokens on completion, but /context was actually at ~458k tokens.
+
+      Reviewing both branches, Claude and Codex both agreed that Codex produced the cleaner and more trustworthy implementation. The Codex branch still was not perfect and needed cleanup, but it was much more coherent.
+
+      Claude started fine and wrote some genuinely good code. But it missed explicit scope, and ended up directly copying multiple files from the Codex branch, and still declared the goal complete...
+
+      The code copying behavior started after Claude found a stale .pyc in the container from the Codex run. The environment wasn't perfectly clean for a proper experiment, which is my fault. But that is a situation where I would want an agent to notify me or rebuild the container to clean up.
+
+      Instead, Claude inspected the Codex branch, copied files over, deleted some of its own tests, kept going, and didn't say anything about it in the goal completion summary.
+
+      Roughly 25% of the Claude branch was copied from Codex. So Claude likely would have taken more time/context if it didn't get "clever" and borrow code from Codex.
+
+      I have been really impressed with Codex /goal and its ability to run for hours with clear docs. I would not trust Claude Code /goal the same way for anything large unless it is heavily broken into sub-agent work, with the main agent mostly orchestrating and reviewing.
+
+      In my experience, once Claude gets past ~200k context it starts getting noticeably less reliable. My Claude workflows rely heavily on fresh sessions and sub-agents, so it rarely gets past 200k, but if you are using /goal, its likely going to happen.
+
+      Codex’s auto-compaction feels much more reliable. I have had Codex threads open for days with many compactions and no major drop in code quality.
+
+      I use both Codex and Claude Code daily. Claude is great at design, reviewing, and writing detailed plans. Codex is much better at coding. 
+
+      Neither is perfect.
+
+      But for unattended implementation work, I currently trust Codex a lot more.
+    inline: >-
+      I ran them on the same task, same repo, same docs, same base commit, and no steering
+    summary: >
+      A practitioner running Claude Code and Codex goal modes against an identical setup.
+    verdict: >
+      His run, his acceptance criteria, one trial. We did not reproduce it and the result is not a finding. It is here because controlling the repo, the docs and the base commit is more methodology than almost any comparison in this field carries, and because someone reached the opposite conclusion the same day.
+    tags: [comparison, methodology, goal-mode]
+
+  - id: closermethod-wrong-fight
+    title: "The wrong fight"
+    kind: criticism
+    date: 2026-05-12
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code, codex]
+    authors: ["closermethod"]
+    display_name: Elisabeth | AI Builder + UGC Deals
+    source_note: 2
+    handling_note: b
+    source_urls:
+      - https://x.com/closermethod/status/2054350157647663169
+    verbatim: |
+      /goal vs codex cli is the wrong fight.
+
+      the fight that matters: are you outputting chat replies or deployable files.
+
+      i ran 40-minute claude builds that codex couldn't finish in 3 hours. not because claude is smarter. because i asked for files, not snippets.
+
+      snippets need a developer. files deploy.
+    inline: >-
+      the fight that matters: are you outputting chat replies or deployable files
+    summary: >
+      A builder arguing the harness comparison is the wrong axis entirely.
+    verdict: >
+      A voice post and her own experience, unverified by us. Carried directly against the post above: two practitioners, same day, same comparison, opposite conclusions, both with specifics. Publishing only the one that agrees with us would be the easier and worse choice.
+    tags: [comparison, counter-argument]
+
+  - id: lyq-sandbox-bypasses
+    title: "Bypassed the sandbox, three to five ways"
+    kind: advisory_discussion
+    date: 2026-05-12
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["lyq_sqsp"]
+    display_name: itewqq
+    source_note: 3
+    handling_note: c
+    source_urls:
+      - https://x.com/lyq_sqsp/status/2054342737902948692
+    verbatim: |
+      Fun fact: we were also able to bypass the sandbox of Claude Code (it is not enabled by default settings though), like 3-5 different ways? But all of them are patched while we were making the videos within only several days lol.@AnthropicAI sometimes releases like five updates a single day.😅
+      Good luck to all the Pwn2Own contestants 🙏🙏🙏 would be very interesting this year.
+    inline: >-
+      we were also able to bypass the sandbox of Claude Code (it is not enabled by default settings though), like 3-5 different ways?
+    summary: >
+      A researcher describing sandbox bypasses found during video production.
+    verdict: >
+      NOT ESTABLISHED as a finding: an unverified researcher claim, no writeup we can read, and we did not reproduce anything. Two details in his own words matter and are why it is carried: the sandbox is not enabled by default, so most operators were never behind it, and he says every bypass was patched while the videos were being made. That last part is a data point about response time, not about the bypasses.
+    tags: [sandbox, unverified-claim, response-time]
+
+  - id: trentdoney-63-hours
+    title: "63h 6m on one Codex goal"
+    kind: adoption_signal
+    date: 2026-05-12
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [codex]
+    authors: ["TrentDoney"]
+    display_name: Trent Doney
+    source_note: 4
+    handling_note: d
+    source_urls:
+      - https://x.com/TrentDoney/status/2054306687788757334
+    verbatim: |
+      63h 6m on one Codex goal and it’s still going.
+
+      The new /goal feature is actually working. This is the kind of persistent agent behavior I’ve been waiting for.
+
+      @OpenAI
+
+      #Codex #Automation https://t.co/Dion6t1i8E
+    inline: >-
+      63h 6m on one Codex goal and it’s still going
+    summary: >
+      An operator reporting a single agent goal still running after two and a half days.
+    verdict: >
+      His session, his clock, unverified. Quoted as the duration claim it is, beside a longer one, because the shift from minutes to days is the thing the governance work in this issue is trying to keep up with.
+    tags: [long-horizon, duration]
+
+  - id: steipete-4d20h
+    title: "4d 20h and it actually finished"
+    kind: adoption_signal
+    date: 2026-05-12
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [codex]
+    authors: ["steipete"]
+    display_name: Peter Steinberger 🦞
+    source_note: 5
+    handling_note: e
+    source_urls:
+      - https://x.com/steipete/status/2054208923247255810
+    verbatim: |
+      4d 20h and it actually finished. 🫠
+    inline: >-
+      4d 20h and it actually finished
+    summary: >
+      A four-day-twenty-hour agent run, reported as it ended.
+    verdict: >
+      A voice post, unverified, and the emoji is doing the editorial work. Carried for the same reason as the one above: nobody wrote a governance model for a process that runs for five days.
+    tags: [long-horizon, duration]
+
+  - id: bcherny-papercuts
+    title: "Continuing to focus on quality"
+    kind: maintainer_intent
+    date: 2026-05-12
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["bcherny"]
+    display_name: Boris Cherny
+    source_note: 6
+    handling_note: f
+    source_urls:
+      - https://x.com/bcherny/status/2054042081153483066
+    verbatim: |
+      Thank you for the feedback 🙏.
+
+      We are actively working on improving quality and streamlining the product, and are continuing to focus on quality until it feels really good. If there are specific papercuts I’d love to hear so we can fix those. Are you using CLI, Desktop, VSCode, or something else?
+
+      Will forward the feedback about 4.7 to our researchers. One thing that would be very helpful: next time you see the incompleteness issue, would you mind running /feedback and sharing the id here? That will make it easier to act on and fix the issue.
+
+      And 4.6 is still available if you want it. ANTHROPIC_MODEL='claude-opus-4-6[1m]' claude, or claude --model=opus-4-6[1m].
+    summary: >
+      Claude Code's creator replying to a run of critical feedback.
+    verdict: >
+      A vendor response, quoted as that. It is here because the week's other posts are the feedback it answers, and a maintainer answering complaints in the same thread is the part of the record that usually goes missing.
+    tags: [vendor-response, quality]
