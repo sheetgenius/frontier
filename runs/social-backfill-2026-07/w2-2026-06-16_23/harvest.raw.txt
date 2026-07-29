@@ -1,0 +1,1709 @@
+===POST===
+URL: https://x.com/claudeai/status/2067671912038240487
+HANDLE: claudeai
+DISPLAY_NAME: Claude
+DATE: 2026-06-18
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+New in Claude Code: Artifacts.
+
+Interactive pages built from your session, like a PR walkthrough or a living project dashboard, shared with your team at a private link.
+
+Available in beta on Team and Enterprise plans.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/ClaudeDevs/status/2067672094209675373
+HANDLE: ClaudeDevs
+DISPLAY_NAME: ClaudeDevs
+DATE: 2026-06-18
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Artifacts are now live in Claude Code.
+
+Ask Claude to turn what it's working on into a page and send the link to your team. The page updates as the session keeps working. 
+
+Available today on Team and Enterprise plans.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/ClaudeCodeLog/status/2069531604951687542
+HANDLE: ClaudeCodeLog
+DISPLAY_NAME: Claude Code Changelog
+DATE: 2026-06-23
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: neutral
+VERBATIM_BEGIN
+Claude Code 2.1.187 has been released.
+
+21 CLI changes
+
+Highlights:
+• Added sandbox.credentials to stop sandboxed commands reading credentials and secret env vars, protects secrets
+• Remote MCP tool calls now abort after 5 minutes instead of hanging indefinitely, preventing long stalls
+
+Full details available in thread ↓
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/Mx3Dev/status/2069558902794961126
+HANDLE: Mx3Dev
+DISPLAY_NAME: Maxwell de Melo
+DATE: 2026-06-23
+PROJECT: claude-code
+KIND: advisory_discussion
+STANCE: positive
+VERBATIM_BEGIN
+@AnthropicAI just shipped Claude Code v2.1.187 with tighter security and smoother UX.
+
+Security & access control
+→ Added sandbox.credentials to block secret reads in sandboxed commands.
+→ Org-configured model restrictions show clear message on restricted models.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/rikuminamiyama/status/2069556321565983126
+HANDLE: rikuminamiyama
+DISPLAY_NAME: 南山 陸｜Human AI CEO
+DATE: 2026-06-23
+PROJECT: claude-code
+KIND: bug_report
+STANCE: positive
+VERBATIM_BEGIN
+Claude Code v2.1.187リリース
+
+地味に嬉しいのが、リモートMCPツールが無応答のまま5分間ハングしていた問題の修正。タイムアウトせず詰まり続けるのは辛かった。
+
+https://github.com/anthropics/claude-code/releases/tag/v2.1.187
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/hata_AI_master/status/2069570788076986758
+HANDLE: hata_AI_master
+DISPLAY_NAME: AI活用ラボ@Levela
+DATE: 2026-06-23
+PROJECT: claude-code
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+Claude Code 2.1.187がリリースされました
+
+Claude Codeはターミナルで動作するAIエージェント型の開発ツールです 自然言語で指示を出すだけでプロジェクトのコードベースを理解し ファイルの作成や編集 コマンド実行 テスト実行 デバッグ Git操作などを自動的に行えます サブエージェントやバックグラウンド処理も利用可能です
+
+今回の更新ではサンドボックス内で実行されるコマンドが認証情報や秘密の環境変数を読み取れないようにするsandbox.credentials設定が追加され セキュリティが強化されました
+
+またリモートMCPツールの呼び出しが応答がない場合に5分で自動的に中止されるようになり 作業が長時間止まる問題を防げます 必要に応じて環境変数でタイムアウト時間を調整できます
+
+セキュリティを重視する開発者や 外部ツール連携を多用するプロジェクトに特に役立ちます ターミナル中心の効率的な開発ワークフローを求める方に適しています
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/claudeai/status/2069468693017268244
+HANDLE: claudeai
+DISPLAY_NAME: Claude
+DATE: 2026-06-23
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Introducing Claude Tag, a new way for teams to work with Claude.
+
+In Slack, Claude joins as a team member with access to the channels and tools you choose. Tag Claude in and delegate tasks to it while you focus on other work.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/bcherny/status/2069474683372839253
+HANDLE: bcherny
+DISPLAY_NAME: Boris Cherny
+DATE: 2026-06-23
+PROJECT: claude-code
+KIND: maintainer_intent
+STANCE: positive
+VERBATIM_BEGIN
+This is the start of Claude Everywhere. It’s Claude Code under the hood so it’s just as good at writing code. 65% of our product team’s new code is created by our internal version of Claude Tag
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/JustAnotherPM/status/2069570700994863107
+HANDLE: JustAnotherPM
+DISPLAY_NAME: JustAnotherPM | Sid
+DATE: 2026-06-23
+PROJECT: claude-code
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+You will not be replaced by AI.
+
+You will be replaced by the person who ships 150 pull requests in a single day using it.
+
+Boris Cherny created Claude Code. He has not manually written a single line of code in 2026.
+
+Not because code disappeared. Because the model handles it.
+
+The skill that matters now is three things:
+
+1. Specifying exactly what to build.
+2. Reviewing whether the output is correct.
+3. Knowing when the model is wrong.
+
+Coding is not gone. It moved from your fingers to your judgment.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/AnatoliKopadze/status/2068690663919530207
+HANDLE: AnatoliKopadze
+DISPLAY_NAME: Anatoli Kopadze
+DATE: 2026-06-21
+PROJECT: claude-code
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+Anthropic engineers just showed how they build a full app from scratch, using a loop of agents
+
+40 minutes from the team behind Claude Code
+
+they used three agents: one to plan, one to build, one to judge, cycling until the app actually works
+
+the winners won't have the smartest model, they'll have the best loop
+
+watch it, then read the full guide on how to actually use loops below
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/ridark_eth/status/2068753952850546985
+HANDLE: ridark_eth
+DISPLAY_NAME: Ridark
+DATE: 2026-06-21
+PROJECT: claude-code
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+I genuinely don't understand why everyone isn't using this yet
+
+Andrej Karpathy, a co-founder of OpenAI, posted a simple idea that hit 16 million views: stop using AI to write code, use it to build a second brain.
+
+You point Claude Code at a folder, drop in any source, an article, a transcript, a PDF, and Claude reads it, links it, and files it into a living wiki of everything you know. It compounds like interest, the more you feed it, the smarter it gets.
+
+Here's the whole thing:
+
+> Install Obsidian, create a vault, open it in Claude Code
+
+> Paste Karpathy's wiki idea file and tell Claude to build it
+
+> Claude makes three folders: raw for sources, wiki for its pages, a CLAUDE.md that runs it
+
+> Drop any source into raw and say "ingest this"
+
+> Ask questions across everything, forever
+
+Five minutes to set up, and you never start from a blank chat again.
+
+Full step-by-step guide with Claude and Obsidian, link below.
+
+Bookmark this
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/chenzeling4/status/2069570705583378933
+HANDLE: chenzeling4
+DISPLAY_NAME: Zane Chen
+DATE: 2026-06-23
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Your agent writes code with zero discipline.
+
+9arm-skills is a skill pack for Claude Code that actually enforces engineering habits. Debug-Mantra makes it reproduce, trace, falsify, cross-reference before touching any fix. Post-mortem forces a root cause writeup after. There's even qwen-agent that delegates the boring stuff to a cheap subagent.
+
+One npx command and your agent stops being a cowboy.
+
+⭐ 2.9K #AgentSkills #OpenSource
+
+https://github.com/thananon/9arm-skills
+
+Follow for daily dev finds 🔔
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/DanKornas/status/2069561371444838583
+HANDLE: DanKornas
+DISPLAY_NAME: Dan Kornas
+DATE: 2026-06-23
+PROJECT: claude-code
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Your Java Claude Code setup shouldn’t start from a blank prompt every time.
+
+claude-code-java is a reusable Claude Code workspace for Java developers who want shared skills, templates, MCP config, and setup scripts around common Java project work.
+
+It helps you make Claude Code more consistent across projects by giving it structured markdown skills for code review, testing, commits, architecture decisions, and Java/Maven workflows.
+
+Key features:
+
+• Java-focused skills – 18 reusable Claude Code skills across workflow, code quality, architecture, Spring Boot, JPA, Maven, security, and logging
+• Fast project setup – http://setup-project.sh creates .claude/, symlinks skills, generates CLAUDE.md, and configures settings
+• Incremental adoption – copy one skill, symlink selected skills, or link the full skills directory
+• Templates included – CLAUDE.md, MCP config, MCP documentation, and settings templates are bundled for repeatable setup
+• Review reuse path – the README connects the same skills to automated PR review through skill-review
+
+It’s open-source (MIT license).
+
+Link in the reply 👇
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/aresotik/status/2067609078268829708
+HANDLE: aresotik
+DISPLAY_NAME: ares. 🎧
+DATE: 2026-06-18
+PROJECT: claude-code
+KIND: advice
+STANCE: positive
+VERBATIM_BEGIN
+las skills son la función de Claude que más infravalora la gente.
+
+aquí te muestro cómo crear la tuya desde cero.
+
+tardas menos de 2 minutos y a partir de ahí el uso de Claude cambia totalmente ⬇️
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/kazu_tanimoto/status/2069569434696687914
+HANDLE: kazu_tanimoto
+DISPLAY_NAME: 谷本和隆@MASSIVE LINKS株式会社
+DATE: 2026-06-23
+PROJECT: claude-code
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+「実装はできた。でも説明資料を作るのが毎回いちばん面倒」
+
+Claude Code の新機能 Artifacts、これに効きます。
+作業の文脈から、PR説明・システム図・ダッシュボードを"そのまま共有ページ"に。同URLで更新＆履歴つき。
+
+解説記事を書きました👇
+https://x.com/kazu_tanimoto/status/2069569022765703531?s=20
+
+#ClaudeCode #AI開発
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/yudexai/status/2069563328595366017
+HANDLE: yudexai
+DISPLAY_NAME: yudex｜AIニュースと市場メモ
+DATE: 2026-06-23
+PROJECT: claude-code
+KIND: community_discussion
+STANCE: neutral
+VERBATIM_BEGIN
+Claude Codeの無料コースが出ています。
+
+Frontend Mastersのページでは、1.9時間/16レッスンで、CLAUDE.md、Plan Mode、Skills、Hooks、Permissions、Sub-agents、MCP、Pluginsまで扱う内容と案内されています。
+
+見るところは3つ。
+・まずCLAUDE.mdとPlan Mode
+・次にPermissions/Hooks
+・最後にSub-agents/MCP
+
+https://frontendmasters.com/courses/claude-code/
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAIDevs/status/2067681320281723113
+HANDLE: OpenAIDevs
+DISPLAY_NAME: OpenAI Developers
+DATE: 2026-06-18
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Show Codex a workflow once. Reuse it as a skill.
+
+Record & Replay lets you show Codex a recurring task, like filing an expense report or submitting a time-off request.
+
+Codex turns that demo into an inspectable, editable skill.
+
+You control when recording starts and stops.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/nickbaumann_/status/2067683680177504624
+HANDLE: nickbaumann_
+DISPLAY_NAME: Nick
+DATE: 2026-06-18
+PROJECT: codex
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+The best way to think of Record & Replay™️ is to imagine it as a new primitive
+
+Ask Codex to watch you do something on your computer -- anything in your day-to-day
+
+And Codex will process the (1) recording and (2) events (same spine as computer use) to understand (A) exactly what happened, and then (B) turn it into a skill you can use for the future 
+
+Some ways I've been using R&R:
+- formatting calendar invites in my own particular fashion (I had Codex watch once, and now it matches my pattern when using the gCal plugin)
+- drafting PRs and sharing them to the right slack channel with the exact formatting I like
+- testing onboarding flows (Codex can pickup on different friction points during the recording -- for this, I don't need it to create a skill)
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/Codex_Changelog/status/2067682048194543996
+HANDLE: Codex_Changelog
+DISPLAY_NAME: Codex Changelog
+DATE: 2026-06-18
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+🚀 Codex app 26.616 is out!
+
+🎬 Record & Replay turns demos into reusable skills (macOS)
+📋 Bulk archive or mark all automation runs as read
+📁 Multi-folder local project setup
+
+Changelog: https://developers.openai.com/codex/changelog#codex-2026-06-18-app
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/mark_k/status/2067689265941885253
+HANDLE: mark_k
+DISPLAY_NAME: Mark Kretschmann
+DATE: 2026-06-18
+PROJECT: codex
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+It's CODEX THURSDAY and OpenAI came through! 🔥
+
+Codex app 26.616 changes:
+
+• Added Record & Replay on macOS, which turns a demonstrated workflow into a reusable skill.
+• Record & Replay is not available in the EU at launch.
+• Record & Replay requires Computer Use to be enabled by the user or admin.
+• Added bulk actions to automation run history, so runs can be marked as read or archived in bulk.
+• Added new deep links for managing SSH connections.
+• Improved Browser Use so visible-tab routing and annotations persist when a draft browser session moves to the server.
+• Additional performance improvements and bug fixes.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/testingcatalog/status/2067735439562191138
+HANDLE: testingcatalog
+DISPLAY_NAME: 🚨 AI News | TestingCatalog
+DATE: 2026-06-18
+PROJECT: codex
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+OPENAI 🔥: Codex now has a new Record & Replay plugin that captures your actions and converts your workflow into an executable skill.
+
+My workflow 👀
+
+* Not available in EEA, UK, and Switzerland yet
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/CodexReleases/status/2069185685131804760
+HANDLE: CodexReleases
+DISPLAY_NAME: Codex Releases
+DATE: 2026-06-22
+PROJECT: codex
+KIND: capability_announcement
+STANCE: neutral
+VERBATIM_BEGIN
+Codex CLI 0.142.0 is out.
+
+Highlights:
+- Configurable rollout token budgets track usage across agent threads, send remaining-budget reminders, and abort turns when exhausted.
+- App-server clients can configure multi-agent delegation as disabled, explicit-request-only, or proactive at the thread and turn level.
+- /plugins now organizes remote plugins into OpenAI Curated, Workspace, and Shared with me sections; eligible turns can recommend and install plugins.
+- Indexed web-search mode permits live searches while restricting direct page access to server-approved URLs.
+
+Complete details in thread ↓
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/CodexReleases/status/2069459576294928482
+HANDLE: CodexReleases
+DISPLAY_NAME: Codex Releases
+DATE: 2026-06-23
+PROJECT: codex
+KIND: capability_announcement
+STANCE: neutral
+VERBATIM_BEGIN
+Codex mobile update: ChatGPT for iOS 1.2026.167
+
+What changed:
+• Per-host personality settings with Friendly and Pragmatic options
+• Goals can now be edited directly in the composer
+• Forked conversations now link back to the original thread
+
+Details in thread.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenAI/status/2069104283824640023
+HANDLE: OpenAI
+DISPLAY_NAME: OpenAI
+DATE: 2026-06-22
+PROJECT: codex
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+We’re expanding OpenAI Daybreak to help democratize patching vulnerable software at machine speed:
+
+- Codex Security plugin: find, validate, and fix vulnerabilities right inside Codex
+
+- The full version of GPT-5.5-Cyber model: a great model for trusted defenders
+
+- Cyber Partner Program: powering products built on top of our best cyber capabilities for leading security companies to secure the world's software
+
+- Patch the Planet: working with maintainers to secure critical open source projects
+
+https://openai.com/index/daybreak-securing-the-world/
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/thsottiaux/status/2067181377028538431
+HANDLE: thsottiaux
+DISPLAY_NAME: Tibo
+DATE: 2026-06-17
+PROJECT: codex
+KIND: advice
+STANCE: positive
+VERBATIM_BEGIN
+Reminder that you can use the Codex App, CLI and SDK with any open source model, not just with OpenAI models.
+
+https://developers.openai.com/codex/config-advanced#oss-mode-local-providers
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/thsottiaux/status/2068144722460475527
+HANDLE: thsottiaux
+DISPLAY_NAME: Tibo
+DATE: 2026-06-20
+PROJECT: codex
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Late to this one, but follow @danshipper for S-tier codex tips. These days I spend more time in the codex app than all other apps combined on my Mac.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/thsottiaux/status/2068736857312198928
+HANDLE: thsottiaux
+DISPLAY_NAME: Tibo
+DATE: 2026-06-21
+PROJECT: codex
+KIND: maintainer_intent
+STANCE: neutral
+VERBATIM_BEGIN
+What should we improve in the Codex app. What's not delightful?
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/pvncher/status/2068061924915331127
+HANDLE: pvncher
+DISPLAY_NAME: eric provencher
+DATE: 2026-06-19
+PROJECT: codex
+KIND: advice
+STANCE: positive
+VERBATIM_BEGIN
+Pro tip for codex app users if you have tokens to burn. Just append "Use sub agents as needed" to your prompt
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/sitin_dev/status/2068872841148412131
+HANDLE: sitin_dev
+DISPLAY_NAME: sitinDev
+DATE: 2026-06-22
+PROJECT: codex
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Codex CLI has a hidden gem for long-running tasks: /goal.
+
+Most AI coding failures aren’t caused by bad prompts. They happen because the model gradually forgets the original constraints after multiple turns.
+
+/goal solves this by pinning a session-wide objective that gets reinforced throughout the conversation.
+
+Example:
+
+/goal Refactor all React class components into hooks without introducing new dependencies.
+
+Benefits:
+• Keeps the model aligned across many turns
+• Supports pause / resume / update
+• Tracks task state (active, paused, blocked, complete)
+• Optional token budgets prevent runaway costs
+• Works especially well with /plan
+
+For large refactors, migrations, or multi-file bug fixes, starting with /goal noticeably reduces drift.
+
+One of the most interesting ideas in Codex isn't the model itself—it's how OpenAI manages long-horizon agent behavior.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/shannholmberg/status/2067328943351529568
+HANDLE: shannholmberg
+DISPLAY_NAME: Shann³
+DATE: 2026-06-17
+PROJECT: codex
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+how to add an LLM council into your /goal workflow
+
+/goal is the easiest way into agent looping. it works best when you already know what you want and have enough context to start, the agent fills in the rest as it goes
+
+what I added recently is a review between models inside the run. one model hosts the loop, another sits as the reviewer and checks the work before it moves on
+
+today I ran an AI workflow mapping for a client. GPT 5.5 xhigh hosted the loop on codex CLI, and I put a review gate in two places, first on the plan, then on every delivery. claude opus 4.8 high did the reviewing (bring back fable pls) and fed notes back to the main agent. the output came back noticeably sharper than a single-model run
+
+under the hood its just the codex model calling the claude CLI. nothing fancy. you write a skill that goes both ways, one that lets codex call claude and one that lets claude call codex, and you have a council
+
+the value is simple, a second model catches what the one driving the loop talks itself into. easy to set up, and it improves the output every time
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/BHolmesDev/status/2067245891883565543
+HANDLE: BHolmesDev
+DISPLAY_NAME: Ben Holmes
+DATE: 2026-06-17
+PROJECT: none
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Claude and Codex have a /goal skill now. But for goals to work, you need good acceptance criteria.
+
+A good process using @mattpocockuk's skills:
+- Use /grill-with-docs to scope out the feature
+- Use /to-issues to turn your conversation into actionable goals as GitHub issues
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/0xMovez/status/2069452569970151658
+HANDLE: 0xMovez
+DISPLAY_NAME: Movez
+DATE: 2026-06-23
+PROJECT: codex
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+OpenAI engineer:
+
+“90% of our engineers use Codex subagent harnesses + loops to ship code 5× faster.
+
+close the agent loop. Give an agent a way to verify its own output.”
+
+in 30-minute talk, an OpenAI engineer explains how to build self-improving agentic systems with harnesses.
+
+Worth more than a $500 agentic course online.
+
+Watch it today, then read how hedge funds apply loop engineering in trading.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/marsloting/status/2069430241064575016
+HANDLE: marsloting
+DISPLAY_NAME: Marsloting
+DATE: 2026-06-23
+PROJECT: codex
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+OpenAI 给 Codex 上了个新功能，Record & Replay。你把流程做一遍，它在边上看着，整理成一个能复用的 skill。
+
+真正变的不是省 prompt。是 agent 从听你啊吧啊吧吩咐，变成接手一套 SOP。
+
+我对这事有体感，因为我自己被逼着训过一个岗位，叫监工。
+
+监工不干活，它盯着另一个执行的 agent。每轮醒来先读规矩、查归谁管、核产物、看回执。慢，不许打断；断流，也不许凭热情冲进去重做，得先重建现场再接。
+
+agent 最阴的失败不是报错。是它看着还活蹦乱跳、状态一片绿，可产物没落地、证据没存盘、下游接不上。它没撒谎，它在干活，只是按一份过期的规矩在干。
+
+所以监工 skill 的内核不是更聪明，是少放飞自我。文件事实优先不信口头 done，每轮重查归谁管，不许两个 owner 写同一批产物，接管前先重建账本，没证据不算完成，碰发布密钥部署付款动账号直接停。
+
+这哪是 prompt，是岗位说明书。
+
+往后真正会用 agent 的人，拼的不是手里多少 skill，是被一次次真实生产事故亲手磨出来的血泪沉淀。
+
+你被 agent 坑过什么？你把那个坑命名了吗？你把防御写成流程了吗？
+
+我把这套炼成了公开 skill，名 agent-supervisor-guardrails 欢迎品尝
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/gokhangokova/status/2069007847866679524
+HANDLE: gokhangokova
+DISPLAY_NAME: Gökhan Gökova
+DATE: 2026-06-22
+PROJECT: codex
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+🎬 OpenAI's Codex can now learn a task by WATCHING you do it once. No prompt, no script. Just show it.
+
+The new feature is called #Record & Replay. You perform a repetitive workflow on your Mac one time, Codex observes the steps and window content, then turns it into a reusable, editable skill you can replay later with new inputs.
+
+What makes it clever:
+- It is not pixel-by-pixel macro recording. Codex generates a natural-language SKILL.md file that its reasoning model interprets, so it adapts when things shift
+- Replay it by starting a new thread and giving it the values that change this time (the file to upload, the date range, the issue to create)
+- Skills can be shared across a team, so one person's recorded workflow becomes the whole department's automation
+- The sweet spot per OpenAI: tasks that are "easier to show than to describe," like filing an expense, publishing a video, or pulling a recurring report
+
+This is programming by demonstration, a 1980s research idea, finally working in an AI-native form. The barrier to automation drops from "write code or a long prompt" to "just do the task once."
+
+The honest limits: macOS only at launch, excludes the EU, UK, and Switzerland, and needs Computer Use enabled. And reliability still matters: multi-step workflows can compound small errors, so it shines when steps are stable and success is clearly defined.
+
+Agents you teach by showing, not telling. That shift is the real story. 🚀
+
+-------
+
+🎬 OpenAI'ın Codex'i artık bir işi SİZİ bir kez izleyerek öğrenebiliyor. Prompt yok, script yok. Sadece göster.
+
+Yeni özelliğin adı #Record & Replay. Mac'inizde tekrarlayan bir workflow'u bir kez yapıyorsunuz, Codex adımları ve pencere içeriğini izliyor, sonra bunu yeniden kullanabileceğiniz, düzenlenebilir bir skill'e çeviriyor; sonra farklı inputlarla tekrar oynatıyorsunuz.
+
+Onu zekice yapan ne:
+- Pixel pixel makro kaydı değil. Codex, reasoning modelinin yorumladığı doğal dilde bir SKILL.md dosyası üretiyor, böylece işler değişince uyum sağlıyor
+- Yeni bir thread başlatıp bu sefer değişen değerleri vererek oynatıyorsunuz (yüklenecek dosya, tarih aralığı, oluşturulacak issue)
+- Skill'ler takım içinde paylaşılabiliyor, yani bir kişinin kaydettiği workflow tüm departmanın otomasyonu oluyor
+- OpenAI'a göre tatlı nokta: "anlatmaktan çok göstermesi kolay" işler, örneğin masraf girişi, video yayınlama ya da periyodik rapor çekme
+
+Bu, 1980'lerin bir araştırma fikri olan "programming by demonstration"ın nihayet AI-native bir biçimde çalışması. Otomasyon engeli "kod ya da uzun prompt yaz"dan "işi bir kez yap"a iniyor.
+
+Dürüst sınırlar: lansmanda sadece macOS, AB, İngiltere ve İsviçre hariç, ve Computer Use'un açık olması gerekiyor. Güvenilirlik de önemli: çok adımlı workflow'lar küçük hataları biriktirebiliyor, yani adımlar stabil ve başarı net tanımlıysa parlıyor.
+
+Anlatarak değil, göstererek öğrettiğiniz agent'lar. Asıl hikaye bu kayma. 🚀
+
+#AI #OpenAI #Codex #Automation #AIagents
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/RoundtableSpace/status/2066675875077378487
+HANDLE: RoundtableSpace
+DISPLAY_NAME: 0xMarioNawfal
+DATE: 2026-06-16
+PROJECT: codex
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+OPENAI IS GIVING FREE ACCESS TO CODEX AND ALL YOU NEED IS A PUBLIC GITHUB REPO AND 5 MINUTES
+
+$1,200 worth of credits, 6 months of ChatGPT Pro and full Codex access. You don't need to be a senior dev and you don't need a finished project. Half-finished repos get approved all the time.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/rohanpaul_ai/status/2068767074663690502
+HANDLE: rohanpaul_ai
+DISPLAY_NAME: Rohan Paul
+DATE: 2026-06-21
+PROJECT: none
+KIND: community_discussion
+STANCE: neutral
+VERBATIM_BEGIN
+"The model is no longer the product. 
+
+Codex, Perplexity Computer, or Claude Code - all are orchestration system. It takes a model and pairs it with an agent harness.
+What is an agent harness ? The rules for how the agent loops around"
+- Aravind Srinivas
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/geminicli/status/2067702889837953512
+HANDLE: geminicli
+DISPLAY_NAME: Gemini CLI
+DATE: 2026-06-18
+PROJECT: gemini-cli
+KIND: advisory_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+Today, marks the official transition from Gemini CLI to the new Antigravity CLI for individual accounts. 
+
+Gemini CLI has stopped serving requests for Google AI Pro, Google AI Ultra, and free tier individual accounts.
+
+Enterprise users with Gemini Code Assist licenses and API key authentication remain completely unaffected.
+
+Read the full details: https://github.com/google-gemini/gemini-cli/discussions/28017
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/ntaylormullen/status/2067728389088362545
+HANDLE: ntaylormullen
+DISPLAY_NAME: N. Taylor Mullen
+DATE: 2026-06-18
+PROJECT: antigravity
+KIND: maintainer_intent
+STANCE: mixed
+VERBATIM_BEGIN
+End of an era, but the start of something even bigger. Today, Gemini CLI will stop serving requests for Google AI Pro, Google AI Ultra, and free tier individual accounts as we transition over to the Antigravity CLI!
+
+It started with weekly Gemini CLI updates and grew to be bigger than I ever thought it would. I’m deeply grateful for the community, the code, and the absolute ride of the past year. Thank you all so much!!
+
+Next stop: Antigravity SDK. Stoked to keep building with you all there and will be sharing more in the coming weeks! 🚀🚀🚀
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/JackWoth98/status/2067697673671450742
+HANDLE: JackWoth98
+DISPLAY_NAME: Jack Wotherspoon
+DATE: 2026-06-18
+PROJECT: gemini-cli
+KIND: community_discussion
+STANCE: negative
+VERBATIM_BEGIN
+Bit of a sad day for Gemini CLI users, maintainers, and the community.
+
+Today, Gemini CLI will stop serving requests for Google AI Pro, Google AI Ultra, and free tier individual accounts.
+
+Users of those tiers must migrate to Antigravity CLI.
+
+Gemini CLI has a been a wild ride the past year for me personally. Thank you to everyone who tried it, contributed to it, advocated for it, truly💜
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/kilocode/status/2067626503328743710
+HANDLE: kilocode
+DISPLAY_NAME: Kilo (acq. by Anaconda)
+DATE: 2026-06-18
+PROJECT: antigravity
+KIND: criticism
+STANCE: negative
+VERBATIM_BEGIN
+Gemini CLI stops serving free, Pro, and Ultra users today. The replacement, Antigravity CLI, is closed source.
+
+The original was Apache 2.0 with over 6,000 community pull requests behind it. Those contributors now get a closed binary they can't inspect or fork.
+
+This is the cost of building on tooling one vendor can retire on a schedule. Open source doesn't get sunset out from under you. Kilo is Apache 2.0, the full codebase is on GitHub, and the community keeps it running regardless of any single company's roadmap.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/antigravity/status/2069543593329467840
+HANDLE: antigravity
+DISPLAY_NAME: Google Antigravity
+DATE: 2026-06-23
+PROJECT: antigravity
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Antigravity is a development platform. While the core users are software developers, more and more professionals have become builders! The primitives of Antigravity make it a powerful thought partner for a whole host of other fields, like marketing.
+
+Watch Patrick Thomas, Exec & Internal Comms Advisor at Google, explain how he uses skills and personal context to teach Antigravity his specific writing style, pitch new creative ideas, and automate draft creation.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/NousResearch/status/2069526242236182697
+HANDLE: NousResearch
+DISPLAY_NAME: Nous Research
+DATE: 2026-06-23
+PROJECT: hermes-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Hermes Agent can now /learn from anything: feed it directories of any source material (code, API docs, manuals, PDFs, configs) and it distills a verifiable reusable skill
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/IBuzovskyi/status/2069547388818411728
+HANDLE: IBuzovskyi
+DISPLAY_NAME: YanXbt
+DATE: 2026-06-23
+PROJECT: hermes-agent
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+HERMES AGENT NOW LEARNS SKILLS
+FROM ANY SOURCE MATERIAL YOU FEED IT.
+CODE. API DOCS. MANUALS. PDFS. CONFIGS.
+ONE COMMAND. ONE REUSABLE SKILL.
+
+/learn takes a directory of source files
+and distills them into a verified SKILL.md
+with procedures, pitfalls, and verification steps.
+
+WHAT /LEARN DOES:
+
+you point it at a folder:
+
+/learn ~/docs/stripe-api/
+
+Hermes reads every file in that directory.
+code, markdown, PDFs, configs, examples.
+understands the domain.
+writes a complete SKILL.md with:
+→ when to use (trigger conditions)
+→ step-by-step procedure
+→ pitfalls and failure modes
+→ verification steps (how to confirm it worked)
+→ proper frontmatter (name, tags, category)
+
+the skill appears instantly in ~/.hermes/skills/.
+available as a slash command from that moment.
+
+WHY THIS CHANGES THINGS:
+
+before /learn:
+you found a new API or tool.
+you read the docs yourself.
+you explained it to Hermes in conversation.
+the agent forgot it next session.
+you explained it again.
+
+after /learn:
+you point /learn at the docs folder.
+Hermes reads everything once.
+creates a permanent skill.
+uses it correctly in every future session.
+the knowledge never degrades.
+
+WHAT YOU CAN FEED IT:
+
+→ API documentation (REST, GraphQL, SDK references)
+→ codebase source files (understands the architecture)
+→ internal company manuals (processes, workflows, policies)
+→ PDF documentation (product manuals, research papers)
+→ config files (understands the structure and options)
+→ open source project docs (README, CONTRIBUTING, guides)
+
+EXAMPLES:
+
+/learn ~/projects/our-api/docs/
+→ Hermes now knows your internal API.
+asks it to write integrations and it follows
+your actual endpoints, not hallucinated ones.
+
+/learn ~/docs/terraform-modules/
+→ Hermes now knows your infra setup.
+deploys and modifies infrastructure
+using your actual module structure.
+
+/learn ~/company/onboarding-docs/
+→ Hermes now answers new hire questions
+from your real documentation.
+plug into a customer support profile.
+
+THE SKILL IT CREATES:
+
+follows the agentskills. io open standard.
+portable. shareable. community-compatible.
+
+my-learned-skill/
+├── SKILL.md          # procedures, pitfalls, verification
+├── references/       # source excerpts the agent can consult
+└── templates/        # reusable output formats
+
+the skill includes verification steps
+so you can confirm it understood correctly
+before relying on it in production.
+
+COMBINE WITH OTHER FEATURES:
+
+/learn creates the skill.
+profiles isolate it to the right agent.
+cron jobs use it on a schedule.
+Curator improves it over time.
+
+one command feeds the knowledge.
+the system compounds it from there.
+
+15 levels of Hermes Agent 👇
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/ScottyBeamIO/status/2066911177133715771
+HANDLE: ScottyBeamIO
+DISPLAY_NAME: SCOTTY BEAM
+DATE: 2026-06-16
+PROJECT: hermes-agent
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+MOST PEOPLE ARE STILL USING OPENCLAW WHEN HERMES AGENT IS QUIETLY DOING THE SAME JOB BETTER
+
+Tested both for a month on the same machine. Here's what nobody is talking about.
+
+Reason 1: Hermes gets smarter every time you use it.
+
+OpenClaw runs the same skill the same way forever. Hermes updates its own skill and saves the workflow based on what actually worked after every task. A research agent that improves with every single run. It even runs a weekly curator that removes unused skills automatically so it never gets bloated. OpenClaw slowed down the more skills got saved. Hermes doesn't.
+
+Reason 2: One command undoes everything.
+
+Before Hermes touches a single file, it snapshots your working directory. If anything breaks, /rollback puts everything back exactly how it was. You can technically do this with OpenClaw and Git. It's nowhere near as seamless.
+
+Reason 3: Fewer updates, fewer breakages.
+
+OpenClaw ships updates almost every week and several of them introduced bugs or slowdowns. Hermes updates less but breaks far less often.
+
+OpenClaw still has the bigger ecosystem and more integrations. That's real.
+
+But if you want an agent that actually learns and protects your work by default, the gap is starting to show.
+
+Bookmark this post. Full comparison in the video below.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/tonysimons_/status/2069249676432351569
+HANDLE: tonysimons_
+DISPLAY_NAME: Tony Simons
+DATE: 2026-06-23
+PROJECT: hermes-agent
+KIND: criticism
+STANCE: mixed
+VERBATIM_BEGIN
+I’m just a user.
+
+I don’t know the behind-the-scenes politics. I don’t know the secret sauce. I don’t know who said what in what Discord.
+
+What I do know:
+
+I debugged OpenClaw for 2 straight months.
+
+Then I found Hermes Agent about two weeks after launch and have been using it with basically zero drama ever since.
+
+That’s the whole review:
+
+Hermes >>> OpenClaw.
+
+Period. Point. Blank.
+
+#TeamHermes ⚕️
+#TekniumTheGOAT 🐐
+
+Me after reading some of the comments in THIS HERE thread 👇
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/undefinedKi/status/2069176538486952422
+HANDLE: undefinedKi
+DISPLAY_NAME: Yarchi
+DATE: 2026-06-22
+PROJECT: hermes-agent
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+This AI agent writes its own skills while it runs and gets measurably faster every time you use it. It hit 188,000 GitHub stars in four months
+
+It's called Hermes, an open-source agent from Nous Research. It launched in late February 2026 and became the fastest-growing agent framework of the year, passing even Claude Code in stars. 
+
+It's free, MIT-licensed, and runs on your own machine or a cheap server.
+
+Here's what makes it different from a normal chatbot. A normal AI wakes up stateless every session, no memory, you re-explain everything. Hermes flips that. 
+
+It carries memory across sessions, and after it finishes a real task, it saves the method as a reusable skill, a markdown "recipe" it pulls next time the same kind of work comes up. 
+
+Independent benchmarks clocked agents with 20+ self-made skills completing similar tasks ~40% faster, because they stop reasoning from scratch.
+
+On top of that it runs scheduled jobs on its own (a 6am briefing, monitoring your comments, nightly backups), talks to you through Telegram, Discord, or Slack, and works with any model, Claude, GPT, or a local one, switched with one command.
+
+How to setup:
+
+1. Spin up a cheap VPS (or run it locally), then install with the one-line command or a one-click Docker image.
+
+2. Run the setup wizard: pick your model (you can log in with an existing Claude or ChatGPT subscription instead of an API key), then connect Telegram by making a bot through BotFather.
+
+3. Start talking. Tell it about you and your work for a few minutes, it writes its own memory and skill files as you go.
+
+4. Ask it to schedule something in plain English ("every morning at 6, send me a news brief") and it builds the skill and the cron itself.
+
+Full playbook below
+
+Bookmark this
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/Da7_Tech/status/2068532969006895119
+HANDLE: Da7_Tech
+DISPLAY_NAME: Da7em
+DATE: 2026-06-21
+PROJECT: hermes-agent
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+Here’s the methodology that made my Hermes Agent 10x stronger.
+
+Most people still compare Hermes to Claude or Codex in the wrong way.
+
+Claude is great for thinking.
+Codex is great for execution.
+
+But neither of them is on the same level as a properly configured Hermes Agent when it comes to being a real all-purpose assistant with memory, skills, custom workflows, and the ability to operate across your actual daily work.
+
+Hermes is not just “another coding agent.”
+
+If you set it up correctly, it becomes your operating layer.
+
+This is exactly what I did.
+
+First, go to Opus.
+Even the $20 plan is enough.
+
+Ask it to research the 10 best articles, guides, and discussions about Hermes Agent: how people use it, how to get the most out of it, advanced workflows, hidden use cases, common mistakes, and what makes it powerful.
+
+Then give it the real goal:
+
+“I don’t want Hermes to be a narrow tool. I want it to become an ideal general assistant: broad, powerful, practical, skillful, with strong memory, strong workflows, and deeply aligned with how I work. Extract the best ideas and give me a complete plan.”
+
+Then take that plan to ChatGPT.
+
+Ask ChatGPT to pressure-test it:
+What is missing?
+What is weak?
+What will fail in practice?
+What skills should be added?
+What workflows should be improved?
+What assumptions are wrong?
+How can Hermes become more useful, more stable, and more complete?
+
+Then take ChatGPT’s review back to Opus.
+
+Let Opus revise the plan.
+
+Then bring the revised plan back to ChatGPT.
+
+Repeat this loop until both models stop finding major weaknesses.
+
+That is when you know the plan is hardened.
+
+Only then, take the final plan to Codex and tell it to implement it 100% exactly as written, with high precision, without skipping, simplifying, or improvising.
+
+That is the correct role for Codex here.
+
+This is the difference:
+
+Opus builds the vision.
+ChatGPT attacks the weaknesses.
+Codex implements the final plan.
+
+Hermes becomes the actual daily operating layer.
+
+After doing this, Hermes stopped feeling like a normal agent.
+
+It became one of the most important apps in my workflow.
+
+Same tool.
+
+Completely different result.
+
+Do yourself a favor: try this once.
+
+After that, you won’t look back.
+
+Hermes Agent will open up an entirely new horizon for you.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/lukewestlake/status/2069571190314663999
+HANDLE: lukewestlake
+DISPLAY_NAME: Luke Westlake
+DATE: 2026-06-23
+PROJECT: hermes-agent
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+AI agents save me HOURS of admin work per week
+
+I invest that extra time into learning, experimenting, and building
+
+Latest test stack:
+Hermes + Codex + Huly + Obsidian
+
+Extremely powerful combo. Easy to work with a team. Highly capable while not over-engineered
+
+Having a blast!
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/valhalla_dev/status/2069540329678598592
+HANDLE: valhalla_dev
+DISPLAY_NAME: developing valhalla - h/acc
+DATE: 2026-06-23
+PROJECT: hermes-agent
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Hermes agent + async codex subagents is so good.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/Cmillet77/status/2069547809788096598
+HANDLE: Cmillet77
+DISPLAY_NAME: Chris Millet
+DATE: 2026-06-23
+PROJECT: hermes-agent
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+@scottmelker I prefer to see how much I can get done with a couple $20/month subs for Codex and Claude + Hermes.  First app I made in a couple months was BnBRx dot com.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/johancutych/status/2069526843158339586
+HANDLE: johancutych
+DISPLAY_NAME: Johan Cutych
+DATE: 2026-06-23
+PROJECT: hermes-agent
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+thiiiis is the way to do team collaboration with agents.
+
+http://loisa.ai is Claude Tag, open source (built on Hermes, Composio, Open Viking), model independent, waitlist now to get free hosted version
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/CEO_loves_tech/status/2069565089611682123
+HANDLE: CEO_loves_tech
+DISPLAY_NAME: ロン
+DATE: 2026-06-23
+PROJECT: hermes-agent
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+Claude Tagは、いつもHermesでやってる事なので特段の驚きはないかなぁ。
+
+ただ便利は便利
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/openclaw/status/2068567839322304961
+HANDLE: openclaw
+DISPLAY_NAME: OpenClaw🦞
+DATE: 2026-06-21
+PROJECT: openclaw
+KIND: capability_announcement
+STANCE: neutral
+VERBATIM_BEGIN
+Search and skills get more useful: Codex Hosted Search is available, @firecrawl key-free search providers remain opt-in.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/OpenHandsDev/status/2069567907701375113
+HANDLE: OpenHandsDev
+DISPLAY_NAME: OpenHands
+DATE: 2026-06-23
+PROJECT: openhands
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Hot off the press 📰🔥📰🔥
+
+"As organizations increasingly adopt agents for developer productivity, code automation, and other engineering tasks, many teams are hitting a scale issue as agents sprawl across repositories, teams, and business units. OpenHands’ offering responds to that challenge by treating agents not as independent, one-off tools but as components of a coordinated system, managed from a single operational plane." 
+
+https://aijourn.com/openhands-launches-an-agent-control-plane-to-manage-ai-agents-at-enterprise-scale/
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/gneubig/status/2067651021384413602
+HANDLE: gneubig
+DISPLAY_NAME: Graham Neubig
+DATE: 2026-06-18
+PROJECT: openhands
+KIND: community_discussion
+STANCE: mixed
+VERBATIM_BEGIN
+The results are interesting. Overall the trends are:
+- OpenHands generally outperforms Claude Code on both accuracy and cost when using Claude Opus
+- OpenHands beats Codex on accuracy, but falls behind on cost when using GPT
+- Gemini-CLI outperforms OpenHands when using Gemini
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/FredKSchott/status/2066962296119959581
+HANDLE: FredKSchott
+DISPLAY_NAME: fks
+DATE: 2026-06-16
+PROJECT: flue
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Just Shipped: Flue 1.0 Beta
+
+Flue is the TypeScript framework for building the next generation of agents, designed around an open agent harness with zero LLM lock-in. It’s like Astro, for agents.
+
+Flue 1.0 has been redesigned around three core primitives:
+
+🔁 Workflows — structured automations designed for background work, where your code drives the agent from start to finish.
+
+🧭 Agents (New!) — autonomous, stateful loops where the model drives itself to complete a given task.
+
+📡 Channels (New!) — connect agents to Slack, GitHub, Linear, Discord, Teams, and more. Flue handles the boilerplate for you.
+
+Everything shares the same durable foundation, powered internally by Pi, Vite, and Durable Streams. Deploy anywhere, use any LLM, and recover running agents across restarts and downtime.
+
+We’ve talked to a lot of teams building agents, and keep hearing the same thing: getting to production is hard work. We built Flue to help change that.
+
+Flue 1.0 Beta is available today. Give it a try and let me know what you think!
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/flueai/status/2068711790679134317
+HANDLE: flueai
+DISPLAY_NAME: Flue
+DATE: 2026-06-21
+PROJECT: flue
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+NEW: Flue Agent Skill
+
+Teach your coding agent how to build with Flue. 
+
+$ npx skills add withastro/flue/skills/flue
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/flueai/status/2069087745054790008
+HANDLE: flueai
+DISPLAY_NAME: Flue
+DATE: 2026-06-22
+PROJECT: flue
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+$ flue docs
+
+Fully local, offline, versioned docs. 
+Fully searchable.
+Designed for agents.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/prathamdby/status/2069161247044739324
+HANDLE: prathamdby
+DISPLAY_NAME: prath
+DATE: 2026-06-22
+PROJECT: flue
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+i'm working on threadcord, a background coding agent powered by flue that basically is given a linux sandbox to work in with a predefined set of tools and configs and is able to run wild & is fully controllable via discord.
+
+works in parallel, each thread is an agent convo that spawns automatically, up to 3 concurrent threads with a queueing system of fifo.
+
+rn this is a bare minimum mvp that i made with codex in ~15 mins but this is literally so fun to use and is fully self-hostable with a docker compose stack.
+
+saw .@RhysSullivan  talk about agents ui being closer to discord than vercel's current thing and that gave me this idea; otherwise i was leaning towards the traditional chat ui with sidebar slop
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/badlogicgames/status/2069051109558083924
+HANDLE: badlogicgames
+DISPLAY_NAME: Mario Zechner
+DATE: 2026-06-22
+PROJECT: pi-coding-agent
+KIND: maintainer_intent
+STANCE: neutral
+VERBATIM_BEGIN
+People of http://pi.dev. The next releasrle if pi-ai (not the coding agent) will be a breaking release. To be support consumers like @FredKSchott wonderful flue, you can now selectively pull in only the SDK impls you need. This can reduce bundle size. It also removes global state. And it allows you to plug in your own env resolution and credential storage.
+
+The old API is still available via the @earendil-works/pi-ai/compat module.
+
+See the updated README.md of the pi-ai package for details.
+
+https://github.com/earendil-works/pi/tree/main/packages/ai#quick-start
+
+The CHANGELOG will be updated with a migration guide once the remaining work (coding agent and new agent harness integration) is complete sometime later this week.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/yudexai/status/2069542857128722443
+HANDLE: yudexai
+DISPLAY_NAME: yudex｜AIニュースと市場メモ
+DATE: 2026-06-23
+PROJECT: pi-coding-agent
+KIND: community_discussion
+STANCE: neutral
+VERBATIM_BEGIN
+詳細: Pi Coding Agentで見るところ
+
+結論:
+これは「Claude CodeやCodexから今すぐ乗り換える話」ではありません。見るべきは、AIコーディングエージェントを自分の作業環境に合わせて小さく組めるかです。
+
+確認できること:
+Pi公式サイトでは、Piはminimal agent harnessと説明されています。重い統合開発環境ではなく、ターミナル上で動くエージェントの土台に近いです。
+
+主な特徴:
+・curl / PowerShell / npm / pnpm / bunで導入できる
+・Anthropic、OpenAI、Google、Azure、Bedrock、Mistral、Groq、xAI、OpenRouter、Ollamaなど複数プロバイダを選べる
+・AGENTS.md、skills、prompt templatesを読ませられる
+・履歴をツリーで分岐して戻れる
+・print/JSON、RPC、SDKのモードがある
+・extensionsで機能を足せる
+
+面白い点:
+Piは、MCP、sub-agents、plan mode、permission popupsなどを最初から全部入れる思想ではありません。必要なら拡張で足す、または自分の環境に合わせて作る設計です。
+
+普通に使う側が見るところ:
+1. いま使っているAI開発ツールが重すぎるか
+2. ローカルモデルやOllamaで試したい場面があるか
+3. AGENTS.mdのようなプロジェクト指示を毎回使いたいか
+4. 履歴を戻す/分岐する使い方が必要か
+5. permissionやsandboxを自分で設計できるか
+
+誤読しやすい点:
+「ローカル」「無料」「プライベート」は構成次第です。Ollamaを使えばローカル寄りにできますが、APIプロバイダを使えば当然コストや外部送信の確認が必要です。
+
+あと、permission popupsが最初からない点は便利さでもあり注意点でもあります。大事なリポジトリでいきなり使うより、小さいリポジトリか検証用フォルダで触る方が安全です。
+
+今日見るなら:
+・公式サイトのInstall欄
+・AGENTS.mdを読めるか
+・Ollama/既存APIキーで動かせるか
+・変更差分を自分で確認できるか
+
+海外Xでは「ローカル、プライベート、無料でAI coding agentを動かす」という切り口で伸びていました。ただ、実務で大事なのは派手な言葉より、どこまで自分の作業環境に合わせて制御できるかです。
+
+Source: http://pi.dev / X検索「Claude Code tip lang:en」 / TraffAlex氏の投稿
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/FredKSchott/status/2067302366718947778
+HANDLE: FredKSchott
+DISPLAY_NAME: fks
+DATE: 2026-06-17
+PROJECT: eve
+KIND: criticism
+STANCE: mixed
+VERBATIM_BEGIN
+some thoughts on eve, especially re: @flueai and the larger agent builder space.
+
+The biggest surprise: eve is vercel-only. You can't deploy it outside of vercel and it requires a full bet on their stack -- vercel runtime, vercel sandbox, vercel workflows, vercel cron jobs, etc. etc. 
+
+short-term limitation, or the start of a larger "managed agents" play by vercel?
+
+eve is filesystemmaxxing. this feels specifically optimized for agents, who love the codebase consistency and have no trouble keeping track of 10+ magic file and folder conventions as the project scales to 100s of files. 
+
+(^^ this is probably the most interesting design decision here. I have a ton of respect for anyone taking a big swing like this if this is intentionally optimized for agents. makes total sense.)
+
+eve has a custom-built harness. probably not interesting to most people. I'm curious if they will leverage the new ai sdk HarnessAgent concept to swap different harnesses.
+
+otherwise there's a lot of great stuff here. lots of good features. The dev-server-as-TUI is great. you can tell how much attention and care went into this. 
+
+excited to see our two projects continue to explore the same space from different directions!
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/rishflips/status/2069354398439149972
+HANDLE: rishflips
+DISPLAY_NAME: Rish
+DATE: 2026-06-23
+PROJECT: eve
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+Vercel just dropped personal-agent-template and I keep thinking about the memory bit.
+
+It’s not another “spin up a coding bot” repo. It’s a forkable personal agent: web chat, Slack, iMessage (Sendblue), Linear via MCP, one Eve runtime, Nuxt UI, Better Auth, SQLite. Threads stick around. Tool calls show up live. And when the agent wants to remember something, save_memory waits for your yes before it writes anything. That’s the detail that got me.
+
+You can import memory Raycast-style from ChatGPT/Claude, run a morning daily summary (focus + Linear + next move), deploy to Vercel in a click or self-host with Node 24+.
+
+Feels like the “polite assistant product” lane: durable sessions, approved memory, pretty UI. Different animal from a always-on VM agent with cron and shell (hi Hermes).
+
+Worth a fork if you’re prototyping your agent without rebuilding auth + channels from scratch. - Link in 1st comment -
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/koffuxu/status/2068904170745422082
+HANDLE: koffuxu
+DISPLAY_NAME: koffuxu
+DATE: 2026-06-22
+PROJECT: eve
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+做 Agent 最怕什么？不是模型不够强，是项目一大就没人看得懂。
+
+Vercel 开源 eve：filesystem-first 的持久化 AI Agent 框架。
+
+✅ instructions/tools/skills/schedules 都落在约定目录
+✅ TypeScript typed tools，方便扩展
+✅ 本地文档随包发布，coding agent 能直接读
+
+适合想把 Agent 做成长期项目的人。你会试吗？
+
+GitHub 已开源，地址见评论区👇
+#AI #Agent
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/hunvreus/status/2069420983715541115
+HANDLE: hunvreus
+DISPLAY_NAME: Ronan Berder
+DATE: 2026-06-23
+PROJECT: heypi
+KIND: maintainer_intent
+STANCE: mixed
+VERBATIM_BEGIN
+Getting close to burnout with my open source projects.
+
+I got Pages CMS 2.0.0 out a few weeks ago, and I'm about to release Basecoat 1.0.0. Oh, and also got heypi 0.2.0 beta released tonight, and I have the new  ReallySimpleDocs on its way (moved to @astrodotbuild).
+
+I think I'll be taking a sabatical from most of this over the summer (except heypi).
+
+If you want to see what Basecoat 1.0.0 looks like: https://basecoat.hunvreus.workers.dev/
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/andrew_barba/status/2069445028657709362
+HANDLE: andrew_barba
+DISPLAY_NAME: Andrew Barba
+DATE: 2026-06-23
+PROJECT: heypi
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+@hunvreus @FredKSchott heypi looks awesome. love when great ideas converge. keep cooking
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/CommonSenseTOC/status/2067675882244968614
+HANDLE: CommonSenseTOC
+DISPLAY_NAME: John Sambrook
+DATE: 2026-06-18
+PROJECT: agent-flywheel
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Hi Jeffrey - I'll say this. I just started working with your Agent Flywheel a couple of days ago. I'm a 66 yo former embedded sw med device developer and (still) a business owner since 1996. 
+
+I really appreciate the discipline that AF is bringing to my agent assisted coding game. 
+
+Thanks for making it freely available. It is awesome.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/doodlestein/status/2067645731867967643
+HANDLE: doodlestein
+DISPLAY_NAME: Jeffrey Emanuel
+DATE: 2026-06-18
+PROJECT: agent-flywheel
+KIND: community_discussion
+STANCE: positive
+VERBATIM_BEGIN
+I get a few messages like this per week and it’s one of the best parts of doing this kind of work. 
+
+I certainly never heard stuff like this when I was working as a hedge fund analyst, that’s for sure!
+
+My skills site really is the very highest ROI thing you can buy for $20/mo!
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/JulianGoldieSEO/status/2066861602545041828
+HANDLE: JulianGoldieSEO
+DISPLAY_NAME: Julian Goldie SEO
+DATE: 2026-06-16
+PROJECT: paperclip
+KIND: workflow_practice
+STANCE: positive
+VERBATIM_BEGIN
+MOST “AI AGENT TEAMS” ARE JUST EXPENSIVE CHAOS.
+
+The real advantage comes from one agent most people forget to build.
+
+The Agent OS Setup:
+
+→ Claude handles the heavy coding and backend work
+
+→ Hermes runs recurring tasks, admin workflows and Kanban delegation
+
+→ Paperclip coordinates mixed teams using Claude, Hermes and OpenClaw
+
+The Quality-Control Layer:
+
+✓ A dedicated judge scores every output
+
+✓ Weak work gets rejected and sent back for another iteration
+
+✓ Free and paid agents can run the same task to expose wasted API spend
+
+Then Obsidian becomes the shared memory.
+
+Every briefing, decision and completed task updates the knowledge vault automatically—giving every agent more context the next time it works.
+
+Don’t build more agents.
+
+Build better delegation, memory and quality control.
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/JulianGoldieSEO/status/2066680404778598432
+HANDLE: JulianGoldieSEO
+DISPLAY_NAME: Julian Goldie SEO
+DATE: 2026-06-16
+PROJECT: paperclip
+KIND: advice
+STANCE: positive
+VERBATIM_BEGIN
+Stop forcing one agent to do everything.
+
+Use each tool for the work it handles best:
+
+Claude: coding and backend builds
+
+Hermes: recurring tasks, admin and Kanban workflows
+
+OpenClaw: a strong individual agent
+
+Paperclip: multiple teams using different agent platforms
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/bartender_loopy/status/2069490659288117551
+HANDLE: bartender_loopy
+DISPLAY_NAME: Bartender Loopy🍸
+DATE: 2026-06-23
+PROJECT: paperclip
+KIND: capability_announcement
+STANCE: positive
+VERBATIM_BEGIN
+Introducing Workcell 🧩
+
+Open-source platform for running real dev projects with a full AI team — you operate it like a company. You stay the board; the agents ship the work, with proof.
+
+Forked from Paperclip. MIT.
+
+Details ⬇️
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/traversymedia/status/2069473673275130252
+HANDLE: traversymedia
+DISPLAY_NAME: Brad Traversy
+DATE: 2026-06-23
+PROJECT: paperclip
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+Struggled a bit the first few days, the agents just didn't have enough context yet, then they got sharp fast. Now 5 of them work together through Paperclip, a custom mission control app and Obsidian and it's lifted my productivity across the board. The "sysadmin" agent basically runs my whole homelab/network. Learning a ton along the way 😁
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/Agent0ai/status/2069387481703690322
+HANDLE: Agent0ai
+DISPLAY_NAME: Agent Zero
+DATE: 2026-06-23
+PROJECT: agent-zero
+KIND: capability_announcement
+STANCE: neutral
+VERBATIM_BEGIN
+How it works, how to try. Full walkthrough: https://www.youtube.com/watch?v=QpgQnShtBcI&t=2s
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/nickbaumann_/status/2069569884678389952
+HANDLE: nickbaumann_
+DISPLAY_NAME: Nick
+DATE: 2026-06-23
+PROJECT: codex
+KIND: advice
+STANCE: positive
+VERBATIM_BEGIN
+To this point, also have it read comments on your past PRs to root out any consistent feedback that can be applied to an AGENTS.md
+VERBATIM_END
+===END===
+
+===POST===
+URL: https://x.com/AlfieJCarter/status/2067303119621366073
+HANDLE: AlfieJCarter
+DISPLAY_NAME: Alfie Carter
+DATE: 2026-06-17
+PROJECT: claude-code
+KIND: adoption_signal
+STANCE: positive
+VERBATIM_BEGIN
+I'm shocked more people aren't replacing their entire SDR workflow with Claude Skills.
+
+I shared this with a GTM engineer still rebuilding context from scratch every session... they ran /gtm-memory-builder once and never re-explained their ICP again.
+All you need is Claude Code and 1 session to set up the full library.
+
+Like this post + reply "Agents" and I'll send you the complete skill library for free.
+
+(Including every SKILL.md file written out in full across 130+ skills.)
+
+Must follow to receive the DM.
+
+Taking this down in 48 hours.
+VERBATIM_END
+===END===

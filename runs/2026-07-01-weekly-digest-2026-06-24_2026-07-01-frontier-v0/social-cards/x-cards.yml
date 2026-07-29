@@ -1,0 +1,134 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-07-01-weekly-digest-2026-06-24_2026-07-01-frontier-v0
+note: >
+  Backfilled 2026-07-29 from a dated archive search; every post independently
+  re-fetched by URL before quoting. Only `verbatim` holds a poster's own words.
+
+  The tinygrad card carries an unverified third-party accusation about a named
+  company. Read its verdict before using it anywhere: the only thing we assert
+  is that tinygrad said what it said.
+cards:
+  - id: greenland-105k-stars
+    title: "The same thing keeps happening"
+    kind: criticism
+    date: 2026-06-30
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [gemini-cli, antigravity]
+    authors: ["GreenlandMa1"]
+    display_name: Maurice G.
+    source_note: 1
+    handling_note: a
+    source_urls:
+      - https://x.com/GreenlandMa1/status/2071987121624080465
+    verbatim: |
+      google just killed gemini CLI overnight. 105k github stars, open source, free tier, all replaced with a closed binary and a gutted free plan.
+
+      the same thing keeps happening.
+
+      a company open sources a tool, developers adopt it, build workflows around it, write tutorials, recommend it to friends. the tool becomes the default in its category. then the company closes it down.
+
+      google did it with gemini CLI. redis did it with their license change. hashicorp did it with terraform. elastic did it with elasticsearch. the playbook is always the same: open source gets you adoption, closed source gets you revenue.
+
+      and i get it. companies need to make money. but the pattern creates a specific problem for people like us who build on top of these tools.
+
+      when i started using gemini CLI, i built it into my daily workflow. terminal commands, automations, scripts that depended on it. that's hours of setup that's now worthless.
+
+      multiply that across every developer and creator who did the same thing. 105k github stars means thousands of people restructuring their workflows today.
+
+      the real lesson isn't "don't use open source tools." open source is still where the best tools live.
+
+      the lesson is: build your workflow so the tool is replaceable.
+
+      i use three AI tools daily. perplexity, chatgpt, claude. if one disappears tomorrow, the other two cover most of what i need. my prompts are saved in markdown files, not locked inside one platform's custom instructions.
+
+      i use everything. i depend on nothing i can't swap out in a day.
+
+      the companies will keep doing this. your job is to build like they will.
+    inline: >-
+      105k github stars, open source, free tier, all replaced with a closed binary and a gutted free plan
+    summary: >
+      An operator's read on the Gemini CLI consumer shutdown.
+    verdict: >
+      A voice post. The star count and the shutdown are checkable and correct; the pattern claim is his argument, not our finding. Quoted because the trade this issue describes -- auditable retired, closed promoted -- is what it looked like from outside the vendor.
+    tags: [succession, open-source, closed-source]
+
+  - id: tinygrad-ban
+    title: "Banning it from our systems"
+    kind: criticism
+    date: 2026-06-30
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [claude-code]
+    authors: ["__tinygrad__"]
+    display_name: the tiny corp
+    source_note: 2
+    handling_note: b
+    source_urls:
+      - https://x.com/__tinygrad__/status/2072091861473431605
+    verbatim: |
+      Claude Code is vibecoded and full of spyware, it's possible Anthropic doesn't even know what's in there. After reading this report, we are banning it from our systems and strongly encourage other enterprises to do the same. It is an unacceptable security risk. https://t.co/thYAXyuxzR
+    inline: >-
+      we are banning it from our systems and strongly encourage other enterprises to do the same
+    summary: >
+      A company stating publicly that it removed Claude Code over a security report.
+    verdict: >
+      Quoted strictly as a statement of what tinygrad said it did, which is the only part we assert. The underlying accusation is NOT established: we read the Claude Code changelog across v2.1.190 to v2.1.200 and found telemetry work but nothing matching the described behaviour, and the report itself does not resolve from any source we hold. We take no position on the claim and publish none of its substance as fact.
+    tags: [enterprise-decision, unverified-claim, epistemics]
+
+  - id: paperclip-hermes-built-in
+    title: "Hermes, now built-in"
+    kind: capability_announcement
+    date: 2026-06-27
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [paperclip]
+    authors: ["papercliping"]
+    display_name: Paperclip
+    source_note: 3
+    handling_note: c
+    source_urls:
+      - https://x.com/papercliping/status/2070897975002312718
+    verbatim: |
+      Paperclip v2026.626.0 is out
+
+      📷 Hermes, now built-in 
+      🐶 Task watchdogs
+      💬 Ask mode
+      🔽Workspace downloads 
+
+      122 commits from 17 contributors
+
+      https://t.co/rKCmu6jgSK
+    inline: >-
+      Hermes, now built-in
+    summary: >
+      Paperclip's own note on the release that tagged its control plane.
+    verdict: >
+      A vendor describing its own release. The control-plane substance is receipted from the repository separately; this is here for what the vendor chose to lead with, which was integration rather than the budget ceilings.
+    tags: [control-plane, integration]
+
+  - id: hermes-web-60x
+    title: "60x faster and 49x cheaper"
+    kind: capability_announcement
+    date: 2026-06-30
+    date_precision: day
+    captured_on: 2026-07-29
+    source_ids: [hermes-agent]
+    authors: ["NousResearch"]
+    display_name: Nous Research
+    source_note: 4
+    handling_note: d
+    source_urls:
+      - https://x.com/NousResearch/status/2071974594961977727
+    verbatim: |
+      Hermes Agent now reads the web up to 60x faster and 49x cheaper.
+
+      Scraping backends pass clean content straight to the agent without redundant processing steps; large pages are saved locally and paged on demand so you get the same quality at a fraction of the time and cost. https://t.co/EwJThNmCXE
+    inline: >-
+      Hermes Agent now reads the web up to 60x faster and 49x cheaper
+    summary: >
+      Hermes on a web-reading performance change.
+    verdict: >
+      A vendor performance claim with no published method, quoted as the claim it is. We did not measure it. It is here because the same project spent this window shipping its security work to main and tagging none of it: the capability had a number and an announcement, the containment had neither.
+    tags: [performance, vendor-claim]
