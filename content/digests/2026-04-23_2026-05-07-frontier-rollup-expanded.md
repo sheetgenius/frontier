@@ -63,7 +63,9 @@ lesson -- a thin harness moves fast precisely because its integrations are
 disposable. And the four projects new to this read each expose a different
 wall of the same building: OpenClaw the front door (messaging surfaces,
 onboarding, visible progress), Agent Zero the machine room, Paperclip the
-management floor, OpenHands the whole leased office. The frontier is not one
+management floor, OpenHands the whole leased office.
+
+The frontier is not one
 winning agent. It is the environment around agents getting thicker, and the
 durable question is who owns the loop around all of it.
 
@@ -78,7 +80,9 @@ affordance and become operating state. Gemini's
 [Auto Memory](https://github.com/google-gemini/gemini-cli/commit/a7beb890d093e2cf66ed1ac8debff690b75e1f6d)
 inbox makes the same point from the other side, and makes it better than
 anyone: memory should be proposed, reviewed, and accepted, not silently
-smeared into hidden context. Hermes added memory scoping and
+smeared into hidden context.
+
+Hermes added memory scoping and
 [Curator](https://github.com/NousResearch/hermes-agent/commit/fe8560fc1249b4a7e448b5c3b80a7d213df9d78f)
 commands; OpenClaw put agent progress into the chat itself with
 [timeline spans](https://github.com/openclaw/openclaw/commit/61223a74a43fd8768c426d5b22f1633dbad37477).
@@ -149,6 +153,7 @@ make the computer legible; Pi's
 [quickstart](https://github.com/badlogic/pi-mono/commit/010e9acfe959f437613bcba7139b264012ca43a4)
 and terminal work lower the floor; Gemini's reviewable memory and headless
 auth, and OpenHands' visible model names, do the same from their corners.
+
 None of this is softness. Accessibility is distribution, trust, and operator
 leverage, and the projects treating it as real engineering are buying
 something the benchmark chasers are not.

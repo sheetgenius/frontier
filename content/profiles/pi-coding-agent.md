@@ -206,8 +206,8 @@ deterministic, checksummed source archives to GitHub releases with
 for rebuilding the standalone binaries; `v0.82.0` followed by including the
 generated provider model data those builds need. You can verify what you run
 against a checksum and rebuild it yourself. That is the strongest supply-chain
-posture on the current watchlist, and it is worth noting that the project with
-the fewest governance features has the most verifiable artifact.
+posture on the current watchlist, and the project with the fewest governance
+features has the most verifiable artifact.
 
 ## What the window handed to subprocesses
 

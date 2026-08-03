@@ -328,8 +328,8 @@ Against [**eve**](/profiles/eve/), the durability-first foil: eve makes the
 approval gate a durable platform primitive that parks a run and resumes it across
 a crash. heypi makes it an enforced-but-opt-in policy on a host you own, and
 explicitly declines crash replay. Both document human-in-the-loop; the divergence
-is the default and the locus. And it is worth noting which one had the better
-window on this axis. eve found four ways its gate did not bind. heypi wrote a
+is the default and the locus. One of them had the better window on this axis.
+eve found four ways its gate did not bind. heypi wrote a
 contract in which the gate cannot fail open, and left the identity check to
 configuration. Neither is finished.
 
