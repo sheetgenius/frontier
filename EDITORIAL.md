@@ -141,6 +141,44 @@ is not complete until it names the fixed release and the trade that may change.
 - Can a reader arriving from search understand every heading without prior
   installment context?
 
+## The slop test
+
+A per-sentence check, named so the cycle skill and any editor can invoke it by
+name. Run it in the language pass. A sentence dies if:
+
+- it could appear in an article on any other topic -- no name, number, version,
+  or date anywhere in it;
+- it hedges both directions and lands nowhere;
+- it restates the sentence before it in different words;
+- it is the third item in a list of three and the third is filler;
+- deleting it changes nothing;
+- it contains any of: landscape, testament, crucial, robust, delve, underscores,
+  highlights the importance, it's worth noting, in today's.
+
+A section dies if you cannot say in one sentence what it is for. Try deleting
+each one outright; if the piece survives, it stays deleted.
+
+Then read every paragraph aloud. Machine prose has flat rhythm and uniform
+paragraph length; vary it deliberately. A three-word paragraph after a long one
+is a tool.
+
+### Ablate self-defence
+
+The reflex this catches is writing for an auditor rather than a reader. Cut:
+
+- methods appendices inside an issue -- calibration lives in `METHOD.md`;
+- provenance stated before a finding, rather than the finding;
+- take-backs, where a positive result is retracted in the same paragraph that
+  reports it;
+- explaining a quotation immediately after quoting it (if it needs the gloss, it
+  was the wrong quotation);
+- explaining a term of art to an audience that uses it daily;
+- more than one evidence-quality clause per issue. Keep the one that changes how
+  much weight a reader should give a claim; cut the rest.
+
+Removing penance is not removing doubt. A publication that hedges nothing is its
+own kind of slop.
+
 ## Reader vocabulary and backstage vocabulary
 
 Public prose normally says:
