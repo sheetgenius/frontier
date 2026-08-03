@@ -1,0 +1,98 @@
+{
+ "source": "lwn",
+ "feed": "https://lwn.net/headlines/rss",
+ "swept_on": "2026-08-03",
+ "since": "2026-07-27",
+ "items": [
+  {
+   "title": "[$] Buffer sizes for FUSE io_uring",
+   "url": "https://lwn.net/Articles/1085618/",
+   "date": "2026-08-03",
+   "summary": "The <a href=\"https://docs.kernel.org/filesystems/fuse/\">Filesystem in Userspace</a> (FUSE) subsystem provides a way to service filesystem requests from a user-space server, which moves the format-handling code out of the kernel. The FUSE server can <a href=\"https://www.kernel.org/doc/html/next/filesystems/fuse-io-uring.html\">use</a> the <a href=\"https://man7.org/linux/man-pages/man7/io_uring.7.htm"
+  },
+  {
+   "title": "SQLite Critical CVEs or LLM Slop? (JFrog blog)",
+   "url": "https://lwn.net/Articles/1086936/",
+   "date": "2026-08-03",
+   "summary": "The JFrog blog <a href=\"https://research.jfrog.com/post/sqlite-critical-cves-or-llm-slops/\">examines some reported vulnerabilities in SQLite</a>, some of which made their way into high-profile vulnerability databases, that turned out to be entirely fabricated by LLMs. <p> <blockquote class=\"bq\"> These LLM slop CVEs can cause organizations to waste time investigating and patching vulnerabilities th"
+  },
+  {
+   "title": "Four stable kernels for Monday",
+   "url": "https://lwn.net/Articles/1086900/",
+   "date": "2026-08-03",
+   "summary": "<p>Greg Kroah-Hartman has announced the release of the <a href=\"https://lwn.net/Articles/1086901/\">7.1.6</a>, <a href=\"https://lwn.net/Articles/1086903/\">6.18.42</a>, <a href=\"https://lwn.net/Articles/1086904/\">6.12.101</a>, and <a href=\"https://lwn.net/Articles/1086905/\">6.6.148</a> stable kernels. Each contains hundreds of patches&mdash;the 7.1.6 kernel has more than 700&mdash;with fixes through"
+  },
+  {
+   "title": "NetBSD 11.0 released",
+   "url": "https://lwn.net/Articles/1086898/",
+   "date": "2026-08-03",
+   "summary": "<p>The release of <a href=\"https://netbsd.org/\">NetBSD</a> 11.0, the 19th major version of the operating system, has been <a href=\"https://lwn.net/Articles/1086899/\">announced</a>. There are many changes and enhancements since the 10.1 release, including a new port to RISC-V, better support for Linux system calls in <a href=\"https://man.netbsd.org/NetBSD-11.0/compat_linux.8\"><tt>compat_linux()</tt"
+  },
+  {
+   "title": "Security updates for Monday",
+   "url": "https://lwn.net/Articles/1086897/",
+   "date": "2026-08-03",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 10.0, .NET 8.0, .NET 9.0, fence-agents, kernel, kernel-rt, openssh, osbuild-composer, perl-Archive-Tar, perl-DBI, perl:5.32, pipewire, python-pillow, qemu-kvm, unbound, and vim), <b>Debian</b> (chromium, incus, kernel, kissfft, libgd2, libmodbus, libssh, node-tar, php8.4, poppler, python-authlib, sslh, and starlette), <b>Fedora</b> (borgb"
+  },
+  {
+   "title": "Kernel prepatch 7.2-rc6",
+   "url": "https://lwn.net/Articles/1086727/",
+   "date": "2026-08-03",
+   "summary": "The <a href=\"https://lwn.net/Articles/1086726/\">7.2-rc6</a> kernel prepatch is out for testing. Quoth Linus: \"<q>Hmm. This rc is huge. Even by the \"new normal\" standards this is a big rc, and I think it's the biggest rc6 we've had in years at least by commit count.</q>\" There were 537 non-merge commits applied between 7.2-rc5 and 7.2-rc6."
+  },
+  {
+   "title": "Servo 0.4.0 released",
+   "url": "https://lwn.net/Articles/1086555/",
+   "date": "2026-07-31",
+   "summary": "<p>The <a href=\"https://servo.org/\">Servo</a> web-browser engine project has published an <a href=\"https://servo.org/blog/2026/07/31/june-in-servo/\">update</a> about all of the changes that landed in June 2026, along with <a href=\"https://github.com/servo/servo/releases/tag/0.4.0\">version 0.4.0</a> of the Servo Tech Demo. This release includes a record 558 commits, <a href=\"https://servo.org/blog/"
+  },
+  {
+   "title": "[$] The future of libraries in BPF",
+   "url": "https://lwn.net/Articles/1084869/",
+   "date": "2026-07-31",
+   "summary": "<p> Song Liu believes that the way that programmers assemble complex BPF programs will be changing rapidly in the future. At a session of the 2026 <a href=\"https://events.linuxfoundation.org/lsfmmbpf/\"> Linux Storage, Filesystem, Memory-Management, and BPF Summit</a>, he shared his thoughts on what that change could look like, though he did not have any concrete proposals for what, if anything, th"
+  },
+  {
+   "title": "Arch Linux disables AUR package adoption",
+   "url": "https://lwn.net/Articles/1086489/",
+   "date": "2026-07-31",
+   "summary": "<p>The Arch Linux DevOps team has <a href=\"https://lists.archlinux.org/archives/list/aur-general@lists.archlinux.org/message/DRDEU3JUSC72CB265XHXPFA3DFSLXPBP/\">announced</a> that adoption of orphaned packages in the Arch User Repository (AUR) has been disabled due to \"<q>the current influx of malicious package adoptions and follow-up commits made via the AUR</q>\". Michael Taggart has posted <a hre"
+  },
+  {
+   "title": "Security updates for Friday",
+   "url": "https://lwn.net/Articles/1086487/",
+   "date": "2026-07-31",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (kernel, nodejs-nodemon, nodejs22, nodejs24, openssh, and vim), <b>Debian</b> (gsasl and ruby-rack), <b>Fedora</b> (dokuwiki, lego, libnbd, nasm, pack, unbound, and valkey), <b>Mageia</b> (389-ds-base, libxfont2, nghttp2, and perl-DBI), <b>SUSE</b> (apptainer, bind, ffmpeg-7, freerdp, google-osconfig-agent, graphicsmagick, helm, ImageMagick, ja"
+  },
+  {
+   "title": "[$] Reconsidering O_CREAT|O_DIRECTORY",
+   "url": "https://lwn.net/Articles/1085617/",
+   "date": "2026-07-30",
+   "summary": "Linux provides a system call (<a href=\"https://man7.org/linux/man-pages/man2/mkdir.2.html\"><tt>mkdir()</tt></a>) to create a directory, and <a href=\"https://man7.org/linux/man-pages/man2/open.2.html\">a few variants of <tt>open()</tt></a> that can open a directory. There is, however, no system call in Linux that can create and open a directory in a single, race-free call. Jori Koolstra has been wor"
+  },
+  {
+   "title": "Another batch of single-fix stable kernels",
+   "url": "https://lwn.net/Articles/1086226/",
+   "date": "2026-07-30",
+   "summary": "<p>Greg Kroah-Hartman has announced the release of the <a href=\"https://lwn.net/Articles/1086227/\">6.18.41</a>, <a href=\"https://lwn.net/Articles/1086228/\">6.12.100</a>, <a href=\"https://lwn.net/Articles/1086229/\">6.6.147</a>, <a href=\"https://lwn.net/Articles/1086230/\">6.1.180</a>, <a href=\"https://lwn.net/Articles/1086231/\">5.15.213</a>, and <a href=\"https://lwn.net/Articles/1086233/\">5.10.262</"
+  },
+  {
+   "title": "Security updates for Thursday",
+   "url": "https://lwn.net/Articles/1086225/",
+   "date": "2026-07-30",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (gstreamer1-plugins-bad-free, libtiff, libXfont2, nodejs:22, nodejs:24, and rest), <b>Debian</b> (expat and nss), <b>Fedora</b> (libssh, nginx, nginx-mod-brotli, nginx-mod-fancyindex, nginx-mod-headers-more, nginx-mod-modsecurity, nginx-mod-naxsi, nginx-mod-vts, nodejs24, perl-HTTP-Date, proftpd, squid, unbound, and wordpress), <b>Oracle</b> (c"
+  },
+  {
+   "title": "[$] LWN.net Weekly Edition for July 30, 2026",
+   "url": "https://lwn.net/Articles/1084315/",
+   "date": "2026-07-30",
+   "summary": "Inside this week's LWN.net Weekly Edition: <p> <ul> <li> <a href=\"https://lwn.net/Articles/1084315/\">Front</a>: Hazard pointers; DFSG team; Swap devices; Netkit and BPF; BPF inlined functions; Fedora GRUB; gccrs. <li> <a href=\"https://lwn.net/Articles/1084317/\">Briefs</a>: RIP Dan Williams; Debian LLM resolution; Fedora 45 process; Codeberg LLM policy; GCC LLM policy; GNU Binutils 2.47; GNU C Libr"
+  },
+  {
+   "title": "[$] Debugging information for inlined functions",
+   "url": "https://lwn.net/Articles/1083985/",
+   "date": "2026-07-29",
+   "summary": "<p> BPF programs use <a href=\"https://docs.kernel.org/bpf/btf.html\"> BPF type format</a> (BTF) debugging information in order to determine how to interact with functions in the kernel. Specifically, tracing a kernel function involves finding its address in the kernel's BTF section — but that doesn't work for functions that have been inlined, and therefore don't have a single, specific address. Ala"
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+schema_version: bitter.frontier_run_manifest.v0
+run_id: 2026-08-03-weekly-digest-2026-07-27_2026-08-03-frontier-v0
+id: 2026-08-03-weekly-digest-2026-07-27_2026-08-03-frontier-v0
+title: The Newest Thing You Can Install
+mode: weekly_digest
+status: complete
+window:
+  start: 2026-07-27
+  end: 2026-08-03
+parent_window:
+  start: 2026-07-02
+  end: 2026-07-27
+generated_at: 2026-08-03
+sources:
+  - codex
+  - claude-code
+  - gemini-cli
+  - antigravity
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+  - flue
+  - eve
+  - heypi
+  - agent-flywheel
+  - omnigent
+source_contracts:
+  - sources/omnigent.yml
+  - sources/openhands.yml
+  - sources/gemini-cli.yml
+  - sources/antigravity.yml
+  - sources/codex.yml
+  - sources/hermes-agent.yml
+  - sources/openclaw.yml
+  - sources/claude-code.yml
+  - sources/pi-coding-agent.yml
+  - sources/agent-zero.yml
+  - sources/paperclip.yml
+notes: >
+  First cycle including Omnigent, the fifteenth source and the first meta-harness
+  on the watchlist. Seven-day window; the boundary date 2026-07-27 is shared with
+  the prior digest, per the convention the archive already uses.
+outputs:
+  digest:
+    - content/digests/2026-07-27_2026-08-03-weekly.md
+  profiles:
+    - content/profiles/omnigent.md
+  findings: 13
+  signals:
+    - signals/frontier-signals.yml
+  review:
+    - audit.md
+    - qa.md
+quality_gates:
+  - channel resolved by git ancestry, not date, on every inspectable source
+  - source files read at a tag ref where the claim is about installed behaviour
+  - all five prior carry_forward_checks answered, including the negative ones
+  - two independent surfaces required for the Claude Code cadence claim
+  - no cause asserted where the public record states none
+  - meta-harness findings scoped to the wrapper, never to the wrapped harness
+  - vendor claim adjudicated against code before being carried
+carry_forward_checks:
+  - "Whether OpenHands' open-source series passes 1.11.0 again, and what its release automation does when it reaches a number it has already published."
+  - "Whether the Omnigent worktree_guard fix reaches a tag, and whether v0.8.0 carries it."
+  - "Whether Omnigent's max_cost_usd grows a hard stop rather than a downgrade gate."
+  - "Whether the OpenClaw workspace-boundary fix reaches a stable release."
+  - "Whether Claude Code's publish cadence resumes."
+  - "Whether Paperclip tags the review-round cap and the rest of its unreleased default-branch work."
+  - "Whether Pi's auth print-api-key / print-bearer-token commands are gated from the agent's own shell tool."
+lanes:
+  primary: complete
+  writing: "complete -- 15/15 feeds live, 74 items since 2026-07-27"
+  x_social: "serialized Hermes/Grok chain; broad sweep complete (127 posts), narrower per-source and thematic sweeps continuing"

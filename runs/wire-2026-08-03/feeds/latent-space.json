@@ -1,0 +1,50 @@
+{
+ "source": "latent-space",
+ "feed": "https://www.latent.space/feed",
+ "swept_on": "2026-08-03",
+ "since": "2026-07-27",
+ "items": [
+  {
+   "title": "[AINews] not much happened today",
+   "url": "https://www.latent.space/p/ainews-not-much-happened-today-038",
+   "date": "2026-08-01",
+   "summary": "apart from DeepSeek V4-Flash 0731, a quiet day."
+  },
+  {
+   "title": "[AINews] GPT 5.6 price cut by 20%-80%: Cost of GPT 5.4 Intelligence dropped 13x in 4 months due to GPT 5.6 recursive self-optimization",
+   "url": "https://www.latent.space/p/ainews-gpt-56-price-cut-by-20-80",
+   "date": "2026-07-31",
+   "summary": "Distillation is all you need!"
+  },
+  {
+   "title": "Ontologies Are So Back: Why AI Agents Are Reviving the Semantic Web",
+   "url": "https://www.latent.space/p/ontologies-agentic-systems",
+   "date": "2026-07-30",
+   "summary": "AI engineers are rediscovering ontologies as a way to keep probabilistic agents inside deterministic boundaries."
+  },
+  {
+   "title": "[AINews] AI is eating Finance; AIE NYC now open",
+   "url": "https://www.latent.space/p/ainews-ai-is-eating-finance-aie-nyc",
+   "date": "2026-07-29",
+   "summary": "a quiet day lets us cover how AI is permeating financial services as the next big vertical after coding."
+  },
+  {
+   "title": "[AINews] Fearing RSI: OpenAI, Anthropic, GDM, Meta, Thinky cosign letter to \"Pace\" AI development, as HuggingFace details Machine-Speed Offensive Cyberattack",
+   "url": "https://www.latent.space/p/ainews-fearing-rsi-openai-anthropic",
+   "date": "2026-07-29",
+   "summary": "The Big Pause is coming."
+  },
+  {
+   "title": "Codex from 0 to 10M Users: Building ChatGPT Work — Akshay Nathan, OpenAI",
+   "url": "https://www.latent.space/p/chatgpt-work",
+   "date": "2026-07-28",
+   "summary": "OpenAI's core product engineering lead on how they are building ChatGPT Work to make AGI accessible to all of humanity: Sites, OpenClaw, Memory, Subagents, Finance, No-Code and advice."
+  },
+  {
+   "title": "[AINews] Much ado about Open Weights",
+   "url": "https://www.latent.space/p/ainews-much-ado-about-open-weights",
+   "date": "2026-07-28",
+   "summary": "Everyone is writing a lot, but only Kimi K3 shipped today"
+  }
+ ]
+}

@@ -1,0 +1,223 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-08-03-weekly-digest-2026-07-27_2026-08-03-frontier-v0
+window:
+  start: 2026-07-27
+  end: 2026-08-03
+note: >
+  A seven-day window across fifteen sources, the first including Omnigent. Seven
+  accepted signals from thirteen findings. The window's shared movement is the
+  distance between the newest thing a project has made and the newest thing an
+  operator can install -- and this window it moved in both directions at once.
+  Three controls that were merged-but-unreleased last window reached a channel
+  operators run: Gemini's zero-click workspace-trust fix to stable, Codex's
+  network-authority wave out of alpha, Hermes's approval guardrails into a tag.
+  Against that, one project's release page now marks as Latest a version that
+  sorts below a release three weeks older on the same git line, another's stable
+  still predates its own security fix, and the newest source on the list shipped
+  a write confinement that did not bind on Windows.
+
+signals:
+
+  - id: 2026-08-03-openhands-latest-sorts-below-an-older-release
+    status: accepted
+    section: platform
+    source: openhands
+    channel: tagged-release
+    title: "OpenHands' Latest release is three minor versions below a release from three weeks earlier, on the same line"
+    summary: >
+      OpenHands seeded the archived agent-canvas project's release history into
+      OpenHands/OpenHands and continued cutting releases on that number series.
+      The agent line last tagged 1.11.0 on 2026-07-09; v1.8.0, published
+      2026-07-30, is now marked Latest. Ancestry shows one line and no fork:
+      compare/1.11.0...v1.8.0 returns ahead_by 903, behind_by 0. Each migrated
+      release body states its own provenance, including that the migration was
+      performed by an AI agent on behalf of the user, and PR #16133 disabled tag
+      publish triggers during it. The consolidation is deliberate, documented
+      work; the side effect is that the version number stopped being monotonic.
+    why_action_bearing:
+      - "Anything that orders versions rather than dates -- a package constraint, a Renovate or Dependabot rule, a pinned container tag, an internal currency check -- reads 1.11.0 as greater than 1.8.0 and will treat the newer release as a downgrade. Pin OpenHands by tag or digest and resolve currency by publish date until the series passes 1.11.0."
+    receipts:
+      - url: https://github.com/OpenHands/OpenHands/compare/1.11.0...v1.8.0
+        precision: git_compare
+      - url: https://github.com/OpenHands/OpenHands/releases/tag/v1.6.1
+        precision: github_release
+      - url: https://github.com/OpenHands/OpenHands/pull/16133
+        precision: merged_pr
+
+  - id: 2026-08-03-omnigent-max-cost-usd-is-not-a-ceiling
+    status: accepted
+    section: control-plane
+    source: omnigent
+    channel: tagged-release
+    title: "Omnigent's spend cap is enforced before the call, and is a downgrade gate rather than a ceiling"
+    summary: >
+      Read at the v0.7.0 tag, cost_budget gates cumulative session spend at the
+      request phase (before the LLM turn, so text-only turns count) and at the
+      tool-call phase (where a native PreToolUse hook blocks before the action
+      runs). So it enforces rather than reconciles, which is the better half of
+      the answer. But max_cost_usd does not stop a session: the module states it
+      "forces a model downgrade" and DENYs only while the session is on a model
+      in the operator-supplied expensive_models list, becoming "a downgrade gate,
+      not a hard stop." It also fails closed when token usage is present but
+      priced cost is absent, so unpriced models cannot silently bypass the cap,
+      and it notes that a single expensive turn can overshoot between checks.
+    why_action_bearing:
+      - "An operator who sets max_cost_usd expecting spend to stop at that number has not configured that. Spend continues past the cap on any model outside expensive_models. Set the cap and the expensive_models list together, and treat the number as the point where the session gets cheaper rather than the point where it ends."
+    receipts:
+      - url: https://github.com/omnigent-ai/omnigent/blob/v0.7.0/omnigent/policies/builtins/cost.py
+        precision: source_file_at_tag
+
+  - id: 2026-08-03-omnigent-worktree-guard-inert-on-windows
+    status: accepted
+    section: runtime
+    source: omnigent
+    channel: main-unreleased
+    title: "The only write confinement for Omnigent's unsandboxed workers did not bind on Windows"
+    summary: >
+      worktree_guard reasoned in POSIX terms but normalised with os.path, which
+      is ntpath on Windows and rewrites forward slashes to backslashes. On a
+      Windows runner normalized.startswith("/") was therefore never true and the
+      absolute-path arm was inert: /etc/passwd carried no backslash, cleared the
+      backslash guard, became \etc\passwd and returned ALLOW -- including paths
+      into another worker's tree. The .. and ~ arms survived by coincidence. The
+      project describes worktree_guard as the only write confinement for the
+      unsandboxed implementer worker specs. Filed 2026-08-01, fixed 2026-08-03
+      with posixpath normalisation, a drive-letter arm, and four ALLOW-to-DENY
+      cases pinned on Windows 11.
+    why_action_bearing:
+      - "The fix is on main and in no tag: v0.7.0 was published 2026-07-27, six days before the fix merged, and is still the newest release. An operator running the tagged release with unsandboxed implementer workers on a Windows runner does not have absolute-path confinement. Run main, or do not run those worker specs on Windows until the next tag."
+    receipts:
+      - url: https://github.com/omnigent-ai/omnigent/pull/3856
+        precision: merged_pr
+      - url: https://github.com/omnigent-ai/omnigent/issues/3855
+        precision: issue
+
+  - id: 2026-08-03-gemini-workspace-that-trusted-itself-reaches-stable
+    status: accepted
+    section: runtime
+    source: gemini-cli
+    channel: tagged-release
+    title: "Gemini CLI's a2a-server read its trust decision out of the directory whose trust was in question"
+    summary: >
+      The a2a-server backend loaded workspace environment files before evaluating
+      workspace trust, so a hostile repository could ship a .gemini/.env
+      containing GEMINI_CLI_TRUST_WORKSPACE=true and, in the fix's words,
+      "self-validate their own untrusted workspace before trust is checked". The
+      stated class is zero-click remote code execution and environment poisoning:
+      opening the repository was enough. The fix defers environment loading until
+      after the trust check, ignores workspace-level .env files entirely when
+      untrusted, and adds task-level environment and process isolation. Merged
+      2026-07-21 and shipped in stable v0.53.0 on 2026-07-28, resolving a
+      carry-forward check from the prior run.
+    why_action_bearing:
+      - "Upgrade past v0.53.0 before pointing a2a-server at any repository you did not write. On earlier builds the workspace trust prompt was not a boundary for that backend, because the answer was read from inside the workspace."
+    receipts:
+      - url: https://github.com/google-gemini/gemini-cli/pull/28470
+        precision: merged_pr
+      - url: https://github.com/google-gemini/gemini-cli/releases/tag/v0.53.0
+        precision: github_release
+
+  - id: 2026-08-03-openclaw-sandbox-fix-reaches-beta-only
+    status: accepted
+    section: runtime
+    source: openclaw
+    channel: preview-or-beta
+    title: "OpenClaw's workspace boundary fix reached beta and stopped there"
+    summary: >
+      The fix for the symlink-then-.. bypass in assertSandboxPath merged
+      2026-07-27 and is contained, by ancestry, in v2026.7.2-beta.5 and the two
+      later betas. It is not contained in the latest stable v2026.7.1, published
+      2026-07-13, which predates the merge. No stable OpenClaw release shipped in
+      this window at all. The carried-forward question from the prior run was
+      whether this fix would reach any channel; the answer is beta.
+    why_action_bearing:
+      - "On stable OpenClaw the workspace boundary is still not a containment barrier, two windows after the bypass was first recorded. Either run the beta deliberately, or do not treat the workspace path as a security boundary for agents handling untrusted content."
+    receipts:
+      - url: https://github.com/openclaw/openclaw/pull/113405
+        precision: merged_pr
+      - url: https://github.com/openclaw/openclaw/releases/tag/v2026.7.2-beta.5
+        precision: github_release
+
+  - id: 2026-08-03-antigravity-approval-scope-widens-with-nothing-to-read
+    status: accepted
+    section: control-plane
+    source: antigravity
+    channel: tagged-release
+    title: "Antigravity widened what one approval covers, in a product with no source to check it against"
+    summary: >
+      1.1.9 records that "a pattern approved at a prompt is recorded for the rest
+      of the conversation, letting later commands that match it run without
+      prompting again." Several harnesses on this watchlist behave the same way,
+      and the design is defensible. What is specific here is that the successor
+      to the CLI Google retired publishes no source: the repository holds
+      .github, CHANGELOG.md, README.md, a demo gif and examples, carries no
+      license, and GitHub detects no primary language. That changelog sentence is
+      the entire available description of the new boundary, and what counts as a
+      matching pattern cannot be established from anything published.
+    why_action_bearing:
+      - "Approving one command in Antigravity now approves later commands matching the same pattern for the remainder of the conversation. Treat each approval as scoped to the conversation rather than the command, and start a new conversation to reset the grant."
+    receipts:
+      - url: https://github.com/google-antigravity/antigravity-cli/releases/tag/1.1.9
+        precision: github_release
+      - url: https://github.com/google-antigravity/antigravity-cli
+        precision: official_repo
+
+  - id: 2026-08-03-hermes-guardrails-tagged-and-the-runaway-cap-returns
+    status: accepted
+    section: control-plane
+    source: hermes-agent
+    channel: tagged-release
+    title: "Hermes tagged the approval guardrails, and put back a runaway limit it had removed"
+    summary: >
+      v0.20.0 (v2026.8.3) puts the whole carried-forward set into a tagged
+      release: approvals suggest mining approval history into allowlist
+      proposals, an operator-customisable approvals.smart_policy, a
+      consecutive-denial circuit breaker, profile-correct desktop pairing
+      approvals, and an approval gate for docker and podman daemon-redirect
+      commands. It also adds session-wide runaway-loop caps for web_search and
+      delegate_task, credited in the notes as Claude Code-inspired. That closes a
+      gap this publication recorded in the 2026-06-04 to 06-16 issue, when Hermes
+      removed its default 600-second subagent wall-clock timeout in the same week
+      it shipped fire-and-forget background subagents, leaving runaway detection
+      to heartbeat staleness alone.
+    why_action_bearing:
+      - "The release that flipped approvals to a classifier default now ships the controls written to bound it. Upgrade to v2026.8.3 and set approvals.smart_policy explicitly rather than inheriting it, and confirm the delegate_task cap is active if you run background subagents."
+    receipts:
+      - url: https://github.com/NousResearch/hermes-agent/releases/tag/v2026.8.3
+        precision: github_release
+      - url: https://github.com/NousResearch/hermes-agent/pull/66600
+        precision: merged_pr
+
+not_promoted:
+  - finding: 2026-08-03-claude-code-publishes-nothing-for-ten-days
+    reason: >
+      Verified on two independent surfaces and carried in the body as a cadence
+      fact, but it is not action-bearing on its own: the operator consequence is
+      only that 2.1.220 remains the newest installable build. No cause is
+      established and none is asserted.
+  - finding: 2026-08-03-codex-network-authority-wave-reaches-stable
+    reason: >
+      A carry-forward resolution rather than a new decision. Carried in the body
+      and in provider notes; the operator action -- upgrade to 0.146.0 -- was
+      already stated when the wave was in alpha.
+  - finding: 2026-08-03-agent-zero-ships-a-stop-control
+    reason: >
+      Real capability and carried in the body as the window's clearest example of
+      a supervisory control shipping, but it changes nothing an operator must do
+      this week.
+  - finding: 2026-08-03-pi-ships-credential-export-commands
+    reason: >
+      Deliberately not promoted. Whether the agent's own shell tool can reach
+      pi auth print-api-key without an approval gate is what would make it
+      action-bearing, and that is not established from the release note. Carried
+      as an open question for the next cycle rather than asserted.
+  - finding: 2026-08-03-omnigent-stateful-policies-claim-checks-out-in-the-tag
+    reason: >
+      A vendor claim that survived adjudication. Recorded because the check was
+      run and the answer was yes; it prompts no operator action.
+  - finding: 2026-08-03-omnigent-v070-routing-picks-the-harness
+    reason: >
+      Carried in the body and in the new Omnigent profile. The routing change is
+      the source contract's intake question in shipped form, but the operator
+      consequence depends on facts about layer precedence that this window did
+      not establish.

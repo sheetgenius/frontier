@@ -1,0 +1,26 @@
+{
+ "source": "cloudflare-ai",
+ "feed": "https://blog.cloudflare.com/tag/ai/rss/",
+ "swept_on": "2026-08-03",
+ "since": "2026-07-27",
+ "items": [
+  {
+   "title": "Your agent needs a computer, not a container — introducing @cloudflare/computer",
+   "url": "https://blog.cloudflare.com/cloudflare-computer/",
+   "date": "2026-08-03",
+   "summary": "Agents need more than just a container to scale. We're introducing @cloudflare/computer, an agent runtime that dynamically orchestrates between fast, efficient isolates and full Linux containers to give every agent a computer of its own."
+  },
+  {
+   "title": "Smaller, faster, safer: running Kimi and GLM at scale",
+   "url": "https://blog.cloudflare.com/smaller-faster-safer-models/",
+   "date": "2026-08-03",
+   "summary": "Serving frontier models like Kimi and GLM means fighting for GPU memory. Here's how we quantize KV caches, compress model weights, and add integrity checks to serve them faster, cheaper, and safely."
+  },
+  {
+   "title": "Welcome to Agents Week",
+   "url": "https://blog.cloudflare.com/agents-week-welcome/",
+   "date": "2026-08-02",
+   "summary": "Agents Week explores how cloud infrastructure must evolve to serve autonomous agents rather than human browsers. Join us as we unpack the storage, execution, and security primitives needed for an agent-native web."
+  }
+ ]
+}

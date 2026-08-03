@@ -1,0 +1,598 @@
+{
+ "swept_on": "2026-08-03",
+ "since": "2026-07-27",
+ "items": [
+  {
+   "title": "Quoting David Crawshaw's prompt",
+   "url": "https://simonwillison.net/2026/Aug/3/david-crawshaw/#atom-everything",
+   "date": "2026-08-03",
+   "summary": "<blockquote cite=\"https://blog.exe.dev/devtools-must-be-open-source\"><p><code>Set up a nightly cron job that executes the prompt: fetch upstream changes to the &lt;software&gt; and rebase all local changes on top of upstream. Check that the software works as intended and replace the current version.</code></p></blockquote> <p class=\"cite\">&mdash; <a href=\"https://blog.exe.dev/devtools-must-be-open",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "LLM Heist: Hijacking LiteLLM for Traffic Interception, Key Theft, and Tool-Call Injection",
+   "url": "https://embracethered.com/blog/posts/2026/hijacking-litellm-for-fun-and-profit/",
+   "date": "2026-08-03",
+   "summary": "<p><a href=&#34;https://github.com/BerriAI/litellm&#34;>LiteLLM</a> is a popular AI gateway. It provides a unified interface to LLMs and simplifies governance. It also has access to the backend LLM provider keys.</p>&#xA;<p><strong>All of that makes it a high-value target.</strong> Not only for IP and data theft, but also for response modification and tool invocation.</p>&#xA;<p><a href=&#34;https",
+   "source": "embrace-the-red",
+   "kind": "research"
+  },
+  {
+   "title": "[$] Buffer sizes for FUSE io_uring",
+   "url": "https://lwn.net/Articles/1085618/",
+   "date": "2026-08-03",
+   "summary": "The <a href=\"https://docs.kernel.org/filesystems/fuse/\">Filesystem in Userspace</a> (FUSE) subsystem provides a way to service filesystem requests from a user-space server, which moves the format-handling code out of the kernel. The FUSE server can <a href=\"https://www.kernel.org/doc/html/next/filesystems/fuse-io-uring.html\">use</a> the <a href=\"https://man7.org/linux/man-pages/man7/io_uring.7.htm",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "SQLite Critical CVEs or LLM Slop? (JFrog blog)",
+   "url": "https://lwn.net/Articles/1086936/",
+   "date": "2026-08-03",
+   "summary": "The JFrog blog <a href=\"https://research.jfrog.com/post/sqlite-critical-cves-or-llm-slops/\">examines some reported vulnerabilities in SQLite</a>, some of which made their way into high-profile vulnerability databases, that turned out to be entirely fabricated by LLMs. <p> <blockquote class=\"bq\"> These LLM slop CVEs can cause organizations to waste time investigating and patching vulnerabilities th",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Four stable kernels for Monday",
+   "url": "https://lwn.net/Articles/1086900/",
+   "date": "2026-08-03",
+   "summary": "<p>Greg Kroah-Hartman has announced the release of the <a href=\"https://lwn.net/Articles/1086901/\">7.1.6</a>, <a href=\"https://lwn.net/Articles/1086903/\">6.18.42</a>, <a href=\"https://lwn.net/Articles/1086904/\">6.12.101</a>, and <a href=\"https://lwn.net/Articles/1086905/\">6.6.148</a> stable kernels. Each contains hundreds of patches&mdash;the 7.1.6 kernel has more than 700&mdash;with fixes through",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "NetBSD 11.0 released",
+   "url": "https://lwn.net/Articles/1086898/",
+   "date": "2026-08-03",
+   "summary": "<p>The release of <a href=\"https://netbsd.org/\">NetBSD</a> 11.0, the 19th major version of the operating system, has been <a href=\"https://lwn.net/Articles/1086899/\">announced</a>. There are many changes and enhancements since the 10.1 release, including a new port to RISC-V, better support for Linux system calls in <a href=\"https://man.netbsd.org/NetBSD-11.0/compat_linux.8\"><tt>compat_linux()</tt",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Monday",
+   "url": "https://lwn.net/Articles/1086897/",
+   "date": "2026-08-03",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 10.0, .NET 8.0, .NET 9.0, fence-agents, kernel, kernel-rt, openssh, osbuild-composer, perl-Archive-Tar, perl-DBI, perl:5.32, pipewire, python-pillow, qemu-kvm, unbound, and vim), <b>Debian</b> (chromium, incus, kernel, kissfft, libgd2, libmodbus, libssh, node-tar, php8.4, poppler, python-authlib, sslh, and starlette), <b>Fedora</b> (borgb",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Kernel prepatch 7.2-rc6",
+   "url": "https://lwn.net/Articles/1086727/",
+   "date": "2026-08-03",
+   "summary": "The <a href=\"https://lwn.net/Articles/1086726/\">7.2-rc6</a> kernel prepatch is out for testing. Quoth Linus: \"<q>Hmm. This rc is huge. Even by the \"new normal\" standards this is a big rc, and I think it's the biggest rc6 we've had in years at least by commit count.</q>\" There were 537 non-merge commits applied between 7.2-rc5 and 7.2-rc6.",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Your agent needs a computer, not a container — introducing @cloudflare/computer",
+   "url": "https://blog.cloudflare.com/cloudflare-computer/",
+   "date": "2026-08-03",
+   "summary": "Agents need more than just a container to scale. We're introducing @cloudflare/computer, an agent runtime that dynamically orchestrates between fast, efficient isolates and full Linux containers to give every agent a computer of its own.",
+   "source": "cloudflare-ai",
+   "kind": "vendor"
+  },
+  {
+   "title": "Smaller, faster, safer: running Kimi and GLM at scale",
+   "url": "https://blog.cloudflare.com/smaller-faster-safer-models/",
+   "date": "2026-08-03",
+   "summary": "Serving frontier models like Kimi and GLM means fighting for GPU memory. Here's how we quantize KV caches, compress model weights, and add integrity checks to serve them faster, cheaper, and safely.",
+   "source": "cloudflare-ai",
+   "kind": "vendor"
+  },
+  {
+   "title": "condense-json 1.0",
+   "url": "https://simonwillison.net/2026/Aug/2/condense-json/#atom-everything",
+   "date": "2026-08-02",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/condense-json/releases/tag/1.0\">condense-json 1.0</a></p> <p>I'm trying to get braver at releasing 1.0 versions. This little library is a year and a half old now - I've applied some sensible and non-disruptive fixes and shipped the big 1.0 for it.</p> <p>Here's an example of what it can do, lifted from the README:</p> <div class=\"high",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Open letters about AI development",
+   "url": "https://simonwillison.net/2026/Aug/2/open-letters/#atom-everything",
+   "date": "2026-08-02",
+   "summary": "<h4>Open letters about AI development</h4> <p><em>I wrote this summary of the past few weeks of open letters as a section of <a href=\"https://simonwillison.net/2026/Aug/2/july-newsletter/\">my sponsors-only newsletter</a> but I've decided to share it here as well.</em></p> <p><strong><a href=\"https://www.microsoft.com/en-us/corporate-responsibility/topics/open-weight/\">Open Weights and American AI ",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "July 2026 newsletter",
+   "url": "https://simonwillison.net/2026/Aug/2/july-newsletter/#atom-everything",
+   "date": "2026-08-02",
+   "summary": "<p>The June edition of my <a href=\"https://github.com/sponsors/simonw/\">sponsors-only monthly newsletter</a> is out. If you are a sponsor (or if you start a sponsorship now) you can <a href=\"https://github.com/simonw-private/monthly/blob/main/2026-07-july.md\">access it here</a>.</p> <p>This month:</p> <ul> <li>Accidental cyberattacks by OpenAl and Anthropic models under test</li> <li>GPT-5.6 Sol, ",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Welcome to Agents Week",
+   "url": "https://blog.cloudflare.com/agents-week-welcome/",
+   "date": "2026-08-02",
+   "summary": "Agents Week explores how cloud infrastructure must evolve to serve autonomous agents rather than human browsers. Join us as we unpack the storage, execution, and security primitives needed for an agent-native web.",
+   "source": "cloudflare-ai",
+   "kind": "vendor"
+  },
+  {
+   "title": "Quoting Greg Brockman",
+   "url": "https://simonwillison.net/2026/Aug/1/greg-brockman/#atom-everything",
+   "date": "2026-08-01",
+   "summary": "<blockquote cite=\"https://twitter.com/gdb/status/2083435180392673714\"><p>at openai, many people hook their chatgpt up to slack.</p> <p>people really don't like when a coworker's chatgpt contacts them asking for help with a task, even when they'd be perfectly happy doing that same work if asked by that coworker.</p> <p>reinforces how much people care about human relationships and helping each other",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "datasette-apps 0.2a0",
+   "url": "https://simonwillison.net/2026/Aug/1/datasette-apps/#atom-everything",
+   "date": "2026-08-01",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/datasette/datasette-apps/releases/tag/0.2a0\">datasette-apps 0.2a0</a></p> <blockquote> <p>Changes that improve Datasette Apps when created and edited using <a href=\"https://agent.datasette.io/\">Datasette Agent</a>:</p> <ul> <li>New <code>app_debug()</code> tool allowing agent to open an app (invisibly) and test it using JavaScript. <a href=\"",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Ten advances in mathematics and theoretical computer science",
+   "url": "https://simonwillison.net/2026/Aug/1/ten-advances-in-mathematics/#atom-everything",
+   "date": "2026-08-01",
+   "summary": "<p><strong><a href=\"https://openai.com/index/ten-advances-in-mathematics/\">Ten advances in mathematics and theoretical computer science</a></strong></p> A few days ago it was Anthropic <a href=\"https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/\">discovering cryptographic weaknesses with Claude</a> using Mythos Preview, spending $100,000 on tokens and with promp",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] not much happened today",
+   "url": "https://www.latent.space/p/ainews-not-much-happened-today-038",
+   "date": "2026-08-01",
+   "summary": "apart from DeepSeek V4-Flash 0731, a quiet day.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Ten advances in mathematics and theoretical computer science",
+   "url": "https://openai.com/index/ten-advances-in-mathematics",
+   "date": "2026-08-01",
+   "summary": "OpenAI shares new results on long-standing open problems in mathematics and theoretical computer science, including advances in geometry, cryptography, and complexity.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "url": "https://simonwillison.net/2026/Jul/31/deepseek-v4-flash-0731/#atom-everything",
+   "date": "2026-07-31",
+   "summary": "<p><strong><a href=\"https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731\">deepseek-ai/DeepSeek-V4-Flash-0731</a></strong></p> The latest release in DeepSeek's V4 family, \"with substantially enhanced agentic capabilities\". It's 304 billion parameters - 167GB on Hugging Face - but it appears to punch <em>well</em> above its weight.</p> <p>Artificial Analysis <a href=\"https://artificialanalysis.",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Stateless MCP has recaptured my interest (and inspired mcp-explorer and datasette-mcp)",
+   "url": "https://simonwillison.net/2026/Jul/31/stateless-mcp/#atom-everything",
+   "date": "2026-07-31",
+   "summary": "<p>Tuesday was <a href=\"https://x.com/ade_oshineye/status/2082129440943866149\">Stateless MCP day</a> - the rollout of MCP 2.0, or <a href=\"https://blog.modelcontextprotocol.io/posts/2026-07-28/\">the 2026-07-28 Model Context Protocol specification</a> to use the more formal but less memorable name. This is the most significant change to the MCP spec since it first launched, and has also served to r",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "llm-mcp-client 0.1a0",
+   "url": "https://simonwillison.net/2026/Jul/31/llm-mcp-client/#atom-everything",
+   "date": "2026-07-31",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm-mcp-client/releases/tag/0.1a0\">llm-mcp-client 0.1a0</a></p> <p>See <a href=\"https://simonwillison.net/2026/Jul/31/stateless-mcp/#llm-mcp-client\">this blog entry</a>.</p> <p>Tags: <a href=\"https://simonwillison.net/tags/llm\">llm</a>, <a href=\"https://simonwillison.net/tags/model-context-protocol\">model-context-protocol</a></p>",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Oxide and Friends: The Open Weight Revolution with Simon Willison",
+   "url": "https://simonwillison.net/2026/Jul/31/oxide-and-friends/#atom-everything",
+   "date": "2026-07-31",
+   "summary": "<p><strong><a href=\"https://oxide-and-friends.transistor.fm/episodes/the-open-weight-revolution-with-simon-willison\">Oxide and Friends: The Open Weight Revolution with Simon Willison</a></strong></p> On Monday Bryan Cantrill and Adam Leventhal invited me to join their podcast to talk about the <em>wild</em> week we've had - with Kimi K3 showing open weight models can stand toe-to-toe with propriet",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "smevals - a small eval suite for evaluating models, prompts, and harnesses",
+   "url": "https://simonwillison.net/2026/Jul/31/smevals/#atom-everything",
+   "date": "2026-07-31",
+   "summary": "<p><strong><a href=\"https://primeradiant.com/blog/2026/smevals.html\">smevals - a small eval suite for evaluating models, prompts, and harnesses</a></strong></p> I've been working with Jesse Vincent's <a href=\"https://primeradiant.com\">Prime Radiant</a> applied AI research lab building out this evals framework to help answer questions about the capabilities of different models.</p> <p>The result is",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Slack Emoji Maker",
+   "url": "https://simonwillison.net/2026/Jul/31/slack-emoji-maker/#atom-everything",
+   "date": "2026-07-31",
+   "summary": "<p><strong>Tool:</strong> <a href=\"https://tools.simonwillison.net/slack-emoji-maker\">Slack Emoji Maker</a></p> <p>I wanted to create a new Slack emoji, and their tool recommends a square that's 128x128 and has a transparent background... so I <a href=\"https://github.com/simonw/tools/pull/305\">had Fable build me</a> this simple image editor against those requirements.</p> <p>Tags: <a href=\"https:/",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "datasette-agent 0.4a0",
+   "url": "https://simonwillison.net/2026/Jul/31/datasette-agent/#atom-everything",
+   "date": "2026-07-31",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/datasette/datasette-agent/releases/tag/0.4a0\">datasette-agent 0.4a0</a></p> <blockquote> <ul> <li>New <code>await context.browser_task()</code> mechanism allowing agent tools to run code directly in the user's browser. <a href=\"https://github.com/datasette/datasette-agent/pull/33\">#33</a></li> </ul> </blockquote> <p>This is an exciting new c",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] GPT 5.6 price cut by 20%-80%: Cost of GPT 5.4 Intelligence dropped 13x in 4 months due to GPT 5.6 recursive self-optimization",
+   "url": "https://www.latent.space/p/ainews-gpt-56-price-cut-by-20-80",
+   "date": "2026-07-31",
+   "summary": "Distillation is all you need!",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Servo 0.4.0 released",
+   "url": "https://lwn.net/Articles/1086555/",
+   "date": "2026-07-31",
+   "summary": "<p>The <a href=\"https://servo.org/\">Servo</a> web-browser engine project has published an <a href=\"https://servo.org/blog/2026/07/31/june-in-servo/\">update</a> about all of the changes that landed in June 2026, along with <a href=\"https://github.com/servo/servo/releases/tag/0.4.0\">version 0.4.0</a> of the Servo Tech Demo. This release includes a record 558 commits, <a href=\"https://servo.org/blog/",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] The future of libraries in BPF",
+   "url": "https://lwn.net/Articles/1084869/",
+   "date": "2026-07-31",
+   "summary": "<p> Song Liu believes that the way that programmers assemble complex BPF programs will be changing rapidly in the future. At a session of the 2026 <a href=\"https://events.linuxfoundation.org/lsfmmbpf/\"> Linux Storage, Filesystem, Memory-Management, and BPF Summit</a>, he shared his thoughts on what that change could look like, though he did not have any concrete proposals for what, if anything, th",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Arch Linux disables AUR package adoption",
+   "url": "https://lwn.net/Articles/1086489/",
+   "date": "2026-07-31",
+   "summary": "<p>The Arch Linux DevOps team has <a href=\"https://lists.archlinux.org/archives/list/aur-general@lists.archlinux.org/message/DRDEU3JUSC72CB265XHXPFA3DFSLXPBP/\">announced</a> that adoption of orphaned packages in the Arch User Repository (AUR) has been disabled due to \"<q>the current influx of malicious package adoptions and follow-up commits made via the AUR</q>\". Michael Taggart has posted <a hre",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Friday",
+   "url": "https://lwn.net/Articles/1086487/",
+   "date": "2026-07-31",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (kernel, nodejs-nodemon, nodejs22, nodejs24, openssh, and vim), <b>Debian</b> (gsasl and ruby-rack), <b>Fedora</b> (dokuwiki, lego, libnbd, nasm, pack, unbound, and valkey), <b>Mageia</b> (389-ds-base, libxfont2, nghttp2, and perl-DBI), <b>SUSE</b> (apptainer, bind, ffmpeg-7, freerdp, google-osconfig-agent, graphicsmagick, helm, ImageMagick, ja",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "The Conductor Developer",
+   "url": "https://martinfowler.com/rachels-ramblings/conductor-developer.html",
+   "date": "2026-07-31",
+   "summary": "<p class = 'precis'><b>TL;DR</b><br/><i>Why I think software development is starting to feel a little more like conducting an orchestra.</i></p> <img src = 'https://martinfowler.com/rachels-ramblings/card.png'></img> <p>There’s a shift happening in software development that I don’t think we’re talking about clearly enough.</p> <p>For the last couple of years we’ve framed AI as a productivity tool.",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Advancing responsible AI across Europe",
+   "url": "https://openai.com/index/advancing-responsible-ai-across-europe",
+   "date": "2026-07-31",
+   "summary": "OpenAI shares how its safety, security, transparency, and provenance practices support responsible AI governance in Europe. The work will continue as the EU AI Act advances.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Building abundant intelligence",
+   "url": "https://openai.com/index/building-abundant-intelligence",
+   "date": "2026-07-31",
+   "summary": "A full-stack approach to making advanced AI more capable, more affordable, and more widely useful.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Univé builds an AI-ready workforce",
+   "url": "https://openai.com/index/unive",
+   "date": "2026-07-31",
+   "summary": "See how Univé built an AI-ready workforce with ChatGPT Enterprise by combining leadership, responsible governance, and employee-led innovation to transform work at scale.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Disrupting a Criminal Scam Operation",
+   "url": "https://openai.com/index/disrupting-malicious-uses-of-ai-criminal-scam-operation",
+   "date": "2026-07-31",
+   "summary": "OpenAI disrupted a Cambodia-based scam operation using ChatGPT to support investment, romance, gambling, and impersonation schemes.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Advancing the price-performance frontier with GPT‑5.6",
+   "url": "https://simonwillison.net/2026/Jul/30/luna-price-drop/#atom-everything",
+   "date": "2026-07-30",
+   "summary": "<p><strong><a href=\"https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/\">Advancing the price-performance frontier with GPT‑5.6</a></strong></p> Huge price drop from OpenAI today: GPT-5.6 Terra got a 20% reduction, and GPT-5.6 Luna got a massive 80% drop.</p> <p>OpenAI credit 5.6 Sol with enabling this: in <a href=\"https://openai.com/index/gpt-5-6-frontier-intelligence-e",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Investigating three real-world incidents in our cybersecurity evaluations",
+   "url": "https://simonwillison.net/2026/Jul/30/three-real-world-incidents/#atom-everything",
+   "date": "2026-07-30",
+   "summary": "<p><strong><a href=\"https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals\">Investigating three real-world incidents in our cybersecurity evaluations</a></strong></p> It happened again! This is turning into something of a pattern.</p> <p>Last week <a href=\"https://simonwillison.net/2026/Jul/22/openai-cyberattack/\">OpenAI accidentally exploited Hugging Face</a> when one of their",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "llm 0.32rc2",
+   "url": "https://simonwillison.net/2026/Jul/30/llm-rc2/#atom-everything",
+   "date": "2026-07-30",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm/releases/tag/0.32rc2\">llm 0.32rc2</a></p> <p>Hot on the heels of <a href=\"https://simonwillison.net/2026/Jul/30/llm-rc1/\">RC1</a>, this fixes a dependency issue and also adds two neat new features:</p> <blockquote> <ul> <li>The default model for users who have not set their own default is now <a href=\"https://developers.openai.com",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Quoting Bruce Schneier",
+   "url": "https://simonwillison.net/2026/Jul/30/bruce-schneier/#atom-everything",
+   "date": "2026-07-30",
+   "summary": "<blockquote cite=\"https://www.schneier.com/blog/archives/2026/07/should-you-use-ai-for-a-task-heres-a-simple-way-to-decide.html\"><p>The writing assignments I give my students are gym tasks, not work tasks. I ask them to write policy memos not because the world needs more policy memos. I assign them because the very act of writing, which includes thinking and outlining and drafting and editing, mak",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "llm-chat-completions-server 0.1a0",
+   "url": "https://simonwillison.net/2026/Jul/30/llm-chat-completions-server/#atom-everything",
+   "date": "2026-07-30",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm-chat-completions-server/releases/tag/0.1a0\">llm-chat-completions-server 0.1a0</a></p> <p>A key goal of the new content-addressable logs <a href=\"https://simonwillison.net/2026/Jul/30/llm-rc1/\">in LLM 0.32rc1</a> was being able to support OpenAI Chat Completion style requests where each incoming message extends the previous convers",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "llm 0.32rc1",
+   "url": "https://simonwillison.net/2026/Jul/30/llm-rc1/#atom-everything",
+   "date": "2026-07-30",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm/releases/tag/0.32rc1\">llm 0.32rc1</a></p> <p>This RC for LLM 0.32 finishes the work that <a href=\"https://simonwillison.net/2026/Apr/29/llm/\">started in LLM 0.32a0</a> - it adds a <a href=\"https://llm.datasette.io/en/latest/logging.html#the-message-store\">new schema design</a> that does a much better job of capturing the details o",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Escaping Linux Sandboxes via PipeWire (CVE-2026-5674)",
+   "url": "https://embracethered.com/blog/posts/2026/pipewire-flatpak-linux-sandbox-escape-cve-2026-5674/",
+   "date": "2026-07-30",
+   "summary": "<p>This post walks through a sandbox escape from a Flatpak application via PipeWire. The vulnerability was discovered using my automated research pipeline with <code>Claude Code</code> and <code>Opus 4.6</code> back in April 2026. It was an exciting find, as this was the first bug I submitted to Red Hat.</p>&#xA;<p><strong>Claude Code was also excited finding this:</strong></p>&#xA;<p><img src=&#3",
+   "source": "embrace-the-red",
+   "kind": "research"
+  },
+  {
+   "title": "Ontologies Are So Back: Why AI Agents Are Reviving the Semantic Web",
+   "url": "https://www.latent.space/p/ontologies-agentic-systems",
+   "date": "2026-07-30",
+   "summary": "AI engineers are rediscovering ontologies as a way to keep probabilistic agents inside deterministic boundaries.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Reconsidering O_CREAT|O_DIRECTORY",
+   "url": "https://lwn.net/Articles/1085617/",
+   "date": "2026-07-30",
+   "summary": "Linux provides a system call (<a href=\"https://man7.org/linux/man-pages/man2/mkdir.2.html\"><tt>mkdir()</tt></a>) to create a directory, and <a href=\"https://man7.org/linux/man-pages/man2/open.2.html\">a few variants of <tt>open()</tt></a> that can open a directory. There is, however, no system call in Linux that can create and open a directory in a single, race-free call. Jori Koolstra has been wor",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Another batch of single-fix stable kernels",
+   "url": "https://lwn.net/Articles/1086226/",
+   "date": "2026-07-30",
+   "summary": "<p>Greg Kroah-Hartman has announced the release of the <a href=\"https://lwn.net/Articles/1086227/\">6.18.41</a>, <a href=\"https://lwn.net/Articles/1086228/\">6.12.100</a>, <a href=\"https://lwn.net/Articles/1086229/\">6.6.147</a>, <a href=\"https://lwn.net/Articles/1086230/\">6.1.180</a>, <a href=\"https://lwn.net/Articles/1086231/\">5.15.213</a>, and <a href=\"https://lwn.net/Articles/1086233/\">5.10.262</",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Thursday",
+   "url": "https://lwn.net/Articles/1086225/",
+   "date": "2026-07-30",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (gstreamer1-plugins-bad-free, libtiff, libXfont2, nodejs:22, nodejs:24, and rest), <b>Debian</b> (expat and nss), <b>Fedora</b> (libssh, nginx, nginx-mod-brotli, nginx-mod-fancyindex, nginx-mod-headers-more, nginx-mod-modsecurity, nginx-mod-naxsi, nginx-mod-vts, nodejs24, perl-HTTP-Date, proftpd, squid, unbound, and wordpress), <b>Oracle</b> (c",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] LWN.net Weekly Edition for July 30, 2026",
+   "url": "https://lwn.net/Articles/1084315/",
+   "date": "2026-07-30",
+   "summary": "Inside this week's LWN.net Weekly Edition: <p> <ul> <li> <a href=\"https://lwn.net/Articles/1084315/\">Front</a>: Hazard pointers; DFSG team; Swap devices; Netkit and BPF; BPF inlined functions; Fedora GRUB; gccrs. <li> <a href=\"https://lwn.net/Articles/1084317/\">Briefs</a>: RIP Dan Williams; Debian LLM resolution; Fedora 45 process; Codeberg LLM policy; GCC LLM policy; GNU Binutils 2.47; GNU C Libr",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "The Economic Benefit of Refactoring",
+   "url": "https://martinfowler.com/articles/exploring-gen-ai/refactoring-economic-benefit.html",
+   "date": "2026-07-30",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/exploring-gen-ai/refactoring-economic-benefit.html'><img src = 'https://martinfowler.com/articles/exploring-gen-ai/donkey-card.png' width = ''></img></a></div> <p><b class = 'author'>Giles Edwards-Alexander</b> does an experiment to see if decomposing a large function helps reduce token costs, suggesting that is may now be possib",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Advancing the price-performance frontier with GPT-5.6",
+   "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6",
+   "date": "2026-07-30",
+   "summary": "Explore lower GPT‑5.6 pricing for Luna and Terra—and how OpenAI’s more efficient models help enterprises deploy AI workflows at scale.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "How avatarin built a 24/7 retail agent with GPT-Realtime",
+   "url": "https://openai.com/index/avatarin",
+   "date": "2026-07-30",
+   "summary": "avatarin uses OpenAI’s GPT-Realtime to give Yamada Denki shoppers 24/7 multilingual support. In two weeks, 30,000 people used the agent and 92% of survey responses were positive.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Quoting D. Richard Hipp",
+   "url": "https://simonwillison.net/2026/Jul/29/d-richard-hipp/#atom-everything",
+   "date": "2026-07-29",
+   "summary": "<blockquote cite=\"https://www.youtube.com/watch?v=R57nUGzo7CA&amp;t=848s\"><p>Years ago, we didn’t have SQL. There were people whose job was to generate software that would query large data sets. Their job title was COBOL programmer.</p> <p>Then SQL comes along—I’m simplifying this only a little bit—and it gives you this convenient way so people could just specify. With a very simple specification,",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "AI Worming through Word",
+   "url": "https://simonwillison.net/2026/Jul/29/ai-worming-through-word/#atom-everything",
+   "date": "2026-07-29",
+   "summary": "<p><strong><a href=\"https://enklypesalt.com/posts/context-collapse-part3-ai-worming-through-word/\">AI Worming through Word</a></strong></p> Neat new prompt injection variant by Håkon Måløy, who found a way to upgrade prompt injection attacks against Microsoft Word to full self-replicating worms:</p> <blockquote> <p>An attacker places hidden instructions in a document that is later used as source m",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Quoting Matthew Green",
+   "url": "https://simonwillison.net/2026/Jul/29/matthew-green/#atom-everything",
+   "date": "2026-07-29",
+   "summary": "<blockquote cite=\"https://blog.cryptographyengineering.com/2026/07/29/some-notes-about-anthropics-new-results/\"><p>Right now we’re in the midst of a historic transition from traditional public-key algorithms based on EC-based cryptography and RSA, moving over to new <em>post-quantum</em> algorithms based on novel problems. This is why there are so many standards like HAWK being considered. If ther",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Adding a custom MCP server to Claude and ChatGPT",
+   "url": "https://simonwillison.net/2026/Jul/29/mcp-in-claude-and-chatgpt/#atom-everything",
+   "date": "2026-07-29",
+   "summary": "<p><strong>TIL:</strong> <a href=\"https://til.simonwillison.net/llms/mcp-in-claude-and-chatgpt\">Adding a custom MCP server to Claude and ChatGPT</a></p> <p>Connecting a custom MCP server to Claude and ChatGPT's standard chat interfaces is possible, but can take quite a few steps.</p> <p>Tags: <a href=\"https://simonwillison.net/tags/ai\">ai</a>, <a href=\"https://simonwillison.net/tags/generative-ai\"",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Formal methods with Hillel Wayne",
+   "url": "https://newsletter.pragmaticengineer.com/p/formal-methods-with-hillel-wayne",
+   "date": "2026-07-29",
+   "summary": "Hillel Wayne explains why formal methods like TLA+ matter, how they help build reliable software, and whether AI will finally bring formal verification into the mainstream.",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "Superlogical",
+   "url": "https://mitchellh.com/writing/superlogical",
+   "date": "2026-07-29",
+   "summary": "",
+   "source": "mitchellh",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] AI is eating Finance; AIE NYC now open",
+   "url": "https://www.latent.space/p/ainews-ai-is-eating-finance-aie-nyc",
+   "date": "2026-07-29",
+   "summary": "a quiet day lets us cover how AI is permeating financial services as the next big vertical after coding.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] Fearing RSI: OpenAI, Anthropic, GDM, Meta, Thinky cosign letter to \"Pace\" AI development, as HuggingFace details Machine-Speed Offensive Cyberattack",
+   "url": "https://www.latent.space/p/ainews-fearing-rsi-openai-anthropic",
+   "date": "2026-07-29",
+   "summary": "The Big Pause is coming.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Debugging information for inlined functions",
+   "url": "https://lwn.net/Articles/1083985/",
+   "date": "2026-07-29",
+   "summary": "<p> BPF programs use <a href=\"https://docs.kernel.org/bpf/btf.html\"> BPF type format</a> (BTF) debugging information in order to determine how to interact with functions in the kernel. Specifically, tracing a kernel function involves finding its address in the kernel's BTF section — but that doesn't work for functions that have been inlined, and therefore don't have a single, specific address. Ala",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "How enabling two settings tripled our scores on the ARC-AGI-3 benchmark",
+   "url": "https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores",
+   "date": "2026-07-29",
+   "summary": "How two API settings improved GPT-5.6 performance on ARC-AGI-3, boosting scores and efficiency by retaining reasoning and enabling compaction.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Accelerating scientific discovery with ChatGPT for Academic Researchers",
+   "url": "https://openai.com/index/chatgpt-for-academic-researchers",
+   "date": "2026-07-29",
+   "summary": "OpenAI is giving 100,000 academic researchers free access to ChatGPT's most advanced AI models to accelerate scientific research, collaboration, and discovery.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "How GPT-5.6 fuses frontier intelligence with frontier efficiency",
+   "url": "https://openai.com/index/gpt-5-6-frontier-intelligence-efficiency",
+   "date": "2026-07-29",
+   "summary": "GPT-5.6 improves AI efficiency across models, inference, and agentic workflows, helping deliver more useful intelligence per dollar.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Discovering cryptographic weaknesses with Claude",
+   "url": "https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/#atom-everything",
+   "date": "2026-07-28",
+   "summary": "<p><strong><a href=\"https://www.anthropic.com/research/discovering-cryptographic-weaknesses\">Discovering cryptographic weaknesses with Claude</a></strong></p> The best part of this article (here's <a href=\"https://github.com/anthropics/cryptography-research-demo\">the repo</a>) about how Anthropic researchers used Claude Mythos to find mathematical flaws in both HAWK and a weaker version of AES (\"n",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "How building software is changing at Anthropic",
+   "url": "https://newsletter.pragmaticengineer.com/p/inside-anthropic",
+   "date": "2026-07-28",
+   "summary": "A deepdive on what&#8217;s changed in how the leading AI lab makes software. Ever more code review and testing is done by AI, two-pizza teams very much alive, and more. Details from inside of Anthropic",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "Codex from 0 to 10M Users: Building ChatGPT Work — Akshay Nathan, OpenAI",
+   "url": "https://www.latent.space/p/chatgpt-work",
+   "date": "2026-07-28",
+   "summary": "OpenAI's core product engineering lead on how they are building ChatGPT Work to make AGI accessible to all of humanity: Sites, OpenClaw, Memory, Subagents, Finance, No-Code and advice.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] Much ado about Open Weights",
+   "url": "https://www.latent.space/p/ainews-much-ado-about-open-weights",
+   "date": "2026-07-28",
+   "summary": "Everyone is writing a lot, but only Kimi K3 shipped today",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "The Orchestrator's Tax",
+   "url": "https://martinfowler.com/articles/orchestrator-tax.html",
+   "date": "2026-07-28",
+   "summary": "<p>Subagents get justified by time saved and parallel execution, but <b class = 'author'>Rahul Garg</b> explains that's not what matters most. Every token in the orchestrator's context is competing for its attention, and the real value of a subagent is what it keeps out of that context. Subagents should be treated as a tool for protecting the orchestrator's working memory, offloading reasoning it ",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Why I’m Writing Rachel’s Ramblings",
+   "url": "https://martinfowler.com/rachels-ramblings/intro.html",
+   "date": "2026-07-28",
+   "summary": "<p class = 'precis'><b>TL;DR</b><br/><i>I have ideas. I haven’t been writing them. That’s about to change. I promise… myself.</i></p> <img src = 'https://martinfowler.com/rachels-ramblings/card.png'></img> <p>I’ve been thinking a lot about talent. Actually, I’ve been thinking a lot about thinking. And writing. Or more specifically, not writing. This really hit me earlier this year at the Future of",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Scientific computing in the age of agentic AI",
+   "url": "https://openai.com/index/scientific-computing-agentic-ai",
+   "date": "2026-07-28",
+   "summary": "A new field report shows how scientists use AI coding agents to modernize scientific computing, accelerating software development and discovery in genomics and beyond.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+   "date": "2026-07-28",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/unnamed_2_vNnOv20.max-600x600.format-webp.webp\">We’re announcing even more new capabilities in Managed Agents in Gemini API so developers can build reliable, production-ready agents.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "5 ways AI Mode in Search helps you enjoy the real world",
+   "url": "https://blog.google/products-and-platforms/products/search/ai-mode-real-world-tips/",
+   "date": "2026-07-28",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/AI_Mode_real_world.max-600x600.format-webp.webp\">It might sound counterintuitive, but Search's AI tools can actually help you make the most of your time offline whether you want to book concert tickets or find the perf…",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "5 ways to host the ultimate dinner party with Google Search",
+   "url": "https://blog.google/products-and-platforms/products/search/dinner-party-hosting-tips/",
+   "date": "2026-07-28",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Dinner_parties.max-600x600.format-webp.webp\">These AI features can help you craft a menu, design a tablescape, and handle other party-planning tasks.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "How AI is expanding what people do at work",
+   "url": "https://openai.com/index/how-ai-is-expanding-what-people-do-at-work",
+   "date": "2026-07-27",
+   "summary": "New OpenAI research shows how AI is expanding what workers do, with ChatGPT users taking on tasks across roles and reshaping job boundaries.",
+   "source": "openai-news",
+   "kind": "vendor"
+  }
+ ]
+}
