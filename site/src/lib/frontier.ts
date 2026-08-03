@@ -1094,13 +1094,59 @@ export function evidenceLinksForFinding(finding: FindingEntry): EvidenceLink[] {
   return (finding.data.receipts ?? []).map((url: string) => ({ label: "Source", url, precision: "source" }));
 }
 
+// A weekly-digest run is an assembly step: its evidence sits in the
+// partial-cycle runs its manifest names as input_fragments. Follow that link,
+// or the issue reports zero receipts while nine runs hold them.
+let supersededByIndex: Map<string, string[]> | undefined;
+
+// Older runs record the link as `superseded_by` on the run that holds the
+// evidence, pointing forward at the rerun that replaced it. Index it once so a
+// rerun can find the gold run behind it.
+function runsSupersededBy(runId: string): string[] {
+  if (!supersededByIndex) {
+    supersededByIndex = new Map();
+    for (const run of listRuns()) {
+      const target = runManifest(run.id)?.superseded_by;
+      if (typeof target !== "string") continue;
+      supersededByIndex.set(target, [...(supersededByIndex.get(target) ?? []), run.id]);
+    }
+  }
+  return supersededByIndex.get(runId) ?? [];
+}
+
+export function contributingRunIds(runId?: string): string[] {
+  if (!runId) return [];
+  const ids = new Set<string>();
+  const queue = [runId];
+  while (queue.length) {
+    const current = queue.shift() as string;
+    if (ids.has(current)) continue;
+    ids.add(current);
+    queue.push(...runsSupersededBy(current));
+    const manifest = runManifest(current);
+    if (!manifest) continue;
+    for (const fragment of (manifest.input_fragments ?? []) as string[]) {
+      const match = /^runs\/([^/]+)\//.exec(fragment);
+      if (match) queue.push(match[1]);
+    }
+    // An editorial rerun rewrites the prose, not the evidence: it inherits the
+    // receipts of the run it supersedes.
+    if (typeof manifest.supersedes === "string") queue.push(manifest.supersedes);
+  }
+  return Array.from(ids);
+}
+
 // Runs record evidence two ways: per-claim findings, or per-source verification
 // crosschecks. An issue has receipts either way, so count both -- otherwise a
 // run that used the second shape publishes no source trail at all.
 export function countRunEvidence(runId?: string): number {
   if (!runId) return 0;
-  const findings = listFindings().filter((finding) => finding.runId === runId).length;
-  const crosschecks = runArtifacts(runId).filter((a) => a.kind === "verification").length;
+  const runIds = new Set(contributingRunIds(runId));
+  const findings = listFindings().filter((finding) => runIds.has(finding.runId)).length;
+  const crosschecks = Array.from(runIds).reduce(
+    (total, id) => total + runArtifacts(id).filter((a) => a.kind === "verification").length,
+    0,
+  );
   return findings + crosschecks;
 }
 
@@ -1109,7 +1155,8 @@ export function findingsForSources(
   runId?: string,
   preferredFindingIds: string[] = [],
 ): FindingEntry[] {
-  const candidates = listFindings().filter((finding) => !runId || finding.runId === runId);
+  const runIds = new Set(contributingRunIds(runId));
+  const candidates = listFindings().filter((finding) => !runId || runIds.has(finding.runId));
   const bySource = new Map<string, FindingEntry>();
   for (const findingId of preferredFindingIds) {
     const finding = candidates.find((entry) => entry.data.finding_id === findingId);
