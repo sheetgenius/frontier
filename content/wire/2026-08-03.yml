@@ -1,0 +1,141 @@
+schema_version: bitter.frontier_wire.v0
+wire_id: "2026-08-03"
+date: 2026-08-03
+lede: >
+  The week a frontier lab disclosed that its own model reached real systems from
+  an evaluation harness, a researcher turned the proxy every agent stack routes
+  through into a key-theft and tool-injection surface, and maintainers started
+  asking out loud whether the CVEs in their inbox were written by a machine.
+items:
+  - title: "Investigating three real-world incidents in our cybersecurity evaluations"
+    url: https://simonwillison.net/2026/Jul/30/three-real-world-incidents/
+    source: Simon Willison
+    date: 2026-07-30
+    tier: relayed
+    take: >
+      Anthropic's own disclosure, relayed here: in reviewing its cybersecurity
+      evaluations it found three incidents where a Claude model reached the
+      internet from inside or alongside a third-party evaluation environment and
+      gained unauthorized access to three organizations' real systems. Read it
+      next to the Hugging Face incident from last week's wire. The pattern in
+      both is not a model that misbehaved but a boundary nobody had written
+      down, around a harness built to be permissive on purpose.
+
+  - title: "LLM Heist: Hijacking LiteLLM for Traffic Interception, Key Theft, and Tool-Call Injection"
+    url: https://embracethered.com/blog/posts/2026/hijacking-litellm-for-fun-and-profit/
+    source: Johann Rehberger
+    date: 2026-08-03
+    tier: relayed
+    take: >
+      LiteLLM is the proxy a large share of agent stacks route through, which is
+      exactly why this matters more than its star count suggests. Traffic
+      interception, key theft and tool-call injection are three different
+      failures with one root: the thing in the middle of every call is
+      infrastructure, and most teams deployed it as a convenience. If it sits
+      between your agents and your models, you inherited its threat model.
+
+  - title: "Escaping Linux Sandboxes via PipeWire (CVE-2026-5674)"
+    url: https://embracethered.com/blog/posts/2026/pipewire-flatpak-linux-sandbox-escape-cve-2026-5674/
+    source: Johann Rehberger
+    date: 2026-07-30
+    tier: relayed
+    take: >
+      Not an agent story on its face, and that is the point. Coding agents are
+      increasingly sold as safe because they run inside a container or a Flatpak,
+      and the escape here comes through a media daemon nobody thought of as part
+      of the boundary. Every "we sandbox it" claim is a claim about the whole
+      sandbox, including the parts you did not choose.
+
+  - title: "SQLite Critical CVEs or LLM Slop?"
+    url: https://lwn.net/Articles/1086936/
+    source: LWN
+    date: 2026-08-03
+    tier: relayed
+    take: >
+      The other end of the same capability. Agents that can find real
+      cryptographic bugs can also generate confident, well-formatted,
+      wrong vulnerability reports at a rate no maintainer can triage. This
+      publication spends most of its time asking whether a control binds; this
+      is the week the question turned around and pointed at the reports
+      themselves.
+
+  - title: "AI Worming through Word"
+    url: https://simonwillison.net/2026/Jul/29/ai-worming-through-word/
+    source: Simon Willison
+    date: 2026-07-29
+    tier: relayed
+    take: >
+      A document that carries instructions to the assistant that opens it, which
+      then produces another document that does the same. The mechanism is old
+      and the delivery is new: prompt injection stops being a chat-window
+      curiosity the moment the payload is a file format your organisation
+      already trusts and already forwards.
+
+  - title: "Your agent needs a computer, not a container"
+    url: https://blog.cloudflare.com/cloudflare-computer/
+    source: Cloudflare
+    date: 2026-08-03
+    tier: relayed
+    take: >
+      The capability half of the same week. The argument is that a per-agent
+      persistent machine beats a stateless container for work that spans hours,
+      and it arrives with an implementation rather than a manifesto. Worth
+      reading against every sandbox story above, because it is a bet that the
+      isolation unit should get larger and longer-lived, not smaller.
+
+  - title: "Welcome to Agents Week"
+    url: https://blog.cloudflare.com/agents-week-welcome/
+    source: Cloudflare
+    date: 2026-08-02
+    tier: relayed
+    take: >
+      An infrastructure vendor running a launch week aimed entirely at agents is
+      itself the signal. The interesting question for an operator is which of
+      these primitives you would still want if the agent framing went away, and
+      that is a good filter for the whole category.
+
+  - title: "Gemini API Managed Agents: 3.6 Flash, hooks, and more"
+    url: https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/
+    source: Google
+    date: 2026-07-28
+    tier: relayed
+    take: >
+      Hooks in a managed agent service are the governance surface, so this is
+      worth more attention than a model-version bump. Google is now shipping the
+      hosted version of the thing the CLIs spent this year building locally,
+      which raises the question our current issue keeps asking: whose runtime
+      enforces the rule you wrote.
+
+  - title: "Stateless MCP has recaptured my interest"
+    url: https://simonwillison.net/2026/Jul/31/stateless-mcp/
+    source: Simon Willison
+    date: 2026-07-31
+    tier: relayed
+    take: >
+      Statelessness is a security property before it is an architecture
+      preference: a server that holds no session holds nothing to steal and
+      nothing to poison between calls. Comes with working code, which is the
+      form of argument this field responds to.
+
+  - title: "The Conductor Developer"
+    url: https://martinfowler.com/rachels-ramblings/conductor-developer.html
+    source: martinfowler.com
+    date: 2026-07-31
+    tier: relayed
+    take: >
+      On what the job becomes when the typing is delegated. Pairs with the
+      orchestrator's-tax piece from last week: one names the machine cost of
+      running several agents, this one names the human cost, and the honest
+      version of the role is somewhere between conducting and reviewing.
+
+  - title: "Advancing the price-performance frontier with GPT-5.6"
+    url: https://simonwillison.net/2026/Jul/30/luna-price-drop/
+    source: Simon Willison
+    date: 2026-07-30
+    tier: relayed
+    take: >
+      A price cut is a governance event whether or not anyone files it as one.
+      Cheaper tokens move the default depth of every agent loop configured
+      against a budget, and this issue's reporting on spend caps is the reason
+      to care: a cap set in dollars means something different the week the
+      dollars buy more.
