@@ -73,4 +73,4 @@ carry_forward_checks:
 lanes:
   primary: complete
   writing: "complete -- 15/15 feeds live, 74 items since 2026-07-27"
-  x_social: "serialized Hermes/Grok chain; broad sweep complete (127 posts), narrower per-source and thematic sweeps continuing"
+  x_social: "serialized Hermes/Grok chain: 4 sweeps, 291 posts. 21 URLs re-fetched in a capture-verification pass (URLs only, no expected text); 21 ok; 9 woven. Further angled sweeps continuing for the next pass."

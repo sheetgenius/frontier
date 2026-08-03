@@ -30,22 +30,44 @@
   at or above 130.
 - **No body section duplicates the operator brief.**
 
-## Not done in this pass
+## Capture verification and weaving (completed after the first publish)
 
-- **No post is quoted.** Capture discipline requires every quotation to be
-  independently re-fetched by URL in a second pass given no expected text.
-  WebFetch cannot reach x.com (HTTP 402), so that pass runs back through the
-  Hermes lane and had not completed when the digest was written. The broad sweep
-  returned 127 real posts and at least two are strong candidates -- Anthropic's
-  cybersecurity-eval incident disclosure and OpenAI's Codex Security CLI release
-  -- and the Anthropic verbatim came back visibly truncated, which is exactly the
-  failure mode the rule exists for. Nothing is quoted until it is re-fetched.
-- **Social cards not built**, for the same reason. No card is placed, so the
-  build's card-placement guard has nothing to fail on.
+- **21 URLs submitted, 21 returned ok, 9 selected and woven.** The verification
+  pass ran back through the Hermes lane because WebFetch cannot reach x.com
+  (HTTP 402). It was given URLs only and no expected text to anchor on, with an
+  explicit UNAVAILABLE option, which is the whole point of the rule.
+- **The rule earned its keep on the first post.** The discovery sweep's copy of
+  Anthropic's cybersecurity-eval disclosure ended mid-sentence behind an
+  ellipsis: a real post with inexact text. The verified copy carries a third
+  paragraph and a link the harvest had dropped. Nothing was quoted from a
+  harvest.
+- **No fragment was retyped.** Each `quoted`/`inline` was cut from the stored
+  verbatim with `ops/social/slice-quote.mjs`, which refuses ambiguous anchors,
+  missing anchors, reversed anchors, and any slice crossing a line break. It
+  refused nothing on this batch. `check-integrity.mjs` then confirmed every
+  fragment is a contiguous run of its card's verbatim.
+- **All nine cards are placed**: eight inline `[[q:]]`, one featured
+  `<!--card:-->`. Claim posts were adjudicated before appearing as fact; voice
+  posts assert only that they were said; each verdict names which.
+- **One operator claim is carried as unestablished** -- that the Claude Code
+  five-hour allowance was halved. Anthropic's published limits record no such
+  change and one person's account of their own allowance is not evidence of one.
+  It is in the issue as what the quiet looked like from outside, labelled as
+  exactly that.
+- **A duration error was caught in the woven draft**: "a fortnight of silence"
+  for a ten-day gap. Every other duration in the issue was then checked against
+  its dates (Hermes ten days, OpenClaw a fortnight, Omnigent six) and holds.
+
+## Known limits
+
+- **Three of nine card handles have no avatar** (`@omnigent_ai`, `@lydiahallie`,
+  `@Teknium`): the image service rate-limited the batch with HTTP 429. Those
+  cards render the monogram fallback, which is the designed behaviour, and a
+  retry is queued. No card shows a gap or a broken image.
 - **Antigravity, eve, Flue, heypi and agent-flywheel** got release-level reads
   only, not full surface sweeps.
 
-## Known limits
+## Source limits
 
 - Omnigent's default-branch commit list was read at the API's 100-item page cap;
   the real in-window count is higher.
