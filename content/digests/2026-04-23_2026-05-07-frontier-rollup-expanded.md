@@ -60,7 +60,9 @@ persistent goals, session metadata, plugin controls, and cloud executor
 paths. Gemini CLI is treating memory as a reviewable patch. Hermes is sanding
 the rough edges off persistent personal agents. Pi keeps proving the opposite
 lesson -- a thin harness moves fast precisely because its integrations are
-disposable. And the four projects new to this read each expose a different
+disposable.
+
+And the four projects new to this read each expose a different
 wall of the same building: OpenClaw the front door (messaging surfaces,
 onboarding, visible progress), Agent Zero the machine room, Paperclip the
 management floor, OpenHands the whole leased office.
@@ -129,7 +131,9 @@ OpenClaw fixed
 [allowlists](https://github.com/openclaw/openclaw/commit/b6ae0b83a61a1f779ee41b5d639b6049bfd422ce),
 subagent security docs, OAuth labels, and live exec output limits. Paperclip
 added security roles and sandbox-provider contracts; Agent Zero keeps its
-browser and office surfaces opt-in and exposes OAuth disconnect. The harness
+browser and office surfaces opt-in and exposes OAuth disconnect.
+
+The harness
 is starting to show its authority model, which is the right direction -- and
 the operator's question is finally answerable in some of these tools: what
 could this agent read, change, execute, install, send, or leak?
@@ -145,7 +149,9 @@ identity mapping,
 progress previews, chat drafts, install recovery, and group allowlists --
 work whose only purpose is letting a normal person start, understand,
 recover, and control an agent without learning the project's private
-ontology. Hermes is doing the adjacent work:
+ontology.
+
+Hermes is doing the adjacent work:
 [setup fixes](https://github.com/NousResearch/hermes-agent/commit/6388aafbd6cbfd22c26036291d884d4055b5f6bc),
 voice push-to-talk parity, gateway restart readiness, provider pickers. Agent
 Zero's [screenshot previews](https://github.com/agent0ai/agent-zero/commit/c2fb2c3c94e1e1c85b783252332b3fc003f39f2b)
