@@ -307,6 +307,13 @@ in the body but deliberately not signaled, each with a reason.
 shipped both as body sections too, duplicating the brief in full. Say it once,
 in the brief.
 
+**Order the sections so the argument runs the issue.** Lede, brief, argument
+sections, reference (breaking changes / security advisories), provider notes,
+closing. Reference material neither opens nor closes an issue: the brief already
+carries what an operator must act on, and the last section is the one the reader
+leaves with. The build fails if an issue ends on reference material. Full shape,
+including heading register and paragraph length, in `EDITORIAL.md`.
+
 **Both halves, on the same receipt standard.** What became possible AND what
 stopped holding. "Made possible", never "made cheaper" -- cheaper connotes
 devaluation. If the cycle genuinely produced only one half, say so and show what

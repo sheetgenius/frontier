@@ -368,6 +368,39 @@ A strong digest has:
 
 The digest is an editorial, not a dump of everything the research found.
 
+## The shape of an issue
+
+Sections run in this order, and the order is the argument:
+
+    lede (one receipted case)
+    -> operator brief (renders from frontmatter)
+    -> argument sections
+    -> reference: breaking changes / security advisories
+    -> provider notes
+    -> closing
+
+Two rules do the work. **Reference material never opens an issue** -- the brief
+already carries what an operator must act on today, so an advisory list at the
+top delays the argument to say a second time what the page has said once.
+**Reference material never closes one either.** The last section is the one a
+reader leaves with; ending on a vendor list means ending on no judgment at all.
+`check-integrity.mjs` fails the build on the second rule, because it regressed
+silently once: cutting the brief-duplicating sections left provider notes
+terminal in seven of eleven issues and nothing complained.
+
+Provider notes earn prose by carrying judgment. Where the entry would only
+enumerate what the changelog already says, it is one line -- the features are
+findings records, and the digest links its full evidence set.
+
+Register is uniform: section headings are declarative clauses in sentence case
+("The authority that didn't bind"), never taxonomy nouns ("Control Plane") and
+never Title Case. Inside a section, a labelled entry is a **bold run-in**, not
+an `h3`.
+
+Paragraphs run about 40 to 70 words. Past 130 the prose reads as a wall, and
+uniform paragraph length is the most reliable tell of machine writing. Vary it
+deliberately; a three-word paragraph after a long one is a tool.
+
 ## The profile bar
 
 A profile is a dated operator posture, not a cumulative notebook.

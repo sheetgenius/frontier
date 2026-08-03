@@ -1014,6 +1014,43 @@ for (const [id, entry] of sourceRegistry.adjacentEntries.entries()) {
   }
 }
 
+// --- Guard: an issue must end on its argument, not on reference material ---
+//
+// Cutting the brief-duplicating "What to try" sections left Provider notes as
+// the last heading in seven of eleven issues. Nothing failed; the issues just
+// stopped instead of concluding, and it went unnoticed until a structural audit
+// months later. The last section a reader reaches is the one they leave with,
+// so the register of that section is checkable and now checked.
+{
+  const referenceHeadings = [
+    /^provider notes$/i,
+    /^breaking changes\b/i,
+    /^security advisories\b/i,
+    /^sources$/i,
+    /^what shipped\b/i,
+  ];
+  const digestsDir = path.join(REPO_ROOT, "content", "digests");
+  if (fs.existsSync(digestsDir)) {
+    for (const name of fs.readdirSync(digestsDir).filter((f) => f.endsWith(".md"))) {
+      const file = path.join(digestsDir, name);
+      const text = fs.readFileSync(file, "utf8");
+      const headings = [...text.matchAll(/^## (.+)$/gm)].map((m) => m[1].trim());
+      const last = headings[headings.length - 1];
+      if (!last) continue;
+      if (!referenceHeadings.some((pattern) => pattern.test(last))) continue;
+      pushIssue({
+        kind: "issue-ends-on-reference",
+        file,
+        context: headings.slice(-3).join(" -> "),
+        field: "(last section)",
+        ref: last,
+        expected: "a closing section that states the issue's judgment",
+        fix: "move the reference section above a closing argument and write the close",
+      });
+    }
+  }
+}
+
 // --- Report ---
 if (issues.length === 0) {
   const acceptedSignalIds = [...signalStatusById.values()].filter((status) => status !== "withdrawn").length;
