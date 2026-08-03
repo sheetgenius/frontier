@@ -1,0 +1,221 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-08-03-weekly-digest-2026-07-27_2026-08-03-frontier-v0
+note: >
+  Field discipline. `paraphrase` and `summary` are OUR words about a post. Only a
+  `verbatim` field holds the poster's own text, and only `verbatim` may ever be
+  rendered as a quotation. Every `verbatim` below was re-fetched by URL in a
+  second pass given no expected text to anchor on, because the discovery sweep
+  returned real posts with inexact text -- the Anthropic post came back
+  truncated mid-sentence. `display_name` is used only as the account itself
+  renders it.
+
+  `verdict` is a sentence written for this specific post, and says whether it is
+  a claim we adjudicated or a voice we are only reporting was raised.
+cards:
+  - id: schott-meta-harness-boundary
+    title: "A maintainer draws the line the new category sits on"
+    kind: category_framing
+    date: 2026-08-01
+    date_precision: day
+    captured_on: 2026-08-03
+    source_ids: [flue, omnigent]
+    authors: ["FredKSchott"]
+    display_name: "fks"
+    source_urls:
+      - https://x.com/FredKSchott/status/2083694613454635320
+    verbatim: |
+      That makes sense, I wouldn’t consider eve or flue a “meta harness” in the same sense as omniagent / what it sounds like you’re trying to build. Seems like a good fit, curious to hear how it goes!
+    inline: "I wouldn’t consider eve or flue a “meta harness” in the same sense as omniagent / what it sounds like you’re trying to build."
+    summary: >
+      The maintainer of a framework being called a meta-harness declining the label.
+    verdict: >
+      A voice post: we assert only that he drew this distinction. It is here because the boundary he is drawing is the one this publication just added a source to watch, and a practitioner refusing the label is better evidence that the category is contested than any definition we could write.
+    tags: [meta-harness, category, maintainer-voice]
+
+  - id: omnigent-stateful-policies-claim
+    title: "The governance claim, and it checks out"
+    kind: capability_announcement
+    date: 2026-07-31
+    date_precision: day
+    captured_on: 2026-08-03
+    source_ids: [omnigent]
+    authors: ["omnigent_ai"]
+    display_name: "Omnigent"
+    source_urls:
+      - https://x.com/omnigent_ai/status/2083261389410337267
+    verbatim: |
+      Coding agents need more than static decisions.
+
+      In this video, Zoë Van Noppen walks through stateful policies in Omnigent:
+      🔹 Dynamic decisions from session context
+      🔹 Server, agent, and session policy levels
+      🔹 Built-ins like Session Risk Score and Session Cost Guard
+      🔹 Custom Python policies
+
+      🎥 Watch: https://t.co/Q4HVuuTKjJ
+
+      #Omnigent #OpenSource #AIAgents
+    inline: "Built-ins like Session Risk Score and Session Cost Guard"
+    summary: >
+      Omnigent's own account describing stateful policies and their built-ins.
+    verdict: >
+      A claim post, adjudicated before it appears here: policies/builtins/risk_score.py is present at the v0.7.0 tag, so the Session Risk Score built-in is in the release an operator installs rather than on main. The claim survived the check.
+    tags: [policy, governance, claim-verified]
+
+  - id: omnigent-audio-stays-on-your-server
+    title: "Audio stays on your server, and the engine is offloadable"
+    kind: capability_announcement
+    date: 2026-07-30
+    date_precision: day
+    captured_on: 2026-08-03
+    source_ids: [omnigent]
+    authors: ["omnigent_ai"]
+    display_name: "Omnigent"
+    source_urls:
+      - https://x.com/omnigent_ai/status/2082895751072350395
+    verbatim: |
+      If you haven't heard, Omnigent 0.7.0 is out! 👇
+
+      Updates include:
+      ⏰ Scheduled tasks: Create, edit, and run recurring agent tasks
+      🧭 Smarter routing: Tune harness, model, and reasoning effort to the task
+      🎙️ Voice dictation: Speak your prompt instead of typing it. Audio stays on your server
+      📁 Projects: Set default agents, working directory, host, and more
+
+      Full release notes: https://t.co/hnhDlGLk97
+
+      #Omnigent #AIAgents #OpenSource
+    inline: "Audio stays on your server"
+    summary: >
+      The v0.7.0 announcement, including the dictation privacy line.
+    verdict: >
+      A claim post carried with its limit stated. The release notes describe the same transcription engine as offloadable to a remote worker, so 'your server' and 'a remote worker engine' can both be true and mean different things. What is established is that the vendor made this claim; where the audio goes when the worker is offloaded is not.
+    tags: [dictation, data-path, unresolved]
+
+  - id: cherny-do-not-attribute
+    title: "The week's other argument about exact words"
+    kind: correction
+    date: 2026-08-02
+    date_precision: day
+    captured_on: 2026-08-03
+    source_ids: [claude-code]
+    authors: ["bcherny"]
+    display_name: "Boris Cherny"
+    source_urls:
+      - https://x.com/bcherny/status/2083782540570279992
+    verbatim: |
+      I did not use the word “graph”, nor am I talking about graphs in this video. Please don’t attribute words to me that I did not say. I do encourage people to watch the video!
+    quoted: "Please don’t attribute words to me that I did not say."
+    summary: >
+      Claude Code's lead rejecting a viral paraphrase of a video.
+    verdict: >
+      A voice post: we assert only that he said this, and we take no position on the underlying video or on who paraphrased it. It is the clearest thing the Claude Code team said in public during a window when the tool itself published nothing.
+    tags: [misquote, maintainer-voice]
+
+  - id: cherny-actively-working
+    title: "Feedback acknowledged, in a week with no release"
+    kind: maintainer_response
+    date: 2026-08-02
+    date_precision: day
+    captured_on: 2026-08-03
+    source_ids: [claude-code]
+    authors: ["bcherny"]
+    display_name: "Boris Cherny"
+    source_urls:
+      - https://x.com/bcherny/status/2083783798802760063
+    verbatim: |
+      Thanks for the feedback! Actively working on improving all of these 🙇‍♂️
+    inline: "Actively working on improving all of these"
+    summary: >
+      The same maintainer replying to operator complaints.
+    verdict: >
+      A voice post. Set against two surfaces showing no publish between July 24 and the close of the window, it is the shape of the week for Claude Code: the team answering in public while the release channel stayed still.
+    tags: [cadence, maintainer-voice]
+
+  - id: hallie-fork-subtask
+    title: "Documented on the third, shipped some versions ago"
+    kind: capability_announcement
+    date: 2026-08-03
+    date_precision: day
+    captured_on: 2026-08-03
+    source_ids: [claude-code]
+    authors: ["lydiahallie"]
+    display_name: "Lydia Hallie ✨"
+    source_urls:
+      - https://x.com/lydiahallie/status/2084315112840810897
+    verbatim: |
+      icymi we recently changed how /fork works in Claude Code, it now copies your session into a new background session while you keep working in the current one
+
+      the old behavior (an in-session subagent that reports back) is now available as /subtask!
+    inline: "it now copies your session into a new background session"
+    summary: >
+      A maintainer explaining the /fork and /subtask split.
+    verdict: >
+      A claim post, checked: the follow-up post pins it to v2.1.212 and later, which is inside the range already published, so this documents shipped behaviour rather than announcing a new release. That is worth knowing in a week when nothing new was published.
+    tags: [subagents, documentation]
+
+  - id: santana-usage-halved
+    title: "What an operator thought was happening"
+    kind: operator_claim
+    date: 2026-08-03
+    date_precision: day
+    captured_on: 2026-08-03
+    source_ids: [claude-code]
+    authors: ["JohhanSantana"]
+    display_name: "Johhan Santana"
+    source_urls:
+      - https://x.com/JohhanSantana/status/2084338698875699533
+    verbatim: |
+      did they lowkey reduced claude code usage?
+
+      I was able to get $100 in the 5 hour limit but now it's like half that...
+    inline: "I was able to get $100 in the 5 hour limit but now it's like half that..."
+    summary: >
+      An operator asking whether the five-hour usage allowance was cut.
+    verdict: >
+      A claim post we could not establish and are not asserting. Nothing in Anthropic's published limits or changelog records a change, and a single operator's read of their own allowance is not evidence of one. It is here as what the quiet fortnight felt like from outside, which is a different fact from what happened.
+    tags: [usage-limits, unverified, operator-voice]
+
+  - id: openai-codex-security-cli
+    title: "Shipped so quietly the announcement came second"
+    kind: capability_announcement
+    date: 2026-07-29
+    date_precision: day
+    captured_on: 2026-08-03
+    source_ids: [codex]
+    authors: ["OpenAI"]
+    display_name: "OpenAI"
+    source_urls:
+      - https://x.com/OpenAI/status/2082263717916586117
+    verbatim: |
+      We quietly released the open-source Codex Security CLI, but Hacker News found it before we had a chance to share it here...
+
+      You can now use it to scan repositories, track findings across runs, verify fixes, and add security checks to CI/CD. 
+
+      This is an early release, and we're listening to your feedback as we continue improving it.
+    inline: "but Hacker News found it before we had a chance to share it here"
+    summary: >
+      OpenAI announcing an open-source security scanner for Codex after it was already found.
+    verdict: >
+      A claim post about the vendor's own release, carried as the window's plainest capability item: a scanner an operator can put in CI. The candour about the sequence is the reason to quote it rather than paraphrase it.
+    tags: [security-tooling, capability]
+
+  - id: teknium-hundred-percent
+    title: "The maintainer's own dogfooding claim"
+    kind: vendor_claim
+    date: 2026-08-02
+    date_precision: day
+    captured_on: 2026-08-03
+    source_ids: [hermes-agent]
+    authors: ["Teknium"]
+    display_name: "Teknium 🪽"
+    source_urls:
+      - https://x.com/Teknium/status/2084057510177292768
+    verbatim: |
+      We are a world class coding harness - I use it for 100% of all my work with Hermes Agent development
+    inline: "I use it for 100% of all my work with Hermes Agent development"
+    summary: >
+      Hermes's maintainer on using the harness for all of his work on it.
+    verdict: >
+      A voice post and an unverifiable one: we assert that he said it, not that it is measurable. It sits next to a tagged release whose own notes record roughly 2,789 commits on the default branch in ten days, which is at least consistent with the claim.
+    tags: [dogfooding, vendor-voice]
