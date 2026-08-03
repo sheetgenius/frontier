@@ -1,5 +1,5 @@
 schema_version: bitter.frontier_source_index.v0
-last_revised: 2026-07-12
+last_revised: 2026-08-02
 sources:
   - id: codex
     contract: sources/codex.yml
@@ -82,6 +82,12 @@ sources:
   - id: agent-flywheel
     contract: sources/agent-flywheel.yml
     notes: sources/agent-flywheel.notes.md
+    tier: 2
+    status: active
+    cadence: weekly
+  - id: omnigent
+    contract: sources/omnigent.yml
+    notes: sources/omnigent.notes.md
     tier: 2
     status: active
     cadence: weekly
