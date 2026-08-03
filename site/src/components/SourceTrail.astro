@@ -1,5 +1,6 @@
 ---
 import {
+  countRunEvidence,
   evidenceLinksForFinding,
   findingsForSources,
   formatEvidenceTarget,
@@ -14,6 +15,7 @@ const {
   preferredFindingIds = [],
   title = "Sources",
   intro = "Primary links, including exact changelog lines when available.",
+  evidenceRunId,
 } = Astro.props as {
   findings?: FindingEntry[];
   sourceIds?: string[];
@@ -21,19 +23,28 @@ const {
   preferredFindingIds?: string[];
   title?: string;
   intro?: string;
+  evidenceRunId?: string;
 };
 
 const rows = (findings?.length ? findings : findingsForSources(sourceIds, runId, preferredFindingIds)).map((finding) => ({
   finding,
   evidence: evidenceLinksForFinding(finding),
 }));
+
+// One row per source is a sample, not the record. Where the full set exists,
+// say how big it is and link it -- otherwise the prose has to carry it.
+const evidenceCount = countRunEvidence(evidenceRunId);
+const showAll = evidenceCount > rows.length;
 ---
 
 {
-  rows.length > 0 && (
+  (rows.length > 0 || showAll) && (
     <section class="source-trail-section rule mt-10 pt-7">
       <p class="small-caps text-muted">{title}</p>
-      <p class="source-trail-intro">{intro}</p>
+      <p class="source-trail-intro">
+        {rows.length > 0 ? intro : "Every source swept for this issue, with the primary links each claim was checked against."}
+      </p>
+      {rows.length > 0 && (
       <ol class="source-trail">
         {rows.map(({ finding, evidence }) => (
           <li class="source-trail-row">
@@ -56,6 +67,14 @@ const rows = (findings?.length ? findings : findingsForSources(sourceIds, runId,
           </li>
         ))}
       </ol>
+      )}
+      {showAll && (
+        <p class="source-trail-all">
+          <a href={`/runs/${evidenceRunId}/`}>
+            All {evidenceCount} evidence records checked for this issue
+          </a>
+        </p>
+      )}
     </section>
   )
 }

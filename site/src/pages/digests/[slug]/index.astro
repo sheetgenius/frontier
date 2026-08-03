@@ -215,6 +215,7 @@ const topSignalsItemList = topSignals.length > 0 ? {
       sourceIds={digest.data.sources ?? []}
       runId={canonicalRun?.id}
       preferredFindingIds={preferredFindingIds}
+      evidenceRunId={canonicalRun?.id}
     />
     <VersionList versions={versions} currentRunId={canonicalRun?.id} />
     <FrontierLens />

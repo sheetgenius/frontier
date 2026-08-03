@@ -1094,6 +1094,16 @@ export function evidenceLinksForFinding(finding: FindingEntry): EvidenceLink[] {
   return (finding.data.receipts ?? []).map((url: string) => ({ label: "Source", url, precision: "source" }));
 }
 
+// Runs record evidence two ways: per-claim findings, or per-source verification
+// crosschecks. An issue has receipts either way, so count both -- otherwise a
+// run that used the second shape publishes no source trail at all.
+export function countRunEvidence(runId?: string): number {
+  if (!runId) return 0;
+  const findings = listFindings().filter((finding) => finding.runId === runId).length;
+  const crosschecks = runArtifacts(runId).filter((a) => a.kind === "verification").length;
+  return findings + crosschecks;
+}
+
 export function findingsForSources(
   sourceIds: string[],
   runId?: string,
