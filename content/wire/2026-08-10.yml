@@ -1,0 +1,76 @@
+schema_version: bitter.frontier_wire.v0
+wire_id: "2026-08-10"
+date: 2026-08-10
+lede: >
+  The week one vendor made its permission classifier the default and another
+  tried to build a whole agentic internet in three days, while a second frontier
+  lab published what happened when its models were handed to third-party
+  evaluators. The theme, if there is one, is infrastructure being declared before
+  anyone has agreed what it is for.
+items:
+  - title: "Auto mode is now the default in Claude Code for Pro, Max, and Team plans"
+    url: https://simonwillison.net/2026/Aug/8/auto-mode/
+    source: Simon Willison
+    date: 2026-08-08
+    tier: checked
+    receipt: https://code.claude.com/docs/en/permission-modes
+    take: >
+      We adjudicated this one against the primary record for this week's issue,
+      so it is here as checked rather than relayed. The change is real and the
+      argument for it is measured: a published study found testers caught a
+      clearly dangerous command about one time in seven and got worse the longer
+      they worked, while the classifier caught it about nine times in ten and
+      stayed flat. The part worth carrying into your own thinking is that a
+      boundary you state in conversation is not stored as a rule. The
+      documentation recommends a deny rule if you want a hard guarantee.
+
+  - title: "The Agent Access Model"
+    url: https://blog.cloudflare.com/the-agent-access-model/
+    source: Cloudflare
+    date: 2026-08-05
+    tier: relayed
+    take: >
+      One vendor's proposal for how sites should decide what an agent may do,
+      published in the middle of a week where the same vendor shipped an
+      agent-first browser, a programmable wallet and a way to give any website an
+      MCP interface. Read it as a position paper rather than a standard. It is
+      the most complete public attempt so far to answer a question the harness
+      vendors have been routing around, which is what the other end of the
+      connection is supposed to do about any of this.
+
+  - title: "Give any website a WebMCP interface"
+    url: https://blog.cloudflare.com/webmcp/
+    source: Cloudflare
+    date: 2026-08-06
+    tier: relayed
+    take: >
+      The mechanical half of the same argument. If it lands, the surface an agent
+      talks to stops being a page it scrapes and becomes an interface a site
+      declares. Worth watching for the reason every protocol on this beat is
+      worth watching: the security model arrives after the adoption, and the
+      adoption is the easy part.
+
+  - title: "Third-party cyber evaluations involving OpenAI models"
+    url: https://openai.com/index/third-party-cyber-evaluations-involving-openai-models
+    source: OpenAI
+    date: 2026-08-04
+    tier: relayed
+    take: >
+      Read it directly after the Anthropic disclosure in our 2026-08-03 wire,
+      where a model reached real systems from inside an evaluation environment.
+      Two labs, a week apart, both describing what happens when a capable model
+      meets a harness built to be permissive on purpose. The evaluation
+      environment is turning out to be a category of production system that
+      nobody staffed as one.
+
+  - title: "Zawinski's Law of MultiAgents"
+    url: https://www.latent.space/p/ainews-zawinskis-law-of-multiagents
+    source: Latent Space
+    date: 2026-08-08
+    tier: relayed
+    take: >
+      Every agent product expands until it can orchestrate other agents. Funny,
+      and close enough to true that our own watchlist grew a meta-harness
+      category this quarter and then a second entrant a fortnight later. If the
+      joke keeps holding, the interesting question stops being which harness you
+      run and becomes which one is holding the others.

@@ -1,0 +1,81 @@
+schema_version: bitter.frontier_wire.v0
+wire_id: "2026-08-17"
+date: 2026-08-17
+lede: >
+  A frontier lab shipped a model on Wednesday and open-sourced a harness for it
+  on Thursday, a meta-harness on our own watchlist grew React-style hooks, and
+  the most useful thing published all week was somebody asking whether a practice
+  everyone has adopted inside the agent loop actually does anything.
+items:
+  - title: "TDD inside the agent loop - theater or actual value?"
+    url: https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html
+    source: Martin Fowler
+    date: 2026-08-11
+    tier: relayed
+    take: >
+      The question in the title is the right one and it is asked honestly rather
+      than rhetorically. Writing a failing test first was a discipline for a human
+      who could not hold the whole change in their head; an agent has different
+      limitations and the ritual may or may not transfer. This is the shape of
+      writing this beat needs more of: an established practice examined rather
+      than assumed, by someone with no product in the answer.
+
+  - title: "React for Agents: Astro Creator Brings Hooks to his Meta-Harness, Flue"
+    url: https://www.latent.space/p/flue-2
+    source: Latent Space
+    date: 2026-08-15
+    tier: relayed
+    take: >
+      Flue is on our watchlist and this is the clearest public account of where
+      it is going. Treat the framing as the interview it is rather than as a
+      product fact: a hooks model for agent behaviour is a real design position,
+      and whether the runtime enforces what the hooks describe is the question we
+      would want answered before repeating any of it as capability.
+
+  - title: "DeepSeek V4 Pro 0813 (on OpenRouter)"
+    url: https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/
+    source: Simon Willison
+    date: 2026-08-12
+    tier: relayed
+    take: >
+      Worth the entry mostly for its date. The model appeared on 12 August and
+      the harness built around it was open-sourced on 13 August. A lab shipping
+      the model and the thing that drives it within a day is the pattern this
+      publication watches for, because it is the point where the question stops
+      being which model is better and starts being who decides what the agent may
+      do with your machine.
+
+  - title: "How Cloudflare detects MCP traffic and helps secure it"
+    url: https://blog.cloudflare.com/mcp-security-updates/
+    source: Cloudflare
+    date: 2026-08-14
+    tier: relayed
+    take: >
+      A protocol becomes infrastructure at the point where a network vendor
+      starts fingerprinting it in transit. That is a good sign for MCP's
+      durability and an uncomfortable one for anyone who assumed their agent
+      traffic was indistinguishable from ordinary API calls. If you route agent
+      calls through a corporate network, somebody can now tell.
+
+  - title: "Putting frontier cyber models in more trusted hands"
+    url: https://openai.com/index/putting-frontier-cyber-models-in-more-trusted-hands
+    source: OpenAI
+    date: 2026-08-10
+    tier: relayed
+    take: >
+      The distribution half of the story whose evaluation half we carried last
+      wire. Gating capability by who is asking is a different control from gating
+      it by what is asked, and the two fail differently. Recorded because access
+      tiers are becoming a governance surface in their own right, and almost
+      nobody is auditing them the way they audit permissions.
+
+  - title: "How I use AI in 2026 (Coding, Writing, Learning, Assistant-ing)"
+    url: https://blog.sshh.io/p/how-i-use-ai-in-2026-coding-writing
+    source: Shrivu Shankar
+    date: 2026-08-17
+    tier: relayed
+    take: >
+      A practitioner writing down an actual workflow rather than a prediction.
+      These age better than almost anything else published on this beat, and they
+      are the closest thing available to a control group for the vendor claims we
+      spend the rest of our time adjudicating.
