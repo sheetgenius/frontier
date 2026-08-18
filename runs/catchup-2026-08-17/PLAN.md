@@ -78,3 +78,40 @@ Every one gets an answer, including the negative ones.
   `agent-zero` contract.
 - Never chain a build and a push without gating on the exit code. A build that
   timed out into the background is not a green build.
+
+## Verification pass, 2026-08-17/18: what the adversarial lane changed
+
+Fourteen load-bearing claims went to a verifier mandated to refute them, with an
+independent second opinion on anything not confirmed on the first pass. Nine
+survived untouched. Five did not, and every failure was a number or a scope
+claim rather than a fabricated event: the stories were real, the arithmetic was
+not.
+
+- Agent Zero's lost CVE fix shipped broken through **11** stable releases, not
+  13. Two verifiers recounted the tags independently and agreed.
+- Claude Code's `stable` sits **seven** releases behind `latest`, not eight.
+  2.1.230 was never published; 234 minus 226 is version arithmetic wearing a
+  release count's clothes.
+- Claude Code's shell-permission holes were closed in v2.1.221 **and** v2.1.223.
+  Writing it as "v2.1.221 to v2.1.223" invented a contiguous run; 2.1.222
+  carries none of that defect class.
+- OpenClaw's boundary fix was stamped `tagged-release` and is in no
+  non-prerelease tag. Wrong channel is disqualifying here of all places. The
+  corrected line is stronger anyway: four stable releases shipped in the window
+  and the fix is on none of them.
+- Codex published **nineteen** 0.148.0 alphas, not twenty-one. alpha.3 and
+  alpha.10 are git tags with no release and no npm publish; the highest suffix
+  was read as a count.
+
+**The Codex refutation corrects the W2 thesis, not just a number.** The draft
+framing was that the work landed somewhere no operator could install. That is
+false: `npm install -g @openai/codex@alpha` installs 0.148.0-alpha.21 today,
+full platform matrix, published 2026-08-17. The true and narrower statement is
+that the **default** channel stopped moving -- npm `latest` frozen at 0.147.0
+since 08-07 -- while 422 commits and a model-driven risk classifier accumulated
+on a channel you have to opt into by name.
+
+So W2's thesis is not "you cannot install it." It is that the default install
+stopped being the thing everybody is writing about. That survives contact with
+the evidence, and the version that did not survive would have failed on this
+publication's own signature argument, which is the worst place to be wrong.
