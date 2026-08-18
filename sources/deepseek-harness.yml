@@ -1,0 +1,221 @@
+schema_version: bitter.frontier_source_contract.v0
+id: deepseek-harness
+label: DeepSeek Harness
+owner: deepseek-ai
+homepage: https://deepseek.com/harness/en/
+docs: https://github.com/deepseek-ai/deepseek-harness/tree/master/docs
+primary_surfaces:
+  - id: repo
+    kind: github_repo
+    url: https://github.com/deepseek-ai/deepseek-harness
+    priority: 1
+    watch:
+      - releases
+      - tags
+      - commits
+      - pull_requests
+      - breaking_changes
+      - security
+      - default_branch_master
+  - id: releases
+    kind: official_release_notes
+    url: https://github.com/deepseek-ai/deepseek-harness/releases
+    priority: 1
+    watch:
+      - prerelease_flag
+      - first_stable_tag
+      - new_features
+      - breaking_changes
+      - plugin_api_changes
+      - deprecations
+  - id: npm
+    kind: package_registry
+    url: https://www.npmjs.com/package/@deepseek-ai/dsh
+    priority: 1
+    watch:
+      - dist_tags
+      - latest_points_at_prerelease
+      - package_version
+      - publish_cadence
+  - id: docs
+    kind: official_docs
+    url: https://github.com/deepseek-ai/deepseek-harness/tree/master/docs
+    priority: 1
+    watch:
+      - architecture
+      - agent_lifecycle
+      - capability_seams
+      - config_catalog
+      - api_gateway
+      - plugin_contract
+      - sandboxes
+      - permissions
+      - user_guide
+      - i18n_divergence
+  - id: discussions
+    kind: official_forum
+    url: https://github.com/deepseek-ai/deepseek-harness/discussions
+    priority: 2
+    watch:
+      - maintainer_answers
+      - bug_reports
+      - breaking_change_notices
+      - roadmap_statements
+  - id: advisories
+    kind: security_advisories
+    url: https://github.com/deepseek-ai/deepseek-harness/security/advisories
+    priority: 1
+    watch:
+      - published_advisories
+      - severity
+      - affected_ranges
+  - id: plugin-topic
+    kind: ecosystem_index
+    url: https://github.com/topics/dsh-plugin
+    priority: 3
+    watch:
+      - third_party_plugins
+      - plugin_permissions
+      - supply_chain
+  - id: landing
+    kind: official_docs
+    url: https://deepseek.com/harness/en/
+    priority: 3
+    watch:
+      - positioning
+      - feature_list
+      - preview_status
+related_surfaces:
+  standing_status: watched
+  notes: >
+    Harness is built on Cordis, a third-party composability framework, so the
+    plugin boundary this harness sells is defined in someone else's repo. A
+    change to Cordis can change what a dsh plugin may do without any commit
+    landing in deepseek-harness. Attribute accordingly: a finding about the
+    plugin contract must say which repo the behaviour comes from.
+  repositories:
+    - id: deepseek-harness
+      url: https://github.com/deepseek-ai/deepseek-harness
+      role: primary
+    - id: cordis
+      url: https://github.com/cordiverse/cordis
+      role: upstream_framework
+accepted_evidence:
+  - official_docs
+  - tagged_release
+  - github_release
+  - maintainer_commit
+  - merged_pr
+  - package_registry_release
+  - maintainer_authored_post
+  - maintainer_discussion_answer
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+  - marketing_claim_without_doc_or_code
+  - star_count_as_adoption
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+research_lenses:
+  - provider_first_party_harness
+  - plugin_architecture
+  - capability
+  - security
+  - ecosystem
+high_signal_patterns:
+  - plugin
+  - dsh-plugin
+  - cordis
+  - capability seam
+  - sandbox
+  - permission
+  - approval
+  - api gateway
+  - agent lifecycle
+  - session
+  - storage
+  - scheduling
+  - loop
+  - web ui
+  - rc
+  - developer preview
+  - breaking change
+  - stable
+operator_questions:
+  - "The only tag is a release candidate and the npm latest dist-tag points at it: is there any channel an operator can install that is not a prerelease?"
+  - The README states in capitals that there will be compatibility-breaking changes. Which surfaces are covered by that warning, and is the plugin API among them?
+  - If everything is a plugin, what enforces a plugin's limits, and can a plugin replace the component that would have refused it?
+  - The Web UI binds 127.0.0.1:3080 by default. What authenticates a request to it, and what happens when an operator exposes that port?
+  - Issues are disabled and a .gitlab-ci.yml is committed. Is the public GitHub repo the development home or a mirror, and where does an operator report and track a defect?
+  - Docs ship English and Chinese side by side with i18n yaml. When the two disagree, which one is normative?
+  - Cordis defines the plugin paradigm. Which behaviours does an operator inherit from Cordis rather than from DeepSeek, and who ships a fix when one of them breaks?
+  - Does the harness run any model other than DeepSeek's own, and is that a supported path or an incidental one?
+default_actionability:
+  release: observe
+  prerelease: observe
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  first_stable_release: test
+discovery:
+  last_verified: 2026-08-17
+  verified_by: manual_web
+  confidence: medium
+  open_questions:
+    - What is the canonical ship signal, the GitHub release, the tag, or the npm publish? All three currently point at the same rc.
+    - Is there a published stabilisation target or date for 0.1.0 proper?
+    - Which parts of the architecture are plugin boundaries in fact rather than in the README's claim?
+    - Does an internal GitLab pipeline gate what lands here, and does that make the public commit history a partial record?
+notes: >
+  Added 2026-08-17. deepseek-ai/deepseek-harness, MIT, TypeScript, repo created
+  2026-08-13. Its own words: "an open-source agent harness developed by DeepSeek
+  AI" using "an architecture where everything is a plugin," powered by Cordis.
+
+  It earns a Tier 1 slot on class, not on velocity. This is a frontier model lab
+  shipping its own harness, which puts it in the same bracket as Codex, Claude
+  Code, and Gemini CLI: the lab that trains the model also decides what the
+  agent may do with a machine. Those are the sources where the publication's
+  standing questions land hardest, and the class alone justifies daily cadence
+  before a single finding is written.
+
+  The intake condition is the story and should be checked every window, not
+  assumed. Four days after the repo appeared there is exactly one tag,
+  dsh-v0.1.0-rc.7, marked prerelease, and the npm latest dist-tag resolves to
+  that same rc. The README's own install command, npx @deepseek-ai/dsh web,
+  therefore installs a release candidate, and the README warns in capitals that
+  compatibility-breaking changes are coming. There is no stable channel. Under
+  this publication's rule that released is not merged and that a finding must
+  name the channel an operator can actually run, the honest statement for now is
+  that nothing here has shipped to a channel an operator should depend on.
+  Attention is not a channel, and the star count is not evidence of adoption;
+  it is listed under rejected evidence for that reason.
+
+  Two structural facts change how this source must be harvested. Issues are
+  disabled, so defects and their resolutions live in Discussions, which is a
+  weaker and less durable receipt surface than an issue tracker; capture the
+  permalink and the text. And a .gitlab-ci.yml is committed, which suggests the
+  public repo may be a mirror of an internal one. If it is, the commit history
+  here is a partial record and absence of a commit is not evidence of absence of
+  work. Establish which it is before treating a gap as a finding.
+
+  Handling: everything-is-a-plugin is an architectural claim, and this
+  publication tests claims of that shape against the code rather than repeating
+  them. The useful probe is not whether a component can be swapped but whether
+  the component that enforces a limit can be swapped by the thing it limits.
+  Where behaviour traces to Cordis, say so; that is a fact about the pair, in the
+  same way an Omnigent finding is a fact about the pair.

@@ -1,0 +1,223 @@
+schema_version: bitter.frontier_source_contract.v0
+id: omp
+label: OMP (Oh My Pi)
+owner: can1357
+homepage: https://omp.sh/
+docs: https://omp.sh/docs
+primary_surfaces:
+  - id: repo
+    kind: github_repo
+    url: https://github.com/can1357/oh-my-pi
+    priority: 1
+    watch:
+      - releases
+      - tags
+      - commits
+      - pull_requests
+      - breaking_changes
+      - security
+      - contribution_policy
+  - id: releases
+    kind: official_release_notes
+    url: https://github.com/can1357/oh-my-pi/releases
+    priority: 1
+    watch:
+      - new_features
+      - breaking_changes
+      - tag_without_release
+      - deprecations
+      - upstream_divergence
+  - id: changelog
+    kind: official_changelog
+    url: https://github.com/can1357/oh-my-pi/blob/main/packages/coding-agent/CHANGELOG.md
+    priority: 1
+    watch:
+      - unreleased_section
+      - fixes
+      - breaking_changes
+  - id: npm
+    kind: package_registry
+    url: https://www.npmjs.com/package/@oh-my-pi/pi-coding-agent
+    priority: 1
+    watch:
+      - dist_tags
+      - package_version
+      - version_lag_behind_tags
+      - scope_collision_with_upstream
+  - id: docs
+    kind: official_docs
+    url: https://omp.sh/docs
+    priority: 2
+    watch:
+      - lsp
+      - dap
+      - subagents
+      - plan_mode
+      - hindsight_memory
+      - hashline_edits
+      - rules
+      - permissions
+      - sandboxing
+      - providers
+      - relay_sessions
+      - extensions
+  - id: install-script
+    kind: install_channel
+    url: https://omp.sh/install
+    priority: 2
+    watch:
+      - resolved_version
+      - platform_matrix
+      - integrity_verification
+  - id: advisories
+    kind: security_advisories
+    url: https://github.com/can1357/oh-my-pi/security/advisories
+    priority: 1
+    watch:
+      - published_advisories
+      - severity
+      - affected_ranges
+  - id: site-changelog
+    kind: official_changelog
+    url: https://omp.sh/changelog
+    priority: 3
+    watch:
+      - public_framing
+      - divergence_from_repo_changelog
+related_surfaces:
+  standing_status: watched
+  notes: >
+    OMP states in its README that it is a fork of Pi by Mario Zechner, and Pi is
+    already on this watchlist as pi-coding-agent. Findings must not be laundered
+    between them. A behaviour observed in OMP is a fact about OMP unless the code
+    path is shown to be shared, and an upstream Pi change is not an OMP change
+    until it lands in a tag OMP publishes. Note also that the README links
+    badlogic/pi-mono, the pre-migration upstream, while Pi's canonical repo is
+    now earendil-works/pi.
+  repositories:
+    - id: oh-my-pi
+      url: https://github.com/can1357/oh-my-pi
+      role: primary
+    - id: pi-mono
+      url: https://github.com/badlogic/pi-mono
+      role: declared_fork_origin
+    - id: pi
+      url: https://github.com/earendil-works/pi
+      role: upstream_current
+accepted_evidence:
+  - official_docs
+  - tagged_release
+  - github_release
+  - maintainer_commit
+  - merged_pr
+  - package_registry_release
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+  - marketing_claim_without_doc_or_code
+  - upstream_pi_behaviour_assumed_to_hold_in_omp
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+research_lenses:
+  - fork_divergence
+  - ide_integration
+  - capability
+  - distribution_channel
+  - maintainership
+high_signal_patterns:
+  - lsp
+  - dap
+  - debugger
+  - hashline
+  - hindsight
+  - plan mode
+  - subagent
+  - rules
+  - relay
+  - session share
+  - permission
+  - approval
+  - sandbox
+  - provider
+  - rust core
+  - breaking change
+  - vouch
+  - upstream
+operator_questions:
+  - "The fork publishes @oh-my-pi/pi-coding-agent at 17.x while upstream Pi publishes @earendil-works/pi-coding-agent at 0.8x: does anything an operator runs resolve the wrong package basename by scope confusion?"
+  - Two tags exist with no GitHub release and npm latest sits at the last released tag. Which of the four install paths, script, Homebrew, Bun, and Nix, resolve to the same version on the same day?
+  - At better than one release a day, what is the upgrade contract, and where is a breaking change announced other than the changelog?
+  - LSP and DAP mean the agent drives a language server and a live debugger. What confines those, and does a debugger session widen what the agent can execute past whatever the tool permission layer allows?
+  - Relay sessions put a live session behind a link and a QR code. Who can join, what does a joiner see, and is the relay operated by the maintainer?
+  - Hindsight memory and time-traveling rules both change agent behaviour from stored state. What writes that state, and can a repository under review write it?
+  - The PR vouch requirement is lifted "temporarily as a trial." What is the review gate on a single-maintainer project carrying roughly 80k lines of Rust, and what happens when the trial ends?
+  - Where does an OMP capability actually come from, its own Rust core or inherited Pi code, and does the answer change who fixes it?
+default_actionability:
+  release: observe
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  upstream_divergence: observe
+discovery:
+  last_verified: 2026-08-17
+  verified_by: manual_web
+  confidence: medium
+  open_questions:
+    - Is there a stated compatibility relationship with upstream Pi, or is the fork now fully independent?
+    - Which surface is canonical for a shipped version, the GitHub release, the tag, the npm dist-tag, or the install script?
+    - Does the Homebrew tap or the Nix flake ever lead or lag the npm publish?
+    - Is the relay a maintainer-operated service, and what does it retain?
+notes: >
+  Added 2026-08-17. can1357/oh-my-pi, MIT, TypeScript with a Rust core, repo
+  created 2025-12-31. Its own words: "A coding agent with the IDE wired in," and
+  in the README, "Fork of Pi by @mariozechner." Landing copy claims 60+
+  providers, 31 built-in tools, 14 LSP operations, 28 DAP operations, and roughly
+  80k lines of Rust.
+
+  It earns a slot for the relationship, not the feature list. Pi is already
+  tracked here, and OMP is what happens when a fork outruns the thing it forked.
+  Upstream Pi publishes 0.84.2; OMP publishes 17.3.5 under a package with the
+  same basename and a different scope. Two projects, one name, version numbers
+  seventeen majors apart, and an operator reading a version string alone cannot
+  tell which one they are running or which is newer in any meaningful sense.
+  This publication spent the 2026-08-03 issue on a release line renumbered below
+  its own predecessor. This is the same failure mode from the other direction,
+  and it is why the fork belongs on the list rather than in the adjacent index.
+
+  The channel picture at intake is worth re-checking every window because it was
+  already split on day one. Tags v17.3.6 and v17.3.7 exist with no GitHub release
+  behind them, the newest GitHub release is v17.3.5, and npm latest is 17.3.5. So
+  the tag series runs ahead of every channel an operator installs from, and there
+  are four such channels: an install script piped to a shell, a Homebrew tap, a
+  global Bun install, and a Nix flake. Name the one you tested.
+
+  The capability surface is the reason to read it closely. LSP and DAP mean this
+  agent drives a language server and a live debugger rather than only editing
+  text, which is a genuine widening of what a terminal agent operates, and a
+  correspondingly larger question about what confines it. Hindsight memory and
+  time-traveling rules are behaviour loaded from stored state, which is the shape
+  of defect this publication has repeatedly found where a guard consults
+  something the workspace can write.
+
+  Handling: Tier 2 and weekly. Do not promote on release velocity, and do not
+  promote a feature merely because upstream Pi lacks it. Single-maintainer
+  projects with 1,498 open issues and PRs open to everyone on a stated trial are
+  a maintainership story only when something concrete turns on it. Attribute
+  carefully in both directions: OMP inherits Pi code, so a defect found here may
+  or may not be Pi's, and the finding must say which was tested.

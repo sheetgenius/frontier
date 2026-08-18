@@ -1,5 +1,5 @@
 schema_version: bitter.frontier_source_index.v0
-last_revised: 2026-08-02
+last_revised: 2026-08-17
 sources:
   - id: codex
     contract: sources/codex.yml
@@ -67,6 +67,12 @@ sources:
     tier: 1
     status: active
     cadence: daily
+  - id: deepseek-harness
+    contract: sources/deepseek-harness.yml
+    notes: sources/deepseek-harness.notes.md
+    tier: 1
+    status: active
+    cadence: daily
   - id: flue
     contract: sources/flue.yml
     notes: sources/flue.notes.md
@@ -88,6 +94,12 @@ sources:
   - id: omnigent
     contract: sources/omnigent.yml
     notes: sources/omnigent.notes.md
+    tier: 2
+    status: active
+    cadence: weekly
+  - id: omp
+    contract: sources/omp.yml
+    notes: sources/omp.notes.md
     tier: 2
     status: active
     cadence: weekly
