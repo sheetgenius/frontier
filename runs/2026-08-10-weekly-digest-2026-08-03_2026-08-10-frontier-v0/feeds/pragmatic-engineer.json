@@ -1,0 +1,26 @@
+{
+ "source": "pragmatic-engineer",
+ "feed": "https://newsletter.pragmaticengineer.com/feed",
+ "swept_on": "2026-08-18",
+ "since": "2026-08-03",
+ "items": [
+  {
+   "title": "The Pulse: Meta’s self-inflicted resignation-wave",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-metas-self-inflicted-resignation",
+   "date": "2026-08-14",
+   "summary": "The social media giant is offering $1M+ retainer equity grants to staff who are leaving: and even this is not effective. Also: is Grok Bot the &#8220;OpenClaw moment&#8221; for managed AI agents?"
+  },
+  {
+   "title": "Stop being skeptical about AI for development with Charity Majors",
+   "url": "https://newsletter.pragmaticengineer.com/p/stop-being-skeptical-about-ai-for",
+   "date": "2026-08-12",
+   "summary": "In 2025, it was rational to be skeptical about AI. In 2026, it's not, anymore. With Charity Majors, CTO and co-founder of Honeycomb."
+  },
+  {
+   "title": "Software engineering at a proprietary trading company: Optiver",
+   "url": "https://newsletter.pragmaticengineer.com/p/optiver",
+   "date": "2026-08-11",
+   "summary": "A shift from a focus on latency to building better AI models, owning the full stack from applications to building custom hardware, very different incentives to most tech companies in play, and more"
+  }
+ ]
+}

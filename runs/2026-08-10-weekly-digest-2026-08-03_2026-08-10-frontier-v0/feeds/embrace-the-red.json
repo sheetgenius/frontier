@@ -1,0 +1,20 @@
+{
+ "source": "embrace-the-red",
+ "feed": "https://embracethered.com/blog/index.xml",
+ "swept_on": "2026-08-18",
+ "since": "2026-08-03",
+ "items": [
+  {
+   "title": "Recovering Encrypted LLM Reasoning Traces",
+   "url": "https://embracethered.com/blog/posts/2026/recovering-encrypted-llm-thoughts/",
+   "date": "2026-08-17",
+   "summary": "<p>A few days ago, a paper named <a href=&#34;https://arxiv.org/pdf/2608.09867&#34;>&ldquo;Stealing Reasoning Traces from Proprietary LLM APIs&rdquo;</a> was published. It describes a simple, yet super elegant way to recover encrypted LLM reasoning traces.</p>&#xA;<p><a href=&#34;https://embracethered.com/blog/images/2026/strealing_traces_paper_tn.png&#34;><img src=&#34;https://embracethered.com/b"
+  },
+  {
+   "title": "LLM Heist: Hijacking LiteLLM for Traffic Interception, Key Theft, and Tool-Call Injection",
+   "url": "https://embracethered.com/blog/posts/2026/hijacking-litellm-for-fun-and-profit/",
+   "date": "2026-08-03",
+   "summary": "<p><a href=&#34;https://github.com/BerriAI/litellm&#34;>LiteLLM</a> is a popular AI gateway. It provides a unified interface to LLMs and simplifies governance. It also has access to the backend LLM provider keys.</p>&#xA;<p><strong>All of that makes it a high-value target.</strong> Not only for IP and data theft, but also for response modification and tool invocation.</p>&#xA;<p><a href=&#34;https"
+  }
+ ]
+}

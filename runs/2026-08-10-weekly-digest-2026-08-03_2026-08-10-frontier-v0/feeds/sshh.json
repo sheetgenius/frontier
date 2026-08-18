@@ -1,0 +1,20 @@
+{
+ "source": "sshh",
+ "feed": "https://blog.sshh.io/feed",
+ "swept_on": "2026-08-18",
+ "since": "2026-08-03",
+ "items": [
+  {
+   "title": "How I use AI in 2026 (Coding, Writing, Learning, Assistant-ing)",
+   "url": "https://blog.sshh.io/p/how-i-use-ai-in-2026-coding-writing",
+   "date": "2026-08-17",
+   "summary": "A personal update to \"How I use AI (2025)\"."
+  },
+  {
+   "title": "Exploring Claude/GPT Knowledge Cutoffs & Pre-training Timelines",
+   "url": "https://blog.sshh.io/p/exploring-claudegpt-knowledge-cutoffs",
+   "date": "2026-08-10",
+   "summary": "A mildly interesting analysis of what models know and what it tells us about how they were trained."
+  }
+ ]
+}

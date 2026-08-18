@@ -1,0 +1,158 @@
+{
+ "source": "simonw",
+ "feed": "https://simonwillison.net/atom/everything/",
+ "swept_on": "2026-08-18",
+ "since": "2026-08-03",
+ "items": [
+  {
+   "title": "Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index",
+   "url": "https://simonwillison.net/2026/Aug/17/qwen-38-27b-scores-52/",
+   "date": "2026-08-17",
+   "summary": "<p><strong><a href=\"https://artificialanalysis.ai/models/qwen3-8-27b\">Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index</a></strong></p> That's the same score as GPT-5.6 Luna (max), and just one point behind GLM-5.2 (max) and DeepSeek V4 Pro 0813 (max) - that GLM is 753B and that DeepSeek is 1.6B parameters, and Luna is size unknown but presumably a whole lot bigger than 27B.</p"
+  },
+  {
+   "title": "We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility",
+   "url": "https://simonwillison.net/2026/Aug/17/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-tra/",
+   "date": "2026-08-17",
+   "summary": "<p><strong><a href=\"https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility/\">We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility</a></strong></p> Excellent piece of reporting from 404 Media. For a while now there have been stories of book dealers receiving orders for large volumes of books from apparently price-insensitive"
+  },
+  {
+   "title": "Markdown SVG upgrades",
+   "url": "https://simonwillison.net/2026/Aug/16/markdown-svg-upgrades/",
+   "date": "2026-08-16",
+   "summary": "<p>I started building my <a href=\"https://tools.simonwillison.net/markdown-svg-renderer\">markdown-svg-renderer</a> tool <a href=\"https://tools.simonwillison.net/colophon#markdown-svg-renderer.html\">in May</a>, but I've since added enough features to it that it's worth talking about here again.</p> <p>It's evolved into my ideal tool for sharing Markdown transcripts that include SVG documents. Given"
+  },
+  {
+   "title": "Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things",
+   "url": "https://simonwillison.net/2026/Aug/16/qwen-38-27b/",
+   "date": "2026-08-16",
+   "summary": "<p>Friday's big release was <a href=\"https://huggingface.co/Qwen/Qwen3.8-27B\">Qwen 3.8 27B</a>, an Apache 2 licensed 27B parameter vision-capable LLM from Alibaba's Qwen research lab. I've been looking forward to this one: 27B is an excellent size for running a model on a reasonably specced laptop, and its predecessor <a href=\"https://simonwillison.net/2026/Apr/22/qwen36-27b/\">Qwen 3.6 27B</a> was"
+  },
+  {
+   "title": "Quoting Dario Amodei",
+   "url": "https://simonwillison.net/2026/Aug/16/dario-amodei/",
+   "date": "2026-08-16",
+   "summary": "<blockquote cite=\"https://twitter.com/darioamodei/status/2088758819304443967\"><p>I do agree that the public has a negative view of AI (and that this is a big problem), but I don’t think it is primarily caused by me or any other AI leader warning about AI’s risks. I think it is fundamentally a crisis of trust. I think that ordinary people don’t trust companies, governments, or the tech industry and"
+  },
+  {
+   "title": "CORS Chat",
+   "url": "https://simonwillison.net/2026/Aug/15/cors-chat/",
+   "date": "2026-08-15",
+   "summary": "<p><strong>Tool:</strong> <a href=\"https://tools.simonwillison.net/cors-chat\">CORS Chat</a></p> <p>I built this today (<a href=\"https://gist.github.com/simonw/92a1d97773744b45bf259e003013cf36\">with GPT-5.6-Sol xhigh</a>) to help test Qwen 3.8 27B running in LM Studio on both my M5 MacBook Pro and an NVIDIA DGX Spark.</p> <p>It provides a web UI for exercising an OpenAI-Responses-compatible chat en"
+  },
+  {
+   "title": "Northern Gannet",
+   "url": "https://simonwillison.net/2026/Aug/15/sighting-391300422/",
+   "date": "2026-08-15",
+   "summary": "<p><img src=\"https://static.inaturalist.org/photos/716984157/large.jpg\" alt=\"Northern Gannet\"></p><p>Northern Gannet, in Pillar Point Harbor, CA, US</p><p>This is Morris.</p> <p>Morris is a local celebrity: the only known Northern Gannet (<em>Morus bassanus</em>) in the entire Pacific Ocean.</p> <p>They showed up in the Farallon Islands off the coast of San Francisco <a href=\"https://baynature.org"
+  },
+  {
+   "title": "Don't classify. Hallucinate!",
+   "url": "https://simonwillison.net/2026/Aug/14/dont-classify-hallucinate/",
+   "date": "2026-08-14",
+   "summary": "<p><strong><a href=\"https://softwaredoug.com/blog/2026/08/10/hypothetical-classifications\">Don&#x27;t classify. Hallucinate!</a></strong></p> I still have quite a bit of older content on my blog that I never got round to tagging. My blog has <a href=\"https://simonwillison.net/\">1,856 tags</a> - likely too many to feed to an LLM in one go and say \"which of these tags match the following content\".</"
+  },
+  {
+   "title": "sqlite-utils 4.2.1",
+   "url": "https://simonwillison.net/2026/Aug/13/sqlite-utils-2/",
+   "date": "2026-08-13",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/sqlite-utils/releases/tag/4.2.1\">sqlite-utils 4.2.1</a></p> <p>Fixes a crashing bug in <a href=\"https://simonwillison.net/2026/Aug/13/sqlite-utils/\">sqlite-utils 4.2</a>. I'd introduced code that looks like this:</p> <pre><code>from typing_extensions import Self </code></pre> <p>It turned out the <a href=\"https://pypi.org/project/typi"
+  },
+  {
+   "title": "sqlite-utils 4.2",
+   "url": "https://simonwillison.net/2026/Aug/13/sqlite-utils/",
+   "date": "2026-08-13",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/sqlite-utils/releases/tag/4.2\">sqlite-utils 4.2</a></p> <p>Lots of improvements in this one relating to the <a href=\"https://sqlite-utils.datasette.io/en/stable/python-api.html#transforming-a-table\">table.transform() feature</a>, which adds support for complex alter table operations by creating a fresh table, copying across the data a"
+  },
+  {
+   "title": "llm-gemini 0.33",
+   "url": "https://simonwillison.net/2026/Aug/13/llm-gemini/",
+   "date": "2026-08-13",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm-gemini/releases/tag/0.33\">llm-gemini 0.33</a></p> <p>It's been a while since the last <code>llm-gemini</code> release. This version of the plugin adds support for today's <a href=\"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/\">Gemini 3.7 Flash</a> release, plus <code>gemini-3"
+  },
+  {
+   "title": "alchemy-utils 0.1a1",
+   "url": "https://simonwillison.net/2026/Aug/13/alchemy-utils/",
+   "date": "2026-08-13",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/alchemy-utils/releases/tag/0.1a1\">alchemy-utils 0.1a1</a></p> <p>Performance boost for DuckDB exports and CSV imports, <a href=\"https://simonwillison.net/2026/Aug/12/alchemy-utils/\">see here</a>.</p>"
+  },
+  {
+   "title": "DeepSeek V4 Pro 0813 (on OpenRouter)",
+   "url": "https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/",
+   "date": "2026-08-12",
+   "summary": "<p><strong><a href=\"https://openrouter.ai/deepseek/deepseek-v4-pro-0813\">DeepSeek V4 Pro 0813 (on OpenRouter)</a></strong></p> The latest DeepSeek Pro model is now available, via API only. I had to link to OpenRouter because DeepSeek don't have any obvious announcement page for their new model.</p> <p>I haven't been able to confirm if they plan to release the open weights, but given the weights ar"
+  },
+  {
+   "title": "alchemy-utils 0.1a0",
+   "url": "https://simonwillison.net/2026/Aug/12/alchemy-utils/",
+   "date": "2026-08-12",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/alchemy-utils/releases/tag/0.1a0\">alchemy-utils 0.1a0</a></p> <p>I've long pondered what a database agnostic version of my <a href=\"https://sqlite-utils.datasette.io/\">sqlite-utils</a> Python library and CLI utility might look like. This morning (literally a shower project) I tasked Codex and GPT-5.6 Sol Ultra with building a prototyp"
+  },
+  {
+   "title": "Quoting Florian Herrengt",
+   "url": "https://simonwillison.net/2026/Aug/12/florian-herrengt/",
+   "date": "2026-08-12",
+   "summary": "<blockquote cite=\"https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html\"><p>But then users start to report a weird bug. It's the 4th time your team has been trying to fix it. I mean... asking AI to fix it. Unfortunately, it seems like not even Fable can figure it out.</p> <p>You go talk to the person who worked on this feature.</p> <p>\"So where does the data come from"
+  },
+  {
+   "title": "There are no lossless transformations of natural-language text",
+   "url": "https://simonwillison.net/2026/Aug/11/there-are-no-lossless-transformations-of-natural-language-text/",
+   "date": "2026-08-11",
+   "summary": "<p><strong><a href=\"https://sophiebits.com/2026/06/25/there-are-no-lossless-transformations-of-natural-language-text\">There are no lossless transformations of natural-language text</a></strong></p> Sophie Alpert shares her \"internal policy on acceptable use of AI writing by engineers\". It's a short read (supporting its own recommendations) and really good.</p> <p>If you chose to have LLMs help mas"
+  },
+  {
+   "title": "Stealing Reasoning Traces from Proprietary LLM APIs",
+   "url": "https://simonwillison.net/2026/Aug/11/stealing-reasoning-traces/",
+   "date": "2026-08-11",
+   "summary": "<p><strong><a href=\"https://stolen-thoughts.com/\">Stealing Reasoning Traces from Proprietary LLM APIs</a></strong></p> A vanity domain name (<code>stolen-thoughts.com</code>) for <a href=\"https://www.alphaxiv.org/abs/2608.09867\">a neat paper</a>:</p> <blockquote> <p>Anthropic, OpenAI, and Google return encrypted chain-of-thought blocks to clients that can be replayed across sessions, users, and mo"
+  },
+  {
+   "title": "datasette-upload-dbs 0.5a0",
+   "url": "https://simonwillison.net/2026/Aug/11/datasette-upload-dbs/",
+   "date": "2026-08-11",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/datasette-upload-dbs/releases/tag/0.5a0\">datasette-upload-dbs 0.5a0</a></p> <p>This plugin has been around for a while - it lets users upload a brand new SQLite database to a hosted Datasette instance, at which point that database will start being served by that instance.</p> <p>It can also be used to atomically swap a database with a"
+  },
+  {
+   "title": "Introducing Muse Glimmer",
+   "url": "https://simonwillison.net/2026/Aug/10/introducing-muse-glimmer/",
+   "date": "2026-08-10",
+   "summary": "<p><strong><a href=\"https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model\">Introducing Muse Glimmer</a></strong></p> Meta are back in the open weights game! Muse Glimmer is a brand new 30B model under a clean Apache 2.0 license (a step up from the janky Llama licenses of old).</p> <p>They claim to have optimized it for exactly the kind of things I'm looking for in a local model"
+  },
+  {
+   "title": "Quoting OpenClaw (running Opus 4.6)",
+   "url": "https://simonwillison.net/2026/Aug/10/openclaw/",
+   "date": "2026-08-10",
+   "summary": "<blockquote cite=\"https://www.abc.net.au/news/2026-08-10/ai-assistant-hacks-gym-website-aus-cyber-attack/107007986\"><p>The API has zero authorisations checks on cancelling other people's reservations … I tested this with the person in waitlist position #1 — and it actually went through. So you've moved from #4 to #3 already.</p></blockquote> <p class=\"cite\">&mdash; <a href=\"https://www.abc.net.au/"
+  },
+  {
+   "title": "Quoting Claude Opus 5 system prompt",
+   "url": "https://simonwillison.net/2026/Aug/9/claude-opus-5-system-prompt/",
+   "date": "2026-08-09",
+   "summary": "<blockquote cite=\"https://platform.claude.com/docs/en/release-notes/system-prompts#claude-opus-5\"><p>Claude Fable 5 and Claude Mythos 5 were first released on June 9, 2026. On June 12, 2026, Anthropic suspended access to both models to comply with U.S. Department of Commerce export controls; the Department lifted those controls on June 30, 2026, and Anthropic restored access on July 1, 2026 (Anthr"
+  },
+  {
+   "title": "GitHub Models is now retired",
+   "url": "https://simonwillison.net/2026/Aug/9/github-models-is-now-retired/",
+   "date": "2026-08-09",
+   "summary": "<p><strong><a href=\"https://github.blog/changelog/2026-07-30-github-models-is-now-retired/\">GitHub Models is now retired</a></strong></p> I missed this news until today, when the GitHub Actions run for my <a href=\"https://github.com/simonw/research\">simonw/research</a> repository failed with this error message:</p> <blockquote> <p>GitHub Models is temporarily unavailable as part of a scheduled ret"
+  },
+  {
+   "title": "SQLite compressed text-history prototypes",
+   "url": "https://simonwillison.net/2026/Aug/9/sqlite-text-history-prototype/",
+   "date": "2026-08-09",
+   "summary": "<p><strong>Research:</strong> <a href=\"https://github.com/simonw/research/tree/main/sqlite-text-history-prototype#readme\">SQLite compressed text-history prototypes</a></p> <p>I'm perennially interested in options for storing revision histories in relational databases. While out on a dog walk I had a new idea: how about taking the full text of every prior version in a big JSON array of strings and "
+  },
+  {
+   "title": "Auto mode is now the default in Claude Code for Pro, Max, and Team plans",
+   "url": "https://simonwillison.net/2026/Aug/8/auto-mode/",
+   "date": "2026-08-08",
+   "summary": "<p><strong><a href=\"https://claude.com/blog/auto-mode-default-in-claude-code\">Auto mode is now the default in Claude Code for Pro, Max, and Team plans</a></strong></p> Anthropic are <em>really</em> confident in Claude Code's <a href=\"https://code.claude.com/docs/en/auto-mode-config\">auto mode</a>, to the point that they are making it the default setting for new sessions in most Claude Code plans s"
+  },
+  {
+   "title": "Now we have a timeline of the OpenAI accidental attack against Hugging Face",
+   "url": "https://simonwillison.net/2026/Aug/8/now-we-have-a-timeline-of-the-openai-accidental-attack-against-h/",
+   "date": "2026-08-08",
+   "summary": "<p><a href=\"https://news.ycombinator.com/item?id=49220609#49221745\">My comment</a> on <a href=\"https://news.ycombinator.com/item?id=49220609\">Now we have a timeline of the OpenAI accidental attack against Hugging Face</a> &mdash; Hacker News.</p><p>I think one of the most interesting details here might be tucked away in that first bullet point:</p> <blockquote> <p>May 7: OpenAI starts a new traini"
+  }
+ ]
+}

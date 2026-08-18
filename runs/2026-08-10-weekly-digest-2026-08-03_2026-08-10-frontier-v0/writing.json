@@ -1,958 +1,344 @@
 {
- "swept_on": "2026-08-18",
- "since": "2026-08-03",
- "items": [
-  {
-   "title": "Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index",
-   "url": "https://simonwillison.net/2026/Aug/17/qwen-38-27b-scores-52/",
-   "date": "2026-08-17",
-   "summary": "<p><strong><a href=\"https://artificialanalysis.ai/models/qwen3-8-27b\">Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index</a></strong></p> That's the same score as GPT-5.6 Luna (max), and just one point behind GLM-5.2 (max) and DeepSeek V4 Pro 0813 (max) - that GLM is 753B and that DeepSeek is 1.6B parameters, and Luna is size unknown but presumably a whole lot bigger than 27B.</p",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility",
-   "url": "https://simonwillison.net/2026/Aug/17/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-tra/",
-   "date": "2026-08-17",
-   "summary": "<p><strong><a href=\"https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility/\">We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility</a></strong></p> Excellent piece of reporting from 404 Media. For a while now there have been stories of book dealers receiving orders for large volumes of books from apparently price-insensitive",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Recovering Encrypted LLM Reasoning Traces",
-   "url": "https://embracethered.com/blog/posts/2026/recovering-encrypted-llm-thoughts/",
-   "date": "2026-08-17",
-   "summary": "<p>A few days ago, a paper named <a href=&#34;https://arxiv.org/pdf/2608.09867&#34;>&ldquo;Stealing Reasoning Traces from Proprietary LLM APIs&rdquo;</a> was published. It describes a simple, yet super elegant way to recover encrypted LLM reasoning traces.</p>&#xA;<p><a href=&#34;https://embracethered.com/blog/images/2026/strealing_traces_paper_tn.png&#34;><img src=&#34;https://embracethered.com/b",
-   "source": "embrace-the-red",
-   "kind": "research"
-  },
-  {
-   "title": "How I use AI in 2026 (Coding, Writing, Learning, Assistant-ing)",
-   "url": "https://blog.sshh.io/p/how-i-use-ai-in-2026-coding-writing",
-   "date": "2026-08-17",
-   "summary": "A personal update to \"How I use AI (2025)\".",
-   "source": "sshh",
-   "kind": "person"
-  },
-  {
-   "title": "[AINews] Stripe buys OpenRouter for $7B",
-   "url": "https://www.latent.space/p/ainews-stripe-buys-openrouter-for",
-   "date": "2026-08-17",
-   "summary": "No GPUs, no Agents, just really, really, really good infra and distribution.",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "[$] Development statistics for the 7.2 kernel",
-   "url": "https://lwn.net/Articles/1088776/",
-   "date": "2026-08-17",
-   "summary": "Linus Torvalds <a href=\"https://lwn.net/ml/all/CAHk-=wjk5StpAmUKHacj=GPKwA88y_YRHK=i_YAJFgmxn1=k4w@mail.gmail.com/\">released the 7.2 kernel</a> on August&#160;17, after noting that the number of fixes coming in was still \"<q>bigger than I would have wished for</q>\". In fact, 7.2 was one of the busiest development cycles in the kernel's history, adding nearly 600,000 lines of code. It's time to loo",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "[$] Bootstrappable builds: how and why",
-   "url": "https://lwn.net/Articles/1088279/",
-   "date": "2026-08-17",
-   "summary": "<a href=\"https://2026.fossy.ca/\">This year's edition of the Free and Open Source Software Yearly conference</a>, better known as \"FOSSY\", moved north to the beautiful (and enormous) campus of the University of British Columbia (UBC) in Vancouver, Canada from its home for the three previous editions: Portland, Oregon, in the US. There were many different types of talks at FOSSY, from deeply technic",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "GNU poke 5.0 released",
-   "url": "https://lwn.net/Articles/1089211/",
-   "date": "2026-08-17",
-   "summary": "<p>Version 5.0 of <a href=\"https://www.jemarch.net/poke\">GNU Poke</a>, a binary-data editor, has been released. This release includes a number of improvements to the Poke compiler, additions to the Poke language, as well as runtime and standard library updates. See below for the full list of changes.</p>",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "Mark J. Wielaard receives Distinguished Service Award in Software Freedom",
-   "url": "https://lwn.net/Articles/1089208/",
-   "date": "2026-08-17",
-   "summary": "<p>The <a href=\"https://sfconservancy.org/\">Software Freedom Conservancy</a> has <a href=\"https://sfconservancy.org/news/2026/aug/12/mark-j-wielaard-receives-2-annual-award/\">announced</a> that Mark J. Wielaard has been honored with the second annual Distinguished Service Award in Software Freedom for his many years of service to software freedom.</p> <blockquote class=\"bq\"> Mark is one of many ke",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "Security updates for Monday",
-   "url": "https://lwn.net/Articles/1089205/",
-   "date": "2026-08-17",
-   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 8.0, .NET 9.0, bind, dracut, freerdp, gnome-remote-desktop, kernel, and nghttp2), <b>Debian</b> (apr-util, docker.io, ironic, neutron, postgresql-15, unzip, and util-linux), <b>Fedora</b> (chromium, jfrog-cli, jrnl, libgsasl, libsoup3, pdns, pdns-recursor, perl-Archive-Tar, php-pear-PHP-CodeSniffer, rust-bat, rust-git-delta, rust-git-inte",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "The Defender’s Window",
-   "url": "https://openai.com/index/the-defenders-window",
-   "date": "2026-08-17",
-   "summary": "AI is reshaping cybersecurity for attackers and defenders alike. Learn how OpenAI is strengthening its defenses and what security teams can do now.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "OpenAI joins PORTS-Pike project",
-   "url": "https://openai.com/index/openai-joins-ports-pike-project",
-   "date": "2026-08-17",
-   "summary": "OpenAI joins PORTS-Pike project, expanding community investment and supporting thousands of Southern Ohio jobs",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "New policy ideas for the Intelligence Age",
-   "url": "https://openai.com/index/new-policy-ideas-for-the-intelligence-age",
-   "date": "2026-08-17",
-   "summary": "OpenAI funds 14 independent projects exploring new AI policy ideas to expand economic opportunity and strengthen societal resilience in the Intelligence Age.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Get closer to the game with Gemini and Pixel",
-   "url": "https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships/",
-   "date": "2026-08-17",
-   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/football_multi-club_hero_nphU3P.max-600x600.format-webp.webp\">Google Gemini and Pixel partner with five global football clubs to elevate the fan matchday experience through AI and Smartphone Technology.",
-   "source": "google-ai-blog",
-   "kind": "vendor"
-  },
-  {
-   "title": "Markdown SVG upgrades",
-   "url": "https://simonwillison.net/2026/Aug/16/markdown-svg-upgrades/",
-   "date": "2026-08-16",
-   "summary": "<p>I started building my <a href=\"https://tools.simonwillison.net/markdown-svg-renderer\">markdown-svg-renderer</a> tool <a href=\"https://tools.simonwillison.net/colophon#markdown-svg-renderer.html\">in May</a>, but I've since added enough features to it that it's worth talking about here again.</p> <p>It's evolved into my ideal tool for sharing Markdown transcripts that include SVG documents. Given",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things",
-   "url": "https://simonwillison.net/2026/Aug/16/qwen-38-27b/",
-   "date": "2026-08-16",
-   "summary": "<p>Friday's big release was <a href=\"https://huggingface.co/Qwen/Qwen3.8-27B\">Qwen 3.8 27B</a>, an Apache 2 licensed 27B parameter vision-capable LLM from Alibaba's Qwen research lab. I've been looking forward to this one: 27B is an excellent size for running a model on a reasonably specced laptop, and its predecessor <a href=\"https://simonwillison.net/2026/Apr/22/qwen36-27b/\">Qwen 3.6 27B</a> was",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Quoting Dario Amodei",
-   "url": "https://simonwillison.net/2026/Aug/16/dario-amodei/",
-   "date": "2026-08-16",
-   "summary": "<blockquote cite=\"https://twitter.com/darioamodei/status/2088758819304443967\"><p>I do agree that the public has a negative view of AI (and that this is a big problem), but I don’t think it is primarily caused by me or any other AI leader warning about AI’s risks. I think it is fundamentally a crisis of trust. I think that ordinary people don’t trust companies, governments, or the tech industry and",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "The 7.2 kernel has been released",
-   "url": "https://lwn.net/Articles/1088991/",
-   "date": "2026-08-16",
-   "summary": "The <a href=\"https://lwn.net/Articles/1089033/\">7.2 kernel</a> has been released. Linus said: <p> <blockquote class=\"bq\"> Well, this last week of the release was - once again - bigger than I would have wished for, but hey, with the whole \"new normal\" thing, if I delayed releases for that reason we'd probably never have a release at all. </blockquote> <p> Significant features in this release includ",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "CORS Chat",
-   "url": "https://simonwillison.net/2026/Aug/15/cors-chat/",
-   "date": "2026-08-15",
-   "summary": "<p><strong>Tool:</strong> <a href=\"https://tools.simonwillison.net/cors-chat\">CORS Chat</a></p> <p>I built this today (<a href=\"https://gist.github.com/simonw/92a1d97773744b45bf259e003013cf36\">with GPT-5.6-Sol xhigh</a>) to help test Qwen 3.8 27B running in LM Studio on both my M5 MacBook Pro and an NVIDIA DGX Spark.</p> <p>It provides a web UI for exercising an OpenAI-Responses-compatible chat en",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Northern Gannet",
-   "url": "https://simonwillison.net/2026/Aug/15/sighting-391300422/",
-   "date": "2026-08-15",
-   "summary": "<p><img src=\"https://static.inaturalist.org/photos/716984157/large.jpg\" alt=\"Northern Gannet\"></p><p>Northern Gannet, in Pillar Point Harbor, CA, US</p><p>This is Morris.</p> <p>Morris is a local celebrity: the only known Northern Gannet (<em>Morus bassanus</em>) in the entire Pacific Ocean.</p> <p>They showed up in the Farallon Islands off the coast of San Francisco <a href=\"https://baynature.org",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "React for Agents: Astro Creator Brings Hooks to his Meta-Harness, Flue",
-   "url": "https://www.latent.space/p/flue-2",
-   "date": "2026-08-15",
-   "summary": "Flue 2 takes its inspiration from React. Creator Fred Schott, of Astro fame, tells Latent Space why he added hooks and why agents are defined by their harnesses.",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "Don't classify. Hallucinate!",
-   "url": "https://simonwillison.net/2026/Aug/14/dont-classify-hallucinate/",
-   "date": "2026-08-14",
-   "summary": "<p><strong><a href=\"https://softwaredoug.com/blog/2026/08/10/hypothetical-classifications\">Don&#x27;t classify. Hallucinate!</a></strong></p> I still have quite a bit of older content on my blog that I never got round to tagging. My blog has <a href=\"https://simonwillison.net/\">1,856 tags</a> - likely too many to feed to an LLM in one go and say \"which of these tags match the following content\".</",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "The Pulse: Meta’s self-inflicted resignation-wave",
-   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-metas-self-inflicted-resignation",
-   "date": "2026-08-14",
-   "summary": "The social media giant is offering $1M+ retainer equity grants to staff who are leaving: and even this is not effective. Also: is Grok Bot the &#8220;OpenClaw moment&#8221; for managed AI agents?",
-   "source": "pragmatic-engineer",
-   "kind": "person"
-  },
-  {
-   "title": "[AINews] Cursor's $60B acquisition by SpaceXai closes",
-   "url": "https://www.latent.space/p/ainews-cursors-60b-acquisition-by",
-   "date": "2026-08-14",
-   "summary": "Congrats to the team!",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "[AINews] Gemini 3.7 Flash brings GDM back to the forefront",
-   "url": "https://www.latent.space/p/ainews-gemini-37-flash-brings-gdm",
-   "date": "2026-08-14",
-   "summary": "Down, but not out!",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "[$] BPF, continuous testing, and stable kernels",
-   "url": "https://lwn.net/Articles/1087823/",
-   "date": "2026-08-14",
-   "summary": "<p> Ihor Solodrai and Shung-Hsi Yu wrapped up the BPF track at the 2026 <a href=\"https://events.linuxfoundation.org/lsfmmbpf/\"> Linux Storage, Filesystem, Memory-Management, and BPF Summit</a> with a pair of sessions related to testing. Solodrai spoke about what has changed for BPF's continuous-integration (CI) testing. Yu spoke about what may be needed to test BPF updates in stable kernels more t",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "Python packaging council candidates announced",
-   "url": "https://lwn.net/Articles/1088920/",
-   "date": "2026-08-14",
-   "summary": "<p>The Python Software Foundation (PSF) has <a href=\"https://pyfound.blogspot.com/2026/08/announcing-packaging-council-election.html\">announced</a> the <a href=\"https://www.python.org/nominations/elections/2026-python-packaging-council/nominees/\">candidates</a> running for the Python packaging council that was <a href=\"https://lwn.net/Articles/1068704/\">approved by the Python steering council in A",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "Security updates for Friday",
-   "url": "https://lwn.net/Articles/1088919/",
-   "date": "2026-08-14",
-   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 10.0, .NET 8.0, .NET 9.0, bind, bind9.16, and dracut), <b>Debian</b> (apr-util, chromium, postgresql-17, python-httplib2, unzip, and zip), <b>Fedora</b> (erlang-cowboy, erlang-cowlib, flatpak, and libnfs), <b>Gentoo</b> (Apache HTTPD, Bubblewrap, Dnsmasq, Exim, Flatpak, libinput, and rsync), <b>Mageia</b> (dhcpcd, qemu, and roundcubemail)",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "How Cloudflare detects MCP traffic and helps secure it",
-   "url": "https://blog.cloudflare.com/mcp-security-updates/",
-   "date": "2026-08-14",
-   "summary": "Cloudflare Gateway identifies MCP requests using protocol-level heuristics. Security teams can use that signal to find shadow MCP traffic, enforce Portal-only access for approved servers, and block direct connections on managed network paths.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "Secure all your internal vibe-coded applications — in one click",
-   "url": "https://blog.cloudflare.com/workers-protected-by-access/",
-   "date": "2026-08-14",
-   "summary": "Introducing Cloudflare Access for Workers. Attach an Access policy directly to a Worker and it applies everywhere that Worker runs — routes, custom domains, workers.dev, and previews — automatically.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "sqlite-utils 4.2.1",
-   "url": "https://simonwillison.net/2026/Aug/13/sqlite-utils-2/",
-   "date": "2026-08-13",
-   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/sqlite-utils/releases/tag/4.2.1\">sqlite-utils 4.2.1</a></p> <p>Fixes a crashing bug in <a href=\"https://simonwillison.net/2026/Aug/13/sqlite-utils/\">sqlite-utils 4.2</a>. I'd introduced code that looks like this:</p> <pre><code>from typing_extensions import Self </code></pre> <p>It turned out the <a href=\"https://pypi.org/project/typi",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "sqlite-utils 4.2",
-   "url": "https://simonwillison.net/2026/Aug/13/sqlite-utils/",
-   "date": "2026-08-13",
-   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/sqlite-utils/releases/tag/4.2\">sqlite-utils 4.2</a></p> <p>Lots of improvements in this one relating to the <a href=\"https://sqlite-utils.datasette.io/en/stable/python-api.html#transforming-a-table\">table.transform() feature</a>, which adds support for complex alter table operations by creating a fresh table, copying across the data a",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "llm-gemini 0.33",
-   "url": "https://simonwillison.net/2026/Aug/13/llm-gemini/",
-   "date": "2026-08-13",
-   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm-gemini/releases/tag/0.33\">llm-gemini 0.33</a></p> <p>It's been a while since the last <code>llm-gemini</code> release. This version of the plugin adds support for today's <a href=\"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/\">Gemini 3.7 Flash</a> release, plus <code>gemini-3",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "alchemy-utils 0.1a1",
-   "url": "https://simonwillison.net/2026/Aug/13/alchemy-utils/",
-   "date": "2026-08-13",
-   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/alchemy-utils/releases/tag/0.1a1\">alchemy-utils 0.1a1</a></p> <p>Performance boost for DuckDB exports and CSV imports, <a href=\"https://simonwillison.net/2026/Aug/12/alchemy-utils/\">see here</a>.</p>",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "[AINews] SpaceXAI Grok 4.6 and Grok @Bot",
-   "url": "https://www.latent.space/p/ainews-spacexai-grok-46-and-grok",
-   "date": "2026-08-13",
-   "summary": "AI teammate category just had its most significant new entrant yet",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "Domas: Bypassing memory protection with AMD's memory controllers",
-   "url": "https://lwn.net/Articles/1088778/",
-   "date": "2026-08-13",
-   "summary": "<p> Christopher Domas has <a href=\"https://github.com/xoreaxeaxeax/skitter-creek-bath-salts#skitter-creek-bath-salts\">published</a> a proof of concept with a description showing how to use AMD memory controllers' bank swizzle mode to bypass memory protection and read or write arbitrary data, including CPU microcode definitions and memory belonging to the <a href=\"https://en.wikipedia.org/wiki/AMD_",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "rsync 3.5.0 released",
-   "url": "https://lwn.net/Articles/1088759/",
-   "date": "2026-08-13",
-   "summary": "<p><a href=\"https://download.samba.org/pub/rsync/NEWS#3.5.0\">Version 3.5.0</a> of rsync has been released with a <a href=\"https://download.samba.org/pub/rsync/NEWS#SECURITY_FIXES-3.5.0\">huge number of security fixes</a>:</p> <blockquote class=\"bq\"> This release fixes 33 security issues found during a focused audit of rsync's path handling and daemon protocol, a companion daemon-protocol fuzzing pa",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "[$] 128-Bit page tables for Arm",
-   "url": "https://lwn.net/Articles/1088125/",
-   "date": "2026-08-13",
-   "summary": "The size of a processor's page-table entries directly limits how much physical memory that processor is able to access. Back in the 32-bit days, that limit was 4GB, an amount of memory that once seemed nearly infinite, but which would now struggle to hold a basic AI-enabled \"hello world\" app. The expansion to 64&#160;bits on most popular architectures would seem to have removed those limits now; s",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "Security updates for Thursday",
-   "url": "https://lwn.net/Articles/1088715/",
-   "date": "2026-08-13",
-   "summary": "Security updates have been issued by <b>AlmaLinux</b> (abrt, dhcpcd, edk2, freerdp, gegl04, grafana, gstreamer1-plugins-good, iscsi-initiator-utils, isns-utils, kernel, kernel-rt, keylime, libarchive, libyang, nodejs-nodemon, opencryptoki, osbuild-composer, pacemaker, postgresql-jdbc, postgresql18, python-idna, python3.9, udisks2, valkey, vim, xorg-x11-server-Xwayland, and yggdrasil-worker-package",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "[$] LWN.net Weekly Edition for August 13, 2026",
-   "url": "https://lwn.net/Articles/1087432/",
-   "date": "2026-08-13",
-   "summary": "Inside this week's LWN.net Weekly Edition: <p> <ul> <li> <a href=\"https://lwn.net/Articles/1087432/\">Front</a>: BPF and binfmt_misc; CrossPoint ebook firmware; KVM planes; BPF formal verification; shadow-utils; new storage-code testing features. <li> <a href=\"https://lwn.net/Articles/1087434/\">Briefs</a>: Django releases; GNOME shell; LightDM 1.33.0; QEMU 11.1; uutils 0.10; Software Stewardship La",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "The builder’s guide to GPT‑5.6",
-   "url": "https://openai.com/index/builders-guide-to-gpt-5-6",
-   "date": "2026-08-13",
-   "summary": "Learn how startups use GPT-5.6 to build faster, more cost-efficient AI agents with smarter model selection and new Responses API capabilities.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Previewing Ultrafast mode: GPT-5.6 Sol at up to 14X the speed",
-   "url": "https://openai.com/index/previewing-ultrafast",
-   "date": "2026-08-13",
-   "summary": "Preview Ultrafast, a new OpenAI API service tier that runs GPT-5.6 Sol up to 14× faster. Powered by Cerebras, it delivers up to 750 output tokens per second.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "OpenAI appoints Dali Rajic as Chief Revenue Officer",
-   "url": "https://openai.com/index/dali-rajic-chief-revenue-officer",
-   "date": "2026-08-13",
-   "summary": "OpenAI appoints Dali Rajic as Chief Revenue Officer to lead its global revenue organization and help businesses realize the full value of AI.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Bring your spreadsheet data to life with Sheets canvas",
-   "url": "https://blog.google/products-and-platforms/products/workspace/sheets-canvas-for-google-sheets-spreadsheets/",
-   "date": "2026-08-13",
-   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Sheets_canvas-blog-header-2784x.max-600x600.format-webp.webp\">Sheets canvas turns data into interactive dashboards, custom study trackers, seating charts, and more, all with a simple prompt.",
-   "source": "google-ai-blog",
-   "kind": "vendor"
-  },
-  {
-   "title": "DeepSeek V4 Pro 0813 (on OpenRouter)",
-   "url": "https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/",
-   "date": "2026-08-12",
-   "summary": "<p><strong><a href=\"https://openrouter.ai/deepseek/deepseek-v4-pro-0813\">DeepSeek V4 Pro 0813 (on OpenRouter)</a></strong></p> The latest DeepSeek Pro model is now available, via API only. I had to link to OpenRouter because DeepSeek don't have any obvious announcement page for their new model.</p> <p>I haven't been able to confirm if they plan to release the open weights, but given the weights ar",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "alchemy-utils 0.1a0",
-   "url": "https://simonwillison.net/2026/Aug/12/alchemy-utils/",
-   "date": "2026-08-12",
-   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/alchemy-utils/releases/tag/0.1a0\">alchemy-utils 0.1a0</a></p> <p>I've long pondered what a database agnostic version of my <a href=\"https://sqlite-utils.datasette.io/\">sqlite-utils</a> Python library and CLI utility might look like. This morning (literally a shower project) I tasked Codex and GPT-5.6 Sol Ultra with building a prototyp",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Quoting Florian Herrengt",
-   "url": "https://simonwillison.net/2026/Aug/12/florian-herrengt/",
-   "date": "2026-08-12",
-   "summary": "<blockquote cite=\"https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html\"><p>But then users start to report a weird bug. It's the 4th time your team has been trying to fix it. I mean... asking AI to fix it. Unfortunately, it seems like not even Fable can figure it out.</p> <p>You go talk to the person who worked on this feature.</p> <p>\"So where does the data come from",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Stop being skeptical about AI for development with Charity Majors",
-   "url": "https://newsletter.pragmaticengineer.com/p/stop-being-skeptical-about-ai-for",
-   "date": "2026-08-12",
-   "summary": "In 2025, it was rational to be skeptical about AI. In 2026, it's not, anymore. With Charity Majors, CTO and co-founder of Honeycomb.",
-   "source": "pragmatic-engineer",
-   "kind": "person"
-  },
-  {
-   "title": "[AINews] How to steal a Reasoning Trace",
-   "url": "https://www.latent.space/p/ainews-how-to-steal-a-reasoning-trace",
-   "date": "2026-08-12",
-   "summary": "Speculative Decoding by any other name would distil as sweet",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "[$] Block-layer error injection",
-   "url": "https://lwn.net/Articles/1086344/",
-   "date": "2026-08-12",
-   "summary": "<p>Storage code has to cope with hardware that fails in inconvenient ways, but coaxing a healthy disk into producing those failures on demand, for testing, is usually not possible. The kernel provides several ways to inject block-layer <span class=\"nobreak\">I/O</span> errors, but none of those can select the operation to fail, pick the status code to return, or target a disk directly without emplo",
-   "source": "lwn",
-   "kind": "publication"
-  },
-  {
-   "title": "From assistance to execution: How enterprises put AI to work",
-   "url": "https://openai.com/index/how-enterprises-put-ai-to-work",
-   "date": "2026-08-12",
-   "summary": "OpenAI research reveals how enterprises are adopting agentic AI, using ChatGPT and Codex, and how frontier firms are pulling ahead in AI adoption.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "How RingCentral builds AI-native work from engineering to ops",
-   "url": "https://openai.com/index/ringcentral",
-   "date": "2026-08-12",
-   "summary": "See how RingCentral uses ChatGPT Work and Codex to accelerate AI product development and centralize operational intelligence across engineering and operations.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "There are no lossless transformations of natural-language text",
-   "url": "https://simonwillison.net/2026/Aug/11/there-are-no-lossless-transformations-of-natural-language-text/",
-   "date": "2026-08-11",
-   "summary": "<p><strong><a href=\"https://sophiebits.com/2026/06/25/there-are-no-lossless-transformations-of-natural-language-text\">There are no lossless transformations of natural-language text</a></strong></p> Sophie Alpert shares her \"internal policy on acceptable use of AI writing by engineers\". It's a short read (supporting its own recommendations) and really good.</p> <p>If you chose to have LLMs help mas",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Stealing Reasoning Traces from Proprietary LLM APIs",
-   "url": "https://simonwillison.net/2026/Aug/11/stealing-reasoning-traces/",
-   "date": "2026-08-11",
-   "summary": "<p><strong><a href=\"https://stolen-thoughts.com/\">Stealing Reasoning Traces from Proprietary LLM APIs</a></strong></p> A vanity domain name (<code>stolen-thoughts.com</code>) for <a href=\"https://www.alphaxiv.org/abs/2608.09867\">a neat paper</a>:</p> <blockquote> <p>Anthropic, OpenAI, and Google return encrypted chain-of-thought blocks to clients that can be replayed across sessions, users, and mo",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "datasette-upload-dbs 0.5a0",
-   "url": "https://simonwillison.net/2026/Aug/11/datasette-upload-dbs/",
-   "date": "2026-08-11",
-   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/datasette-upload-dbs/releases/tag/0.5a0\">datasette-upload-dbs 0.5a0</a></p> <p>This plugin has been around for a while - it lets users upload a brand new SQLite database to a hosted Datasette instance, at which point that database will start being served by that instance.</p> <p>It can also be used to atomically swap a database with a",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Software engineering at a proprietary trading company: Optiver",
-   "url": "https://newsletter.pragmaticengineer.com/p/optiver",
-   "date": "2026-08-11",
-   "summary": "A shift from a focus on latency to building better AI models, owning the full stack from applications to building custom hardware, very different incentives to most tech companies in play, and more",
-   "source": "pragmatic-engineer",
-   "kind": "person"
-  },
-  {
-   "title": "The /wizard Skill",
-   "url": "https://www.aihero.dev/skills-wizard",
-   "date": "2026-08-11",
-   "summary": "Generate a script that walks a human through setup.",
-   "source": "mattpocock",
-   "kind": "person"
-  },
-  {
-   "title": "The /to-questionnaire Skill",
-   "url": "https://www.aihero.dev/skills-to-questionnaire",
-   "date": "2026-08-11",
-   "summary": "Turn open questions into a doc someone else fills in.",
-   "source": "mattpocock",
-   "kind": "person"
-  },
-  {
-   "title": "🔬The BioAI Phase Shift - Matthew McPartlon & Neil Patil, Chai Discovery",
-   "url": "https://www.latent.space/p/chai-discovery",
-   "date": "2026-08-11",
-   "summary": "Pharma is suddenly paying for Bio &#215; AI tools, and Chai is leading the pack with four deals closed this summer. Cofounder Matt McPartlon and Product leader Neil Patil explain why.",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "[AINews] Muse Glimmer and Spark: Open Weights return Personal Superintelligence promise",
-   "url": "https://www.latent.space/p/ainews-muse-glimmer-and-spark-open",
-   "date": "2026-08-11",
-   "summary": "a small win for american open models - Glimmer runs on a fits on a single RTX 3090!",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "TDD inside the agent loop - theater or actual value?",
-   "url": "https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html",
-   "date": "2026-08-11",
-   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html'><img src = 'https://martinfowler.com/articles/exploring-gen-ai/donkey-card.png' width = ''></img></a></div> <p>My colleagues at Thoughtworks tend to be big fans of Test-Driven Development, and many people in the industry advocate telling LLM agents to use TDD when building software. <b",
-   "source": "martin-fowler",
-   "kind": "publication"
-  },
-  {
-   "title": "Testing ads in ChatGPT",
-   "url": "https://openai.com/index/testing-ads-in-chatgpt",
-   "date": "2026-08-11",
-   "summary": "OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Daybreak models are now available on AWS",
-   "url": "https://openai.com/index/daybreak-models-are-now-available-on-aws",
-   "date": "2026-08-11",
-   "summary": "OpenAI and AWS are making Daybreak cybersecurity capabilities available through Amazon Bedrock to support enterprise security workflows.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "AMIE, our research medical AI system, demonstrates real-time clinical video consultation capabilities in a first-of-its-kind study.",
-   "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/amie-video-consultations/",
-   "date": "2026-08-11",
-   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/AIME_SIZZLE_THUMBNAIL.Aug10.max-600x600.format-webp.webp\">Google introduces AMIE for real-time clinical video consultations in simulated settings.",
-   "source": "google-ai-blog",
-   "kind": "vendor"
-  },
-  {
-   "title": "Introducing Muse Glimmer",
-   "url": "https://simonwillison.net/2026/Aug/10/introducing-muse-glimmer/",
-   "date": "2026-08-10",
-   "summary": "<p><strong><a href=\"https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model\">Introducing Muse Glimmer</a></strong></p> Meta are back in the open weights game! Muse Glimmer is a brand new 30B model under a clean Apache 2.0 license (a step up from the janky Llama licenses of old).</p> <p>They claim to have optimized it for exactly the kind of things I'm looking for in a local model",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Quoting OpenClaw (running Opus 4.6)",
-   "url": "https://simonwillison.net/2026/Aug/10/openclaw/",
-   "date": "2026-08-10",
-   "summary": "<blockquote cite=\"https://www.abc.net.au/news/2026-08-10/ai-assistant-hacks-gym-website-aus-cyber-attack/107007986\"><p>The API has zero authorisations checks on cancelling other people's reservations … I tested this with the person in waitlist position #1 — and it actually went through. So you've moved from #4 to #3 already.</p></blockquote> <p class=\"cite\">&mdash; <a href=\"https://www.abc.net.au/",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Exploring Claude/GPT Knowledge Cutoffs & Pre-training Timelines",
-   "url": "https://blog.sshh.io/p/exploring-claudegpt-knowledge-cutoffs",
-   "date": "2026-08-10",
-   "summary": "A mildly interesting analysis of what models know and what it tells us about how they were trained.",
-   "source": "sshh",
-   "kind": "person"
-  },
-  {
-   "title": "OpenAI’s letter to Governor Abbott on responsible AI infrastructure in Texas",
-   "url": "https://openai.com/index/responsible-ai-infrastructure-texas",
-   "date": "2026-08-10",
-   "summary": "OpenAI sent Governor Greg Abbott a letter outlining its commitment to responsible AI infrastructure in Texas. The letter supports reliable, transparent growth that benefits Texans.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Model ML completes finance work more efficiently with GPT-5.6 Sol",
-   "url": "https://openai.com/index/model-ml",
-   "date": "2026-08-10",
-   "summary": "Model ML uses GPT-5.6 Sol to carry finance work from research and analysis through editable, traceable PowerPoint decks and Excel workbooks.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "What building an AI-native finance function taught me",
-   "url": "https://openai.com/index/building-an-ai-native-finance-function",
-   "date": "2026-08-10",
-   "summary": "OpenAI CFO Sarah Friar shares five lessons for building an AI-native finance function, from automated forecasting to stronger controls and AI ROI.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Putting frontier cyber models in more trusted hands",
-   "url": "https://openai.com/index/putting-frontier-cyber-models-in-more-trusted-hands",
-   "date": "2026-08-10",
-   "summary": "Approved Daybreak partners can use OpenAI’s frontier cyber models to deliver authorized, governed cybersecurity services to customers.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Expanding Daybreak as the Cyber Defense Window Narrows",
-   "url": "https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows",
-   "date": "2026-08-10",
-   "summary": "Meet GPT-5.6-Cyber, OpenAI’s cybersecurity-specific model available through Daybreak Red for authorized vulnerability research, exploit validation, and security testing.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Premium seats are coming to ChatGPT Business",
-   "url": "https://openai.com/index/premium-seats-chatgpt-business",
-   "date": "2026-08-10",
-   "summary": "Premium seats are coming to ChatGPT Business. Sign up by August 20 to get $100 in workspace credits and unlock higher usage for your team's most demanding work.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Virgin Atlantic sharpens customer journeys with ChatGPT Work",
-   "url": "https://openai.com/index/virgin-atlantic/chatgpt-work",
-   "date": "2026-08-10",
-   "summary": "Virgin Atlantic is accelerating research, product planning, and decision-making with ChatGPT Work, helping teams connect signals across the customer journey.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "How Zapier transformed core marketing processes with ChatGPT Work",
-   "url": "https://openai.com/index/zapier",
-   "date": "2026-08-10",
-   "summary": "The enterprise marketing team at Zapier uses ChatGPT Work to reduce the number of drop-offs in its lead funnel, build campaign assets, and automate reporting.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Evolve your marketing with new AI tools",
-   "url": "https://blog.google/products/ads-commerce/google-ads-analytics-ai-updates/",
-   "date": "2026-08-10",
-   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Advisor_Header.max-600x600.format-webp.webp\">Learn how new AI and agentic experiences across Google Ads and Google Analytics can simplify your marketing workflow.",
-   "source": "google-ai-blog",
-   "kind": "vendor"
-  },
-  {
-   "title": "Everything we launched during Agents Week",
-   "url": "https://blog.cloudflare.com/agents-week-review-august-2026/",
-   "date": "2026-08-10",
-   "summary": "Our latest Agents Week has come to a close. Here’s a recap of all the announcements we made from Wallets to Radar.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "Quoting Claude Opus 5 system prompt",
-   "url": "https://simonwillison.net/2026/Aug/9/claude-opus-5-system-prompt/",
-   "date": "2026-08-09",
-   "summary": "<blockquote cite=\"https://platform.claude.com/docs/en/release-notes/system-prompts#claude-opus-5\"><p>Claude Fable 5 and Claude Mythos 5 were first released on June 9, 2026. On June 12, 2026, Anthropic suspended access to both models to comply with U.S. Department of Commerce export controls; the Department lifted those controls on June 30, 2026, and Anthropic restored access on July 1, 2026 (Anthr",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "GitHub Models is now retired",
-   "url": "https://simonwillison.net/2026/Aug/9/github-models-is-now-retired/",
-   "date": "2026-08-09",
-   "summary": "<p><strong><a href=\"https://github.blog/changelog/2026-07-30-github-models-is-now-retired/\">GitHub Models is now retired</a></strong></p> I missed this news until today, when the GitHub Actions run for my <a href=\"https://github.com/simonw/research\">simonw/research</a> repository failed with this error message:</p> <blockquote> <p>GitHub Models is temporarily unavailable as part of a scheduled ret",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "SQLite compressed text-history prototypes",
-   "url": "https://simonwillison.net/2026/Aug/9/sqlite-text-history-prototype/",
-   "date": "2026-08-09",
-   "summary": "<p><strong>Research:</strong> <a href=\"https://github.com/simonw/research/tree/main/sqlite-text-history-prototype#readme\">SQLite compressed text-history prototypes</a></p> <p>I'm perennially interested in options for storing revision histories in relational databases. While out on a dog walk I had a new idea: how about taking the full text of every prior version in a big JSON array of strings and ",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Auto mode is now the default in Claude Code for Pro, Max, and Team plans",
-   "url": "https://simonwillison.net/2026/Aug/8/auto-mode/",
-   "date": "2026-08-08",
-   "summary": "<p><strong><a href=\"https://claude.com/blog/auto-mode-default-in-claude-code\">Auto mode is now the default in Claude Code for Pro, Max, and Team plans</a></strong></p> Anthropic are <em>really</em> confident in Claude Code's <a href=\"https://code.claude.com/docs/en/auto-mode-config\">auto mode</a>, to the point that they are making it the default setting for new sessions in most Claude Code plans s",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "Now we have a timeline of the OpenAI accidental attack against Hugging Face",
-   "url": "https://simonwillison.net/2026/Aug/8/now-we-have-a-timeline-of-the-openai-accidental-attack-against-h/",
-   "date": "2026-08-08",
-   "summary": "<p><a href=\"https://news.ycombinator.com/item?id=49220609#49221745\">My comment</a> on <a href=\"https://news.ycombinator.com/item?id=49220609\">Now we have a timeline of the OpenAI accidental attack against Hugging Face</a> &mdash; Hacker News.</p><p>I think one of the most interesting details here might be tucked away in that first bullet point:</p> <blockquote> <p>May 7: OpenAI starts a new traini",
-   "source": "simonw",
-   "kind": "person"
-  },
-  {
-   "title": "[AINews] Zawinski's Law of MultiAgents",
-   "url": "https://www.latent.space/p/ainews-zawinskis-law-of-multiagents",
-   "date": "2026-08-08",
-   "summary": "a quiet day lets us find some connections among recent themes",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "[AINews] AMD buys Taalas",
-   "url": "https://www.latent.space/p/ainews-amd-buys-taalas",
-   "date": "2026-08-07",
-   "summary": "The Inference Inflection is HEATING up.",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "Responding to the next frontier of critical cyber capabilities",
-   "url": "https://openai.com/index/responding-next-frontier-critical-cyber-capabilities",
-   "date": "2026-08-07",
-   "summary": "OpenAI is sharing preliminary cybersecurity evaluations for Astra and the steps we’re taking to strengthen safeguards and security controls.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "How HSP GRUPPE builds AI capabilities for tax advisory",
-   "url": "https://openai.com/index/hsp-gruppe",
-   "date": "2026-08-07",
-   "summary": "Discover how HSP GRUPPE uses ChatGPT Enterprise to boost productivity, improve work quality, and create more capacity for tax advisory and client service.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Unifying Workers AI and AI Gateway into a single AI control plane",
-   "url": "https://blog.cloudflare.com/workers-ai-gateway-unification/",
-   "date": "2026-08-07",
-   "summary": "Cloudflare is unifying AI Gateway and Workers AI into a single control plane, giving developers observability, billing, and dynamic routing across both managed GPUs and external providers. Learn how unified bindings and model-first routing simplify building resilient AI applications.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "[AINews] Jeff, Sanjay, Oriol, and Quoc depart DeepMind; Demis to Chair; Koray to SVP — what is going on at GDM???",
-   "url": "https://www.latent.space/p/ainews-jeff-sanjay-oriol-and-quoc",
-   "date": "2026-08-06",
-   "summary": "The end of an era.",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "Improving GPT‑5.6 Sol in ChatGPT—and expanding access to GPT-5.6 Luna for free users",
-   "url": "https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt",
-   "date": "2026-08-06",
-   "summary": "ChatGPT introduces improved GPT-5.6 Sol with better accuracy and consistency, plus expanded access for free users and unlimited everyday chats with GPT-5.6 Luna.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Working with the American Psychological Association on youth mental health and AI",
-   "url": "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai",
-   "date": "2026-08-06",
-   "summary": "OpenAI and the American Psychological Association advance evidence-based guidance, resources, and safeguards for responsible AI use and youth mental health.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "From asking to doing: How the world is putting ChatGPT to work",
-   "url": "https://openai.com/index/how-the-world-is-putting-chatgpt-to-work",
-   "date": "2026-08-06",
-   "summary": "New OpenAI Signals data shows how people use ChatGPT worldwide, with country-level insights on adoption, usage trends, and evolving behavior.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "Cloudflare AI Search: give your agents a search engine for your data",
-   "url": "https://blog.cloudflare.com/ai-search-easier/",
-   "date": "2026-08-06",
-   "summary": "AI Search makes search easier than ever, with no Cloudflare primitives to stitch together. Point it at your data to create a search for your own files and websites. We're also sharing a preview of our new pricing model.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "The next generation of MCP",
-   "url": "https://blog.cloudflare.com/mcp-v2/",
-   "date": "2026-08-06",
-   "summary": "The next version of MCP has a rewritten, stateless core that just works on Workers. We cover upgrades to the protocol, the new feature lifecycle and SDK migration path, and hear from early adopters already running it in production.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "From ranking to recommended: get your site ready to thrive in the age of AI agents",
-   "url": "https://blog.cloudflare.com/aeo/",
-   "date": "2026-08-06",
-   "summary": "More than half of requests now come from machines, not people. Agent Readiness shows how well agents can discover and read your site, while Answer Engine Optimization tracks how often AI assistants recommend you.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "Building an open Agentic Internet: readable, discoverable, callable, and payable",
-   "url": "https://blog.cloudflare.com/the-agentic-internet/",
-   "date": "2026-08-06",
-   "summary": "Agents are a new kind of visitor. They don't render CSS or click ads, but they have a paying human on the other end. Block them and you block your customer. We're building the open tools and protocols so publishers and agents can cooperate and not collide.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "Introducing Kitesurf: The agent-first browser that runs in V8 isolates on Cloudflare Workers",
-   "url": "https://blog.cloudflare.com/kitesurf/",
-   "date": "2026-08-06",
-   "summary": "We should be giving all agents tools that excel at what’s important for an AI model. Kitesurf is Cloudflare’s new stateless, highly scalable, and cost-effective web browser that runs entirely on top of Workers and was designed specifically for the Agentic Cloud.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "Give any website a WebMCP interface",
-   "url": "https://blog.cloudflare.com/webmcp/",
-   "date": "2026-08-06",
-   "summary": "Today we're launching a developer preview of WebMCP on Cloudflare. With one switch, any site becomes usable by browser AI agents — no new APIs, no origin changes — while the human stays in control and creators keep their traffic.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "The /wait-what Skill",
-   "url": "https://www.aihero.dev/skills-wait-what",
-   "date": "2026-08-05",
-   "summary": "Ask the agent to say that again, in plain English.",
-   "source": "mattpocock",
-   "kind": "person"
-  },
-  {
-   "title": "v1.2: /wait-what, /writing-for-agents, Claude Code Plugin, and more",
-   "url": "https://www.aihero.dev/skills/skills-changelog-v12-wait-what-writing-for-agents-claude-code-plugin-and-more",
-   "date": "2026-08-05",
-   "summary": "Explore Matt Pocock's Skills v1.2.0: new documentation, Claude Code integration, the Wait What skill for Opus verbosity, and more.",
-   "source": "mattpocock",
-   "kind": "person"
-  },
-  {
-   "title": "[AINews] Megakernels are so dead and so back",
-   "url": "https://www.latent.space/p/ainews-megakernels-are-so-dead-and",
-   "date": "2026-08-05",
-   "summary": "A quiet day lets us highlight a Cursor launch and an engineering debate",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "Cloudflare is the only vendor named a Visionary in 2026 SASE and SSE reports",
-   "url": "https://blog.cloudflare.com/cloudflare-sase-sse-gartner-magic-quadrants-2026/",
-   "date": "2026-08-05",
-   "summary": "We're honored to announce that Cloudflare is the only vendor that has been recognized as a Visionary in both the 2026 Gartner® Magic Quadrant™ for SASE Platforms and the 2026 Gartner® Magic Quadrant™ for Security Service Edge reports.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "The Agent Access Model",
-   "url": "https://blog.cloudflare.com/the-agent-access-model/",
-   "date": "2026-08-05",
-   "summary": "The Agent Access Model proposes a new architecture to secure task-scoped agents using strict identity brokering, continuous mediation, and stateful trust.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "How we’re rethinking work at Cloudflare with Cloudflare OS",
-   "url": "https://blog.cloudflare.com/how-we-use-ai-with-cloudflare-os/",
-   "date": "2026-08-05",
-   "summary": "We built Cloudflare OS to equip our teams to safely rethink how they get work done with AI. The platform brings together the best of our technologies, from our Compute primitives to our Zero Trust suite. This post walks through our journey to give our users the best AI tools available.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "Cloudflare OS: an open platform for agents, apps, and work",
-   "url": "https://blog.cloudflare.com/cloudflare-os/",
-   "date": "2026-08-05",
-   "summary": "Cloudflare OS is an open-source platform that lets everyone in your company build apps, automate work, and safely access internal systems, shaped around what your organization knows and how it operates",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "Catching rogue AI behavior with identity-aware analytics",
-   "url": "https://blog.cloudflare.com/identity-aware-ai-gateway/",
-   "date": "2026-08-05",
-   "summary": "Identity-aware AI Gateway is now in open beta. User Insights turns that traffic into a behavioral baseline for every person and agent, and flags insider risk the moment it appears.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "Unpacking ChatGPT Work: the Agent for a Billion Users",
-   "url": "https://www.latent.space/p/unpacking-chatgpt-work",
-   "date": "2026-08-04",
-   "summary": "An external reconstruction of how Memory, Proactivity, Scheduling, Browser Use, Plugins, Skills and Tools work in the new ChatGPT Work.",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "[AINews] Qwen 3.8 Max(2.4T) and 27B, new open weights models for Coding and Cowork",
-   "url": "https://www.latent.space/p/ainews-qwen-38-max24t-and-27b-new",
-   "date": "2026-08-04",
-   "summary": "Qwen is so back!",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "Fragments: August 4",
-   "url": "https://martinfowler.com/fragments/2026-08-04.html",
-   "date": "2026-08-04",
-   "summary": "<p>There’s been a fair bit of publicity of the <a href=\"https://www.theguardian.com/technology/2026/jul/22/openai-says-its-models-went-rogue-and-hacked-startup-in-unprecedented-incident\">Open AI “rogue agent” that hacked into Hugging Face</a>. This prompted Anthropic to check what their models were up to and, to my complete lack of surprise, <a href=\"https://www.anthropic.com/news/investigating-in",
-   "source": "martin-fowler",
-   "kind": "publication"
-  },
-  {
-   "title": "Third-party cyber evaluations involving OpenAI models",
-   "url": "https://openai.com/index/third-party-cyber-evaluations-involving-openai-models",
-   "date": "2026-08-04",
-   "summary": "OpenAI explains recent third-party cybersecurity evaluation incidents and outlines new safeguards to strengthen AI model testing and evaluation.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "New ways to learn and teach with ChatGPT Work and Codex",
-   "url": "https://openai.com/index/learn-teach-chatgpt-work-codex",
-   "date": "2026-08-04",
-   "summary": "Explore new education plugins for ChatGPT Work and Codex that help K–12 teachers, college educators, and students learn, teach, research, and build.",
-   "source": "openai-news",
-   "kind": "vendor"
-  },
-  {
-   "title": "The latest AI news we announced in July 2026",
-   "url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026/",
-   "date": "2026-08-04",
-   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/July_AI_Recap_still.max-600x600.format-webp.webp\">Here are Google’s latest AI updates from July 2026",
-   "source": "google-ai-blog",
-   "kind": "vendor"
-  },
-  {
-   "title": "The Agent Development Lifecycle has arrived on Cloudflare",
-   "url": "https://blog.cloudflare.com/agent-development-lifecycle/",
-   "date": "2026-08-04",
-   "summary": "Agents can write code faster than teams can review, deploy, and maintain it. Today we’re introducing the Agent Development Lifecycle and the Cloudflare primitives that underpin it",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "Announcing Cloudflare Wallets: the programmable wallet for the agentic Internet",
-   "url": "https://blog.cloudflare.com/wallets/",
-   "date": "2026-08-04",
-   "summary": "Cloudflare Wallets will provide AI agents with native payments and verifiable identity on the web. Using the x402 protocol, agents can autonomously purchase APIs and content within clear safety guardrails.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "Run CI/CD for millions of repos — on your platform, on Cloudflare",
-   "url": "https://blog.cloudflare.com/ci-workflows/",
-   "date": "2026-08-04",
-   "summary": "Learn how to build customizable, sandboxed CI/CD pipelines natively on Cloudflare using Workflows, Artifacts, and the CI SDK. We walk through replacing complex YAML configurations with TypeScript workflow steps and self-healing AI agents.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "How Cloudflare enforces engineering standards using AI",
-   "url": "https://blog.cloudflare.com/engineering-standards-enforcement/",
-   "date": "2026-08-04",
-   "summary": "We created the Cloudflare Codex, a governed body of engineering standards that AI agents consume across the development lifecycle. By pairing structured RFCs with agentic reviews, teams automatically enforce consistency across code, specs, and incident reports.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "Introducing: Cloudflare Agents",
-   "url": "https://blog.cloudflare.com/agents-on-cloudflare/",
-   "date": "2026-08-04",
-   "summary": "Cloudflare Agents brings all of your deployed agent sessions into a single experience, surfacing key information and insights into how your agents perform at scale.",
-   "source": "cloudflare-ai",
-   "kind": "vendor"
-  },
-  {
-   "title": "LLM Heist: Hijacking LiteLLM for Traffic Interception, Key Theft, and Tool-Call Injection",
-   "url": "https://embracethered.com/blog/posts/2026/hijacking-litellm-for-fun-and-profit/",
-   "date": "2026-08-03",
-   "summary": "<p><a href=&#34;https://github.com/BerriAI/litellm&#34;>LiteLLM</a> is a popular AI gateway. It provides a unified interface to LLMs and simplifies governance. It also has access to the backend LLM provider keys.</p>&#xA;<p><strong>All of that makes it a high-value target.</strong> Not only for IP and data theft, but also for response modification and tool invocation.</p>&#xA;<p><a href=&#34;https",
-   "source": "embrace-the-red",
-   "kind": "research"
-  },
-  {
-   "title": "The Inference Engineering Masterclass — Philip Kiely & Ali Taha, Baseten",
-   "url": "https://www.latent.space/p/inference-eng",
-   "date": "2026-08-03",
-   "summary": "Baseten just raised a $13B Series F and is now one of the leading kings of inference engineering. We go into everything you need to know for autoregressive and diffusion engineering.",
-   "source": "latent-space",
-   "kind": "publication"
-  },
-  {
-   "title": "Inside our 353,000-person vibe coding course",
-   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/ai-agents-intensive-recap-2026/",
-   "date": "2026-08-03",
-   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Vibe_coding_course_hero.max-600x600.format-webp.webp\">Kaggle’s AI Agents Intensive with Google brought learners together in a no-cost course to build and deploy the next frontier of AI.",
-   "source": "google-ai-blog",
-   "kind": "vendor"
-  }
- ]
+  "swept_on": "2026-08-18",
+  "since": "2026-08-03",
+  "until": "2026-08-10",
+  "note": "One roster sweep on 2026-08-18 covering 2026-08-03..2026-08-17, split by item date into the two catch-up windows. The sweep is the record of what was visible when it ran, not of when each piece appeared.",
+  "items": [
+    {
+      "title": "Quoting Claude Opus 5 system prompt",
+      "url": "https://simonwillison.net/2026/Aug/9/claude-opus-5-system-prompt/",
+      "date": "2026-08-09",
+      "summary": "<blockquote cite=\"https://platform.claude.com/docs/en/release-notes/system-prompts#claude-opus-5\"><p>Claude Fable 5 and Claude Mythos 5 were first released on June 9, 2026. On June 12, 2026, Anthropic suspended access to both models to comply with U.S. Department of Commerce export controls; the Department lifted those controls on June 30, 2026, and Anthropic restored access on July 1, 2026 (Anthr",
+      "source": "simonw",
+      "kind": "person"
+    },
+    {
+      "title": "GitHub Models is now retired",
+      "url": "https://simonwillison.net/2026/Aug/9/github-models-is-now-retired/",
+      "date": "2026-08-09",
+      "summary": "<p><strong><a href=\"https://github.blog/changelog/2026-07-30-github-models-is-now-retired/\">GitHub Models is now retired</a></strong></p> I missed this news until today, when the GitHub Actions run for my <a href=\"https://github.com/simonw/research\">simonw/research</a> repository failed with this error message:</p> <blockquote> <p>GitHub Models is temporarily unavailable as part of a scheduled ret",
+      "source": "simonw",
+      "kind": "person"
+    },
+    {
+      "title": "SQLite compressed text-history prototypes",
+      "url": "https://simonwillison.net/2026/Aug/9/sqlite-text-history-prototype/",
+      "date": "2026-08-09",
+      "summary": "<p><strong>Research:</strong> <a href=\"https://github.com/simonw/research/tree/main/sqlite-text-history-prototype#readme\">SQLite compressed text-history prototypes</a></p> <p>I'm perennially interested in options for storing revision histories in relational databases. While out on a dog walk I had a new idea: how about taking the full text of every prior version in a big JSON array of strings and ",
+      "source": "simonw",
+      "kind": "person"
+    },
+    {
+      "title": "Auto mode is now the default in Claude Code for Pro, Max, and Team plans",
+      "url": "https://simonwillison.net/2026/Aug/8/auto-mode/",
+      "date": "2026-08-08",
+      "summary": "<p><strong><a href=\"https://claude.com/blog/auto-mode-default-in-claude-code\">Auto mode is now the default in Claude Code for Pro, Max, and Team plans</a></strong></p> Anthropic are <em>really</em> confident in Claude Code's <a href=\"https://code.claude.com/docs/en/auto-mode-config\">auto mode</a>, to the point that they are making it the default setting for new sessions in most Claude Code plans s",
+      "source": "simonw",
+      "kind": "person"
+    },
+    {
+      "title": "Now we have a timeline of the OpenAI accidental attack against Hugging Face",
+      "url": "https://simonwillison.net/2026/Aug/8/now-we-have-a-timeline-of-the-openai-accidental-attack-against-h/",
+      "date": "2026-08-08",
+      "summary": "<p><a href=\"https://news.ycombinator.com/item?id=49220609#49221745\">My comment</a> on <a href=\"https://news.ycombinator.com/item?id=49220609\">Now we have a timeline of the OpenAI accidental attack against Hugging Face</a> &mdash; Hacker News.</p><p>I think one of the most interesting details here might be tucked away in that first bullet point:</p> <blockquote> <p>May 7: OpenAI starts a new traini",
+      "source": "simonw",
+      "kind": "person"
+    },
+    {
+      "title": "[AINews] Zawinski's Law of MultiAgents",
+      "url": "https://www.latent.space/p/ainews-zawinskis-law-of-multiagents",
+      "date": "2026-08-08",
+      "summary": "a quiet day lets us find some connections among recent themes",
+      "source": "latent-space",
+      "kind": "publication"
+    },
+    {
+      "title": "[AINews] AMD buys Taalas",
+      "url": "https://www.latent.space/p/ainews-amd-buys-taalas",
+      "date": "2026-08-07",
+      "summary": "The Inference Inflection is HEATING up.",
+      "source": "latent-space",
+      "kind": "publication"
+    },
+    {
+      "title": "Responding to the next frontier of critical cyber capabilities",
+      "url": "https://openai.com/index/responding-next-frontier-critical-cyber-capabilities",
+      "date": "2026-08-07",
+      "summary": "OpenAI is sharing preliminary cybersecurity evaluations for Astra and the steps we’re taking to strengthen safeguards and security controls.",
+      "source": "openai-news",
+      "kind": "vendor"
+    },
+    {
+      "title": "How HSP GRUPPE builds AI capabilities for tax advisory",
+      "url": "https://openai.com/index/hsp-gruppe",
+      "date": "2026-08-07",
+      "summary": "Discover how HSP GRUPPE uses ChatGPT Enterprise to boost productivity, improve work quality, and create more capacity for tax advisory and client service.",
+      "source": "openai-news",
+      "kind": "vendor"
+    },
+    {
+      "title": "Unifying Workers AI and AI Gateway into a single AI control plane",
+      "url": "https://blog.cloudflare.com/workers-ai-gateway-unification/",
+      "date": "2026-08-07",
+      "summary": "Cloudflare is unifying AI Gateway and Workers AI into a single control plane, giving developers observability, billing, and dynamic routing across both managed GPUs and external providers. Learn how unified bindings and model-first routing simplify building resilient AI applications.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "[AINews] Jeff, Sanjay, Oriol, and Quoc depart DeepMind; Demis to Chair; Koray to SVP — what is going on at GDM???",
+      "url": "https://www.latent.space/p/ainews-jeff-sanjay-oriol-and-quoc",
+      "date": "2026-08-06",
+      "summary": "The end of an era.",
+      "source": "latent-space",
+      "kind": "publication"
+    },
+    {
+      "title": "Improving GPT‑5.6 Sol in ChatGPT—and expanding access to GPT-5.6 Luna for free users",
+      "url": "https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt",
+      "date": "2026-08-06",
+      "summary": "ChatGPT introduces improved GPT-5.6 Sol with better accuracy and consistency, plus expanded access for free users and unlimited everyday chats with GPT-5.6 Luna.",
+      "source": "openai-news",
+      "kind": "vendor"
+    },
+    {
+      "title": "Working with the American Psychological Association on youth mental health and AI",
+      "url": "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai",
+      "date": "2026-08-06",
+      "summary": "OpenAI and the American Psychological Association advance evidence-based guidance, resources, and safeguards for responsible AI use and youth mental health.",
+      "source": "openai-news",
+      "kind": "vendor"
+    },
+    {
+      "title": "From asking to doing: How the world is putting ChatGPT to work",
+      "url": "https://openai.com/index/how-the-world-is-putting-chatgpt-to-work",
+      "date": "2026-08-06",
+      "summary": "New OpenAI Signals data shows how people use ChatGPT worldwide, with country-level insights on adoption, usage trends, and evolving behavior.",
+      "source": "openai-news",
+      "kind": "vendor"
+    },
+    {
+      "title": "Cloudflare AI Search: give your agents a search engine for your data",
+      "url": "https://blog.cloudflare.com/ai-search-easier/",
+      "date": "2026-08-06",
+      "summary": "AI Search makes search easier than ever, with no Cloudflare primitives to stitch together. Point it at your data to create a search for your own files and websites. We're also sharing a preview of our new pricing model.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "The next generation of MCP",
+      "url": "https://blog.cloudflare.com/mcp-v2/",
+      "date": "2026-08-06",
+      "summary": "The next version of MCP has a rewritten, stateless core that just works on Workers. We cover upgrades to the protocol, the new feature lifecycle and SDK migration path, and hear from early adopters already running it in production.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "From ranking to recommended: get your site ready to thrive in the age of AI agents",
+      "url": "https://blog.cloudflare.com/aeo/",
+      "date": "2026-08-06",
+      "summary": "More than half of requests now come from machines, not people. Agent Readiness shows how well agents can discover and read your site, while Answer Engine Optimization tracks how often AI assistants recommend you.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "Building an open Agentic Internet: readable, discoverable, callable, and payable",
+      "url": "https://blog.cloudflare.com/the-agentic-internet/",
+      "date": "2026-08-06",
+      "summary": "Agents are a new kind of visitor. They don't render CSS or click ads, but they have a paying human on the other end. Block them and you block your customer. We're building the open tools and protocols so publishers and agents can cooperate and not collide.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "Introducing Kitesurf: The agent-first browser that runs in V8 isolates on Cloudflare Workers",
+      "url": "https://blog.cloudflare.com/kitesurf/",
+      "date": "2026-08-06",
+      "summary": "We should be giving all agents tools that excel at what’s important for an AI model. Kitesurf is Cloudflare’s new stateless, highly scalable, and cost-effective web browser that runs entirely on top of Workers and was designed specifically for the Agentic Cloud.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "Give any website a WebMCP interface",
+      "url": "https://blog.cloudflare.com/webmcp/",
+      "date": "2026-08-06",
+      "summary": "Today we're launching a developer preview of WebMCP on Cloudflare. With one switch, any site becomes usable by browser AI agents — no new APIs, no origin changes — while the human stays in control and creators keep their traffic.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "The /wait-what Skill",
+      "url": "https://www.aihero.dev/skills-wait-what",
+      "date": "2026-08-05",
+      "summary": "Ask the agent to say that again, in plain English.",
+      "source": "mattpocock",
+      "kind": "person"
+    },
+    {
+      "title": "v1.2: /wait-what, /writing-for-agents, Claude Code Plugin, and more",
+      "url": "https://www.aihero.dev/skills/skills-changelog-v12-wait-what-writing-for-agents-claude-code-plugin-and-more",
+      "date": "2026-08-05",
+      "summary": "Explore Matt Pocock's Skills v1.2.0: new documentation, Claude Code integration, the Wait What skill for Opus verbosity, and more.",
+      "source": "mattpocock",
+      "kind": "person"
+    },
+    {
+      "title": "[AINews] Megakernels are so dead and so back",
+      "url": "https://www.latent.space/p/ainews-megakernels-are-so-dead-and",
+      "date": "2026-08-05",
+      "summary": "A quiet day lets us highlight a Cursor launch and an engineering debate",
+      "source": "latent-space",
+      "kind": "publication"
+    },
+    {
+      "title": "Cloudflare is the only vendor named a Visionary in 2026 SASE and SSE reports",
+      "url": "https://blog.cloudflare.com/cloudflare-sase-sse-gartner-magic-quadrants-2026/",
+      "date": "2026-08-05",
+      "summary": "We're honored to announce that Cloudflare is the only vendor that has been recognized as a Visionary in both the 2026 Gartner® Magic Quadrant™ for SASE Platforms and the 2026 Gartner® Magic Quadrant™ for Security Service Edge reports.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "The Agent Access Model",
+      "url": "https://blog.cloudflare.com/the-agent-access-model/",
+      "date": "2026-08-05",
+      "summary": "The Agent Access Model proposes a new architecture to secure task-scoped agents using strict identity brokering, continuous mediation, and stateful trust.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "How we’re rethinking work at Cloudflare with Cloudflare OS",
+      "url": "https://blog.cloudflare.com/how-we-use-ai-with-cloudflare-os/",
+      "date": "2026-08-05",
+      "summary": "We built Cloudflare OS to equip our teams to safely rethink how they get work done with AI. The platform brings together the best of our technologies, from our Compute primitives to our Zero Trust suite. This post walks through our journey to give our users the best AI tools available.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "Cloudflare OS: an open platform for agents, apps, and work",
+      "url": "https://blog.cloudflare.com/cloudflare-os/",
+      "date": "2026-08-05",
+      "summary": "Cloudflare OS is an open-source platform that lets everyone in your company build apps, automate work, and safely access internal systems, shaped around what your organization knows and how it operates",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "Catching rogue AI behavior with identity-aware analytics",
+      "url": "https://blog.cloudflare.com/identity-aware-ai-gateway/",
+      "date": "2026-08-05",
+      "summary": "Identity-aware AI Gateway is now in open beta. User Insights turns that traffic into a behavioral baseline for every person and agent, and flags insider risk the moment it appears.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "Unpacking ChatGPT Work: the Agent for a Billion Users",
+      "url": "https://www.latent.space/p/unpacking-chatgpt-work",
+      "date": "2026-08-04",
+      "summary": "An external reconstruction of how Memory, Proactivity, Scheduling, Browser Use, Plugins, Skills and Tools work in the new ChatGPT Work.",
+      "source": "latent-space",
+      "kind": "publication"
+    },
+    {
+      "title": "[AINews] Qwen 3.8 Max(2.4T) and 27B, new open weights models for Coding and Cowork",
+      "url": "https://www.latent.space/p/ainews-qwen-38-max24t-and-27b-new",
+      "date": "2026-08-04",
+      "summary": "Qwen is so back!",
+      "source": "latent-space",
+      "kind": "publication"
+    },
+    {
+      "title": "Fragments: August 4",
+      "url": "https://martinfowler.com/fragments/2026-08-04.html",
+      "date": "2026-08-04",
+      "summary": "<p>There’s been a fair bit of publicity of the <a href=\"https://www.theguardian.com/technology/2026/jul/22/openai-says-its-models-went-rogue-and-hacked-startup-in-unprecedented-incident\">Open AI “rogue agent” that hacked into Hugging Face</a>. This prompted Anthropic to check what their models were up to and, to my complete lack of surprise, <a href=\"https://www.anthropic.com/news/investigating-in",
+      "source": "martin-fowler",
+      "kind": "publication"
+    },
+    {
+      "title": "Third-party cyber evaluations involving OpenAI models",
+      "url": "https://openai.com/index/third-party-cyber-evaluations-involving-openai-models",
+      "date": "2026-08-04",
+      "summary": "OpenAI explains recent third-party cybersecurity evaluation incidents and outlines new safeguards to strengthen AI model testing and evaluation.",
+      "source": "openai-news",
+      "kind": "vendor"
+    },
+    {
+      "title": "New ways to learn and teach with ChatGPT Work and Codex",
+      "url": "https://openai.com/index/learn-teach-chatgpt-work-codex",
+      "date": "2026-08-04",
+      "summary": "Explore new education plugins for ChatGPT Work and Codex that help K–12 teachers, college educators, and students learn, teach, research, and build.",
+      "source": "openai-news",
+      "kind": "vendor"
+    },
+    {
+      "title": "The latest AI news we announced in July 2026",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026/",
+      "date": "2026-08-04",
+      "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/July_AI_Recap_still.max-600x600.format-webp.webp\">Here are Google’s latest AI updates from July 2026",
+      "source": "google-ai-blog",
+      "kind": "vendor"
+    },
+    {
+      "title": "The Agent Development Lifecycle has arrived on Cloudflare",
+      "url": "https://blog.cloudflare.com/agent-development-lifecycle/",
+      "date": "2026-08-04",
+      "summary": "Agents can write code faster than teams can review, deploy, and maintain it. Today we’re introducing the Agent Development Lifecycle and the Cloudflare primitives that underpin it",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "Announcing Cloudflare Wallets: the programmable wallet for the agentic Internet",
+      "url": "https://blog.cloudflare.com/wallets/",
+      "date": "2026-08-04",
+      "summary": "Cloudflare Wallets will provide AI agents with native payments and verifiable identity on the web. Using the x402 protocol, agents can autonomously purchase APIs and content within clear safety guardrails.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "Run CI/CD for millions of repos — on your platform, on Cloudflare",
+      "url": "https://blog.cloudflare.com/ci-workflows/",
+      "date": "2026-08-04",
+      "summary": "Learn how to build customizable, sandboxed CI/CD pipelines natively on Cloudflare using Workflows, Artifacts, and the CI SDK. We walk through replacing complex YAML configurations with TypeScript workflow steps and self-healing AI agents.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "How Cloudflare enforces engineering standards using AI",
+      "url": "https://blog.cloudflare.com/engineering-standards-enforcement/",
+      "date": "2026-08-04",
+      "summary": "We created the Cloudflare Codex, a governed body of engineering standards that AI agents consume across the development lifecycle. By pairing structured RFCs with agentic reviews, teams automatically enforce consistency across code, specs, and incident reports.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "Introducing: Cloudflare Agents",
+      "url": "https://blog.cloudflare.com/agents-on-cloudflare/",
+      "date": "2026-08-04",
+      "summary": "Cloudflare Agents brings all of your deployed agent sessions into a single experience, surfacing key information and insights into how your agents perform at scale.",
+      "source": "cloudflare-ai",
+      "kind": "vendor"
+    },
+    {
+      "title": "LLM Heist: Hijacking LiteLLM for Traffic Interception, Key Theft, and Tool-Call Injection",
+      "url": "https://embracethered.com/blog/posts/2026/hijacking-litellm-for-fun-and-profit/",
+      "date": "2026-08-03",
+      "summary": "<p><a href=&#34;https://github.com/BerriAI/litellm&#34;>LiteLLM</a> is a popular AI gateway. It provides a unified interface to LLMs and simplifies governance. It also has access to the backend LLM provider keys.</p>&#xA;<p><strong>All of that makes it a high-value target.</strong> Not only for IP and data theft, but also for response modification and tool invocation.</p>&#xA;<p><a href=&#34;https",
+      "source": "embrace-the-red",
+      "kind": "research"
+    },
+    {
+      "title": "The Inference Engineering Masterclass — Philip Kiely & Ali Taha, Baseten",
+      "url": "https://www.latent.space/p/inference-eng",
+      "date": "2026-08-03",
+      "summary": "Baseten just raised a $13B Series F and is now one of the leading kings of inference engineering. We go into everything you need to know for autoregressive and diffusion engineering.",
+      "source": "latent-space",
+      "kind": "publication"
+    },
+    {
+      "title": "Inside our 353,000-person vibe coding course",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/ai-agents-intensive-recap-2026/",
+      "date": "2026-08-03",
+      "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Vibe_coding_course_hero.max-600x600.format-webp.webp\">Kaggle’s AI Agents Intensive with Google brought learners together in a no-cost course to build and deploy the next frontier of AI.",
+      "source": "google-ai-blog",
+      "kind": "vendor"
+    }
+  ]
 }

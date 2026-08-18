@@ -1,0 +1,32 @@
+{
+ "source": "mattpocock",
+ "feed": "https://www.aihero.dev/rss.xml",
+ "swept_on": "2026-08-18",
+ "since": "2026-08-03",
+ "items": [
+  {
+   "title": "The /wizard Skill",
+   "url": "https://www.aihero.dev/skills-wizard",
+   "date": "2026-08-11",
+   "summary": "Generate a script that walks a human through setup."
+  },
+  {
+   "title": "The /to-questionnaire Skill",
+   "url": "https://www.aihero.dev/skills-to-questionnaire",
+   "date": "2026-08-11",
+   "summary": "Turn open questions into a doc someone else fills in."
+  },
+  {
+   "title": "The /wait-what Skill",
+   "url": "https://www.aihero.dev/skills-wait-what",
+   "date": "2026-08-05",
+   "summary": "Ask the agent to say that again, in plain English."
+  },
+  {
+   "title": "v1.2: /wait-what, /writing-for-agents, Claude Code Plugin, and more",
+   "url": "https://www.aihero.dev/skills/skills-changelog-v12-wait-what-writing-for-agents-claude-code-plugin-and-more",
+   "date": "2026-08-05",
+   "summary": "Explore Matt Pocock's Skills v1.2.0: new documentation, Claude Code integration, the Wait What skill for Opus verbosity, and more."
+  }
+ ]
+}

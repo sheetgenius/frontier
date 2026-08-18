@@ -1,0 +1,98 @@
+{
+ "source": "lwn",
+ "feed": "https://lwn.net/headlines/rss",
+ "swept_on": "2026-08-18",
+ "since": "2026-08-03",
+ "items": [
+  {
+   "title": "[$] Development statistics for the 7.2 kernel",
+   "url": "https://lwn.net/Articles/1088776/",
+   "date": "2026-08-17",
+   "summary": "Linus Torvalds <a href=\"https://lwn.net/ml/all/CAHk-=wjk5StpAmUKHacj=GPKwA88y_YRHK=i_YAJFgmxn1=k4w@mail.gmail.com/\">released the 7.2 kernel</a> on August&#160;17, after noting that the number of fixes coming in was still \"<q>bigger than I would have wished for</q>\". In fact, 7.2 was one of the busiest development cycles in the kernel's history, adding nearly 600,000 lines of code. It's time to loo"
+  },
+  {
+   "title": "[$] Bootstrappable builds: how and why",
+   "url": "https://lwn.net/Articles/1088279/",
+   "date": "2026-08-17",
+   "summary": "<a href=\"https://2026.fossy.ca/\">This year's edition of the Free and Open Source Software Yearly conference</a>, better known as \"FOSSY\", moved north to the beautiful (and enormous) campus of the University of British Columbia (UBC) in Vancouver, Canada from its home for the three previous editions: Portland, Oregon, in the US. There were many different types of talks at FOSSY, from deeply technic"
+  },
+  {
+   "title": "GNU poke 5.0 released",
+   "url": "https://lwn.net/Articles/1089211/",
+   "date": "2026-08-17",
+   "summary": "<p>Version 5.0 of <a href=\"https://www.jemarch.net/poke\">GNU Poke</a>, a binary-data editor, has been released. This release includes a number of improvements to the Poke compiler, additions to the Poke language, as well as runtime and standard library updates. See below for the full list of changes.</p>"
+  },
+  {
+   "title": "Mark J. Wielaard receives Distinguished Service Award in Software Freedom",
+   "url": "https://lwn.net/Articles/1089208/",
+   "date": "2026-08-17",
+   "summary": "<p>The <a href=\"https://sfconservancy.org/\">Software Freedom Conservancy</a> has <a href=\"https://sfconservancy.org/news/2026/aug/12/mark-j-wielaard-receives-2-annual-award/\">announced</a> that Mark J. Wielaard has been honored with the second annual Distinguished Service Award in Software Freedom for his many years of service to software freedom.</p> <blockquote class=\"bq\"> Mark is one of many ke"
+  },
+  {
+   "title": "Security updates for Monday",
+   "url": "https://lwn.net/Articles/1089205/",
+   "date": "2026-08-17",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 8.0, .NET 9.0, bind, dracut, freerdp, gnome-remote-desktop, kernel, and nghttp2), <b>Debian</b> (apr-util, docker.io, ironic, neutron, postgresql-15, unzip, and util-linux), <b>Fedora</b> (chromium, jfrog-cli, jrnl, libgsasl, libsoup3, pdns, pdns-recursor, perl-Archive-Tar, php-pear-PHP-CodeSniffer, rust-bat, rust-git-delta, rust-git-inte"
+  },
+  {
+   "title": "The 7.2 kernel has been released",
+   "url": "https://lwn.net/Articles/1088991/",
+   "date": "2026-08-16",
+   "summary": "The <a href=\"https://lwn.net/Articles/1089033/\">7.2 kernel</a> has been released. Linus said: <p> <blockquote class=\"bq\"> Well, this last week of the release was - once again - bigger than I would have wished for, but hey, with the whole \"new normal\" thing, if I delayed releases for that reason we'd probably never have a release at all. </blockquote> <p> Significant features in this release includ"
+  },
+  {
+   "title": "[$] BPF, continuous testing, and stable kernels",
+   "url": "https://lwn.net/Articles/1087823/",
+   "date": "2026-08-14",
+   "summary": "<p> Ihor Solodrai and Shung-Hsi Yu wrapped up the BPF track at the 2026 <a href=\"https://events.linuxfoundation.org/lsfmmbpf/\"> Linux Storage, Filesystem, Memory-Management, and BPF Summit</a> with a pair of sessions related to testing. Solodrai spoke about what has changed for BPF's continuous-integration (CI) testing. Yu spoke about what may be needed to test BPF updates in stable kernels more t"
+  },
+  {
+   "title": "Python packaging council candidates announced",
+   "url": "https://lwn.net/Articles/1088920/",
+   "date": "2026-08-14",
+   "summary": "<p>The Python Software Foundation (PSF) has <a href=\"https://pyfound.blogspot.com/2026/08/announcing-packaging-council-election.html\">announced</a> the <a href=\"https://www.python.org/nominations/elections/2026-python-packaging-council/nominees/\">candidates</a> running for the Python packaging council that was <a href=\"https://lwn.net/Articles/1068704/\">approved by the Python steering council in A"
+  },
+  {
+   "title": "Security updates for Friday",
+   "url": "https://lwn.net/Articles/1088919/",
+   "date": "2026-08-14",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 10.0, .NET 8.0, .NET 9.0, bind, bind9.16, and dracut), <b>Debian</b> (apr-util, chromium, postgresql-17, python-httplib2, unzip, and zip), <b>Fedora</b> (erlang-cowboy, erlang-cowlib, flatpak, and libnfs), <b>Gentoo</b> (Apache HTTPD, Bubblewrap, Dnsmasq, Exim, Flatpak, libinput, and rsync), <b>Mageia</b> (dhcpcd, qemu, and roundcubemail)"
+  },
+  {
+   "title": "Domas: Bypassing memory protection with AMD's memory controllers",
+   "url": "https://lwn.net/Articles/1088778/",
+   "date": "2026-08-13",
+   "summary": "<p> Christopher Domas has <a href=\"https://github.com/xoreaxeaxeax/skitter-creek-bath-salts#skitter-creek-bath-salts\">published</a> a proof of concept with a description showing how to use AMD memory controllers' bank swizzle mode to bypass memory protection and read or write arbitrary data, including CPU microcode definitions and memory belonging to the <a href=\"https://en.wikipedia.org/wiki/AMD_"
+  },
+  {
+   "title": "rsync 3.5.0 released",
+   "url": "https://lwn.net/Articles/1088759/",
+   "date": "2026-08-13",
+   "summary": "<p><a href=\"https://download.samba.org/pub/rsync/NEWS#3.5.0\">Version 3.5.0</a> of rsync has been released with a <a href=\"https://download.samba.org/pub/rsync/NEWS#SECURITY_FIXES-3.5.0\">huge number of security fixes</a>:</p> <blockquote class=\"bq\"> This release fixes 33 security issues found during a focused audit of rsync's path handling and daemon protocol, a companion daemon-protocol fuzzing pa"
+  },
+  {
+   "title": "[$] 128-Bit page tables for Arm",
+   "url": "https://lwn.net/Articles/1088125/",
+   "date": "2026-08-13",
+   "summary": "The size of a processor's page-table entries directly limits how much physical memory that processor is able to access. Back in the 32-bit days, that limit was 4GB, an amount of memory that once seemed nearly infinite, but which would now struggle to hold a basic AI-enabled \"hello world\" app. The expansion to 64&#160;bits on most popular architectures would seem to have removed those limits now; s"
+  },
+  {
+   "title": "Security updates for Thursday",
+   "url": "https://lwn.net/Articles/1088715/",
+   "date": "2026-08-13",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (abrt, dhcpcd, edk2, freerdp, gegl04, grafana, gstreamer1-plugins-good, iscsi-initiator-utils, isns-utils, kernel, kernel-rt, keylime, libarchive, libyang, nodejs-nodemon, opencryptoki, osbuild-composer, pacemaker, postgresql-jdbc, postgresql18, python-idna, python3.9, udisks2, valkey, vim, xorg-x11-server-Xwayland, and yggdrasil-worker-package"
+  },
+  {
+   "title": "[$] LWN.net Weekly Edition for August 13, 2026",
+   "url": "https://lwn.net/Articles/1087432/",
+   "date": "2026-08-13",
+   "summary": "Inside this week's LWN.net Weekly Edition: <p> <ul> <li> <a href=\"https://lwn.net/Articles/1087432/\">Front</a>: BPF and binfmt_misc; CrossPoint ebook firmware; KVM planes; BPF formal verification; shadow-utils; new storage-code testing features. <li> <a href=\"https://lwn.net/Articles/1087434/\">Briefs</a>: Django releases; GNOME shell; LightDM 1.33.0; QEMU 11.1; uutils 0.10; Software Stewardship La"
+  },
+  {
+   "title": "[$] Block-layer error injection",
+   "url": "https://lwn.net/Articles/1086344/",
+   "date": "2026-08-12",
+   "summary": "<p>Storage code has to cope with hardware that fails in inconvenient ways, but coaxing a healthy disk into producing those failures on demand, for testing, is usually not possible. The kernel provides several ways to inject block-layer <span class=\"nobreak\">I/O</span> errors, but none of those can select the operation to fail, pick the status code to return, or target a disk directly without emplo"
+  }
+ ]
+}

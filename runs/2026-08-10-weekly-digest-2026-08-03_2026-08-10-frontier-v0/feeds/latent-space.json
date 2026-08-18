@@ -1,0 +1,98 @@
+{
+ "source": "latent-space",
+ "feed": "https://www.latent.space/feed",
+ "swept_on": "2026-08-18",
+ "since": "2026-08-03",
+ "items": [
+  {
+   "title": "[AINews] Stripe buys OpenRouter for $7B",
+   "url": "https://www.latent.space/p/ainews-stripe-buys-openrouter-for",
+   "date": "2026-08-17",
+   "summary": "No GPUs, no Agents, just really, really, really good infra and distribution."
+  },
+  {
+   "title": "React for Agents: Astro Creator Brings Hooks to his Meta-Harness, Flue",
+   "url": "https://www.latent.space/p/flue-2",
+   "date": "2026-08-15",
+   "summary": "Flue 2 takes its inspiration from React. Creator Fred Schott, of Astro fame, tells Latent Space why he added hooks and why agents are defined by their harnesses."
+  },
+  {
+   "title": "[AINews] Cursor's $60B acquisition by SpaceXai closes",
+   "url": "https://www.latent.space/p/ainews-cursors-60b-acquisition-by",
+   "date": "2026-08-14",
+   "summary": "Congrats to the team!"
+  },
+  {
+   "title": "[AINews] Gemini 3.7 Flash brings GDM back to the forefront",
+   "url": "https://www.latent.space/p/ainews-gemini-37-flash-brings-gdm",
+   "date": "2026-08-14",
+   "summary": "Down, but not out!"
+  },
+  {
+   "title": "[AINews] SpaceXAI Grok 4.6 and Grok @Bot",
+   "url": "https://www.latent.space/p/ainews-spacexai-grok-46-and-grok",
+   "date": "2026-08-13",
+   "summary": "AI teammate category just had its most significant new entrant yet"
+  },
+  {
+   "title": "[AINews] How to steal a Reasoning Trace",
+   "url": "https://www.latent.space/p/ainews-how-to-steal-a-reasoning-trace",
+   "date": "2026-08-12",
+   "summary": "Speculative Decoding by any other name would distil as sweet"
+  },
+  {
+   "title": "🔬The BioAI Phase Shift - Matthew McPartlon & Neil Patil, Chai Discovery",
+   "url": "https://www.latent.space/p/chai-discovery",
+   "date": "2026-08-11",
+   "summary": "Pharma is suddenly paying for Bio &#215; AI tools, and Chai is leading the pack with four deals closed this summer. Cofounder Matt McPartlon and Product leader Neil Patil explain why."
+  },
+  {
+   "title": "[AINews] Muse Glimmer and Spark: Open Weights return Personal Superintelligence promise",
+   "url": "https://www.latent.space/p/ainews-muse-glimmer-and-spark-open",
+   "date": "2026-08-11",
+   "summary": "a small win for american open models - Glimmer runs on a fits on a single RTX 3090!"
+  },
+  {
+   "title": "[AINews] Zawinski's Law of MultiAgents",
+   "url": "https://www.latent.space/p/ainews-zawinskis-law-of-multiagents",
+   "date": "2026-08-08",
+   "summary": "a quiet day lets us find some connections among recent themes"
+  },
+  {
+   "title": "[AINews] AMD buys Taalas",
+   "url": "https://www.latent.space/p/ainews-amd-buys-taalas",
+   "date": "2026-08-07",
+   "summary": "The Inference Inflection is HEATING up."
+  },
+  {
+   "title": "[AINews] Jeff, Sanjay, Oriol, and Quoc depart DeepMind; Demis to Chair; Koray to SVP — what is going on at GDM???",
+   "url": "https://www.latent.space/p/ainews-jeff-sanjay-oriol-and-quoc",
+   "date": "2026-08-06",
+   "summary": "The end of an era."
+  },
+  {
+   "title": "[AINews] Megakernels are so dead and so back",
+   "url": "https://www.latent.space/p/ainews-megakernels-are-so-dead-and",
+   "date": "2026-08-05",
+   "summary": "A quiet day lets us highlight a Cursor launch and an engineering debate"
+  },
+  {
+   "title": "Unpacking ChatGPT Work: the Agent for a Billion Users",
+   "url": "https://www.latent.space/p/unpacking-chatgpt-work",
+   "date": "2026-08-04",
+   "summary": "An external reconstruction of how Memory, Proactivity, Scheduling, Browser Use, Plugins, Skills and Tools work in the new ChatGPT Work."
+  },
+  {
+   "title": "[AINews] Qwen 3.8 Max(2.4T) and 27B, new open weights models for Coding and Cowork",
+   "url": "https://www.latent.space/p/ainews-qwen-38-max24t-and-27b-new",
+   "date": "2026-08-04",
+   "summary": "Qwen is so back!"
+  },
+  {
+   "title": "The Inference Engineering Masterclass — Philip Kiely & Ali Taha, Baseten",
+   "url": "https://www.latent.space/p/inference-eng",
+   "date": "2026-08-03",
+   "summary": "Baseten just raised a $13B Series F and is now one of the leading kings of inference engineering. We go into everything you need to know for autoregressive and diffusion engineering."
+  }
+ ]
+}

@@ -1,0 +1,128 @@
+{
+ "source": "cloudflare-ai",
+ "feed": "https://blog.cloudflare.com/tag/ai/rss/",
+ "swept_on": "2026-08-18",
+ "since": "2026-08-03",
+ "items": [
+  {
+   "title": "How Cloudflare detects MCP traffic and helps secure it",
+   "url": "https://blog.cloudflare.com/mcp-security-updates/",
+   "date": "2026-08-14",
+   "summary": "Cloudflare Gateway identifies MCP requests using protocol-level heuristics. Security teams can use that signal to find shadow MCP traffic, enforce Portal-only access for approved servers, and block direct connections on managed network paths."
+  },
+  {
+   "title": "Secure all your internal vibe-coded applications — in one click",
+   "url": "https://blog.cloudflare.com/workers-protected-by-access/",
+   "date": "2026-08-14",
+   "summary": "Introducing Cloudflare Access for Workers. Attach an Access policy directly to a Worker and it applies everywhere that Worker runs — routes, custom domains, workers.dev, and previews — automatically."
+  },
+  {
+   "title": "Everything we launched during Agents Week",
+   "url": "https://blog.cloudflare.com/agents-week-review-august-2026/",
+   "date": "2026-08-10",
+   "summary": "Our latest Agents Week has come to a close. Here’s a recap of all the announcements we made from Wallets to Radar."
+  },
+  {
+   "title": "Unifying Workers AI and AI Gateway into a single AI control plane",
+   "url": "https://blog.cloudflare.com/workers-ai-gateway-unification/",
+   "date": "2026-08-07",
+   "summary": "Cloudflare is unifying AI Gateway and Workers AI into a single control plane, giving developers observability, billing, and dynamic routing across both managed GPUs and external providers. Learn how unified bindings and model-first routing simplify building resilient AI applications."
+  },
+  {
+   "title": "Cloudflare AI Search: give your agents a search engine for your data",
+   "url": "https://blog.cloudflare.com/ai-search-easier/",
+   "date": "2026-08-06",
+   "summary": "AI Search makes search easier than ever, with no Cloudflare primitives to stitch together. Point it at your data to create a search for your own files and websites. We're also sharing a preview of our new pricing model."
+  },
+  {
+   "title": "The next generation of MCP",
+   "url": "https://blog.cloudflare.com/mcp-v2/",
+   "date": "2026-08-06",
+   "summary": "The next version of MCP has a rewritten, stateless core that just works on Workers. We cover upgrades to the protocol, the new feature lifecycle and SDK migration path, and hear from early adopters already running it in production."
+  },
+  {
+   "title": "From ranking to recommended: get your site ready to thrive in the age of AI agents",
+   "url": "https://blog.cloudflare.com/aeo/",
+   "date": "2026-08-06",
+   "summary": "More than half of requests now come from machines, not people. Agent Readiness shows how well agents can discover and read your site, while Answer Engine Optimization tracks how often AI assistants recommend you."
+  },
+  {
+   "title": "Building an open Agentic Internet: readable, discoverable, callable, and payable",
+   "url": "https://blog.cloudflare.com/the-agentic-internet/",
+   "date": "2026-08-06",
+   "summary": "Agents are a new kind of visitor. They don't render CSS or click ads, but they have a paying human on the other end. Block them and you block your customer. We're building the open tools and protocols so publishers and agents can cooperate and not collide."
+  },
+  {
+   "title": "Introducing Kitesurf: The agent-first browser that runs in V8 isolates on Cloudflare Workers",
+   "url": "https://blog.cloudflare.com/kitesurf/",
+   "date": "2026-08-06",
+   "summary": "We should be giving all agents tools that excel at what’s important for an AI model. Kitesurf is Cloudflare’s new stateless, highly scalable, and cost-effective web browser that runs entirely on top of Workers and was designed specifically for the Agentic Cloud."
+  },
+  {
+   "title": "Give any website a WebMCP interface",
+   "url": "https://blog.cloudflare.com/webmcp/",
+   "date": "2026-08-06",
+   "summary": "Today we're launching a developer preview of WebMCP on Cloudflare. With one switch, any site becomes usable by browser AI agents — no new APIs, no origin changes — while the human stays in control and creators keep their traffic."
+  },
+  {
+   "title": "Cloudflare is the only vendor named a Visionary in 2026 SASE and SSE reports",
+   "url": "https://blog.cloudflare.com/cloudflare-sase-sse-gartner-magic-quadrants-2026/",
+   "date": "2026-08-05",
+   "summary": "We're honored to announce that Cloudflare is the only vendor that has been recognized as a Visionary in both the 2026 Gartner® Magic Quadrant™ for SASE Platforms and the 2026 Gartner® Magic Quadrant™ for Security Service Edge reports."
+  },
+  {
+   "title": "The Agent Access Model",
+   "url": "https://blog.cloudflare.com/the-agent-access-model/",
+   "date": "2026-08-05",
+   "summary": "The Agent Access Model proposes a new architecture to secure task-scoped agents using strict identity brokering, continuous mediation, and stateful trust."
+  },
+  {
+   "title": "How we’re rethinking work at Cloudflare with Cloudflare OS",
+   "url": "https://blog.cloudflare.com/how-we-use-ai-with-cloudflare-os/",
+   "date": "2026-08-05",
+   "summary": "We built Cloudflare OS to equip our teams to safely rethink how they get work done with AI. The platform brings together the best of our technologies, from our Compute primitives to our Zero Trust suite. This post walks through our journey to give our users the best AI tools available."
+  },
+  {
+   "title": "Cloudflare OS: an open platform for agents, apps, and work",
+   "url": "https://blog.cloudflare.com/cloudflare-os/",
+   "date": "2026-08-05",
+   "summary": "Cloudflare OS is an open-source platform that lets everyone in your company build apps, automate work, and safely access internal systems, shaped around what your organization knows and how it operates"
+  },
+  {
+   "title": "Catching rogue AI behavior with identity-aware analytics",
+   "url": "https://blog.cloudflare.com/identity-aware-ai-gateway/",
+   "date": "2026-08-05",
+   "summary": "Identity-aware AI Gateway is now in open beta. User Insights turns that traffic into a behavioral baseline for every person and agent, and flags insider risk the moment it appears."
+  },
+  {
+   "title": "The Agent Development Lifecycle has arrived on Cloudflare",
+   "url": "https://blog.cloudflare.com/agent-development-lifecycle/",
+   "date": "2026-08-04",
+   "summary": "Agents can write code faster than teams can review, deploy, and maintain it. Today we’re introducing the Agent Development Lifecycle and the Cloudflare primitives that underpin it"
+  },
+  {
+   "title": "Announcing Cloudflare Wallets: the programmable wallet for the agentic Internet",
+   "url": "https://blog.cloudflare.com/wallets/",
+   "date": "2026-08-04",
+   "summary": "Cloudflare Wallets will provide AI agents with native payments and verifiable identity on the web. Using the x402 protocol, agents can autonomously purchase APIs and content within clear safety guardrails."
+  },
+  {
+   "title": "Run CI/CD for millions of repos — on your platform, on Cloudflare",
+   "url": "https://blog.cloudflare.com/ci-workflows/",
+   "date": "2026-08-04",
+   "summary": "Learn how to build customizable, sandboxed CI/CD pipelines natively on Cloudflare using Workflows, Artifacts, and the CI SDK. We walk through replacing complex YAML configurations with TypeScript workflow steps and self-healing AI agents."
+  },
+  {
+   "title": "How Cloudflare enforces engineering standards using AI",
+   "url": "https://blog.cloudflare.com/engineering-standards-enforcement/",
+   "date": "2026-08-04",
+   "summary": "We created the Cloudflare Codex, a governed body of engineering standards that AI agents consume across the development lifecycle. By pairing structured RFCs with agentic reviews, teams automatically enforce consistency across code, specs, and incident reports."
+  },
+  {
+   "title": "Introducing: Cloudflare Agents",
+   "url": "https://blog.cloudflare.com/agents-on-cloudflare/",
+   "date": "2026-08-04",
+   "summary": "Cloudflare Agents brings all of your deployed agent sessions into a single experience, surfacing key information and insights into how your agents perform at scale."
+  }
+ ]
+}
