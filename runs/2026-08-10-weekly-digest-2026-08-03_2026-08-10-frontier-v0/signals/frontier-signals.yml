@@ -1,0 +1,202 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-08-10-weekly-digest-2026-08-03_2026-08-10-frontier-v0
+window:
+  start: 2026-08-03
+  end: 2026-08-10
+note: >
+  Seven signals from sixty findings across seventeen sources, the first window to
+  include DeepSeek Harness and OMP. The shared movement is the approval boundary,
+  and it moved in both directions in the same seven days.
+
+  In one direction: four separate harnesses shipped fixes for defects where the
+  check an operator saw and the action a machine took had come apart. A shell
+  command could hide part of itself from the prompt that was supposed to display
+  it. A malformed allowlist entry auto-approved everything rather than failing
+  closed. Admin controls for one protocol did not apply for the first five
+  minutes of every session. A context file could be replaced by any directory the
+  agent walked into, before the trust decision that was meant to govern it.
+
+  In the other direction, and in the same week: vendors argued in public that the
+  human click is itself the weak control, and shipped defaults that route around
+  it. That argument is not obviously wrong, which is why it is the story rather
+  than the defects. The receipts do not settle whether a classifier is a better
+  gate than a person. They settle something narrower and harder to dismiss: for
+  this fortnight, the dialog people were being asked to stop trusting could also
+  be shown less than what ran.
+
+  The capability half is real and is recorded here rather than as decoration.
+  Two projects moved authority the other way, making a class of write always stop
+  for a human and letting an operator mark a server untrusted so every
+  write-capable tool asks.
+
+signals:
+
+  - id: 2026-08-10-claude-code-commands-could-hide-from-their-own-prompt
+    status: accepted
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "Shell commands could hide part of themselves from the approval prompt, in the fortnight the prompt stopped being the default"
+    finding_ids:
+      - 2026-08-10-claude-code-claude-code-shell-commands-could-hide-part-of-themselves-from-the
+    summary: >
+      Four holes of one shape closed across v2.1.221 and v2.1.223: a Bash
+      permission-check bypass where zsh could execute hidden commands inside
+      regex conditionals, PowerShell checks mishandling paths containing quote
+      characters on Windows, a crafted command that could hide parts of itself
+      from the permission check, and commands padded with tabs or invisible
+      Unicode hiding part of themselves from the approval dialog. A fifth defect
+      of a different shape landed in v2.1.224: sandbox deny entries written with
+      a trailing slash, such as denyRead for a credentials directory, were
+      silently bypassable on Linux and macOS. Channel is the npm publish record
+      rather than git ancestry, because the source is closed; the versions are
+      plain semver under the latest dist-tag.
+    why_action_bearing:
+      - "Upgrade past 2.1.224, then re-read your own sandbox deny rules for trailing slashes. That defect invalidated configuration an operator wrote and believed in, and nothing surfaced the failure."
+      - "Approval logs from before this window are evidence of what was asked, not of what ran. If you retain transcripts for audit, the recorded approval and the executed command can differ, and no artifact you hold identifies which sessions were affected."
+      - "Enumerate custom agent definitions: a separate fix closed an agent definition whose bypass mode ignored an organisation policy that had disabled it."
+    receipts:
+      - url: https://code.claude.com/docs/en/changelog#2-1-223
+        precision: official_changelog
+
+  - id: 2026-08-10-antigravity-allowlist-failed-open
+    status: accepted
+    section: control-plane
+    source: antigravity
+    channel: tagged-release
+    title: "A malformed allowlist entry auto-approved every command, and admin controls did not apply for the first five minutes of a session"
+    finding_ids:
+      - 2026-08-10-antigravity-1-1-11-discloses-that-a-malformed-allowlist-entry-auto-approved-every
+      - 2026-08-10-antigravity-1-1-11-mcp-admin-controls-were-skipped-for-the-first-five-minutes-of
+    summary: >
+      Both were disclosed by the vendor in the 1.1.11 release notes. The first is
+      the canonical fail-open: a rule that was supposed to narrow what runs, when
+      written incorrectly, widened it to everything. The second is a window
+      rather than a rule, and windows are worse to reason about, because the
+      control was present and correct and simply did not apply yet.
+    why_action_bearing:
+      - "A deny or allow list is only a control if a malformed entry fails closed. Test yours with a deliberately broken rule and confirm the result is a refusal rather than a permit."
+      - "Any short-lived session that ran under five minutes was, for its whole life, a session where the protocol admin controls did not apply. CI jobs and scripted runs are exactly that shape."
+    receipts:
+      - url: https://github.com/google-antigravity/antigravity-cli/releases/tag/1.1.11
+        precision: github_release
+
+  - id: 2026-08-10-codex-approve-for-me-puts-a-model-in-the-seat
+    status: accepted
+    section: control-plane
+    source: codex
+    channel: tagged-release
+    title: "Codex ships a flag that puts a model, not a human, in the approval seat, and says so in its name"
+    finding_ids:
+      - 2026-08-10-codex-approve-for-me-puts-a-model-not-a-human-in-the-approval
+    summary: >
+      The flag routes approvals through automatic review and pins workspace-write
+      as the default. It is named honestly, which matters: this is the same
+      substitution several vendors are making, stated plainly rather than buried
+      in a default. Note the ordering caveat from the merged PR: later subcommand
+      permission overrides are preserved, so the flag does not unconditionally
+      determine the effective policy.
+    why_action_bearing:
+      - "Decide deliberately whether a model reviewing a model is the control you want, and write it down. This is the choice of the fortnight, and taking it by default is different from taking it on purpose."
+      - "Do not describe the flag as having the final say. Later subcommand overrides still apply, so the effective policy is a composition rather than a single setting."
+    receipts:
+      - url: https://github.com/openai/codex/pull/36373
+        precision: merged_pr
+
+  - id: 2026-08-10-pi-context-file-replaceable-before-trust
+    status: accepted
+    section: control-plane
+    source: pi-coding-agent
+    channel: tagged-release
+    title: "Any directory can replace the operator's context file, and it loads before project trust is resolved"
+    finding_ids:
+      - 2026-08-10-pi-coding-agent-agents-override-md-lets-any-directory-replace-the-operator-s-context
+      - 2026-08-10-pi-coding-agent-pi-auth-check-adds-a-third-command-that-prints-a-live-provider
+    summary: >
+      An override file in a directory replaces the operator's own context file,
+      and it is read before the trust decision that is supposed to gate what a
+      repository may do. That is the same shape as the defect this publication
+      recorded when a workspace-trust backend read its trust value out of the
+      workspace it was guarding: a guard consulting the thing it guards. Carried
+      with it, because it is the same window and the same source: a third command
+      now prints a live provider credential to stdout, and none of the three is
+      gated from the agent's own shell tool.
+    why_action_bearing:
+      - "Treat cloning an untrusted repository as an action that can change your agent's instructions before you have decided to trust it."
+      - "The credential commands are ungated from the tool the agent itself drives, so an agent that can run a shell can print your provider token. There are now three such commands where the last window recorded two, which is movement in the wrong direction."
+    receipts:
+      - url: https://github.com/earendil-works/pi/pull/7681
+        precision: merged_pr
+
+  - id: 2026-08-10-paperclip-standard-trust-write-access
+    status: accepted
+    section: platform
+    source: paperclip
+    channel: tagged-release
+    title: "Standard-trust agents got default-open write access to any company-visible issue they can read"
+    finding_ids:
+      - 2026-08-10-paperclip-standard-trust-agents-got-default-open-write-access-to-any-company
+    summary: >
+      Read access and write access were coupled at the default trust level: an
+      agent that could see an issue could also write to it. On a platform whose
+      whole proposition is many agents inside one organisation, the blast radius
+      of a default is the number of agents, not the number of people.
+    why_action_bearing:
+      - "Audit what your standard-trust agents can see, because in this release that set is also what they can change."
+      - "This is the platform-shaped version of the window's argument: the authority question is not only what an agent may do to a machine, but what it may do to the shared record an organisation is coordinating on."
+    receipts:
+      - url: https://github.com/paperclipai/paperclip/pull/10804
+        precision: merged_pr
+
+  - id: 2026-08-10-openclaw-boundary-fix-on-no-stable-channel
+    status: accepted
+    section: control-plane
+    source: openclaw
+    channel: preview-or-beta
+    title: "The workspace-boundary fix is on neither stable channel, and the one that moved this window still ships without it"
+    finding_ids:
+      - 2026-08-10-openclaw-openclaw-s-extended-stable-moved-to-2026-6-34-in-the-window-and-still
+    summary: >
+      The fix closes a symlink-then-parent-directory bypass in the sandbox path
+      assertion. It merged to the default branch on 2026-07-27. Checked by
+      ancestry against every non-prerelease tag, it is in none of them, and
+      confirmed at file level: the published tarballs for both stable dist-tags
+      contain neither of the functions the fix introduces, while the beta tarball
+      does. The extended-stable line moved during this window, eight days after
+      the fix merged, and moved without it, because that line diverged in June
+      and later publishing on it cannot deliver the fix.
+    why_action_bearing:
+      - "Re-audit rather than upgrade-and-relax. Both stable channels are checkable in one command: neither published tarball contains the new path-resolution functions."
+      - "Do not treat the sandbox path assertion as the barrier between an agent and the rest of the host on a stable channel. Keep agent workspaces on filesystems you would be willing to expose."
+      - "Watch for the first non-prerelease tag on the 2026.8 line. That is the earliest point the fix can reach a stable channel."
+    receipts:
+      - url: https://github.com/openclaw/openclaw/compare/v2026.7.1-2...cc027149e553ff4be1afe2ca9cc3de9ccdea6f68
+        precision: git_compare
+      - url: https://github.com/openclaw/openclaw/pull/113405
+        precision: merged_pr
+
+  - id: 2026-08-10-authority-moved-toward-the-human-too
+    status: accepted
+    section: control-plane
+    source: hermes-agent
+    channel: tagged-release
+    title: "Two projects moved authority back toward the human in the same week, and one of them made a class of write always stop"
+    finding_ids:
+      - 2026-08-10-hermes-agent-writes-to-agents-md-claude-md-and-soul-md-now-always-stop-for-a
+      - 2026-08-10-hermes-agent-mcp-servers-can-be-marked-untrusted-and-every-write-capable-tool-then
+      - 2026-08-10-codex-codex-now-demands-an-explicit-trust-decision-for-unfamiliar-project
+    summary: >
+      Writes to the agent instruction files now always stop for a human, which is
+      the precise counter-move to the defect two other sources shipped fixes for
+      this window: if the instruction file is the thing an untrusted directory
+      can replace, then making writes to it unconditionally interactive removes
+      the class rather than patching an instance. Alongside it, servers can be
+      marked untrusted, after which every write-capable tool asks. Codex made a
+      smaller version of the same move by demanding an explicit trust decision
+      for unfamiliar project directories.
+    why_action_bearing:
+      - "This is the half of the window that a defect-only reading misses, and it points at a design rule worth copying: pick the file class that changes agent behaviour and make writing to it unconditionally interactive, rather than enumerating the ways it can be reached."
+      - "If you run servers you did not write, the untrusted marking is a real setting to turn on rather than a posture statement."
+    receipts:
+      - url: https://github.com/NousResearch/hermes-agent/releases
+        precision: github_release
