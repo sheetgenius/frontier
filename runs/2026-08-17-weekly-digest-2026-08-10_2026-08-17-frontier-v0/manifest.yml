@@ -3,7 +3,7 @@ run_id: 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0
 id: 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0
 title: The Gate Is a Plugin
 mode: weekly_digest
-status: in_progress
+status: complete
 window:
   start: 2026-08-10
   end: 2026-08-17
@@ -53,6 +53,11 @@ notes: >
 finding_count: 119
 signal_count: 8
 outputs:
+  digest:
+    - content/digests/2026-08-10_2026-08-17-weekly.md
+  profiles:
+    - content/profiles/deepseek-harness.md
+    - content/profiles/omp.md
   findings: 119
   signals:
     - signals/frontier-signals.yml
