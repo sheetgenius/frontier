@@ -1,0 +1,149 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-08-10-weekly-digest-2026-08-03_2026-08-10-frontier-v0
+note: >
+  Field discipline. `summary` and `verdict` are OUR words about a post. Only
+  `verbatim` holds the poster's own text, and only `verbatim` may be rendered
+  as a quotation. Every `verbatim` here was re-fetched by URL in a capture pass
+  that was given no expected text to anchor on, and the discovery gist was
+  deliberately withheld from that pass so it could not be matched toward.
+  Fifteen posts went in and fifteen came back; none was reconstructed.
+
+  Typographic punctuation inside `verbatim` is preserved exactly as published,
+  including a missing space after a full stop in one post and a trailing space in
+  another. The ASCII house style governs our prose, never someone else's words.
+
+  `inline` fragments are cut out of `verbatim` by anchors with
+  ops/social/slice-quote.mjs and never retyped. `verdict` is written for the
+  specific post and says whether it is a claim we adjudicated or a voice we only
+  report was raised.
+cards:
+  - id: lydia-auto-safer-than-both
+    title: "The official posture, stated plainly"
+    kind: claim
+    date: 2026-08-07
+    date_precision: day
+    captured_on: 2026-08-18
+    source_ids: [claude-code]
+    authors: ["lydiahallie"]
+    display_name: "Lydia Hallie ✨"
+    source_urls:
+      - https://x.com/lydiahallie/status/2085799128857272783
+    verbatim: |
+      👀 auto mode is safer than --dangerously-skip-permissions *and* manually approving everything
+    inline: "auto mode is safer than --dangerously-skip-permissions *and* manually approving everything"
+    summary: >
+      A Claude Code maintainer arguing that auto mode is safer than both the bypass flag and approving by hand.
+    verdict: >
+      A claim post, and the one the window turns on. It is the parent of the thread the rest of this section quotes, and it is here at full strength rather than trimmed, because an issue that reports the receipts without the argument they answer is prosecuting rather than reporting. The comparison it makes is adjudicated against the changelog below, not against our opinion of it.
+  - id: lydia-dsp-doesnt-check
+    title: "What auto mode does that the bypass flag does not"
+    kind: claim
+    date: 2026-08-08
+    date_precision: day
+    captured_on: 2026-08-18
+    source_ids: [claude-code]
+    authors: ["lydiahallie"]
+    display_name: "Lydia Hallie ✨"
+    source_urls:
+      - https://x.com/lydiahallie/status/2086117097923625332
+    verbatim: |
+      dsp just doesn't check at all. auto mode blocks destructive actions you didn't ask Claude to take (eg rm -rf can be fine but depends on your task) and screens tool results for prompt injection. but for most tasks you still won't see permission prompts, same as dsp!
+    inline: "dsp just doesn't check at all."
+    summary: >
+      The same maintainer answering a user who asked how auto mode is safer than the bypass flag.
+    verdict: >
+      A claim post. The mechanism it describes -- blocking destructive work the operator did not ask for, screening tool results for injection -- is checkable and we checked it. The last clause is the one an operator should sit with: for most tasks you still will not see prompts.
+  - id: elia-boundaries-not-stored
+    title: "The layer you are being asked to trust"
+    kind: voice
+    date: 2026-08-08
+    date_precision: day
+    captured_on: 2026-08-18
+    source_ids: [claude-code]
+    authors: ["EliaAlberti"]
+    display_name: "EliaAlberti"
+    source_urls:
+      - https://x.com/EliaAlberti/status/2086128186929066255
+    verbatim: |
+      what that leaves out though is that the boundaries you state in chat aren’t stored as rules. the classifier re-reads them from the transcript on every check, so if compaction drops the message where you said “don’t push”, the boundary goes with it. silently.
+    inline: "the boundaries you state in chat aren’t stored as rules. the classifier re-reads them from the transcript on every check"
+    summary: >
+      An engineer replying in the same thread, on where a spoken boundary actually lives.
+    verdict: >
+      A voice post: we assert only that he made this argument. It is not the same defect as anything in the changelog, and we are not claiming he scooped it. He is describing a memory property of the classifier; the release notes describe a display property of the dialog. They rhyme, which is why the section carries both.
+  - id: elia-conversational-layer-soft
+    title: "Which layer is the hard one"
+    kind: voice
+    date: 2026-08-08
+    date_precision: day
+    captured_on: 2026-08-18
+    source_ids: [claude-code]
+    authors: ["EliaAlberti"]
+    display_name: "EliaAlberti"
+    source_urls:
+      - https://x.com/EliaAlberti/status/2086128269506510859
+    verbatim: |
+      docs recommend a deny rule for a hard guarantee, which means the conversational layer is the soft one. most people will assume the opposite.
+    inline: "docs recommend a deny rule for a hard guarantee, which means the conversational layer is the soft one."
+    summary: >
+      The same engineer, on what the documentation implies about the conversational layer.
+    verdict: >
+      A voice post. It reads the vendor documentation rather than the code, and it is here because it states the inversion this whole window is about in one sentence: the layer people treat as authoritative is the soft one.
+  - id: lydia-fork-copies-session
+    title: "The week also shipped more room to work"
+    kind: claim
+    date: 2026-08-03
+    date_precision: day
+    captured_on: 2026-08-18
+    source_ids: [claude-code]
+    authors: ["lydiahallie"]
+    display_name: "Lydia Hallie ✨"
+    source_urls:
+      - https://x.com/lydiahallie/status/2084315112840810897
+    verbatim: |
+      icymi we recently changed how /fork works in Claude Code, it now copies your session into a new background session while you keep working in the current one
+      
+      the old behavior (an in-session subagent that reports back) is now available as /subtask!
+    inline: "it now copies your session into a new background session while you keep working in the current one"
+    summary: >
+      The capability half of the same window, announced by the same maintainer.
+    verdict: >
+      A claim post, adjudicated against the release record. It is in the issue because a window reported as nothing but approval holes is a defect log, and this is the same fortnight deliberately widening what the agent can operate.
+  - id: simonw-haiku-webfetch
+    title: "Which model is in the seat"
+    kind: voice
+    date: 2026-08-10
+    date_precision: day
+    captured_on: 2026-08-18
+    source_ids: [claude-code]
+    authors: ["simonw"]
+    display_name: "Simon Willison"
+    source_urls:
+      - https://x.com/simonw/status/2086931955539742985
+    verbatim: |
+      Claude Haiku is my current least favorite model - it hallucinates wildly, and is out-performed now by other similarly priced models like GPT-5.6-Luna
+      
+      Even worse: it seems to still be used by the Claude Code WebFetch tool, which means hallucination risk any time you fetch a URL!
+    inline: "it seems to still be used by the Claude Code WebFetch tool, which means hallucination risk any time you fetch a URL!"
+    summary: >
+      A practitioner on the model behind a built-in tool, and what it costs him.
+    verdict: >
+      A voice post about a model preference, paired below with the maintainer reply that answers it. On its own it is an opinion; what makes it belong in this issue is the answer it got.
+  - id: trq-removing-haiku-webfetch
+    title: "The default changes what the default runs"
+    kind: claim
+    date: 2026-08-10
+    date_precision: day
+    captured_on: 2026-08-18
+    source_ids: [claude-code]
+    authors: ["trq212"]
+    display_name: "Thariq"
+    source_urls:
+      - https://x.com/trq212/status/2086944777363448210
+    verbatim: |
+      we're working on removing Haiku from WebFetch now that automode is default
+    inline: "working on removing Haiku from WebFetch now that automode is default"
+    summary: >
+      The reply, tying a model change in a built-in tool to auto mode becoming the default.
+    verdict: >
+      A claim post and the sharpest thing in the window, because it is a consequence stated by the team rather than inferred by us: once the human is out of the click, which model sits in the seat becomes a decision the vendor revisits.
