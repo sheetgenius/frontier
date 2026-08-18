@@ -197,3 +197,89 @@ conversation reads to the people inside it and we cannot. Editorial authority
 stays here and every product claim still clears the primary record, but "which
 post carries this argument" and "where would our framing read as an outsider"
 are questions it is better placed to answer than we are.
+
+## Amendment, 2026-08-18: both working ledes were wrong
+
+Grok was brought in as a collaborator while the shape was still open, given the
+verified spine and all 41 posts, and told to disagree. It did, on both ledes,
+and it was right both times. The full read is archived at
+`runs/2026-08-18-x-social-harvest-.../grok/editorial-consult.md`. Two of the
+corrections are to sentences already written into this plan, so they are
+recorded here rather than quietly dropped.
+
+**Correction 1. Elia did not scoop the changelog.** This plan said he "described
+the mechanism before the changelog admitted it." That does not survive anyone
+opening both links. He described a memory problem in the classifier: stated
+limits are not stored as rules, the classifier rereads the transcript, and
+compaction can drop an instruction with no signal. The changelog admitted a
+display problem in the approval dialog, an allowlist that failed open, and a
+five-minute window where MCP admin controls were skipped. Those rhyme. They are
+not the same bug. The defensible sentence is that he named the layer the vendor
+is asking operators to trust, and called it the soft one.
+
+**Correction 2. The W2 lede was built on a phrase that is not in the post.**
+This plan had the OpenClaw maintainer moving his work off a rival harness
+"because talking to the agent spun up cloud sessions he did not ask for." He
+wrote the opposite: he moved TO OpenClaw, and the cloud sessions are the feature
+he was recommending, in his own product. Framing that against a frozen npm tag
+is two unrelated facts held together by the word "default." The
+against-consensus tag on that post is also wrong and is withdrawn: a maintainer
+preferring his own harness is not a contrarian position.
+
+**Corrected ledes.**
+
+- W1 opens on the Claude Code maintainer answering, in public, how auto mode is
+  safer than the bypass flag: skip does not check at all. Capture the parent
+  too, where she stands on a study of 1,053 testers who caught a clearly
+  dangerous prompt 13.6 percent of the time against the classifier's 89. Quoting
+  only the reply makes us look like we arrived in the middle of the thread.
+  Frame it against v2.1.221 and v2.1.223, the Antigravity allowlist that
+  auto-approved every command, and Codex putting a model in the approval seat.
+  The week was not "users discovered the prompt was lying." It was a vendor
+  telling operators that taking the click away is the safety improvement. That
+  is a claim a receipt can turn; a complaint is not.
+- W2 opens on a Pi maintainer calling DeepSeek Harness unfinished and still the
+  first new harness that made him want to reopen his own design choices. Frame
+  it against the DSH kernel: the approval gate is itself a plugin that a later
+  plugin can prepend to, and nothing authenticates the Web UI.
+
+**W2's thesis moves, and the channel finding goes to the operator brief.** "The
+default channel stopped moving" is what we learned by resolving git ancestry. It
+is the correct brief and it is not the editorial. Between 08-13 and 08-17 the
+harness timeline was one event, and an issue led on npm tags would read as
+having missed it. The issue is the kernel: a plugin can prepend to the thing
+that was supposed to stop it.
+
+**Both halves, W1.** An issue of only approval holes is a defect log. The
+capability half is the same maintainer's `/fork` post: the session copies, the
+old in-session reporter becomes `/subtask`. Frame against `AGENTS.override.md`
+loading before trust resolves and standard-trust agents getting default-open
+write to any company-visible issue. More surface for the agent to operate, on
+purpose, in the same week the approval seat is handed to a classifier. One
+story, not two.
+
+**Do not put the OMP maintainer in the DeepSeek section.** His
+"we have not followed Pi since March" line is 81 views, dated 08-05, and answers
+a direct question about staying in sync. It belongs in the OMP profile, where it
+closes an open question written into `sources/omp.yml` at intake. His other line,
+that a notebook-style kernel "is not an innovation," is about a different
+project entirely; placing it near DeepSeek would make him look like he is
+dunking on them. That is adjacency-as-prosecution and the no-pile-on rule exists
+for exactly it. At most one of his five posts, in the OMP note.
+
+**Capture the parents, not just the replies.** The Lydia thread's parent with the
+study, and the architecture essay that Mario is actually correcting. Quoting a
+correction without the claim it corrects is how a publication sounds like it
+walked into the room for the last sentence.
+
+**Titles on the table.** W1: "Shown Less Than Ran" (preferred), "The Classifier
+Rereads", "Safer Than You". W2: "The Gate Is a Plugin" (preferred), "Everything
+Loads First", "The Kernel Has No Privilege".
+
+**The argument we were missing**, and it is worth a section rather than a line:
+who is allowed to rewrite the harness, in what language, and at what time. Our
+receipts cover whether authority binds. The conversation is about self-extension
+as a design bet, skills-versus-plugins as a language bet, and portable
+instruction files as the layer that survives swapping the harness. That last one
+is this publication's own thesis happening in public, and W1 holds the receipt
+that turns it: `AGENTS.override.md` loads before project trust is resolved.

@@ -1,0 +1,172 @@
+You are collaborating on two issues of Bitter Frontier, a receipted editorial publication about coding agents and their harnesses. You are not fetching for me. I want your editorial judgement, and specifically the judgement you have that I do not: you can see how this conversation actually reads to the people in it.
+
+HOUSE RULES THAT CONSTRAIN BOTH OF US:
+- Every product fact needs a primary-source receipt. A post is a receipt for what somebody SAID, never for what is true.
+- Released is not merged. We state the channel an operator can actually run, resolved by git ancestry.
+- Posts come in two kinds and we never blur them. A CLAIM post asserts something about a product and must be adjudicated against the primary record before it appears as fact. A VOICE post is somebody take, frustration, framing or joke, and we assert only that they said it.
+- We criticise claims, never people. No pile-on, no accumulating corrections of the same person.
+- House style is ASCII punctuation, no em dashes, operator-first, no hype and no sneer.
+
+WHAT WE VERIFIED (this is the grounded spine of both issues; nine claims survived an adversarial refutation pass untouched, five were corrected by it and the corrected form is what we may publish):
+
+== WINDOW 1: 2026-08-03 to 2026-08-10 ==
+Working thesis: the approval prompt stopped describing the action. What the human was shown and what the machine did came apart, in several harnesses at once, in the same fortnight.
+- [corrected] Approval checks could be shown less than what ran; Claude Code closed four such holes in v2.1.221 and v2.1.223
+- [confirmed] 1.1.11 discloses that a malformed allowlist entry auto-approved every command
+- [confirmed] 1.1.11: MCP admin controls were skipped for the first five minutes of every session
+- [confirmed] `--approve-for-me` puts a model, not a human, in the approval seat
+- [confirmed] `AGENTS.override.md` lets any directory replace the operator's context file — and it loads before project trust is resolved
+- [confirmed] Standard-trust agents got default-open write access to any company-visible issue they can read
+- [corrected] OpenClaw published four stable releases in the window and the workspace-boundary fix is on none of them
+
+== WINDOW 2: 2026-08-10 to 2026-08-17 ==
+Working thesis: the default channel stopped moving while the work continued. Not "you cannot install it" (we got that wrong and a verifier caught it), but that the thing you get by default is no longer the thing everyone is writing about.
+- [confirmed] Everything is a plugin, including the components that enforce the limits — the approval gate is a waterfall a plugin can prepend to
+- [confirmed] Nothing authenticates the Web UI on 127.0.0.1:3080, and the /api fence says so in its own header comment
+- [corrected] Claude Code stable sits seven releases behind latest, so this window permission-bypass and credential fixes are not on it
+- [corrected] Codex shipped no stable release for ten days: nineteen 0.148.0 alphas and 422 commits with npm latest frozen at 0.147.0 (the alpha line IS installable via @alpha)
+- [corrected] Agent Zero SSRF fix for CVE-2026-4308 was lost in a plugin refactor and shipped broken through 11 stable releases
+- [confirmed] Fifteen out of fifteen destructive Windows commands passed approval silently
+- [confirmed] Approved exec could run different bytes than the ones you approved
+
+Other verified material available: Pi print-api-key and print-bearer-token are still ungated from the agent own shell tool and there are now three such commands; Hermes made writes to AGENTS.md/CLAUDE.md/SOUL.md always stop for a human, and can mark MCP servers untrusted; Codex now demands an explicit trust decision for unfamiliar directories; DeepSeek Harness approval gate is itself a plugin and nothing authenticates its Web UI on 127.0.0.1:3080; OMP tags v17.3.6 and v17.3.7 carry a filesystem-write broker reachable only through Nix; Omnigent worktree_guard fix reached a tag in ten hours.
+
+THE POSTS FROM YOUR SWEEP (41; kind, stance, whether it cuts against consensus, and the gist in your own words):
+
+[@alading22 | 2026-08-13 | voice | comparison | AGAINST-CONSENSUS]
+  They argued Pi starts from a few primitives and lets the rest grow, while DeepSeek Harness keeps stuffing every important-looking part into the bag and still has no destination.
+  https://x.com/alading22/status/2087917100929278285
+[@mitsuhiko | 2026-08-14 | voice | praise | MAINTAINER]
+  A Pi maintainer said the new DeepSeek runtime is not finished, but it is the first fresh harness in a while that made him want to reopen design choices in his own stack.
+  https://x.com/mitsuhiko/status/2088189145952731317
+[@tianyi | 2026-08-14 | voice | comparison | AGAINST-CONSENSUS | MAINTAINER]
+  A DeepSeek Harness engineer said many of their own researchers already live in Pi day to day, and that DSH reused Pi's non-DeepSeek model adapter rather than replacing it.
+  https://x.com/tianyi/status/2088306143772946499
+[@tianyi | 2026-08-13 | claim | announcement | MAINTAINER]
+  He said the MIT drop is labeled 0.1.0, called it a developer preview aimed at harness builders, and warned it still has a lot of rough edges.
+  https://x.com/tianyi/status/2087888089759015218
+[@badlogicgames | 2026-08-14 | voice | comparison | AGAINST-CONSENSUS | MAINTAINER]
+  Mario said DSH's architecture is neat, but that Pi agents already do the same self-extension work today, just with different trade-offs rather than a new category.
+  https://x.com/badlogicgames/status/2088234017808089556
+[@badlogicgames | 2026-08-14 | claim | praise | AGAINST-CONSENSUS | MAINTAINER]
+  He said Pi can grow its own extensions when it finds a gap, and that he does not know of a single extension that a human actually wrote.
+  https://x.com/badlogicgames/status/2088219926494421230
+[@mitsuhiko | 2026-08-16 | voice | comparison | AGAINST-CONSENSUS | MAINTAINER]
+  He said he barely uses Claude Code now and deleted the Claude-specific instruction files, then found that pointing Claude Code at the shared AGENTS.md files was good enough when he had to debug a possible Pi regression.
+  https://x.com/mitsuhiko/status/2088900774466105797
+[@verysmallwoods | 2026-08-17 | voice | comparison | AGAINST-CONSENSUS]
+  After building DSH plugins, they said the OpenClaw/Hermes/Codex/Claude-Code era trained people to extend agents in natural language, and that DeepSeek's plugin kernel pulls engineers back into writing code.
+  https://x.com/verysmallwoods/status/2089144422172680591
+[@_can1357 | 2026-08-05 | claim | comparison | AGAINST-CONSENSUS | MAINTAINER]
+  Asked whether OMP would stay in sync with upstream Pi, the maintainer said it has not followed Pi since about March, has diverged until it barely relates, and only keeps a legacy extension API.
+  https://x.com/_can1357/status/2084995219372544029
+[@_can1357 | 2026-08-07 | voice | announcement | MAINTAINER]
+  He said OMP's config philosophy is that his own settings are the defaults, and pointed people at an experimental shared session for a non-default setup.
+  https://x.com/_can1357/status/2085549576946102493
+[@_can1357 | 2026-08-07 | claim | criticism | MAINTAINER]
+  He said even strict structured output still depends on the model escaping JSON correctly, and that OMP's edit tool therefore uses one field with the format described in text instead of multiple fields, because that has beaten the alternatives.
+  https://x.com/_can1357/status/2085712013896859768
+[@_can1357 | 2026-08-07 | voice | criticism | AGAINST-CONSENSUS | MAINTAINER]
+  In a thread treating a notebook-style kernel as a rival harness's key idea, he said it is not an innovation and that OMP has shipped the same thing for months.
+  https://x.com/_can1357/status/2085726411516457327
+[@_can1357 | 2026-08-17 | voice | criticism | AGAINST-CONSENSUS | MAINTAINER]
+  He said unsupervised agents mostly do fine on ordinary fixes, and that slop usually appears when the underlying design never contemplated the case, so the model hacks in a refactor instead of the human having designed for it.
+  https://x.com/_can1357/status/2089358095457661426
+[@lydiahallie | 2026-08-08 | claim | comparison | MAINTAINER]
+  Asked how auto mode is safer than skip-permissions, she said the skip flag does no checking, while auto mode still blocks unsolicited destructive actions and scans tool results for injection, even though most tasks still will not show prompts.
+  https://x.com/lydiahallie/status/2086117097923625332
+[@EliaAlberti | 2026-08-08 | claim | criticism | AGAINST-CONSENSUS]
+  Replying to that maintainer, they said chat-stated limits are not stored as rules: the classifier rereads them from the transcript, so if compaction drops the turn where you said not to push, the boundary disappears with no signal.
+  https://x.com/EliaAlberti/status/2086128186929066255
+[@EliaAlberti | 2026-08-08 | voice | criticism | AGAINST-CONSENSUS]
+  They added that the docs themselves tell you to write a deny rule if you want a hard guarantee, which means the conversational layer is the soft one, and most users will assume the reverse.
+  https://x.com/EliaAlberti/status/2086128269506510859
+[@lydiahallie | 2026-08-03 | claim | announcement | MAINTAINER]
+  She said /fork now copies the current session into a background session so you can keep working, and that the old in-session subagent-that-reports-back behavior now lives under /subtask.
+  https://x.com/lydiahallie/status/2084315112840810897
+[@reefwing | 2026-08-14 | claim | criticism]
+  They said auto mode becomes the default permission mode on August 14 for Pro, Max, and Team, dumped the classifier rulebook, and reported 17 allow rules, 65 overridable soft denials, and a single hard denial that cannot be talked past.
+  https://x.com/reefwing/status/2088407640951103730
+[@simonw | 2026-08-10 | claim | criticism | AGAINST-CONSENSUS]
+  He said Haiku is currently his least favorite model because it hallucinates badly, and that Claude Code's URL-fetch tool still appears to use it, so fetching a page inherits that hallucination risk.
+  https://x.com/simonw/status/2086931955539742985
+[@bcherny | 2026-08-14 | voice | comparison | AGAINST-CONSENSUS | MAINTAINER]
+  On a thread about crash-fuzzing routines, the Claude Code lead said a smaller model could do much of that work if the operator spent more time auditing the PRs and tightening the routine prompts and guardrails.
+  https://x.com/bcherny/status/2088140601967730978
+[@simonw | 2026-08-11 | voice | criticism]
+  He asked Codex for a local HTML file he could open, and said the agent published it to a site instead, calling the product a bit too eager to use hosted pages.
+  https://x.com/simonw/status/2087234839024161062
+[@Querisity | 2026-08-16 | claim | frustration]
+  They said a simple echo test now burns thousands of tokens since the 5.6 models landed, and that the approve-for-me feature also spends usage at a rate that makes Codex feel broken.
+  https://x.com/Querisity/status/2089011179448668399
+[@JinseokKim60030 | 2026-08-16 | claim | criticism]
+  They said Agent Plugins 1.0, as implemented in Codex and siblings, only loads skills that sit as immediate children of the skills directory, so a nested SKILL.md is just a file on disk.
+  https://x.com/JinseokKim60030/status/2088963257021173919
+[@steipete | 2026-08-16 | voice | criticism | MAINTAINER]
+  He said he recently changed the Claw harness so that hitting stop actually stops the swarm, after watching dozens of child agents keep editing files after the human had already cancelled.
+  https://x.com/steipete/status/2089029499476431332
+[@steipete | 2026-08-14 | voice | comparison | AGAINST-CONSENSUS | MAINTAINER]
+  The OpenClaw maintainer said he moved his own work off Codex because talking to the agent now spins up cloud sessions he can keep iterating from anywhere.
+  https://x.com/steipete/status/2088074664585400684
+[@steipete | 2026-08-16 | voice | comparison | AGAINST-CONSENSUS | MAINTAINER]
+  On memory, he said the good setup is one markdown directory and every other memory system turned off, and the better setup is moving the work into cloud sessions in Claw's web UI.
+  https://x.com/steipete/status/2089045733517545739
+[@fagamericano | 2026-08-17 | voice | praise]
+  They described running their OpenClaw fork with local intercepts into a cluster, then flipping only annotated users onto a new image as canaries so a bad agent change rolls back a pod instead of the fleet.
+  https://x.com/fagamericano/status/2089501326048932031
+[@shengzheyao | 2026-08-14 | claim | announcement | MAINTAINER]
+  The Antigravity CLI author said 1.1.13 accepts a Gemini API key with no sign-in, plus a custom base URL, and listed other fixes around background tasks and local search fallback.
+  https://x.com/shengzheyao/status/2088136207775719696
+[@danielmckinn0n | 2026-08-14 | voice | criticism | AGAINST-CONSENSUS]
+  For an eval they chose Gemini CLI because Antigravity's auth looked too strange to implement next to a plain API key, and they told Google to fix that.
+  https://x.com/danielmckinn0n/status/2088394726794006619
+[@arielsmoliar | 2026-08-13 | voice | frustration | AGAINST-CONSENSUS]
+  They said trying to ship a real product on Gemini CLI and Antigravity meant invented packages, hangs, broken tool setup, approval friction, and unreliable handoffs, and they doubted the PMs run that path end to end.
+  https://x.com/arielsmoliar/status/2087882055921095113
+[@Teknium | 2026-08-16 | voice | announcement | AGAINST-CONSENSUS | MAINTAINER]
+  He said Hermes Bot Mode is only a user interface over the existing agent-profile system, not a new kind of runtime.
+  https://x.com/Teknium/status/2088862156817330627
+[@Teknium | 2026-08-17 | claim | frustration | MAINTAINER]
+  Debugging a user, he said their Hermes binary was on that day's v0.20.3 while the desktop GUI was still on v0.17.0, and told them to update through the GUI app rather than only the remote gateway.
+  https://x.com/Teknium/status/2089451688365302185
+[@hunvreus | 2026-08-07 | voice | comparison | AGAINST-CONSENSUS | MAINTAINER]
+  The heypi author said he almost moved his agents onto Flue, thinks the work is strong, and still does not believe serverless is the right shape for chat agents.
+  https://x.com/hunvreus/status/2085801192454566009
+[@FredKSchott | 2026-08-04 | voice | comparison | MAINTAINER]
+  Asked how Flue relates to Cloudflare's many sandbox options, he said Flue pairs with Cloudflare Computer as the hands, and that both projects want the sandbox kept separate from the harness that drives the work.
+  https://x.com/FredKSchott/status/2084791096631325052
+[@jamesbrooksco | 2026-08-15 | voice | frustration]
+  They said their Paperclip agents sometimes sit on tools that would unblock them, and they were trying Hermes's loop command to keep work moving while they stepped away, with the missing piece being a mobile app.
+  https://x.com/jamesbrooksco/status/2088618997545611410
+[@LeeMilroy | 2026-08-13 | voice | frustration]
+  They praised Paperclip's spend tracking and said it still cannot turn that usage into a dollar figure they can put on a client invoice.
+  https://x.com/LeeMilroy/status/2088030678688350557
+[@OpenHandsDev | 2026-08-04 | voice | criticism | AGAINST-CONSENSUS | MAINTAINER]
+  The project account said standing up an internal coding agent is now easy, keeping one is not, and that a fork becomes a permanent lag behind upstream security and platform work, so teams should try prompts, tools, skills, plugins, or the SDK before inheriting that burden.
+  https://x.com/OpenHandsDev/status/2084657461667983378
+[@vnktadithya | 2026-08-09 | claim | criticism]
+  A contributor said they merged a fix because max input tokens were silently dropped in headless CLI mode, which then overflowed the context window, and they walked through the Pydantic state failure behind it.
+  https://x.com/vnktadithya/status/2086511476140044364
+[@alessandro_a0 | 2026-08-05 | voice | comparison | MAINTAINER]
+  A person building Agent Zero said it takes longer to set up because the UI comes with a full Linux sandbox, and still called that a good harness trade.
+  https://x.com/alessandro_a0/status/2085072015099105485
+[@doodlestein | 2026-08-14 | voice | criticism | MAINTAINER]
+  He said that whenever he stops following his own planning method and lets the agent steer, the work grinds sideways, and that this is why the Flywheel approach exists.
+  https://x.com/doodlestein/status/2088332596975415783
+[@pidotdev | 2026-08-17 | claim | announcement | MAINTAINER]
+  The Pi account said one way to extend the harness is an event-intercept extension that can block or rewrite dangerous tool calls, and posted sample code for forcing a confirm before a recursive delete.
+  https://x.com/pidotdev/status/2089313792014381321
+
+WHAT I WANT FROM YOU, as a collaborator:
+
+1. THE LOAD-BEARING POSTS. For each window, which 3 to 5 posts belong at the structural spots: the lede, the turn of an argument section, and the last line of the issue? Our best issues open on a post and let a receipt turn it, and close on a post that carries the argument. Name the post, the spot, and the receipt it should be framed against. Be specific about WHY that post and not a louder one.
+
+2. WHERE OUR FRAMING WOULD READ AS AN OUTSIDER. You can see this conversation from inside. Where does our working thesis sound like a publication describing a community rather than a participant in it? Where would a practitioner reading our lede think "that is not what this week was about"?
+
+3. WHAT WE ARE MISSING. Is there an argument running through these posts that our verified findings do not touch at all? The Pi thread looks like one to me: a DeepSeek engineer says they reused Pi work, Pi author replies that Pi already does that self-extension, and the OMP maintainer says his fork stopped following Pi in March. Is that a real story or am I inflating three unrelated posts into a narrative?
+
+4. WHAT CUTS AGAINST US. Which posts argue against our thesis? We publish evidence that cuts against our own assumptions, and a card set that only shows the conversation agreeing with us is a worse artifact than one that shows the disagreement. Name the strongest counter-post for each window.
+
+5. THE TITLES. Propose 3 titles per issue. We title the finding, never the verdict on a vendor. Recent titles for tone: "Rules Became Judgment", "Newer, Numbered Lower", "Patched for Whom", "Who Is Allowed to Say Yes", "An Unenforced Control Emits Nothing".
+
+Be direct and disagree with me where you think I am wrong. Prose, not JSON.
