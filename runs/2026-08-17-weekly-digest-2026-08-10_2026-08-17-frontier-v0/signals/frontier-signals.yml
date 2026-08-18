@@ -1,0 +1,217 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0
+window:
+  start: 2026-08-10
+  end: 2026-08-17
+note: >
+  Eight signals from 119 findings across seventeen sources. A frontier lab
+  shipped its own harness this window and the field spent four days arguing
+  about its architecture, so that is the issue.
+
+  The argument in public was about self-extension: whether an agent growing its
+  own capability at runtime is a new category or an old one with better
+  packaging. The argument worth having is narrower and nobody was having it. It
+  is not who has plugins. It is whether the gate is privileged over them. In a
+  system where every layer is replaceable, the approval gate is a layer, and a
+  plugin can be composed ahead of the thing that was supposed to stop it.
+
+  Three findings from three unrelated projects say the same thing from different
+  directions. One harness makes the enforcement components plugins by design.
+  Another lost a CVE fix inside a plugin refactor and shipped without it for
+  eleven stable releases. A third put a broker around denied filesystem writes
+  behind an extension hook. None of these is an argument against plugins. They
+  are an argument that the gate needs to be the one thing that is not one.
+
+  The channel record for the window is real and belongs in the operator brief
+  rather than in the argument: one default install path frozen for ten days,
+  another sitting seven releases behind the channel carrying its own security
+  fixes, and two tags with no release behind them.
+signals:
+
+  - id: 2026-08-17-deepseek-the-gate-is-a-plugin
+    status: accepted
+    section: control-plane
+    source: deepseek-harness
+    channel: preview-or-beta
+    title: "Everything is a plugin, including the components that enforce the limits"
+    finding_ids:
+      - 2026-08-17-deepseek-harness-everything-is-a-plugin-including-the-components-that-enforce-the-limits
+    summary: >
+      The architecture is explicit that models, tools, skills, sessions,
+      sandboxes, storage, loops, scheduling and the UI all sit behind plugin
+      boundaries. The approval path is one of those layers. Read at a pinned
+      commit, it composes as a waterfall, which means a plugin can be placed
+      ahead of the component that would have refused. This is the question this
+      publication wrote into the source contract at intake, answered by the code
+      rather than by the landing page, and answered in the direction that costs
+      an operator something.
+    why_action_bearing:
+      - "If you write a dsh plugin, understand that your plugin is not governed by the approval gate in the way a tool is governed by a permission system. It sits in the same layer the gate does."
+      - "Ask of any plugin-everything architecture: which component is not replaceable? If the answer is none, then the enforcement story is a convention rather than a boundary."
+      - "This is developer preview and the whole project ships to a prerelease. Nothing here is an upgrade instruction; it is a design question to settle before this reaches a stable channel."
+    receipts:
+      - url: https://github.com/deepseek-ai/deepseek-harness/blob/99f6f02fecdb7dff40c3fbc9470f5907c29f74ca/docs/architecture.md
+        precision: official_docs
+
+  - id: 2026-08-17-deepseek-web-ui-unauthenticated
+    status: accepted
+    section: runtime
+    source: deepseek-harness
+    channel: preview-or-beta
+    title: "Nothing authenticates the Web UI, and the code fence says so in its own comment"
+    finding_ids:
+      - 2026-08-17-deepseek-harness-nothing-authenticates-the-web-ui-on-127-0-0-1-3080-and-the-api-fence
+      - 2026-08-17-deepseek-harness-a-dsh-plugin-is-an-unsandboxed-in-process-module-with-no-permission
+    summary: >
+      The documented way to run this harness starts a web interface on a
+      loopback port. The request-trust module is the fence, and it is candid in
+      its own header comment about what it does not do. Carried with it because
+      it compounds: a plugin is an unsandboxed in-process module with no
+      permission declaration, and a public topic for third-party plugins already
+      exists, so the install-a-plugin path and the unauthenticated-local-surface
+      path are live at the same time.
+    why_action_bearing:
+      - "Do not expose that port. Loopback-only is the entire access control, so any tunnel, container port mapping, or reverse proxy in front of it is the whole security boundary."
+      - "Treat a third-party plugin as code you are running in-process with no declared permissions, because that is what it is. Read it before you install it."
+    receipts:
+      - url: https://github.com/deepseek-ai/deepseek-harness/blob/99f6f02fecdb7dff40c3fbc9470f5907c29f74ca/packages/client/connection/src/api-request-trust.ts
+        precision: source_at_pinned_ref
+
+  - id: 2026-08-17-agent-zero-cve-fix-lost-in-a-plugin-refactor
+    status: accepted
+    section: control-plane
+    source: agent-zero
+    channel: tagged-release
+    title: "An SSRF fix was lost inside a plugin refactor and shipped broken through eleven stable releases"
+    finding_ids:
+      - 2026-08-17-agent-zero-ssrf-fix-for-cve-2026-4308-was-silently-lost-in-a-plugin-refactor-and
+    summary: >
+      The fix for a published CVE was undone by a refactor that moved the code
+      into the plugin layout, and the regression shipped in every stable tag from
+      v1.19 through v2.8 before v2.9 restored it. The class is server-side
+      request forgery: an agent fetching a URL supplied by someone else can be
+      pointed at addresses the operator did not intend, including internal ones.
+      Nothing concealed it and nothing announced it either; a fix simply stopped
+      being present.
+    why_action_bearing:
+      - "Upgrade to v2.9 if you run document query against untrusted or user-supplied URLs."
+      - "A CVE fix is not a permanent property of a codebase. If you track advisories to decide you are safe, you are tracking the announcement rather than the code, and this is the case that shows the difference."
+      - "This is the plugin-boundary argument from its least theoretical side. The refactor that lost the fix was the refactor that made things plugins."
+    receipts:
+      - url: https://github.com/agent0ai/agent-zero/commit/b40874e7c03775c53989e206769e33ff23a4384e
+        precision: commit
+
+  - id: 2026-08-17-hermes-windows-destructive-commands-passed-silently
+    status: accepted
+    section: control-plane
+    source: hermes-agent
+    channel: tagged-release
+    title: "Fifteen out of fifteen destructive Windows commands passed approval silently"
+    finding_ids:
+      - 2026-08-17-hermes-agent-fifteen-out-of-fifteen-destructive-windows-commands-passed-approval
+    summary: >
+      A whole platform's worth of destructive commands were not matched by the
+      approval logic, so they ran without stopping. The count is the finding: not
+      an edge case that slipped through a pattern, but a set where the pattern
+      matched none of them.
+    why_action_bearing:
+      - "If you ran this agent on Windows before the fix, your approval gate was not a gate for this class of command. Re-audit what ran rather than assuming the prompts you saw were complete."
+      - "Approval logic written against one platform's shell grammar does not transfer. If a harness supports multiple platforms, ask which platform its matching rules were written for."
+    receipts:
+      - url: https://github.com/NousResearch/hermes-agent/pull/84428
+        precision: merged_pr
+
+  - id: 2026-08-17-openclaw-approved-exec-ran-different-bytes
+    status: accepted
+    section: control-plane
+    source: openclaw
+    channel: main-unreleased
+    title: "Approved exec could run different bytes than the ones you approved"
+    finding_ids:
+      - 2026-08-17-openclaw-approved-exec-could-run-different-bytes-than-the-ones-you
+    summary: >
+      The bytes presented for approval and the bytes executed could differ. This
+      is the same defect class the previous window recorded in a different
+      product, which is why it is a signal here rather than a line in a provider
+      note: two unrelated harnesses, two weeks apart, both shipped a version
+      where the approval dialog was not a description of the action.
+    why_action_bearing:
+      - "The fix is on the default branch and in no release. State that plainly to anyone relying on the approval prompt in a stable install."
+      - "When the same defect class appears in two unrelated codebases inside a fortnight, treat it as a property of the pattern rather than of the vendor. If you build approval UI, the invariant to test is that the string displayed and the string executed are the same object, not two renderings of one intention."
+    receipts:
+      - url: https://github.com/openclaw/openclaw/pull/124858
+        precision: merged_pr
+
+  - id: 2026-08-17-omp-write-broker-in-tags-with-no-release
+    status: accepted
+    section: control-plane
+    source: omp
+    channel: tagged-release
+    title: "A filesystem-write broker landed in two tags that no install path but Nix can reach"
+    finding_ids:
+      - 2026-08-17-omp-omp-tags-v17-3-6-and-v17-3-7-carry-an-extension-hook-that-brokers
+      - 2026-08-17-omp-omp-s-always-ask-approval-prompt-opened-before-the-diff-rendered-fixed
+    summary: >
+      An extension hook lets a handler service a write or delete that the native
+      path refused with a permission error. The mechanism is legitimate and
+      guarded, and it is also a documented route by which an operating-system
+      denial becomes an extension-mediated allow, which makes the handler's
+      allowlist the real filesystem boundary. It sits in two tags that have no
+      GitHub release and no npm publish, so the install script, Homebrew and Bun
+      all land a version behind it. Carried with it: the same project's
+      always-ask prompt opened before the diff rendered, so approvals on large
+      edits were blind, and the hole was fixed twice in six days because it came
+      back through a tool's wire-level alias.
+    why_action_bearing:
+      - "If you embed this agent and register a write-fallback handler, that handler's allowlist is now your filesystem policy and needs reviewing as one."
+      - "Name the install path when you report a version of this project. Four paths exist and they did not agree on the day of this harvest."
+    receipts:
+      - url: https://github.com/can1357/oh-my-pi/blob/54e1a8c900d30e5b6185975ab02a4a923faf1717/packages/coding-agent/CHANGELOG.md
+        precision: official_changelog
+
+  - id: 2026-08-17-the-default-install-stopped-moving
+    status: accepted
+    section: platform
+    source: codex
+    channel: tagged-release
+    title: "Two default install paths stopped carrying the work, in different ways and for different reasons"
+    finding_ids:
+      - 2026-08-17-codex-codex-shipped-no-stable-release-for-ten-days-0-148-0-is-422-commits
+      - 2026-08-17-claude-code-claude-code-s-stable-channel-sits-seven-releases-behind-latest-2-1-226
+    summary: >
+      One project published no stable release for ten days while 422 commits and
+      nineteen alpha builds accumulated on an unreleased line; its default npm
+      install has resolved to the same version since 2026-08-07. The work is not
+      hidden and it is not uninstallable either, which an earlier draft of this
+      signal got wrong: the alpha line is published and installable by name. The
+      separate project's conservative channel sits seven releases behind the one
+      carrying this fortnight's permission and credential fixes, which is the
+      sharper case, because there the operator following the documented careful
+      path is the one who does not have the security work.
+    why_action_bearing:
+      - "Check which channel your fleet is actually on before assuming a fortnight's security fixes reached it. Choosing the conservative channel is a decision to receive fixes later, and that tradeoff is worth making on purpose."
+      - "If you benchmark or write about a project from its default branch, say which channel your claims describe. For ten days the most-discussed work in one of these projects was on a channel you had to name explicitly to install."
+    receipts:
+      - url: https://github.com/openai/codex/compare/rust-v0.147.0...rust-v0.148.0-alpha.21
+        precision: git_compare
+
+  - id: 2026-08-17-deepseek-ships-a-path-to-rival-models-and-harnesses
+    status: accepted
+    section: ecosystem
+    source: deepseek-harness
+    channel: preview-or-beta
+    title: "The lab's own harness ships a supported path to run rival models and drive rival harnesses"
+    finding_ids:
+      - 2026-08-17-deepseek-harness-deepseek-s-own-harness-ships-a-supported-path-to-run-openai-and
+    summary: >
+      A model provider's harness supporting other providers' models is not
+      neutral plumbing, it is a bet about where the durable layer is. If the
+      harness is the product, the model underneath becomes swappable, and that is
+      the same wager the portable instruction file makes from the other end.
+      Carried as the capability half of this window rather than as a defect.
+    why_action_bearing:
+      - "A harness that runs any model and drives other harnesses is a hedge against the thing its own vendor sells. Read it as evidence about where that vendor thinks the lock-in is, and note that the answer is not the model."
+      - "For an operator, this is the cheapest available test of whether a harness is really model-agnostic: run it against a competitor's model on the supported path and see what breaks."
+    receipts:
+      - url: https://github.com/deepseek-ai/deepseek-harness/blob/99f6f02fecdb7dff40c3fbc9470f5907c29f74ca/docs/architecture.md
+        precision: official_docs
