@@ -29,8 +29,12 @@ disagreeing about the same commit.
 - [x] Scaffold both run dirs
 - [x] Lane B (writing): `node ops/wire/harvest-feeds.mjs --since 2026-08-03`
       -> 15/15 feeds live, 119 items -> W1 `writing.json`. Split by item date.
-- [ ] Lane A (primary sources): 14 researchers over 17 sources, read-only,
-      channel resolved by git ancestry. Workflow `wf_2292ad80-15a`.
+- [x] Lane A (primary sources): 14 researchers over 17 sources, read-only,
+      channel resolved by git ancestry. Workflow `wf_2292ad80-15a`. All 14
+      returned, no errors. 182 material changes: 60 in W1, 119 in W2, 3 outside.
+      Channels: 128 tagged-release, 27 preview-or-beta, 12 main-unreleased,
+      14 docs-only, 1 unresolved. Halves: 70 capability, 55 defect, 34 both.
+      All seven carry-forward checks answered with ancestry proofs.
 - [ ] Lane C (X, via Hermes on Grok): SERIALIZED, one call at a time, 20-40 min
       each. Chain: deepseek-harness (running) -> omp -> openhands -> claude-code
       -> codex -> broad. Doctor was OK at 2026-08-17.
