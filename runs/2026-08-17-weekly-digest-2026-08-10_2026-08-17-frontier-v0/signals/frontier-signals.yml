@@ -197,7 +197,7 @@ signals:
 
   - id: 2026-08-17-deepseek-ships-a-path-to-rival-models-and-harnesses
     status: accepted
-    section: ecosystem
+    section: platform
     source: deepseek-harness
     channel: preview-or-beta
     title: "The lab's own harness ships a supported path to run rival models and drive rival harnesses"

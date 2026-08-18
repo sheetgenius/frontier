@@ -143,8 +143,8 @@ posture_basis:
     - 2026-06-23-paperclip-same-company-ceo-authz-centralization
 stance:
   use_for: "Teams that want agent work to be operating state rather than a chat session -- roles, issues, budgets, review gates, and a per-company tenant boundary as first-class objects -- and who will track the calendar tag line. v2026.722.0 is the current floor: it replaces ambient environment injection with run-bound, dual-audited secret reads, and it carries the cross-tenant and log-redaction fixes from the two tags before it."
-  avoid_for: "Solo developers with one agent -- the model assumes several to coordinate. Anyone who needs a pre-release channel to track: there is none, the npm/canary line has been dead since 2026-03-12, and preview work ships inside stable tags behind experimental settings. And do not read Paperclip's advisory feed as a measure of your own exposure: the window's one Critical describes a code path closed 97 days before disclosure, under a version range no operator can map onto their build."
-  watch_next: "Whether the open-by-default company skill policy gets inverted, given Paperclip's own April advisory about malicious skills exfiltrating user data; whether the run-bound secret-access audit trail gains a read surface rather than only two write paths; whether the new agent-writes-to-human-inbox grant becomes auditable before something is tidied away; and whether the dormant npm line is formally retired or left to rot as a distribution channel."
+  avoid_for: "Solo developers with one agent -- the model assumes several to coordinate. Anyone who wants a pre-release channel with release notes: the canary line publishes continuously (1,058 tags since 2026-03-17, and an npm publish behind almost every one) but it is an unannounced firehose, and a four-channel train from canary through nightly and beta to stable was only formalised on 2026-08-17. And do not read Paperclip's advisory feed as a measure of your own exposure: the window's one Critical describes a code path closed 97 days before disclosure, under a version range no operator can map onto their build."
+  watch_next: "Whether the open-by-default company skill policy gets inverted, given Paperclip's own April advisory about malicious skills exfiltrating user data; whether the run-bound secret-access audit trail gains a read surface rather than only two write paths; whether the new agent-writes-to-human-inbox grant becomes auditable before something is tidied away; and whether the newly formalised canary-to-nightly-to-beta-to-stable train gets documented anywhere an operator reads, given the official site still shows the previous stable and does not mention the channels at all."
 ---
 
 # Paperclip
@@ -430,8 +430,10 @@ Still open:
   reviewer, a configured approval workflow, or any non-agent transition? Still
   undocumented outside the original PR, and still the load-bearing ambiguity in
   Paperclip's governance story.
-- Does the dormant npm line get formally retired, or does a distribution channel
-  quietly rot while an advisory keeps pointing at it?
+- Now that the release train is formalised, does any operator-facing surface
+  document it? The canary line was never dormant -- this publication read a flat
+  tag listing that cannot display slash-namespaced tags and reported the channel
+  as dead. See the corrections ledger.
 - How does Paperclip's own authz service compose with agent-owned permission
   files such as `~/.claude/settings.json` via the ACPX-Claude adapter, now that
   ACP is the default lane for every local adapter? The resolution rule is in no

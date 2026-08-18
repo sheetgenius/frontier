@@ -6,7 +6,7 @@ description: >
   source-cited publication keeps its own receipts: when a date, version,
   channel, or claim is fixed, the fix is itself part of the record. This page
   is the audit trail of the publication correcting itself.
-last_updated: 2026-07-27
+last_updated: 2026-08-18
 ---
 
 # Corrections ledger
@@ -201,6 +201,20 @@ corrections:
     reporter: adversarial-verify
     provenance: internal/adversarial-verify
     pr: run 2026-07-27-weekly-digest-2026-07-02_2026-07-27-frontier-v0
+
+  - corrected_on: 2026-08-18
+    object: profile paperclip (avoid_for, watch_next, and an open question)
+    field: existence and status of the canary/npm pre-release channel
+    kind: other-fact
+    before: "Anyone who needs a pre-release channel to track: there is none, the npm/canary line has been dead since 2026-03-12; referred to twice more as the dormant npm line"
+    after: "the canary line has published continuously since 2026-03-17 -- 1,058 tags through 2026-08-18 and 1,110 npm publishes on the 2026.x line with no gap -- and on 2026-08-17 it was formalised as the first stage of a canary/nightly/beta/stable train"
+    receipt: "https://github.com/paperclipai/paperclip/releases/tag/v2026.817.0"
+    event_date: 2026-03-17
+    artifact_url: /profiles/paperclip/
+    verdict: "wrong-fact, and wrong in the direction that costs a reader something: an operator who wanted a pre-release channel was told none existed. Cause recorded because it will recur -- the canary tags live under slash-prefixed namespaces (refs/tags/canary/...), which the flat repository tag listing does not surface, so an endpoint that was structurally incapable of showing them was read as evidence they were absent. Confirmed by git/matching-refs/tags/canary/ returning 1,058 refs from v2026.3.17-canary.3 to v2026.818.0-canary.7, and by the npm packument."
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0
 ```
 
 <!--
