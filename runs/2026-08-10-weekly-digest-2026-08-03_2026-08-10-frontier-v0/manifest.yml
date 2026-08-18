@@ -1,0 +1,83 @@
+schema_version: bitter.frontier_run_manifest.v0
+run_id: 2026-08-10-weekly-digest-2026-08-03_2026-08-10-frontier-v0
+id: 2026-08-10-weekly-digest-2026-08-03_2026-08-10-frontier-v0
+title: You Approved Something Else
+mode: weekly_digest
+status: complete
+window:
+  start: 2026-08-03
+  end: 2026-08-10
+parent_window:
+  start: 2026-07-27
+  end: 2026-08-03
+generated_at: 2026-08-18
+sources:
+  - codex
+  - claude-code
+  - gemini-cli
+  - antigravity
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+  - heypi
+  - deepseek-harness
+  - flue
+  - eve
+  - agent-flywheel
+  - omnigent
+  - omp
+source_contracts:
+  - sources/claude-code.yml
+  - sources/antigravity.yml
+  - sources/codex.yml
+  - sources/pi-coding-agent.yml
+  - sources/hermes-agent.yml
+  - sources/openclaw.yml
+  - sources/paperclip.yml
+  - sources/omnigent.yml
+  - sources/omp.yml
+  - sources/deepseek-harness.yml
+notes: >
+  Published 2026-08-18, eight days after the window closed. The delay is recorded
+  rather than hidden: the series is weekly and this window plus the one after it
+  were both outstanding, so they were run together as a catch-up and published as
+  two issues rather than one merged retrospective. The windows were kept separate
+  because the pattern that runs through both is only visible if they are.
+
+  First cycle including DeepSeek Harness and OMP, taking the watchlist to
+  seventeen. Neither moved materially inside this window; both are covered from
+  the second.
+finding_count: 60
+signal_count: 7
+outputs:
+  digest:
+    - content/digests/2026-08-03_2026-08-10-weekly.md
+  findings: 60
+  signals:
+    - signals/frontier-signals.yml
+  social_cards:
+    - social-cards/x-cards.yml
+  review:
+    - qa.md
+quality_gates:
+  - channel resolved by git ancestry on every inspectable source, never by date
+  - closed-source channel stated as the npm publish record, and labelled as such rather than passed off as ancestry
+  - fourteen load-bearing claims sent to an adversarial verifier instructed to refute them, with an independent second opinion on any not confirmed
+  - five claims refuted on recount and rewritten from the verifier's evidence; the refuted wording appears nowhere
+  - every quoted post re-fetched by URL in a capture pass given no expected text to anchor on
+  - every inline fragment cut from stored verbatim by anchors, never retyped
+  - both halves present: the capability move is a signal rather than a balancing paragraph
+  - the vendor's safety argument steelmanned with its own study before any receipt is used against it
+carry_forward_checks:
+  - "Whether Claude Code's permission classifier gains durable stored rules rather than re-reading boundaries from a transcript that compaction can truncate."
+  - "Whether OpenClaw's workspace-boundary fix reaches a non-prerelease tag on the 2026.8 line."
+  - "Whether Pi gates any of its three credential-printing commands from the agent's own shell tool."
+  - "Whether Antigravity documents what counts as a matching pattern for an approval grant."
+  - "Whether any vendor publishes an approval classifier's own failure rate, so the two gates can be compared on the same axis."
+lanes:
+  primary: "complete -- 14 read-only researchers over 17 sources, 182 changes across both catch-up windows, 60 in this one"
+  writing: "complete -- 15/15 feeds live, 42 items in this window"
+  x_social: "complete -- direct grok-4.6 sweep at xhigh, 41 posts across both windows, 28 distinct voices; 15 posts captured verbatim, 7 carded here"

@@ -1,0 +1,80 @@
+schema_version: bitter.frontier_run_manifest.v0
+run_id: 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0
+id: 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0
+title: The Gate Is a Plugin
+mode: weekly_digest
+status: in_progress
+window:
+  start: 2026-08-10
+  end: 2026-08-17
+parent_window:
+  start: 2026-08-03
+  end: 2026-08-10
+generated_at: 2026-08-18
+sources:
+  - codex
+  - claude-code
+  - gemini-cli
+  - antigravity
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+  - heypi
+  - deepseek-harness
+  - flue
+  - eve
+  - agent-flywheel
+  - omnigent
+  - omp
+source_contracts:
+  - sources/deepseek-harness.yml
+  - sources/omp.yml
+  - sources/pi-coding-agent.yml
+  - sources/agent-zero.yml
+  - sources/hermes-agent.yml
+  - sources/openclaw.yml
+  - sources/claude-code.yml
+  - sources/codex.yml
+  - sources/paperclip.yml
+  - sources/omnigent.yml
+notes: >
+  Second half of the catch-up published on 2026-08-18. DeepSeek Harness went
+  public on 2026-08-13 and the field spent four days arguing about its
+  architecture, which is the issue. The channel record is real and sits in the
+  operator brief rather than in the argument, because it is what resolving git
+  ancestry produced rather than what the week was about.
+
+  This run also carries a correction to the publication's own record: the
+  Paperclip profile called its canary line dormant in three places and the line
+  has published continuously since 2026-03-17. See the corrections ledger.
+finding_count: 119
+signal_count: 8
+outputs:
+  findings: 119
+  signals:
+    - signals/frontier-signals.yml
+  social_cards:
+    - social-cards/x-cards.yml
+  review:
+    - qa.md
+    - thread-check.md
+quality_gates:
+  - channel resolved by git ancestry on every inspectable source
+  - the plugin-architecture claim tested against code at a pinned ref rather than repeated from the landing page
+  - star count explicitly rejected as adoption evidence, per the source contract written at intake
+  - a claim that the fortnight's work was uninstallable was refuted by the verifier and removed; the alpha line is published and installable by name
+  - findings observed through a wrapper attributed to the pair, never to the wrapped harness alone
+  - the fork and its upstream kept distinct in both directions
+carry_forward_checks:
+  - "Whether DeepSeek Harness reaches a non-prerelease tag, and whether the approval gate is still composable by a plugin when it does."
+  - "Whether anything authenticates the DeepSeek Harness Web UI beyond binding to loopback."
+  - "Whether OpenClaw's approved-exec fix reaches a release, having merged to the default branch in this window."
+  - "Whether OMP's v17.3.6 and v17.3.7 tags gain releases, or whether tag-ahead-of-release becomes this project's normal state."
+  - "Whether Agent Zero's restored SSRF fix acquires a regression test, given it was lost once inside a refactor."
+lanes:
+  primary: "complete -- 14 read-only researchers over 17 sources, 119 changes in this window"
+  writing: "complete -- 15/15 feeds live, 77 items in this window"
+  x_social: "complete -- direct grok-4.6 sweep at xhigh; 8 posts carded here, all captured verbatim by URL in a pass given no expected text"

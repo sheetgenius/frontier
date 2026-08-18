@@ -1,5 +1,6 @@
 # Bitter Frontier Digests
 
+- [You Approved Something Else](2026-08-03_2026-08-10-weekly.md) -- 2026-08-03 to 2026-08-10
 - [The Newest Thing You Can Install](2026-07-27_2026-08-03-weekly.md) -- 2026-07-27 to 2026-08-03
 - [Rules Became Judgment](2026-07-02_2026-07-27-weekly.md) -- 2026-07-02 to 2026-07-27
 - [Foreground Attention Is No Longer the Control](2026-07-01_2026-07-02-weekly.md) -- special brief, 2026-07-01 to 2026-07-02
