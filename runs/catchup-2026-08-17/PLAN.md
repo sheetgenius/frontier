@@ -150,3 +150,50 @@ Three threads in it bear directly on the two issues:
 Every one of these is a lead. The gists are the sweep's own words by design and
 no fragment of them may be quoted; anything that becomes a card gets re-fetched
 by URL in a capture pass with no expected text to anchor on.
+
+## How the posts sit in these two issues
+
+Direction taken 2026-08-18, and it matches what the archive's best issue already
+does rather than overriding it.
+
+**The posts go at the structural positions, not in the margins.** The lede, the
+turn of each argument section, and the last line of the issue. They are the
+reason a person reads this rather than a changelog, and burying them in a
+pull-quote sidebar wastes the most valuable material in the run.
+
+**The grounded research is what frames them, and that is what makes it
+cohesive.** Neither half works alone. A post without a receipt is a rumour with
+good timing; a receipt without the post is a changelog with a byline. The shape
+that works, from "Rules Became Judgment": open on somebody announcing good news
+on X, then let the primary record turn it -- two days later the next version
+recorded what was actually true, and the release that fixed it got no post. The
+post supplies the human stake, the receipt supplies the correction, and the
+sentence that lands is the one the reader repeats.
+
+That issue also closes on a post rather than on findings, and the close is the
+strongest line in it. Both of these issues should close on a voice post that
+carries the argument, never on reference material. The build already fails an
+issue that ends on reference material; ending on a person is the positive form
+of the same rule.
+
+**Working assignments, subject to the capture pass and to Grok's read:**
+
+- W1 opens on the operator arguing that limits stated in chat are not stored as
+  rules, that the classifier rereads them, and that the vendor's own docs say to
+  write a deny rule if you want a hard guarantee. Framed against Claude Code's
+  own changelog: commands that could hide part of themselves from the approval
+  dialog, closed in v2.1.221 and v2.1.223. He described the mechanism before the
+  changelog admitted it.
+- W2 opens on the maintainer who moved his own work off a rival harness because
+  talking to the agent spun up cloud sessions he did not ask for. Framed against
+  the channel record: npm latest frozen at 0.147.0 since 08-07 while nineteen
+  alphas and 422 commits shipped past it.
+- The Pi thread is a candidate for a section of its own in W2 and needs Grok's
+  read on whether it is a real story or three posts pushed into a narrative.
+
+**Grok is a collaborator on these articles, not a fetcher.** It is consulted at
+the structural stage, while the shape is still open, because it can see how this
+conversation reads to the people inside it and we cannot. Editorial authority
+stays here and every product claim still clears the primary record, but "which
+post carries this argument" and "where would our framing read as an outsider"
+are questions it is better placed to answer than we are.
