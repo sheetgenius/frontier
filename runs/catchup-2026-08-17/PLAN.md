@@ -283,3 +283,54 @@ as a design bet, skills-versus-plugins as a language bet, and portable
 instruction files as the layer that survives swapping the harness. That last one
 is this publication's own thesis happening in public, and W1 holds the receipt
 that turns it: `AGENTS.override.md` loads before project trust is resolved.
+
+## How this has to land on X, decided 2026-08-18
+
+The titles were built for the piece and not for the timeline, and that is a
+distribution bug rather than a writing one.
+
+Cold-read test, what a person sees while scrolling with no context: "Shown Less
+Than Ran" decodes to nothing without the article. "The Classifier Rereads" is
+worse. "Safer Than You" is a liability, because compressed onto a timeline it
+reads as a sneer at a named person's study. "The Gate Is a Plugin" is the only
+one of the six that survives cold, because it is a complete claim a reader can
+agree or disagree with before clicking. The bar is "Newer, Numbered Lower":
+self-explanatory and slightly wrong-footing.
+
+**Decisions:**
+
+- W2 ships as **The Gate Is a Plugin**.
+- W1's public title becomes **You Approved Something Else**. "Shown Less Than
+  Ran" stays as the internal finding name. The public title has to carry itself
+  on a timeline and be about the mechanism rather than about a person.
+- **The post is the receipt, never the turn.** The lede structure is right for
+  the article: open on the high-visibility claim, steelman it, let the receipt
+  turn it. But a tweet is a compression and compression drops the steelman. What
+  survives is "small publication quotes a named engineer, then corrects her."
+  Distribution therefore leads with the finding nobody else has, never with
+  somebody's quote and our correction of it.
+- **Do not drop two backdated issues at once.** The archive needs both. The
+  timeline reads a double post of past-dated digests as inventory rather than a
+  heartbeat. Publish both, distribute one.
+
+The reason this matters more here than at most publications is the standing
+answer to who the audience is: the people we quote. Lydia Hallie, Armin
+Ronacher, Mario Zechner, Simon Willison, Teknium and the DeepSeek team all
+plausibly see a post that quotes them. The four findings below make them allies,
+because each is work they did not have time to do:
+
+- Claude Code `stable` is seven releases behind `latest`, so this fortnight's
+  permission-bypass and credential fixes are not on the channel most operators
+  are pinned to.
+- Codex shipped no stable release for ten days: nineteen alphas, 422 commits,
+  npm `latest` frozen at 0.147.0.
+- Agent Zero's CVE-2026-4308 fix was lost in a plugin refactor and shipped
+  broken through eleven stable releases.
+- DeepSeek Harness's approval gate is itself a plugin a later plugin can prepend
+  to, and nothing authenticates its Web UI on 127.0.0.1:3080.
+
+Open and owned by Michael, not by the loop: whether W2 leads distribution (the
+live story, the bigger conversation) or W1 does (the more useful fact, the one
+an operator acts on today). Recommendation on the table is W2's title with W1's
+channel finding in the thread beneath it. Nothing in the cycle blocks on it;
+it is a publish-time call.
