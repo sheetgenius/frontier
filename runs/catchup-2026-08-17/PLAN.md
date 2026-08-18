@@ -115,3 +115,38 @@ So W2's thesis is not "you cannot install it." It is that the default install
 stopped being the thing everybody is writing about. That survives contact with
 the evidence, and the version that did not survive would have failed on this
 publication's own signature argument, which is the worst place to be wrong.
+
+## The X lane after the switch, 2026-08-18
+
+One `grok-4.6` call at xhigh returned 41 posts from 28 distinct voices across 15
+of the 17 watched projects, with 20 of them explicitly cutting against the
+prevailing take and every URL well formed. For comparison, the Hermes path
+produced one source per call at 20 to 40 minutes each. The lane went from a
+scheduling constraint to a thing you just run.
+
+The sweep also recorded where it is thin, which is the part worth keeping: eve
+is docs links with almost no argument, omnigent is vendor posts with no user
+friction, gemini-cli reads mostly as "it became Antigravity", and agent-zero has
+nothing outside official clips. Those are gaps to state, not holes to fill.
+
+Three threads in it bear directly on the two issues:
+
+1. **Pi is the centre of gravity nobody planned.** A DeepSeek Harness engineer
+   says DSH reused Pi's adaptor work and that DeepSeek researchers use Pi daily;
+   Pi's own author replies that DSH's architecture is neat but Pi agents already
+   do that self-extension today; a third voice argues Pi starts from primitives
+   while DSH stuffs everything in. Meanwhile OMP's maintainer states the fork has
+   not followed Pi since about March. That last one answers an open question
+   written into sources/omp.yml at intake, from the maintainer's own mouth, and
+   it needs a primary cross-check before it can be used.
+2. **The W1 thesis has a practitioner saying it plainly.** On the approval
+   boundary, one operator argues that limits stated in chat are not stored as
+   rules, that the classifier rereads them, and that the vendor's own docs tell
+   you to write a deny rule if you want a hard guarantee. That is this window's
+   argument in somebody else's words, which is better than making it ourselves.
+3. **A maintainer moved his own work off a rival harness** over cloud sessions
+   he did not ask for. Voice, not claim, and it should be carried as voice.
+
+Every one of these is a lead. The gists are the sweep's own words by design and
+no fragment of them may be quoted; anything that becomes a card gets re-fetched
+by URL in a capture pass with no expected text to anchor on.
