@@ -1,5 +1,20 @@
 # Hermes + Grok X social-discovery setup
 
+> **Superseded 2026-08-18.** The lane now calls the `grok` CLI directly through
+> `ops/grok/x-sweep.sh`, on `grok-4.6` at `xhigh` effort, authenticated to
+> grok.com over OIDC. Same subscription rule, same discovery-only rule, one less
+> moving part. The reason for the change is wall-clock: a Hermes one-shot took 20
+> to 40 minutes and had to be serialized, which is why the cycle was built around
+> keeping one call warm in the background. A direct call returns in seconds, so
+> that whole scheduling constraint goes away. This runbook is kept because
+> Hermes is itself a watched source and because the prompt mechanics below were
+> learned the hard way and still apply.
+>
+> One new trap, learned immediately: do not pass `--json-schema` to a sweep. The
+> model satisfies the schema on its first turn without ever running a search and
+> returns a perfectly well-formed empty result. Pin the enums in the prompt and
+> parse the blocks afterwards instead.
+
 This runbook wires one recurring step of the Bitter Frontier cycle: the loop drives
 the [Hermes agent](https://hermes-agent.nousresearch.com/docs/) as a one-shot
 sub-agent that digs public X/social signals on Grok, using a SuperGrok or X
