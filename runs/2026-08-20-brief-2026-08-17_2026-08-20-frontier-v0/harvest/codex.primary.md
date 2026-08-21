@@ -23,7 +23,7 @@ Punctuation is ASCII. Pin tags, not main.
 
 **What changed.** The default install path moved. Parent window froze npm latest at 0.147.0 for ten days. 0.148.0 is a non-prerelease tag with a New Features list (TUI /export, exec fork, Bedrock Runtime, async hooks including MCP tools) and a changelog that lists Guardian V2 PRs (#38336, #38569, and the rest of the parent alpha wave). The marketed New Features section does not name Guardian V2.
 
-**Operator consequence.** `npm i -g @openai/codex` no longer lands 0.147.0 after this tag. Treat 0.148.0 as a large upgrade (381 commits vs 0.147.0), not a point release. Guardian V2 being in the changelog list and absent from New Features is the marketing-vs-substance split; confirm whether it is on by default before planning around it.
+**Operator consequence.** `npm i -g @openai/codex` no longer lands 0.147.0 after this tag. Treat 0.148.0 as a large upgrade (381 commits vs 0.147.0), not a point release. Config lockfile support is gone (`#38011`). `#38635` deletes three in-repo skills; repo-scoped skill loading still resolves `.codex/skills` and `.agents/skills` at 0.148.0. rust-v0.148.0 is 139 commits behind rust-v0.148.0-alpha.23, so some alpha.21 contents missed this cut. Between 0.147.0 and 0.148.0 there were 21 published 0.148.0-alpha GitHub releases (19 through alpha.21 plus alpha.22 and alpha.23); alpha.3 and alpha.10 are tags without releases.
 
 ## 2. 0.149.0 cut stable two days later; npm latest is 0.149.0
 
@@ -35,7 +35,7 @@ Punctuation is ASCII. Pin tags, not main.
 
 **What changed.** New Features: interactive `codex agents` dashboard, `/cd` `/pwd` `/cwd`, `codex queue`, Vim motions, doctor diagnostics. Bug fix: resumed and forked threads restore their active permission profile instead of silently falling back to current defaults (#39153). Docs: DNS exfiltration risks for secure devcontainers (#39283).
 
-**Operator consequence.** Default install is 0.149.0. If you jumped from 0.147.0, you skipped two stables in 48 hours. The permission-profile restore on resume is the defect half: a resume that silently dropped the profile would have been an approval-seat change.
+**Operator consequence.** Default install is 0.149.0. If you jumped from 0.147.0, you skipped two stables in 48 hours. The permission-profile restore on resume is the defect half. If you enable Guardian V2, prefer 0.149.0: scoring errors fail open in 0.148.0 and fail closed in 0.149.0 (`#39307`). Search fleet configs for `untrusted` before 0.149.0; that policy is removed (`#39630`).
 
 ## 3. Official posture: the app owns approvals; the harness owns the loop
 
@@ -55,7 +55,7 @@ Guardian V2 on-by-default, inspectability, and analytics visibility are not sett
 
 0.150.0-alpha.5 is 08-21 OUT as a default-install fact. Alpha dist-tag movement after 08-20 22:06 is mixed; do not put 0.150 in the operator brief as a stable.
 
-Config lockfile / repo-local skills removal from parent alpha: if those PRs are in the 0.148.0 changelog list they shipped. Confirm in the researcher harvest.
+Config lockfile deletion shipped in 0.148.0. Repo-local skill loading did not. Untrusted policy retired in 0.149.0. Guardian V2 scoring fail-open in 0.148.0, fail-closed in 0.149.0. Confirmed against tag files and PR lists.
 
 ## Surfaces checked
 

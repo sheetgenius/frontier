@@ -1,5 +1,6 @@
 # Bitter Frontier Digests
 
+- [The Classifier Is Off](2026-08-17_2026-08-20-weekly.md) -- Bitter Frontier Brief, 2026-08-17 to 2026-08-20
 - [The Gate Is a Plugin](2026-08-10_2026-08-17-weekly.md) -- 2026-08-10 to 2026-08-17
 - [You Approved Something Else](2026-08-03_2026-08-10-weekly.md) -- 2026-08-03 to 2026-08-10
 - [The Newest Thing You Can Install](2026-07-27_2026-08-03-weekly.md) -- 2026-07-27 to 2026-08-03

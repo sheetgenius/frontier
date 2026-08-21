@@ -7,13 +7,16 @@ run_id: 2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0
 parent: 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0 ("The Gate Is a Plugin")
 AUTHORIZE_PUSH: no
 
-Next: findings from applied harvests; merge researcher depth when they return; capture pass for card URLs.
+Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
-Blocked: nothing. Researchers still deepening Codex/Claude/Gemini/Antigravity and others. Coordinator already wrote all 17 harvest files so the tree is not blocked on them.
+Blocked: nothing.
 
 Commits this run:
 - a452c26 phase 0 scaffold (J0)
 - 9a618e5 Lane B feeds (J1)
+- 641950f Lane A harvests (J2)
+
+Saturation: harvests 17/17, Lane B, Lane C+capture, findings 15, signals 5, brief written, exemplar+humanizer on the brief, profiles dated 2026-08-20, wire 2026-08-20, manifest/audit/qa, build+integrity+static-link all 0, no push.
 
 Blocked: nothing. Lane A children in flight.
 

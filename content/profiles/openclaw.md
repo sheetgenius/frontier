@@ -18,9 +18,13 @@ repo: https://github.com/openclaw/openclaw
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-07-27
-last_full_review: 2026-07-27
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
+  - id: approved-exec-still-unreleased
+    finding_id: 2026-08-20-openclaw-approved-exec-fix-still-in-no-release
+    last_verified: 2026-08-20
+    status: active
   - id: channel-recovery-self-healing
     finding_id: 2026-05-07-openclaw-everyday-agent-surfaces
     last_verified: 2026-05-07

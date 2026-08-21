@@ -1,9 +1,9 @@
 schema_version: bitter.frontier_run_manifest.v0
 run_id: 2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0
 id: 2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0
-title: (unset until synthesis)
+title: The Classifier Is Off
 mode: brief
-status: in_progress
+status: complete
 window:
   start: 2026-08-17
   end: 2026-08-20
@@ -29,20 +29,64 @@ sources:
   - agent-flywheel
   - omnigent
   - omp
-finding_count: 0
-signal_count: 0
-quality_gates: []
+finding_count: 15
+signal_count: 5
+outputs:
+  digest:
+    - content/digests/2026-08-17_2026-08-20-weekly.md
+  wire:
+    - content/wire/2026-08-20.yml
+  profiles:
+    - content/profiles/codex.md
+    - content/profiles/claude-code.md
+    - content/profiles/gemini-cli.md
+    - content/profiles/antigravity.md
+    - content/profiles/hermes-agent.md
+    - content/profiles/pi-coding-agent.md
+    - content/profiles/openclaw.md
+    - content/profiles/agent-zero.md
+    - content/profiles/openhands.md
+    - content/profiles/deepseek-harness.md
+    - content/profiles/eve.md
+    - content/profiles/agent-flywheel.md
+    - content/profiles/omnigent.md
+    - content/profiles/omp.md
+  findings: 15
+  signals:
+    - signals/frontier-signals.yml
+  social_cards:
+    - social-cards/x-cards.yml
+  review:
+    - qa.md
+    - thread-check.md
+    - audit.md
+quality_gates:
+  - channel resolved by git ancestry on every inspectable source
+  - Guardian V2 default_enabled read at rust-v0.148.0, not inferred from release marketing
+  - 2.1.239 and v1.15.0 and dsh-v0.1.1-rc.* treated as out of window
+  - OMP 17.3.6 still 404; 17.3.7 not both
+  - Agent Zero identity is agent0ai/agent-zero
+  - OMP and Pi kept distinct
+  - star count not used as adoption
+  - wrapper subagent permission mode not attributed to Claude Code or Codex alone
+  - no quotation from harvest; capture.sh 10/10, 0 unavailable
 carry_forward_checks:
-  - "Whether DeepSeek Harness reaches a non-prerelease tag, and whether the approval gate is still composable by a plugin when it does."
-  - "Whether anything authenticates the DeepSeek Harness Web UI beyond binding to loopback."
-  - "Whether OpenClaw's approved-exec fix reaches a release, having merged to the default branch in the parent window."
-  - "Whether OMP's v17.3.6 and v17.3.7 tags gain releases, or whether tag-ahead-of-release becomes this project's normal state."
-  - "Whether Agent Zero's restored SSRF fix acquires a regression test, given it was lost once inside a refactor."
+  - q: "Whether DeepSeek Harness reaches a non-prerelease tag, and whether the approval gate is still composable by a plugin when it does."
+    answer: "No non-prerelease tag. rc.8 (2026-08-19, SHA 141eb6fe) still documents the plugin waterfall."
+  - q: "Whether anything authenticates the DeepSeek Harness Web UI beyond binding to loopback."
+    answer: "No. api-request-trust.ts at 141eb6fe still says the fence is not an auth layer. trustedHosts is a Host grant."
+  - q: "Whether OpenClaw's approved-exec fix reaches a release, having merged to the default branch in the parent window."
+    answer: "No. ab5611f0 is 619 commits ahead of v2026.8.1-beta.2. Zero releases in this window."
+  - q: "Whether OMP's v17.3.6 and v17.3.7 tags gain releases, or whether tag-ahead-of-release becomes this project's normal state."
+    answer: "v17.3.7 gained GitHub+npm on 2026-08-18. v17.3.6 still has neither. Split, not a new normal for every tag."
+  - q: "Whether Agent Zero's restored SSRF fix acquires a regression test, given it was lost once inside a refactor."
+    answer: "Yes. v2.10 tests/test_document_query_plugin.py blocks 127.0.0.1 and redirect-to-loopback."
 lanes:
-  primary: "not started"
-  writing: "not started"
-  x_social: "not started"
+  primary: "complete -- 17 harvest files, 15 findings, 5 signals"
+  writing: "complete -- 15/15 feeds live, 58 items archived, 0 FAIL"
+  x_social: "complete -- native X discovery; 10 URLs captured, 0 unavailable; 5 cards"
 notes: >
-  Three-day Bitter Frontier Brief window. 2026-08-17 is overlap with the parent
-  weekly; harvest only coverage gaps the parent missed. Prefer events dated
-  2026-08-18 onward. Do not widen the window.
+  Three-day Bitter Frontier Brief. 2026-08-17 overlap harvested only as
+  coverage gaps. 2026-08-21 events (Claude 2.1.239, OpenHands v1.15.0,
+  DSH 0.1.1-rc, OMP 17.4.1/2, Hermes v2026.8.19, eve 0.43/0.44) are out
+  of window. AUTHORIZE_PUSH is no.

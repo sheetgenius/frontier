@@ -18,9 +18,13 @@ repo: https://github.com/google-gemini/gemini-cli
 surface_class: open_source_commits
 evidence_floor: commit_diff_reviewed
 status: active_watch
-last_updated: 2026-07-27
-last_full_review: 2026-07-27
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
+  - id: v0-56-0-stable-is-two-chore-commits
+    finding_id: 2026-08-20-gemini-cli-v0-56-0-is-stable-and-two-chore-commits-past-v0-55-1
+    last_verified: 2026-08-20
+    status: active
   - id: consumer-service-retired-2026-06-18
     finding_id: 2026-07-01-gemini-cli-consumer-service-retired
     last_verified: 2026-07-01

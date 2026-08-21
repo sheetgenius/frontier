@@ -22,9 +22,13 @@ repo: https://github.com/OpenHands/OpenHands
 surface_class: mixed_official_docs
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-07-27
-last_full_review: 2026-07-27
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
+  - id: wrong-profile-fix-unreleased-at-2026-08-20
+    finding_id: 2026-08-20-openhands-wrong-profile-fix-still-unreleased-at-window-close
+    last_verified: 2026-08-20
+    status: active
   - id: release-channel-lag
     finding_id: 2026-06-23-openhands-channel-posture
     last_verified: 2026-06-23

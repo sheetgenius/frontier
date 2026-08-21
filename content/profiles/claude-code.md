@@ -19,9 +19,13 @@ x:
 surface_class: closed_source_release_notes
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-07-27
-last_full_review: 2026-07-27
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
+  - id: macos-read-deny-and-mcp-headershelper
+    finding_id: 2026-08-20-claude-code-2-1-236-macos-read-deny-wildcards-bind-2-1-238-trust-gates-mcp-headershelper
+    last_verified: 2026-08-20
+    status: active
   - id: ultrareview-cloud-review
     finding_id: 2026-05-06-claude-code-review-recap-plugin-surfaces
     last_verified: 2026-05-06

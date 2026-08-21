@@ -15,9 +15,13 @@ repo: https://github.com/omnigent-ai/omnigent
 surface_class: open_source_commits
 evidence_floor: official_docs
 status: active_watch
-last_updated: 2026-08-03
+last_updated: 2026-08-20
 last_full_review: 2026-08-03
 claims:
+  - id: v0-10-0-multi-sandbox-shared-editor-approval
+    finding_id: 2026-08-20-omnigent-v0-10-0-adds-multi-sandbox-and-keeps-shared-editor-approval
+    last_verified: 2026-08-20
+    status: active
   - id: worktree-guard-inert-on-windows
     finding_id: 2026-08-03-omnigent-worktree-guard-inert-on-windows-runners
     last_verified: 2026-08-03

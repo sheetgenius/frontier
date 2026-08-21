@@ -16,16 +16,16 @@ repo: https://github.com/deepseek-ai/deepseek-harness
 surface_class: open_source_commits
 evidence_floor: official_docs
 status: active_watch
-last_updated: 2026-08-18
-last_full_review: 2026-08-18
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
   - id: gate-is-a-plugin
     finding_id: 2026-08-17-deepseek-harness-everything-is-a-plugin-including-the-components-that-enforce-the-limits
-    last_verified: 2026-08-18
+    last_verified: 2026-08-20
     status: active
   - id: web-ui-unauthenticated
     finding_id: 2026-08-17-deepseek-harness-nothing-authenticates-the-web-ui-on-127-0-0-1-3080-and-the-api-fence
-    last_verified: 2026-08-18
+    last_verified: 2026-08-20
     status: active
   - id: plugins-are-unsandboxed-in-process
     finding_id: 2026-08-17-deepseek-harness-a-dsh-plugin-is-an-unsandboxed-in-process-module-with-no-permission
@@ -33,11 +33,15 @@ claims:
     status: active
   - id: one-channel-and-it-is-a-prerelease
     finding_id: 2026-08-17-deepseek-harness-the-whole-project-ships-to-exactly-one-channel-and-it-is-a
-    last_verified: 2026-08-18
+    last_verified: 2026-08-20
     status: active
   - id: runs-rival-models-and-harnesses
     finding_id: 2026-08-17-deepseek-harness-deepseek-s-own-harness-ships-a-supported-path-to-run-openai-and
     last_verified: 2026-08-18
+    status: active
+  - id: rc-8-still-plugin-gate
+    finding_id: 2026-08-20-deepseek-harness-still-prerelease-gate-still-a-plugin-ui-still-unauthenticated
+    last_verified: 2026-08-20
     status: active
 ---
 
@@ -53,10 +57,22 @@ four days, the largest number this watchlist has recorded at intake, and that
 figure tells an operator nothing. `star_count_as_adoption` is written into the
 source contract's rejected evidence for exactly that reason.
 
-## Where it stands, 2026-08-18
+## Where it stands, 2026-08-20
 
-**Channel.** One tag exists, `dsh-v0.1.0-rc.7`, flagged prerelease, and the npm
-`latest` dist-tag on `@deepseek-ai/dsh` resolves to that same release
+**Channel.** In-window tag is `dsh-v0.1.0-rc.8` (2026-08-19, SHA
+`141eb6fe`), still prerelease. There is still no non-prerelease tag.
+`dsh-v0.1.1-rc.1` and `rc.2` published 2026-08-21 sit outside this
+window and are still prereleases.
+
+**The architecture claim, re-tested.** docs/architecture.md at `141eb6fe`
+still says every part is a plugin and a patch can insert a row ahead of
+any other. The request-trust module still says it is not an auth layer.
+`trustedHosts` is a Host grant, not a login.
+
+## Where it stood, 2026-08-18
+
+**Channel.** One tag existed, `dsh-v0.1.0-rc.7`, flagged prerelease, and the npm
+`latest` dist-tag on `@deepseek-ai/dsh` resolved to that same release
 candidate. The README's own install command therefore installs an rc, under a
 warning in capitals that there will be compatibility-breaking changes. There is
 no stable channel. Nothing here has shipped to something an operator should

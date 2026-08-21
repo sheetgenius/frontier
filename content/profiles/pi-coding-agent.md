@@ -15,9 +15,13 @@ repo: https://github.com/earendil-works/pi
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-07-27
-last_full_review: 2026-07-27
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
+  - id: new-harness-on-dev-not-tagged
+    finding_id: 2026-08-20-pi-new-harness-lives-on-dev-not-on-a-tag
+    last_verified: 2026-08-20
+    status: active
   - id: typebox-extension-sdk-validation
     finding_id: 2026-05-06-pi-thin-harness-provider-churn
     last_verified: 2026-05-06

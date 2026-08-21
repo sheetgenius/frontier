@@ -6,16 +6,20 @@ owner: agent0ai
 source_contract: sources/agent-zero.yml
 homepage: https://www.agent-zero.ai/
 docs: https://www.agent-zero.ai/p/docs/
-tagline: "The cleanest release channel on the watchlist -- main is identical to its newest tag -- and it quietly narrowed the secret masking it had just shipped."
+tagline: "v2.10 tags the ACP bridge and interactive browser, and the SSRF fix finally has a test."
 x:
   project: Agent0ai
 repo: https://github.com/agent0ai/agent-zero
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-07-27
-last_full_review: 2026-07-27
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
+  - id: v2-10-acp-browser-ssrf-tests
+    finding_id: 2026-08-20-agent-zero-v2-10-tags-acp-and-interactive-browser-and-adds-ssrf-regression-tests
+    last_verified: 2026-08-20
+    status: active
   - id: native-browser-playwright
     finding_id: 2026-05-07-agent-zero-full-computer-workcell
     last_verified: 2026-05-07

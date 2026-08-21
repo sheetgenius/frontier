@@ -21,9 +21,13 @@ evidence_floor: tagged_release
 status: active_watch
 artifact_version: 4
 first_published: 2026-07-02
-last_updated: 2026-07-27
+last_updated: 2026-08-20
 last_full_review: 2026-07-27
 claims:
+  - id: optional-ee-fmd-pi-pfr-on-main
+    finding_id: 2026-08-20-agent-flywheel-optional-ee-fmd-pi-pfr-stack-on-main-no-new-tag
+    last_verified: 2026-08-20
+    status: active
   - id: v0-7-0-intake-tag
     finding_id: 2026-07-02-agent-flywheel-v0-7-0-tagged-release
     last_verified: 2026-07-12

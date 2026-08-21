@@ -15,12 +15,16 @@ repo: https://github.com/can1357/oh-my-pi
 surface_class: open_source_commits
 evidence_floor: official_docs
 status: active_watch
-last_updated: 2026-08-18
-last_full_review: 2026-08-18
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
   - id: write-broker-in-unreleased-tags
     finding_id: 2026-08-17-omp-omp-tags-v17-3-6-and-v17-3-7-carry-an-extension-hook-that-brokers
     last_verified: 2026-08-18
+    status: retired
+  - id: write-broker-on-npm-17-3-7
+    finding_id: 2026-08-20-omp-v17-3-7-released-the-write-fallback-hook-v17-3-6-still-has-no-release
+    last_verified: 2026-08-20
     status: active
   - id: blind-approval-fixed-twice
     finding_id: 2026-08-17-omp-omp-s-always-ask-approval-prompt-opened-before-the-diff-rendered-fixed
@@ -45,16 +49,27 @@ same week. This publication spent its 2026-08-03 issue on a release line
 renumbered below its own predecessor. This is that failure mode from the other
 direction, and an adjacent-tool entry could not carry the handling rule it needs.
 
-## Where it stands, 2026-08-18
+## Where it stands, 2026-08-20
 
-**Channel, and it is split.** Tags `v17.3.6` and `v17.3.7` exist with no
-GitHub release behind them; the newest release and the npm `latest` tag are both
+**Channel.** `v17.3.7` gained a GitHub release and an npm publish on
+2026-08-18. `v17.3.6` still has neither (GitHub 404, npm missing).
+`v17.4.0` (2026-08-20) is the window-close npm tip and breaks the
+tokenizer API. `v17.4.1` and `v17.4.2` are 2026-08-21, outside this
+window. Name the path when you report a version.
+
+**The write-fallback hook is installable.** `registerFileWriteFallback`
+is in the 17.3.7 release body. An OS denial is no longer the last word
+when an extension is loaded.
+
+## Where it stood, 2026-08-18
+
+**Channel, and it was split.** Tags `v17.3.6` and `v17.3.7` existed with no
+GitHub release behind them; the newest release and the npm `latest` tag were both
 `v17.3.5`. Four install paths exist -- an install script piped to a shell, a
-Homebrew tap, a global Bun install, and a Nix flake -- and on the day of this
-review only the flake reached the newest tag. Name the path when you report a
-version of this project.
+Homebrew tap, a global Bun install, and a Nix flake -- and on 2026-08-18 only the
+flake reached the newest tag.
 
-**What is in those unreleased tags matters.** v17.3.6 adds extension hooks that
+**What was in those unreleased tags.** v17.3.6 added extension hooks that
 let a handler service a filesystem write or delete after the native path refused
 it with a permission error. The mechanism is legitimate and guarded: the path is
 symlink-resolved, an unresolvable destination is not brokered, and the issuing

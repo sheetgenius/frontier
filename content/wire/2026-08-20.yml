@@ -1,0 +1,72 @@
+schema_version: bitter.frontier_wire.v0
+wire_id: "2026-08-20"
+date: 2026-08-20
+lede: >
+  A three-day window: Codex cut two stables, Asana's testing migration is the
+  vendor story of the week, and a sandbox write-up and an extensible-software
+  essay are the useful ones.
+items:
+  - title: "The Pulse: We need to talk about migrations with AI"
+    url: https://newsletter.pragmaticengineer.com/p/the-pulse-we-need-to-talk-about-migrations
+    source: Gergely Orosz
+    date: 2026-08-20
+    tier: relayed
+    take: >
+      Asana's two-week test-framework move is also in OpenAI's own Codex
+      write-up. Treat the vendor number as a claim with a method you have not
+      been shown. The useful part is the question: some migrations sat for years
+      because the serial step was human attention, and agents changed that
+      bottleneck without changing whether the result is right.
+
+  - title: "The /wayfinder Skill: Navigating the Fog of War of Planning"
+    url: https://www.latent.space/p/wayfinder-skill
+    source: Latent Space
+    date: 2026-08-20
+    tier: relayed
+    take: >
+      Matt Pocock on a skill for when the next step is unclear. A planning
+      aid is not a harness change. Recorded because this beat keeps growing
+      skills that sit on top of Claude Code rather than inside it.
+
+  - title: "Asana cleared 5 years of engineering work in 2 weeks with Codex"
+    url: https://openai.com/index/asana
+    source: OpenAI
+    date: 2026-08-18
+    tier: relayed
+    take: >
+      The same Asana migration, told by the vendor. "Five years in two weeks"
+      is their framing. The underlying event may be real; the compression ratio
+      is not a method we have. Pair it with the independent Pulse item rather
+      than repeating it as fact.
+
+  - title: "smolmachines / smolvm as a sandbox for untrusted Python and JavaScript"
+    url: https://simonwillison.net/2026/Aug/19/smolmachines-untrusted-sandbox/
+    source: Simon Willison
+    date: 2026-08-19
+    tier: relayed
+    take: >
+      A practitioner putting a fast sandbox through its paces. Adjacent to the
+      watchlist rather than on it. Useful because it is a measurement, not a
+      launch.
+
+  - title: "Quoting Jeremy Morrell"
+    url: https://simonwillison.net/2026/Aug/19/jeremy-morrell/
+    source: Simon Willison
+    date: 2026-08-19
+    tier: relayed
+    take: >
+      Extensible software with a solid core and a sandboxed extension layer,
+      cheaper to author because of LLMs. That is the DeepSeek-plugin argument
+      from the other direction: keep a privileged core. Worth reading next to
+      a harness that says it does not have one.
+
+  - title: "Recovering Encrypted LLM Reasoning Traces"
+    url: https://embracethered.com/blog/posts/2026/recovering-encrypted-llm-thoughts/
+    source: Johann Rehberger
+    date: 2026-08-17
+    tier: relayed
+    take: >
+      A reproduction of a paper on recovering encrypted reasoning traces from
+      proprietary APIs. Not a harness changelog. It is the kind of item this
+      lane exists to catch: a security write-up on a blog that an X sweep
+      can miss.

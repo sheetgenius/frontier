@@ -17,9 +17,13 @@ surface_class: closed_source_releases
 evidence_floor: official_changelog
 status: active_watch
 first_published: 2026-07-01
-last_updated: 2026-07-27
-last_full_review: 2026-07-27
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
+  - id: settings-json-no-longer-overwritten
+    finding_id: 2026-08-20-antigravity-1-1-16-no-longer-overwrites-unreadable-settings-json-with-defaults
+    last_verified: 2026-08-20
+    status: active
   - id: consumer-successor-to-gemini-cli
     finding_id: 2026-07-01-antigravity-successor-to-gemini-consumer
     last_verified: 2026-07-01

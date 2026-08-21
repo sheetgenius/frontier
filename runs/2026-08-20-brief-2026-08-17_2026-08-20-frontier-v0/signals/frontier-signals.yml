@@ -1,0 +1,130 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0
+window:
+  start: 2026-08-17
+  end: 2026-08-20
+note: >
+  Five signals from fifteen findings. The window is three days and it earned a
+  brief because two things that were unreleased last week became installable,
+  and two things that were unreleased last week stayed that way, and the
+  classifier that sat in Codex alpha is now in a stable tag with the feature
+  flag still off. That is one argument: shipped is not on.
+
+signals:
+
+  - id: 2026-08-20-codex-guardian-v2-in-the-tag-off-by-default
+    status: accepted
+    section: control-plane
+    source: codex
+    channel: tagged-release
+    title: "Guardian V2 is in Codex 0.148.0 and the feature flag is still off"
+    finding_ids:
+      - 2026-08-20-codex-0-148-0-cut-stable-guardian-v2-is-in-the-tag-and-off-by-default
+      - 2026-08-20-codex-0-149-0-is-npm-latest-and-restores-permission-profile-on-resume
+    summary: >
+      After ten days with npm latest frozen at 0.147.0, rust-v0.148.0 cut
+      stable on 2026-08-18 (381 commits vs 0.147.0) and rust-v0.149.0 cut on
+      2026-08-20 (242 more). The 0.148.0 tree contains guardian-v2. At that tag
+      Feature::GuardianV2 is UnderDevelopment and default_enabled false;
+      Feature::GuardianApproval is Stable and default_enabled true. The
+      extension returns unless both flags are on. The marketed New Features
+      list does not name Guardian V2. npm latest is 0.149.0.
+    why_action_bearing:
+      - "Upgrade the default install to 0.149.0 if you stayed on 0.147.0. Treat it as a large upgrade, not a point release."
+      - "Do not plan as if a model now gates every tool call. Turning Guardian V2 on is a feature flag. If you enable it, prefer 0.149.0: scoring errors fail open in 0.148.0. Search configs for untrusted before 0.149.0. Evidence that would settle residual: a config dump from a stock 0.149.0 install showing features.guardianv2 enabled, or vendor docs stating the default."
+      - "If you embed the SDK, the vendor's own 2026-08-20 post says the app owns approvals. That is the opposite of an invisible in-harness reviewer. Reconcile which seat you actually run."
+    receipts:
+      - url: https://github.com/openai/codex/releases/tag/rust-v0.148.0
+        precision: github_release
+      - url: https://github.com/openai/codex/blob/rust-v0.148.0/codex-rs/features/src/lib.rs
+        precision: tagged_commit_file
+      - url: https://github.com/openai/codex/releases/tag/rust-v0.149.0
+        precision: github_release
+
+  - id: 2026-08-20-agent-zero-v2-10-acp-browser-ssrf-tests
+    status: accepted
+    section: runtime
+    source: agent-zero
+    channel: tagged-release
+    title: "v2.10 ships the ACP bridge and interactive browser, and the SSRF fix finally has a test"
+    finding_ids:
+      - 2026-08-20-agent-zero-v2-10-tags-acp-and-interactive-browser-and-adds-ssrf-regression-tests
+    summary: >
+      Parent recorded ACP and an interactive Browser viewport on a non-default
+      branch. v2.10 (2026-08-19, 20 commits past v2.9) contains both. The same
+      tag adds test_fetch_http_blocks_non_public_destinations and a
+      redirect-to-loopback test against the restored fetch_public_http_resource
+      path. CVE-2026-4308 class is SSRF: a user-supplied URL must not hit
+      internal addresses.
+    why_action_bearing:
+      - "Upgrade to v2.10 if you run document query against untrusted URLs, or if you want ACP or the live viewport."
+      - "The test is the thing that makes the next plugin refactor fail closed. v2.9 restored the code; v2.10 pins the regression."
+    receipts:
+      - url: https://github.com/agent0ai/agent-zero/releases/tag/v2.10
+        precision: github_release
+      - url: https://github.com/agent0ai/agent-zero/blob/v2.10/tests/test_document_query_plugin.py
+        precision: tagged_commit_file
+
+  - id: 2026-08-20-openclaw-approved-exec-still-unreleased
+    status: accepted
+    section: control-plane
+    source: openclaw
+    channel: main-unreleased
+    title: "The approved-exec fix is still in no release"
+    finding_ids:
+      - 2026-08-20-openclaw-approved-exec-fix-still-in-no-release
+    summary: >
+      Merge ab5611f0 (2026-08-17) binds exec approvals to the bytes that will
+      run. The newest tag is still v2026.8.1-beta.2 from 2026-08-15. Compare
+      that tag to the commit is ahead_by 619. This window cut zero OpenClaw
+      releases.
+    why_action_bearing:
+      - "A tagged install still can run different bytes than the ones you approved. Say that to anyone relying on the prompt."
+      - "Evidence that would settle: any tag where ab5611f0 is an ancestor."
+    receipts:
+      - url: https://github.com/openclaw/openclaw/commit/ab5611f0be610380fe48803fe4311896ca85806e
+        precision: git_commit
+
+  - id: 2026-08-20-deepseek-rc-8-still-the-plugin-gate
+    status: accepted
+    section: control-plane
+    source: deepseek-harness
+    channel: preview-or-beta
+    title: "rc.8 still has no privileged core, and the Web UI still has no login"
+    finding_ids:
+      - 2026-08-20-deepseek-harness-still-prerelease-gate-still-a-plugin-ui-still-unauthenticated
+    summary: >
+      dsh-v0.1.0-rc.8 (2026-08-19, SHA 141eb6fe) is still prerelease. The
+      architecture page at that pin still says every part is a plugin and a
+      patch can insert a row ahead of any other. The request-trust module still
+      says it is not an auth layer. trustedHosts is a Host grant, not a
+      password. rc.8 adds Claude Code and Codex subagents as Profile Bundles
+      with non-interactive permission modes; that is wrapper behavior.
+    why_action_bearing:
+      - "Still a developer preview. Do not expose the port."
+      - "Read architecture.md at 141eb6fe before installing a plugin. Inspect a bundle's permission mode; do not attribute it to Claude Code or Codex alone."
+    receipts:
+      - url: https://github.com/deepseek-ai/deepseek-harness/blob/141eb6fef83422698aef7a981029e843e8161534/docs/architecture.md
+        precision: official_docs
+      - url: https://github.com/deepseek-ai/deepseek-harness/blob/141eb6fef83422698aef7a981029e843e8161534/packages/client/connection/src/api-request-trust.ts
+        precision: tagged_commit_file
+
+  - id: 2026-08-20-omp-write-fallback-is-on-npm
+    status: accepted
+    section: control-plane
+    source: omp
+    channel: tagged-release
+    title: "The filesystem-write broker is now an npm version; 17.3.6 still is not"
+    finding_ids:
+      - 2026-08-20-omp-v17-3-7-released-the-write-fallback-hook-v17-3-6-still-has-no-release
+    summary: >
+      Parent recorded registerFileWriteFallback on tags with no GitHub release
+      and no npm publish. v17.3.7 gained both on 2026-08-18. v17.3.6 still has
+      neither. v17.4.0 (2026-08-20) breaks the tokenizer API. This is the
+      Oh My Pi fork, not Pi Coding Agent.
+    why_action_bearing:
+      - "If you run OMP 17.3.7+, inspect extensions for registerFileWriteFallback. The OS denial is no longer the last word."
+      - "Name the install path. There is no npm 17.3.6. Window-close npm tip is 17.4.0; 17.4.1/17.4.2 are the next day."
+    receipts:
+      - url: https://github.com/can1357/oh-my-pi/releases/tag/v17.3.7
+        precision: github_release

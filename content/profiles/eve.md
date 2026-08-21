@@ -11,9 +11,13 @@ repo: https://github.com/vercel/eve
 surface_class: open_source_releases
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-07-27
-last_full_review: 2026-07-27
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
+  - id: channel-hitl-metadata-and-credential-redaction
+    finding_id: 2026-08-20-eve-0-40-through-0-42-redact-credentials-and-stop-channel-metadata-leaking-into-approvals
+    last_verified: 2026-08-20
+    status: active
   - id: filesystem-first-agent
     finding_id: 2026-06-17-eve-filesystem-first-agent-model
     last_verified: 2026-06-19

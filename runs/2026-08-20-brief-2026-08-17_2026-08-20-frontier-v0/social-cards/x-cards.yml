@@ -1,0 +1,109 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0
+note: >
+  Every verbatim was re-fetched by URL in a capture pass given no expected
+  text. Capture reported 10 blocks, 0 unavailable. Inline fragments will be
+  sliced by ops/social/slice-quote.mjs, never retyped.
+cards:
+  - id: mitsuhiko-pi-dev-branch
+    title: "The new harness is not on main"
+    kind: voice
+    date: 2026-08-20
+    date_precision: day
+    captured_on: 2026-08-21
+    source_ids: [pi-coding-agent]
+    authors: ["mitsuhiko"]
+    display_name: "Armin Ronacher ⇌"
+    source_urls:
+      - https://x.com/mitsuhiko/status/2090368103972479324
+    verbatim: |
+      If you're curious about what's happening with the new harness in Pi, a lot of activity is taking place in the dev branch and not on main :)
+    inline: "a lot of activity is taking place in the dev branch and not on main :)"
+    summary: >
+      A Pi maintainer saying the new harness work is on the dev branch, not on main.
+    verdict: >
+      Voice. We report that he said the work is on `dev`. The git compare (main...dev ahead_by 264) is the product fact; the post is the reason we looked at that branch.
+
+  - id: openai-devs-app-owns-approvals
+    title: "The app owns approvals"
+    kind: claim
+    date: 2026-08-20
+    date_precision: day
+    captured_on: 2026-08-21
+    source_ids: [codex]
+    authors: ["OpenAIDevs"]
+    display_name: "OpenAI Developers"
+    source_urls:
+      - https://x.com/OpenAIDevs/status/2090230646497251387
+    verbatim: |
+      Teams are using the open-source Codex harness to bring agents into the tools they already use, from internal apps to operations dashboards.
+
+      Their applications control the interface, context, tools, and approvals while the harness handles the agent loop.
+
+      https://t.co/shi2vwqxh4
+    inline: "Their applications control the interface, context, tools, and approvals while the harness handles the agent loop."
+    summary: >
+      Official: embedding apps keep approvals; Codex runs the loop.
+    verdict: >
+      Claim, official account. Adjudicated against the 0.148.0 tag: Guardian V2 exists in the binary and is off by default, which is consistent with the embedding story and inconsistent with treating Guardian as the default gate.
+
+  - id: acsmif-guardian-invisible
+    title: "Guardian V2 was never displayed"
+    kind: claim
+    date: 2026-08-20
+    date_precision: day
+    captured_on: 2026-08-21
+    source_ids: [codex]
+    authors: ["acsmif"]
+    display_name: "colin"
+    source_urls:
+      - https://x.com/acsmif/status/2090477764109533376
+    verbatim: |
+      The charitable interpretation is that codex-auto-review has been deprecated as more is routed to guardian-v2, which was never displayed. But removing auto-review from analytics while also keeping guardian-v2 invisible is nuts.
+
+      If we’re charged for it, we should obviously be able to see it in analytics.
+    inline: "guardian-v2, which was never displayed"
+    summary: >
+      An operator saying Guardian V2 spend is invisible in Codex analytics.
+    verdict: >
+      Claim. We report that he said it. The primary record confirms Guardian V2 is in 0.148.0 and off by default; it does not confirm the analytics UI. Unsettled until a settings page or docs pin says how Guardian usage is billed and shown.
+
+  - id: simonw-gha-without-asking
+    title: "It pushed the workflow without asking"
+    kind: voice
+    date: 2026-08-20
+    date_precision: day
+    captured_on: 2026-08-21
+    source_ids: [claude-code]
+    authors: ["simonw"]
+    display_name: "Simon Willison"
+    source_urls:
+      - https://x.com/simonw/status/2090299859693695283
+    verbatim: |
+      I had Claude Code for web experiment with smolvm as a code execution sandbox
+
+      Fable 5 spotted that its environment couldn't run that (no /dev/kvm)... so, without asking me first, it wrote a GitHub Actions workflow to run the experiments and pushed that directly to GitHub instead!
+    inline: "without asking me first, it wrote a GitHub Actions workflow to run the experiments and pushed that directly to GitHub instead!"
+    summary: >
+      Claude Code for web wrote and pushed a GitHub Actions workflow when the local sandbox could not run KVM.
+    verdict: >
+      Voice. A statement about one session, not a changelog. It is here because it is the capability half: the agent left the machine it was on and kept going.
+
+  - id: cnzhihao-dsh-it-audit
+    title: "The black boxes fail the audit"
+    kind: voice
+    date: 2026-08-18
+    date_precision: day
+    captured_on: 2026-08-21
+    source_ids: [deepseek-harness, codex, claude-code]
+    authors: ["cnzhihao"]
+    display_name: "智昊 - OPC版"
+    source_urls:
+      - https://x.com/cnzhihao/status/2089718723607445739
+    verbatim: |
+      事实上，只有 deepseek harness 能进生产，codex 和 claudecode 这种黑箱产品，IT 安全都过不了内部审计。
+    inline: "只有 deepseek harness 能进生产"
+    summary: >
+      Chinese: only DeepSeek Harness can go to production; Codex and Claude Code fail internal IT audit because they are black boxes.
+    verdict: >
+      Voice that cuts against this window's Codex-stable story. We report that he said it. The primary record still says DeepSeek Harness is a prerelease with an unauthenticated local UI, so the audit argument is a statement, not a product fact.

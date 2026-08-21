@@ -8,7 +8,7 @@ homepage: https://developers.openai.com/codex/
 docs: https://learn.chatgpt.com/docs
 changelog: https://learn.chatgpt.com/docs/changelog
 repo: https://github.com/openai/codex
-tagline: "The hardening is on alpha. The stable upgrade edits your policy file."
+tagline: "Guardian V2 is in 0.148.0. The feature flag is still off."
 compared_with:
   - claude-code
   - gemini-cli
@@ -17,8 +17,8 @@ x:
 surface_class: mixed_official_docs
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-07-27
-last_full_review: 2026-07-27
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
   - id: goal-persistent-validation
     finding_id: 2026-05-07-codex-stateful-control-plane
@@ -120,6 +120,14 @@ claims:
     finding_id: 2026-06-23-codex-multi-agent-delegation-modes
     last_verified: 2026-06-23
     status: active
+  - id: guardian-v2-in-tag-off-by-default
+    finding_id: 2026-08-20-codex-0-148-0-cut-stable-guardian-v2-is-in-the-tag-and-off-by-default
+    last_verified: 2026-08-20
+    status: active
+  - id: npm-latest-0-149-0
+    finding_id: 2026-08-20-codex-0-149-0-is-npm-latest-and-restores-permission-profile-on-resume
+    last_verified: 2026-08-20
+    status: active
 posture_basis:
   capability:
     - 2026-05-07-codex-stateful-control-plane
@@ -145,15 +153,29 @@ posture_basis:
     - 2026-06-23-codex-multi-agent-delegation-modes
 stance:
   use_for: "Teams who want OpenAI's read on long-running goals, permission profiles, and visible authority state, and who will own the configuration that state now implies: an explicit sub-agent model and concurrency under the `agents` key, a marketplace source policy for a remote plugin catalog that is on by default with npm as a source, and a retention answer for memories that are now on by default on stable. Codex remains editorially useful as a directional indicator of how one large closed-source vendor shapes these surfaces -- directional, not predictive."
-  avoid_for: "Do not upgrade to rust-v0.145.0 without first backing up `rules/default.rules`; it strips exact `allow` entries from that file on the next session start and records `.sandbox_migration` so it happens silently and once. Do not rely on Codex network egress policy for containment on stable -- the entire network and proxy hardening wave is `rust-v0.146.0-alpha` only, with no stable tag as of 2026-07-27. Do not install `@openai/codex@beta` or `@native`; both dist-tags still point at May 2025 builds. And do not treat Codex as a separable endpoint decision on macOS or Windows: it ships inside the ChatGPT desktop app, so allowing that app allows Codex."
-  watch_next: "Whether a `0.146` stable tag lands and carries the network-authority wave intact, whether the `in_app_updates` requirements-only feature that would let an administrator pin Codex versions ever leaves `main`, and whether trusted-plugin-script attribution on approval dialogs reaches stable. The managed `requirements.toml` distribution and signing model is still undocumented while more policy keeps being routed through it."
+  avoid_for: "Do not plan as if Guardian V2 gates tool calls on a stock 0.148.0 or 0.149.0 install; the feature is UnderDevelopment and default_enabled false. Do not upgrade to rust-v0.145.0 without first backing up `rules/default.rules`; it strips exact `allow` entries from that file on the next session start and records `.sandbox_migration` so it happens silently and once. Do not install `@openai/codex@beta` or `@native`; both dist-tags still point at May 2025 builds. And do not treat Codex as a separable endpoint decision on macOS or Windows: it ships inside the ChatGPT desktop app, so allowing that app allows Codex."
+  watch_next: "Whether features.guardianv2 is enabled by default in a later stable, whether a stock install's config dump shows it on, and whether usage analytics expose Guardian V2 spend. Residual: an operator report that auto-review vanished from analytics is social until a primary surface says so."
 ---
 
 # Codex
 
 ## Operator Read
 
-**Last material change: [`rust-v0.145.0`](https://github.com/openai/codex/releases/tag/rust-v0.145.0),
+**Last material change: [`rust-v0.149.0`](https://github.com/openai/codex/releases/tag/rust-v0.149.0),
+2026-08-20. npm `latest` is 0.149.0.**
+
+[`rust-v0.148.0`](https://github.com/openai/codex/releases/tag/rust-v0.148.0)
+cut stable on 2026-08-18 after ten days with latest frozen at 0.147.0
+(381 commits vs 0.147.0). Guardian V2 is in that tag
+(`codex-rs/ext/guardian-v2`) and the feature is
+`Stage::UnderDevelopment`, `default_enabled: false`. Turning it on is a
+flag, not the default install. 0.149.0 (242 commits past 0.148.0) adds
+`codex agents` and `codex queue`, and restores the active permission
+profile on resume instead of silently falling back to current defaults.
+
+## Earlier operator read (through 2026-07-21)
+
+**[`rust-v0.145.0`](https://github.com/openai/codex/releases/tag/rust-v0.145.0),
 2026-07-21. It edits your exec policy file the first time you start a session.**
 
 Back up `rules/default.rules` before you upgrade. On session startup

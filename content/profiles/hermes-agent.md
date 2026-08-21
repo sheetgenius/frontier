@@ -18,9 +18,13 @@ repo: https://github.com/NousResearch/hermes-agent
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-07-27
-last_full_review: 2026-07-27
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
+  - id: skill-scan-on-pull-tagged
+    finding_id: 2026-08-20-hermes-git-pull-skill-scan-reached-v2026-8-18
+    last_verified: 2026-08-20
+    status: active
   - id: curator-autonomous-skill-maintenance
     finding_id: 2026-05-06-hermes-curator-and-service-surfaces
     last_verified: 2026-05-06
