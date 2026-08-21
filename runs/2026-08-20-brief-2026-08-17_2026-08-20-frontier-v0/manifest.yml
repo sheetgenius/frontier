@@ -1,0 +1,48 @@
+schema_version: bitter.frontier_run_manifest.v0
+run_id: 2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0
+id: 2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0
+title: (unset until synthesis)
+mode: brief
+status: in_progress
+window:
+  start: 2026-08-17
+  end: 2026-08-20
+parent_window:
+  start: 2026-08-10
+  end: 2026-08-17
+generated_at: 2026-08-20
+sources:
+  - codex
+  - claude-code
+  - gemini-cli
+  - antigravity
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+  - heypi
+  - deepseek-harness
+  - flue
+  - eve
+  - agent-flywheel
+  - omnigent
+  - omp
+finding_count: 0
+signal_count: 0
+quality_gates: []
+carry_forward_checks:
+  - "Whether DeepSeek Harness reaches a non-prerelease tag, and whether the approval gate is still composable by a plugin when it does."
+  - "Whether anything authenticates the DeepSeek Harness Web UI beyond binding to loopback."
+  - "Whether OpenClaw's approved-exec fix reaches a release, having merged to the default branch in the parent window."
+  - "Whether OMP's v17.3.6 and v17.3.7 tags gain releases, or whether tag-ahead-of-release becomes this project's normal state."
+  - "Whether Agent Zero's restored SSRF fix acquires a regression test, given it was lost once inside a refactor."
+lanes:
+  primary: "not started"
+  writing: "not started"
+  x_social: "not started"
+notes: >
+  Three-day Bitter Frontier Brief window. 2026-08-17 is overlap with the parent
+  weekly; harvest only coverage gaps the parent missed. Prefer events dated
+  2026-08-18 onward. Do not widen the window.
