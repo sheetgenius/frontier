@@ -7,7 +7,13 @@ run_id: 2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0
 parent: 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0 ("The Gate Is a Plugin")
 AUTHORIZE_PUSH: no
 
-Next: apply Lane A harvests as researchers return; keep Lane C discovery; do not wait idle.
+Next: findings from applied harvests; merge researcher depth when they return; capture pass for card URLs.
+
+Blocked: nothing. Researchers still deepening Codex/Claude/Gemini/Antigravity and others. Coordinator already wrote all 17 harvest files so the tree is not blocked on them.
+
+Commits this run:
+- a452c26 phase 0 scaffold (J0)
+- 9a618e5 Lane B feeds (J1)
 
 Blocked: nothing. Lane A children in flight.
 
