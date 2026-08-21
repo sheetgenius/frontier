@@ -7,13 +7,19 @@ run_id: 2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0
 parent: 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0 ("The Gate Is a Plugin")
 AUTHORIZE_PUSH: no
 
-Next: Lane B (harvest-feeds --since 2026-08-17), then Lane A 17-source parallel harvest.
+Next: apply Lane A harvests as researchers return; keep Lane C discovery; do not wait idle.
 
-Blocked: nothing.
+Blocked: nothing. Lane A children in flight.
 
-Commits this run: none yet (this file is the first commit).
+Commits this run:
+- a452c26 phase 0 scaffold (J0)
 
-Saturation: only NORTHSTAR/JOURNAL scaffolding exists.
+Saturation: NORTHSTAR/JOURNAL exist. Lane B done. Harvest files not yet applied.
+
+Working thesis candidates (not locked):
+1. Codex 0.148.0 and 0.149.0 both cut stable in this window; Guardian V2 is in the 0.148.0 changelog list but not in the marketed New Features, and an operator says guardian-v2 is invisible in analytics.
+2. Pi's new harness is on `dev` (264 ahead of main), not on a tag -- maintainer said so.
+3. Carry-forwards: DSH still prerelease; OpenClaw approved-exec still unreleased; OMP 17.3.7 gained a release, 17.3.6 still 404; Agent Zero v2.10 gained `test_fetch_http_blocks_non_public_destinations`.
 
 ## 2026-08-20 15:03 -- phase 0 scaffold
 
@@ -41,3 +47,46 @@ Created:
 - stub manifest.yml, audit.md, qa.md, thread-check.md
 
 Next: first local commit, then Lane B.
+
+## 2026-08-20 -- Lane B complete (J1)
+
+Command: `node ops/wire/harvest-feeds.mjs --since 2026-08-17 --out runs/2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0`
+15/15 feeds live, 58 items, zero FAIL lines. pillar-security has no feed. Archive: writing.json + feeds/*.json + feeds/LANE-B.md.
+08-21 items in the dump are out of window.
+
+## 2026-08-20 -- Lane A launched + coordinator primary checks
+
+13 read-only researchers spawned. Coordinator independently confirmed:
+
+Carry-forwards (provisional, still need harvest pins):
+- DeepSeek: no non-prerelease tag. dsh-v0.1.0-rc.8 2026-08-19 prerelease=true SHA 141eb6fe. rc.8 api-request-trust.ts still says the fence is not an auth layer; trustedHosts exists for LAN authorities. 0.1.1-rc.1/rc.2 are 08-21 OUT.
+- OpenClaw: no new release in window. Latest still v2026.8.1-beta.2 (08-15). compare v2026.8.1-beta.2...ab5611f0 ahead_by 619. Approved-exec still unreleased.
+- OMP: v17.3.7 GitHub release 2026-08-18 (gained). v17.3.6 still 404. v17.3.8 08-19, v17.4.0 08-20. v17.4.1/2 are 08-21 OUT.
+- Agent Zero: v2.10 2026-08-19. tests/test_document_query_plugin.py contains test_fetch_http_blocks_non_public_destinations raising ValueError "Blocked non-public address". Carry-forward YES unless verifier refutes. ACP + interactive browser in v2.10 release body.
+
+Other in-window tagged movement:
+- Codex rust-v0.148.0 2026-08-18 and rust-v0.149.0 2026-08-20, both prerelease=false. npm latest=0.149.0. 0.150 alphas are 08-21 OUT.
+- Claude Code npm: 2.1.235 (08-18), 236 (08-19), 237 (08-19), 238 (08-20) in window. 2.1.239 is 08-21 OUT. stable dist-tag currently 2.1.231.
+- Gemini CLI v0.56.0 08-19 stable; compare v0.55.1...v0.56.0 is two chore(release) commits. npm latest=0.56.0, preview=0.57.0-preview.0 (preview now ahead).
+- Antigravity 1.1.14-1.1.17 all in window.
+- Hermes v2026.8.16.2 overlap, v2026.8.18 08-18. v2026.8.19 is 08-21 OUT.
+- Pi: no new tag. main 83 ahead of v0.84.2. `dev` 264 ahead of main, 336 ahead of v0.84.2. mitsuhiko 2026-08-20: new harness is on the dev branch.
+- Paperclip: v2026.817.0 published_at 08-18 (parent already harvested the tag).
+- OpenHands: v1.14.0 08-17 overlap; v1.15.0 08-21 OUT.
+- heypi: last commit 2026-07-22. flue: last commit 2026-08-05 v2.0.3.
+- eve 0.40/0.41/0.42 on 08-20. 0.43/0.44 08-21 OUT.
+- omnigent v0.10.0 08-19; breaking note still reverts shared-session owner-only approval.
+- flywheel: in-window commits exist on default branch (install/postgres/checksums); last tag still v0.7.0 2026-06-26.
+
+Lane C started with native X. Candidate card URLs (discovery only, not captured yet):
+- https://x.com/mitsuhiko/status/2090368103972479324
+- https://x.com/acsmif/status/2090470326824280234 (parent) and 2090477764109533376
+- https://x.com/OpenAIDevs/status/2090230646497251387
+- https://x.com/antigravity/status/2090497270370230625
+- https://x.com/ClaudeDevs/status/2089471692762673408
+- https://x.com/simonw/status/2090299859693695283
+- https://x.com/cnzhihao/status/2089718723607445739
+- https://x.com/jungianboi/status/2090584150524756396
+- https://x.com/KEisuke62350514/status/2090578350628884505
+
+Do not quote any of these until capture.sh.

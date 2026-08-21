@@ -1,0 +1,20 @@
+{
+ "source": "google-ai-blog",
+ "feed": "https://blog.google/technology/ai/rss/",
+ "swept_on": "2026-08-21",
+ "since": "2026-08-17",
+ "items": [
+  {
+   "title": "5 new ways to level up your learning with Search",
+   "url": "https://blog.google/products-and-platforms/products/search/back-to-school-study-tools/",
+   "date": "2026-08-19",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Blog_header_2_JwwDb02.max-600x600.format-webp.webp\">Here’s how you can use Google Search tools to study for classes and standardized tests."
+  },
+  {
+   "title": "Get closer to the game with Gemini and Pixel",
+   "url": "https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships/",
+   "date": "2026-08-17",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/football_multi-club_hero_nphU3P.max-600x600.format-webp.webp\">Google Gemini and Pixel partner with five global football clubs to elevate the fan matchday experience through AI and Smartphone Technology."
+  }
+ ]
+}

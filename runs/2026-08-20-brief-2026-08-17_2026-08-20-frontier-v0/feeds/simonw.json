@@ -1,0 +1,80 @@
+{
+ "source": "simonw",
+ "feed": "https://simonwillison.net/atom/everything/",
+ "swept_on": "2026-08-21",
+ "since": "2026-08-17",
+ "items": [
+  {
+   "title": "llm 0.32.1",
+   "url": "https://simonwillison.net/2026/Aug/21/llm/",
+   "date": "2026-08-21",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm/releases/tag/0.32.1\">llm 0.32.1</a></p> <p>Fresh installs of LLM stopped working the other day because the OpenAI Python library dropped its usage of <code>httpx</code>, and it turned out LLM depended on that library but only installed it via a transitive <code>openai</code> dependency.</p> <p>This dot-release fixes that for the m"
+  },
+  {
+   "title": "llm-openrouter 0.7",
+   "url": "https://simonwillison.net/2026/Aug/21/llm-openrouter/",
+   "date": "2026-08-21",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm-openrouter/releases/tag/0.7\">llm-openrouter 0.7</a></p> <p>Now that this plugin is compatible with <a href=\"https://simonwillison.net/2026/Aug/4/new-release-of-llm/\">LLM 0.32</a> it works much better with reasoning LLMs available through OpenRouter.</p> <blockquote> <ul> <li>Updated for compatibility with <a href=\"https://llm.data"
+  },
+  {
+   "title": "Stop Making TUIs",
+   "url": "https://simonwillison.net/2026/Aug/21/stop-making-tuis/",
+   "date": "2026-08-21",
+   "summary": "<p><strong><a href=\"https://sockpuppet.org/blog/2026/08/20/stop-making-tuis/\">Stop Making TUIs</a></strong></p> Thomas Ptacek advocates for building real native user interfaces for even the smallest of personal tools, because coding agents have reduced the cost of getting a usable-enough GUI up and running to almost nothing.</p> <p>I wrote about my vibe-coded bandwidth and GPU monitoring macOS tas"
+  },
+  {
+   "title": "Quoting Matt Webb",
+   "url": "https://simonwillison.net/2026/Aug/21/matt-webb/",
+   "date": "2026-08-21",
+   "summary": "<blockquote cite=\"https://interconnected.org/home/2026/08/21/galactic\"><p>After I released version 1.0, I figured I would have to do the rotations myself. So I sat down with ChatGPT and I didn’t get it to write the code, but I got it to educate me. With a patient, interactive tutor, I was able to finally do what I hadn’t by reading books and asking mathematician friends – I learnt how to use quate"
+  },
+  {
+   "title": "ChatGPT search now uses the site:operator at scale",
+   "url": "https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/",
+   "date": "2026-08-20",
+   "summary": "<p><strong><a href=\"https://promptwatch.com/data/chatgpt-site-operator-fanouts\">ChatGPT search now uses the site:operator at scale</a></strong></p> Promptwatch is part of the emerging \"GEO\" space, for Generative Engine Optimization - the chatbot version of SEO, where companies offer tools and consulting to help your site increase its presence in replies to prompts inside tools like ChatGPT.</p> <p"
+  },
+  {
+   "title": "A shot-scraper-style JSON API on Bun 1.4's new Bun.WebView",
+   "url": "https://simonwillison.net/2026/Aug/20/bun-webview-json-api/",
+   "date": "2026-08-20",
+   "summary": "<p><strong>Research:</strong> <a href=\"https://github.com/simonw/research/tree/main/bun-webview-json-api#readme\">A shot-scraper-style JSON API on Bun 1.4&#x27;s new Bun.WebView</a></p> <p>Today saw the long awaited <a href=\"https://bun.com/blog/bun-v1.4\">release of Bun 1.4</a>, the first stable version since the infamous Rust rewrite <a href=\"https://simonwillison.net/2026/Jul/8/rewriting-bun-in-r"
+  },
+  {
+   "title": "smolmachines / smolvm as a sandbox for untrusted Python & JavaScript",
+   "url": "https://simonwillison.net/2026/Aug/19/smolmachines-untrusted-sandbox/",
+   "date": "2026-08-19",
+   "summary": "<p><strong>Research:</strong> <a href=\"https://github.com/simonw/research/tree/main/smolmachines-untrusted-sandbox#readme\">smolmachines / smolvm as a sandbox for untrusted Python &amp; JavaScript</a></p> <p>I tasked Claude Fable 5 running in Claude Code for web with the following research task:</p> <blockquote> <p><code>Put https://smolmachines.com through its paces as a fast secure sandbox. Explo"
+  },
+  {
+   "title": "Quoting Jeremy Morrell",
+   "url": "https://simonwillison.net/2026/Aug/19/jeremy-morrell/",
+   "date": "2026-08-19",
+   "summary": "<blockquote cite=\"https://jeremymorrell.dev/blog/extensible-software-in-the-age-of-llms/\"><p>My hypothesis is that <strong>there is a new opportunity for Extensible Software on the web</strong>. LLMs radically lower the cost of authoring extensions, and modern sandbox primitives lower the deployment cost and provide good security boundaries. We can build our app as a solid, accountable core, and a"
+  },
+  {
+   "title": "Conceptual integrity and counting lines of code",
+   "url": "https://simonwillison.net/2026/Aug/19/conceptual-integrity-and-counting-lines-of-code/",
+   "date": "2026-08-19",
+   "summary": "<p>Last week I recorded <a href=\"https://talkingpostgres.com/episodes/how-ai-is-changing-software-development-with-simon-willison\">an episode of the Talking Postgres podcast</a> with Claire Giordano on the subject of \"How AI is changing software development\". We had a really great conversation. Here are a couple of my highlights from a lightly edited transcript (prompt to Claude: \"very minor edits"
+  },
+  {
+   "title": "Mojo🔥 is now open source",
+   "url": "https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/",
+   "date": "2026-08-18",
+   "summary": "<p><strong><a href=\"https://www.modular.com/blog/mojo-open-source\">Mojo🔥 is now open source</a></strong></p> The Mojo programming language has been promising an open source release <a href=\"https://simonwillison.net/2023/May/4/mojo/\">since May 2023</a>. Last week they <a href=\"https://www.modular.com/blog/modular-26-5-mojo-1-0-is-here\">shipped their 1.0</a> and today they have followed through on"
+  },
+  {
+   "title": "Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index",
+   "url": "https://simonwillison.net/2026/Aug/17/qwen-38-27b-scores-52/",
+   "date": "2026-08-17",
+   "summary": "<p><strong><a href=\"https://artificialanalysis.ai/models/qwen3-8-27b\">Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index</a></strong></p> That's the same score as GPT-5.6 Luna (max), and just one point behind GLM-5.2 (max) and DeepSeek V4 Pro 0813 (max) - that GLM is <a href=\"https://huggingface.co/zai-org/GLM-5.2\">753B</a> and that DeepSeek is <a href=\"https://huggingface.co/dee"
+  },
+  {
+   "title": "We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility",
+   "url": "https://simonwillison.net/2026/Aug/17/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-tra/",
+   "date": "2026-08-17",
+   "summary": "<p><strong><a href=\"https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility/\">We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility</a></strong></p> Excellent piece of reporting from 404 Media. For a while now there have been stories of book dealers receiving orders for large volumes of books from apparently price-insensitive"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "source": "pragmatic-engineer",
+ "feed": "https://newsletter.pragmaticengineer.com/feed",
+ "swept_on": "2026-08-21",
+ "since": "2026-08-17",
+ "items": [
+  {
+   "title": "The Pulse: We need to talk about migrations with AI",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-we-need-to-talk-about-migrations",
+   "date": "2026-08-20",
+   "summary": "Asana completed a testing framework migration in two weeks, that they would have delayed for years more, and they&#8217;re not alone. Also: AI startups could make Gartner much less relevant, and more"
+  },
+  {
+   "title": "From Chrome DevTools to AI Engineering, with Addy Osmani",
+   "url": "https://newsletter.pragmaticengineer.com/p/from-chrome-devtools-to-ai-engineering",
+   "date": "2026-08-19",
+   "summary": "Addy Osmani shares lessons from 14 years at Google and how AI agents are reshaping software engineering, developer workflows, and the skills engineers need to succeed."
+  },
+  {
+   "title": "Headed for the Exit: the Great Engineering Leader Career Break",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-great-engineering-leader-career-break",
+   "date": "2026-08-18",
+   "summary": "Trend: more CTOs, VPEs, and Heads of Engineering are walking away from their high-status, in-demand positions. There are many reasons, mostly related to AI, and to \"founder mode\""
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "source": "mattpocock",
+ "feed": "https://www.aihero.dev/rss.xml",
+ "swept_on": "2026-08-21",
+ "since": "2026-08-17",
+ "items": [
+  {
+   "title": "AI Coding Crash Course",
+   "url": "https://www.aihero.dev/workshops/ai-coding-crash-course",
+   "date": "2026-08-17",
+   "summary": "Ship faster than ever before by taking control of your code, with software engineering fundamentals."
+  }
+ ]
+}

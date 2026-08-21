@@ -1,0 +1,14 @@
+{
+ "source": "embrace-the-red",
+ "feed": "https://embracethered.com/blog/index.xml",
+ "swept_on": "2026-08-21",
+ "since": "2026-08-17",
+ "items": [
+  {
+   "title": "Recovering Encrypted LLM Reasoning Traces",
+   "url": "https://embracethered.com/blog/posts/2026/recovering-encrypted-llm-thoughts/",
+   "date": "2026-08-17",
+   "summary": "<p>A few days ago, a paper named <a href=&#34;https://arxiv.org/pdf/2608.09867&#34;>&ldquo;Stealing Reasoning Traces from Proprietary LLM APIs&rdquo;</a> was published. It describes a simple, yet super elegant way to recover encrypted LLM reasoning traces.</p>&#xA;<p><a href=&#34;https://embracethered.com/blog/images/2026/strealing_traces_paper_tn.png&#34;><img src=&#34;https://embracethered.com/b"
+  }
+ ]
+}

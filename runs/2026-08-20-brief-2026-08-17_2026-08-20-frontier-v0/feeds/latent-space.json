@@ -1,0 +1,44 @@
+{
+ "source": "latent-space",
+ "feed": "https://www.latent.space/feed",
+ "swept_on": "2026-08-21",
+ "since": "2026-08-17",
+ "items": [
+  {
+   "title": "[AINews] Poolside gets $12B reverse-execuhire to NVIDIA; founders stay for $1B, employees go for $6B, Infraco scaling to 7GW neocloud",
+   "url": "https://www.latent.space/p/ainews-poolside-gets-12b-reverse",
+   "date": "2026-08-21",
+   "summary": "Yes, we&#8217;re confused too."
+  },
+  {
+   "title": "The /wayfinder Skill: Navigating the “Fog of War” of Planning",
+   "url": "https://www.latent.space/p/wayfinder-skill",
+   "date": "2026-08-20",
+   "summary": "Matt Pocock tells us about his /wayfinder skill, for greenfield projects or for when the way forward is unclear."
+  },
+  {
+   "title": "[AINews] Death of Params: Z.ai CEO Jie Tang on GLM 5.3 and the new Post-training Scaling Law",
+   "url": "https://www.latent.space/p/ainews-death-of-params-zai-ceo-jie",
+   "date": "2026-08-20",
+   "summary": "Every lab CEO is on X now"
+  },
+  {
+   "title": "[AINews] Memory prices up 500% in 12 months",
+   "url": "https://www.latent.space/p/ainews-memory-prices-up-500-in-12",
+   "date": "2026-08-19",
+   "summary": "the Memory crunch continues - Moore&#8217;s Law reversed to 2007 levels"
+  },
+  {
+   "title": "Frontier Model Cost and Open-Weights Popularity is Driving Demand for Model Routing",
+   "url": "https://www.latent.space/p/glean-model-routing",
+   "date": "2026-08-18",
+   "summary": "Glean CEO Arvind Jain explains why model routing helps control AI costs for organizations, and how human feedback loops at scale improve its routing systems."
+  },
+  {
+   "title": "[AINews] Stripe buys OpenRouter for $7B",
+   "url": "https://www.latent.space/p/ainews-stripe-buys-openrouter-for",
+   "date": "2026-08-17",
+   "summary": "No GPUs, no Agents, just really, really, really good infra and distribution."
+  }
+ ]
+}

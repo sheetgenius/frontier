@@ -1,0 +1,470 @@
+{
+ "swept_on": "2026-08-21",
+ "since": "2026-08-17",
+ "items": [
+  {
+   "title": "llm 0.32.1",
+   "url": "https://simonwillison.net/2026/Aug/21/llm/",
+   "date": "2026-08-21",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm/releases/tag/0.32.1\">llm 0.32.1</a></p> <p>Fresh installs of LLM stopped working the other day because the OpenAI Python library dropped its usage of <code>httpx</code>, and it turned out LLM depended on that library but only installed it via a transitive <code>openai</code> dependency.</p> <p>This dot-release fixes that for the m",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "llm-openrouter 0.7",
+   "url": "https://simonwillison.net/2026/Aug/21/llm-openrouter/",
+   "date": "2026-08-21",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm-openrouter/releases/tag/0.7\">llm-openrouter 0.7</a></p> <p>Now that this plugin is compatible with <a href=\"https://simonwillison.net/2026/Aug/4/new-release-of-llm/\">LLM 0.32</a> it works much better with reasoning LLMs available through OpenRouter.</p> <blockquote> <ul> <li>Updated for compatibility with <a href=\"https://llm.data",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Stop Making TUIs",
+   "url": "https://simonwillison.net/2026/Aug/21/stop-making-tuis/",
+   "date": "2026-08-21",
+   "summary": "<p><strong><a href=\"https://sockpuppet.org/blog/2026/08/20/stop-making-tuis/\">Stop Making TUIs</a></strong></p> Thomas Ptacek advocates for building real native user interfaces for even the smallest of personal tools, because coding agents have reduced the cost of getting a usable-enough GUI up and running to almost nothing.</p> <p>I wrote about my vibe-coded bandwidth and GPU monitoring macOS tas",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Quoting Matt Webb",
+   "url": "https://simonwillison.net/2026/Aug/21/matt-webb/",
+   "date": "2026-08-21",
+   "summary": "<blockquote cite=\"https://interconnected.org/home/2026/08/21/galactic\"><p>After I released version 1.0, I figured I would have to do the rotations myself. So I sat down with ChatGPT and I didn’t get it to write the code, but I got it to educate me. With a patient, interactive tutor, I was able to finally do what I hadn’t by reading books and asking mathematician friends – I learnt how to use quate",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] Poolside gets $12B reverse-execuhire to NVIDIA; founders stay for $1B, employees go for $6B, Infraco scaling to 7GW neocloud",
+   "url": "https://www.latent.space/p/ainews-poolside-gets-12b-reverse",
+   "date": "2026-08-21",
+   "summary": "Yes, we&#8217;re confused too.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Considering the OpenMDW license",
+   "url": "https://lwn.net/Articles/1089251/",
+   "date": "2026-08-21",
+   "summary": "The open-source world has been struggling for a few years now to understand how to approach large language models (LLMs) and the licensing applied to them. What constitutes \"freedom\" with respect to a black box filled with numerical weights? The process taken by the Open Source Initiative (OSI) in the <a href=\"https://lwn.net/Articles/995159/\">development</a> of its <a href=\"https://opensource.org",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Friday",
+   "url": "https://lwn.net/Articles/1089999/",
+   "date": "2026-08-21",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (ansible-core and pcp), <b>Debian</b> (chromium, libgit2, python-httplib2, and sabnzbdplus), <b>Fedora</b> (dokuwiki, domoticz, dotnet10.0, dotnet8.0, dotnet9.0, firefox, i2c-display, libgit2, lyx, ntpsec, openssh, perl-DBI, php-phpseclib3, python-alembic, python-asyncmy, python-sqlalchemy, python3.13, roundcubemail, trafficserver, wireshark, a",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "ChatGPT search now uses the site:operator at scale",
+   "url": "https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/",
+   "date": "2026-08-20",
+   "summary": "<p><strong><a href=\"https://promptwatch.com/data/chatgpt-site-operator-fanouts\">ChatGPT search now uses the site:operator at scale</a></strong></p> Promptwatch is part of the emerging \"GEO\" space, for Generative Engine Optimization - the chatbot version of SEO, where companies offer tools and consulting to help your site increase its presence in replies to prompts inside tools like ChatGPT.</p> <p",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "A shot-scraper-style JSON API on Bun 1.4's new Bun.WebView",
+   "url": "https://simonwillison.net/2026/Aug/20/bun-webview-json-api/",
+   "date": "2026-08-20",
+   "summary": "<p><strong>Research:</strong> <a href=\"https://github.com/simonw/research/tree/main/bun-webview-json-api#readme\">A shot-scraper-style JSON API on Bun 1.4&#x27;s new Bun.WebView</a></p> <p>Today saw the long awaited <a href=\"https://bun.com/blog/bun-v1.4\">release of Bun 1.4</a>, the first stable version since the infamous Rust rewrite <a href=\"https://simonwillison.net/2026/Jul/8/rewriting-bun-in-r",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "The Pulse: We need to talk about migrations with AI",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-we-need-to-talk-about-migrations",
+   "date": "2026-08-20",
+   "summary": "Asana completed a testing framework migration in two weeks, that they would have delayed for years more, and they&#8217;re not alone. Also: AI startups could make Gartner much less relevant, and more",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "The /wayfinder Skill: Navigating the “Fog of War” of Planning",
+   "url": "https://www.latent.space/p/wayfinder-skill",
+   "date": "2026-08-20",
+   "summary": "Matt Pocock tells us about his /wayfinder skill, for greenfield projects or for when the way forward is unclear.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] Death of Params: Z.ai CEO Jie Tang on GLM 5.3 and the new Post-training Scaling Law",
+   "url": "https://www.latent.space/p/ainews-death-of-params-zai-ceo-jie",
+   "date": "2026-08-20",
+   "summary": "Every lab CEO is on X now",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] A look at the Quickshell desktop-component toolkit",
+   "url": "https://lwn.net/Articles/1083090/",
+   "date": "2026-08-20",
+   "summary": "<p><a href=\"https://quickshell.org/\">Quickshell</a> is a toolkit for building desktop components, such as toolbars or menus. It uses <a href=\"https://doc.qt.io/qt-6/qmlreference.html\">QML</a>, which is a declarative language for designing GUI applications. Quickshell helps developers create graphical tools for common desktop use cases with a focus on ease of development. It offers a convenient met",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "KDE Gear 26.08 released",
+   "url": "https://lwn.net/Articles/1089721/",
+   "date": "2026-08-20",
+   "summary": "<p><a href=\"https://kde.org/announcements/gear/26.08.0/\">Version 26.08</a> of the <a href=\"https://en.wikipedia.org/wiki/KDE_Gear\">KDE&#160;Gear</a> collection of applications has been released. Notable changes in this release include improvements in the <a href=\"https://docs.kde.org/stable_kf6/en/okular/okular/signatures.html\">signing</a> features of <a href=\"https://okular.kde.org/\">Okular</a>, ",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Supply chain attack on arrayref (Rust blog)",
+   "url": "https://lwn.net/Articles/1089720/",
+   "date": "2026-08-20",
+   "summary": "The Rust blog <a href=\"https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/\">reports</a> on a malicious crate, called <tt>proc-macro1</tt>, that was uploaded to the crates.io repository. <p> <blockquote class=\"bq\"> Furthermore, we discovered that the popular <tt>arrayref</tt> crate had recently been republished and made to depend on this crate, with the most recent versions yanke",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "RPM 6.1.0 released",
+   "url": "https://lwn.net/Articles/1089719/",
+   "date": "2026-08-20",
+   "summary": "<p><a href=\"https://rpm.org/releases/6.1.0\">Version 6.1.0</a> of the <a href=\"https://rpm.org/\">RPM Package Manager</a> has been released. Notable changes include the ability to provide modifiers to <a href=\"https://rpm.org/docs/6.1.x/man/rpm-macros.7\">RPM macros</a> at definition time, improved build and verification error handling, support for signing files with PKCS11 tokens using <a href=\"http",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] The beginning of the 7.3 merge window",
+   "url": "https://lwn.net/Articles/1089244/",
+   "date": "2026-08-20",
+   "summary": "As of this writing, 2,346 non-merge changesets have been pulled into the mainline repository for the 7.3 kernel release. That, clearly, is a mere down payment on the flood that is to come. Even so, those early pulls brought in some noteworthy changes, including (but not limited to) a significant reworking of how group scheduling works on multiprocessor systems.",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Thursday",
+   "url": "https://lwn.net/Articles/1089717/",
+   "date": "2026-08-20",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (bind9.18, glib2, gstreamer1-plugins-bad-free, gstreamer1-plugins-good, kernel-rt, libcupsfilters, mysql8.4, mysql:8.4, pcp, perl-Date-Manip, php8.4, php:7.4, php:8.2, php:8.3, python3, and yggdrasil), <b>Debian</b> (designate, firefox-esr, and swift), <b>Gentoo</b> (acl, attr, Emacs, libssh2, and quickjs-ng), <b>Oracle</b> (.NET 10.0, .NET 9.0",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] LWN.net Weekly Edition for August 20, 2026",
+   "url": "https://lwn.net/Articles/1088565/",
+   "date": "2026-08-20",
+   "summary": "Inside this week's LWN.net Weekly Edition: <p> <ul> <li> <a href=\"https://lwn.net/Articles/1088565/\">Front</a>: Debian AI GR; Python pathlib; bootstrappable builds; Fedora and AF_ALG; Arm 128-bit PTEs; BPF CI; 7.2 statistics. <li> <a href=\"https://lwn.net/Articles/1088567/\">Briefs</a>: Brief news items from throughout the community. <li> <a href=\"https://lwn.net/Articles/1088568/\">Announcements</a",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Introducing AI Futures",
+   "url": "https://openai.com/index/introducing-ai-futures",
+   "date": "2026-08-20",
+   "summary": "Introducing AI Futures, a new OpenAI blog exploring how transformative AI could reshape power, governance, the economy, and individual freedom.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Stampli cuts launch hours by 68% using ChatGPT Work",
+   "url": "https://openai.com/index/stampli",
+   "date": "2026-08-20",
+   "summary": "With a fixed deadline and design resources committed elsewhere, Stampli used Codex and ChatGPT Work to compress weeks of launch production into days.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "smolmachines / smolvm as a sandbox for untrusted Python & JavaScript",
+   "url": "https://simonwillison.net/2026/Aug/19/smolmachines-untrusted-sandbox/",
+   "date": "2026-08-19",
+   "summary": "<p><strong>Research:</strong> <a href=\"https://github.com/simonw/research/tree/main/smolmachines-untrusted-sandbox#readme\">smolmachines / smolvm as a sandbox for untrusted Python &amp; JavaScript</a></p> <p>I tasked Claude Fable 5 running in Claude Code for web with the following research task:</p> <blockquote> <p><code>Put https://smolmachines.com through its paces as a fast secure sandbox. Explo",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Quoting Jeremy Morrell",
+   "url": "https://simonwillison.net/2026/Aug/19/jeremy-morrell/",
+   "date": "2026-08-19",
+   "summary": "<blockquote cite=\"https://jeremymorrell.dev/blog/extensible-software-in-the-age-of-llms/\"><p>My hypothesis is that <strong>there is a new opportunity for Extensible Software on the web</strong>. LLMs radically lower the cost of authoring extensions, and modern sandbox primitives lower the deployment cost and provide good security boundaries. We can build our app as a solid, accountable core, and a",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Conceptual integrity and counting lines of code",
+   "url": "https://simonwillison.net/2026/Aug/19/conceptual-integrity-and-counting-lines-of-code/",
+   "date": "2026-08-19",
+   "summary": "<p>Last week I recorded <a href=\"https://talkingpostgres.com/episodes/how-ai-is-changing-software-development-with-simon-willison\">an episode of the Talking Postgres podcast</a> with Claire Giordano on the subject of \"How AI is changing software development\". We had a really great conversation. Here are a couple of my highlights from a lightly edited transcript (prompt to Claude: \"very minor edits",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "From Chrome DevTools to AI Engineering, with Addy Osmani",
+   "url": "https://newsletter.pragmaticengineer.com/p/from-chrome-devtools-to-ai-engineering",
+   "date": "2026-08-19",
+   "summary": "Addy Osmani shares lessons from 14 years at Google and how AI agents are reshaping software engineering, developer workflows, and the skills engineers need to succeed.",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] Memory prices up 500% in 12 months",
+   "url": "https://www.latent.space/p/ainews-memory-prices-up-500-in-12",
+   "date": "2026-08-19",
+   "summary": "the Memory crunch continues - Moore&#8217;s Law reversed to 2007 levels",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Go 1.27 released",
+   "url": "https://lwn.net/Articles/1089559/",
+   "date": "2026-08-19",
+   "summary": "<p><a href=\"https://go.dev/doc/go1.27\">Go 1.27</a>, the most recent version of the <a href=\"https://go.dev/\">Go programming language</a>, has been released with a number of new tools, the addition of support for the <a href=\"https://go.dev/doc/go1.27#crypto_mldsa\">ML-DSA</a> post-quantum algorithm, new JSON-processing packages, language updates, and more.</p> <p></p>",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Seven stable kernels for Wednesday",
+   "url": "https://lwn.net/Articles/1089557/",
+   "date": "2026-08-19",
+   "summary": "<p>Greg Kroah-Hartman has announced the release of the <a href=\"https://lwn.net/Articles/1089545/\">7.1.9</a>, <a href=\"https://lwn.net/Articles/1089546/\">6.18.45</a>, <a href=\"https://lwn.net/Articles/1089547/\">6.12.104</a>, <a href=\"https://lwn.net/Articles/1089548/\">6.6.152</a>, <a href=\"https://lwn.net/Articles/1089549/\">6.1.183</a>, <a href=\"https://lwn.net/Articles/1089550/\">5.15.216</a>, and",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Debian weighs eight options in vote on LLM usage",
+   "url": "https://lwn.net/Articles/1087134/",
+   "date": "2026-08-19",
+   "summary": "<p>The Debian Project is <a href=\"https://lwn.net/ml/all/an-mRkddZVaNW3CT%40roeckx.be/\">voting on the usage of large language models</a> (LLMs) to make contributions to the project. The <a href=\"https://lwn.net/ml/all/til24c.3ns3jl2mkmzmn@riseup.net/\">first proposal</a>, sent in late July by Matthias Geiger, would expressly forbid any contributions to Debian that are created by or with the assista",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Tuba 0.11 released",
+   "url": "https://lwn.net/Articles/1089537/",
+   "date": "2026-08-19",
+   "summary": "<p><a href=\"https://codeberg.org/GeopJr/Tuba/releases/tag/v0.11.0\">Version 0.11</a> of the <a href=\"https://codeberg.org/GeopJr/Tuba#:~:text=Tuba-,Browse%20the%20Fediverse\">Tuba</a> fediverse client has been released. Notable changes in this release include support for Mastodon <a href=\"https://docs.joinmastodon.org/client/collections/#overview\">collections</a> and <a href=\"https://docs.joinmastod",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Representing Python paths using pathlib",
+   "url": "https://lwn.net/Articles/1088781/",
+   "date": "2026-08-19",
+   "summary": "At the outset of his <a href=\"https://us.pycon.org/2026/\">PyCon US 2026</a> talk, Trey Hunner said that his goal was for attendees to stop representing filesystem paths as strings and to use <a href=\"https://docs.python.org/3/library/pathlib.html\"><tt>pathlib</tt></a> instead. That's kind of a tall order, at least for longtime Python users, since string-based paths have been pervasive—and mostly w",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Wednesday",
+   "url": "https://lwn.net/Articles/1089501/",
+   "date": "2026-08-19",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 10.0, .NET 9.0, 389-ds-base, attr, curl, glib2, gstreamer1-plugins-bad-free, gstreamer1-plugins-bad-free and gstreamer1-plugins-ugly-free, gstreamer1-plugins-good, gstreamer1-plugins-ugly-free, haproxy, kernel, libssh, libXfont2, nodejs22, pam, php, php8.4, sg3_utils, and unbound), <b>Debian</b> (librabbitmq, ruby-grape, spip, srt, and sw",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Citizens Build, Agents Execute, Experts Govern",
+   "url": "https://martinfowler.com/rachels-ramblings/citizens-agents-experts.html",
+   "date": "2026-08-19",
+   "summary": "<p class = 'precis'><b>TL;DR</b><br/><i>Why building an app over the weekend isn't the same as building enterprise software</i></p> <img src = 'https://martinfowler.com/rachels-ramblings/card.png'></img><p>I’ve noticed an interesting gap opening up over the last six months. It isn’t really a gap in technology. It’s a gap in what different people think software engineering actually is.</p> <p>The c",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Practitioner Voice: The Writing Category Nobody has Named Yet",
+   "url": "https://martinfowler.com/articles/practitioner-voice.html",
+   "date": "2026-08-19",
+   "summary": "<p><b class = 'author'>Jim Highsmith</b> recognizes that effective writing from a practitioner is a style distinct from academic writing or thought-leadership content. It's a style that I advocate, and my contributors mostly follow. Jim decided it was important to give it a name, and identify what makes it distinctive.</p> <p><a class = 'more' href = 'https://martinfowler.com/articles/practitioner",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Offering Zero Data Retention for frontier models",
+   "url": "https://openai.com/index/offering-zero-data-retention-for-frontier-models",
+   "date": "2026-08-19",
+   "summary": "OpenAI reaffirms Zero Data Retention for eligible API customers and previews Private Safety Processing for advanced AI safety without compromising data privacy.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Replit expands access to software creation with GPT-5.6 Luna",
+   "url": "https://openai.com/index/replit",
+   "date": "2026-08-19",
+   "summary": "Replit introduces Free Mode, powered by GPT-5.6 Luna, so anyone can turn ideas into working software without worrying about token costs.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "5 new ways to level up your learning with Search",
+   "url": "https://blog.google/products-and-platforms/products/search/back-to-school-study-tools/",
+   "date": "2026-08-19",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Blog_header_2_JwwDb02.max-600x600.format-webp.webp\">Here’s how you can use Google Search tools to study for classes and standardized tests.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "Mojo🔥 is now open source",
+   "url": "https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/",
+   "date": "2026-08-18",
+   "summary": "<p><strong><a href=\"https://www.modular.com/blog/mojo-open-source\">Mojo🔥 is now open source</a></strong></p> The Mojo programming language has been promising an open source release <a href=\"https://simonwillison.net/2023/May/4/mojo/\">since May 2023</a>. Last week they <a href=\"https://www.modular.com/blog/modular-26-5-mojo-1-0-is-here\">shipped their 1.0</a> and today they have followed through on",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Headed for the Exit: the Great Engineering Leader Career Break",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-great-engineering-leader-career-break",
+   "date": "2026-08-18",
+   "summary": "Trend: more CTOs, VPEs, and Heads of Engineering are walking away from their high-status, in-demand positions. There are many reasons, mostly related to AI, and to \"founder mode\"",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "Frontier Model Cost and Open-Weights Popularity is Driving Demand for Model Routing",
+   "url": "https://www.latent.space/p/glean-model-routing",
+   "date": "2026-08-18",
+   "summary": "Glean CEO Arvind Jain explains why model routing helps control AI costs for organizations, and how human feedback loops at scale improve its routing systems.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Fragments: August 18",
+   "url": "https://martinfowler.com/fragments/2026-08-18.html",
+   "date": "2026-08-18",
+   "summary": "<p>Part of the reason why I’m at Thoughtworks is because I’d like to see a software development organization founded on technical excellence as an example for the rest of the industry. The trouble is that I have little aptitude or inclination for the hard work of building such an organization. So I rely on working with people who are prepared to actually put the effort in. A key partner in all of ",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "ChatGPT Ads expands across Europe",
+   "url": "https://openai.com/index/chatgpt-ads-expands-across-europe",
+   "date": "2026-08-18",
+   "summary": "ChatGPT Ads is expanding to 31 European markets. Learn how advertisers can reach people as they explore, compare options, and make decisions.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Strengthening democratic oversight in national security",
+   "url": "https://openai.com/index/strengthening-democratic-oversight-in-national-security",
+   "date": "2026-08-18",
+   "summary": "OpenAI launches an initiative to strengthen democratic oversight of AI in national security, supporting government institutions with tools, training, and expertise.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Partnering with CodeAI to prepare the first AI generation",
+   "url": "https://openai.com/index/partnering-with-codeai",
+   "date": "2026-08-18",
+   "summary": "OpenAI and CodeAI are partnering to help students build AI literacy, think critically about AI, and develop the skills to use and shape it responsibly.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Pacing model development in an era of cyber-critical capabilities",
+   "url": "https://openai.com/index/pacing-model-development-cyber-capabilities",
+   "date": "2026-08-18",
+   "summary": "OpenAI is strengthening monitoring, alignment, and security for frontier AI models. See how new safeguards are guiding the pace of model development.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Introducing ChatGPT for Teens: Built for learning, backed by protections",
+   "url": "https://openai.com/index/chatgpt-for-teens",
+   "date": "2026-08-18",
+   "summary": "ChatGPT for Teens helps teens learn, think critically, and use AI with confidence, with stronger built-in protections, healthy-use features, and additional controls for parents.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "How NVIDIA scales expertise with ChatGPT Work",
+   "url": "https://openai.com/index/nvidia/chatgpt-work",
+   "date": "2026-08-18",
+   "summary": "NVIDIA teams use ChatGPT Work to reduce manual tasks, connect fast-moving signals, and scale successful workflows globally.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Asana cleared 5 years of engineering work in 2 weeks with Codex",
+   "url": "https://openai.com/index/asana",
+   "date": "2026-08-18",
+   "summary": "Asana used OpenAI Codex to replace an outdated testing system in two weeks, completing work expected to take five years for about $12K.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index",
+   "url": "https://simonwillison.net/2026/Aug/17/qwen-38-27b-scores-52/",
+   "date": "2026-08-17",
+   "summary": "<p><strong><a href=\"https://artificialanalysis.ai/models/qwen3-8-27b\">Qwen 3.8 27B scores 52 on the Artificial Analysis Intelligence Index</a></strong></p> That's the same score as GPT-5.6 Luna (max), and just one point behind GLM-5.2 (max) and DeepSeek V4 Pro 0813 (max) - that GLM is <a href=\"https://huggingface.co/zai-org/GLM-5.2\">753B</a> and that DeepSeek is <a href=\"https://huggingface.co/dee",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility",
+   "url": "https://simonwillison.net/2026/Aug/17/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-tra/",
+   "date": "2026-08-17",
+   "summary": "<p><strong><a href=\"https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility/\">We Tracked a Shipment of Rare Books. It Ended at an Amazon AI Training Facility</a></strong></p> Excellent piece of reporting from 404 Media. For a while now there have been stories of book dealers receiving orders for large volumes of books from apparently price-insensitive",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "AI Coding Crash Course",
+   "url": "https://www.aihero.dev/workshops/ai-coding-crash-course",
+   "date": "2026-08-17",
+   "summary": "Ship faster than ever before by taking control of your code, with software engineering fundamentals.",
+   "source": "mattpocock",
+   "kind": "person"
+  },
+  {
+   "title": "Recovering Encrypted LLM Reasoning Traces",
+   "url": "https://embracethered.com/blog/posts/2026/recovering-encrypted-llm-thoughts/",
+   "date": "2026-08-17",
+   "summary": "<p>A few days ago, a paper named <a href=&#34;https://arxiv.org/pdf/2608.09867&#34;>&ldquo;Stealing Reasoning Traces from Proprietary LLM APIs&rdquo;</a> was published. It describes a simple, yet super elegant way to recover encrypted LLM reasoning traces.</p>&#xA;<p><a href=&#34;https://embracethered.com/blog/images/2026/strealing_traces_paper_tn.png&#34;><img src=&#34;https://embracethered.com/b",
+   "source": "embrace-the-red",
+   "kind": "research"
+  },
+  {
+   "title": "How I use AI in 2026 (Coding, Writing, Learning, Assistant-ing)",
+   "url": "https://blog.sshh.io/p/how-i-use-ai-in-2026-coding-writing",
+   "date": "2026-08-17",
+   "summary": "A personal update to \"How I use AI (2025)\".",
+   "source": "sshh",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] Stripe buys OpenRouter for $7B",
+   "url": "https://www.latent.space/p/ainews-stripe-buys-openrouter-for",
+   "date": "2026-08-17",
+   "summary": "No GPUs, no Agents, just really, really, really good infra and distribution.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "The Defender’s Window",
+   "url": "https://openai.com/index/the-defenders-window",
+   "date": "2026-08-17",
+   "summary": "AI is reshaping cybersecurity for attackers and defenders alike. Learn how OpenAI is strengthening its defenses and what security teams can do now.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "OpenAI joins PORTS-Pike project",
+   "url": "https://openai.com/index/openai-joins-ports-pike-project",
+   "date": "2026-08-17",
+   "summary": "OpenAI joins PORTS-Pike project, expanding community investment and supporting thousands of Southern Ohio jobs",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "New policy ideas for the Intelligence Age",
+   "url": "https://openai.com/index/new-policy-ideas-for-the-intelligence-age",
+   "date": "2026-08-17",
+   "summary": "OpenAI funds 14 independent projects exploring new AI policy ideas to expand economic opportunity and strengthen societal resilience in the Intelligence Age.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Get closer to the game with Gemini and Pixel",
+   "url": "https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships/",
+   "date": "2026-08-17",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/football_multi-club_hero_nphU3P.max-600x600.format-webp.webp\">Google Gemini and Pixel partner with five global football clubs to elevate the fan matchday experience through AI and Smartphone Technology.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  }
+ ]
+}
