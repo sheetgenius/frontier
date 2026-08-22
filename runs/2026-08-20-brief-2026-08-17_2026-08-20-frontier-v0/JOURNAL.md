@@ -9,7 +9,7 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
-J13 applied leftover Hermes harvest after independent compare. Findings 29, signals 6. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (1413 pages, 556 findings, 184 accepted signals).
+J13 SHA 7531781. Leftover Hermes harvest applied after independent compare. Findings 29, signals 6. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (1413 pages, 556 findings, 184 accepted signals).
 
 J12 SHA 0643a1e. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (1407 pages, 553 findings, 184 accepted signals).
 
@@ -69,7 +69,7 @@ Commits this run:
 - 9b92bdd Pi live docs compaction event (J11)
 - 0643a1e eve turnPolicy queue / omnigent gates (J12)
 - 1affa57 JOURNAL NOW records J12 SHA (J12b)
-- (pending) Hermes leftover tagged extras and profile correction (J13)
+- 7531781 Hermes leftover tagged extras and profile correction (J13)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 
