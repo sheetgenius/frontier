@@ -3,7 +3,7 @@
 ## Coverage (computed from the run tree)
 
 - Harvest files: 17 primary + x-banter.md
-- Findings: 18
+- Findings: 19
 - Signals: 5
 - Cards: 5, all with placement markers in the brief
 - Capture: 10/10 blocks, 0 unavailable

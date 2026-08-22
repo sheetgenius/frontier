@@ -29,6 +29,10 @@ claims:
     finding_id: 2026-08-20-openhands-wrong-profile-fix-still-unreleased-at-window-close
     last_verified: 2026-08-20
     status: active
+  - id: git-sync-404-on-v1-14-0
+    finding_id: 2026-08-20-openhands-v1-14-0-git-sync-page-404s-against-bundled-automation
+    last_verified: 2026-08-20
+    status: active
   - id: release-channel-lag
     finding_id: 2026-06-23-openhands-channel-posture
     last_verified: 2026-06-23
@@ -126,6 +130,13 @@ stance:
 # OpenHands
 
 ## Operator Read
+
+As of 2026-08-20 the installable tag is
+[v1.14.0](https://github.com/OpenHands/OpenHands/releases/tag/v1.14.0).
+The Git Sync page in that tag 404s against bundled automation 1.7.1.
+The silent wrong-profile fallback is still in that tag. Both the
+backend pin and the profile fix are in v1.15.0, published 21 August,
+outside this window.
 
 OpenHands is an enterprise operating environment that can front other harnesses:
 its Settings page will point the platform at Claude Code, Codex, Gemini CLI, or a
