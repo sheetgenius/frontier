@@ -128,3 +128,5 @@ Channel recount (gh api 2026-08-22): DSH first 8 still all prerelease; rc.8 2026
 - github.py deny_tag_push_count 0 at v0.9.0, 5 at v0.10.0. Default True at line 949.
 - compare v0.10.0...5798d74e status=behind, ahead_by=0. compare v0.9.0...5798d74e diverged.
 - Verdict: CONFIRMED tagged-release. Closes 2026-08-10 nightly-only finding. Do not call it nightly-only at v0.10.0.
+
+Independent second look at v0.10.0 (Contents API, 2026-08-21 observation of the pinned tags): cost.py blob 5b4ca596 identical. qwen_executor.py blob 2f878c55 result-phase fail-open; types.py blob 1c4a0862 FAIL_CLOSED_PHASES without PHASE_TOOL_RESULT. acp_executor.py blob f63ec68e has no qwen content gate; acp_cli_harnesses.py blob e85937b6 lists Devin (and Grok Build) on the generic wrap. feature_flags.py blob 42a98fd6 unset OMNIGENT_FEATURES means every release feature off. github.py blobs 26de38d6 (v0.9.0, no deny_tag_push) vs 23d5197e (v0.10.0). Issue #2150 still open (reopened). Drop-migration blob c6273e29 identical at both tags. CHANGELOG at v0.10.0 blob e2432899 still starts at v0.9.0. CONFIRMED. Do not read CHANGELOG.md at the tag for v0.10.0 notes.
