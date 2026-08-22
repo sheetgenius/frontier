@@ -9,7 +9,7 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
-J15: leftover remaining-seven unused item deny_tag_push reached v0.10.0. Independently confirmed (0 hits at v0.9.0, 5 at v0.10.0, default true; 5798d74e ancestor of v0.10.0). Closes 2026-08-10 nightly-only finding. Findings 32, signals 6. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (559 findings).
+J15 SHA 536d082. leftover remaining-seven unused item deny_tag_push reached v0.10.0. Independently confirmed (0 hits at v0.9.0, 5 at v0.10.0, default true; 5798d74e ancestor of v0.10.0). Closes 2026-08-10 nightly-only finding. Findings 32, signals 6. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (559 findings).
 
 J14 SHA 912020b. Leftover Gemini harvest applied after independent file reads at both tags. Findings 31, signals 6. enableAgents false still loads built-ins on latest. Git-env is preview-only. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (558 findings).
 
@@ -77,7 +77,7 @@ Commits this run:
 - ce0b2fe JOURNAL NOW records J13 SHA (J13b)
 - 912020b Gemini enableAgents / git-env leftover (J14)
 - c1cfd4a JOURNAL NOW records J14 SHA (J14b)
-- (pending) omnigent deny_tag_push reached v0.10.0 (J15)
+- 536d082 omnigent deny_tag_push reached v0.10.0 (J15)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 
