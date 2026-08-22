@@ -82,6 +82,8 @@ Independent recount (gh api, 2026-08-22 observation of the same tags): rust-v0.1
 
 Carry-forward recount (same observation): OpenClaw first 20 releases still tip v2026.8.1-beta.2 2026-08-15. compare beta...ab5611f0 ahead_by=619, behind_by=22, diverged. Public "619 commits short" is the ahead_by; harvest already records divergence. OMP v17.3.6 GitHub 404, npm MISSING; v17.3.7 GitHub 2026-08-18T08:47:33Z, npm 2026-08-18T08:51:09Z. 17.4.1/2 OUT. Agent Zero v2.9...v2.10 ahead_by=20. Gemini v0.55.1...v0.56.0 two commits diverged. Hermes 6e22d265 in v2026.8.18 (behind_by=0), not in v2026.8.16.2 (behind_by=21). Pi live HEAD 84 / 266; keep window pin 79 / 264. CONFIRMED. Do not substitute live Pi HEAD.
 
+Channel recount (gh api 2026-08-22): DSH first 8 still all prerelease; rc.8 2026-08-19 in window; 0.1.1-rc.1/rc.2 08-21 OUT. OpenHands v1.14.0 2026-08-17T21:41:36Z; v1.15.0 2026-08-21T14:01:34Z OUT. Paperclip stable still v2026.817.0 published 2026-08-18T03:17:29Z; canary 819=10 and 820=7; 821 OUT. Codex 0.148.0-alpha GitHub releases listed: 1,2,4,5,6,7,8,9,11-23 = 21. alpha.3 and alpha.10 absent from the releases list. CONFIRMED 21 not 23. Do not count suffixes.
+
 ## 13. eve turnPolicy queue silent-fallback
 
 - Hunt: parent finding told operators to set queue after 0.33.0. Leftover harvest claimed 0.39.3 restores it.

@@ -31,6 +31,7 @@ Inspectable changes used gh compare or tag contents. Closed source (Claude Code)
 - OpenClaw first 20 GitHub releases: newest still v2026.8.1-beta.2 on 2026-08-15. Zero in-window.
 - Paperclip matching-refs lengths: canary 818=17, 819=10, 820=7 (34); nightly 818=2, 819=1, 820=1. Stable still v2026.817.0. 821 OUT.
 - GuardianV2 FeatureSpec at rust-v0.148.0 and rust-v0.149.0: UnderDevelopment, default_enabled false (raw lib.rs)
+- Codex 0.148.0-alpha GitHub releases recounted: 21 (alpha.3 and alpha.10 tags-only). DSH still no non-prerelease. OpenHands v1.15.0 still 08-21. Paperclip stable still v2026.817.0; canary 819=10, 820=7.
 - PR #39307 fail-closed merged 2026-08-18T22:50:13Z, after 0.148.0 published_at 2026-08-18T22:26:03Z. Ancestor of rust-v0.149.0 (compare behind_by=0), not of rust-v0.148.0.
 - eve 0.39.0...0.39.1 ahead_by=24; 0.39.1...0.39.2 ahead_by=6; 0.39.2...0.39.3 ahead_by=7; 0.39.3...0.42.0 ahead_by=16. 542c380eec ancestor of 0.39.3 and 0.42.0 (compare status=behind, ahead_by=0).
 - omnigent cost.py blob 5b4ca596 identical at v0.9.0 and v0.10.0. types.py blob 1c4a0862 identical. feature_flags.py at v0.10.0: unset OMNIGENT_FEATURES means every release feature is off.

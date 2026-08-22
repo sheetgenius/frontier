@@ -9,6 +9,8 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+Leftover channel recount CONFIRMED: Codex 21 alpha GitHub releases not 23; DSH still prerelease; OpenHands 1.15.0 OUT; Paperclip stable unmoved. J19 verify-only.
+
 Leftover carry-forward recount CONFIRMED (OpenClaw 619/22 diverged, OMP 17.3.6 still 404, AZ 20, Gemini 2 chore, Hermes in 8.18 not 8.16.2, Pi live 84/266 keep pin). J18 SHA 02bcb52. Verify-only.
 
 Leftover Codex recount CONFIRMED: 381 / 242 / 139, npm latest 0.149.0, changelog still 308. J17 SHA 0706274. Verify-only.
@@ -90,6 +92,8 @@ Commits this run:
 - 0706274 Codex recount 381/242/139 confirmed (J17)
 - 65eb31c JOURNAL NOW records J17 SHA (J17b)
 - 02bcb52 carry-forward recount confirmed (J18)
+- 05f40e8 JOURNAL NOW records J18 SHA (J18b)
+- (pending) channel recount 21 alphas / DSH still rc (J19)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 
