@@ -80,6 +80,8 @@ Independent re-fetch of PR #39307: title "Fail closed on Guardian V2 risk scorin
 
 Unauthenticated curl of contents/codex-rs/ext?ref=rust-v0.149.0 returned HTTP 403. Authenticated gh api of the same path lists guardian-v2 among 13 entries. Do not treat a 403 as the tree missing. CONFIRMED present at the tag.
 
+Unauthenticated curl of earendil-works/pi commits?sha=main&until=2026-08-21T00:00:00Z also 403. Authenticated gh api first row: 5cd93f688aaa 2026-08-20T13:59:38Z "feat(coding-agent): add development pi wrapper". Matches the harvest window-close pin. CONFIRMED. Do not substitute live HEAD.
+
 Independent FeatureSpec dump at both tags (raw lib.rs, 2026-08-21 observation of the pinned refs): GuardianApproval Stable default_enabled true; GuardianV2 UnderDevelopment default_enabled false. Three additional Guardian* specs exist at both tags and are also UnderDevelopment default_enabled false: GuardianReuseParentCompaction, GuardianEnhancedNodeReplTranscripts, GuardianNodeReplTranscriptImages. They do not change the AND-gate (GuardianV2 AND GuardianApproval). Not promoted.
 
 Independent recount (gh api, 2026-08-22 observation of the same tags): rust-v0.148.0 prerelease=false published_at 2026-08-18T22:26:03Z. compare rust-v0.147.0...rust-v0.148.0 ahead_by=381, behind_by=1, status=diverged, total_commits=381. compare rust-v0.148.0...rust-v0.149.0 ahead_by=242, behind_by=1, status=diverged, total_commits=242. rust-v0.149.0 published_at 2026-08-20T21:04:55Z. compare rust-v0.148.0...rust-v0.148.0-alpha.23 ahead_by=139, behind_by=1, diverged. npm latest=0.149.0; alpha dist-tag 0.150.0-alpha.6 is OUT. developers.openai.com/codex/changelog still HTTP 308 to learn.chatgpt.com/docs/changelog. CONFIRMED. Do not reuse 422.
