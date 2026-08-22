@@ -9,6 +9,8 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+Leftover Pi harvest applied: live compaction docs describe session_compact_failed; npm is still 0.84.2. Finding 23. Rebuild BUILD/INTEGRITY/LINKS 0. Then J11.
+
 Leftover OpenClaw harvest applied: Codex sandbox stop can return success while children keep running; fix is main-only. Finding 22. Rebuild BUILD/INTEGRITY/LINKS 0. Then J10.
 
 Leftover OMP harvest applied: `bash.patterns` does not gate `eval`; 17.4.0 `/handoff` overwrites the session. Finding 21. Rebuild BUILD/INTEGRITY/LINKS 0. Then J9.

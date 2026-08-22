@@ -25,6 +25,18 @@ Punctuation is ASCII. Repo earendil-works/pi. Not can1357/oh-my-pi.
 
 **Operator consequence.** Ignore main if you are trying to preview the new harness; it is not there. Do not install `dev` as if it were a release. Watch for a tag that contains a17323e5. Do not let an untrusted session run `pi auth print-api-key`.
 
+## 2. Live compaction docs describe `session_compact_failed`; the npm package does not emit it
+
+- **Date:** 2026-08-20 (docs vs tag); event SHA a6b1dbce 2026-08-17, still unreleased
+- **Channel:** `main-unreleased` for the event; docs.latest is a moving page, not a release
+- **Ancestry evidence:** compare v0.84.2...a6b1dbce ahead_by=22. compaction.md and extensions.md at v0.84.2 do not contain session_compact_failed. Both files at 5cd93f68 do. Unreleased at 5cd93f68 still lists the event under Fixed, not under a version heading. Follow-on 4495469a (2026-08-19) keeps threshold auto-compaction from being skipped when providers omit streaming usage; also not in v0.84.2 (ahead_by=61). On 0.84.2, AgentSession.setModel always writes the global default; at 5cd93f68 persist is behind options.persist (interactive /model passes false; Ctrl+S persists).
+- **Receipt:** https://github.com/earendil-works/pi/commit/a6b1dbceb1af5bf8a21da0b437ef756ce9fe85e6
+- **Half:** defect | **Confidence:** high
+
+**What changed.** The live docs page tracks main. The npm package is still 0.84.2. Handlers written from pi.dev/docs/latest/compaction will not fire on the installable binary. Auto-compaction on 0.84.2 can also sit silent for providers that omit streaming usage.
+
+**Operator consequence.** Do not implement against the live compaction page if you run 0.84.2. Stay on the tagged docs or the files at v0.84.2. `pi update` cannot pick this up.
+
 ## Researcher lane notes
 
 KEisuke's "DeepSeek-style everything is a plugin" is right on composition (no privileged built-ins on `dev`) and wrong if it means Cordis in-process reload. The `dev` docs reject that as the primary mechanism. Not promoted to a product fact. Credential-command gating re-audited at v0.84.2: still absent.

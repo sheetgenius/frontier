@@ -22,6 +22,10 @@ claims:
     finding_id: 2026-08-20-pi-new-harness-lives-on-dev-not-on-a-tag
     last_verified: 2026-08-20
     status: active
+  - id: live-docs-compaction-event-not-in-tag
+    finding_id: 2026-08-20-pi-live-docs-describe-compaction-event-not-in-0-84-2
+    last_verified: 2026-08-20
+    status: active
   - id: typebox-extension-sdk-validation
     finding_id: 2026-05-06-pi-thin-harness-provider-churn
     last_verified: 2026-05-06
