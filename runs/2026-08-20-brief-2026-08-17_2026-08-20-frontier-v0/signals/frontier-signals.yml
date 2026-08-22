@@ -98,13 +98,15 @@ signals:
     summary: >
       dsh-v0.1.0-rc.8 (2026-08-19, SHA 141eb6fe) is still prerelease. The
       architecture page at that pin still says every part is a plugin and a
-      patch can insert a row ahead of any other. The request-trust module still
-      says it is not an auth layer. trustedHosts is a Host grant, not a
+      patch can replace any row. The `never` approval policy is decided before
+      waterfall dispatch, so a later prepend cannot bypass that one mode;
+      replacing the approval row by patch still can. The request-trust module
+      still says it is not an auth layer. trustedHosts is a Host grant, not a
       password. rc.8 adds Claude Code and Codex subagents as Profile Bundles
-      with non-interactive permission modes; that is wrapper behavior.
+      with wrapper-owned non-interactive permission modes.
     why_action_bearing:
       - "Still a developer preview. Do not expose the port."
-      - "Read architecture.md at 141eb6fe before installing a plugin. Inspect a bundle's permission mode; do not attribute it to Claude Code or Codex alone."
+      - "Read architecture.md at 141eb6fe before installing a plugin. Inspect a bundle's permission mode; do not attribute it to Claude Code or Codex alone. Pin bundle packages at 0.1.0-rc.8; npm latest on those packages is still 0.0.1-rc.1."
     receipts:
       - url: https://github.com/deepseek-ai/deepseek-harness/blob/141eb6fef83422698aef7a981029e843e8161534/docs/architecture.md
         precision: official_docs

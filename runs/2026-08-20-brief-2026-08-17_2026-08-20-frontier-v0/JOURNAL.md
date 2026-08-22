@@ -9,6 +9,8 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+Leftover DeepSeek harvest applied: library npm latest still 0.0.1-rc.1; SQLite schema 17 has no migration; `never` is pre-dispatch. Finding 18. Rebuild BUILD/INTEGRITY/LINKS 0. Then J5.
+
 Foreground rebuild of current tree: BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (1388 pages, 544 findings). Then J4.
 
 Blocked: nothing.

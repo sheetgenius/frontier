@@ -26,7 +26,7 @@ Does this window complete, contradict, or repair a previous issue?
 
 ## It contradicts nothing on the gate
 
-**The plugin-gate read still holds at rc.8.** architecture.md at 141eb6fe repeats the parent sentences. The contradiction to hunt was a privileged core. It is not there.
+**The plugin-gate read still holds at rc.8.** architecture.md at 141eb6fe still says any row can be replaced. The `never` policy is decided before waterfall dispatch, so a later prepend cannot bypass that one mode. Replacing the approval row by patch still can. The contradiction to hunt was a privileged core. It is not there.
 
 ## Last four issues, archived
 
