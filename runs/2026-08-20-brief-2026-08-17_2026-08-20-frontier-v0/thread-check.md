@@ -38,7 +38,7 @@ Does this window complete, contradict, or repair a previous issue?
 
 **The Gate Is a Plugin (2026-08-10 to 2026-08-17).** Completes: Codex drought ended (0.148.0/0.149.0); Hermes skill-scan tagged; OMP 17.3.7 released; Agent Zero ACP/browser tagged; SSRF tests present (already in v2.9). Repairs a prior finding: eve turnPolicy queue did not bind from 0.34.0 through 0.39.2; 0.39.3 copies the field. Does not complete: OpenClaw approved-exec; DeepSeek non-prerelease and UI auth. Does not contradict the plugin-gate read.
 
-**You Approved Something Else (2026-08-03 to 2026-08-10).** Completes as still-broken: OpenClaw still has no new release, so the approved-exec binding (and the older workspace-boundary fix) remain off the installable channel. The prompt-versus-bytes pattern did not get a tagged repair.
+**You Approved Something Else (2026-08-03 to 2026-08-10).** Completes as still-broken: OpenClaw still has no new release, so the approved-exec binding (and the older workspace-boundary fix) remain off the installable channel. Completes as tagged: Omnigent `deny_tag_push` (nightly-only then, missed v0.9.0) is an ancestor of v0.10.0, default true.
 
 **The Newest Thing You Can Install (2026-07-27 to 2026-08-03).** Same distance, new objects: the newest Codex made (Guardian V2) is in a tag and still off; the newest OpenClaw made (approved-exec) is still not in a tag.
 

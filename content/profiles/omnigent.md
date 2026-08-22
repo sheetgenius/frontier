@@ -30,6 +30,10 @@ claims:
     finding_id: 2026-08-20-omnigent-v0-10-0-usage-page-off-parent-gates-unchanged
     last_verified: 2026-08-20
     status: active
+  - id: deny-tag-push-in-v0-10-0
+    finding_id: 2026-08-20-omnigent-deny-tag-push-reaches-v0-10-0
+    last_verified: 2026-08-20
+    status: active
   - id: spend-cap-is-a-downgrade-gate
     finding_id: 2026-08-03-omnigent-spend-cap-is-a-downgrade-gate-not-a-ceiling
     last_verified: 2026-08-20
@@ -82,6 +86,12 @@ does not undo the write
 Devin is more likely to sit on the generic ACP path, which does not get
 that content gate. Do not attribute Devin behavior observed through
 Omnigent to Devin alone.
+
+**Tag-push deny is in the tag.** Two issues ago
+`deny_tag_push` (default true) missed v0.9.0 and lived on nightly.
+[`github.py` at v0.10.0](https://github.com/omnigent-ai/omnigent/blob/v0.10.0/omnigent/policies/builtins/github.py)
+has it. `git push --tags`, `--follow-tags`, and `refs/tags/` refspecs
+are denied unless you set `deny_tag_push: false`.
 
 ## Where it stood, 2026-08-03
 

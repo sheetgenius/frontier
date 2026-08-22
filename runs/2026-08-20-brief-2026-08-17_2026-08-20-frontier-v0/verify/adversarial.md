@@ -100,3 +100,9 @@ Hunt specimens from parent: 11 not 13, 19 not 21, tagged-but-unreleased OpenClaw
 - gitUtils.ts: getSafeGitEnv false at v0.56.0, true at preview. CONFIRMED.
 - ba4296c6c vs preview diverged. CONFIRMED main-unreleased. Do not treat .geminiignore as symlink-safe on in-window tags.
 - docs/changelogs/latest.md at v0.56.0 still headed v0.54.0. CONFIRMED.
+
+## 17. omnigent deny_tag_push reached v0.10.0
+
+- github.py deny_tag_push_count 0 at v0.9.0, 5 at v0.10.0. Default True at line 949.
+- compare v0.10.0...5798d74e status=behind, ahead_by=0. compare v0.9.0...5798d74e diverged.
+- Verdict: CONFIRMED tagged-release. Closes 2026-08-10 nightly-only finding. Do not call it nightly-only at v0.10.0.

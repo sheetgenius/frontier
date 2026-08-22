@@ -4,7 +4,7 @@ window:
   start: 2026-08-17
   end: 2026-08-20
 note: >
-  Six signals from thirty-one findings. The window is three days and it earned a
+  Six signals from thirty-two findings. The window is three days and it earned a
   brief because two things that were unreleased last week became installable,
   and two things that were unreleased last week stayed that way, and the
   classifier that sat in Codex alpha is now in a stable tag with the feature

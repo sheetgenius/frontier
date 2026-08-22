@@ -37,6 +37,18 @@ Punctuation is ASCII. Repo omnigent-ai/omnigent. Parent ended at v0.9.0.
 
 **Operator consequence.** Same as parent: do not share a session if you needed owner-only approval.
 
+## 2b. deny_tag_push reaches the installable tag; default true
+
+- **Date:** 2026-08-19
+- **Channel:** `tagged-release`
+- **Ancestry evidence:** github.py at v0.9.0 blob 26de38d6: 0 occurrences of deny_tag_push. At v0.10.0 blob 23d5197e: 5 occurrences, deny_tag_push: bool = True at line 949, deny at lines 1179-1181. PR #3620 merge 5798d74e: compare v0.10.0...5798d74e status=behind, ahead_by=0. compare v0.9.0...5798d74e status=diverged.
+- **Receipt:** https://github.com/omnigent-ai/omnigent/blob/v0.10.0/omnigent/policies/builtins/github.py
+- **Half:** capability | security-relevant | **Confidence:** high
+
+**What changed.** Two issues ago this control was nightly-only and missed v0.9.0. v0.10.0 is the first stable tag that contains it.
+
+**Operator consequence.** Upgrade to v0.10.0 if an agent pushing tags can fire your release pipeline. Opt out with deny_tag_push: false.
+
 ## 3. cost.py is byte-identical at v0.9.0 and v0.10.0; max_cost_usd is still a downgrade gate
 
 - **Date:** 2026-08-19
