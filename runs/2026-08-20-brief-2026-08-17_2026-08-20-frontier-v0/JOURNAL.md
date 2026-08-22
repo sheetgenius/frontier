@@ -9,7 +9,7 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
-Leftover Codex FeatureSpec dump (lib.rs at rust-v0.148.0 and rust-v0.149.0) CONFIRMED GuardianV2 off / GuardianApproval on at both. Three extra Guardian* flags also UnderDevelopment/false; they do not change the AND-gate. Archived in verify/; no public rewrite. J16 verify-only.
+Leftover Codex FeatureSpec dump (lib.rs at rust-v0.148.0 and rust-v0.149.0) CONFIRMED GuardianV2 off / GuardianApproval on at both. Three extra Guardian* flags also UnderDevelopment/false; they do not change the AND-gate. Archived in verify/; no public rewrite. J16 SHA 40c9c8b.
 
 J15 SHA 536d082. leftover remaining-seven unused item deny_tag_push reached v0.10.0. Independently confirmed (0 hits at v0.9.0, 5 at v0.10.0, default true; 5798d74e ancestor of v0.10.0). Closes 2026-08-10 nightly-only finding. Findings 32, signals 6. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (559 findings).
 
@@ -80,6 +80,8 @@ Commits this run:
 - 912020b Gemini enableAgents / git-env leftover (J14)
 - c1cfd4a JOURNAL NOW records J14 SHA (J14b)
 - 536d082 omnigent deny_tag_push reached v0.10.0 (J15)
+- 378b696 JOURNAL NOW records J15 SHA (J15b)
+- 40c9c8b Codex FeatureSpec dump confirms GuardianV2 off (J16)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 
