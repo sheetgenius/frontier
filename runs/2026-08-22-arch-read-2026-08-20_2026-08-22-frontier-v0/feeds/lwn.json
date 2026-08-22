@@ -1,0 +1,62 @@
+{
+ "source": "lwn",
+ "feed": "https://lwn.net/headlines/rss",
+ "swept_on": "2026-08-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "[$] Considering the OpenMDW license",
+   "url": "https://lwn.net/Articles/1089251/",
+   "date": "2026-08-21",
+   "summary": "The open-source world has been struggling for a few years now to understand how to approach large language models (LLMs) and the licensing applied to them. What constitutes \"freedom\" with respect to a black box filled with numerical weights? The process taken by the Open Source Initiative (OSI) in the <a href=\"https://lwn.net/Articles/995159/\">development</a> of its <a href=\"https://opensource.org"
+  },
+  {
+   "title": "Security updates for Friday",
+   "url": "https://lwn.net/Articles/1089999/",
+   "date": "2026-08-21",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (ansible-core and pcp), <b>Debian</b> (chromium, libgit2, python-httplib2, and sabnzbdplus), <b>Fedora</b> (dokuwiki, domoticz, dotnet10.0, dotnet8.0, dotnet9.0, firefox, i2c-display, libgit2, lyx, ntpsec, openssh, perl-DBI, php-phpseclib3, python-alembic, python-asyncmy, python-sqlalchemy, python3.13, roundcubemail, trafficserver, wireshark, a"
+  },
+  {
+   "title": "[$] A look at the Quickshell desktop-component toolkit",
+   "url": "https://lwn.net/Articles/1083090/",
+   "date": "2026-08-20",
+   "summary": "<p><a href=\"https://quickshell.org/\">Quickshell</a> is a toolkit for building desktop components, such as toolbars or menus. It uses <a href=\"https://doc.qt.io/qt-6/qmlreference.html\">QML</a>, which is a declarative language for designing GUI applications. Quickshell helps developers create graphical tools for common desktop use cases with a focus on ease of development. It offers a convenient met"
+  },
+  {
+   "title": "KDE Gear 26.08 released",
+   "url": "https://lwn.net/Articles/1089721/",
+   "date": "2026-08-20",
+   "summary": "<p><a href=\"https://kde.org/announcements/gear/26.08.0/\">Version 26.08</a> of the <a href=\"https://en.wikipedia.org/wiki/KDE_Gear\">KDE&#160;Gear</a> collection of applications has been released. Notable changes in this release include improvements in the <a href=\"https://docs.kde.org/stable_kf6/en/okular/okular/signatures.html\">signing</a> features of <a href=\"https://okular.kde.org/\">Okular</a>, "
+  },
+  {
+   "title": "Supply chain attack on arrayref (Rust blog)",
+   "url": "https://lwn.net/Articles/1089720/",
+   "date": "2026-08-20",
+   "summary": "The Rust blog <a href=\"https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/\">reports</a> on a malicious crate, called <tt>proc-macro1</tt>, that was uploaded to the crates.io repository. <p> <blockquote class=\"bq\"> Furthermore, we discovered that the popular <tt>arrayref</tt> crate had recently been republished and made to depend on this crate, with the most recent versions yanke"
+  },
+  {
+   "title": "RPM 6.1.0 released",
+   "url": "https://lwn.net/Articles/1089719/",
+   "date": "2026-08-20",
+   "summary": "<p><a href=\"https://rpm.org/releases/6.1.0\">Version 6.1.0</a> of the <a href=\"https://rpm.org/\">RPM Package Manager</a> has been released. Notable changes include the ability to provide modifiers to <a href=\"https://rpm.org/docs/6.1.x/man/rpm-macros.7\">RPM macros</a> at definition time, improved build and verification error handling, support for signing files with PKCS11 tokens using <a href=\"http"
+  },
+  {
+   "title": "[$] The beginning of the 7.3 merge window",
+   "url": "https://lwn.net/Articles/1089244/",
+   "date": "2026-08-20",
+   "summary": "As of this writing, 2,346 non-merge changesets have been pulled into the mainline repository for the 7.3 kernel release. That, clearly, is a mere down payment on the flood that is to come. Even so, those early pulls brought in some noteworthy changes, including (but not limited to) a significant reworking of how group scheduling works on multiprocessor systems."
+  },
+  {
+   "title": "Security updates for Thursday",
+   "url": "https://lwn.net/Articles/1089717/",
+   "date": "2026-08-20",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (bind9.18, glib2, gstreamer1-plugins-bad-free, gstreamer1-plugins-good, kernel-rt, libcupsfilters, mysql8.4, mysql:8.4, pcp, perl-Date-Manip, php8.4, php:7.4, php:8.2, php:8.3, python3, and yggdrasil), <b>Debian</b> (designate, firefox-esr, and swift), <b>Gentoo</b> (acl, attr, Emacs, libssh2, and quickjs-ng), <b>Oracle</b> (.NET 10.0, .NET 9.0"
+  },
+  {
+   "title": "[$] LWN.net Weekly Edition for August 20, 2026",
+   "url": "https://lwn.net/Articles/1088565/",
+   "date": "2026-08-20",
+   "summary": "Inside this week's LWN.net Weekly Edition: <p> <ul> <li> <a href=\"https://lwn.net/Articles/1088565/\">Front</a>: Debian AI GR; Python pathlib; bootstrappable builds; Fedora and AF_ALG; Arm 128-bit PTEs; BPF CI; 7.2 statistics. <li> <a href=\"https://lwn.net/Articles/1088567/\">Briefs</a>: Brief news items from throughout the community. <li> <a href=\"https://lwn.net/Articles/1088568/\">Announcements</a"
+  }
+ ]
+}

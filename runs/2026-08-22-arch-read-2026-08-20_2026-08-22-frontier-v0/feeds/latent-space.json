@@ -1,0 +1,44 @@
+{
+ "source": "latent-space",
+ "feed": "https://www.latent.space/feed",
+ "swept_on": "2026-08-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "[AINews] 10% worse, 100x cheaper, 10000x faster: Why Simulation is taking over",
+   "url": "https://www.latent.space/p/ainews-10-worse-100x-cheaper-10000x",
+   "date": "2026-08-22",
+   "summary": "Did you think RSI stopped at model training?"
+  },
+  {
+   "title": "The Evolution of the Agent Harness",
+   "url": "https://www.latent.space/p/attention-interface",
+   "date": "2026-08-22",
+   "summary": "Models keep absorbing the harness into their weights &#8212; soon, it will be a harness for human attention rather than for the model."
+  },
+  {
+   "title": "Simulation: the new Scaling Law — Joon Sung Park, Simile AI",
+   "url": "https://www.latent.space/p/simile",
+   "date": "2026-08-21",
+   "summary": "Simile&#8217;s CEO about his journey from the viral Generative Agents to creating 8 Billion Digital Twins of every living human... and why it&#8217;s gone from fun exploration to very serious business."
+  },
+  {
+   "title": "[AINews] Poolside gets $12B reverse-execuhire to NVIDIA; founders stay for $1B, employees go for $6B, Infraco scaling to 7GW neocloud",
+   "url": "https://www.latent.space/p/ainews-poolside-gets-12b-reverse",
+   "date": "2026-08-21",
+   "summary": "Yes, we&#8217;re confused too."
+  },
+  {
+   "title": "The /wayfinder Skill: Navigating the “Fog of War” of Planning",
+   "url": "https://www.latent.space/p/wayfinder-skill",
+   "date": "2026-08-20",
+   "summary": "Matt Pocock tells us about his /wayfinder skill, for greenfield projects or for when the way forward is unclear."
+  },
+  {
+   "title": "[AINews] Death of Params: Z.ai CEO Jie Tang on GLM 5.3 and the new Post-training Scaling Law",
+   "url": "https://www.latent.space/p/ainews-death-of-params-zai-ceo-jie",
+   "date": "2026-08-20",
+   "summary": "Every lab CEO is on X now"
+  }
+ ]
+}

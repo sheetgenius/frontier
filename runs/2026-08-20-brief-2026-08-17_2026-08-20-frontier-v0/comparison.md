@@ -34,11 +34,9 @@ Agent Zero's v2.9 SSRF tests survived v2.10 byte-identical. That is the repair t
 
 ## What does not earn a comparison
 
-Gemini v0.56.0 being two chore commits past v0.55.1 does not need a Codex parallel. It is a channel promotion, not a capability.
+Gemini v0.56.0 being two chore commits past v0.55.1 does not need a Codex parallel. It is a channel promotion, not a capability. The operator fact is that latest dropped a v0.55.1 OAuth fix the preview channel still has.
 
 Antigravity 1.1.17 sharing a SHA with 1.1.16 is the same collision this publication already recorded for 1.1.2/1.1.3. A GitHub release is not a changelog.
-
-Gemini v0.56.0 being two chore commits is not a Codex parallel. The operator fact is that latest dropped a v0.55.1 OAuth fix the preview channel still has.
 
 heypi, flue: no in-window commits.
 

@@ -1,0 +1,44 @@
+{
+ "source": "simonw",
+ "feed": "https://simonwillison.net/atom/everything/",
+ "swept_on": "2026-08-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "llm 0.32.1",
+   "url": "https://simonwillison.net/2026/Aug/21/llm/",
+   "date": "2026-08-21",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm/releases/tag/0.32.1\">llm 0.32.1</a></p> <p>Fresh installs of LLM stopped working the other day because the OpenAI Python library dropped its usage of <code>httpx</code>, and it turned out LLM depended on that library but only installed it via a transitive <code>openai</code> dependency.</p> <p>This dot-release fixes that for the m"
+  },
+  {
+   "title": "llm-openrouter 0.7",
+   "url": "https://simonwillison.net/2026/Aug/21/llm-openrouter/",
+   "date": "2026-08-21",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm-openrouter/releases/tag/0.7\">llm-openrouter 0.7</a></p> <p>Now that this plugin is compatible with <a href=\"https://simonwillison.net/2026/Aug/4/new-release-of-llm/\">LLM 0.32</a> it can display the reasoning traces for LLMs available through OpenRouter.</p> <blockquote> <ul> <li>Updated for compatibility with <a href=\"https://llm."
+  },
+  {
+   "title": "Stop Making TUIs",
+   "url": "https://simonwillison.net/2026/Aug/21/stop-making-tuis/",
+   "date": "2026-08-21",
+   "summary": "<p><strong><a href=\"https://sockpuppet.org/blog/2026/08/20/stop-making-tuis/\">Stop Making TUIs</a></strong></p> Thomas Ptacek advocates for building real native user interfaces for even the smallest of personal tools, because coding agents have reduced the cost of getting a usable-enough GUI up and running to almost nothing.</p> <p>I wrote about my vibe-coded bandwidth and GPU monitoring macOS tas"
+  },
+  {
+   "title": "Quoting Matt Webb",
+   "url": "https://simonwillison.net/2026/Aug/21/matt-webb/",
+   "date": "2026-08-21",
+   "summary": "<blockquote cite=\"https://interconnected.org/home/2026/08/21/galactic\"><p>After I released version 1.0, I figured I would have to do the rotations myself. So I sat down with ChatGPT and I didn’t get it to write the code, but I got it to educate me. With a patient, interactive tutor, I was able to finally do what I hadn’t by reading books and asking mathematician friends – I learnt how to use quate"
+  },
+  {
+   "title": "ChatGPT search now uses the site:operator at scale",
+   "url": "https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/",
+   "date": "2026-08-20",
+   "summary": "<p><strong><a href=\"https://promptwatch.com/data/chatgpt-site-operator-fanouts\">ChatGPT search now uses the site:operator at scale</a></strong></p> Promptwatch is part of the emerging \"GEO\" space, for Generative Engine Optimization - the chatbot version of SEO, where companies offer tools and consulting to help your site increase its presence in replies to prompts inside tools like ChatGPT.</p> <p"
+  },
+  {
+   "title": "A shot-scraper-style JSON API on Bun 1.4's new Bun.WebView",
+   "url": "https://simonwillison.net/2026/Aug/20/bun-webview-json-api/",
+   "date": "2026-08-20",
+   "summary": "<p><strong>Research:</strong> <a href=\"https://github.com/simonw/research/tree/main/bun-webview-json-api#readme\">A shot-scraper-style JSON API on Bun 1.4&#x27;s new Bun.WebView</a></p> <p>Today saw the long awaited <a href=\"https://bun.com/blog/bun-v1.4\">release of Bun 1.4</a>, the first stable version since the infamous Rust rewrite <a href=\"https://simonwillison.net/2026/Jul/8/rewriting-bun-in-r"
+  }
+ ]
+}

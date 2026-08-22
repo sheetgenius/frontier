@@ -1,0 +1,14 @@
+{
+ "source": "pragmatic-engineer",
+ "feed": "https://newsletter.pragmaticengineer.com/feed",
+ "swept_on": "2026-08-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "The Pulse: We need to talk about migrations with AI",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-we-need-to-talk-about-migrations",
+   "date": "2026-08-20",
+   "summary": "Asana completed a testing framework migration in two weeks, that they would have delayed for years more, and they&#8217;re not alone. Also: AI startups could make Gartner much less relevant, and more"
+  }
+ ]
+}
