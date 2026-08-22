@@ -29,7 +29,7 @@ Commits this run:
 - 9a618e5 Lane B feeds (J1)
 - 641950f Lane A harvests (J2)
 - f306edc findings, signals, brief, wire, profiles (J3)
-- (pending) J4 deepening + Agent Zero correction
+- b7a51bd deepening, Agent Zero test-acquisition correction (J4)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 
