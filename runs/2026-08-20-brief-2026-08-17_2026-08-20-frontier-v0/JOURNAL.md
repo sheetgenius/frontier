@@ -9,6 +9,8 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+Leftover unauthenticated curl of Codex ext at 0.149.0 was 403. gh api lists guardian-v2. Do not treat 403 as missing. J21 verify-only.
+
 Leftover #39307 re-fetch CONFIRMED merged_at 2026-08-18T22:50:13Z SHA c97bd2dc. J20 SHA b1dcb13. Verify-only.
 
 Leftover channel recount CONFIRMED: Codex 21 alpha GitHub releases not 23; DSH still prerelease; OpenHands 1.15.0 OUT; Paperclip stable unmoved. J19 SHA f4587fc. Verify-only.
@@ -98,6 +100,8 @@ Commits this run:
 - f4587fc channel recount 21 alphas / DSH still rc (J19)
 - 399f4e5 JOURNAL NOW records J19 SHA (J19b)
 - b1dcb13 PR 39307 re-fetch confirmed (J20)
+- 02abb3e JOURNAL NOW records J20 SHA (J20b)
+- (pending) 0.149.0 ext listing confirms guardian-v2 (J21)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 
