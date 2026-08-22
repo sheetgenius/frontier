@@ -7,7 +7,9 @@ run_id: 2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0
 parent: 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0 ("The Gate Is a Plugin")
 AUTHORIZE_PUSH: no
 
-Next: commit J12, no push. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (1407 pages, 553 findings, 184 accepted signals). Then saturation.
+Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
+
+J12 SHA 0643a1e. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (1407 pages, 553 findings, 184 accepted signals).
 
 J12 applied leftover Lane A facts the first cycle skipped:
 - eve 0.39.1 (duplicate pending approvals), 0.39.2 (durable tool rebuild), 0.39.3 (turnPolicy queue binds again after silent steer from 0.34.0). Signal 6. Window-close pin eve@0.42.0; npm latest already 0.44.0 OUT.
@@ -63,7 +65,7 @@ Commits this run:
 - 7b8439d OMP bash.patterns vs eval (J9)
 - ed337f9 OpenClaw sandbox stop (J10)
 - 9b92bdd Pi live docs compaction event (J11)
-- (pending) eve turnPolicy / omnigent gates (J12)
+- 0643a1e eve turnPolicy queue / omnigent gates (J12)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 
