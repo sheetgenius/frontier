@@ -9,6 +9,8 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+J14 applied leftover Gemini harvest after independent file reads at both tags. Findings 31, signals 6. enableAgents false still loads built-ins on latest. Git-env is preview-only. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (558 findings).
+
 J13 SHA 7531781. Leftover Hermes harvest applied after independent compare. Findings 29, signals 6. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (1413 pages, 556 findings, 184 accepted signals).
 
 J12 SHA 0643a1e. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (1407 pages, 553 findings, 184 accepted signals).
@@ -70,6 +72,8 @@ Commits this run:
 - 0643a1e eve turnPolicy queue / omnigent gates (J12)
 - 1affa57 JOURNAL NOW records J12 SHA (J12b)
 - 7531781 Hermes leftover tagged extras and profile correction (J13)
+- ce0b2fe JOURNAL NOW records J13 SHA (J13b)
+- (pending) Gemini enableAgents / git-env leftover (J14)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 

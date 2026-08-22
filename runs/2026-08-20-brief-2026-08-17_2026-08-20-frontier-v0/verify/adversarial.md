@@ -93,3 +93,10 @@ Hunt specimens from parent: 11 not 13, 19 not 21, tagged-but-unreleased OpenClaw
 - execute_code f0ffcbc7 ahead_by=334; yolo b0350365 ahead_by=432; bot cards 1179f148 ahead_by=610. CONFIRMED not in v2026.8.18. Do not upgrade-instruct to v2026.8.19 (08-21).
 - delegation.md at tag still 50/3; config_defaults 250/10. CONFIRMED stale docs.
 - smart_policy bd1db546 vs v2026.8.18 and vs v2026.8.3: status=behind, ahead_by=0. Profile "in no tag" REFUTED. Corrected.
+
+## 16. Gemini leftover enableAgents and git-env
+
+- registry.ts at v0.56.0: loadBuiltInAgents line 163, isAgentsEnabled line 168. At preview: check first. CONFIRMED hole on latest, fix on preview.
+- gitUtils.ts: getSafeGitEnv false at v0.56.0, true at preview. CONFIRMED.
+- ba4296c6c vs preview diverged. CONFIRMED main-unreleased. Do not treat .geminiignore as symlink-safe on in-window tags.
+- docs/changelogs/latest.md at v0.56.0 still headed v0.54.0. CONFIRMED.

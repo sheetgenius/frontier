@@ -25,6 +25,14 @@ claims:
     finding_id: 2026-08-20-gemini-cli-v0-56-0-is-stable-and-two-chore-commits-past-v0-55-1
     last_verified: 2026-08-20
     status: active
+  - id: enableagents-false-loads-builtins-on-0-56-0
+    finding_id: 2026-08-20-gemini-cli-enableagents-false-still-loads-builtins-on-0-56-0
+    last_verified: 2026-08-20
+    status: active
+  - id: git-env-hardening-preview-only
+    finding_id: 2026-08-20-gemini-cli-git-env-hardening-is-preview-not-0-56-0
+    last_verified: 2026-08-20
+    status: active
   - id: consumer-service-retired-2026-06-18
     finding_id: 2026-07-01-gemini-cli-consumer-service-retired
     last_verified: 2026-07-01
@@ -148,6 +156,17 @@ stance:
 # Gemini CLI
 
 ## Operator Read
+
+As of 2026-08-20, npm latest is
+[v0.56.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.56.0):
+two chore commits past v0.55.1, not a descendant of the retry/TTL work,
+and a drop of the Cloud Workstations OAuth redirect that v0.55.1 has.
+`experimental.enableAgents: false` still loads built-in subagents
+([registry.ts at the tag](https://github.com/google-gemini/gemini-cli/blob/v0.56.0/packages/core/src/agents/registry.ts)).
+Git subprocess env neutralization is in
+[v0.57.0-preview.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.57.0-preview.0),
+not in latest. docs/changelogs/latest.md at the v0.56.0 tag still
+opens at v0.54.0.
 
 The obituaries were wrong and the release channel is the real story. Google ended
 consumer Google-account access for the unpaid and Google One tiers on 2026-06-18,
