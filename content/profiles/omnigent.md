@@ -16,7 +16,7 @@ surface_class: open_source_commits
 evidence_floor: official_docs
 status: active_watch
 last_updated: 2026-08-20
-last_full_review: 2026-08-03
+last_full_review: 2026-08-20
 claims:
   - id: v0-10-0-multi-sandbox-shared-editor-approval
     finding_id: 2026-08-20-omnigent-v0-10-0-adds-multi-sandbox-and-keeps-shared-editor-approval
@@ -26,13 +26,17 @@ claims:
     finding_id: 2026-08-03-omnigent-worktree-guard-inert-on-windows-runners
     last_verified: 2026-08-03
     status: active
+  - id: v0-10-0-usage-page-off-parent-gates-unchanged
+    finding_id: 2026-08-20-omnigent-v0-10-0-usage-page-off-parent-gates-unchanged
+    last_verified: 2026-08-20
+    status: active
   - id: spend-cap-is-a-downgrade-gate
     finding_id: 2026-08-03-omnigent-spend-cap-is-a-downgrade-gate-not-a-ceiling
-    last_verified: 2026-08-03
+    last_verified: 2026-08-20
     status: active
   - id: cost-gate-fails-closed-on-unpriced-models
     finding_id: 2026-08-03-omnigent-spend-cap-is-a-downgrade-gate-not-a-ceiling
-    last_verified: 2026-08-03
+    last_verified: 2026-08-20
     status: active
   - id: router-picks-harness-and-model
     finding_id: 2026-08-03-omnigent-v070-routing-picks-the-harness
@@ -56,7 +60,30 @@ control which exists only as an intention is not a control, and a meta-harness i
 the hardest version of that test, because two governance layers now have a claim
 on the same action.
 
-## Where it stands, 2026-08-03
+## Where it stands, 2026-08-20
+
+**Channel.** [`v0.10.0`](https://github.com/omnigent-ai/omnigent/releases/tag/v0.10.0)
+published 2026-08-19T04:34:41Z. CHANGELOG.md at that tag still starts at
+v0.9.0; the v0.10.0 notes live on the GitHub release body.
+
+**What is new.** Several sandbox providers at once, Devin as a built-in
+harness, a Usage page, Copilot via `gh auth login`. The Usage page is
+off unless `OMNIGENT_FEATURES=usage_page`. Unset or empty means every
+release feature is off
+([`feature_flags.py` at v0.10.0](https://github.com/omnigent-ai/omnigent/blob/v0.10.0/omnigent/server/feature_flags.py)).
+
+**What did not move.** [`cost.py`](https://github.com/omnigent-ai/omnigent/blob/v0.10.0/omnigent/policies/builtins/cost.py)
+is blob `5b4ca596` at both v0.9.0 and v0.10.0. `max_cost_usd` is still a
+downgrade gate. Omitting `expensive_models` or setting `[]` is the hard
+stop. Shared-editor approval is still any-editor. qwen/goose delegated
+file I/O still fails open on the result phase; a write-result denial
+does not undo the write
+([`qwen_executor.py` at v0.10.0](https://github.com/omnigent-ai/omnigent/blob/v0.10.0/omnigent/inner/qwen_executor.py)).
+Devin is more likely to sit on the generic ACP path, which does not get
+that content gate. Do not attribute Devin behavior observed through
+Omnigent to Devin alone.
+
+## Where it stood, 2026-08-03
 
 **Channel.** Pre-1.0 and shipping continuously. `v0.7.0` was published
 2026-07-27T22:40Z and is the newest tag; more than a hundred commits landed on
@@ -110,7 +137,8 @@ present at the `v0.7.0` tag. The claim was accurate and shipped.
 Use it as the coordination and spend layer it is, and read its policy modules
 rather than its parameter names. `max_cost_usd` needs `expensive_models` beside
 it to mean anything. If you run unsandboxed implementer worker specs on Windows,
-run main or wait for the next tag before trusting worktree confinement.
+confirm the posixpath worktree fix is in the tag you install;
+it was on main after v0.7.0.
 
 Do not treat a finding observed through Omnigent as a finding about the harness
 underneath. Adapter lag and policy-layer defects belong to the wrapper.
@@ -123,8 +151,10 @@ underneath. Adapter lag and policy-layer defects belong to the wrapper.
 - Does the offloadable dictation worker send audio off the operator's
   infrastructure? `v0.7.0` says audio "never leaves your server" while describing
   the transcription engine as offloadable to a remote worker.
-- What does the cost gate do when `expensive_models` is empty or does not match
-  the running model?
+- Re-read at v0.10.0: `expensive_models` None or `[]` sets
+  `block_all_models=True` (a hard stop). A non-empty list is the
+  downgrade gate. The remaining question is what happens when the list
+  is non-empty but does not match the running model.
 - Sandboxed Linux agents now trust CA roots under the system `capath` to reach
   hosts behind a corporate MITM proxy. The reason is stated; the blast radius is
   not.

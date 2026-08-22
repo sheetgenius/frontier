@@ -16,6 +16,8 @@ Does this window complete, contradict, or repair a previous issue?
 
 **Gemini's preview-not-ahead posture ended.** v0.56.0 is latest; v0.57.0-preview.0 is preview.
 
+**eve's turnPolicy queue setting binds again in 0.39.3.** Parent finding 2026-08-17-eve-eve-0-33-0-makes-channel-messages-interrupt-the-running-turn-by told operators to set queue for transactional channels. PR #2173 states the field silently steered from 0.34.0. The SHA is in 0.39.3.
+
 ## It does not complete
 
 **OpenClaw's approved-exec fix is still in no release.** ab5611f0 is 619 commits ahead of v2026.8.1-beta.2. Zero releases in this window.
@@ -30,7 +32,7 @@ Does this window complete, contradict, or repair a previous issue?
 
 ## Last four issues, archived
 
-**The Gate Is a Plugin (2026-08-10 to 2026-08-17).** Completes: Codex drought ended (0.148.0/0.149.0); Hermes skill-scan tagged; OMP 17.3.7 released; Agent Zero ACP/browser tagged; SSRF tests present (already in v2.9). Does not complete: OpenClaw approved-exec; DeepSeek non-prerelease and UI auth. Does not contradict the plugin-gate read.
+**The Gate Is a Plugin (2026-08-10 to 2026-08-17).** Completes: Codex drought ended (0.148.0/0.149.0); Hermes skill-scan tagged; OMP 17.3.7 released; Agent Zero ACP/browser tagged; SSRF tests present (already in v2.9). Repairs a prior finding: eve turnPolicy queue did not bind from 0.34.0 through 0.39.2; 0.39.3 copies the field. Does not complete: OpenClaw approved-exec; DeepSeek non-prerelease and UI auth. Does not contradict the plugin-gate read.
 
 **You Approved Something Else (2026-08-03 to 2026-08-10).** Completes as still-broken: OpenClaw still has no new release, so the approved-exec binding (and the older workspace-boundary fix) remain off the installable channel. The prompt-versus-bytes pattern did not get a tagged repair.
 
@@ -42,4 +44,4 @@ Does this window complete, contradict, or repair a previous issue?
 
 ## Forward-facing sentence for the brief
 
-Last week's classifier is in a stable tag and still off; last week's exec fix is still unreleased.
+Last week's classifier is in a stable tag and still off; last week's exec fix is still unreleased; last week's eve queue setting did not bind until 0.39.3.

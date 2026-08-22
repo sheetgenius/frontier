@@ -3,8 +3,8 @@
 ## Coverage (computed from the run tree)
 
 - Harvest files: 17 primary + x-banter.md
-- Findings: 23
-- Signals: 5
+- Findings: 26
+- Signals: 6
 - Cards: 5, all with placement markers in the brief
 - Capture: 10/10 blocks, 0 unavailable
 - Lane B: 15/15 feeds HTTP 200, 0 FAIL
@@ -32,6 +32,8 @@ Inspectable changes used gh compare or tag contents. Closed source (Claude Code)
 - Paperclip matching-refs lengths: canary 818=17, 819=10, 820=7 (34); nightly 818=2, 819=1, 820=1. Stable still v2026.817.0. 821 OUT.
 - GuardianV2 FeatureSpec at rust-v0.148.0 and rust-v0.149.0: UnderDevelopment, default_enabled false (raw lib.rs)
 - PR #39307 fail-closed merged 2026-08-18T22:50:13Z, after 0.148.0 published_at 2026-08-18T22:26:03Z. Ancestor of rust-v0.149.0 (compare behind_by=0), not of rust-v0.148.0.
+- eve 0.39.0...0.39.1 ahead_by=24; 0.39.1...0.39.2 ahead_by=6; 0.39.2...0.39.3 ahead_by=7; 0.39.3...0.42.0 ahead_by=16. 542c380eec ancestor of 0.39.3 and 0.42.0 (compare status=behind, ahead_by=0).
+- omnigent cost.py blob 5b4ca596 identical at v0.9.0 and v0.10.0. types.py blob 1c4a0862 identical. feature_flags.py at v0.10.0: unset OMNIGENT_FEATURES means every release feature is off.
 
 ## Capture rule 4
 
@@ -47,4 +49,4 @@ Agent Zero SSRF tests were described as added in v2.10. Independent researcher p
 
 ## Gaps
 
-OMP Homebrew/Bun/script paths not re-probed in this coordinator pass; parent said only Nix reached 17.3.6/7, and npm now reaches 17.3.7 and 17.4.0. Paperclip canary bodies not line-audited. Parent Paperclip main-unreleased security items not re-diffed against a canary SHA. Pi `dev` plugin-architecture sample still with the researcher. Live npm alpha is 0.150.0-alpha.6 (out of window).
+OMP Homebrew/Bun/script paths not re-probed in this coordinator pass; parent said only Nix reached 17.3.6/7, and npm now reaches 17.3.7 and 17.4.0. Paperclip canary bodies not line-audited. Parent Paperclip main-unreleased security items not re-diffed against a canary SHA. Pi `dev` plugin-architecture sample still with the researcher. Live npm alpha is 0.150.0-alpha.6 (out of window). eve self-mod subagent gated to eve dev by release notes, not a line-range audit in this pass. omnigent worktree_guard path at v0.10.0 not re-found at the v0.7.0 filename.

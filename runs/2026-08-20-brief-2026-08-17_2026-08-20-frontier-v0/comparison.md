@@ -22,6 +22,8 @@ OMP's write-fallback, now npm-installable, is a third placement: the OS denial i
 
 Pi's new harness is a fourth: it is on `dev`, 264 commits ahead of main, in no tag. A maintainer said so. Reading default-branch commits would miss it.
 
+eve's turnPolicy queue is the same pattern as Codex Guardian V2, on a field instead of a flag. 0.33.0 documented the control. 0.34.0 through 0.39.2 compiled it away. 0.39.3 copies the field onto the compiled channel. Shipped is not on.
+
 ## Historical precedent
 
 Codex 0.148.0 after a ten-day stable drought is the same cadence the 2026-08-03 and 2026-08-17 issues already named: the repo moves daily, the default install does not. This time it moved twice in 48 hours. The catch-up is the event, not a change of cadence.

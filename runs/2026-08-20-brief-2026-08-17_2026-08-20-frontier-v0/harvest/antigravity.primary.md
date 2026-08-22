@@ -33,9 +33,9 @@ Punctuation is ASCII. Repo google-antigravity/antigravity-cli. Parent ended at 1
 - **Receipt:** https://github.com/google-antigravity/antigravity-cli/releases/tag/1.1.15
 - **Half:** both | **Confidence:** high
 
-**What changed.** A driver can keep a print-mode session open with newline-delimited JSON. Auth restore bugs that dropped enterprise billing/license are closed.
+**What changed.** A driver can keep a print-mode session open with newline-delimited JSON. Auth restore bugs that dropped enterprise billing/license are closed. Same tag: a `rules:` key on markdown agent frontmatter names rule files that always apply; a plugin can ship top-level `rules.json`.
 
-**Operator consequence.** Upgrade if you sign in via keyring on 1.1.14 or earlier. Try stream-json if you orchestrate headless turns.
+**Operator consequence.** Upgrade if you sign in via keyring on 1.1.14 or earlier. Try stream-json if you orchestrate headless turns. Audit markdown agents and plugins: a named rule applies even when you expected the agent to inherit nothing.
 
 ## 3. 1.1.16: settings.json parse failure no longer overwrites the file with defaults; MCP toggle no longer drops unknown fields
 

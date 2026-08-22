@@ -17,7 +17,7 @@ Punctuation is ASCII. No material change in this window.
 
 - **Date:** 2026-08-20 (observation; last event 2026-07-22)
 - **Channel:** none in window
-- **Ancestry evidence:** `gh api repos/hunvreus/heypi/commits` first page: newest commit 436da22cea "chore: release 0.3.0-beta.2" dated 2026-07-22T01:35:42Z. `gh api repos/hunvreus/heypi/tags` newest tag 0.3.0-beta.2 SHA 436da22ceab0bc4e2db133e8626649b4bf76286d. `gh api repos/hunvreus/heypi/releases` returned empty. No tag, release, or default-branch commit dated 2026-08-17 through 2026-08-20.
+- **Ancestry evidence:** `gh api repos/hunvreus/heypi/commits` first page: newest commit 436da22cea "chore: release 0.3.0-beta.2" dated 2026-07-22T01:35:42Z. `gh api repos/hunvreus/heypi/tags` newest tag 0.3.0-beta.2 SHA 436da22ceab0bc4e2db133e8626649b4bf76286d. `gh api repos/hunvreus/heypi/releases` returned empty. `gh api repos/hunvreus/heypi/compare/0.3.0-beta.2...main` status=identical, ahead_by=0. npm view @hunvreus/heypi version 0.3.0-beta.2, dist-tag latest 0.3.0-beta.2, time["0.3.0-beta.2"] 2026-07-22. No tag, release, or default-branch commit dated 2026-08-17 through 2026-08-20.
 - **Receipt:** https://github.com/hunvreus/heypi/commit/436da22ceab0bc4e2db133e8626649b4bf76286d
 - **Half:** neither | **Confidence:** high
 
@@ -34,4 +34,6 @@ Loaded sources/heypi.yml first. Repo hunvreus/heypi. Docs https://heypi.dev/docs
 - GitHub commits: gh api repos/hunvreus/heypi/commits (newest 2026-07-22)
 - GitHub tags: gh api repos/hunvreus/heypi/tags (0.3.0-beta.2 tip)
 - GitHub releases: empty list
+- compare 0.3.0-beta.2...main (identical)
+- npm @hunvreus/heypi version and dist-tags (still 0.3.0-beta.2)
 - Source contract primary_surfaces: repo, docs, landing

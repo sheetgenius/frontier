@@ -17,7 +17,7 @@ Punctuation is ASCII. No material change in this window.
 
 - **Date:** 2026-08-20 (observation; last event 2026-08-05)
 - **Channel:** none in window
-- **Ancestry evidence:** `gh api repos/withastro/flue/commits` newest: bf86b8726f "v2.0.3" dated 2026-08-05T00:04:42Z. Tags: v2.0.3 SHA bf86b8726f5ba189844185fdbeca0e194344ded1. GitHub releases list empty (tags without GitHub release objects). No default-branch commit dated 2026-08-17 through 2026-08-20.
+- **Ancestry evidence:** `gh api repos/withastro/flue/commits` newest: bf86b8726f "v2.0.3" dated 2026-08-05T00:04:42Z. Tags: v2.0.3 SHA bf86b8726f5ba189844185fdbeca0e194344ded1. GitHub releases list empty (tags without GitHub release objects). `gh api repos/withastro/flue/compare/v2.0.3...main` status=identical, ahead_by=0. Commits since=2026-08-17 until=2026-08-21 length 0. Closed unmerged PR #614 was updated 2026-08-19; that is not a channel.
 - **Receipt:** https://github.com/withastro/flue/commit/bf86b8726f5ba189844185fdbeca0e194344ded1
 - **Half:** neither | **Confidence:** high
 
@@ -34,4 +34,5 @@ Loaded sources/flue.yml first. Identity: withastro/flue, not an unrelated "Flue"
 - GitHub commits: gh api repos/withastro/flue/commits
 - GitHub tags: gh api repos/withastro/flue/tags
 - GitHub releases: empty
+- compare v2.0.3...main (identical)
 - Contract changelog URL: https://github.com/withastro/flue/blob/main/CHANGELOG.md (moving; not used as a historical pin)

@@ -75,3 +75,14 @@ Hunt specimens from parent: 11 not 13, 19 not 21, tagged-but-unreleased OpenClaw
 - FeatureSpec GuardianV2 remains UnderDevelopment default_enabled false at both 0.148.0 and 0.149.0.
 - compare rust-v0.148.0...c97bd2dc: ahead_by=158 (not in 0.148.0). compare c97bd2dc...rust-v0.149.0: ahead_by=84, behind_by=0 (in 0.149.0).
 - Verdict: CONFIRMED off-by-default at both stables. CONFIRMED fail-open at 0.148.0. CONFIRMED fail-closed is an ancestor of 0.149.0. Do not say 0.148.0 fail-closes.
+
+## 13. eve turnPolicy queue silent-fallback
+
+- Hunt: parent finding told operators to set queue after 0.33.0. Leftover harvest claimed 0.39.3 restores it.
+- Re-fetched: eve@0.39.3 published 2026-08-19T22:41:34Z, prerelease=false. Body names 542c380. PR #2173 merged_at 2026-08-19T22:23:07Z, merge SHA 542c380eec. compare eve@0.39.3...542c380eec status=behind, ahead_by=0. compare eve@0.42.0...542c380eec status=behind, ahead_by=0. npm latest already 0.44.0 (2026-08-21 OUT); 0.42.0 time 2026-08-20T21:06:02Z.
+- Verdict: CONFIRMED as tagged-release in 0.39.3. Do not upgrade-instruct to unpinned npm.
+
+## 14. omnigent v0.10.0 parent gates
+
+- cost.py blob SHA 5b4ca596 at v0.9.0 and v0.10.0 (identical). types.py blob 1c4a0862 identical. qwen_executor.py at v0.10.0: _fs_result_policy_denies returns False on eval error (line 774). feature_flags.py resolve_feature_flags: unset or empty means every release feature is off. CHANGELOG at v0.10.0 starts at v0.9.0.
+- Verdict: CONFIRMED Usage page is opt-in. CONFIRMED spend cap and ACP result-phase fail-open did not move. Do not treat v0.10.0 as a governance repair.

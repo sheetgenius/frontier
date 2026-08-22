@@ -6,7 +6,7 @@ owner: Vercel
 source_contract: sources/eve.yml
 homepage: https://eve.dev
 docs: https://eve.dev/docs
-tagline: "Ships everything it merges, and spent this window repairing the approval gate that is its whole pitch."
+tagline: "Ships everything it merges. turnPolicy queue did not bind from 0.34.0 through 0.39.2; 0.39.3 copies the field again."
 repo: https://github.com/vercel/eve
 surface_class: open_source_releases
 evidence_floor: release_note
@@ -14,6 +14,14 @@ status: active_watch
 last_updated: 2026-08-20
 last_full_review: 2026-08-20
 claims:
+  - id: turnpolicy-queue-did-not-bind-until-0-39-3
+    finding_id: 2026-08-20-eve-0-39-3-restores-turnpolicy-queue-after-silent-steer-fallback
+    last_verified: 2026-08-20
+    status: active
+  - id: duplicate-pending-approvals-closed-in-0-39-1
+    finding_id: 2026-08-20-eve-0-39-1-stops-duplicate-tool-calls-while-approval-pending
+    last_verified: 2026-08-20
+    status: active
   - id: channel-hitl-metadata-and-credential-redaction
     finding_id: 2026-08-20-eve-0-40-through-0-42-redact-credentials-and-stop-channel-metadata-leaking-into-approvals
     last_verified: 2026-08-20
@@ -66,12 +74,31 @@ posture_basis:
 stance:
   use_for: "Operators who want a human approval gate, durable and resumable runs, and an agent definition that lives in reviewable files -- and who will test what a denial actually does in their own runtime rather than take the release note for it. Also the clearest reference on the watchlist for channel discipline: 34 tagged releases in 25 days with nothing material sitting unreleased, so the build you install is the build the notes describe."
   avoid_for: "Treating eve's approval gate as a proven boundary because the vendor sells governance. Inside one 25-day window it failed in both directions: a declined budget prompt the parent could retry around, a console that displayed denials as successes, a stale approval that could still authorize an earlier call, and an approval that left the tool unrun. Also still unfit for anything needing a stable API -- this is a 0.x line that removes configuration keys and changes required interfaces on minor versions."
-  watch_next: "Whether the 0.23.0 instinct generalizes -- delete the tunable, constrain the shape -- or stays a one-off; whether any further gate defect surfaces now that the four found this window are closed; whether the near-zero merged-to-released gap survives the project getting larger; and when mounted extensions and the remote-agent principal-forwarding surface come out from under the vendor's own instability warning."
+  watch_next: "Whether 0.39.3 actually queues on Slack and custom channels; whether the eve-dev self-mod subagent stays behind that gate; whether any further gate defect surfaces; and when mounted extensions and the remote-agent principal-forwarding surface come out from under the vendor's own instability warning."
 ---
 
 # Eve
 
 ## Operator Read
+
+As of 2026-08-20, the in-window pin is
+[`eve@0.42.0`](https://github.com/vercel/eve/releases/tag/eve%400.42.0).
+Unpinned `npm i eve` already lands 0.44.0, which is 21 August.
+
+[`eve@0.39.3`](https://github.com/vercel/eve/releases/tag/eve%400.39.3)
+is the cut that makes `turnPolicy: queue` bind again. After 0.33.0
+flipped channel messages to interrupt the running turn, the notes said
+set queue if you needed the old wait. [PR #2173](https://github.com/vercel/eve/pull/2173)
+states that `defineChannel()` stopped copying the field, so built-in
+channels silently steered from 0.34.0 through 0.39.2. If you set that
+field, 0.39.3 is the first tag that actually queues.
+
+0.39.1 stops a follow-up message from re-issuing a gated tool while an
+approval is pending. 0.40.0 redacts brokered credentials in sandbox
+bootstrap logs. 0.42.0 stops channel-local metadata riding along with a
+human approval. The development-only self-mod subagent in 0.39.3 mounts
+authored source read-write without an approval round trip; do not ship
+it.
 
 Eve is Vercel's open-source, filesystem-first TypeScript framework for durable
 agents, and for three issues this publication used it as the governance-first
@@ -113,12 +140,12 @@ buy you the boundary. Run eve if you want the primitives -- they are good
 primitives -- then spend an hour confirming what a denial does in your own
 runtime.
 
-> **Status**: eve remains a public beta under Vercel beta terms. The current
-> release is
-> [`eve@0.27.6`](https://github.com/vercel/eve/releases/tag/eve%400.27.6)
-> (2026-07-25). Breaking changes still arrive on minor versions: `0.20.0` made
-> `shutdown()` a required member of `SandboxBackendHandle`, and `0.23.0` removed
-> the `limits.maxSubagentDepth` setting outright. Treat the API as unsettled.
+> **Status**: eve remains a public beta under Vercel beta terms. The
+> in-window pin is
+> [`eve@0.42.0`](https://github.com/vercel/eve/releases/tag/eve%400.42.0)
+> (2026-08-20). Breaking changes still arrive on minor versions. Treat
+> the API as unsettled. Do not take unpinned npm; that dist-tag already
+> left this window.
 
 ## The four gates that did not hold
 

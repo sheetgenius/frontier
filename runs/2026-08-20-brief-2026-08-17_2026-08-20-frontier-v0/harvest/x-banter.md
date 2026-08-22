@@ -50,7 +50,8 @@ Thin projects named: heypi, flue, agent-flywheel, paperclip (product), agent-zer
 
 Second pass (2026-08-21, native X, thin sources + counter-consensus):
 
-- heypi, flue, omnigent, paperclipai product, agent0ai product, flywheel: still no in-window product conversation in keyword Latest. Thin, recorded.
+- heypi, flue, paperclipai product, agent0ai product, flywheel: still no in-window product conversation in keyword Latest. Thin, recorded.
+- omnigent: official @omnigent_ai 2089944904768356571 (2026-08-19) announces v0.10.0 (multi-sandbox, Devin, Usage page). Marketing; primary is the GitHub release. Not carded. Third-party restatement @danjliden 2090143539422204008 same day. Product conversation exists; still no operator report that the Usage page is off or that shared-editor approval stayed reverted.
 - Counter-consensus on Codex stable: quality complaints after 0.148.0 exist (@jkudish 2090014353265504346 "getting worse", @Parental_OnX 2090171123166253451 fighting the tool). Not carded: they do not name a channel or a classifier, and they do not refute "in the tag, off."
 - @acsmif 2090533415040983080 (thread, 2026-08-20): "they rolled back a lot of changes in the last 5 days (or routed reviews to guardian-v2, which is invisible)." Complements the already-carded analytics post. Not a second card for the same person (no pile-on).
 - @jungianboi 2090584150524756396 still prefers DeepSeek Harness over Codex; already listed. Counter to "the drought broke so upgrade Codex."

@@ -35,7 +35,7 @@ Versions between stable 2.1.231 and in-window latest 2.1.238, listed not subtrac
 
 **What changed.** A keystroke meant to leave a comment field was treated as an approval plus a session-wide edit grant.
 
-**Operator consequence.** Upgrade past 2.1.235. If you used the permission comment field on 2.1.234, assume a session-wide edit grant may have been stored; inspect `/permissions`.
+**Operator consequence.** Upgrade past 2.1.235. If you used the permission comment field on 2.1.234, assume a session-wide edit grant may have been stored; inspect `/permissions`. Same cut: notebook cell delete/replace dialogs no longer silently omit the existing cell; "don't ask again" is withheld when the dialog cannot fully display the content.
 
 ## 2. 2.1.236: macOS sandbox wildcard read-deny now binds; auto mode stops trusting a repo's "clean" git status
 
@@ -47,7 +47,7 @@ Versions between stable 2.1.231 and in-window latest 2.1.238, listed not subtrac
 
 **What changed.** A deny of `.env` on macOS actually denies. Auto mode no longer treats a repo that hides untracked files as clean.
 
-**Operator consequence.** Upgrade to 2.1.236+ if you rely on `**/.env` denies on macOS or on auto mode. This is the cut that makes those rules bind.
+**Operator consequence.** Upgrade to 2.1.236+ if you rely on `**/.env` denies on macOS or on auto mode. This is the cut that makes those rules bind. Same cut: the managed-settings approval prompt at startup no longer captures the first keypress as approval while the prompt is missing.
 
 ## 3. 2.1.238: MCP headersHelper is trust-gated and no longer inherits credential env from project files
 

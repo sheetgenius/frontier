@@ -4,11 +4,13 @@ window:
   start: 2026-08-17
   end: 2026-08-20
 note: >
-  Five signals from fifteen findings. The window is three days and it earned a
+  Six signals from twenty-six findings. The window is three days and it earned a
   brief because two things that were unreleased last week became installable,
   and two things that were unreleased last week stayed that way, and the
   classifier that sat in Codex alpha is now in a stable tag with the feature
-  flag still off. That is one argument: shipped is not on.
+  flag still off. Eve's queue setting is the same argument on a different
+  product: the field shipped in 0.33.0 and did not bind until 0.39.3. That is
+  one argument: shipped is not on.
 
 signals:
 
@@ -134,3 +136,31 @@ signals:
         precision: github_release
       - url: https://github.com/can1357/oh-my-pi/blob/v17.3.7/packages/coding-agent/src/extensibility/extensions/types.ts
         precision: tagged_commit_file
+
+  - id: 2026-08-20-eve-turnpolicy-queue-did-not-bind-until-0-39-3
+    status: accepted
+    section: control-plane
+    source: eve
+    channel: tagged-release
+    title: "turnPolicy queue did not bind from 0.34.0 through 0.39.2"
+    finding_ids:
+      - 2026-08-20-eve-0-39-3-restores-turnpolicy-queue-after-silent-steer-fallback
+    summary: >
+      Parent told operators to set turnPolicy queue for transactional
+      channels after eve@0.33.0 flipped the default to steer. PR #2173
+      (merge SHA 542c380eec, in eve@0.39.3 published 2026-08-19T22:41:34Z)
+      states that defineChannel stopped copying the field, so built-in
+      channels silently steered from 0.34.0 through 0.39.2. The SHA is an
+      ancestor of eve@0.39.3 and eve@0.42.0 (compare status=behind,
+      ahead_by=0). Window-close pin is eve@0.42.0. npm latest is already
+      0.44.0 (2026-08-21, out of window).
+    why_action_bearing:
+      - "If you set queue after 0.33.0, 0.39.3 is the first tag that actually queues. Re-test Slack and custom channels. Pin eve@0.42.0; do not take unpinned npm."
+      - "A documented control that does not bind is the same class as a classifier in the tag and off: the setting is present, the default path ignores it. Evidence that would settle residual: a runtime dump from 0.39.3 showing compiled channel.turnPolicy equal to the configured queue value."
+    receipts:
+      - url: https://github.com/vercel/eve/releases/tag/eve%400.39.3
+        precision: github_release
+      - url: https://github.com/vercel/eve/commit/542c380eec6ec713f0e3bce1285de927060db377
+        precision: git_commit
+      - url: https://github.com/vercel/eve/pull/2173
+        precision: github_pr

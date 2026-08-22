@@ -10,7 +10,7 @@ Authorities in order. Parent digest, manifest, Codex harvest specimen, thread-ch
 
 The window earned a Brief, not a weekly. Thesis: the classifier is in a stable tag and still off; last week's exec fix is still unreleased; the plugin gate did not grow a privileged core.
 
-Signals (5) rarer than findings (15). Gemini 0.56.0, Pi `dev`, flywheel main, Omnigent shared-approval kept on profiles.
+Signals (6) rarer than findings (26). Gemini 0.56.0, Pi `dev`, flywheel main, Omnigent shared-approval and Usage-page-off kept on profiles. Eve turnPolicy queue is the sixth signal: last week's documented control did not bind until 0.39.3.
 
 No person page. No AUTHORIZE_PUSH.
 
