@@ -53,13 +53,13 @@ Punctuation is ASCII. Star count is not adoption. Public repo is a mirror (paren
 
 - **Date:** 2026-08-19
 - **Channel:** `preview-or-beta`
-- **Ancestry evidence:** GitHub release body for dsh-v0.1.0-rc.8 (English section): "Make Claude Code and Codex subagents installable on demand as Profile Bundles, with non-interactive permission modes and named instances." Also multimodal native image requests, Windows PTY persistent PowerShell, SQLite schema break. Release notes are the marketing surface; the architecture pin above is the substance for the gate.
-- **Receipt:** https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.1.0-rc.8
-- **Half:** capability | **Confidence:** medium (release notes; code not line-audited for the bundle install path in this coordinator pass)
+- **Ancestry evidence:** At 141eb6fe, both subagent packages declare `"dsh": { "bundle": { "patch": "./cordis.patch.yml" } }`. Default `@deepseek-ai/dsh` closure still omits both. Install is `dsh plugin --profile <name> add @deepseek-ai/dsh-subagent-codex @deepseek-ai/dsh-subagent-claude-code` then restart. Claude Code wrapper run.ts: DEFAULT_CLAUDE_CODE_PERMISSION_MODE = 'dontAsk'; canUseTool immediately denies leftover prompts unless bypassPermissions. Codex wrapper run.ts: DEFAULT_CODEX_PERMISSION_MODE = 'never'. Do not attribute those modes to the wrapped harnesses; the wrapper sets the SDK/app-server fields.
+- **Receipt:** https://github.com/deepseek-ai/deepseek-harness/blob/141eb6fef83422698aef7a981029e843e8161534/packages/subagent/subagent-claude-code/src/run.ts
+- **Half:** capability | security-relevant | **Confidence:** high
 
-**What changed.** The wrapped harnesses (Claude Code, Codex) can be installed as bundles with a non-interactive permission mode. Do not attribute that mode to Claude Code or Codex alone; it is wrapper behavior.
+**What changed.** The products existed as packages at rc.7. rc.8 makes them installable on demand as Profile Bundles, not in the default closure, with wrapper-owned non-interactive permission modes.
 
-**Operator consequence.** Try only on the rc.8 pin, and inspect which permission mode the bundle actually sets. A non-interactive permission mode on a subagent is an approval-seat change.
+**Operator consequence.** Try only on the rc.8 pin (`npx @deepseek-ai/dsh@0.1.0-rc.8`; observation latest is 0.1.1-rc.2, OUT). Inspect `--dump-config` for permissionMode before first delegation. Default Claude Code subagent is dontAsk. Default Codex subagent is never. bypassPermissions requires an explicit named row.
 
 ## Researcher lane notes
 

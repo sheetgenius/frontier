@@ -17,8 +17,8 @@ Punctuation is ASCII. Repo vercel/eve. Parent ended at 0.39.0.
 
 - **Date:** 2026-08-20
 - **Channel:** `tagged-release`
-- **Ancestry evidence:** GitHub release eve@0.40.0 published 2026-08-20T04:55:55Z, prerelease=false. Body patch cda9539: "Redact brokered credential transforms when sandbox network policies are written to bootstrap logs." Also removes task_peek from experimental background tasks.
-- **Receipt:** https://github.com/vercel/eve/releases/tag/eve%400.40.0
+- **Ancestry evidence:** GitHub release eve@0.40.0 published 2026-08-20T04:55:55Z, prerelease=false. Patch cda9539d in packages/eve/src/execution/sandbox/logging-session.ts: JSON.stringify replacer, `key === "transform" ? "[redacted]" : value`. Test asserts log contains `"transform":"[redacted]"` and does not contain the live credential. This is log redaction, not a change to the live policy object.
+- **Receipt:** https://github.com/vercel/eve/commit/cda9539d03939b7875bc2f91f7c1f03c853b94de
 - **Half:** defect | security-relevant | **Confidence:** high
 
 **What changed.** Credential material that was being written into sandbox bootstrap logs is redacted.
@@ -41,8 +41,8 @@ Punctuation is ASCII. Repo vercel/eve. Parent ended at 0.39.0.
 
 - **Date:** 2026-08-20
 - **Channel:** `tagged-release`
-- **Ancestry evidence:** eve@0.42.0 published 2026-08-20T21:06:06Z. Minor a43e14f: prevent channel HITL responses from carrying channel-local metadata into strict session-inbox payloads; respond() accepts exact response literals or parseInputResponses() values. Patch: removes task_sleep framework tool.
-- **Receipt:** https://github.com/vercel/eve/releases/tag/eve%400.42.0
+- **Ancestry evidence:** eve@0.42.0 published 2026-08-20T21:06:06Z. Commit a43e14f. At the tag, packages/eve/src/runtime/input/types.ts: inputResponseSchema is `.strict()` over `{ optionId?, requestId, text? }`; parseInputResponses() brands ValidatedInputResponse. Extra keys on a human approval cannot enter the session inbox.
+- **Receipt:** https://github.com/vercel/eve/commit/a43e14f340e7695fdea8b4998afe59c890b3bac7
 - **Half:** defect | security-relevant | **Confidence:** high
 
 **What changed.** A channel-local extra key on a human approval could previously leak into the session inbox. That is closed.

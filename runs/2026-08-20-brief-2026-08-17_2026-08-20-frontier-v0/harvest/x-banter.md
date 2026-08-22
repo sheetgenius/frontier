@@ -48,4 +48,14 @@ Could not reach: full pagination of X; heypi, flue, agent-flywheel, omnigent, pa
 
 Thin projects named: heypi, flue, agent-flywheel, paperclip (product), agent-zero (product), omnigent, omp (design talk).
 
-ops/grok/x-sweep.sh not yet run; native tools used instead.
+Second pass (2026-08-21, native X, thin sources + counter-consensus):
+
+- heypi, flue, omnigent, paperclipai product, agent0ai product, flywheel: still no in-window product conversation in keyword Latest. Thin, recorded.
+- Counter-consensus on Codex stable: quality complaints after 0.148.0 exist (@jkudish 2090014353265504346 "getting worse", @Parental_OnX 2090171123166253451 fighting the tool). Not carded: they do not name a channel or a classifier, and they do not refute "in the tag, off."
+- @acsmif 2090533415040983080 (thread, 2026-08-20): "they rolled back a lot of changes in the last 5 days (or routed reviews to guardian-v2, which is invisible)." Complements the already-carded analytics post. Not a second card for the same person (no pile-on).
+- @jungianboi 2090584150524756396 still prefers DeepSeek Harness over Codex; already listed. Counter to "the drought broke so upgrade Codex."
+- @KEisuke62350514 2090578350628884505 (Japanese): looking at Pi's develop/dev branch, it is leaning toward DeepSeek-style everything-is-a-plugin. Voice. Product fact waits on the `dev` diff; not quoted until captured.
+- OpenClaw "next release" talk (@oneclickclawio 2090530625660809628, @shariqriazzz 2090514453683183922) is hosting-vendor / podcast summary of a call, not a tag. Supports zero-releases; not a substitute for ancestry. Dropped as a card because the primary is still "no GitHub release in window."
+- Identity traps unchanged.
+
+ops/grok/x-sweep.sh not run; native tools used instead.

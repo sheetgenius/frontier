@@ -53,13 +53,16 @@ direction, and an adjacent-tool entry could not carry the handling rule it needs
 
 **Channel.** `v17.3.7` gained a GitHub release and an npm publish on
 2026-08-18. `v17.3.6` still has neither (GitHub 404, npm missing).
-`v17.4.0` (2026-08-20) is the window-close npm tip and breaks the
-tokenizer API. `v17.4.1` and `v17.4.2` are 2026-08-21, outside this
-window. Name the path when you report a version.
+`v17.4.0` (2026-08-20) is the window-close default on npm, Homebrew,
+Bun, and `omp.sh/install`, and it breaks the tokenizer API.
+`v17.4.1` and `v17.4.2` are 2026-08-21, outside this window. Parent
+"only Nix reached 17.3.6/7" ended when 17.3.7 published. Name the
+path when you report a version.
 
 **The write-fallback hook is installable.** `registerFileWriteFallback`
-is in the 17.3.7 release body. An OS denial is no longer the last word
-when an extension is loaded.
+is in types.ts at the 17.3.7 tag. An OS denial is no longer the last
+word when an extension is loaded. Pin 17.3.7 if you want the hook
+without the 17.4.0 tokenizer break.
 
 ## Where it stood, 2026-08-18
 
@@ -101,8 +104,10 @@ is consistent with the divergence visible in the two version lines.
 ## What is unresolved
 
 - Whether tag-ahead-of-release becomes this project's normal state or was a
-  two-day gap.
-- Whether the four install paths ever agree on a given day.
+  two-day gap. 17.3.7 gained a release; 17.3.6 still has not.
+- Whether the four install paths stay aligned. At window close Homebrew,
+  npm, Bun, and the install script all resolved 17.4.0; Nix follows the
+  git ref you pass. Observation 17.4.2 is the next day.
 - Who operates the session relay, and what it retains.
 - What the review gate is on a single-maintainer project carrying roughly 80,000
   lines of Rust, now that the pull-request vouch requirement is lifted on a

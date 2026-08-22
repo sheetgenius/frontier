@@ -18,9 +18,13 @@ repo: https://github.com/paperclipai/paperclip
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-07-27
-last_full_review: 2026-07-27
+last_updated: 2026-08-20
+last_full_review: 2026-08-20
 claims:
+  - id: namespaced-canary-train-still-running
+    finding_id: 2026-08-20-paperclip-namespaced-canary-train-still-running-stable-unmoved
+    last_verified: 2026-08-20
+    status: active
   - id: adapter-runtime-command-spec
     finding_id: 2026-05-07-paperclip-agent-company-control-plane
     last_verified: 2026-05-07
@@ -332,28 +336,36 @@ open-by-default authoring policy sits directly on that threat model. If you
 upgrade to `v2026.720.0` and want authorship restricted, you go tighten it
 after, not before.
 
-## Channel reality: one line, and no canary
+## Channel reality: four named lanes, and canary is not dead
 
-The standing question about an "untagged canary operating state" is **resolved,
-and the answer is that the lane is dead**. The npm tag line stops at `0.3.1`,
-with the newest canary tag `paperclipai@0.3.1-canary.1` commit-dated
-2026-03-12. Nothing has been cut there in over four months. There is no
-`preview-or-beta` release channel in tag form at all.
+The old `paperclipai@0.3.1-canary.*` npm line did stop in March 2026. That
+was not the canary lane. On 2026-03-17 the tags moved under
+`refs/tags/canary/v*`, and they have run continuously since. A flat
+repository tag listing does not show slash-prefixed names, which is how
+this page once reported the lane as abandoned. Query
+`git/matching-refs/tags/canary` (and `nightly`, `beta`) or the npm
+dist-tags.
 
-Preview work ships *inside* stable tags behind experimental settings. In this
-window that includes the
+As of 2026-08-20 the default install is still
+[v2026.817.0](https://github.com/paperclipai/paperclip/releases/tag/v2026.817.0).
+Namespaced canary tags continued on 18, 19, and 20 August
+(`canary/v2026.818.0-*`, `canary/v2026.819.0-*`, `canary/v2026.820.0-*`)
+and nightly tags on the same dates. The review-policy lock and CWE-78
+CLI guidance from the previous window are in
+`beta/v2026.818.0-beta.1` and `nightly/v2026.820.0-nightly.0`, not in
+this stable. The GitHub Releases page showing only the stable is
+working as designed. It is not a complete channel map.
+
+Preview work also still ships *inside* stable tags behind experimental
+settings. The
 [MCP Tool Gateway and Apps](https://github.com/paperclipai/paperclip/pull/9556)
 eight-part split, where a named gateway brokers every tool call and a
-tool-access policy decides which agents and profiles may use which tools; plus
-Cases, Decision Training, and a built-in Summarizer. The MCP gateway is the
-first Paperclip design where tool calls are brokered and policy-gated rather
-than direct. Worth studying now. Not worth adopting yet.
+tool-access policy decides which agents and profiles may use which tools,
+is that design. Worth studying. Not the same thing as the canary train.
 
-The practical consequence is blunt: an operator who wants early sight of
-Paperclip changes must run `master` or enable experimental settings on a stable
-tag. There is no third option. Paperclip is meanwhile investing in *identifying*
-untagged builds rather than tagging them -- builds off a formal release surface
-now report their source SHA even without git metadata.
+The practical consequence: an operator who wants early sight of Paperclip
+changes has named prerelease tags, not only `master`. An operator who
+wants the default install stays on v2026.817.0.
 
 ## Upgrade notes for v2026.722.0
 
@@ -407,9 +419,10 @@ deliberately, not a tool you bolt on.
 
 Answered this window, so they stop being asked:
 
-- **Is the canary lane quiet or abandoned?** Abandoned. Last tag 2026-03-12, no
-  preview channel exists in tag form, and preview work ships gated inside stable
-  tags instead.
+- **Is the canary lane quiet or abandoned?** Neither. The old
+  `paperclipai@0.3.1-canary.*` line stopped in March. The namespaced
+  `canary/v*` line has run since 2026-03-17 and was still publishing on
+  2026-08-18 through 2026-08-20. Stable did not move.
 - **Does budget surfacing become budget enforcement?** Advanced in June and not
   re-probed here; see the staleness note above rather than treating the
   main-unreleased label as current.

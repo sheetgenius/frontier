@@ -33,9 +33,9 @@ Punctuation is ASCII. Identity: NousResearch/hermes-agent.
 - **Receipt:** https://github.com/NousResearch/hermes-agent/releases/tag/v2026.8.18
 - **Half:** capability | security-relevant | **Confidence:** medium (release body, not a line-range on the scanner)
 
-**What changed.** Skill install gained an advisory scan. Release notes for the window are intentionally thin.
+**What changed.** Skill install gained an optional advisory scanner. File at tag: tools/skillevaluator_scan.py exists at v2026.8.18 and is 404 at v2026.8.16.2. It is "Warn, don't block"; the NVIDIA binary is optional; default skills.tier1_advisory is a no-op without that binary. Enforcement remains tools/skills_guard.py.
 
-**Operator consequence.** Install v2026.8.18. Do not wait for the v0.21.0 essay to decide whether the scan is on; the tag claims it is in this cut.
+**Operator consequence.** Install v2026.8.18. Do not assume SkillEvaluator is on unless `skillevaluator` is on PATH. Do not treat the release-body sentence as a blocking gate.
 
 ## Researcher lane notes
 

@@ -46,19 +46,21 @@ signals:
     section: runtime
     source: agent-zero
     channel: tagged-release
-    title: "v2.10 ships the ACP bridge and interactive browser, and the SSRF fix finally has a test"
+    title: "v2.10 ships the ACP bridge and interactive browser; the v2.9 SSRF tests survived"
     finding_ids:
       - 2026-08-20-agent-zero-v2-10-tags-acp-and-interactive-browser-and-adds-ssrf-regression-tests
     summary: >
       Parent recorded ACP and an interactive Browser viewport on a non-default
-      branch. v2.10 (2026-08-19, 20 commits past v2.9) contains both. The same
-      tag adds test_fetch_http_blocks_non_public_destinations and a
-      redirect-to-loopback test against the restored fetch_public_http_resource
-      path. CVE-2026-4308 class is SSRF: a user-supplied URL must not hit
-      internal addresses.
+      branch. v2.10 (2026-08-19, 20 commits past v2.9) contains both. ACP is
+      always_enabled with host file write and host code execution on by default.
+      Browser sign-ins are shared across chats. The v2.9 SSRF tests
+      (test_fetch_http_blocks_non_public_destinations and redirect-to-loopback)
+      survive byte-identical in v2.10; they were not newly written this window.
+      CVE-2026-4308 class is SSRF: a user-supplied URL must not hit internal
+      addresses.
     why_action_bearing:
-      - "Upgrade to v2.10 if you run document query against untrusted URLs, or if you want ACP or the live viewport."
-      - "The test is the thing that makes the next plugin refactor fail closed. v2.9 restored the code; v2.10 pins the regression."
+      - "Upgrade to v2.10 if you want ACP or the live viewport. Then turn ACP off if you do not want an editor-hosted endpoint with host write and host exec, and do not treat chats as separate browsers: cookies are shared."
+      - "The v2.9 tests are still there. Diff plugins/_document_query/helpers/fetch.py after the next plugin extract. Do not read a missing plugins/_document_query/tests/ directory as missing coverage; the tests live at repo-root tests/."
     receipts:
       - url: https://github.com/agent0ai/agent-zero/releases/tag/v2.10
         precision: github_release
@@ -124,7 +126,9 @@ signals:
       Oh My Pi fork, not Pi Coding Agent.
     why_action_bearing:
       - "If you run OMP 17.3.7+, inspect extensions for registerFileWriteFallback. The OS denial is no longer the last word."
-      - "Name the install path. There is no npm 17.3.6. Window-close npm tip is 17.4.0; 17.4.1/17.4.2 are the next day."
+      - "Name the install path. There is no npm 17.3.6. Window-close Homebrew, npm, Bun, and omp.sh/install all land 17.4.0, which breaks global countTokens. Pin 17.3.7 if you only wanted the write hook. 17.4.1/17.4.2 are the next day."
     receipts:
       - url: https://github.com/can1357/oh-my-pi/releases/tag/v17.3.7
         precision: github_release
+      - url: https://github.com/can1357/oh-my-pi/blob/v17.3.7/packages/coding-agent/src/extensibility/extensions/types.ts
+        precision: tagged_commit_file

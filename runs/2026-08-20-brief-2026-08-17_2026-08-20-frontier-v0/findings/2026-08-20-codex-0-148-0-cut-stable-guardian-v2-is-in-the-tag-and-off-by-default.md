@@ -13,6 +13,8 @@ evidence:
     precision: github_release
   - url: https://github.com/openai/codex/blob/rust-v0.148.0/codex-rs/features/src/lib.rs
     precision: tagged_commit_file
+  - url: https://github.com/openai/codex/blob/rust-v0.148.0/codex-rs/ext/guardian-v2/src/extension.rs
+    precision: tagged_commit_file
 ---
 # 2026-08-20-codex-0-148-0-cut-stable-guardian-v2-is-in-the-tag-and-off-by-default
 

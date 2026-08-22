@@ -23,6 +23,8 @@ Punctuation is ASCII. Pin tags, not main.
 
 **What changed.** The default install path moved. Parent window froze npm latest at 0.147.0 for ten days. 0.148.0 is a non-prerelease tag with a New Features list (TUI /export, exec fork, Bedrock Runtime, async hooks including MCP tools) and a changelog that lists Guardian V2 PRs (#38336, #38569, and the rest of the parent alpha wave). The marketed New Features section does not name Guardian V2.
 
+Guardian V2 at this tag, read from `codex-rs/features/src/lib.rs` (raw at rust-v0.148.0): FeatureSpec id GuardianV2, key "guardianv2", stage UnderDevelopment, default_enabled false (lines 1364-1368). FeatureSpec id GuardianApproval, key "guardian_approval", stage Stable, default_enabled true (lines 1340-1343). The extension does not start unless both flags are on: `on_thread_start` at rust-v0.148.0 `codex-rs/ext/guardian-v2/src/extension.rs` lines 265-271 returns unless GuardianV2 AND GuardianApproval are enabled. Scoring errors `emit_warning` and do not write action_risk=1.0 -- a prior low score can still auto-approve. PR #39307 merged 2026-08-18T22:50:13Z (SHA c97bd2dc), 24 minutes after this tag's published_at 2026-08-18T22:26:03Z. At rust-v0.149.0 the scorer lives at `codex-rs/ext/guardian-v2/src/async_scorer/extension.rs` and `record_fail_closed_score` writes action_risk=1.0; compare c97bd2dc...rust-v0.149.0 behind_by=0.
+
 **Operator consequence.** `npm i -g @openai/codex` no longer lands 0.147.0 after this tag. Treat 0.148.0 as a large upgrade (381 commits vs 0.147.0), not a point release. Config lockfile support is gone (`#38011`). `#38635` deletes three in-repo skills; repo-scoped skill loading still resolves `.codex/skills` and `.agents/skills` at 0.148.0. rust-v0.148.0 is 139 commits behind rust-v0.148.0-alpha.23, so some alpha.21 contents missed this cut. Between 0.147.0 and 0.148.0 there were 21 published 0.148.0-alpha GitHub releases (19 through alpha.21 plus alpha.22 and alpha.23); alpha.3 and alpha.10 are tags without releases.
 
 ## 2. 0.149.0 cut stable two days later; npm latest is 0.149.0
@@ -34,6 +36,8 @@ Punctuation is ASCII. Pin tags, not main.
 - **Half:** capability | **Confidence:** high
 
 **What changed.** New Features: interactive `codex agents` dashboard, `/cd` `/pwd` `/cwd`, `codex queue`, Vim motions, doctor diagnostics. Bug fix: resumed and forked threads restore their active permission profile instead of silently falling back to current defaults (#39153). Docs: DNS exfiltration risks for secure devcontainers (#39283).
+
+Guardian V2 FeatureSpec at rust-v0.149.0 is still UnderDevelopment, default_enabled false (lib.rs lines 1401-1404). GuardianApproval remains Stable, default_enabled true (lines 1377-1380). PR #39307 merge SHA c97bd2dc is an ancestor of this tag (`compare c97bd2dc...rust-v0.149.0` ahead_by=84, behind_by=0) and is not an ancestor of 0.148.0 (`compare rust-v0.148.0...c97bd2dc` ahead_by=158). Independent 2026-08-21 observation: npm latest=0.149.0, alpha=0.150.0-alpha.6 (the alpha dist-tag has moved past window close; do not treat alpha.6 as in-window). changelog URL https://developers.openai.com/codex/changelog still HTTP 308 to https://learn.chatgpt.com/docs/changelog.
 
 **Operator consequence.** Default install is 0.149.0. If you jumped from 0.147.0, you skipped two stables in 48 hours. The permission-profile restore on resume is the defect half. If you enable Guardian V2, prefer 0.149.0: scoring errors fail open in 0.148.0 and fail closed in 0.149.0 (`#39307`). Search fleet configs for `untrusted` before 0.149.0; that policy is removed (`#39630`).
 
@@ -55,12 +59,14 @@ Guardian V2 on-by-default, inspectability, and analytics visibility are not sett
 
 0.150.0-alpha.5 is 08-21 OUT as a default-install fact. Alpha dist-tag movement after 08-20 22:06 is mixed; do not put 0.150 in the operator brief as a stable.
 
-Config lockfile deletion shipped in 0.148.0. Repo-local skill loading did not. Untrusted policy retired in 0.149.0. Guardian V2 scoring fail-open in 0.148.0, fail-closed in 0.149.0. Confirmed against tag files and PR lists.
+Config lockfile deletion shipped in 0.148.0 (#38011; config_lock.rs 404 at the tag). Repo-local skill *loading* did not: host_roots.rs at 0.148.0 still resolves `.codex/skills` and `.agents/skills`. #38635 deletes three in-repo skills, not the loader. Untrusted: protocol UnlessTrusted remains at 0.149.0 with serde rename "untrusted"; #39630 retires it from the operator surface. Alpha arithmetic: 23 alpha tags rust-v0.148.0-alpha.1 through alpha.23; 21 GitHub release objects (alpha.3 and alpha.10 are tags-only). rust-v0.150.0-alpha.1 published 2026-08-20T22:06 is in-window preview; npm alpha dist-tag 0.150.0-alpha.6 is OUT.
 
 ## Surfaces checked
 
-- gh api releases/tags rust-v0.148.0 and rust-v0.149.0
-- gh compare 0.147.0...0.148.0 (381) and 0.148.0...0.149.0 (242)
-- matching-refs tags/rust-v0.148.0 (alpha.1-23 plus stable)
-- npm dist-tags
-- official changelog URL still 308 from developers.openai.com/codex/changelog (parent)
+- gh api releases/tags rust-v0.148.0 (prerelease=false, 2026-08-18T22:26:03Z) and rust-v0.149.0 (2026-08-20T21:04:55Z)
+- gh compare rust-v0.147.0...rust-v0.148.0 ahead_by=381; rust-v0.148.0...rust-v0.149.0 ahead_by=242; rust-v0.148.0...rust-v0.148.0-alpha.23 ahead_by=139
+- raw lib.rs FeatureSpec at both tags (GuardianV2 off, GuardianApproval on)
+- raw extension.rs at rust-v0.148.0 (scoring errors warn and return)
+- gh api pulls/39307 merged_at 2026-08-18T22:50:13Z, merge SHA c97bd2dc
+- npm dist-tags (latest=0.149.0 at 2026-08-21 observation)
+- official changelog URL still 308 from developers.openai.com/codex/changelog

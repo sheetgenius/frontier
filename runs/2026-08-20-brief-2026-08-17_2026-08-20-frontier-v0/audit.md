@@ -20,4 +20,4 @@ See manifest.yml `carry_forward_checks`. All five answered with ancestry or pinn
 
 ## What remains uncertain
 
-Guardian V2 analytics/billing UI. OpenHands v1.15.0 is the next-cycle tagged-release for the profile fix. DSH npm library latest-staleness not re-counted at rc.8.
+Guardian V2 analytics/billing UI. OpenHands v1.15.0 is the next-cycle tagged-release for the profile fix. DSH npm library latest-staleness not re-counted at rc.8. Paperclip docs/site 817.0 catch-up has no stamped deploy date (medium window membership). Pi `dev` plugin-architecture sample still with a researcher. OMP versions from formula/npm/script source, not a local brew install.

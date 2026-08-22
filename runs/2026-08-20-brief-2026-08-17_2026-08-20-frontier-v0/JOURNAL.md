@@ -2,33 +2,42 @@
 
 ## NOW
 
-Window: 2026-08-17 to 2026-08-20 (three-day brief; 2026-08-17 is overlap with parent).
+Window: 2026-08-17 to 2026-08-20 (three-day Brief; 2026-08-17 overlap only).
 run_id: 2026-08-20-brief-2026-08-17_2026-08-20-frontier-v0
 parent: 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0 ("The Gate Is a Plugin")
 AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+Foreground rebuild of current tree: BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (1388 pages, 544 findings). Then J4.
+
 Blocked: nothing.
+
+Deepening applied:
+- Agent Zero SSRF tests present at v2.9 and v2.10, identical blob 26bf2a69; not newly written in v2.10.
+- Paperclip canary 818=17, 819=10, 820=7; parent security pair in beta.1 and nightly 820, not in v2026.817.0. Profile "canary is dead" section rewritten.
+- Codex GuardianV2 off at both stables. Fail-open at 0.148.0; #39307 ancestor of 0.149.0 not 0.148.0. AND-gate both flags.
+- OpenClaw zero versioned releases; ab5611f0 still 619 ahead of v2026.8.1-beta.2.
+- OMP Homebrew/Bun/script land 17.4.0 at window close; 17.3.6 still missing.
+- Antigravity 1.1.17 is the 1.1.16 tree.
+- Gemini v0.56.0 dropped a v0.55.1 OAuth fix; retry/TTL is in preview.0.
+- Pi window-close pins 5cd93f68 / a17323e5 (79 / 264 / 336).
+- Findings 17, signals 5, cards 5, capture 10/10.
 
 Commits this run:
 - a452c26 phase 0 scaffold (J0)
 - 9a618e5 Lane B feeds (J1)
 - 641950f Lane A harvests (J2)
+- f306edc findings, signals, brief, wire, profiles (J3)
+- (pending) J4 deepening + Agent Zero correction
 
-Saturation: harvests 17/17, Lane B, Lane C+capture, findings 15, signals 5, brief written, exemplar+humanizer on the brief, profiles dated 2026-08-20, wire 2026-08-20, manifest/audit/qa, build+integrity+static-link all 0, no push.
+Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 
-Blocked: nothing. Lane A children in flight.
-
-Commits this run:
-- a452c26 phase 0 scaffold (J0)
-
-Saturation: NORTHSTAR/JOURNAL exist. Lane B done. Harvest files not yet applied.
-
-Working thesis candidates (not locked):
-1. Codex 0.148.0 and 0.149.0 both cut stable in this window; Guardian V2 is in the 0.148.0 changelog list but not in the marketed New Features, and an operator says guardian-v2 is invisible in analytics.
-2. Pi's new harness is on `dev` (264 ahead of main), not on a tag -- maintainer said so.
-3. Carry-forwards: DSH still prerelease; OpenClaw approved-exec still unreleased; OMP 17.3.7 gained a release, 17.3.6 still 404; Agent Zero v2.10 gained `test_fetch_http_blocks_non_public_destinations`.
+Carry-forwards (proofs in harvest/ + verify/adversarial.md):
+- DSH: no non-prerelease tag. rc.8 SHA 141eb6fe still plugin waterfall; UI still not an auth layer.
+- OpenClaw: ab5611f0 still 619 ahead of v2026.8.1-beta.2. Zero in-window releases.
+- OMP: v17.3.7 GitHub+npm 2026-08-18. v17.3.6 still 404 / npm MISSING.
+- Agent Zero SSRF tests: present at v2.9 and v2.10, identical blob 26bf2a69. Carry-forward YES (present, not newly written this window). ACP/browser tagged in v2.10.
 
 ## 2026-08-20 15:03 -- phase 0 scaffold
 

@@ -18,8 +18,8 @@ Hunt specimens from parent: 11 not 13, 19 not 21, tagged-but-unreleased OpenClaw
 ## 3. Agent Zero SSRF tests in v2.10
 
 - tests/test_document_query_plugin.py at v2.10 contains test_fetch_http_blocks_non_public_destinations against 127.0.0.1 and a redirect test. fetch.py imports fetch_public_http_resource.
-- compare v2.9...v2.10 ahead_by=20, not a larger guessed number.
-- Verdict: CONFIRMED. Carry-forward YES.
+- compare v2.9...v2.10 ahead_by=20. Blob SHA 26bf2a69 is identical at v2.9 and v2.10. The tests were not newly written in v2.10.
+- Verdict: CONFIRMED that tests exist and survived. REFUTED that v2.10 added them. Carry-forward YES (present, not dropped). Public prose corrected.
 
 ## 4. OpenClaw approved-exec still unreleased
 
@@ -58,5 +58,20 @@ Hunt specimens from parent: 11 not 13, 19 not 21, tagged-but-unreleased OpenClaw
 
 ## 10. Pi 264 is main...dev, not v0.84.2...main
 
-- v0.84.2...main ahead_by=83. main...dev ahead_by=264. v0.84.2...dev ahead_by=336.
-- Verdict: use the pair you name. Do not say 264 unreleased commits on main.
+- Harvest pin: v0.84.2...main ahead_by=83. main...dev ahead_by=264. v0.84.2...dev ahead_by=336. dev SHA a17323e5 dated 2026-08-20T21:09:41Z.
+- Live HEAD on 2026-08-21 observation: 84 and 266. That is post-window drift. Keep the window pin.
+- Verdict: use the pair you name, at the pin. Do not say 264 unreleased commits on main.
+
+## 11. Paperclip canary is not dead
+
+- Hunt specimen: this publication once reported the canary lane abandoned because a flat tag listing omitted slash-prefixed names.
+- matching-refs this window: canary/v2026.818.0-canary.*, 819, 820; nightly 818, 819, 820. Stable still v2026.817.0. 821 tags are 2026-08-21 OUT.
+- Verdict: CONFIRMED train still running. REFUTED any remaining "abandoned" profile sentence. Profile section rewritten.
+
+## 12. Guardian fail-closed is not in 0.148.0
+
+- rust-v0.148.0 extension.rs: scoring errors emit_warning and return (fail open). Confirmed by reading the file at the tag.
+- PR #39307 merged 2026-08-18T22:50:13Z, 24 minutes after 0.148.0 published_at 2026-08-18T22:26:03Z. Merge SHA c97bd2dc.
+- FeatureSpec GuardianV2 remains UnderDevelopment default_enabled false at both 0.148.0 and 0.149.0.
+- compare rust-v0.148.0...c97bd2dc: ahead_by=158 (not in 0.148.0). compare c97bd2dc...rust-v0.149.0: ahead_by=84, behind_by=0 (in 0.149.0).
+- Verdict: CONFIRMED off-by-default at both stables. CONFIRMED fail-open at 0.148.0. CONFIRMED fail-closed is an ancestor of 0.149.0. Do not say 0.148.0 fail-closes.

@@ -29,7 +29,7 @@ sources:
   - agent-flywheel
   - omnigent
   - omp
-finding_count: 15
+finding_count: 17
 signal_count: 5
 outputs:
   digest:
@@ -51,7 +51,8 @@ outputs:
     - content/profiles/agent-flywheel.md
     - content/profiles/omnigent.md
     - content/profiles/omp.md
-  findings: 15
+    - content/profiles/paperclip.md
+  findings: 17
   signals:
     - signals/frontier-signals.yml
   social_cards:
@@ -80,9 +81,9 @@ carry_forward_checks:
   - q: "Whether OMP's v17.3.6 and v17.3.7 tags gain releases, or whether tag-ahead-of-release becomes this project's normal state."
     answer: "v17.3.7 gained GitHub+npm on 2026-08-18. v17.3.6 still has neither. Split, not a new normal for every tag."
   - q: "Whether Agent Zero's restored SSRF fix acquires a regression test, given it was lost once inside a refactor."
-    answer: "Yes. v2.10 tests/test_document_query_plugin.py blocks 127.0.0.1 and redirect-to-loopback."
+    answer: "Yes, present. tests/test_document_query_plugin.py is blob 26bf2a69 at both v2.9 and v2.10. The tests were acquired with the v2.9 restore, not written in v2.10. v2.10 did not drop them."
 lanes:
-  primary: "complete -- 17 harvest files, 15 findings, 5 signals"
+  primary: "complete -- 17 harvest files, 17 findings, 5 signals"
   writing: "complete -- 15/15 feeds live, 58 items archived, 0 FAIL"
   x_social: "complete -- native X discovery; 10 URLs captured, 0 unavailable; 5 cards"
 notes: >

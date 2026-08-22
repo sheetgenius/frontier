@@ -24,6 +24,10 @@ claims:
     finding_id: 2026-08-20-antigravity-1-1-16-no-longer-overwrites-unreadable-settings-json-with-defaults
     last_verified: 2026-08-20
     status: active
+  - id: 1-1-17-is-the-1-1-16-tree
+    finding_id: 2026-08-20-antigravity-1-1-17-github-release-is-the-1-1-16-tree
+    last_verified: 2026-08-20
+    status: active
   - id: consumer-successor-to-gemini-cli
     finding_id: 2026-07-01-antigravity-successor-to-gemini-consumer
     last_verified: 2026-07-01
@@ -66,8 +70,16 @@ stance:
 
 ## Operator Read
 
-The single most consequential line Antigravity published this window is a bug
-fix. Version [1.1.4](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.1.4)
+As of 2026-08-20,
+[1.1.16](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.1.16)
+is the last git-backed changelog: a settings.json parse failure no
+longer overwrites the file. [1.1.17](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.1.17)
+is a GitHub release whose git tag is the 1.1.16 tree
+(compare identical, CHANGELOG still tops at 1.1.16). That is the same
+collision this profile already recorded for 1.1.2/1.1.3. Stay on 1.1.16
+if you need the last documented cut.
+
+The single most consequential earlier line is still a bug fix. Version [1.1.4](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.1.4)
 (2026-07-18) states that headless `-p` and `--print` runs "now honor persisted
 `settings.json` policies, including `permissions`, file access, sandbox mode,
 auto-execution, and artifact review." Read it plainly and it is not a fix note,

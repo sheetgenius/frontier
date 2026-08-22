@@ -49,22 +49,25 @@ Punctuation is ASCII. Repo google-antigravity/antigravity-cli. Parent ended at 1
 
 **Operator consequence.** Upgrade to 1.1.16 before the next settings edit. If you are on 1.1.15 or older and the CLI has been crashing on settings, inspect the file before letting it save.
 
-## 4. 1.1.17: execution harness consolidated onto one path
+## 4. 1.1.17: GitHub release exists; git tag and CHANGELOG are the 1.1.16 tree
 
 - **Date:** 2026-08-20
-- **Channel:** `tagged-release`
-- **Ancestry evidence:** 1.1.17 published 2026-08-20T22:13:58Z. Body: "Improved the agent execution harness by consolidating onto a single execution path, giving more consistent tool, hook, and prompt behavior." Plus slash-command and vim-mode fixes.
-- **Receipt:** https://github.com/google-antigravity/antigravity-cli/releases/tag/1.1.17
-- **Half:** neither | **Confidence:** medium (release sentence, no diff in this pass)
+- **Channel:** `tagged-release` as a GitHub Release object and binary. Git ancestry is identical to 1.1.16.
+- **Ancestry evidence:** 1.1.17 published 2026-08-20T22:13:58Z, tag object SHA efa16f09 (same commit as 1.1.16). compare 1.1.16...1.1.17: status=identical, ahead_by=0, files=[]. CHANGELOG.md at refs/tags/1.1.17 tops at ## 1.1.16; no ## 1.1.17 section. GitHub body ("single execution path") is not in git. 1.1.14-1.1.16 GitHub bodies match CHANGELOG at those tags.
+- **Receipt:** https://github.com/google-antigravity/antigravity-cli/compare/1.1.16...1.1.17
+- **Half:** neither as a git-backed claim | **Confidence:** high that git/CHANGELOG do not carry 1.1.17
 
-**What changed.** One execution path. Substance unknown without the diff.
+**What changed.** A GitHub Release and assets exist for 1.1.17. The git tag is a rename of 1.1.16. Parent-style collision, one cut later.
 
-**Operator consequence.** Watch. Do not plan around "more consistent" without a regression pass.
+**Operator consequence.** Do not treat 1.1.17 as a documented harness change. Stay on 1.1.16 if you need the last git-backed changelog. Regression-test the 1.1.17 binary if you install it.
 
 ## Researcher lane notes
 
-Parent tag/changelog collision on 1.1.13 was not re-checked for 1.1.14-17 in this coordinator pass. Official @antigravity post 2026-08-20 announces IDE extensions; that is a docs/product surface, not this CLI tag.
+Parent 1.1.13 collision recurred at 1.1.17. Official @antigravity post 2026-08-20 announces IDE extensions; that is a docs/product surface, not this CLI tag.
 
 ## Surfaces checked
 
-- GitHub releases 1.1.14, 1.1.15, 1.1.16, 1.1.17 (full bodies)
+- GitHub releases 1.1.14, 1.1.15, 1.1.16, 1.1.17
+- git refs/tags/1.1.16 and 1.1.17
+- compare 1.1.16...1.1.17
+- CHANGELOG.md at tag 1.1.17

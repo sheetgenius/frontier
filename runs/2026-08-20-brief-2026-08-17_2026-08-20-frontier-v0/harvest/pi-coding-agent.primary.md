@@ -17,17 +17,17 @@ Punctuation is ASCII. Repo earendil-works/pi. Not can1357/oh-my-pi.
 
 - **Date:** 2026-08-20
 - **Channel:** none (not in a tag; not on default branch)
-- **Ancestry evidence:** Latest GitHub release still v0.84.2 published 2026-08-14T10:14:32Z, SHA 914cf1472e715297caa30db4b9535d534a9eb718. `gh api .../compare/v0.84.2...main` -> ahead_by=83. `gh api repos/earendil-works/pi/branches/dev` -> SHA a17323e5b1e766433e76a3ed7a129f640924c079, committer date 2026-08-20T21:09:41Z. `gh api .../compare/main...dev` -> ahead_by=264, behind_by=11, status=diverged. `gh api .../compare/v0.84.2...dev` -> ahead_by=336, behind_by=0. Maintainer statement (discovery only, not a product receipt): https://x.com/mitsuhiko/status/2090368103972479324
+- **Ancestry evidence:** Latest GitHub release still v0.84.2 published 2026-08-14T10:14:32Z, SHA 914cf1472e715297caa30db4b9535d534a9eb718. Window-close pins (`until=2026-08-21T00:00:00Z`): main tip 5cd93f688aaab89dbb6dfa4aca535f21796ae185 (2026-08-20T13:59:38Z); dev tip a17323e5b1e766433e76a3ed7a129f640924c079 (2026-08-20T21:09:41Z). compare v0.84.2...5cd93f68 ahead_by=79; 5cd93f68...a17323e5 ahead_by=264 behind_by=7 diverged; v0.84.2...a17323e5 ahead_by=336. Live HEAD after 2026-08-21 drifted; do not substitute it. packages/agent/docs/plugins.md 404 at v0.84.2 and at 5cd93f68; present at a17323e5. The `dev` docs say no privileged built-ins and reject Cordis in-process reload as the primary mechanism. Maintainer statement (discovery only): https://x.com/mitsuhiko/status/2090368103972479324
 - **Receipt:** https://github.com/earendil-works/pi/tree/a17323e5b1e766433e76a3ed7a129f640924c079
 - **Half:** capability | **Confidence:** high that the work is unreleased; medium on what the 264 commits contain without a full diff read
 
-**What changed.** Operators on v0.84.2 have no new tagged capability. A `dev` branch 264 commits ahead of main is where the maintainer says the new harness lives. Reading main's 83 unreleased commits is the wrong tree for that claim.
+**What changed.** Operators on v0.84.2 have no new tagged capability. A `dev` branch 264 commits ahead of window-close main (5cd93f68) is where the maintainer says the new harness lives. Reading main's 79 unreleased commits is the wrong tree for that claim. Credential print (`pi auth print-api-key`) is still ungated on v0.84.2.
 
-**Operator consequence.** Ignore main if you are trying to preview the new harness; it is not there. Do not install `dev` as if it were a release. Watch for a tag that contains a17323e5 or a later `dev` tip. Credential-command gating from parent was not re-audited in this coordinator pass.
+**Operator consequence.** Ignore main if you are trying to preview the new harness; it is not there. Do not install `dev` as if it were a release. Watch for a tag that contains a17323e5. Do not let an untrusted session run `pi auth print-api-key`.
 
 ## Researcher lane notes
 
-A later pass should sample the `dev` diff for plugin/host architecture (KEisuke and mitsuhiko both pointed at it) without promoting branch work into a tagged-release claim.
+KEisuke's "DeepSeek-style everything is a plugin" is right on composition (no privileged built-ins on `dev`) and wrong if it means Cordis in-process reload. The `dev` docs reject that as the primary mechanism. Not promoted to a product fact. Credential-command gating re-audited at v0.84.2: still absent.
 
 ## Surfaces checked
 

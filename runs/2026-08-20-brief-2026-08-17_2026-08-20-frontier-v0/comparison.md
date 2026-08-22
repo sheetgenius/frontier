@@ -28,10 +28,16 @@ Codex 0.148.0 after a ten-day stable drought is the same cadence the 2026-08-03 
 
 Claude Code's stable channel still sits seven listed versions behind latest (2.1.231 vs 2.1.238). Parent counted seven behind 2.1.226 vs 2.1.234. Both numbers moved; the gap size did not.
 
-Agent Zero's SSRF tests in v2.10 are the repair the parent asked for after a plugin refactor dropped CVE-2026-4308 for eleven stable tags.
+Agent Zero's v2.9 SSRF tests survived v2.10 byte-identical. That is the repair the parent asked for after a plugin refactor dropped CVE-2026-4308 for eleven stable tags: the tests exist and were not lost again.
 
 ## What does not earn a comparison
 
 Gemini v0.56.0 being two chore commits past v0.55.1 does not need a Codex parallel. It is a channel promotion, not a capability.
 
-heypi, flue, paperclip stable: no in-window tagged movement.
+Antigravity 1.1.17 sharing a SHA with 1.1.16 is the same collision this publication already recorded for 1.1.2/1.1.3. A GitHub release is not a changelog.
+
+Gemini v0.56.0 being two chore commits is not a Codex parallel. The operator fact is that latest dropped a v0.55.1 OAuth fix the preview channel still has.
+
+heypi, flue: no in-window commits.
+
+Paperclip stable: no in-window tagged movement. The namespaced canary and nightly tags kept publishing (818/819/820). That is the parent correction holding, not a new decision. It earns a finding so the profile cannot keep saying the lane is dead.

@@ -25,9 +25,21 @@ Punctuation is ASCII.
 
 **Operator consequence.** Same as the parent brief: a stable or even beta-tagged install does not contain the approved-exec binding. Say that to anyone relying on the approval prompt. Evidence that would settle the residual is a non-prerelease (or at least any) tag whose `git merge-base --is-ancestor ab5611f0 <tag>` is true.
 
+## 2. Main gained a Gateway-owned GitHub publish path an operator still cannot install
+
+- **Date:** 2026-08-19 / 2026-08-20
+- **Channel:** `main-unreleased`
+- **Ancestry evidence:** PR #126306 squash 0606e31d, merged 2026-08-19. Gateway waits for workspace reconciliation, revalidates session/worktree/branch, pushes HTTPS, opens or reuses a draft PR. Workers never receive the forge credential. PR #126474 squash 0a867022, merged 2026-08-20: Settings device authorization for agent GitHub identities. Newest beta tag v2026.8.1-beta.2 predates both. npm dist-tags did not move. Window-close main tip 91b8a034 (2026-08-20T23:27:26Z); compare vs the beta is diverged, ahead_by=1743.
+- **Receipt:** https://github.com/openclaw/openclaw/commit/0606e31d0e623f010a96f0efe7d6434324cb6467
+- **Half:** capability | security-relevant | **Confidence:** high on merge and channel; medium on live GitHub-write behaviour (PR records no disposable live publish)
+
+**What changed.** A cloud/managed-worktree agent can finish repo work without a standing forge credential, on main only. That is the capability half of a window with zero releases.
+
+**Operator consequence.** Do not plan a workflow around "the agent opens the PR from the cloud worker" on latest or beta. Watch for a tag that contains 0606e31d and 0a867022.
+
 ## Researcher lane notes
 
-Carry-forward answer: no. Capability half searched: no new tagged capability in this window. Social: Crabbox+E2B (mlejva) is a claim about a sandbox provider, not a substitute for this channel fact.
+Carry-forward answer: no. Versioned GitHub Releases in-window: zero. Atom feed has CI `release-publish/*` snapshots; do not count those as the product channel. Social: Crabbox+E2B is a sandbox-provider claim, not a substitute for this channel fact.
 
 ## Surfaces checked
 

@@ -21,9 +21,9 @@ Punctuation is ASCII.
 - **Receipt:** https://github.com/google-gemini/gemini-cli/releases/tag/v0.56.0
 - **Half:** neither | **Confidence:** high
 
-**What changed.** Parent window said the preview channel was not ahead of stable: v0.56.0-preview.1 was v0.55.1 minus one fix. This window cuts v0.56.0 as a non-prerelease tag whose GitHub release body has no feature list, and whose compare against v0.55.1 is two release-chore commits. npm `latest` now points at 0.56.0.
+**What changed.** Parent window said the preview channel was not ahead of stable: v0.56.0-preview.1 was v0.55.1 minus one fix. This window cuts v0.56.0 as a non-prerelease tag whose GitHub release body has no feature list, and whose compare against v0.55.1 is two release-chore commits (diverged, merge_base 659c7aac). File diff is version strings. fa2f27aee (PR #28790 retry/TTL) is not an ancestor (compare diverged, behind_by=7). v0.56.0 is also behind v0.55.1 by 58ba19945 (#28688 Cloud Workstations OAuth redirect).
 
-**Operator consequence.** `npm i -g @google/gemini-cli` now lands 0.56.0. Do not read this tag as a large capability drop. The interesting fact is channel: preview.1 was promoted. The parent main-unreleased retry/TTL work is not evidenced by these two chore commits; it remains unconfirmed in this tag until a researcher shows those SHAs in the v0.56.0 history.
+**Operator consequence.** `npm i -g @google/gemini-cli` now lands 0.56.0. Do not read this tag as a capability drop. Unattended/CI operators still have the parent defect: a capacity blip is terminal. If you needed #28688, v0.56.0 is a regression versus v0.55.1. Use preview 0.57.0-preview.0 or hold 0.55.1.
 
 ## 2. Preview is ahead of stable again: v0.57.0-preview.0 on the same day
 
@@ -33,9 +33,9 @@ Punctuation is ASCII.
 - **Receipt:** https://github.com/google-gemini/gemini-cli/releases/tag/v0.57.0-preview.0
 - **Half:** neither | **Confidence:** high
 
-**What changed.** Parent's "preview is not ahead of stable" is no longer the current posture. Preview moved to 0.57.0-preview.0 as 0.56.0 cut.
+**What changed.** Parent's "preview is not ahead of stable" is no longer the current posture. compare v0.56.0...v0.57.0-preview.0 is diverged, ahead_by=24, and the 24-commit list includes fa2f27aee (#28790 retry/TTL) and 58ba19945 (#28688). modelAvailabilityService.ts at preview.0 has markedAt and a 30000 ms TTL; at v0.56.0 it does not.
 
-**Operator consequence.** If you run the preview dist-tag you are on a different line than latest again. Watch the 0.57 notes; do not assume they already shipped.
+**Operator consequence.** `npm i -g @google/gemini-cli@preview` is actually ahead of latest. Re-test unattended runs here before trusting retry semantics. This is the first tag to try for retry/TTL, not v0.56.0.
 
 ## Researcher lane notes
 

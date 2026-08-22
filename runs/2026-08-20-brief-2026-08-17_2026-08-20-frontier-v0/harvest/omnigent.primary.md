@@ -21,9 +21,9 @@ Punctuation is ASCII. Repo omnigent-ai/omnigent. Parent ended at v0.9.0.
 - **Receipt:** https://github.com/omnigent-ai/omnigent/releases/tag/v0.10.0
 - **Half:** capability | **Confidence:** high on the release-note claims; code not line-audited in this pass
 
-**What changed.** Omnigent can run more than one sandbox provider and treat Devin as a first-class harness. Usage is visible.
+**What changed.** Omnigent can run more than one sandbox provider and treat Devin as a first-class harness. Usage is visible. CHANGELOG.md at the v0.10.0 tag still starts at ## [v0.9.0]; the v0.10.0 notes live on the GitHub release body, not in the tagged changelog file.
 
-**Operator consequence.** Try v0.10.0 if you need multi-provider sandboxes or Devin as a harness. Do not attribute Devin behavior to Omnigent's own agent loop.
+**Operator consequence.** Try v0.10.0 if you need multi-provider sandboxes or Devin as a harness. Do not attribute Devin behavior to Omnigent's own agent loop. Do not read CHANGELOG.md at the tag for v0.10.0 notes.
 
 ## 2. Shared-session approval is still any-editor, and v0.10.0 documents the revert as a breaking change
 

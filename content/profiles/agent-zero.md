@@ -6,7 +6,7 @@ owner: agent0ai
 source_contract: sources/agent-zero.yml
 homepage: https://www.agent-zero.ai/
 docs: https://www.agent-zero.ai/p/docs/
-tagline: "v2.10 tags the ACP bridge and interactive browser, and the SSRF fix finally has a test."
+tagline: "v2.10 tags the ACP bridge and interactive browser. Sign-ins are shared across chats. The v2.9 SSRF tests survived."
 x:
   project: Agent0ai
 repo: https://github.com/agent0ai/agent-zero
