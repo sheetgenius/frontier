@@ -9,7 +9,7 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
-Leftover Antigravity 1.1.14-17 re-fetch CONFIRMED; full linux tarball sha256s recorded; 1.1.18 exists post-window and did not move 1.1.16/17. J24 verify-only.
+Leftover Antigravity 1.1.14-17 re-fetch CONFIRMED; full linux tarball sha256s recorded; 1.1.18 exists post-window and did not move 1.1.16/17. J24 SHA 272bf61. Verify-only.
 
 Leftover 39307 ancestry and Paperclip canary lengths CONFIRMED (158/84; 818=17 819=10 820=7). J23 SHA 4bcad5d. Verify-only.
 
@@ -113,7 +113,7 @@ Commits this run:
 - 9d0b96b JOURNAL NOW records J22 SHA (J22b)
 - 4bcad5d 39307 ancestry and Paperclip canary lengths (J23)
 - f8d73ea JOURNAL NOW records J23 SHA (J23b)
-- (pending) Antigravity 1.1.14-17 re-fetch (J24)
+- 272bf61 Antigravity 1.1.14-17 re-fetch (J24)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 
