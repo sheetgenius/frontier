@@ -45,9 +45,9 @@ Punctuation is ASCII. This is Oh My Pi, the fork. Not Pi Coding Agent.
 - **Receipt:** https://github.com/can1357/oh-my-pi/releases/tag/v17.3.8
 - **Half:** both | **Confidence:** high on the tag; medium on which of the long tail an operator should act on without a named incident
 
-**What changed.** One more 17.3 patch between the write-fallback release and the 17.4 tokenizer break. Compaction after /clear no longer resurrects pre-clear turns; revived subagents re-init the extension runtime.
+**What changed.** One more 17.3 patch between the write-fallback release and the 17.4 tokenizer break. Compaction after /clear no longer resurrects pre-clear turns (prepareCompaction honors reset_boundary). Compaction summaries mark conversation history untrusted and neutralize embedded boundary tags (#8727). `rm` critical-pattern classification now covers `rm -rf -- /` and `--no-preserve-root`. Docs state a hole that was already behaviour: `bash.patterns` gates the bash tool only; `eval` can spawn a shell via subprocess and, under yolo, that exec resolves to allow. `omp --smoke-test` reclaim is confined to the daemons container.
 
-**Operator consequence.** If you only wanted the write-fallback hook, 17.3.7 is enough. 17.3.8 is the last in-window tag before the tokenizer API break.
+**Operator consequence.** If you only wanted the write-fallback hook, 17.3.7 is enough. Upgrade to 17.3.8 if you `/clear` then `/compact`, or if you deny destructive commands in `bash.patterns`. Do not treat `bash.patterns` as a shell policy. Pair it with `tools.approval.eval`. 17.3.8 is the last in-window tag before the tokenizer API break.
 
 ## 4. v17.4.0 breaks the tokenizer API; window-close default install is this cut
 
@@ -57,9 +57,9 @@ Punctuation is ASCII. This is Oh My Pi, the fork. Not Pi Coding Agent.
 - **Receipt:** https://github.com/can1357/oh-my-pi/releases/tag/v17.4.0
 - **Half:** both | **Confidence:** high
 
-**What changed.** 17.4.0 is the window-close install tip on npm, Homebrew, Bun, and the GitHub latest binary. Tokenizer API is breaking for anyone calling the old globals. Same release also fixes lossy union-schema tool-argument repair.
+**What changed.** 17.4.0 is the window-close install tip on npm, Homebrew, Bun, and the GitHub latest binary. Tokenizer API is breaking for anyone calling the old globals. `/handoff` now compacts in place, replacing session context instead of forking. `eval` cells can run async and auto-background like `bash`, which widens the still-open `bash.patterns` hole rather than closing it. Same release also fixes lossy union-schema tool-argument repair.
 
-**Operator consequence.** If you call countTokens as a global, 17.4.0 breaks you. Pin 17.3.7 (or 17.3.8) if you only wanted the write-fallback hook without the tokenizer break.
+**Operator consequence.** If you call countTokens as a global, 17.4.0 breaks you. Pin 17.3.7 (or 17.3.8) if you only wanted the write-fallback hook without the tokenizer break. Anything that treated `/handoff` as a branch you could keep alongside the original session now overwrites that session's context.
 
 ## 5. Homebrew, Bun, and omp.sh/install now follow released tags; they still cannot see 17.3.6
 

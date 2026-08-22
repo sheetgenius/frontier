@@ -26,6 +26,10 @@ claims:
     finding_id: 2026-08-20-omp-v17-3-7-released-the-write-fallback-hook-v17-3-6-still-has-no-release
     last_verified: 2026-08-20
     status: active
+  - id: bash-patterns-do-not-gate-eval
+    finding_id: 2026-08-20-omp-bash-patterns-do-not-gate-eval
+    last_verified: 2026-08-20
+    status: active
   - id: blind-approval-fixed-twice
     finding_id: 2026-08-17-omp-omp-s-always-ask-approval-prompt-opened-before-the-diff-rendered-fixed
     last_verified: 2026-08-18

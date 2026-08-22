@@ -9,6 +9,8 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+Leftover OMP harvest applied: `bash.patterns` does not gate `eval`; 17.4.0 `/handoff` overwrites the session. Finding 21. Rebuild BUILD/INTEGRITY/LINKS 0. Then J9.
+
 Leftover Paperclip harvest applied: ACPX thought-text can land in issue comments on every in-window channel; fix c2cfd55e missed the last canary. Finding 20. Rebuild BUILD/INTEGRITY/LINKS 0. Then J8.
 
 Leftover Antigravity harvest applied: 1.1.16/1.1.17 same git object, different linux tarball digests; lightweight tags move. Rebuild BUILD/INTEGRITY/LINKS 0. Then J7.
