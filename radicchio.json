@@ -2,7 +2,7 @@
   "api_base": "https://radicchio.bitter.sh",
   "build": {
     "install": "cd site && npm ci",
-    "command": "cd site && npm run build -- --logLevel error > \"$HOME/frontier-build.log\" 2>&1; s=$?; tr -cd '\\11\\12\\15\\40-\\176' < \"$HOME/frontier-build.log\"; exit $s",
+    "command": "cd site && npm run build",
     "publish": "site/dist"
   },
   "hostname": "frontier.bitter.sh",

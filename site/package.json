@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
-    "build": "astro build",
+    "build": "node scripts/astro-build-ascii.mjs",
     "postbuild": "node scripts/gen-og.mjs && node scripts/check-static-links.mjs",
     "og": "node scripts/gen-og.mjs",
     "preview": "astro preview --host 127.0.0.1",
