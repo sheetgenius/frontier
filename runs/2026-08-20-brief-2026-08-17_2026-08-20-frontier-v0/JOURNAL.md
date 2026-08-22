@@ -9,7 +9,7 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
-Leftover Codex recount CONFIRMED: 381 / 242 / 139, npm latest 0.149.0, changelog still 308. J17 verify-only.
+Leftover Codex recount CONFIRMED: 381 / 242 / 139, npm latest 0.149.0, changelog still 308. J17 SHA 0706274. Verify-only.
 
 Leftover Codex FeatureSpec dump (lib.rs at rust-v0.148.0 and rust-v0.149.0) CONFIRMED GuardianV2 off / GuardianApproval on at both. Three extra Guardian* flags also UnderDevelopment/false; they do not change the AND-gate. Archived in verify/; no public rewrite. J16 SHA 40c9c8b.
 
@@ -85,7 +85,7 @@ Commits this run:
 - 378b696 JOURNAL NOW records J15 SHA (J15b)
 - 40c9c8b Codex FeatureSpec dump confirms GuardianV2 off (J16)
 - d508286 JOURNAL NOW records J16 SHA (J16b)
-- (pending) Codex recount 381/242/139 confirmed (J17)
+- 0706274 Codex recount 381/242/139 confirmed (J17)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 
