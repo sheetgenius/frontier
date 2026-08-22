@@ -78,6 +78,10 @@ Hunt specimens from parent: 11 not 13, 19 not 21, tagged-but-unreleased OpenClaw
 
 Independent re-fetch of PR #39307: title "Fail closed on Guardian V2 risk scoring errors", merged_at 2026-08-18T22:50:13Z, merge_commit_sha c97bd2dcb52a8120d96086fac49665452af3161b. Body: treat configuration/serialization/thread/classification errors as elevated risk instead of retaining a prior low-risk result. Do not confuse with core/src/guardian/mod.rs "fail closed" comments on moving main; that is the older guardian module, not Guardian V2. CONFIRMED.
 
+Ancestry re-fetch: compare rust-v0.148.0...c97bd2dc ahead_by=158, behind_by=1, diverged (not in 0.148.0). compare c97bd2dc...rust-v0.149.0 ahead_by=84, behind_by=0, ahead (in 0.149.0). CONFIRMED.
+
+Paperclip matching-refs recount: canary 818=17, 819=10, 820=7; nightly 818=2, 819=1, 820=1. 817 overlap: canary 16, nightly 1. CONFIRMED in-window canary/nightly lengths.
+
 Unauthenticated curl of contents/codex-rs/ext?ref=rust-v0.149.0 returned HTTP 403. Authenticated gh api of the same path lists guardian-v2 among 13 entries. Do not treat a 403 as the tree missing. CONFIRMED present at the tag.
 
 Unauthenticated curl of earendil-works/pi commits?sha=main&until=2026-08-21T00:00:00Z also 403. Authenticated gh api first row: 5cd93f688aaa 2026-08-20T13:59:38Z "feat(coding-agent): add development pi wrapper". Matches the harvest window-close pin. CONFIRMED. Do not substitute live HEAD.

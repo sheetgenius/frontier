@@ -9,6 +9,8 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+Leftover 39307 ancestry and Paperclip canary lengths CONFIRMED (158/84; 818=17 819=10 820=7). J23 verify-only.
+
 Leftover Pi until=2026-08-21 curl was 403. gh api first row is 5cd93f68, the harvest pin. J22 SHA 06fa1c4. Verify-only.
 
 Leftover unauthenticated curl of Codex ext at 0.149.0 was 403. gh api lists guardian-v2. Do not treat 403 as missing. J21 SHA 1b7aea4. Verify-only.
@@ -106,6 +108,8 @@ Commits this run:
 - 1b7aea4 0.149.0 ext listing confirms guardian-v2 (J21)
 - 78eb839 JOURNAL NOW records J21 SHA (J21b)
 - 06fa1c4 Pi window-close pin 5cd93f68 confirmed (J22)
+- 9d0b96b JOURNAL NOW records J22 SHA (J22b)
+- (pending) 39307 ancestry and Paperclip canary lengths (J23)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 
