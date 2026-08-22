@@ -9,6 +9,8 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+Leftover eve 0.39.x ancestry CONFIRMED; self-mod gate is EVE_DEV === "1" at the tag, not notes-only. Harvest confidence raised. J25 harvest/verify, no public rewrite.
+
 Leftover Antigravity 1.1.14-17 re-fetch CONFIRMED; full linux tarball sha256s recorded; 1.1.18 exists post-window and did not move 1.1.16/17. J24 SHA 272bf61. Verify-only.
 
 Leftover 39307 ancestry and Paperclip canary lengths CONFIRMED (158/84; 818=17 819=10 820=7). J23 SHA 4bcad5d. Verify-only.
@@ -114,6 +116,8 @@ Commits this run:
 - 4bcad5d 39307 ancestry and Paperclip canary lengths (J23)
 - f8d73ea JOURNAL NOW records J23 SHA (J23b)
 - 272bf61 Antigravity 1.1.14-17 re-fetch (J24)
+- 8f45d37 JOURNAL NOW records J24 SHA (J24b)
+- (pending) eve 0.39.x ancestry and EVE_DEV gate (J25)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 

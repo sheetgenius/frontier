@@ -43,11 +43,11 @@ Punctuation is ASCII. Repo vercel/eve. Parent ended at eve@0.39.0 (published 202
 - **Channel:** `tagged-release`
 - **Ancestry evidence:** eve@0.39.3 published 2026-08-19T22:41:34Z, prerelease=false. Body names 542c380: preserve configured turnPolicy on built-in and custom channels, and restore the option for Slack. PR #2173 merged 2026-08-19T22:23:07Z, merge SHA 542c380eec. compare eve@0.39.3...542c380eec status=behind, ahead_by=0. compare eve@0.42.0...542c380eec status=behind, ahead_by=0. Parent finding told operators to set queue after 0.33.0; PR body states the field fell back to steer on built-in channels since 0.34.0 because defineChannel stopped copying it. Same tag also adds a development-only @eve/self-modification subagent (9a7964b) that mounts authored source read-write without an approval round trip, gated to eve dev by the notes.
 - **Receipt:** https://github.com/vercel/eve/releases/tag/eve%400.39.3
-- **Half:** defect | security-relevant | **Confidence:** high on turnPolicy; medium that the self-mod gate is only eve dev (notes, not a line-range audit in this pass)
+- **Half:** defect | security-relevant | **Confidence:** high on turnPolicy; high on the self-mod EVE_DEV gate at the tag
 
-**What changed.** A documented control did not bind from 0.34.0 through 0.39.2. 0.39.3 copies the field again. The self-mod subagent is a capability sitting next to that repair: writable source and no HITL, on purpose, in eve dev.
+**What changed.** A documented control did not bind from 0.34.0 through 0.39.2. 0.39.3 copies the field again. The self-mod subagent is a capability sitting next to that repair: writable source and no HITL, on purpose. At eve@0.39.3, packages/eve-self-modification/src/agent.ts exports the agent only when process.env.EVE_DEV === "1"; filesystem.ts mounts appRoot/agent read-write at /source; edit_file has no approval field.
 
-**Operator consequence.** If you set turnPolicy queue after 0.33.0, 0.39.3 is the first tag that actually queues. Re-test. Do not ship the self-mod subagent. Confirm the eve dev gate before leaving a laptop agent running overnight.
+**Operator consequence.** If you set turnPolicy queue after 0.33.0, 0.39.3 is the first tag that actually queues. Re-test. Do not ship the self-mod subagent. Do not leave EVE_DEV=1 set on a laptop agent overnight.
 
 ## 1. eve@0.40.0 redacts brokered credential transforms in sandbox bootstrap logs
 
