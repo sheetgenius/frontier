@@ -37,6 +37,18 @@ Punctuation is ASCII.
 
 **Operator consequence.** Do not plan a workflow around "the agent opens the PR from the cloud worker" on latest or beta. Watch for a tag that contains 0606e31d and 0a867022.
 
+## 3. Per-session permission modes and a Codex sandbox-stop that could return success while children kept running are also main-only
+
+- **Date:** 2026-08-17 through 2026-08-20
+- **Channel:** `main-unreleased`
+- **Ancestry evidence:** PR #124909 merge 4b0d5734 (2026-08-17) adds session-scoped permission modes (read-only / guarded / workspace / full). Two days later PR #126210 merge 554fc80e: an explicit `full` session still received an exec approval prompt when host policy was ask-always. PR #125995 merge 50720c3b (2026-08-18): Gateway could record allow-always while Codex received accept-once; byte-bound scripts stay one-shot. PR #125908 merge fd8326c5 (2026-08-18): terminating a Codex sandbox command could acknowledge SIGTERM while TERM-resistant descendants kept running. None of these SHAs is an ancestor of v2026.8.1-beta.2. Operand snapshot file src/infra/system-run-mutable-file-operand.ts exists at window-close 91b8a034 and 404s at v2026.8.1-beta.2 and v2026.7.1-2. Workspace-boundary fix cc027149 remains an ancestor of current beta and not of v2026.7.1-2.
+- **Receipt:** https://github.com/openclaw/openclaw/pull/125908
+- **Half:** both | security-relevant | **Confidence:** high
+
+**What changed.** The capability pile on main grew: per-session permission modes, `--session-host` worker consent, custodian-only skills. The defect pile grew too: Full access still asked, Allow Always offered a persistence Codex cannot enforce, sandbox stop returned success too early. None of it is installable. CI `release-publish/*` tags on 2026-08-20 contain ab5611f0 and are not GitHub Releases or npm versions.
+
+**Operator consequence.** On every released channel, a successful Codex sandbox stop is not proof the process tree is gone. An Allow Always click on a script-backed command is not proof the next run is bound to the bytes you saw. `openclaw update --channel beta` does not pick any of this up.
+
 ## Researcher lane notes
 
 Carry-forward answer: no. Versioned GitHub Releases in-window: zero. Atom feed has CI `release-publish/*` snapshots; do not count those as the product channel. Social: Crabbox+E2B is a sandbox-provider claim, not a substitute for this channel fact.

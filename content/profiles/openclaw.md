@@ -25,6 +25,10 @@ claims:
     finding_id: 2026-08-20-openclaw-approved-exec-fix-still-in-no-release
     last_verified: 2026-08-20
     status: active
+  - id: sandbox-stop-success-while-children-run
+    finding_id: 2026-08-20-openclaw-codex-sandbox-stop-can-return-success-while-children-run
+    last_verified: 2026-08-20
+    status: active
   - id: channel-recovery-self-healing
     finding_id: 2026-05-07-openclaw-everyday-agent-surfaces
     last_verified: 2026-05-07
