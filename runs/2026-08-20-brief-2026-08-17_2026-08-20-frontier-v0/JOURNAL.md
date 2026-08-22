@@ -9,6 +9,8 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+Leftover Antigravity harvest applied: 1.1.16/1.1.17 same git object, different linux tarball digests; lightweight tags move. Rebuild BUILD/INTEGRITY/LINKS 0. Then J7.
+
 Leftover OpenHands harvest applied: v1.14.0 Git Sync page 404s against automation 1.7.1. Finding 19. Rebuild BUILD/INTEGRITY/LINKS 0. Then J6.
 
 Leftover DeepSeek harvest applied: library npm latest still 0.0.1-rc.1; SQLite schema 17 has no migration; `never` is pre-dispatch. Finding 18. Rebuild BUILD/INTEGRITY/LINKS 0. Then J5.

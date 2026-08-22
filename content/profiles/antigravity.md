@@ -75,9 +75,10 @@ As of 2026-08-20,
 is the last git-backed changelog: a settings.json parse failure no
 longer overwrites the file. [1.1.17](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.1.17)
 is a GitHub release whose git tag is the 1.1.16 tree
-(compare identical, CHANGELOG still tops at 1.1.16). That is the same
-collision this profile already recorded for 1.1.2/1.1.3. Stay on 1.1.16
-if you need the last documented cut.
+(compare identical, CHANGELOG still tops at 1.1.16) and whose linux
+tarball is a different digest. Lightweight tags on this repo move.
+Pin the asset, not the tag. Stay on 1.1.16 if you need the last
+documented cut.
 
 The single most consequential earlier line is still a bug fix. Version [1.1.4](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.1.4)
 (2026-07-18) states that headless `-p` and `--print` runs "now honor persisted

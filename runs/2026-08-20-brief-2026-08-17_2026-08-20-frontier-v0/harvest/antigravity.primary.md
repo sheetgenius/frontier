@@ -57,17 +57,30 @@ Punctuation is ASCII. Repo google-antigravity/antigravity-cli. Parent ended at 1
 - **Receipt:** https://github.com/google-antigravity/antigravity-cli/compare/1.1.16...1.1.17
 - **Half:** neither as a git-backed claim | **Confidence:** high that git/CHANGELOG do not carry 1.1.17
 
-**What changed.** A GitHub Release and assets exist for 1.1.17. The git tag is a rename of 1.1.16. Parent-style collision, one cut later.
+**What changed.** A GitHub Release and assets exist for 1.1.17. The git tag is a rename of 1.1.16. Parent-style collision, one cut later. The binaries are not the tags: 1.1.16 linux_x64 sha256 7742953b..., size 55572718, uploaded 2026-08-20T04:14:04Z; 1.1.17 linux_x64 sha256 15443966..., size 55607296, uploaded 2026-08-20T22:13:51Z. The 1.1.17 notes live at untagged SHA adfa9eb8 (2026-08-20T22:14:00Z, two seconds after published_at) and match the GitHub release body; they are not in the 1.1.17 tag. Lightweight tags on this repo move: parent recorded 1.1.13 at f7519c90; it now points at fbf22703. Pin receipts to `/releases/tag/<v>` or a self-resolved `/blob/<sha>/` URL, and pin binaries to asset digests.
 
-**Operator consequence.** Do not treat 1.1.17 as a documented harness change. Stay on 1.1.16 if you need the last git-backed changelog. Regression-test the 1.1.17 binary if you install it.
+**Operator consequence.** Do not treat `gh compare 1.1.16...1.1.17` as proof the shipped tarballs are the same. They are not. Stay on 1.1.16 if you need the last git-backed changelog. If you install 1.1.17, you have a different binary whose notes are on the release page, not in the tag. Do not pin an Antigravity receipt to a moving lightweight tag.
+
+## 5. 1.1.14 yanked a stream-json claim 22 minutes after publish; docs still contradict the out-of-workspace narrowing
+
+- **Date:** 2026-08-18
+- **Channel:** `tagged-release` for the current 1.1.14 body; first notes at dc834fc7 were rewritten
+- **Ancestry evidence:** dc834fc7 (2026-08-18T04:10:45Z, two seconds after published_at) listed `--input-format stream-json` as the first 1.1.14 bullet. 76ff39c6, 22 minutes later, deleted that bullet. Current 1.1.14 release body matches the deletion. 1.1.15 re-added stream-json the next day. Vendor docs still describe `allowNonWorkspaceAccess` as read-and-write after 1.1.14 narrowed it to reads, with writes following cycle mode.
+- **Receipt:** https://github.com/google-antigravity/antigravity-cli/releases/tag/1.1.14
+- **Half:** both | **Confidence:** high on the rewrite; medium on live docs (undated pages)
+
+**What changed.** The 1.1.14 notes were rewritten after publish. Stream-json is a 1.1.15 claim. The out-of-workspace grant is a read grant; GitHub wording is "writes are auto approved according to the cycle mode setting." The vendor changelog paraphrases that as "requiring authorization."
+
+**Operator consequence.** Do not install 1.1.14 for stream-json. Probe `allowNonWorkspaceAccess` under `accept-edits`; do not trust the live docs page, which still says read and write.
 
 ## Researcher lane notes
 
-Parent 1.1.13 collision recurred at 1.1.17. Official @antigravity post 2026-08-20 announces IDE extensions; that is a docs/product surface, not this CLI tag.
+Parent 1.1.13 collision recurred at 1.1.16/1.1.17. 1.1.8/1.1.9 collision parent recorded is now repaired by retargeting. 1.1.3 and 1.1.4 still share a SHA. Official @antigravity post 2026-08-20 announces IDE extensions; that is a docs/product surface, not this CLI tag. No SECURITY.md. Advisories empty.
 
 ## Surfaces checked
 
-- GitHub releases 1.1.14, 1.1.15, 1.1.16, 1.1.17
-- git refs/tags/1.1.16 and 1.1.17
-- compare 1.1.16...1.1.17
-- CHANGELOG.md at tag 1.1.17
+- GitHub releases 1.1.14, 1.1.15, 1.1.16, 1.1.17 (bodies, assets, sha256)
+- git refs/tags 1.1.13-1.1.17 (lightweight; SHA resolution)
+- compare 1.1.16...1.1.17 (identical)
+- CHANGELOG.md at 76ff39c6, dc834fc7, efa16f09, adfa9eb8
+- vendor changelog tab=cli; docs/cli/settings still say read-and-write for allowNonWorkspaceAccess
