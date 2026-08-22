@@ -23,7 +23,7 @@ Inspectable changes used gh compare or tag contents. Closed source (Claude Code)
 - Codex 0.148.0...0.149.0 ahead_by=242
 - Claude versions between 2.1.231 and 2.1.238: 232,233,234,235,236,237,238 = seven
 - Agent Zero v2.9...v2.10 ahead_by=20
-- OpenClaw beta...ab5611f0 ahead_by=619
+- OpenClaw beta...ab5611f0 ahead_by=619, behind_by=22, status=diverged. Public 619 is ahead_by.
 - Gemini v0.55.1...v0.56.0 = two chore commits, diverged. fa2f27aee (retry/TTL) not an ancestor of v0.56.0. v0.57.0-preview.0 ahead_by=24 of that merge-base and contains it.
 - Antigravity 1.1.16...1.1.17 identical (SHA efa16f09). CHANGELOG at 1.1.17 tops at 1.1.16.
 - Pi main...dev ahead_by=264 at harvest pin (dev SHA a17323e5, 2026-08-20T21:09:41Z). Live HEAD on 2026-08-21 observation had drifted to 84 / 266. Do not substitute live HEAD for the window pin.

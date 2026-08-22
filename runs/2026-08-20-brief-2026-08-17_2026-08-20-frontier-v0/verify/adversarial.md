@@ -80,6 +80,8 @@ Independent FeatureSpec dump at both tags (raw lib.rs, 2026-08-21 observation of
 
 Independent recount (gh api, 2026-08-22 observation of the same tags): rust-v0.148.0 prerelease=false published_at 2026-08-18T22:26:03Z. compare rust-v0.147.0...rust-v0.148.0 ahead_by=381, behind_by=1, status=diverged, total_commits=381. compare rust-v0.148.0...rust-v0.149.0 ahead_by=242, behind_by=1, status=diverged, total_commits=242. rust-v0.149.0 published_at 2026-08-20T21:04:55Z. compare rust-v0.148.0...rust-v0.148.0-alpha.23 ahead_by=139, behind_by=1, diverged. npm latest=0.149.0; alpha dist-tag 0.150.0-alpha.6 is OUT. developers.openai.com/codex/changelog still HTTP 308 to learn.chatgpt.com/docs/changelog. CONFIRMED. Do not reuse 422.
 
+Carry-forward recount (same observation): OpenClaw first 20 releases still tip v2026.8.1-beta.2 2026-08-15. compare beta...ab5611f0 ahead_by=619, behind_by=22, diverged. Public "619 commits short" is the ahead_by; harvest already records divergence. OMP v17.3.6 GitHub 404, npm MISSING; v17.3.7 GitHub 2026-08-18T08:47:33Z, npm 2026-08-18T08:51:09Z. 17.4.1/2 OUT. Agent Zero v2.9...v2.10 ahead_by=20. Gemini v0.55.1...v0.56.0 two commits diverged. Hermes 6e22d265 in v2026.8.18 (behind_by=0), not in v2026.8.16.2 (behind_by=21). Pi live HEAD 84 / 266; keep window pin 79 / 264. CONFIRMED. Do not substitute live Pi HEAD.
+
 ## 13. eve turnPolicy queue silent-fallback
 
 - Hunt: parent finding told operators to set queue after 0.33.0. Leftover harvest claimed 0.39.3 restores it.
