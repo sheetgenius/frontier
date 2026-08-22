@@ -18,6 +18,10 @@ Does this window complete, contradict, or repair a previous issue?
 
 **eve's turnPolicy queue setting binds again in 0.39.3.** Parent finding 2026-08-17-eve-eve-0-33-0-makes-channel-messages-interrupt-the-running-turn-by told operators to set queue for transactional channels. PR #2173 states the field silently steered from 0.34.0. The SHA is in 0.39.3.
 
+**Hermes delegation docs still say 50 and 3 at v2026.8.18.** Parent recorded the mismatch against v2026.8.16.2. The page did not move. Config at the tag is still 250 and 10.
+
+**Hermes profile "in no tag" for smart-approval override / circuit breaker / egress firewall is stale.** Those SHAs are ancestors of v2026.8.3 and of v2026.8.18. Corrected on the profile 2026-08-20. Not a brief penance paragraph.
+
 ## It does not complete
 
 **OpenClaw's approved-exec fix is still in no release.** ab5611f0 is 619 commits ahead of v2026.8.1-beta.2. Zero releases in this window.

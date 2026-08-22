@@ -86,3 +86,10 @@ Hunt specimens from parent: 11 not 13, 19 not 21, tagged-but-unreleased OpenClaw
 
 - cost.py blob SHA 5b4ca596 at v0.9.0 and v0.10.0 (identical). types.py blob 1c4a0862 identical. qwen_executor.py at v0.10.0: _fs_result_policy_denies returns False on eval error (line 774). feature_flags.py resolve_feature_flags: unset or empty means every release feature is off. CHANGELOG at v0.10.0 starts at v0.9.0.
 - Verdict: CONFIRMED Usage page is opt-in. CONFIRMED spend cap and ACP result-phase fail-open did not move. Do not treat v0.10.0 as a governance repair.
+
+## 15. Hermes leftover tagged extras and main-unreleased holes
+
+- steer/stop b95ec1cb and update honesty 0bb23999: compare vs v2026.8.18 status=behind, ahead_by=0. CONFIRMED in tag.
+- execute_code f0ffcbc7 ahead_by=334; yolo b0350365 ahead_by=432; bot cards 1179f148 ahead_by=610. CONFIRMED not in v2026.8.18. Do not upgrade-instruct to v2026.8.19 (08-21).
+- delegation.md at tag still 50/3; config_defaults 250/10. CONFIRMED stale docs.
+- smart_policy bd1db546 vs v2026.8.18 and vs v2026.8.3: status=behind, ahead_by=0. Profile "in no tag" REFUTED. Corrected.

@@ -29,7 +29,7 @@ sources:
   - agent-flywheel
   - omnigent
   - omp
-finding_count: 26
+finding_count: 29
 signal_count: 6
 outputs:
   digest:
@@ -52,7 +52,7 @@ outputs:
     - content/profiles/omnigent.md
     - content/profiles/omp.md
     - content/profiles/paperclip.md
-  findings: 26
+  findings: 29
   signals:
     - signals/frontier-signals.yml
   social_cards:
@@ -83,7 +83,7 @@ carry_forward_checks:
   - q: "Whether Agent Zero's restored SSRF fix acquires a regression test, given it was lost once inside a refactor."
     answer: "Yes, present. tests/test_document_query_plugin.py is blob 26bf2a69 at both v2.9 and v2.10. The tests were acquired with the v2.9 restore, not written in v2.10. v2.10 did not drop them."
 lanes:
-  primary: "complete -- 17 harvest files, 26 findings, 6 signals"
+  primary: "complete -- 17 harvest files, 29 findings, 6 signals"
   writing: "complete -- 15/15 feeds live, 58 items archived, 0 FAIL"
   x_social: "complete -- native X discovery; 10 URLs captured, 0 unavailable; 5 cards"
 notes: >

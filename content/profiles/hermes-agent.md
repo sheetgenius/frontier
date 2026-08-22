@@ -25,6 +25,18 @@ claims:
     finding_id: 2026-08-20-hermes-git-pull-skill-scan-reached-v2026-8-18
     last_verified: 2026-08-20
     status: active
+  - id: steer-stop-and-update-honesty-tagged
+    finding_id: 2026-08-20-hermes-steer-stop-and-update-honesty-reached-v2026-8-18
+    last_verified: 2026-08-20
+    status: active
+  - id: delegation-docs-stale-at-v2026-8-18
+    finding_id: 2026-08-20-hermes-delegation-docs-still-say-50-and-3-at-v2026-8-18
+    last_verified: 2026-08-20
+    status: active
+  - id: cli-execute-code-and-yolo-toggle-unreleased
+    finding_id: 2026-08-20-hermes-cli-execute-code-approval-and-yolo-toggle-still-unreleased
+    last_verified: 2026-08-20
+    status: active
   - id: curator-autonomous-skill-maintenance
     finding_id: 2026-05-06-hermes-curator-and-service-surfaces
     last_verified: 2026-05-06
@@ -134,13 +146,30 @@ posture_basis:
     - 2026-06-23-hermes-background-async-subagents-tagged
 stance:
   use_for: "A multi-platform gateway you run and inspect yourself. As of v2026.7.20 one bot token routes specific guilds, channels, and threads to separate profiles with isolated config, skills, memory, and secrets; a durable delivery ledger means a gateway crash no longer discards an answer you already paid for; and every delegated subagent writes a live transcript you can tail while it runs. Vault-backed secrets (Bitwarden, 1Password) replace the plaintext `.env` as the default credential path."
-  avoid_for: "Unattended work where you must be the approver. From v2026.7.20 the shipped default is `approvals.mode: smart`, so a model reviews each flagged command unless you pin `manual` -- and the policy override, denial circuit breaker, and dangerous-command detectors written for that default are in no tag. Also avoid it where a compromised Docker sandbox must not yield usable credentials: the egress firewall that makes lifted tokens worthless outside the box is on main and shipped in no release. Still not IdP or role-mapping tooling; the centralized control is an admin-pinned `/etc/hermes` config layer, not SSO."
-  watch_next: "Whether the smart-approval policy override, the consecutive-denial circuit breaker, `hermes approvals suggest`, and the docker-daemon-redirect and recursive-`rm` detectors reach a tagged binary; whether the egress firewall re-land is tagged and stays default-off; and whether the 1712-commit gap between the newest tag and main narrows or is simply the normal state of this project."
+  avoid_for: "Unattended work where you must be the approver and you are still on a tag older than v2026.8.3: the smart-approval policy override, denial circuit breaker, and egress firewall that this profile once called untagged are ancestors of v2026.8.3 (confirmed again at v2026.8.18). On v2026.8.18 itself, a quiet CLI execute_code session is not evidence the script was safe, a /yolo OFF line under --yolo is not a stop, and a Bot Mode group-chat approval can sit with no card until timeout. Still not IdP or role-mapping tooling."
+  watch_next: "Whether a tag after v2026.8.18 contains the CLI execute_code approval panel, the /yolo false-OFF fix, and Bot Mode group-chat approval cards. The smart-approval override, denial circuit breaker, and egress firewall already reached v2026.8.3."
 ---
 
 # Hermes Agent
 
 ## Operator Read
+
+As of 2026-08-20 the in-window pin is
+[v2026.8.18](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.8.18)
+(v0.20.4). That tag has the git-pull skill scan, list/steer/stop that
+still sees the child after `/model`, and an updater that no longer
+claims success on a parked branch. Delegation docs at the tag still
+say 50 turns and 3 children; config_defaults is 250 and 10. Dump
+effective config.
+
+The smart-approval policy override, denial circuit breaker, and egress
+firewall this profile previously called untagged are ancestors of
+[v2026.8.3](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.8.3)
+and of v2026.8.18 (compare status=behind, ahead_by=0). That sentence is
+retired. Remaining holes on the 2026-08-18 tag: CLI `execute_code`
+can queue an approval with no panel, `/yolo` OFF under `--yolo` is not
+a stop, Bot Mode group-chat approvals can be invisible. Those SHAs
+missed this tag. v2026.8.19 is 21 August.
 
 The default approver in Hermes is no longer you. As of
 [v0.19.0, "The Quicksilver Release", tag v2026.7.20](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.20)
