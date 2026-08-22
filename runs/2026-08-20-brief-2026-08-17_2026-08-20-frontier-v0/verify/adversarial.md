@@ -76,6 +76,8 @@ Hunt specimens from parent: 11 not 13, 19 not 21, tagged-but-unreleased OpenClaw
 - compare rust-v0.148.0...c97bd2dc: ahead_by=158 (not in 0.148.0). compare c97bd2dc...rust-v0.149.0: ahead_by=84, behind_by=0 (in 0.149.0).
 - Verdict: CONFIRMED off-by-default at both stables. CONFIRMED fail-open at 0.148.0. CONFIRMED fail-closed is an ancestor of 0.149.0. Do not say 0.148.0 fail-closes.
 
+Independent FeatureSpec dump at both tags (raw lib.rs, 2026-08-21 observation of the pinned refs): GuardianApproval Stable default_enabled true; GuardianV2 UnderDevelopment default_enabled false. Three additional Guardian* specs exist at both tags and are also UnderDevelopment default_enabled false: GuardianReuseParentCompaction, GuardianEnhancedNodeReplTranscripts, GuardianNodeReplTranscriptImages. They do not change the AND-gate (GuardianV2 AND GuardianApproval). Not promoted.
+
 ## 13. eve turnPolicy queue silent-fallback
 
 - Hunt: parent finding told operators to set queue after 0.33.0. Leftover harvest claimed 0.39.3 restores it.

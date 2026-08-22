@@ -65,7 +65,7 @@ Config lockfile deletion shipped in 0.148.0 (#38011; config_lock.rs 404 at the t
 
 - gh api releases/tags rust-v0.148.0 (prerelease=false, 2026-08-18T22:26:03Z) and rust-v0.149.0 (2026-08-20T21:04:55Z)
 - gh compare rust-v0.147.0...rust-v0.148.0 ahead_by=381; rust-v0.148.0...rust-v0.149.0 ahead_by=242; rust-v0.148.0...rust-v0.148.0-alpha.23 ahead_by=139
-- raw lib.rs FeatureSpec at both tags (GuardianV2 off, GuardianApproval on)
+- raw lib.rs FeatureSpec at both tags (GuardianV2 off, GuardianApproval on; three extra Guardian* specs also UnderDevelopment/false, not AND-gated)
 - raw extension.rs at rust-v0.148.0 (scoring errors warn and return)
 - gh api pulls/39307 merged_at 2026-08-18T22:50:13Z, merge SHA c97bd2dc
 - npm dist-tags (latest=0.149.0 at 2026-08-21 observation)

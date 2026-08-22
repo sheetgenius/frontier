@@ -9,6 +9,8 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+Leftover Codex FeatureSpec dump (lib.rs at rust-v0.148.0 and rust-v0.149.0) CONFIRMED GuardianV2 off / GuardianApproval on at both. Three extra Guardian* flags also UnderDevelopment/false; they do not change the AND-gate. Archived in verify/; no public rewrite. J16 verify-only.
+
 J15 SHA 536d082. leftover remaining-seven unused item deny_tag_push reached v0.10.0. Independently confirmed (0 hits at v0.9.0, 5 at v0.10.0, default true; 5798d74e ancestor of v0.10.0). Closes 2026-08-10 nightly-only finding. Findings 32, signals 6. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (559 findings).
 
 J14 SHA 912020b. Leftover Gemini harvest applied after independent file reads at both tags. Findings 31, signals 6. enableAgents false still loads built-ins on latest. Git-env is preview-only. Foreground rebuild BUILD_EXIT=0 INTEGRITY_EXIT=0 LINKS_EXIT=0 (558 findings).
