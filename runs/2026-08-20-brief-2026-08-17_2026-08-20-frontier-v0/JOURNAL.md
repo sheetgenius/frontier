@@ -9,6 +9,8 @@ AUTHORIZE_PUSH: no
 
 Next: none. Saturation checklist is true. AUTHORIZE_PUSH is no, so no push.
 
+Leftover Antigravity 1.1.14-17 re-fetch CONFIRMED; full linux tarball sha256s recorded; 1.1.18 exists post-window and did not move 1.1.16/17. J24 verify-only.
+
 Leftover 39307 ancestry and Paperclip canary lengths CONFIRMED (158/84; 818=17 819=10 820=7). J23 SHA 4bcad5d. Verify-only.
 
 Leftover Pi until=2026-08-21 curl was 403. gh api first row is 5cd93f68, the harvest pin. J22 SHA 06fa1c4. Verify-only.
@@ -110,6 +112,8 @@ Commits this run:
 - 06fa1c4 Pi window-close pin 5cd93f68 confirmed (J22)
 - 9d0b96b JOURNAL NOW records J22 SHA (J22b)
 - 4bcad5d 39307 ancestry and Paperclip canary lengths (J23)
+- f8d73ea JOURNAL NOW records J23 SHA (J23b)
+- (pending) Antigravity 1.1.14-17 re-fetch (J24)
 
 Working thesis (locked in the brief): shipped is not on. Classifier in the 0.148.0 tag, flag still off. OpenClaw approved-exec still unreleased. DeepSeek gate still a plugin.
 

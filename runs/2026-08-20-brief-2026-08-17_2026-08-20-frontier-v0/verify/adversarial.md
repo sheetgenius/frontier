@@ -82,6 +82,8 @@ Ancestry re-fetch: compare rust-v0.148.0...c97bd2dc ahead_by=158, behind_by=1, d
 
 Paperclip matching-refs recount: canary 818=17, 819=10, 820=7; nightly 818=2, 819=1, 820=1. 817 overlap: canary 16, nightly 1. CONFIRMED in-window canary/nightly lengths.
 
+Antigravity 1.1.14-1.1.17 independent re-fetch CONFIRMED: 1.1.14 published 2026-08-18T04:10:43Z SHA 76ff39c6; 1.1.15 2026-08-19T04:11:33Z SHA f44126c5; 1.1.16 and 1.1.17 still both efa16f09. linux_x64 tarball sha256 1.1.16=7742953b7835b457e9102f1357a493913657dfd147435584f609d58356ec085a vs 1.1.17=15443966494cd62938320900acfd16df906cf4da56279e4dd8f4846c09f849df. CHANGELOG at tag 1.1.17 still tops at ## 1.1.16. A later tag 1.1.18 exists at observation time and did not retarget 1.1.16/1.1.17; 1.1.18 is out of window. CONFIRMED. Do not harvest 1.1.18.
+
 Unauthenticated curl of contents/codex-rs/ext?ref=rust-v0.149.0 returned HTTP 403. Authenticated gh api of the same path lists guardian-v2 among 13 entries. Do not treat a 403 as the tree missing. CONFIRMED present at the tag.
 
 Unauthenticated curl of earendil-works/pi commits?sha=main&until=2026-08-21T00:00:00Z also 403. Authenticated gh api first row: 5cd93f688aaa 2026-08-20T13:59:38Z "feat(coding-agent): add development pi wrapper". Matches the harvest window-close pin. CONFIRMED. Do not substitute live HEAD.
