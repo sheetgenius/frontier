@@ -25,6 +25,10 @@ claims:
     finding_id: 2026-08-20-paperclip-namespaced-canary-train-still-running-stable-unmoved
     last_verified: 2026-08-20
     status: active
+  - id: acpx-thought-text-in-issue-comments
+    finding_id: 2026-08-20-paperclip-acpx-thought-text-can-land-in-issue-comments
+    last_verified: 2026-08-20
+    status: active
   - id: adapter-runtime-command-spec
     finding_id: 2026-05-07-paperclip-agent-company-control-plane
     last_verified: 2026-05-07

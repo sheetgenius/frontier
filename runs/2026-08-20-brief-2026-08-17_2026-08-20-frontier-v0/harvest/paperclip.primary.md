@@ -47,7 +47,19 @@ Punctuation is ASCII. Repo paperclipai/paperclip. Parent taught slash-prefixed c
 
 **What changed.** Parent finding that both public surfaces still sold 722.0 is no longer true on the version number. The install guide still does not describe the four-channel contract.
 
-**Operator consequence.** Site/docs are current on the stable version string. They are still not canonical for which lane you are on. npm dist-tags remain the channel source.
+**Operator consequence.** Site/docs are current on the stable version string. They are still not canonical for which lane you are on. npm dist-tags remain the channel source. Getting-started still teaches untagged `npx paperclipai`, which is `@latest`. CHANNELS.md at 664052f8 is the page that names `@beta` / `@nightly` / `@canary`.
+
+## 4. ACPX heartbeat comments can still publish thought-stream text on every in-window channel
+
+- **Date:** fix merged 2026-08-20T22:48:35Z; not in any in-window tag
+- **Channel:** `main-unreleased` (fix); leak is the standing behavior on stable/beta/nightly/in-window canary
+- **Ancestry evidence:** PR #11801 merge c2cfd55e. compare vs last in-window canary 54b8bec4 (canary/v2026.820.0-canary.6) -> behind. vs nightly 5a1ce7ae -> behind. vs beta.1 664052f8 -> behind. vs v2026.817.0 -> not in stable. Window-end master 733ffbf7 contains it (ahead, behind_by=0). Next canary 2026.821.0-canary.3 is 2026-08-21 OUT. The PR makes ACPX run summaries final-output-only so heartbeat auto-comments no longer join thought deltas into the issue comment.
+- **Receipt:** https://github.com/paperclipai/paperclip/pull/11801
+- **Half:** defect | security-relevant | **Confidence:** high on channel; the leak is the old default the PR names
+
+**What changed.** The fix exists on master at window close. It is not in `@latest`, `@beta`, `@nightly`, or the last in-window `@canary`. Canary publishing also skipped the evening of 08-20 after 820.0-canary.6 (npm 2026-08-20T18:29:42Z) even though CHANNELS.md says canary publishes on every master merge.
+
+**Operator consequence.** Until a tag contains c2cfd55e, treat automatic issue comments from ACPX adapters as possibly containing internal thought text. That includes the stable you can actually install.
 
 ## Researcher lane notes
 
