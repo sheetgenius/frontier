@@ -15,12 +15,16 @@ repo: https://github.com/earendil-works/pi
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-08-20
-last_full_review: 2026-08-20
+last_updated: 2026-08-22
+last_full_review: 2026-08-22
 claims:
+  - id: dev-hosts-not-plugins
+    finding_id: 2026-08-22-pi-dev-hosts-are-not-plugins-kernel-still-design
+    last_verified: 2026-08-22
+    status: active
   - id: new-harness-on-dev-not-tagged
     finding_id: 2026-08-20-pi-new-harness-lives-on-dev-not-on-a-tag
-    last_verified: 2026-08-20
+    last_verified: 2026-08-22
     status: active
   - id: live-docs-compaction-event-not-in-tag
     finding_id: 2026-08-20-pi-live-docs-describe-compaction-event-not-in-0-84-2
@@ -98,12 +102,41 @@ posture_basis:
 stance:
   use_for: "Embedding agent functionality in custom UIs and runtimes -- Cloudflare Workers, custom CLIs, CI runners -- where you own the product surface and the governance layer. Also the reference case for release honesty on this watchlist: two commits between the newest tag and the default branch, deterministic checksummed source archives, and a medium-severity dependency advisory closed in a tagged release four days after publication."
   avoid_for: "Operators who want built-in subagents, plan mode, approval prompts, or MCP -- Pi ships none of them by design and delegates sandboxing to Gondolin, Docker, or OpenShell. Anyone installing `@mariozechner/pi-coding-agent`, which is frozen at 0.73.1 and never received the protobufjs fix; the live package is `@earendil-works/pi-coding-agent`. And anyone pinning against the SDK without tracking versions: it took two breaking changes in nine days, and credential storage stopped being a public surface."
-  watch_next: "Whether extension-registered providers -- which can now own authentication and request dispatch -- get any review or capability boundary, since extension review is now credential review with no prompt to catch it; whether `PI_SESSION_FILE` in every bash subprocess gets a scope or an opt-out; whether the `/base` entry points become a genuinely separate lean SDK; and whether the phantom-tag pattern recurs, since a git tag on this project is not proof of a release."
+  watch_next: "Whether a tag contains a17323e5, and whether that tag still compiles the experimental service allowlist in host code instead of loading a plugin kernel. On the tagged product: whether extension-registered providers get any review or capability boundary; whether `PI_SESSION_FILE` in every bash subprocess gets a scope or an opt-out; whether the `/base` entry points become a genuinely separate lean SDK; and whether the phantom-tag pattern recurs."
 ---
 
 # Pi Coding Agent
 
 ## Operator Read
+
+### 2026-08-22
+
+The package you can install is still
+[`v0.84.2`](https://github.com/earendil-works/pi/releases/tag/v0.84.2).
+The plugin architecture lives on
+[`dev` at a17323e5](https://github.com/earendil-works/pi/tree/a17323e5b1e766433e76a3ed7a129f640924c079),
+264 commits ahead of `main` as of 2026-08-20, in no tag. Do not install that branch.
+
+The docs on that SHA say
+["No privileged built-ins"](https://github.com/earendil-works/pi/blob/a17323e5b1e766433e76a3ed7a129f640924c079/packages/agent/docs/plugins.md).
+Read that as: a built-in feature and a third-party plugin are supposed to get
+the same hooks. It is not DeepSeek Harness's "there is no privileged core to
+patch." At this pin the
+[kernel that would load those plugins is still marked illustrative](https://github.com/earendil-works/pi/blob/a17323e5b1e766433e76a3ed7a129f640924c079/packages/agent/docs/plugins.md).
+The experimental runtime
+[hard-codes which services exist](https://github.com/earendil-works/pi/blob/a17323e5b1e766433e76a3ed7a129f640924c079/packages/coding-agent/src/experimental/services/session-builtins.ts).
+A plugin that arrives later
+[cannot replace Chat](https://github.com/earendil-works/pi/blob/a17323e5b1e766433e76a3ed7a129f640924c079/packages/agent/src/plugins/services/provider.ts).
+There is no permission prompt to cut in front of, because this host does not
+have one. `pi client` only exists when
+[`PI_EXPERIMENTAL=1`](https://github.com/earendil-works/pi/blob/a17323e5b1e766433e76a3ed7a129f640924c079/packages/coding-agent/src/core/experimental.ts).
+
+Watch for a tag that contains `a17323e5`. Until one exists, this is a design
+plus an experimental host on a feature branch, not a product you run.
+
+*Finding: `2026-08-22-pi-dev-hosts-are-not-plugins-kernel-still-design`.*
+
+### Where it stood, 2026-07-27
 
 Pi is a deliberately minimal terminal coding harness from
 [Earendil Works](https://github.com/earendil-works/pi). Its identity is a
