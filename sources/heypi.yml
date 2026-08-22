@@ -107,7 +107,7 @@ operator_questions:
   - Is the audit trail complete enough to reconstruct who approved what, and is it tamper-evident?
   - What does a sandbox runtime (just-bash, Docker, Gondolin) actually isolate, and what leaks across it?
   - How are secrets handed to a tool without passing through chat, and where do they rest?
-  - In a multiplayer channel, whose authority binds — the requester's, the approver's, or the agent's config?
+  - In a multiplayer channel, whose authority binds -- the requester's, the approver's, or the agent's config?
   - Does heypi inherit Pi's "no governance in core" posture, or does it genuinely close that gap?
   - What durability does heypi NOT provide (it disclaims crash-replay), and what does an operator have to own themselves?
 default_actionability:
@@ -129,14 +129,18 @@ discovery:
 notes: >
   heypi is the governance-shell calibration source: the human-in-the-loop and
   audit layer that wraps a minimal coding harness (Pi) for team chat-ops. Watch
-  it as the inverse of Pi — where Pi refuses to bake governance into its core,
+  it as the inverse of Pi -- where Pi refuses to bake governance into its core,
   heypi's entire product is that governance shell (approvals with named
   approvers, an SQLite audit trail, sandboxed tools, encrypted secret handoff,
   scoped memory). The high-signal question is always enforcement vs surfacing:
   does an approval block the call, is the audit trail complete, does the sandbox
   isolate. Pay attention to the durability disclaimer (heypi explicitly does not
-  replay in-flight turns after a crash) — it marks the boundary of what the
+  replay in-flight turns after a crash) -- it marks the boundary of what the
   operator must own. heypi is also a multiplayer/team contrast to OpenClaw's
   single-user gateway, and a governance-first contrast to eve's durability-first
   framing. Do not over-weight landing-page feature copy; require a doc or commit
-  before treating a governance feature as real and enforced.
+  before treating a governance feature as real and enforced. Handling:
+  stay Tier 1, cadence weekly as of 2026-08-21. Last shippable event at
+  the 2026-08-20 brief was still 0.3.0-beta.2 (2026-07-22). Daily harvest
+  of a frozen beta was the mismatch, not the slot. Return to daily when
+  a tag moves.

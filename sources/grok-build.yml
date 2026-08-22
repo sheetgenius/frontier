@@ -1,0 +1,164 @@
+schema_version: bitter.frontier_source_contract.v0
+id: grok-build
+label: Grok Build
+owner: xAI
+homepage: https://x.ai/cli
+docs: https://docs.x.ai/build/overview
+primary_surfaces:
+  - id: repo
+    kind: github_repo
+    url: https://github.com/xai-org/grok-build
+    priority: 1
+    watch:
+      - commits
+      - source_rev
+      - license
+      - sandbox
+      - permissions
+      - hooks
+      - skills
+      - plugins
+      - acp
+      - worktrees
+  - id: changelog
+    kind: official_changelog
+    url: https://x.ai/build/changelog
+    priority: 1
+    watch:
+      - version
+      - permissions
+      - sandbox
+      - hooks
+      - acp
+      - headless
+      - breaking_changes
+      - security
+  - id: docs
+    kind: official_docs
+    url: https://docs.x.ai/build/overview
+    priority: 1
+    watch:
+      - install
+      - headless
+      - acp
+      - skills
+      - plugins
+      - hooks
+      - mcp
+      - permissions
+      - enterprise
+  - id: install-script
+    kind: install_channel
+    url: https://x.ai/cli/install.sh
+    priority: 1
+    watch:
+      - resolved_version
+      - platform_matrix
+      - integrity_verification
+  - id: open-source-announcement
+    kind: maintainer_authored_post
+    url: https://x.ai/news/grok-build-open-source
+    priority: 2
+    watch:
+      - license
+      - scope
+      - sync_from_monorepo
+related_surfaces:
+  standing_status: watched
+  notes: >
+    The public GitHub tree is a periodic sync from the SpaceXAI monorepo, not
+    the development home. grok.com chat, Grok the model, Grok Bot, and this
+    publication's Lane C use of the grok CLI are different objects. Omnigent
+    can drive Grok Build over ACP; that is a fact about the pair, not about
+    Grok Build's own tool policy.
+  repositories:
+    - id: grok-build
+      url: https://github.com/xai-org/grok-build
+      role: public_mirror
+accepted_evidence:
+  - official_changelog
+  - official_docs
+  - tagged_raw_file
+  - git_commit
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+  - marketing_claim_without_doc_or_code
+  - grok_com_chat_as_harness
+  - grok_model_as_harness
+  - unsynced_main_as_the_product
+  - omnigent_acp_wrap_as_grok_gate
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+research_lenses:
+  - governance
+  - capability
+  - distribution_channel
+  - closed_source_verifiability
+high_signal_patterns:
+  - SOURCE_REV
+  - Synced from monorepo
+  - sandbox
+  - permission
+  - auto mode
+  - hook
+  - ACP
+  - grok agent stdio
+  - skill
+  - plugin
+  - worktree
+  - headless
+  - install.sh
+  - GROK_CONFIG
+operator_questions:
+  - "The public tree is a periodic sync from a private monorepo and GitHub has zero tags: which channel is an operator actually running, SOURCE_REV, the changelog version, or whatever the install script fetched today?"
+  - Does a permission, sandbox, or hook rule read at a public SHA bind in the binary the install script just put on PATH?
+  - Native ACP is `grok agent stdio`. When Omnigent or another wrapper drives that socket, whose tool policy refuses?
+  - How far behind the changelog is the last public sync, and does a gap in public git prove anything about what shipped?
+  - Is grok.com chat, Grok Bot, or the grok-4.6 API being described as if it were this CLI?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  governance_change: test
+  channel_divergence: observe
+discovery:
+  last_verified: 2026-08-21
+  verified_by: manual_web
+  confidence: medium
+  open_questions:
+    - Will xAI ever cut GitHub tags or Releases, or is the changelog plus install script the permanent ship channel?
+    - How often does SOURCE_REV move relative to a changelog version, and can an operator join them without a vendor digest?
+    - What license, if any, covers the distributed binary as distinct from the Apache-2.0 source tree?
+notes: >
+  Added 2026-08-21. xai-org/grok-build, Apache-2.0, Rust, binary `grok`.
+  Open-sourced 2026-07-15. The README states the tree is synced periodically
+  from the SpaceXAI monorepo and that SOURCE_REV records the internal commit.
+  GitHub tags and releases are both empty at intake. Operators install with
+  `curl -fsSL https://x.ai/cli/install.sh | bash`. The changelog is
+  https://x.ai/build/changelog.
+
+  It earns a slot as the inspectable frontier-lab CLI that was missing next to
+  Codex, Claude Code, and Gemini CLI. Source is the Codex/Pi floor. Channel is
+  not: public main is a mirror, so a gap in git history proves nothing about
+  the binary, and default install is a moving script. Pin SOURCE_REV for a
+  code claim. Pin the changelog version and, if you can, the installed
+  `grok --version` for a ship claim. Never treat grok.com chat as this
+  product. Never promote an Omnigent ACP wrap into a fact about Grok Build's
+  own gate.

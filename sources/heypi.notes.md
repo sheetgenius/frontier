@@ -4,7 +4,7 @@ Watch heypi as the **governance-shell calibration source**: the human-in-the-loo
 approval, and audit layer that wraps a minimal coding harness for team chat-ops.
 It is the structural inverse of Pi. Pi (`@earendil-works/pi-coding-agent`, which
 heypi pins as a hard dependency) deliberately refuses to bake governance into its
-core — no permission popups, "build your own confirmation flow." heypi is that
+core -- no permission popups, "build your own confirmation flow." heypi is that
 flow, sold as a separate framework.
 
 High-signal areas:
@@ -21,7 +21,7 @@ High-signal areas:
   Gondolin (`@earendil-works/gondolin`, QEMU-backed VM), and the gated host
   runtimes. Watch what each isolates and what crosses the boundary.
 - secret handoff: client-side WebCrypto encryption so secrets never enter chat
-  history or the model context — but secrets rest as plaintext-readable files in
+  history or the model context -- but secrets rest as plaintext-readable files in
   the scoped runtime workspace. Watch whether the at-rest story tightens.
 - the Pi dependency pin and any drift: heypi rides Pi's release churn. A Pi
   breaking change can surface as a heypi break.
@@ -47,7 +47,14 @@ Do not over-weight:
   harvest); its editorial value is category position, not adoption.
 
 Role in the watchlist: heypi sits at the intersection of three existing
-calibration sources — Pi (minimal harness substrate), OpenClaw (chat-surface
+calibration sources -- Pi (minimal harness substrate), OpenClaw (chat-surface
 reach, but single-user where heypi is multiplayer), and Paperclip (control-plane:
 approvals, accountability). Read it as the test of whether the authority shell can
 become its own well-made product rather than a feature bolted onto a harness.
+
+## Handling
+
+Tier 1, weekly as of 2026-08-21. The slot is the governance shell on Pi; the
+cadence was the mismatch. Last shippable event through the 2026-08-20 brief
+was still `0.3.0-beta.2` (2026-07-22). An empty harvest is still a harvest.
+Return to daily when a tag moves. Do not retire it for sitting still.

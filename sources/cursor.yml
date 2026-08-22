@@ -1,0 +1,144 @@
+schema_version: bitter.frontier_source_contract.v0
+id: cursor
+label: Cursor
+owner: Anysphere
+homepage: https://cursor.com
+docs: https://cursor.com/docs/cli/overview
+primary_surfaces:
+  - id: changelog
+    kind: official_changelog
+    url: https://cursor.com/changelog
+    priority: 1
+    watch:
+      - editor
+      - cli
+      - cloud_agents
+      - origin
+      - permissions
+      - sandbox
+      - subagents
+      - goals
+      - breaking_changes
+  - id: cli-docs
+    kind: official_docs
+    url: https://cursor.com/docs/cli/overview
+    priority: 1
+    watch:
+      - install
+      - modes
+      - headless
+      - sandbox
+      - sudo
+      - cloud_handoff
+      - sessions
+  - id: docs
+    kind: official_docs
+    url: https://cursor.com/docs
+    priority: 2
+    watch:
+      - cloud_agent
+      - origin
+      - plugins
+      - permissions
+      - enterprise
+  - id: install-script
+    kind: install_channel
+    url: https://cursor.com/install
+    priority: 1
+    watch:
+      - resolved_version
+      - binary_name
+      - platform_matrix
+related_surfaces:
+  standing_status: watched
+  notes: >
+    github.com/cursor/cursor is a bug-tracker README. It is not the editor and
+    not the agent. Do not harvest it as source. The changelog mixes editor,
+    CLI, cloud agents, and Origin code hosting; a finding must name which
+    surface it is about. Omnigent can route work onto Cursor; that is a fact
+    about the pair, not about Cursor's own permission system.
+  repositories:
+    - id: cursor-github-tracker
+      url: https://github.com/cursor/cursor
+      role: issue_tracker_not_source
+accepted_evidence:
+  - official_changelog
+  - official_docs
+  - package_registry_release
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+  - marketing_claim_without_doc_or_code
+  - github_com_cursor_cursor_as_source
+  - source_diff_of_cursor_github
+  - cloud_agent_changelog_as_cli_claim
+  - origin_hosting_as_permission_model
+  - omnigent_wrap_as_cursor_gate
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+research_lenses:
+  - governance
+  - capability
+  - distribution_channel
+  - closed_source_verifiability
+high_signal_patterns:
+  - changelog
+  - agent
+  - cursor-agent
+  - cloud agent
+  - Origin
+  - /goal
+  - subagent
+  - sandbox
+  - sudo
+  - plan mode
+  - headless
+  - permissions
+operator_questions:
+  - "github.com/cursor/cursor is a bug tracker: did this finding treat it as source?"
+  - Which surface moved, the editor, the `agent` CLI, cloud agents, or Origin hosting, and does the changelog actually say that?
+  - Can an operator pin a CLI version string or a download digest, or is the dated changelog the entire channel?
+  - What does `/sandbox` actually isolate, and does sudo prompting mean the model never sees the password, or only that the docs say so?
+  - When Omnigent routes work onto Cursor, whose permission system refuses?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  governance_change: test
+  changelog_entry: observe
+discovery:
+  last_verified: 2026-08-21
+  verified_by: manual_web
+  confidence: medium
+  open_questions:
+    - Is there a versioned CLI release channel with a pinable digest, or only `curl https://cursor.com/install | bash` plus a website changelog?
+    - Do editor, CLI, and cloud agents share one permission model, or three that the changelog does not separate?
+    - Does Origin hosting change where an agent writes, and is that described as a control or as a product feature?
+notes: >
+  Added 2026-08-21 as a closed changelog source, the same floor as Claude Code
+  and Antigravity. Anysphere binaries: the editor, plus the terminal CLI
+  installed with `curl https://cursor.com/install -fsS | bash` (docs command:
+  `agent`). github.com/cursor/cursor is not the product.
+
+  It earns a slot because operators already run it and because Omnigent already
+  names it as a harness. A meta-harness finding that says "do not attribute
+  Cursor behavior to Omnigent" is incomplete if this publication has no Cursor
+  surface of its own. Harvest the changelog and the CLI docs. Name the surface.
+  Do not promote a cloud-agent entry into a CLI fact. Do not open the GitHub
+  tracker looking for agent source; it is not there.

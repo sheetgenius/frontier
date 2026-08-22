@@ -1,0 +1,161 @@
+schema_version: bitter.frontier_source_contract.v0
+id: github-copilot-cli
+label: GitHub Copilot CLI
+owner: GitHub
+homepage: https://docs.github.com/copilot/concepts/agents/about-copilot-cli
+docs: https://docs.github.com/copilot/concepts/agents/about-copilot-cli
+primary_surfaces:
+  - id: changelog
+    kind: official_changelog
+    url: https://github.com/github/copilot-cli/blob/main/changelog.md
+    priority: 1
+    watch:
+      - sandbox
+      - permissions
+      - allow_all
+      - enterprise_policy
+      - worktree
+      - mcp
+      - plugins
+      - breaking_changes
+      - security
+  - id: releases
+    kind: github_release
+    url: https://github.com/github/copilot-cli/releases
+    priority: 1
+    watch:
+      - releases
+      - prerelease_flag
+      - changelog
+      - breaking_changes
+  - id: npm
+    kind: package_registry
+    url: https://www.npmjs.com/package/@github/copilot
+    priority: 1
+    watch:
+      - dist_tags
+      - package_version
+      - publication_date
+      - latest_vs_prerelease
+  - id: docs
+    kind: official_docs
+    url: https://docs.github.com/copilot/concepts/agents/about-copilot-cli
+    priority: 1
+    watch:
+      - approval
+      - sandbox
+      - trusted_directories
+      - allow_all_tools
+      - acp
+      - mcp
+      - hooks
+      - skills
+      - enterprise
+  - id: repo
+    kind: github_repo
+    url: https://github.com/github/copilot-cli
+    priority: 2
+    watch:
+      - license
+      - install_sh
+      - changelog
+      - readme
+related_surfaces:
+  standing_status: watched
+  notes: >
+    This source is the Copilot CLI (`copilot`, npm `@github/copilot`). VS Code
+    Copilot, Copilot Chat, the Copilot cloud coding agent, and the older
+    `gh copilot` extension are different products. github/copilot-cli is
+    license, docs, changelog, and installer -- not the agent source.
+    Omnigent's Copilot path is `gh auth login`; that is wrapper auth.
+  repositories:
+    - id: copilot-cli
+      url: https://github.com/github/copilot-cli
+      role: changelog_and_releases_not_agent_source
+accepted_evidence:
+  - official_changelog
+  - github_release
+  - official_docs
+  - package_registry_release
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+  - marketing_claim_without_doc_or_code
+  - vscode_copilot_as_cli
+  - copilot_cloud_agent_as_cli
+  - gh_copilot_extension_as_cli
+  - source_diff_of_copilot_cli_repo
+  - omnigent_gh_auth_as_copilot_gate
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+research_lenses:
+  - governance
+  - capability
+  - distribution_channel
+  - closed_source_verifiability
+high_signal_patterns:
+  - sandbox
+  - allow-all
+  - allow-auto-only
+  - --allow-all-tools
+  - trusted director
+  - worktree
+  - enterprise
+  - ACP
+  - MCP
+  - plugin
+  - hook
+  - skill
+  - prerelease
+operator_questions:
+  - "npm latest and GitHub's non-prerelease tag can lag the prerelease dist-tag: which channel did the operator actually install?"
+  - Does a sandbox or allow-all sentence in changelog.md bind in the binary, or only on the page?
+  - Is this the Copilot CLI, VS Code Copilot, the cloud coding agent, or the older `gh copilot` extension?
+  - "Enterprise allow-auto-only and sandbox proxy policy: who can turn them off, and does the CLI honor org policy when the operator is local?"
+  - Docs describe Copilot CLI as an ACP server. Is that a shippable surface, and whose permissions apply when a wrapper drives it?
+  - Omnigent authenticates Copilot with `gh auth login`. Is that Copilot's gate, or the wrapper's?
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  governance_change: test
+  prerelease: observe
+discovery:
+  last_verified: 2026-08-21
+  verified_by: manual_web
+  confidence: high
+  open_questions:
+    - Does github/copilot-cli ever grow agent source, or is the changelog-plus-binary floor permanent?
+    - How often does npm `latest` lag GitHub prereleases, and is `prerelease` a channel an operator should run?
+    - Can org-level MCP and sandbox policies that docs say the CLI cannot honor be confirmed by a local probe?
+notes: >
+  Added 2026-08-21 as a closed changelog source. github/copilot-cli is public
+  and busy: LICENSE.md (proprietary grant to install and run, not OSS),
+  changelog.md, install.sh, GitHub Releases, npm `@github/copilot`. The tree
+  is not the agent.
+
+  It is the most pinable of the large closed terminal agents: you can date a
+  GitHub release and an npm publish the way this publication dates Claude
+  Code. At intake, npm `latest` and the newest non-prerelease GitHub tag were
+  both 1.0.80 (2026-08-14); `prerelease` was 1.0.81-7 (2026-08-21). Name the
+  dist-tag.
+
+  Do not mix this with VS Code Copilot, Copilot Chat, the cloud coding agent,
+  or `gh copilot`. Do not read the public repo as if it contained
+  enforcement. Do not treat Omnigent's `gh auth login` as Copilot's own gate.

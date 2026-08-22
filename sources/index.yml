@@ -1,5 +1,5 @@
 schema_version: bitter.frontier_source_index.v0
-last_revised: 2026-08-17
+last_revised: 2026-08-21
 sources:
   - id: codex
     contract: sources/codex.yml
@@ -22,6 +22,24 @@ sources:
   - id: antigravity
     contract: sources/antigravity.yml
     notes: sources/antigravity.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: grok-build
+    contract: sources/grok-build.yml
+    notes: sources/grok-build.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: cursor
+    contract: sources/cursor.yml
+    notes: sources/cursor.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: github-copilot-cli
+    contract: sources/github-copilot-cli.yml
+    notes: sources/github-copilot-cli.notes.md
     tier: 1
     status: active
     cadence: daily
@@ -66,7 +84,7 @@ sources:
     notes: sources/heypi.notes.md
     tier: 1
     status: active
-    cadence: daily
+    cadence: weekly
   - id: deepseek-harness
     contract: sources/deepseek-harness.yml
     notes: sources/deepseek-harness.notes.md

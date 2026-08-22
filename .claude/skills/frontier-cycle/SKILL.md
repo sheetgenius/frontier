@@ -168,7 +168,10 @@ Prompt mechanics that were learned by getting them wrong:
   search (`since:` / `until:`).
 - Project attributions in harvest output are untrusted. A harvest once mapped a
   brand-new project called "ZERO" onto our `agent-zero` contract, which is a
-  different project. Check identity against the contract's repo field.
+  different project. Check identity against the contract's repo field. Same
+  trap: grok.com chat is not `grok-build`; github.com/cursor/cursor is not
+  Cursor; Copilot CLI is not VS Code Copilot, not the cloud coding agent, and
+  not `gh copilot`.
 
 `ops/hermes/grok-harvest.sh harvest <source> <start> <end>` wraps the standard
 per-source case. Setup is in `docs/hermes-grok-harvest-setup.md`. Grok's
