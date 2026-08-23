@@ -1,0 +1,300 @@
+2026-08-23	can1357	test(e2e): added performance recording API and harness support for CLI tests
+2026-08-23	can1357	feat(ui): added thinking toggle, session management, and AutoQA workflow
+2026-08-23	can1357	feat(env): added streaming search API and expanded registry metadata
+2026-08-23	can1357	refactor(tui): added /model and /switch to trigger OpenModelPicker
+2026-08-23	can1357	refactor(serve): added fallback schema support to tool definitions
+2026-08-23	can1357	refactor(sdk): added schema fallback to tool definitions via OpaqueJson
+2026-08-23	can1357	refactor(proto): added fallback_schema_json to ToolDef, verified round-trip
+2026-08-23	can1357	feat(inference): added candle-transformers backend and schema validation
+2026-08-23	can1357	fix(envd): added authentication handling and workspace enhancements
+2026-08-23	can1357	refactor(tool): added schema support and parity tests for tool input
+2026-08-23	can1357	refactor(driver): implemented multi-advisor engine subagents and handoff
+2026-08-23	can1357	refactor(core): added optional schemars support for Str with feature flag
+2026-08-23	can1357	refactor(agent): added thinking mode override and enabled schemars support
+2026-08-23	can1357	feat(core): added schemars integration across core and tools
+2026-08-23	can1357	chore(build): configured env to use Ninja and isolate rust-analyzer
+2026-08-23	can1357	chore(deps): updated dependencies and dev profile to reduce build size
+2026-08-23	can1357	feat(chat): enabled optional model switch arguments with picker UI
+2026-08-23	can1357	feat(settings): added terminal resize scrollback configuration
+2026-08-23	can1357	feat(tui): added history reset and editor pane tracking to TUI
+2026-08-23	can1357	feat(env): implemented graceful degradation for secondary ExecHost when locked
+2026-08-23	can1357	feat(ui): implemented chat UI upgrades, adding transcript replay
+2026-08-23	can1357	feat(tui): restructured UI rendering and state to drop legacy history
+2026-08-23	can1357	chore: alias
+2026-08-22	can1357	feat: added unified tool input schema and migrated CI to cargo-nextest
+2026-08-22	can1357	build: added custom Cargo build profiles and disabled metadata embedding
+2026-08-22	can1357	feat(test): added golden snapshots for subagent prompt verification
+2026-08-22	can1357	feat(app): restructured EnvServer to use PromptFacts and RegistryBridges
+2026-08-22	can1357	feat(deps): added omp-executor and omp-serve to e2e crate dependencies
+2026-08-22	can1357	docs(ui): added speech operation support and UI state handling
+2026-08-22	can1357	feat(py): implemented Python control, telemetry, and scheduling contracts
+2026-08-22	can1357	feat(agent): added unified prompt and workspace property handling
+2026-08-22	can1357	feat(api): added prompt engine, scheduler, and provider auth catalog
+2026-08-22	can1357	build(chat-ui): added omp-executor to chat-ui dependencies
+2026-08-22	can1357	refactor(telemetry): added durable telemetry rows with JSON serialization
+2026-08-22	can1357	build(ext): added tempfile as a development dependency for ext
+2026-08-22	can1357	build(env): updated env crate dev-dependencies with tempfile
+2026-08-22	can1357	refactor(repo): updated dependencies, adding Python introspection crates
+2026-08-22	can1357	chore(deps): restructured runtime to replace tokio with executor
+2026-08-22	can1357	refactor(scribe): implemented templates, async support, fixed setting
+2026-08-22	can1357	fix(rpc): implemented flume UDS streaming with executor timers
+2026-08-22	can1357	feat(desktop): restructured linux connection lifecycle actor thread
+2026-08-22	can1357	feat(core): added OMP executor with scheduler, bridge, and signals
+2026-08-22	can1357	feat(tools/lintx): added lintx with path, struct, and auto-fix linting
+2026-08-22	can1357	refactor(hashline): added telemetry authority and cleaned line handling
+2026-08-22	can1357	refactor(serve): added serve crate with gRPC transport and migrated RPCs
+2026-08-22	can1357	refactor(oauth): documented licensing and usage details for oauth crate
+2026-08-22	can1357	feat(memory): organized MIT licensing for memory crate
+2026-08-22	can1357	refactor(collab): renamed LICENSE file to match crate location
+2026-08-22	can1357	refactor(ext): added ext crate with CLI enums and simplified resolver
+2026-08-22	can1357	refactor(envd): added exthost module and expanded bridge for process control
+2026-08-22	can1357	refactor(env): added unified env and scribe APIs with Unix error handling
+2026-08-22	can1357	feat(driver): added unified driver modules and envd evaluation paths
+2026-08-22	can1357	refactor(tui): reformatted TUI code for aligned structs and line length
+2026-08-22	can1357	refactor(storage): added session lineage and telemetry consent features
+2026-08-22	can1357	refactor(settings): added settings crate with layer normalizer and imports
+2026-08-22	can1357	refactor(secrets): added secret masking authority with rule limit
+2026-08-22	can1357	refactor(docserver): reformatted dap config comments and test assertions
+2026-08-22	can1357	refactor(core): added core dirs, tracing, expanded OMP bindings, removed exthost
+2026-08-22	can1357	ux(chat-ui): added new auth control structs and updated schema version to v3
+2026-08-22	can1357	refactor(catalog): implemented crate rename and updated catalog data
+2026-08-22	can1357	feat(app): added unified CLI authentication flow and endpoints
+2026-08-22	can1357	refactor(agent): added host control API and reorganized agent crate imports
+2026-08-22	can1357	test: updated test suites with imports, envd refs, and contract tests
+2026-08-22	can1357	refactor(settings): configured settings crate with new deps and license
+2026-08-22	can1357	feat(secrets): documented MIT license file for secrets crate
+2026-08-22	can1357	refactor(sdk): renamed SDK crate components and added MIT license
+2026-08-22	can1357	refactor(shell-builtins): reformatted flush error handling to multiline
+2026-08-22	can1357	style: reorganized snapcompact crate layout and documentation
+2026-08-22	can1357	deps: bumped dependency versions, added omp crates, and synced manifests
+2026-08-22	can1357	refactor(proto): added process and workspace snapshot extensions to proto
+2026-08-22	can1357	docs(docs): documented renames, added prelude scribe docs, fixed formatting
+2026-08-22	can1357	docs(llm-inference): clarified crate documentation by deleting README
+2026-08-22	can1357	refactor(desktop): documented desktop crate with README and aligned license
+2026-08-22	can1357	docs: expanded docs with philosophy, clarified agents, and updated README
+2026-08-22	can1357	feat(app): added headless render command for transcript replay with metrics
+2026-08-22	can1357	feat(llm): added dynamic catalog normalization and auth/transport upgrades
+2026-08-22	can1357	feat(app): added manual session compaction, retry handling, and pin store
+2026-08-22	can1357	refactor(omp-snapcompact): implemented dataurl elision and scanner optimization
+2026-08-22	can1357	refactor(hashline): added fuzzy matching and multi-line edit support
+2026-08-22	can1357	refactor(docserver): added support for pre-attached debug adapters
+2026-08-22	can1357	build(repo): added image crate to dependencies
+2026-08-22	can1357	chore(deps): added runtime checks, dispatch updates, and session handling
+2026-08-22	can1357	refactor(tools): added dynamic editing support and tooling enhancements
+2026-08-22	can1357	refactor(gui): enabled physical ctrl key handling for paste commands
+2026-08-22	can1357	refactor(chat-ui): added history rewind, pin icons and resize scrollback
+2026-08-22	can1357	refactor(app): added skill completion, resizeScrollback, /pin, title tweaks
+2026-08-22	can1357	refactor(tui): added scrollback resize mode, PNG prep, and UI visual tweaks
+2026-08-22	can1357	fix(shell): added broken pipe handling to grep and rg builtins, exit 141
+2026-08-22	can1357	feat(discovery): added manual credential cache hydration with replacement
+2026-08-22	can1357	feat(chat-ui): added persistent slash-command usage tracking with UI icons
+2026-08-22	can1357	feat(agent): enabled handoff documents and continuity support for agents
+2026-08-22	can1357	refactor(gui): enabled multiplexing config and background scene polling
+2026-08-22	can1357	refactor(env): added invocation grant and lease controls to env client
+2026-08-22	can1357	test(e2e): aligned field initialization in p5_prefix_stability test
+2026-08-22	can1357	refactor(collab): implemented guest replica pump with recovery support
+2026-08-22	can1357	refactor(chat-ui): added retained chat sidebar toggle and dialog polling
+2026-08-22	can1357	feat(app): added authentication, process control, and collaborative sessions
+2026-08-22	can1357	feat(shell): addressed SIGPIPE termination in child pipe writes
+2026-08-22	can1357	build(deps): added testing and runtime dependencies with binary config
+2026-08-22	can1357	feat(tools): added debug and tool-runner enhancements
+2026-08-22	can1357	feat(storage): implemented maintenance for session lineage rekeying
+2026-08-22	can1357	feat(auth): added auth features: credential probing, API key override
+2026-08-22	can1357	feat(docs): documented campaign architecture and updated examples
+2026-08-22	can1357	feat(py): added python campaign API with lifecycle decorator
+2026-08-22	can1357	refactor(tools): added preview registry and staging for async tool proposals
+2026-08-22	can1357	refactor(oauth): corrected missing Accept header in OAuth POST requests
+2026-08-22	can1357	test(e2e): added watchdog init and switched to arbiter outcome
+2026-08-22	can1357	refactor(chat-ui): added title toggle and campaign slot status display
+2026-08-22	can1357	feat(app): introduced unified campaign system with mode persistence
+2026-08-22	can1357	chore(fixtures): added new search providers, migrated auth, updated census
+2026-08-22	can1357	refactor(llm-inference): added basic auth, extraction, and router support
+2026-08-22	can1357	refactor(llm-catalog): added authentication, extraction operation, and providers to catalog
+2026-08-22	can1357	refactor(app): implemented unified autoresearch campaign management
+2026-08-22	can1357	build(repo): added proptest to project dependencies
+2026-08-22	can1357	feat(agent): introduced campaign engine with arbiter, journal, failover
+2026-08-22	can1357	feat(core): added campaign runtime models and lifecycle hooks
+2026-08-22	can1357	feat(proto): added campaign declaration with lifecycle protocols
+2026-08-22	can1357	refactor(voice): restructured voice error implementation formatting
+2026-08-22	can1357	refactor(tool): removed empty line in InterruptWaitError definition
+2026-08-22	can1357	refactor(telemetry): cleaned empty lines in Event enum for readability
+2026-08-22	can1357	refactor(shell-builtins): removed extraneous blank lines for vertical consistency
+2026-08-22	can1357	refactor(app): removed stray empty line from memory_runtime method
+2026-08-22	can1357	refactor(cleanup): cleaned up auth and codec modules by removing leading blank lines
+2026-08-22	can1357	feat(tools): added runtime overrides for images.autoResize setting
+2026-08-22	can1357	feat(envd): added support for user, bash, zsh, and fish shell profiles
+2026-08-22	can1357	fix(envd): corrected stdio handling to continue on malformed JSON
+2026-08-22	can1357	fix(discovery): corrected regex flag parsing in discovery rules
+2026-08-22	can1357	ux(cli): renamed flag to --skills-enabled for clearer CLI usage
+2026-08-22	can1357	feat(chat): simplified chat registration and UI root handling
+2026-08-22	can1357	style: proper must_use usage
+2026-08-22	can1357	fix(misc): reorganized code to drop unused imports and fix style issues
+2026-08-22	can1357	fix(voice): restructured voice segmentation and error handling
+2026-08-22	can1357	feat(headless): enabled approval routing and metrics in headless runtime
+2026-08-22	can1357	feat(envd): added envd tooling with ssh and artifact URL support
+2026-08-22	can1357	refactor(app): added error handling and updated chat settings schema
+2026-08-22	can1357	fix(agent): trimmed trailing whitespace and flattened message extraction
+2026-08-22	can1357	refactor(shell-engine): added windows pty validation and sigint emulation
+2026-08-22	can1357	refactor(memory): added root runtime lookup with sorted sessions and pruning
+2026-08-22	can1357	refactor(env): added shared client registry with token-authenticated access
+2026-08-22	can1357	refactor(docserver): added atomic file writes terminal sanitization and cancellation
+2026-08-22	can1357	feat(app): added agent session and environment management system
+2026-08-22	can1357	feat(voice): implemented realtime voice processing with device attestation
+2026-08-22	can1357	fix(agent): restructured placeholder scanning and deobfuscation
+2026-08-22	can1357	feat(tools): added diagnostics, conflict resolution, and image conversion
+2026-08-22	can1357	feat(sdk): added expanded tool registry and auto-learn capture support
+2026-08-22	can1357	feat(ui): added responsive multi-worker wall and live TUI features
+2026-08-22	can1357	feat(collab): added terminal OSC8 linking and collaborative UI handling
+2026-08-22	can1357	feat(llm): added runtime policies and wildcard resolution to catalog
+2026-08-22	can1357	feat(telemetry): added user sentiment metrics and savings tracking
+2026-08-22	can1357	feat(storage): added background transcript stats ingestion using SQLite storage
+2026-08-22	can1357	feat(deps): added qrcode 0.14 crate to project
+2026-08-22	can1357	feat(tools): added kitty-vt-wasm core with graphics support
+2026-08-22	can1357	feat(ui): added desktop backend and ui tools for agent hierarchy and logs
+2026-08-22	can1357	feat(app): implemented platform extensions for collaboration and automation
+2026-08-22	can1357	feat(agent): implemented OMP-native security audit harness with advisor
+2026-08-22	can1357	feat(storage): added consent-gated analytics for transcripts
+2026-08-22	can1357	feat(voice): implemented WebRTC voice transport, peer core and media session
+2026-08-22	can1357	feat(webview): added remote browser automation and accessibility support
+2026-08-22	can1357	feat(llm): added new search providers, Sherpa STT adapter, and resilience
+2026-08-22	can1357	feat(tools): added desktop effects, accessibility, and expanded tool suite
+2026-08-22	can1357	feat(core): added authenticated edit, snapshot and usage to memory
+2026-08-22	can1357	build(deps): updated Cargo dependencies and lockfile
+2026-08-22	can1357	feat(tools): added concurrent registry and expanded analysis, LSP,caching tools
+2026-08-22	can1357	feat(agent): implemented sub-agent journaling and realtime delegation
+2026-08-22	can1357	fix(telemetry): enabled mandatory credential redaction and added latency metric
+2026-08-22	can1357	refactor(app): implemented unified environment, RPC and discovery management
+2026-08-22	can1357	feat(auth): added OAuth PKCE flow and secret masking framework
+2026-08-22	can1357	feat(storage): added multiprocess-safe memory store with embedding worker
+2026-08-22	can1357	refactor(collab): added encrypted relay client with payload replication
+2026-08-22	can1357	refactor(storage): added modular storage with multi-backend and caching
+2026-08-22	can1357	refactor(py): added OMP extensions for filesystem terminal input, and events
+2026-08-22	can1357	refactor(llm-inference): added inference settings discovery, session support
+2026-08-22	can1357	refactor(llm-catalog): added image input, model settings, and caching to catalog
+2026-08-22	can1357	refactor(gui): restructured GUI input to drop import and use str slices
+2026-08-22	can1357	refactor(env): added active execution control and streaming APIs to env client
+2026-08-22	can1357	refactor(docserver): added config registry and improved LSP/DAP support
+2026-08-22	can1357	chore(build): organized lint config and justfile to enforce core crate usage
+2026-08-22	can1357	feat(parser): added flat command segment parsing and path language detection
+2026-08-22	can1357	fix(tui): implemented theme-aware UI upgrades for diff, editor, and terminal
+2026-08-22	can1357	feat(snapcompact): added snapcompact crate renders text PNG with fonts
+2026-08-22	can1357	feat(settings): added settings with schema reflection and snapshots
+2026-08-22	can1357	feat(sdk): added python eval and gitignore-aware formatted workspace tree
+2026-08-22	can1357	feat(voice): added voice crate with cross-platform audio support
+2026-08-22	can1357	feat(hashline): added deterministic patch parsing foreign unified sloppy
+2026-08-22	can1357	feat(proto): added new protobuf schemas for collab, env, identity, and toolhost
+2026-08-22	can1357	feat(core): implemented branded string IDs and minute-precision time formatting
+2026-08-22	can1357	build(deps): updated project dependencies and added new modules
+2026-08-22	can1357	refactor(shell-builtins): restructured builtins to use internal support library
+2026-08-21	can1357	refactor(deps): replaced external crates with in-house implementations across the workspace
+2026-08-21	can1357	refactor(app): replaced executable content hashing with filesystem metadata fingerprinting
+2026-08-21	can1357	feat(tools): corrected line endings in firefox preferences writer
+2026-08-21	can1357	refactor: applied clippy cleanups and const qualifiers across workspace crates
+2026-08-21	can1357	chore(deps): introduced pixel screenshot generation and improved renderer recovery
+2026-08-21	can1357	feat(app): implemented macos lc_uuid extraction for build identification
+2026-08-21	can1357	refactor(workspace): migrated workspace crates and services to Hash32
+2026-08-21	can1357	feat(proto): implemented lossless text and base64 serializers for bytes fields
+2026-08-21	can1357	feat(core): introduced Hash32 digest type and optimized blake3 hashing
+2026-08-21	can1357	feat(tools): implemented vt screen emulation and automatic snapshots
+2026-08-21	can1357	feat(app): implemented session routing and daemon keychain configs
+2026-08-21	can1357	feat(inference): implemented transport error classification and response sanitization
+2026-08-21	can1357	feat(inference): updated codecs and providers for auth routing and paths
+2026-08-21	can1357	feat(inference): implemented file-backed credential key storage and rotation
+2026-08-21	can1357	feat(ui): introduced log-in icon, overlay collection, and animated schedule support
+2026-08-21	can1357	feat(inference): implemented loopback callback server for oauth flows
+2026-08-21	can1357	feat: implemented link opening utility, patch operations, and validation
+2026-08-20	can1357	feat: introduced python bindings for error handling validation and probes
+2026-08-20	can1357	chore: license
+2026-08-20	can1357	feat: introduced python extension examples and updated api bindings
+2026-08-20	can1357	feat: introduced round 6 python apis and extension examples
+2026-08-20	can1357	feat: introduced python provider features and process generation tracking
+2026-08-20	can1357	feat: introduced new example extensions covering agent capabilities and tools
+2026-08-20	can1357	fix: addressed transport, permission, timeout, and history edge cases
+2026-08-20	can1357	feat: expanded python api exports and enforced secure route validation
+2026-08-20	can1357	chore: more useless alloc pruning
+2026-08-20	can1357	feat: introduced python extension APIs and reference examples
+2026-08-20	can1357	chore: get rid of useless allocations + reformat
+2026-08-20	can1357	feat(app): introduced readiness check probes for process execution
+2026-08-20	can1357	feat: introduced python sdk extensions, examples, and telemetry targets
+2026-08-20	can1357	feat(py): froze the python extension surface per gap closure plan
+2026-08-20	can1357	feat(ar): implemented support for additional archive formats and codecs
+2026-08-20	can1357	feat(parity): ported pi worktrees, modes, acp, and import surfaces
+2026-08-20	can1357	feat(ar): implemented electron asar archive parsing and member reading
+2026-08-20	can1357	feat(parity): ported pi tools, kernels, rpc, agents, and ui surfaces
+2026-08-20	can1357	feat(parity): ported pi tools, cli, and discovery surfaces
+2026-08-20	can1357	feat(tui-components): implemented advanced styling and interactive behaviors across components
+2026-08-20	can1357	feat: expanded LLM catalog capabilities and inference codecs
+2026-08-20	can1357	feat: expanded shell builtins and implemented ast analysis features
+2026-08-20	can1357	feat(runtime): landed agents, inference, telemetry, and deploy wave
+2026-08-20	can1357	feat(runtime): landed tool substrate, extension host, hooks, and ui waves
+2026-08-20	can1357	feat: implemented python extension host runtime and supervised worker pools
+2026-08-20	can1357	feat(core): optimized string representation with inline tagged union layout
+2026-08-20	can1357	deps: added im dependency and update data structure guidelines
+2026-08-20	can1357	docs: updated agent guidelines and project architecture documentation
+2026-08-20	can1357	chore: clippy
+2026-08-20	can1357	feat: introduced extension host runtime and agent journal capabilities
+2026-08-19	can1357	feat(skills/pyo3): introduced pyo3 free-threaded and reference guides
+2026-08-19	can1357	fix(runtime): closed extension ledger defects
+2026-08-19	can1357	feat(proto): allocated extension contracts and shared vocabulary
+2026-08-19	can1357	chore(tools): introduced justfile and buf configuration for workspace automation
+2026-08-19	can1357	docs: added feature map, quirks ledger, and python host docs
+2026-08-19	can1357	feat(webview/wk): implemented macos wkwebview backend and input forwarding
+2026-08-19	can1357	refactor(llm-inference): restructured encode attempt into packed u64 representation
+2026-08-19	can1357	feat: introduced pixel surface rendering and jpeg decoding support
+2026-08-19	can1357	feat(llm-inference/codec): implemented reasoning effort rejection handling
+2026-08-19	can1357	feat(llm-inference): implemented discovery vocabulary and inference route hints
+2026-08-19	can1357	feat(webview): introduced omp-webview crate with embedded browser facade and drivers
+2026-08-19	can1357	feat(tui): added tests for keymap bindings and live panel streaming
+2026-08-19	can1357	feat(catalog): introduced provider effort lanes and parameter recovery
+2026-08-19	can1357	feat(inference): implemented batch message reordering for responses input
+2026-08-19	can1357	feat(inference): enabled immediate route reselection on concurrency admission 429s
+2026-08-19	can1357	feat: introduced taxonomy-driven routing variants for inference discovery
+2026-08-19	can1357	fix(inference): introduced retry logic and routing safeguards for reasoning inference
+2026-08-19	can1357	test(fixtures): added llm oracle test fixtures and provider compatibility rules
+2026-08-19	can1357	feat(tui): expanded image rendering, input handling, and markdown parsing
+2026-08-19	can1357	feat(tools): introduced binary header checks and member read handling
+2026-08-19	can1357	feat(storage): verified transcript persistence and error handling
+2026-08-19	can1357	fix(shell): prevented shell panics when encountering non-unicode environment variables
+2026-08-19	can1357	fix(inference): implemented account quota handling and stream recovery
+2026-08-19	can1357	feat(catalog): introduced model catalog definitions and reasoning policies
+2026-08-19	can1357	feat(chat-ui): enabled inline image rendering in tool invocation cards
+2026-08-19	can1357	feat(app): implemented session metadata probing and tool image persistence
+2026-08-19	can1357	feat(agent): introduced diagnostic codes and refined error handling for empty agent turns
+2026-08-19	can1357	feat(ast): introduced bounded parse cache and optimized block collection
+2026-08-19	can1357	build(deps): upgraded cargo lock dependencies and inference build inputs
+2026-08-16	can1357	test(llm-inference): boxed the conformance usage-report fixture after the boxed-usage refactor
+2026-08-16	can1357	Merge branch 'port/ChatDialogs': ported main fixes into omp2
+2026-08-16	can1357	Merge branch 'port/TuiCore': ported main fixes into omp2
+2026-08-16	can1357	Merge branch 'port/ShellBuild': ported main fixes into omp2
+2026-08-16	can1357	Merge branch 'port/StorageReg': ported main fixes into omp2
+2026-08-16	can1357	Merge branch 'port/AgentLoop': ported main fixes into omp2
+2026-08-16	can1357	Merge branch 'port/Catalog': ported main fixes into omp2
+2026-08-16	can1357	Merge branch 'port/InfUsage': ported main fixes into omp2
+2026-08-16	can1357	Merge branch 'port/InfStreams': ported main fixes into omp2
+2026-08-16	can1357	fix(llm-catalog): required mandatory high effort for SuperGrok models (#8369)
+2026-08-16	can1357	fix(llm-inference): replayed durable Anthropic server history (#8561)
+2026-08-16	can1357	fix(llm-inference): stopped long exact response cycles (#8669)
+2026-08-16	can1357	fix(llm-catalog): omitted OpenCode DeepSeek tool choice (#8244)
+2026-08-16	can1357	fix(llm-inference): rotated poisoned Cursor conversations once (#8349)
+2026-08-16	can1357	fix(llm-inference): preserved Kimi account identity and quota routing (#8632)
+2026-08-16	can1357	fix(llm-catalog): enabled Baseten Kimi K3 reasoning (#8364)
+2026-08-16	can1357	fix(llm-inference): preserved Anthropic tool-search replay blocks (#8561)
+2026-08-16	can1357	fix(llm-inference): classified DashScope token throttles as transient (#8476)
+2026-08-16	can1357	fix(llm-inference): failed truncated OpenAI-compatible streams (#8563)
+2026-08-16	can1357	fix(storage): repaired torn transcript appends (#8598)
+2026-08-16	can1357	fix(tui): submitted multi-select choices on Enter (#8265)
+2026-08-16	can1357	fix(tui): preserved attached indented paragraph lines (#8557)
+2026-08-16	can1357	fix(tui): wrapped long select labels onto continuation rows (#8654)
+2026-08-16	can1357	fix(agent): cleared stale steering after rewind (#8503)
+2026-08-16	can1357	fix(llm-inference): weighted Umans soft-cap requests (#8537)
+2026-08-16	can1357	fix(tui): classified long stalls by CPU time (#8442)
+2026-08-16	can1357	fix(build): selected export dynamic flag by target (#8539)
+2026-08-16	can1357	fix(shell-builtins): skipped replace mode on empty input (#8597)
+2026-08-14	can1357	feat(llm-inference): implemented response cleaning for apple foundation model streams
+2026-08-14	can1357	feat(app): migrated chat UI to external library and integrated daemon auth
+2026-08-14	can1357	feat(chat-ui): introduced host-agnostic immediate-mode chat scene crate
+2026-08-14	can1357	feat(inference): handled credential storage errors and boxed usage reports
+2026-08-14	can1357	feat(tui): introduced packaged asset support and provider logo components
+2026-08-14	can1357	refactor(llm-inference): automated Swift string lifecycle management
+2026-08-14	can1357	test(suite): expanded unit and integration test coverage across application crates
+2026-08-14	can1357	feat(app): introduced setup wizard, envd improvements, and authentication RPC adapters

@@ -21,6 +21,7 @@
 #   ops/grok/x-sweep.sh doctor
 #   ops/grok/x-sweep.sh banter <start> <end> <out-dir> [extra focus...]
 #   ops/grok/x-sweep.sh source <source-id> <start> <end> <out-dir>
+#   ops/grok/x-sweep.sh topic <slug> <start> <end> <out-dir> <topic sentence...>
 #
 # Exit codes: 0 ok, 2 misconfigured, 3 degraded (subscription unavailable).
 set -uo pipefail
@@ -147,9 +148,42 @@ IDENTITY CHECK FIRST: several watched projects share a name with something else.
 Cover both what its own maintainers said and what its users said, and include the critical posts as well as the enthusiastic ones." "$out_dir/$src.raw.md"
 }
 
+# topic: chase one named thread of conversation across the whole window rather
+# than one project or the whole watchlist. For "there was talk on X of ..."
+# leads. Same rules, same record format, same firewall: leads, not receipts.
+cmd_topic() {
+  local slug="${1:?slug}" start="${2:?start}" end="${3:?end}" out_dir="${4:?out dir}"; shift 4
+  local topic="${*:?topic sentence}"
+  mkdir -p "$out_dir"
+  local names
+  names="$(grep -E '^  - id:' "$REPO_ROOT/sources/index.yml" | sed 's/.*id: //' | paste -sd', ' -)"
+  run_sweep "$RULES
+
+$RECORD_FORMAT
+
+WINDOW: $start to $end. Only posts inside it. If the thread clearly began before the window, include the originating post and say so in COVERAGE_NOTE.
+
+TASK: chase one specific thread of conversation on X and report everything substantive in it.
+
+THE THREAD: $topic
+
+Watchlist ids for the frameworks field: $names.
+
+How to work it:
+1. Find the originating post or posts: who first said it, and in what words (gist only, no quoting).
+2. Follow the replies, quote-posts, and follow-ups from the people named and the people arguing with them. Maintainers of the projects involved are the priority; set author_is_maintainer accordingly.
+3. Separate what was claimed (a plan, a repo, a branch, a release, a benchmark) from what was opined. Every claim gets needs_primary_crosscheck true. If anyone linked a repo, commit, PR, branch, or document, put that URL in why_it_matters so it can be verified against the primary source.
+4. Look hard for the counter-read: people saying it is not happening, is misdescribed, is a different project, or does not matter. Those get cuts_against_consensus true.
+5. Check identity: make sure the people and projects are the ones on the watchlist and not a similarly named fork, org, or model. Say what you ruled out.
+6. Report a timeline in COVERAGE_NOTE: first sighting, how it spread, what it turned into, and what you could not reach.
+
+Aim for every substantive post in the thread, not a sample. Ten good records beat thirty thin ones." "$out_dir/topic-$slug.raw.md"
+}
+
 case "${1:-help}" in
   doctor) cmd_doctor ;;
   banter) shift; cmd_banter "$@" ;;
   source) shift; cmd_source "$@" ;;
-  *) sed -n '26,31p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//' ;;
+  topic)  shift; cmd_topic "$@" ;;
+  *) sed -n '20,26p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//' ;;
 esac
