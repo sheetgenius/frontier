@@ -1284,7 +1284,7 @@ export type CitedPerson = {
   avatar?: string;
   personSlug?: string;
   posts: number;
-  citations: { slug: string; title: string; date: string }[];
+  citations: { slug: string; href: string; title: string; date: string }[];
 };
 
 // The who's-who, derived rather than written.
@@ -1297,10 +1297,16 @@ export type CitedPerson = {
 //
 // No biography, no characterisation, no ranking. Just the receipt trail.
 export function listCitedPeople(): CitedPerson[] {
-  const digests = listDigests();
+  // Issues and features both quote people through the same card machinery, so
+  // both count. `href` keeps the citation list honest about where the quote
+  // actually appeared.
+  const pieces = [
+    ...listDigests().map((d) => ({ artifact: d, href: `/digests/${d.slug}/` })),
+    ...listFeatures().map((f) => ({ artifact: f, href: `/features/${f.slug}/` })),
+  ];
   const people = new Map<string, CitedPerson>();
 
-  for (const digest of digests) {
+  for (const { artifact: digest, href } of pieces) {
     const runId = String(digest.data.run_id ?? "");
     if (!runId) continue;
     for (const card of listRunSocialCards(runId)) {
@@ -1319,11 +1325,12 @@ export function listCitedPeople(): CitedPerson[] {
       // Only a verified name is ever shown. Never derived from the handle.
       if (card.displayName && !existing.displayName) existing.displayName = card.displayName;
       existing.posts += 1;
-      if (!existing.citations.some((c) => c.slug === digest.slug)) {
+      if (!existing.citations.some((c) => c.href === href)) {
         existing.citations.push({
           slug: digest.slug,
+          href,
           title: String(digest.data.title ?? digest.slug),
-          date: formatDate(digest.data.window?.end ?? digest.data.last_updated),
+          date: formatDate(digest.data.published ?? digest.data.window?.end ?? digest.data.last_updated),
         });
       }
       people.set(key, existing);
@@ -1347,6 +1354,32 @@ export function listPeople(): MarkdownArtifact[] {
 
 export function getPerson(slug: string): MarkdownArtifact | undefined {
   return listPeople().find((person) => person.slug === slug);
+}
+
+// Features: standalone reported pieces (EDITORIAL.md, "The feature bar").
+//
+// A feature lives at content/features/<slug>.md with frontmatter
+// `bitter.frontier_feature.v0`. It borrows a run directory for its cards and
+// harvest (run_id), exactly as a digest does, so the quotation machinery --
+// [[q:id]], <!--card:id-->, SourceNotes, the contiguous-run check -- is the
+// same code path. Drafts (status other than "published") never render.
+function featureSortKey(f: MarkdownArtifact): number {
+  return toTime(f.data.published) || toTime(f.data.last_updated) || toTime(f.data.window?.end);
+}
+
+export function listFeatures(): MarkdownArtifact[] {
+  const dir = repoPath("content", "features");
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((file) => file.endsWith(".md") && file !== "index.md")
+    .map((file) => readMarkdown(path.join(dir, file)))
+    .filter((feature) => String(feature.data.status ?? "published") === "published")
+    .sort((a, b) => featureSortKey(b) - featureSortKey(a));
+}
+
+export function getFeature(slug: string): MarkdownArtifact | undefined {
+  return listFeatures().find((feature) => feature.slug === slug);
 }
 
 export function listProfiles(): MarkdownArtifact[] {

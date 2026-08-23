@@ -96,6 +96,19 @@ function listDigests() {
     });
 }
 
+function listFeatures() {
+  const dir = path.join(REPO_ROOT, "content", "features");
+  if (!isDir(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith(".md") && f !== "index.md")
+    .map((f) => {
+      const data = readFrontmatter(path.join(dir, f));
+      return { slug: f.replace(/\.md$/, ""), data };
+    })
+    .filter((f) => String(f.data.status ?? "published") === "published");
+}
+
 function listProfiles() {
   const dir = path.join(REPO_ROOT, "content", "profiles");
   if (!isDir(dir)) return [];
@@ -230,6 +243,19 @@ export function cardEntries() {
       title,
       footer: "frontier.bitter.sh",
       footerRight: end ? `Digest | ${end}` : "Digest",
+    });
+  }
+
+  // Features.
+  for (const feature of listFeatures()) {
+    const title = feature.data.title ?? feature.slug;
+    const published = isoDate(feature.data.published);
+    entries.push({
+      ogPath: `features/${feature.slug}`,
+      eyebrow: "FEATURE",
+      title,
+      footer: "frontier.bitter.sh",
+      footerRight: published ? `Feature | ${published}` : "Feature",
     });
   }
 

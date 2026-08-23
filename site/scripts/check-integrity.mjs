@@ -24,6 +24,7 @@ const REPO_ROOT = path.resolve(SITE_DIR, "..");
 const RUNS_DIR = path.join(REPO_ROOT, "runs");
 const PROFILES_DIR = path.join(REPO_ROOT, "content", "profiles");
 const DIGESTS_DIR = path.join(REPO_ROOT, "content", "digests");
+const FEATURES_DIR = path.join(REPO_ROOT, "content", "features");
 const JSONL_FILE = path.join(REPO_ROOT, "data", "frontier_signals.jsonl");
 const SOURCES_INDEX = path.join(REPO_ROOT, "sources", "index.yml");
 const SOURCES_ADJACENT = path.join(REPO_ROOT, "sources", "adjacent.yml");
@@ -772,6 +773,54 @@ if (isDirSafe(DIGESTS_DIR)) {
   }
 }
 
+// --- 4b. Validate features ---
+//
+// A feature borrows a run for its cards and harvest (run_id) like a digest
+// does, names the projects it is about, and carries a published date. The
+// schema is small on purpose; the bar that matters is in EDITORIAL.md and is
+// editorial, not mechanical. What is mechanical is checked here: the id
+// matches the file, the run exists, the sources are on the watchlist, and a
+// draft cannot masquerade as published by leaving status unset with no date.
+if (isDirSafe(FEATURES_DIR)) {
+  const ALLOWED_FEATURE_STATUSES = new Set(["published", "draft"]);
+  for (const file of fs.readdirSync(FEATURES_DIR)) {
+    if (!file.endsWith(".md") || file === "index.md") continue;
+    const filePath = path.join(FEATURES_DIR, file);
+    const data = readMarkdownFrontmatter(filePath).data;
+    const slug = file.replace(/\.md$/, "");
+    const ctx = `feature ${slug}`;
+
+    if (data.schema_version !== "bitter.frontier_feature.v0") {
+      pushIssue({ kind: "feature-schema-version", file: filePath, context: ctx, field: "schema_version", ref: String(data.schema_version), expected: "bitter.frontier_feature.v0", fix: "set schema_version" });
+    }
+    if (data.feature_id !== slug) {
+      pushIssue({ kind: "feature-id-mismatch", file: filePath, context: ctx, field: "feature_id", ref: String(data.feature_id), expected: `the filename slug ${slug}`, fix: "make feature_id and the filename agree" });
+    }
+    const status = String(data.status ?? "published");
+    if (!ALLOWED_FEATURE_STATUSES.has(status)) {
+      pushIssue({ kind: "feature-status-invalid", file: filePath, context: ctx, field: "status", ref: status, expected: "published or draft", fix: "set status to published or draft" });
+    }
+    if (status === "published") {
+      for (const field of ["title", "dek", "published"]) {
+        if (!data[field]) {
+          pushIssue({ kind: "feature-missing-field", file: filePath, context: ctx, field, ref: "(empty)", expected: `a ${field}`, fix: `fill in ${field} or set status: draft` });
+        }
+      }
+      if (data.published && !/^\d{4}-\d{2}-\d{2}/.test(String(data.published instanceof Date ? data.published.toISOString() : data.published))) {
+        pushIssue({ kind: "feature-published-not-iso", file: filePath, context: ctx, field: "published", ref: String(data.published), expected: "YYYY-MM-DD", fix: "use a full ISO date" });
+      }
+    }
+    if (data.run_id && !isDirSafe(path.join(RUNS_DIR, String(data.run_id)))) {
+      pushIssue({ kind: "feature-run-missing", file: filePath, context: ctx, field: "run_id", ref: String(data.run_id), expected: "a directory under runs/", fix: "fix run_id or add the run artifacts" });
+    }
+    for (const sourceId of Array.isArray(data.sources) ? data.sources : []) {
+      if (!sourceRegistry.watchlistIds.has(sourceId)) {
+        pushIssue({ kind: "feature-source-unknown", file: filePath, context: ctx, field: "sources[]", ref: String(sourceId), expected: "an id in sources/index.yml", fix: "fix the id or add the source contract" });
+      }
+    }
+  }
+}
+
 // --- 5. Validate finding `composes:` arrays (amendment 006) ---
 // Each composes id must resolve against watchlist ∪ adjacent.
 // A finding must not list its own `source` in `composes:`.
@@ -966,10 +1015,18 @@ for (const [id, entry] of sourceRegistry.adjacentEntries.entries()) {
 // "still render, so a card is never lost"; the value was computed and never
 // used. This is that promise, enforced.
 {
-  const digestDir = path.join(REPO_ROOT, "content", "digests");
-  if (fs.existsSync(digestDir)) {
-    for (const file of fs.readdirSync(digestDir).filter((f) => f.endsWith(".md") && f !== "index.md")) {
-      const body = fs.readFileSync(path.join(digestDir, file), "utf8");
+  // Issues and features place cards the same way and are checked the same way.
+  const pieceFiles = [];
+  for (const dir of [path.join(REPO_ROOT, "content", "digests"), FEATURES_DIR]) {
+    if (!fs.existsSync(dir)) continue;
+    for (const f of fs.readdirSync(dir).filter((f) => f.endsWith(".md") && f !== "index.md")) {
+      pieceFiles.push(path.join(dir, f));
+    }
+  }
+  {
+    for (const pieceFile of pieceFiles) {
+      const file = path.relative(REPO_ROOT, pieceFile);
+      const body = fs.readFileSync(pieceFile, "utf8");
       const runId = (body.match(/^run_id:\s*(\S+)/m) ?? [])[1];
       if (!runId) continue;
       const cardsDir = path.join(RUNS_DIR, runId, "social-cards");
@@ -1005,7 +1062,7 @@ for (const [id, entry] of sourceRegistry.adjacentEntries.entries()) {
             context: file,
             field: card.id,
             ref: String(card.title ?? card.id),
-            expected: "a [[q:id]] or <!--card:id--> marker in the digest body",
+            expected: "a [[q:id]] or <!--card:id--> marker in the issue or feature body",
             fix: "place the card in the prose, or delete it if it is not being used",
           });
         }
@@ -1029,10 +1086,15 @@ for (const [id, entry] of sourceRegistry.adjacentEntries.entries()) {
     /^sources$/i,
     /^what shipped\b/i,
   ];
-  const digestsDir = path.join(REPO_ROOT, "content", "digests");
-  if (fs.existsSync(digestsDir)) {
-    for (const name of fs.readdirSync(digestsDir).filter((f) => f.endsWith(".md"))) {
-      const file = path.join(digestsDir, name);
+  const pieceFiles = [];
+  for (const dir of [path.join(REPO_ROOT, "content", "digests"), FEATURES_DIR]) {
+    if (!fs.existsSync(dir)) continue;
+    for (const name of fs.readdirSync(dir).filter((f) => f.endsWith(".md") && f !== "index.md")) {
+      pieceFiles.push(path.join(dir, name));
+    }
+  }
+  {
+    for (const file of pieceFiles) {
       const text = fs.readFileSync(file, "utf8");
       const headings = [...text.matchAll(/^## (.+)$/gm)].map((m) => m[1].trim());
       const last = headings[headings.length - 1];

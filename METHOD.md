@@ -87,6 +87,12 @@ distinctions between them are load-bearing.
 - **Person** answers "who is arguing this, and what did they actually say." Like a
   profile it is a dated posture; unlike a profile its subject is a human being,
   which makes the restraints tighter rather than looser.
+- **Feature** is a standalone reported piece about one event or one argument
+  that the weekly cannot hold without bending: a fork leaving its upstream, a
+  maintainer dispute with code on both sides, a design decision whose
+  consequences outrun one window. It has its own URL and date, carries its own
+  receipts and cards, and is read against the primary record like a digest. The
+  weekly links to it and moves on.
 
 The public reader should benefit from this grammar without needing to learn it.
 Findings, schemas, and run vocabulary stay behind the glass until a reader asks

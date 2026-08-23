@@ -38,6 +38,9 @@ attention bottleneck move?
 - The thesis chooses the questions, not the answers. Publish evidence that cuts
   against Bitter's assumptions.
 - Bitter is the disclosed publisher and stays outside the analysis.
+- A story the weekly cannot hold becomes a feature, not a longer weekly. The
+  feature bar in EDITORIAL.md says when a thread earns one and what shape it
+  takes.
 - Public prose leads with what happened, who it affects, what to do, and what it
   means. Pipeline terms such as `finding_id`, harvest, promotion, and
   carry-forward stay in research artifacts.

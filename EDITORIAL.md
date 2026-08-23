@@ -401,6 +401,57 @@ Paragraphs run about 40 to 70 words. Past 130 the prose reads as a wall, and
 uniform paragraph length is the most reliable tell of machine writing. Vary it
 deliberately; a three-word paragraph after a long one is a tool.
 
+## The feature bar
+
+A feature is a standalone reported piece. It exists for the story the weekly
+cannot hold without bending: a fork leaving its upstream, a maintainer dispute
+with code on both sides, a design decision whose consequences outrun one window.
+It has its own URL and its own date. The weekly links to it and moves on.
+
+A thread earns a feature when all three hold:
+
+1. **The primary record can carry it.** A tree, a tag, a diff, a document; not
+   only posts. If the only receipts are statements, it is a wire item.
+2. **The people who matter decide or disagree in public, with receipts.** If
+   nobody with the code has spoken, it is a provider note.
+3. **The consequence reaches operators of more than one tool, or changes a
+   durable architecture question.** If it is one project's changelog, it is a
+   finding.
+
+The reporting body follows the shape LWN.net uses for a feature about an
+open-source dispute, because that shape is already the house evidence stance
+in a different font: the thread is a record of what was said, quoted verbatim
+and linked and never promoted into a fact about the code; then the code is
+read. The close is where Frontier differs from LWN: the two house questions get
+asked of the case and answered, and the answer may cut against the thesis.
+
+The shape, in order, and the order is the argument:
+
+    lede: the one concrete event, first sentence, with its receipt
+    -> what a cold reader needs, one paragraph
+    -> what was said, in order: the thread, dated, principals quoted via cards
+    -> what the tree says: what the primary record confirms and does not
+    -> the dispute, settled line by line where a receipt settles it, and
+       left open where it does not
+    -> what would settle the rest: the evidence that would, named
+    -> the lens: Bitter Lesson Maxing and Amdahl Maxing asked of this case
+    -> closing couplet
+
+Length runs 1,200 to 2,000 words. A feature has no Operator Brief block; the
+action for an affected reader sits inside the prose, in one place, introduced
+plainly ("If you run X"). Maintainers' words carry the weight; operator voices
+are there to show the consequence, not to pad the chorus. Every quoted post is
+a card with a verdict, under the same capture rule as a digest, and every person
+quoted is under the person bar whether or not they have a page. Both halves
+apply: a feature that only finds fault is the incomplete version. The subjects
+can correct it; the correction path is the same as for any issue.
+
+A feature is not a second digest (one argument, no watchlist tour), not a
+profile of a person (no conduct, no motive), and not a prosecution (steelman
+before you qualify). The test is the one from the person bar, widened: would the
+people in it recognise their own position, including the parts they dispute,
+and would an operator of either tool know what to do by the end.
+
 ## The profile bar
 
 A profile is a dated operator posture, not a cumulative notebook.

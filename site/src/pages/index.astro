@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import { GH_REPO_URL } from "../lib/site";
-import { canonicalRunForDigest, formatDate, listAcceptedSignals, listDigests, listProfiles, logLinkGraphReportOnce, sourceLabel } from "../lib/frontier";
+import { canonicalRunForDigest, formatDate, listAcceptedSignals, listDigests, listFeatures, listProfiles, logLinkGraphReportOnce, sourceLabel } from "../lib/frontier";
 import { marked } from "marked";
 
 logLinkGraphReportOnce();
@@ -18,6 +18,12 @@ logLinkGraphReportOnce();
 // expecting to be read.
 const digests = listDigests();
 const [latest, ...earlier] = digests;
+// A feature is a standalone piece with its own date; the front page shows the
+// newest one or two under the lead issue, never in place of it.
+const features = listFeatures().slice(0, 2);
+// The series label comes from the issue, not from the template. A three-day
+// Brief is not "this week"; the digest page already knew that and the front
+// door did not.
 const canonicalRun = latest ? canonicalRunForDigest(latest) : undefined;
 const signals = listAcceptedSignals().slice(0, 6);
 const profiles = listProfiles();
@@ -65,7 +71,7 @@ const watchlist = profiles
       <section class="measure lead-issue">
         <p class="small-caps eyebrow">
           {formatDate(latest.data.window?.start)} to {formatDate(latest.data.window?.end)}
-          {" / "}This week in agentic harnesses
+          {" / "}{latest.data.series === "Bitter Frontier Brief" ? "Bitter Frontier Brief" : "This week in agentic harnesses"}
         </p>
         <a href={`/digests/${latest.slug}/`} class="no-underline">
           <h1 class="lead-issue-title">{latest.data.title}</h1>
@@ -107,6 +113,28 @@ const watchlist = profiles
         )}
         <p class="mt-5 font-mono text-sm text-muted">
           <a href={`/digests/${latest.slug}/`} class="hover:underline">Read the full issue -&gt;</a>
+        </p>
+      </section>
+    )
+  }
+
+  {
+    features.length > 0 && (
+      <section class="measure rule py-8">
+        <p class="small-caps eyebrow">Features</p>
+        <ul class="earlier-issues">
+          {features.map((feature) => (
+            <li>
+              <a href={`/features/${feature.slug}/`} class="earlier-issue-link">
+                <span class="earlier-issue-title">{feature.data.title}</span>
+              </a>
+              <span class="earlier-issue-date">{formatDate(feature.data.published)}</span>
+              {feature.data.dek && <p class="earlier-issue-dek">{feature.data.dek}</p>}
+            </li>
+          ))}
+        </ul>
+        <p class="mt-5 font-mono text-sm text-muted">
+          <a href="/features/" class="hover:underline">All features -&gt;</a>
         </p>
       </section>
     )

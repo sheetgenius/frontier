@@ -1,5 +1,5 @@
 import rss from "@astrojs/rss";
-import { listDigests, listSignals } from "../lib/frontier";
+import { listDigests, listFeatures, listSignals } from "../lib/frontier";
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../lib/site";
 
 const HTML_ENTITIES: Record<string, string> = {
@@ -55,6 +55,13 @@ export function GET() {
     content: digest.html,
     link: `/digests/${digest.slug}/`,
   }));
+  const featureItems = listFeatures().map((feature) => ({
+    title: feature.data.title ?? feature.slug,
+    pubDate: new Date(feature.data.published ?? feature.data.last_updated ?? "2026-01-01"),
+    description: feature.data.dek ?? firstParagraph(feature.html),
+    content: feature.html,
+    link: `/features/${feature.slug}/`,
+  }));
   const correctionItems = listSignals()
     .filter((signal) => signal.status === "withdrawn" && signal.correction?.date)
     .map((signal) => {
@@ -68,7 +75,7 @@ export function GET() {
         link: `/signals/${signal.id}/`,
       };
     });
-  const items = [...digestItems, ...correctionItems]
+  const items = [...digestItems, ...featureItems, ...correctionItems]
     .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
   return rss({
     title: SITE_TITLE,

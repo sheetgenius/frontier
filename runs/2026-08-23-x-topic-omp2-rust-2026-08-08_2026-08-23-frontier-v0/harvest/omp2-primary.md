@@ -10,10 +10,11 @@ GitHub on 2026-08-23 with `gh api`. Pins are given so a later reader can re-fetc
   (2026-08-23T08:54:59Z). https://github.com/can1357/oh-my-pi/tree/omp2
 - `compare/main...omp2` returns "No common ancestor between main and omp2" (HTTP 404).
   omp2 is an orphan history, not a fork point off the TypeScript tree.
-- 453 commits, first is `9c85c97b` "Initial commit" 2026-08-08T07:04:58Z. Every one of
-  the most recent 300 is authored `can1357` (see `omp2-commits-latest-300.tsv`). Daily
-  counts in that sample: 08-14: 8, 08-16: 28, 08-19: 29, 08-20: 30, 08-21: 17,
-  08-22: 165, 08-23: 23.
+- 453 commits, first is `9c85c97b` "Initial commit" 2026-08-08T07:04:58Z. All 453 are
+  authored `can1357` (author name and GitHub login; re-walked at the pin after the
+  feature was drafted). Daily counts: 08-08: 1, 08-11: 29, 08-12: 1, 08-13: 30,
+  08-14: 100, 08-16: 28, 08-19: 29, 08-20: 30, 08-21: 17, 08-22: 165, 08-23: 23.
+  `omp2-commits-latest-300.tsv` is the first sample.
 - The 2026-08-08 start date matches the sweep's "started about two weeks earlier"
   (posted 2026-08-21). The single-author history matches "Can doing the work alone."
 

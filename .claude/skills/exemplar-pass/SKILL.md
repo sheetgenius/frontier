@@ -104,7 +104,8 @@ fails one.
 ### 1. Sweep (cold read)
 Read the public surface the way a stranger meets it: rendered site order --
 index, latest digest top to bottom (operator brief first, `not_promoted`
-last), profiles, archive. Score every artifact against the bar. Write the
+last), features (each is judged against the feature bar in `EDITORIAL.md`),
+profiles, archive. Score every artifact against the bar. Write the
 ranked worst-first ledger to `runs/<date>-exemplar-pass-<scope>-frontier-v0/ledger.md`,
 quoting each defect (the exact sentence, the exact block). Name the current
 exemplars too -- the bar is defined by real specimens, not taste in the

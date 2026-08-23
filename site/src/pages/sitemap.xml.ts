@@ -1,6 +1,7 @@
 import {
   formatDate,
   listDigests,
+  listFeatures,
   listPeople,
   listProfiles,
   listSignalSourceSlugs,
@@ -22,6 +23,7 @@ const staticEntries: SitemapEntry[] = [
   { path: "/bitter-lesson/", priority: "0.9", changefreq: "monthly", lastmod: gitRevisionDate("site/src/pages/bitter-lesson/index.astro", "2026-07-12") },
   { path: "/amdahls-law/", priority: "0.9", changefreq: "monthly", lastmod: gitRevisionDate("site/src/pages/amdahls-law/index.astro", "2026-07-12") },
   { path: "/digests/", priority: "0.8", changefreq: "weekly", lastmod: gitRevisionDate("site/src/pages/digests/index.astro", "2026-07-12") },
+  { path: "/features/", priority: "0.8", changefreq: "weekly", lastmod: gitRevisionDate("site/src/pages/features/index.astro", "2026-08-23") },
   { path: "/profiles/", priority: "0.8", changefreq: "weekly", lastmod: gitRevisionDate("site/src/pages/profiles/index.astro", "2026-07-12") },
   { path: "/signals/", priority: "0.7", changefreq: "weekly", lastmod: gitRevisionDate("site/src/pages/signals/index.astro", "2026-07-12") },
   { path: "/people/", priority: "0.7", changefreq: "weekly", lastmod: gitRevisionDate("site/src/pages/people/index.astro", "2026-07-12") },
@@ -66,6 +68,18 @@ export function GET() {
   // the first thing a stranger met from search. Listing a noindex page in a
   // sitemap also asks a crawler to do two contradictory things. The /findings/
   // index stays, so the apparatus is still browsable.
+
+  for (const feature of listFeatures()) {
+    entries.set(`/features/${feature.slug}/`, {
+      path: `/features/${feature.slug}/`,
+      priority: "0.9",
+      changefreq: "monthly",
+      lastmod: gitRevisionDate(
+        feature.relativePath,
+        formatDate(feature.data.last_updated ?? feature.data.published),
+      ),
+    });
+  }
 
   for (const person of listPeople()) {
     entries.set(`/people/${person.slug}/`, {

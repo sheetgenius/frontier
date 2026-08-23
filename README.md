@@ -145,6 +145,8 @@ Use the other objects according to the job:
 
 - [`content/digests/`](./content/digests/) contains weekly digests and clearly
   labeled special briefs.
+- [`content/features/`](./content/features/) contains standalone reported
+  pieces on one event or argument the weekly cannot hold.
 - [`content/profiles/`](./content/profiles/) answers what each provider is, as of
   the date stated on the profile.
 - Signal pages hold atomic, citeable operator judgments.

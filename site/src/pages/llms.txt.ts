@@ -5,6 +5,7 @@ import {
   formatDate,
   listAcceptedSignals,
   listDigests,
+  listFeatures,
   listPeople, listProfiles,
   listSources,
   sourceLabel,
@@ -13,6 +14,7 @@ import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../lib/site";
 
 export const GET: APIRoute = () => {
   const digests = listDigests();
+  const features = listFeatures();
   const profiles = listProfiles();
   const people = listPeople();
   const signals = listAcceptedSignals();
@@ -38,6 +40,7 @@ export const GET: APIRoute = () => {
   lines.push("## How to read this site");
   lines.push("");
   lines.push("- **Digests** advance declared publication windows; one-day or live-window editions are labeled as special briefs. Each has an Operator Brief block summarizing what to try, upgrade, watch, or treat as uncertain.");
+  lines.push("- **Features** at /features/<slug>/ are standalone reported pieces on one event or one argument the weekly cannot hold: what was said, in order and verbatim; what the code says; what would settle the rest. Same receipt rules as an issue; no Operator Brief.");
   lines.push("- **Signals** are atomic accepted judgments. Each signal has a stable URL at /signals/<id>/ with sources, finding back-links, digest back-links, accessibility_consequence and security_consequence blocks where applicable, and a section tag.");
   lines.push("- **Sections** are the three durable editorial lanes - see below.");
   lines.push("- **Profiles** are dated project reads, not claims of evergreen state. Each has an Operator Stance band: use it for / avoid it for / watch next.");
@@ -74,6 +77,7 @@ export const GET: APIRoute = () => {
   lines.push("## Schemas");
   lines.push("");
   lines.push("- `bitter.frontier_digest.v0` - digest frontmatter (window, run_id, top_signal_ids, operator_brief, sources)");
+  lines.push("- `bitter.frontier_feature.v0` - feature frontmatter (feature_id, title, dek, published, window, run_id, sources, what_would_settle_it)");
   lines.push("- `bitter.frontier_signals.v0` - accepted signal (id, title, source, finding_ids, why_action_bearing, section, accessibility_impact, accessibility_consequence, security_impact, security_change, security_consequence)");
   lines.push("- `bitter.frontier_finding.v0` - source-anchored observation (finding_id, source, evidence[], confidence, actionability)");
   lines.push("- `bitter.frontier_profile.v0` - dated project profile (claims[], stance, posture_basis)");
@@ -82,7 +86,7 @@ export const GET: APIRoute = () => {
 
   lines.push("## Feeds");
   lines.push("");
-  lines.push(`- [RSS feed](${SITE_URL}/rss.xml) - published digests with full HTML content plus correction notices`);
+  lines.push(`- [RSS feed](${SITE_URL}/rss.xml) - published digests and features with full HTML content plus correction notices`);
   lines.push(`- [Sitemap](${SITE_URL}/sitemap.xml) - all canonical URLs`);
   lines.push("");
 
@@ -93,6 +97,16 @@ export const GET: APIRoute = () => {
     lines.push(`- [${digest.data.title ?? digest.slug}](${SITE_URL}/digests/${digest.slug}/) - published ${end}`);
   }
   lines.push("");
+
+  if (features.length > 0) {
+    lines.push("## Features");
+    lines.push("");
+    for (const feature of features.slice(0, 8)) {
+      const dek = String(feature.data.dek ?? "").replace(/<[^>]+>/g, "");
+      lines.push(`- [${feature.data.title ?? feature.slug}](${SITE_URL}/features/${feature.slug}/) - published ${formatDate(feature.data.published)}${dek ? ` - ${dek}` : ""}`);
+    }
+    lines.push("");
+  }
 
   lines.push("## Project profiles");
   lines.push("");

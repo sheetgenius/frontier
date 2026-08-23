@@ -469,3 +469,33 @@ After:
 
 Why it works: the phrase arrives after a specific before-and-after mechanism.
 It adds color to an argument the reader could already evaluate without it.
+
+## Reference publications for the feature unit
+
+Added 2026-08-23, when the feature unit was stood up
+([EDITORIAL.md](../EDITORIAL.md), "The feature bar"). The writer studies above
+are about sentences; this note is about the shape of a standalone reported
+piece and how it is published.
+
+**LWN.net feature articles** are the model for the reporting body. The fit is
+structural, not stylistic: LWN reads mailing lists the way Frontier reads X, as
+a record of what was said, quoted and linked and never promoted into a fact
+about the code; then it reads the patch. Its features about open-source
+direction disputes run event, background, the thread in sequence with the
+principals quoted at length, the technical reality check, and a flat closing
+judgment. Frontier borrows that order and that quoting discipline. It does not
+borrow LWN's colorlessness or its reluctance to say what a dispute means for
+the field; the house wants a pulse and a lens.
+
+**Stratechery** is borrowed for exactly one habit: reading each event through
+standing concepts the publication itself defined, named on first use and
+linked to the canonical explainer. That is what EDITORIAL.md already mandates
+for Bitter Lesson Maxing and Amdahl Maxing, so a feature closes on those two
+questions asked of the case. Nothing else is borrowed: not the length, not the
+theory-before-evidence order.
+
+Considered and not used as the primary model: The Pragmatic Engineer (right
+audience, but interview-led where we are tree-led); Ars Technica and The
+Register (the genre, with more color than the year-later embarrassment test
+allows); The Economist (argument-first house voice, silent on quoting threads
+or reading diffs).

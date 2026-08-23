@@ -10,6 +10,7 @@ import { SITE_IMAGE, SITE_URL } from "./site";
 //   /amdahls-law/     -> "amdahls-law"
 //   /corrections/     -> "corrections"
 //   /digests/<slug>/  -> "digests/<slug>"
+//   /features/<slug>/ -> "features/<slug>"
 //   /profiles/<slug>/ -> "profiles/<slug>"
 //   /signals/<id>/    -> "signals/<id>"
 // Index pages and every other route fall through to the static card.
@@ -23,7 +24,7 @@ function ogPathForUrlPath(pathname: string): string | null {
     return p.slice(1);
   }
 
-  const m = /^\/(digests|profiles|signals)\/([^/]+)$/.exec(p);
+  const m = /^\/(digests|features|profiles|signals)\/([^/]+)$/.exec(p);
   if (m) {
     const [, kind, slug] = m;
     // Detail pages only - never the section index (handled by the regex above,

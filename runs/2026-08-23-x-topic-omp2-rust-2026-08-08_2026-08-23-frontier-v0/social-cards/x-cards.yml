@@ -1,0 +1,308 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-08-23-x-topic-omp2-rust-2026-08-08_2026-08-23-frontier-v0
+note: >
+  Every verbatim was re-fetched by URL in a capture pass given no expected text
+  (social/capture.raw.md). Capture reported 16 blocks, 1 unavailable (the thread
+  root, which is therefore not a card). Inline fragments are sliced with
+  ops/social/slice-quote.mjs, never retyped.
+cards:
+  - id: can-look-at-the-omp2-branch
+    title: "Look at the omp2 branch"
+    kind: voice
+    date: 2026-08-14
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [omp]
+    authors: ["_can1357"]
+    display_name: "Can Bölük"
+    source_urls:
+      - https://x.com/_can1357/status/2088291293394837861
+    verbatim: |
+      ask it to look at the omp2 branch, that was always there haha, although I'd assume it will miss why we're doing it.
+
+      Very long "How to design a harness 101" soon ™️
+    inline: "ask it to look at the omp2 branch, that was always there haha"
+    summary: >
+      The OMP maintainer pointing at the branch on 14 August and promising a design essay.
+    verdict: >
+      Voice. We report that he pointed at the branch and teased an essay. The branch is verified in the tree (orphan, first commit 2026-08-08); the essay had not appeared by 2026-08-23.
+
+  - id: can-omp2-pi-not-the-limiting-factor
+    title: "Pi is not the limiting factor"
+    kind: voice
+    date: 2026-08-17
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [omp, pi-coding-agent]
+    authors: ["_can1357"]
+    display_name: "Can Bölük"
+    source_urls:
+      - https://x.com/_can1357/status/2089358681171182043
+    verbatim: |
+      like compare omp source vs. omp2 branch, both are completely agent written, omp2 is significantly cleaner because Pi is not the limiting factor and this is a DSL https://t.co/Bp29v7EdCJ instead of a TS data type filled during the runtime because I knew it was necessary beforehand
+    inline: "omp2 is significantly cleaner because Pi is not the limiting factor"
+    summary: >
+      The maintainer's own reason for the rewrite, three days later: the fork's design was constrained by the upstream.
+    verdict: >
+      Voice with a checkable half. 'Completely agent written' is his description; we do not verify it. The linked DSL path exists under crates/catalog on the branch. The claim that Pi limited the design is the argument the Pi maintainers later dispute.
+
+  - id: can-omp2-has-to-wait-blob-broker
+    title: "omp2 waits for a blob-broker"
+    kind: claim
+    date: 2026-08-21
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [omp]
+    authors: ["_can1357"]
+    display_name: "Can Bölük"
+    source_urls:
+      - https://x.com/_can1357/status/2090591535628706092
+    verbatim: |
+      omp2's gonna have to wait, omp blob-broker tmw
+    inline: "omp2's gonna have to wait, omp blob-broker tmw"
+    summary: >
+      The maintainer delaying omp2 for other OMP work on 21 August.
+    verdict: >
+      Claim about sequencing, checked and not confirmed: no 'blob' or 'broker' appears in the v18.0.0 release body; main has an auth-broker commit the next day. We report the delay; we do not equate the two.
+
+  - id: olek-pi-completely-deprecated
+    title: "Pi is being completely deprecated"
+    kind: claim
+    date: 2026-08-21
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [omp, pi-coding-agent]
+    authors: ["oleksoleksoleks"]
+    display_name: "Olek"
+    source_urls:
+      - https://x.com/oleksoleksoleks/status/2090933443483881566
+    verbatim: |
+      Pi's being completely deprecated. The Bun runtime is being ripped out in lieu of CPython
+    inline: "Pi's being completely deprecated. The Bun runtime is being ripped out in lieu of CPython"
+    summary: >
+      The public origin of the story, from an OMP team member, 21 August.
+    verdict: >
+      Claim about OMP's plan. Checked against the branch: the TypeScript tree is absent at the omp2 tip and crates/py is an embedded CPython runtime. 'Deprecated' describes the fork's own Pi layer; it says nothing about earendil-works/pi, which is unchanged.
+
+  - id: olek-pi-had-a-lot-of-problems
+    title: "Pi had a lot of problems"
+    kind: claim
+    date: 2026-08-21
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [pi-coding-agent, omp]
+    authors: ["oleksoleksoleks"]
+    display_name: "Olek"
+    source_urls:
+      - https://x.com/oleksoleksoleks/status/2090923286892892518
+    verbatim: |
+      Pi had a lot of problems -- namely the reliance on Bun + the way it did plugins, the poor sandboxing/trust model, and how it wasn't designed for remote workspaces in mind
+    inline: "Pi had a lot of problems -- namely the reliance on Bun + the way it did plugins, the poor sandboxing/trust model, and how it wasn't designed for remote workspaces in mind"
+    summary: >
+      The three reasons given for leaving Pi, as stated by an OMP team member.
+    verdict: >
+      Claim about upstream Pi, adjudicated: Pi's npm channel declares engines.node >=22.19.0 and uses Bun only in an optional compiled-binary build; the Bun dependency is OMP's (packageManager bun@1.4.0). The trust-model and remote-workspace claims are design opinions, disputed by the Pi authors below, and not settled by any receipt we hold.
+
+  - id: olek-two-weeks-not-backwards-compatible
+    title: "Two weeks in, not backwards compatible"
+    kind: claim
+    date: 2026-08-21
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [omp]
+    authors: ["oleksoleksoleks"]
+    display_name: "Olek"
+    source_urls:
+      - https://x.com/oleksoleksoleks/status/2090947411581796564
+    verbatim: |
+      It was started 2 weeks ago; and right now the goal is to get Pi and Bun out as quickly as possible -- because all of the core work has been paused, and we're racking up PRs/fixes that need to be pushed
+
+      It won't be backwards compatible on the plugins/extensions side -- everything will need to be ported because TS/Bun is being replaced with CPython
+
+      User-facing behavior should be as close to 1-to-1 as possible. There are 15k text lines of omp features to port, but we'll be dogfooding
+
+      WASM should be able to be added on as a future backend without issue -- and you're free to push a PR once Omp2 is out
+    inline: "It was started 2 weeks ago; and right now the goal is to get Pi and Bun out as quickly as possible -- because all of the core work has been paused, and we're racking up PRs/fixes that need to be pushed"
+    summary: >
+      The most specific statement of the plan: timing, why now, plugin compatibility, and the port that remains.
+    verdict: >
+      Claim, partly checked. First omp2 commit is 2026-08-08, thirteen days before this post; the branch has one author. 'Core work paused' and '15k text lines to port' are not checkable from outside; treat them as the team's own description.
+
+  - id: olek-python-for-plugins-rust-core
+    title: "Python for plugins, Rust for the core"
+    kind: claim
+    date: 2026-08-22
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [omp]
+    authors: ["oleksoleksoleks"]
+    display_name: "Olek"
+    source_urls:
+      - https://x.com/oleksoleksoleks/status/2090964492439929058
+    verbatim: |
+      The Python runtime is for the plugin system -- the core omp will be Rust. The speed + memory footprint improvements should be self-explanatory
+    inline: "The Python runtime is for the plugin system -- the core omp will be Rust"
+    summary: >
+      The architecture split, answered to a skeptic.
+    verdict: >
+      Claim, confirmed in shape by the tree: a Rust workspace with an embedded CPython crate for extensions. The speed and memory gains are asserted, not measured; nothing has shipped to measure.
+
+  - id: graykevinb-is-this-mainline-omp
+    title: "Is this mainline omp?"
+    kind: voice
+    date: 2026-08-21
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [omp]
+    authors: ["graykevinb"]
+    display_name: "Kevin Gray"
+    source_urls:
+      - https://x.com/graykevinb/status/2090911436507693097
+    verbatim: |
+      sounds cool. Omp is great its just the startup time and ram use is brutal.
+
+      Is this mainline omp? Cuz most of it was already omp
+    inline: "Is this mainline omp? Cuz most of it was already omp"
+    summary: >
+      An operator's first question, which is the right one.
+    verdict: >
+      Voice. The question is answered by the tree: omp2 is an orphan branch, not mainline, and mainline already ships Rust natives, which is why the question arises.
+
+  - id: transpiracy-breaking-plugin-compat
+    title: "Breaking plugin compat will alienate users"
+    kind: voice
+    date: 2026-08-22
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [omp]
+    authors: ["transpiracy"]
+    source_urls:
+      - https://x.com/transpiracy/status/2090974440834343293
+    verbatim: |
+      sounds like poor extensibility (native boundary) and worse plugin performance (V8 / JSC run circles around CPython)
+
+      probs a sign i should move to opencode2, sigh. rust is a wise choice but breaking plugin compat is just going to alienate users
+    inline: "rust is a wise choice but breaking plugin compat is just going to alienate users"
+    summary: >
+      The exit case, stated by someone who likes the language choice.
+    verdict: >
+      Voice. We report the position. Whether CPython plugins are slower than V8 ones for this workload is not something either side has measured in public.
+
+  - id: erdal-pi-with-ssh-core-tools
+    title: "Pi with the core tools rewritten over ssh"
+    kind: voice
+    date: 2026-08-22
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [pi-coding-agent]
+    authors: ["ErdalToprak"]
+    display_name: "Erdal"
+    source_urls:
+      - https://x.com/ErdalToprak/status/2091087596642328866
+    verbatim: |
+      I have Pi (@pidotdev @badlogicgames) with the core tools rewritten with ssh so that the agent can stay local and transparently work on any sandbox 
+
+      At most it’s an architecture challenge but saying Pi isn’t designed for X is just bad faith
+    inline: "saying Pi isn’t designed for X is just bad faith"
+    summary: >
+      A Pi operator describing the remote-workspace setup he already runs.
+    verdict: >
+      Voice. We report that he runs it; we have not inspected his setup. It is the counter-example to the remote-workspace claim above.
+
+  - id: mario-pi-has-no-dependency-on-bun
+    title: "Pi has no dependency on Bun"
+    kind: claim
+    date: 2026-08-22
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [pi-coding-agent, omp]
+    authors: ["badlogicgames"]
+    display_name: "Mario Zechner"
+    source_urls:
+      - https://x.com/badlogicgames/status/2091099037629866446
+    verbatim: |
+      can we not do the "bash the others" shit? pi has no dependency on Bun what so ever. the sandboxing/trust model is what you make it, as explained everywhere in the docs, and "remote workspace" is pretty simple to do if you need it. @_can1357 let's not, okay?
+    inline: "pi has no dependency on Bun what so ever"
+    summary: >
+      The Pi author's reply to the reasons given for leaving.
+    verdict: >
+      Claim, checked: correct for the channel operators install. Pi's npm package runs on Node; Bun appears only in Pi's optional compiled-binary build. The trust-model and remote-workspace halves are his design position, stated as such.
+
+  - id: can-not-associated
+    title: "We're not associated"
+    kind: voice
+    date: 2026-08-22
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [omp, pi-coding-agent]
+    authors: ["_can1357"]
+    display_name: "Can Bölük"
+    source_urls:
+      - https://x.com/_can1357/status/2091100053171519995
+    verbatim: |
+      we're not associated sir, i'm against trust model anyway
+    inline: "we're not associated sir, i'm against trust model anyway"
+    summary: >
+      The OMP maintainer uncoupling the fork from its upstream, in one line.
+    verdict: >
+      Voice. We report the statement. The Cargo metadata on the branch names Stencil Labs, Inc. and a non-public stencil-hq/omp repository, which is the only receipt we have about who the rewrite belongs to.
+
+  - id: armin-not-going-to-port-pi-to-rust
+    title: "We are not going to port Pi to Rust"
+    kind: claim
+    date: 2026-08-22
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [pi-coding-agent]
+    authors: ["mitsuhiko"]
+    display_name: "Armin Ronacher ⇌"
+    source_urls:
+      - https://x.com/mitsuhiko/status/2091185628922757259
+    verbatim: |
+      I don't think we're going to port Pi to Rust, because we need a runtime language for the extensibility but I think once the new harness is here we might be a bit more adventurous with the UI layer at least.
+    inline: "I don't think we're going to port Pi to Rust, because we need a runtime language for the extensibility"
+    summary: >
+      The Pi maintainer closing the other reading of the story.
+    verdict: >
+      Claim about Pi's plan, consistent with the tree: zero Rust files on Pi main or dev at 2026-08-23. It is a statement of intent, not a guarantee.
+
+  - id: armin-pi-was-never-small
+    title: "Pi was never small by code"
+    kind: voice
+    date: 2026-08-22
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [pi-coding-agent]
+    authors: ["mitsuhiko"]
+    display_name: "Armin Ronacher ⇌"
+    source_urls:
+      - https://x.com/mitsuhiko/status/2091210687091491308
+    verbatim: |
+      Pi was never small by code. Pi is small in that it's lightweight in context usage and out of the box workflow invasiveness. We will not change that. We're going to make a longer post into the why for the new harness.
+    inline: "Pi was never small by code. Pi is small in that it's lightweight in context usage and out of the box workflow invasiveness"
+    summary: >
+      What 'small' means to the Pi maintainers, and the promise attached to the new harness.
+    verdict: >
+      Voice. We report the definition and the promise. The new harness is on Pi's dev branch and not in a tag; see the Pi profile.
+
+  - id: benvargas-deleted-omp-ahead-of-omp2
+    title: "Deleted it today ahead of omp2"
+    kind: voice
+    date: 2026-08-22
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [omp, pi-coding-agent]
+    authors: ["benvargas"]
+    display_name: "Ben Vargas"
+    source_urls:
+      - https://x.com/benvargas/status/2091279099436417197
+    verbatim: |
+      The bigger question... omp is ripping out pi and rewriting in rust... will you still run it? should it even be called oh-my-pi at that point?
+
+      I actually don't want such an opinionated and completely custom base... I don't really use omp much, but deleted it today ahead of omp2.
+    inline: "deleted it today ahead of omp2"
+    summary: >
+      An operator for whom the shared Pi base was the point.
+    verdict: >
+      Voice. We report the decision and the question about the name. One operator is not a trend; it is the clearest statement of what the fork's Pi-shaped value was to some of its users.
+

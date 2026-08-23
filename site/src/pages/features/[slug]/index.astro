@@ -1,0 +1,121 @@
+---
+import Base from "../../../layouts/Base.astro";
+import FrontierLens from "../../../components/FrontierLens.astro";
+import SocialPostEmbed from "../../../components/SocialPostEmbed.astro";
+import SourceNotes from "../../../components/SourceNotes.astro";
+import { metaDescription } from "../../../lib/seo";
+import { gitRevisionDate } from "../../../lib/revision";
+import { GH_BLOB_BASE } from "../../../lib/site";
+import { formatDate, getFeature, listFeatures, listProfiles, listRunSocialCards, renderInlineQuotes, sourceLabel } from "../../../lib/frontier";
+
+// A feature is a standalone reported piece (EDITORIAL.md, "The feature bar").
+// It shares the quotation machinery with an issue -- cards from its run,
+// [[q:id]] inline, <!--card:id--> featured, SourceNotes at the foot -- and
+// differs in what it does not carry: no Operator Brief, no signal list, no
+// watchlist tour. One argument, its receipts, and the lens at the end.
+export function getStaticPaths() {
+  return listFeatures().map((feature) => ({ params: { slug: feature.slug } }));
+}
+
+const feature = getFeature(Astro.params.slug!);
+if (!feature) throw new Error("Feature not found");
+const d = feature.data;
+
+const profileMap = new Map(listProfiles().map((p) => [p.slug, p]));
+const coveredProfiles = (d.sources ?? []).map((id: string) => profileMap.get(id)).filter(Boolean);
+const socialCards = d.run_id ? listRunSocialCards(d.run_id) : [];
+
+const modifiedDate = gitRevisionDate(feature.relativePath, d.last_updated ?? d.published ?? "2026-01-01");
+const description = metaDescription(d.dek, d.summary, `${d.title}: a Bitter Frontier feature.`);
+const keywords = Array.from(new Set([
+  "AI coding agents",
+  "agent harnesses",
+  ...(d.sources ?? []).map((id: string) => sourceLabel(id)),
+]));
+
+const bodyHtml = renderInlineQuotes(feature.html.replace(/^<h1[^>]*>.*?<\/h1>\s*/s, ""), socialCards);
+
+// Same interleave as an issue: split on <!--card:id--> and render the real
+// component where the author placed it.
+const cardById = new Map(socialCards.map((c: any) => [c.id, c]));
+const bodySegments: { html: string; card?: any }[] = [];
+{
+  const parts = bodyHtml.split(/<!--\s*card:([a-z0-9-]+)\s*-->/i);
+  for (let i = 0; i < parts.length; i += 2) {
+    const id = parts[i + 1];
+    bodySegments.push({ html: parts[i], card: id ? cardById.get(id) : undefined });
+  }
+}
+
+const settle: string[] = Array.isArray(d.what_would_settle_it) ? d.what_would_settle_it : [];
+---
+
+<Base
+  title={`${d.title} | Bitter Frontier`}
+  description={description}
+  publishedDate={d.published}
+  modifiedDate={modifiedDate}
+  articleSection="Bitter Frontier feature"
+  authorName="Michael Ruescher"
+  keywords={keywords}
+>
+  <article class="measure py-10">
+    <div class="small-caps text-muted">
+      Feature / Published {formatDate(d.published)}
+    </div>
+    <h1 class="issue-title mt-3">{d.title}</h1>
+    {d.dek && <p class="lead-issue-dek">{d.dek}</p>}
+    <p class="issue-meta">
+      By <a href="/people/ruemic/">Michael Ruescher</a> / revised {modifiedDate}
+      {d.window?.start && d.window?.end && (
+        <> / reporting window {formatDate(d.window.start)} to {formatDate(d.window.end)}</>
+      )}
+    </p>
+
+    <div class="prose-frontier mt-7">
+      {bodySegments.map((seg) => (
+        <>
+          <Fragment set:html={seg.html} />
+          {seg.card && <SocialPostEmbed card={seg.card} />}
+        </>
+      ))}
+    </div>
+
+    {settle.length > 0 && (
+      <aside class="feature-settle mt-9">
+        <p class="small-caps text-muted">What would settle it</p>
+        <ul>
+          {settle.map((item) => (
+            <li set:html={item} />
+          ))}
+        </ul>
+      </aside>
+    )}
+
+    <SourceNotes cards={socialCards} />
+
+    {coveredProfiles.length > 0 && (
+      <div class="rule mt-9 pt-5">
+        <p class="small-caps text-muted">Projects in this feature</p>
+        <div class="mt-3 flex flex-wrap gap-3">
+          {coveredProfiles.map((profile: any) => (
+            <a href={`/profiles/${profile.slug}/`} class="font-mono text-sm no-underline hover:underline text-[var(--color-bitter)]">
+              {sourceLabel(profile.slug)}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="rule mt-9 pt-5">
+      <p class="font-mono text-sm text-muted">
+        <a href="/features/">All features</a> /
+        <a href={`${GH_BLOB_BASE}/${feature.relativePath}`}>Source of this page</a>
+        {d.run_id && (
+          <> / <a href={`${GH_BLOB_BASE}/runs/${d.run_id}/`}>Research artifacts</a></>
+        )}
+      </p>
+    </div>
+    <FrontierLens />
+  </article>
+</Base>

@@ -1,0 +1,54 @@
+---
+import Base from "../../layouts/Base.astro";
+import { SITE_URL } from "../../lib/site";
+import { formatDate, listFeatures, sourceLabel } from "../../lib/frontier";
+
+const features = listFeatures();
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Bitter Frontier features",
+  itemListElement: features.slice(0, 20).map((feature, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: feature.data.title ?? feature.slug,
+    url: new URL(`/features/${feature.slug}/`, SITE_URL).toString(),
+  })),
+};
+---
+
+<Base
+  title="Features | Bitter Frontier"
+  description="Standalone reported pieces on the stories the weekly cannot hold: forks leaving their upstream, maintainer disputes with code on both sides, design decisions whose consequences outrun one window."
+  keywords={["AI coding agents", "agent harnesses", "coding agent features", "Pi", "OMP", "Codex", "Claude Code"]}
+  structuredData={itemList}
+>
+  <section class="measure py-10">
+    <p class="small-caps text-muted">Features</p>
+    <h1 class="issue-title">The stories the weekly cannot hold.</h1>
+    <p class="profile-dek">
+      One event or one argument, reported at length: what was said, in order and in the
+      speakers' own words; what the code says; what is settled, what is not, and what
+      would settle it.
+    </p>
+
+    {features.length === 0 ? (
+      <p class="mt-8 text-muted">No features yet.</p>
+    ) : (
+      <div class="mt-9 space-y-8">
+        {features.map((feature) => (
+          <a class="block no-underline hover:underline" href={`/features/${feature.slug}/`}>
+            <div class="small-caps text-muted">
+              {formatDate(feature.data.published)}
+              {(feature.data.sources ?? []).length > 0 && (
+                <> / {(feature.data.sources ?? []).map((id: string) => sourceLabel(id)).join(", ")}</>
+              )}
+            </div>
+            <h2 class="signal-title">{feature.data.title}</h2>
+            {feature.data.dek && <p class="earlier-issue-dek">{feature.data.dek}</p>}
+          </a>
+        ))}
+      </div>
+    )}
+  </section>
+</Base>

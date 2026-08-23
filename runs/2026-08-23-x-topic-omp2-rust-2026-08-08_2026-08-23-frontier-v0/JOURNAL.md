@@ -40,3 +40,26 @@ operator voices (graykevinb, transpiracy, benvargas, ErdalToprak).
 
 Harvest caveat: the sweep prompt misnamed the OMP maintainer; the capture confirms
 display name "Can Bölük" on @_can1357. Grok ruled the identity out on its own.
+
+## J2 2026-08-23 the thread earned a feature
+
+Editor's call: the architecture should support this kind of editorial. Stood up
+the feature unit (EDITORIAL.md "The feature bar", METHOD.md object grammar,
+content/features/, /features/ routes, RSS, sitemap, llms.txt, OG, integrity
+checks, frontier-cycle step 7b and Lane C brought current to the grok CLI) and
+wrote the first one from this run:
+
+  content/features/2026-08-23-oh-my-pi-without-the-pi.md
+
+Cards: social-cards/x-cards.yml, 15 cards, verbatim only from social/capture.raw.md,
+inline fragments sliced with ops/social/slice-quote.mjs; 13 placed inline, 2
+featured; the unavailable thread root is not a card and is not quoted.
+
+Facts added to harvest/omp2-primary.md during the editor's pass: all 453 omp2
+commits are can1357 (re-walked at the pin); Pi npm is @earendil-works/pi-coding-agent
+0.84.2 latest, tag v0.84.2 2026-08-14; OMP npm latest 18.0.3 and the Homebrew tap
+formula reads 18.0.3; @oleksoleksoleks bio reads "whispering to GPUs | harness
+engineering @ <t.co>" and the t.co 301s to https://omp.sh/ (checked with curl).
+
+Not done on purpose: no finding, no signal, no profile edit. The weekly that
+follows links the feature with one line.

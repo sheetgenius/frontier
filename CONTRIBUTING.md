@@ -309,7 +309,8 @@ file. Corrections to a signal's factual fields edit
 `runs/<run>/signals/frontier-signals.yml`. Corrections to a profile fact edit
 `content/profiles/<id>.md`. Corrections to a published digest's facts edit
 `content/digests/*.md`, but a digest's reading is owned; keep the edit to the
-fact. Corrections to a quoted post or a rendered card edit
+fact. The same holds for a feature in `content/features/*.md`: facts are open
+to correction, the reading is owned. Corrections to a quoted post or a rendered card edit
 `runs/<run>/social-cards/*.yml`, and the underlying claim record lives in
 `runs/<run>/social/<source>.raw.md` with its verdict in
 `runs/<run>/verify/<source>.crosscheck.md`. Corrections to a person page edit

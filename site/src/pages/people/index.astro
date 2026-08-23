@@ -104,7 +104,7 @@ const tracked = new Set(people.map((person) => person.slug));
                   {person.citations.map((c, i) => (
                     <>
                       {i > 0 && ", "}
-                      <a href={`/digests/${c.slug}/`}>{c.title}</a>
+                      <a href={c.href}>{c.title}</a>
                     </>
                   ))}
                 </p>
