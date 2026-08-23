@@ -52,6 +52,26 @@ function standfirst(digest: any): string {
   return first.length > 200 ? first.slice(0, 197).trimEnd() + "..." : first;
 }
 
+// The homepage teaser of the Operator Brief. The brief entries are written for
+// the issue: 70 to 90 words, receipts inline, markdown. Pasting them here raw
+// put a three-line dead blob URL and literal backticks above the fold. The
+// front door gets the first sentence, rendered, with the bare receipt URLs
+// dropped -- the Signal link and the issue itself carry the receipts.
+function briefTeaser(item: unknown): string {
+  const raw = String(item ?? "");
+  const anchorMatch = /<a href="(\/signals\/[^"]+)"[^>]*>\s*Signal\s*<\/a>/i.exec(raw);
+  let text = raw
+    .replace(/<a href="\/signals\/[^"]+"[^>]*>\s*Signal\s*<\/a>/gi, "")
+    .replace(/https?:\/\/\S+/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  const end = text.search(/[.!?]\s/);
+  if (end !== -1) text = text.slice(0, end + 1);
+  let html = marked.parseInline(text, { async: false }) as string;
+  if (anchorMatch) html += ` <a href="${anchorMatch[1]}">Signal</a>`;
+  return html;
+}
+
 const watchlist = profiles
   .map((profile) => ({
     slug: profile.slug,
@@ -82,7 +102,7 @@ const watchlist = profiles
           {canonicalRun && (
             <>
               {" / "}
-              <a href={`/runs/${canonicalRun.id}/`}>Research run</a>
+              <a href={`/runs/${canonicalRun.id}/`}>Evidence trail</a>
             </>
           )}
           {" / "}
@@ -94,19 +114,19 @@ const watchlist = profiles
             {latest.data.operator_brief.upgrade_check?.length > 0 && (
               <div>
                 <dt class="small-caps">Upgrade / check</dt>
-                <dd set:html={latest.data.operator_brief.upgrade_check[0]} />
+                <dd set:html={briefTeaser(latest.data.operator_brief.upgrade_check[0])} />
               </div>
             )}
             {latest.data.operator_brief.try?.length > 0 && (
               <div>
                 <dt class="small-caps">Try</dt>
-                <dd set:html={latest.data.operator_brief.try[0]} />
+                <dd set:html={briefTeaser(latest.data.operator_brief.try[0])} />
               </div>
             )}
             {latest.data.operator_brief.watch?.length > 0 && (
               <div>
                 <dt class="small-caps">Watch</dt>
-                <dd set:html={latest.data.operator_brief.watch[0]} />
+                <dd set:html={briefTeaser(latest.data.operator_brief.watch[0])} />
               </div>
             )}
           </dl>
