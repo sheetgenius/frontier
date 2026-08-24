@@ -6,7 +6,7 @@ description: >
   source-cited publication keeps its own receipts: when a date, version,
   channel, or claim is fixed, the fix is itself part of the record. This page
   is the audit trail of the publication correcting itself.
-last_updated: 2026-08-18
+last_updated: 2026-08-24
 ---
 
 # Corrections ledger
@@ -215,6 +215,34 @@ corrections:
     reporter: adversarial-verify
     provenance: internal/adversarial-verify
     pr: run 2026-08-17-weekly-digest-2026-08-10_2026-08-17-frontier-v0
+
+  - corrected_on: 2026-08-24
+    object: feature 2026-08-23-codex-the-body-not-the-pencil
+    field: "default approval routing ('A model is already in your approval path')"
+    kind: other-fact
+    before: "guardian_approval default_enabled:true read as a model sitting in the approval path of every default install"
+    after: "the capability is stable and enabled; App Server approval routing 'Defaults to `user`'; a model reviews only where auto_review / Approve for me is selected or managed policy requires it"
+    receipt: "https://github.com/openai/codex/blob/rust-v0.149.0/codex-rs/app-server-protocol/schema/json/ClientRequest.json"
+    event_date: 2026-08-20
+    artifact_url: /features/2026-08-23-codex-the-body-not-the-pencil/
+    verdict: "capability-vs-routing conflation; schema description is explicit"
+    reporter: editor-commissioned outside review
+    provenance: external
+    pr: run 2026-08-23-codex-study-2025-04-16_2026-08-23-frontier-v0
+
+  - corrected_on: 2026-08-24
+    object: feature 2026-08-23-codex-the-body-not-the-pencil
+    field: "reviewer availability to embedders ('The CLI's classifier does not come with the crate')"
+    kind: other-fact
+    before: "embedders were told the automatic-review path is not part of the embeddable surface"
+    after: "App Server exposes approvalsReviewer: auto_review ('a carefully prompted subagent'; legacy alias guardian_subagent); the host owns routing, consent, and the audit record"
+    receipt: "https://github.com/openai/codex/blob/rust-v0.149.0/codex-rs/app-server-protocol/schema/json/ClientRequest.json"
+    event_date: 2026-08-20
+    artifact_url: /features/2026-08-23-codex-the-body-not-the-pencil/
+    verdict: "wrong as published; the protocol schema names the reviewer route"
+    reporter: editor-commissioned outside review
+    provenance: external
+    pr: run 2026-08-23-codex-study-2025-04-16_2026-08-23-frontier-v0
 ```
 
 <!--

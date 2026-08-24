@@ -62,14 +62,14 @@ today. `omp2` is not in it.
 
 The branch surfaced in public on 14 August, when a reader noticed the Rust
 and the maintainer, Can Bölük, replied: [[q:can-look-at-the-omp2-branch]].
-Three days later he compared the two trees himself:
-[[q:can-omp2-pi-not-the-limiting-factor]]. On 21 August he said
+Three days later the maintainer compared the two trees:
+[[q:can-omp2-pi-not-the-limiting-factor]]. On 21 August:
 [[q:can-omp2-has-to-wait-blob-broker]].
 
 That evening the announcement came from Olek, whose bio reads "harness
 engineering @" a link to omp.sh: [[q:olek-pi-completely-deprecated]]. He gave
-the reasons: [[q:olek-pi-had-a-lot-of-problems]]. In the replies, he gave the
-most specific account anyone has:
+the reasons: [[q:olek-pi-had-a-lot-of-problems]]. The replies carry the
+most specific account anyone has given:
 
 <!--card:olek-two-weeks-not-backwards-compatible-->
 
@@ -90,7 +90,7 @@ The maintainer's reply was one line: [[q:can-not-associated]].
 The same day Armin Ronacher, who maintains Pi with Zechner, closed the other
 reading of the story: [[q:armin-not-going-to-port-pi-to-rust]]. On whether
 Pi 2 stays small: [[q:armin-pi-was-never-small]]. And one operator who had used
-OMP for the shared base said he had [[q:benvargas-deleted-omp-ahead-of-omp2]],
+OMP for the shared base said they had [[q:benvargas-deleted-omp-ahead-of-omp2]],
 and asked whether the name would still make sense.
 
 ## What the tree says
@@ -150,9 +150,9 @@ engine behind a native boundary and the extensions behind an embedded
 interpreter; the upstream is choosing a runtime language end to end. Neither
 tree proves the other wrong.
 
-**Remote workspaces.** One Pi operator says he runs the core tools over ssh so
-the agent stays local and works against any sandbox. We have not inspected his
-setup. Zechner says it is "pretty simple to do if you need it." OMP's branch
+**Remote workspaces.** One Pi operator says they run the core tools over ssh
+so the agent stays local and works against any sandbox. We have not inspected
+that setup. Zechner says it is "pretty simple to do if you need it." OMP's branch
 has `envd`, a project-environment daemon, and an `rpc` crate, and its
 philosophy document says the same RPC boundary "makes local, VM, remote, and
 headless-fleet deployments one topology." That is a difference in where the
@@ -162,7 +162,7 @@ Pi itself is not going Rust. [`main` and `dev`](https://github.com/earendil-work
 contain no `.rs` file at 23 August. Pi's new harness is on `dev`, in TypeScript, 264 commits past `main`
 at the last pin, and
 [not in any tag](/profiles/pi-coding-agent/); Ronacher's "we need a runtime
-language for the extensibility" is the reason, and the tree agrees with him.
+language for the extensibility" is the reason, and the tree agrees.
 
 ## If you run either tool
 
@@ -196,7 +196,7 @@ rewrite's stated win is startup time and memory, which is latency on every
 session and a real serial cost for an operator who opens many. Its stated
 price is that every extension author re-ports, and that the current line's
 core work waits. One operator in this thread paid the price early and left.
-Another named the latency as the thing he wanted fixed. Whether the trade is
+Another named the latency as the thing they wanted fixed. Whether the trade is
 good depends on which of those two people you are, and the thread has both.
 
 The fork is leaving the upstream. The name is staying.

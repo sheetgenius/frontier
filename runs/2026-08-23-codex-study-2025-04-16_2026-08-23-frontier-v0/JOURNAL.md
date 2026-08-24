@@ -35,3 +35,23 @@ Next: cards, feature draft at content/features/, passes, build, publish.
 - Not done on purpose: no finding, no signal, no profile rewrite (the profile
   already carries the 0.148/0.149 read from the 08-20 brief). The next weekly
   links the feature with one line.
+
+## J2 2026-08-24 outside review, adjudication, revision, critic panel
+
+Editor commissioned an outside review of the published feature and a deep
+revision. Adjudication in verify/outside-review-adjudication.md: the review's
+three central factual claims verified TRUE against the tree (rules survive
+with Allow/Prompt/Forbidden and most-restrictive-wins confirmed in policy.rs;
+App Server routing "Defaults to `user`"; auto_review exposed with legacy alias
+guardian_subagent). Two published sentences were false as stated; corrections
+appended to content/corrections.md. New primary receipts fetched and pinned:
+PR #39630 and #38011 bodies, alignment.openai.com/auto-review (2026-04-30
+numbers), developers.openai.com/blog/codex-as-a-platform (ARC-AGI-3, ownership
+split), code.claude.com/docs/en/hooks (deterministic vs prompt hooks),
+arXiv 2606.07682 (SWE-Marathon).
+
+Feature rewritten on the three-way spine (judgment to models; boundaries in
+rules and OS; control plane thicker), with a forecast section carrying named
+falsifiers. Three Fable critic subagents ran against the revision: precision
+(builder lens), house voice (EDITORIAL.md passes), forecast quality. Their
+reports and the integration are recorded in this journal's next entry.
