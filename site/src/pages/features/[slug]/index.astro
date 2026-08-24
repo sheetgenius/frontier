@@ -1,6 +1,7 @@
 ---
 import Base from "../../../layouts/Base.astro";
 import FrontierLens from "../../../components/FrontierLens.astro";
+import PieceFoot from "../../../components/PieceFoot.astro";
 import SocialPostEmbed from "../../../components/SocialPostEmbed.astro";
 import SourceNotes from "../../../components/SourceNotes.astro";
 import { metaDescription } from "../../../lib/seo";
@@ -94,6 +95,32 @@ const settle: string[] = Array.isArray(d.what_would_settle_it) ? d.what_would_se
 
     <SourceNotes cards={socialCards} />
 
+    {socialCards.length > 0 && (
+      <aside class="rule mt-9 pt-5">
+        <p class="small-caps text-muted">The record</p>
+        <p class="mt-2 text-sm text-muted">
+          Every post quoted above, re-fetched by URL on the capture date shown.
+          A post is a receipt for what was said, never for what is true.
+        </p>
+        <ul class="record-list">
+          {[...socialCards]
+            .sort((a: any, b: any) => a.date.localeCompare(b.date) || a.title.localeCompare(b.title))
+            .map((card: any) => (
+              <li>
+                <span class="record-who">
+                  {card.displayName ? `${card.displayName} ` : ""}@{(card.authors?.[0] ?? "").replace(/^@/, "")}
+                </span>
+                {" / "}{card.date}
+                {card.capturedOn && <> / captured {card.capturedOn}</>}
+                {card.sourceUrls?.[0] && (
+                  <> / <a href={card.sourceUrls[0]}>{card.sourceUrls[0].replace("https://x.com/", "x.com/")}</a></>
+                )}
+              </li>
+            ))}
+        </ul>
+      </aside>
+    )}
+
     {coveredProfiles.length > 0 && (
       <div class="rule mt-9 pt-5">
         <p class="small-caps text-muted">Projects in this feature</p>
@@ -117,5 +144,6 @@ const settle: string[] = Array.isArray(d.what_would_settle_it) ? d.what_would_se
       </p>
     </div>
     <FrontierLens />
+    <PieceFoot />
   </article>
 </Base>

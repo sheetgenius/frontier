@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Page not found | Bitter Frontier"
+  description="The page you asked for is not in the published record."
+  robots="noindex,follow"
+  canonicalPath="/404.html"
+>
+  <article class="measure py-10">
+    <p class="small-caps text-muted">404</p>
+    <h1 class="issue-title">Page not found.</h1>
+    <div class="prose-frontier mt-8">
+      <p>
+        The page you asked for is not in the published record. If a link brought
+        you here, the address may have been retyped without its trailing slash,
+        or the piece may have moved when the record was corrected.
+      </p>
+      <p>
+        Start from <a href="/">the front page</a>, browse
+        <a href="/digests/">the issues</a> or <a href="/features/">the features</a>,
+        or check <a href="/corrections/">the corrections ledger</a> if you were
+        following a withdrawn signal.
+      </p>
+    </div>
+  </article>
+</Base>

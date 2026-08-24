@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { getWireIssue, listWireIssues } from "../../lib/frontier";
+import { metaDescription } from "../../lib/seo";
 
 export function getStaticPaths() {
   return listWireIssues().map((issue) => ({ params: { id: issue.id } }));
@@ -12,19 +13,19 @@ if (!issue) throw new Error("Wire issue not found");
 
 <Base
   title={`The Wire, ${issue.date} | Bitter Frontier`}
-  description={issue.lede ?? `Curated signal from agentic coding for the week of ${issue.date}.`}
+  description={metaDescription(issue.lede, `Curated signal from agentic coding for the week of ${issue.date}.`)}
   publishedDate={issue.date}
   articleSection="The Wire"
 >
   <article class="measure py-10">
-    <p class="small-caps text-muted eyebrow">The Wire / {issue.date}</p>
+    <h1 class="small-caps text-muted eyebrow">The Wire / {issue.date}</h1>
     {issue.lede && <p class="wire-lede wire-lede--page">{issue.lede}</p>}
     <ul class="wire-list mt-8">
       {issue.items.map((item) => (
         <li class="wire-item">
-          <p class="wire-item-head">
+          <h2 class="wire-item-head">
             <a class="wire-item-title" href={item.url}>{item.title}</a>
-          </p>
+          </h2>
           <p class="wire-item-meta">
             {item.source} / {item.date} /{" "}
             <span class={`wire-tier wire-tier--${item.tier}`}>{item.tier}</span>

@@ -18,9 +18,19 @@ logLinkGraphReportOnce();
 // expecting to be read.
 const digests = listDigests();
 const [latest, ...earlier] = digests;
-// A feature is a standalone piece with its own date; the front page shows the
-// newest one or two under the lead issue, never in place of it.
-const features = listFeatures().slice(0, 2);
+// The lead slot is editorial, not mechanical: the newest published piece
+// leads, whether that is the weekly issue or a standalone feature. Most weeks
+// the issue is newest and nothing changes. The week a feature ships -- which
+// is the week first-time readers arrive from a link -- the feature leads and
+// the issue becomes a strip beneath it, so the fold still proves the cadence.
+const allFeatures = listFeatures();
+const [latestFeature] = allFeatures;
+const featureDate = latestFeature ? String(latestFeature.data.published ?? "") : "";
+const digestDate = latest ? String(formatDate(latest.data.window?.end)) : "";
+const featureLeads = Boolean(latestFeature && featureDate >= digestDate);
+// When a feature leads it vacates the features list; when the issue leads the
+// list shows the newest two as before.
+const features = (featureLeads ? allFeatures.slice(1) : allFeatures).slice(0, 2);
 // The series label comes from the issue, not from the template. A three-day
 // Brief is not "this week"; the digest page already knew that and the front
 // door did not.
@@ -87,7 +97,58 @@ const watchlist = profiles
   description="Source-backed analysis of what coding agents just made possible, where the bottleneck moved, and what deserves scarce human attention."
 >
   {
-    latest && (
+    featureLeads && latestFeature && (
+      <section class="measure lead-issue">
+        <p class="small-caps eyebrow">
+          Feature / Published {formatDate(latestFeature.data.published)}
+        </p>
+        <a href={`/features/${latestFeature.slug}/`} class="no-underline">
+          <h1 class="lead-issue-title">{latestFeature.data.title}</h1>
+        </a>
+        {latestFeature.data.dek && <p class="lead-issue-dek">{latestFeature.data.dek}</p>}
+        <p class="lead-issue-byline">
+          By <a href="/people/ruemic/">Michael Ruescher</a>
+        </p>
+        <p class="lead-trust">Every claim links to a <a href="/about/">source you can open</a>.</p>
+        <p class="mt-5 font-mono text-sm text-muted">
+          <a href={`/features/${latestFeature.slug}/`} class="hover:underline">Read the feature -&gt;</a>
+        </p>
+
+        {latest && (
+          <div class="brief-strip rule mt-8 pt-6">
+            <p class="small-caps eyebrow">
+              The latest brief / {formatDate(latest.data.window?.start)} to {formatDate(latest.data.window?.end)}
+            </p>
+            <p class="brief-strip-title">
+              <a href={`/digests/${latest.slug}/`}>{latest.data.title}</a>
+            </p>
+            {latest.data.operator_brief && (
+              <dl class="homepage-brief">
+                {latest.data.operator_brief.upgrade_check?.length > 0 && (
+                  <div>
+                    <dt class="small-caps">Upgrade / check</dt>
+                    <dd set:html={briefTeaser(latest.data.operator_brief.upgrade_check[0])} />
+                  </div>
+                )}
+                {latest.data.operator_brief.try?.length > 0 && (
+                  <div>
+                    <dt class="small-caps">Try</dt>
+                    <dd set:html={briefTeaser(latest.data.operator_brief.try[0])} />
+                  </div>
+                )}
+              </dl>
+            )}
+            <p class="mt-4 font-mono text-sm text-muted">
+              <a href={`/digests/${latest.slug}/`} class="hover:underline">Read the full issue -&gt;</a>
+            </p>
+          </div>
+        )}
+      </section>
+    )
+  }
+
+  {
+    !featureLeads && latest && (
       <section class="measure lead-issue">
         <p class="small-caps eyebrow">
           {formatDate(latest.data.window?.start)} to {formatDate(latest.data.window?.end)}
@@ -106,8 +167,9 @@ const watchlist = profiles
             </>
           )}
           {" / "}
-          {latest.data.signal_count} signals
+          {latest.data.signal_count} signals from {(latest.data.sources ?? []).length} projects
         </p>
+        <p class="lead-trust">Every claim links to a <a href="/about/">source you can open</a>.</p>
 
         {latest.data.operator_brief && (
           <dl class="homepage-brief">
@@ -203,9 +265,9 @@ const watchlist = profiles
                 </span>
               ))}
             </div>
-            <h3 class="signal-title">
+            <h2 class="signal-title">
               <a href={`/signals/${signal.id}/`} class="no-underline hover:underline">{signal.title}</a>
-            </h3>
+            </h2>
             {signal.whyActionBearing.length > 0 ? (
               <p class="signal-summary">{signal.whyActionBearing[0]}</p>
             ) : signal.summary ? (

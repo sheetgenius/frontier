@@ -56,7 +56,7 @@ const cutBefore = at > 0;
 const cutAfter = at >= 0 && at + squash(quoted).length < squash(full).length;
 ---
 
-<figure class="xpost" style={`--xpost-accent: oklch(0.62 0.13 ${hue});`}>
+<figure class="xpost" style={`--xpost-hue: ${hue};`}>
   {shown ? (
     <blockquote class="xpost-quote" cite={postUrl}>
       {cutBefore && <span class="xpost-elision">&hellip;</span>}{shown}{cutAfter && <span class="xpost-elision xpost-elision--after">&hellip;</span>}

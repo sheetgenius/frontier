@@ -1,11 +1,14 @@
 import {
   formatDate,
+  listComposesFacets,
   listDigests,
   listFeatures,
   listPeople,
   listProfiles,
   listSignalSourceSlugs,
   listSignals,
+  listWireIssues,
+  signalsComposingWith,
 } from "../lib/frontier";
 import { gitRevisionDate } from "../lib/revision";
 import { SITE_URL } from "../lib/site";
@@ -32,6 +35,8 @@ const staticEntries: SitemapEntry[] = [
   { path: "/corrections/", priority: "0.6", changefreq: "monthly", lastmod: gitRevisionDate("content/corrections.md", "2026-07-12") },
   { path: "/runs/", priority: "0.4", changefreq: "monthly", lastmod: gitRevisionDate("site/src/pages/runs/index.astro", "2026-07-12") },
   { path: "/about/", priority: "0.5", changefreq: "monthly", lastmod: gitRevisionDate("site/src/pages/about/index.astro", "2026-07-12") },
+  { path: "/conversation-layer/", priority: "0.6", changefreq: "monthly", lastmod: gitRevisionDate("site/src/pages/conversation-layer/index.astro", "2026-07-27") },
+  { path: "/wire/", priority: "0.6", changefreq: "weekly", lastmod: gitRevisionDate("content/wire", "2026-07-22") },
 ];
 
 function absolute(path: string) {
@@ -115,6 +120,25 @@ export function GET() {
     entries.set(`/signals/source/${slug}/`, {
       path: `/signals/source/${slug}/`,
       priority: "0.6",
+      changefreq: "weekly",
+      lastmod: formatDate(latest?.date),
+    });
+  }
+
+  for (const issue of listWireIssues()) {
+    entries.set(`/wire/${issue.id}/`, {
+      path: `/wire/${issue.id}/`,
+      priority: "0.5",
+      changefreq: "monthly",
+      lastmod: formatDate(issue.date),
+    });
+  }
+
+  for (const slug of listComposesFacets()) {
+    const latest = signalsComposingWith(slug)[0];
+    entries.set(`/signals/composes-with/${slug}/`, {
+      path: `/signals/composes-with/${slug}/`,
+      priority: "0.5",
       changefreq: "weekly",
       lastmod: formatDate(latest?.date),
     });

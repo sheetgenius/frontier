@@ -1,5 +1,10 @@
 ---
 import "../styles/global.css";
+// ?url imports resolve to the same hashed /_astro/ files the stylesheet
+// references, so the preloads below never point at a stale name.
+import manropeUrl from "../fonts/manrope-variable.woff2?url";
+import mono400Url from "../fonts/ibm-plex-mono-400.woff2?url";
+import mono600Url from "../fonts/ibm-plex-mono-600.woff2?url";
 import { GA_MEASUREMENT_ID, GH_BLOB_BASE, GH_REPO_URL, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../lib/site";
 import { ogImageForPath } from "../lib/og";
 
@@ -25,7 +30,7 @@ const ogImage = image ?? ogImageForPath(Astro.url.pathname);
 const canonicalUrl = new URL(canonicalPath ?? Astro.url.pathname, SITE_URL).toString();
 const pageTitle = title === SITE_TITLE ? title : `${title}`;
 const path = Astro.url.pathname;
-const isDetail = /^\/(digests|signals|profiles|findings)\/.+/.test(path)
+const isDetail = /^\/(digests|signals|profiles|findings|features)\/.+/.test(path)
   || ["/letter/", "/bitter-lesson/", "/amdahls-law/"].includes(path);
 const ogType = isDetail ? "article" : "website";
 const jsonLdType = path === "/" ? "WebSite" : isDetail ? "Article" : "CollectionPage";
@@ -84,6 +89,15 @@ if (jsonLdType === "Article") {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     {robots && <meta name="robots" content={robots} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    {/* The three faces painted above the fold (display, wordmark, eyebrows).
+        Without these, no font fetch can start until the stylesheet arrives
+        and matches; a slow CSS round-trip re-times LCP on font-set text. */}
+    <link rel="preload" href={manropeUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={mono400Url} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={mono600Url} as="font" type="font/woff2" crossorigin />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" type="application/rss+xml" title="Bitter Frontier" href="/rss.xml" />
     <meta property="og:site_name" content={SITE_TITLE} />
@@ -108,36 +122,14 @@ if (jsonLdType === "Article") {
         if (stored === "dark" || (!stored && prefersDark)) document.documentElement.classList.add("dark");
       })();
     </script>
-    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
-    <script is:inline define:vars={{ measurementId: GA_MEASUREMENT_ID }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        window.dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", measurementId);
-      // The reading signal that matters here is descent, not scroll depth: this
-      // publication is built for a one-minute Operator Brief read, so a short
-      // visit is the design working. Record when a reader follows a receipt or
-      // a signal instead.
-      document.addEventListener("click", (event) => {
-        const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
-        if (!link) return;
-        const href = link.getAttribute("href") || "";
-        if (/^\/signals\//.test(href)) {
-          gtag("event", "signal_open", { link_url: href, from_path: location.pathname });
-        } else if (/^https?:/i.test(href) && !href.includes("frontier.bitter.sh")) {
-          gtag("event", "receipt_open", { link_url: href, from_path: location.pathname });
-        }
-      });
-    </script>
   </head>
   <body>
+    <!--email_off-->
     <a class="skip-link" href="#main">Skip to main content</a>
     <header class="wide-measure site-header">
       <a class="masthead-wordmark" href="/">
         <span class="wordmark-name">Bitter Frontier</span>
-        <span class="wordmark-tag">What agents just made possible, where the bottleneck moved, and what deserves attention.</span>
+        <span class="wordmark-tag">What coding agents just made possible, where the bottleneck moved, and what deserves attention.</span>
       </a>
       <nav class="site-nav" aria-label="Primary">
         {/* Named for what a reader came to do, not for our object model.
@@ -205,6 +197,8 @@ if (jsonLdType === "Article") {
         <span class="footer-sep" aria-hidden="true">/</span>
         <a href="/signals/">Signals</a>
         <span class="footer-sep" aria-hidden="true">/</span>
+        <a href="/wire/">The Wire</a>
+        <span class="footer-sep" aria-hidden="true">/</span>
         <a href="/runs/">Research trail</a>
         <span class="footer-sep" aria-hidden="true">/</span>
         <a href="/conversation-layer/">Conversation layer</a>
@@ -227,5 +221,32 @@ if (jsonLdType === "Article") {
         });
       })();
     </script>
+    {/* Analytics loads from end of body: async + dataLayer queuing loses no
+        events, and its ~150KB parse/eval (the site's only real JS) stays off
+        the head's critical window. */}
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ measurementId: GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", measurementId);
+      // The reading signal that matters here is descent, not scroll depth: this
+      // publication is built for a one-minute Operator Brief read, so a short
+      // visit is the design working. Record when a reader follows a receipt or
+      // a signal instead.
+      document.addEventListener("click", (event) => {
+        const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+        if (!link) return;
+        const href = link.getAttribute("href") || "";
+        if (/^\/signals\//.test(href)) {
+          gtag("event", "signal_open", { link_url: href, from_path: location.pathname });
+        } else if (/^https?:/i.test(href) && !href.includes("frontier.bitter.sh")) {
+          gtag("event", "receipt_open", { link_url: href, from_path: location.pathname });
+        }
+      });
+    </script>
+    <!--/email_off-->
   </body>
 </html>

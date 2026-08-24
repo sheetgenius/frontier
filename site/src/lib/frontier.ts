@@ -2,6 +2,37 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
+
+// Render-time typography. The repository authors ASCII punctuation on purpose
+// (see EDITORIAL.md): straight quotes, no em dashes. A reader should not pay
+// for that discipline with typewriter marks in a serif measure, so the marked
+// pipeline sets curly quotes, apostrophes, and ellipses at build time. Three
+// boundaries hold:
+//   - Only leaf text tokens are touched. Code spans, code blocks, and raw
+//     HTML pass through byte-identical.
+//   - Card text never comes through marked. A captured post renders through
+//     renderInlineQuotes/SocialPostEmbed exactly as the poster typed it,
+//     straight quotes and all -- their punctuation is part of the quotation.
+//   - `--` stays `--`. The double hyphen is the house dash on the rendered
+//     page too, by doctrine; changing that is an editor's call, not a
+//     renderer's.
+function smartenText(text: string): string {
+  return text
+    .replace(/(\w)'(\w)/g, "$1\u2019$2")
+    .replace(/(^|[\s([{\u2014>])"(?=\S)/g, "$1\u201C")
+    .replace(/"/g, "\u201D")
+    .replace(/(^|[\s([{\u2014>])'(?=\S)/g, "$1\u2018")
+    .replace(/'/g, "\u2019")
+    .replace(/(^|[^.])\.\.\.(?!\.)/g, "$1\u2026");
+}
+
+marked.use({
+  walkTokens(token: any) {
+    if (token.type === "text" && !token.tokens && typeof token.text === "string") {
+      token.text = smartenText(token.text);
+    }
+  },
+});
 import YAML from "yaml";
 
 export const SOURCE_LABELS: Record<string, string> = {

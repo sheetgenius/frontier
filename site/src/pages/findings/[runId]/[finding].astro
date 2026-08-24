@@ -15,7 +15,14 @@ const finding = getFinding(Astro.params.runId!, Astro.params.finding!);
 if (!finding) throw new Error("Finding not found");
 
 const citedSignal = signalsCitingFinding(finding)[0];
-const findingTitle = finding.title === finding.finding ? (citedSignal?.title ?? finding.title) : finding.title;
+// Same rule as the canonical finding page: a stub names itself after its own
+// slug, never after the citing signal's headline.
+function humanizeSlug(slug: string): string {
+  const m = /^(\d{4}-\d{2}-\d{2})-(.+)$/.exec(slug);
+  const words = (m ? m[2] : slug).replace(/-/g, " ");
+  return m ? `${words} (${m[1]})` : words;
+}
+const findingTitle = finding.title === finding.finding ? humanizeSlug(finding.finding) : finding.title;
 const findingSourceLabel = sourceLabel(String(finding.data.source ?? "coding agent"));
 const findingKeywords = Array.from(new Set([
   findingSourceLabel,

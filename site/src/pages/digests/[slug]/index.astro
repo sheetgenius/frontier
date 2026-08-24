@@ -1,6 +1,7 @@
 ---
 import Base from "../../../layouts/Base.astro";
 import FrontierLens from "../../../components/FrontierLens.astro";
+import PieceFoot from "../../../components/PieceFoot.astro";
 import NotPromoted from "../../../components/NotPromoted.astro";
 import OperatorBrief from "../../../components/OperatorBrief.astro";
 import SocialPostEmbed from "../../../components/SocialPostEmbed.astro";
@@ -219,5 +220,6 @@ const topSignalsItemList = topSignals.length > 0 ? {
     />
     <VersionList versions={versions} currentRunId={canonicalRun?.id} />
     <FrontierLens />
+    <PieceFoot />
   </article>
 </Base>

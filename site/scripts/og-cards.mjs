@@ -233,14 +233,22 @@ export function cardEntries() {
     footerRight: "Claims corrected in public",
   });
 
-  // Digests.
+  // Digests. The card carries the thesis's first sentence: the timeline is
+  // the true front door for a shared link, and a title alone is a riddle.
   for (const digest of listDigests()) {
     const title = digest.data.title ?? digest.slug;
     const end = isoDate(digest.data.window?.end);
+    const thesis = String(digest.data.operator_brief?.thesis ?? "")
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+      .replace(/`([^`]*)`/g, "$1")
+      .replace(/\s+/g, " ")
+      .trim();
+    const cut = thesis.search(/[.!?]\s/);
     entries.push({
       ogPath: `digests/${digest.slug}`,
       eyebrow: (digest.data.series ?? "Weekly digest").toUpperCase(),
       title,
+      sub: thesis ? (cut === -1 ? thesis : thesis.slice(0, cut + 1)) : undefined,
       footer: "frontier.bitter.sh",
       footerRight: end ? `Digest | ${end}` : "Digest",
     });
@@ -254,6 +262,7 @@ export function cardEntries() {
       ogPath: `features/${feature.slug}`,
       eyebrow: "FEATURE",
       title,
+      sub: feature.data.dek ? String(feature.data.dek) : undefined,
       footer: "frontier.bitter.sh",
       footerRight: published ? `Feature | ${published}` : "Feature",
     });
@@ -374,6 +383,16 @@ function span(text, style) {
   };
 }
 
+// A dek that does not fit is cut at the last full sentence that does; only a
+// dek with no sentence boundary in range gets a mid-clause ellipsis.
+function clampSub(sub) {
+  if (sub.length <= 170) return sub;
+  const head = sub.slice(0, 170);
+  const lastEnd = Math.max(head.lastIndexOf(". "), head.lastIndexOf("? "), head.lastIndexOf("! "));
+  if (lastEnd > 60) return head.slice(0, lastEnd + 1);
+  return head.slice(0, 167).trimEnd() + "...";
+}
+
 function cardTree(entry) {
   const { fontSize, lineHeight, text } = titleSizing(entry.title);
 
@@ -402,18 +421,29 @@ function cardTree(entry) {
       ]),
 
       // Headline block: gold rule + title in heavy Manrope (weight-driven, the
-      // bitter.sh display voice).
+      // bitter.sh display voice), then the dek in regular weight when the
+      // entry carries one. The dek is capped hard so the title always wins.
       div({ flexDirection: "column", marginTop: 8, marginBottom: 8 }, [
         div({ width: 96, height: 4, backgroundColor: COLOR.bitter, marginBottom: 36 }, []),
         span(text, {
           color: COLOR.ink,
-          fontSize,
+          fontSize: entry.sub ? Math.min(fontSize, 64) : fontSize,
           fontWeight: 700,
           lineHeight,
           letterSpacing: "-0.022em",
           // Constrain the wrap box so long titles wrap instead of overflowing.
           maxWidth: 1016,
         }),
+        ...(entry.sub
+          ? [span(clampSub(entry.sub), {
+              color: COLOR.muted,
+              fontSize: 30,
+              fontWeight: 400,
+              lineHeight: 1.4,
+              marginTop: 28,
+              maxWidth: 980,
+            })]
+          : []),
       ]),
 
       // Footer: site + section/date, separated by a thin rule. The site name is

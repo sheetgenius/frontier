@@ -803,6 +803,7 @@ code {
   font-size: 0.82rem;
   letter-spacing: 0.01em;
   line-height: 1.7;
+  font-variant-numeric: tabular-nums;
 }
 
 /* The lead block on the homepage: a slightly stronger top rule marks it as the
@@ -2064,6 +2065,22 @@ code {
   font-size: clamp(1.05rem, 0.4vw + 1rem, 1.16rem);
   font-weight: 400;
   line-height: 1.58;
+  /* Safari hangs opening quotes into the margin; elsewhere this is inert. */
+  hanging-punctuation: first allow-end;
+}
+
+.prose-frontier p,
+.prose-frontier li {
+  text-wrap: pretty;
+}
+
+/* At phone widths a 36rem serif measure collapses to ~45 characters and the
+   rag gets rough; let the browser hyphenate there and only there. */
+@media (max-width: 600px) {
+  .prose-frontier p {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
 }
 
 .prose-frontier h1,
@@ -2965,6 +2982,14 @@ a:hover > .lead-issue-title {
   padding: 0;
   border: 0;
   background: none;
+  /* The per-author hue comes from the markup; lightness is the theme's call.
+     0.45 on the paper ground and 0.66 on the night ground keep the monogram
+     initials at or above 4.5:1 against their 12% tint across every hue. */
+  --xpost-accent: oklch(0.45 0.13 var(--xpost-hue, 60));
+}
+
+:root.dark .xpost {
+  --xpost-accent: oklch(0.66 0.13 var(--xpost-hue, 60));
 }
 
 .xpost-quote {
@@ -3043,7 +3068,7 @@ a:hover > .lead-issue-title {
 .xpost-avatar--monogram {
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--xpost-accent) 15%, transparent);
+  background: color-mix(in srgb, var(--xpost-accent) 12%, transparent);
   color: var(--xpost-accent);
   font-size: 1rem;
   font-weight: 700;
@@ -3265,4 +3290,108 @@ a.xpost-date:hover {
 
 .feature-settle li + li {
   margin-top: 0.4rem;
+}
+
+
+/* The trust clause under a lead byline: one sentence, not a methodology. */
+.lead-trust {
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+.lead-trust a {
+  color: inherit;
+}
+
+.lead-trust a:hover {
+  color: var(--color-bitter);
+}
+
+/* The latest-brief strip, shown under a feature lead: the digest's scannable
+   form at one sentence per label, proving the cadence without spending the
+   fold on it. */
+.brief-strip {
+  margin-top: 0.4rem;
+}
+
+.brief-strip-title {
+  margin: 0.25rem 0 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.brief-strip-title a {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.brief-strip-title a:hover {
+  color: var(--color-bitter);
+}
+
+/* The colophon at the foot of a piece. A reader who arrived from a link may
+   never see the homepage; this is the one-sentence masthead they leave with. */
+.piece-foot {
+  margin-top: 2.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--color-line);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.piece-foot a {
+  color: var(--color-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.piece-foot a:hover {
+  color: var(--color-bitter);
+  border-bottom-color: var(--color-bitter);
+}
+
+/* The record: every captured post in a feature, as a register. The people we
+   quote are the audience; the register is the courtesy of showing them the
+   apparatus without a click. */
+.record-list {
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.9;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.record-list a {
+  color: inherit;
+}
+
+.record-list a:hover {
+  color: var(--color-bitter);
+}
+
+.record-who {
+  color: var(--color-ink);
+}
+
+/* Print: the chrome stays home; the argument and its receipts travel. */
+@media print {
+  .site-nav,
+  .skip-link,
+  .nav-controls {
+    display: none !important;
+  }
+
+  .xpost,
+  .feature-settle,
+  .piece-foot {
+    break-inside: avoid;
+  }
 }

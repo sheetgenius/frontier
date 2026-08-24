@@ -75,8 +75,16 @@ export function GET() {
         link: `/signals/${signal.id}/`,
       };
     });
+  // The feed had grown to ~287KB and every poller re-downloaded all of it
+  // (the edge serves feeds without validators, so there are no 304s). Cap the
+  // item count, and carry full article bodies only for the newest pieces --
+  // a reader's feed shows recent items in full, and the description plus link
+  // serves the archive tail.
+  const FULL_CONTENT_ITEMS = 8;
   const items = [...digestItems, ...featureItems, ...correctionItems]
-    .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+    .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
+    .slice(0, 20)
+    .map((item, index) => (index < FULL_CONTENT_ITEMS ? item : { ...item, content: undefined }));
   return rss({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
