@@ -32,8 +32,21 @@ function normalizeDate(value: unknown): string | undefined {
   return undefined;
 }
 
+// Each lookup shells out to git; the sitemap alone asks for ~80 of them per
+// build, so identical (path, fallback) pairs are answered once.
+const revisionCache = new Map<string, string>();
+
 export function gitRevisionDate(relativePath: string, fallback: unknown): string {
   const fallbackDate = normalizeDate(fallback) ?? "1970-01-01";
+  const cacheKey = `last\0${relativePath}\0${fallbackDate}`;
+  const cached = revisionCache.get(cacheKey);
+  if (cached !== undefined) return cached;
+  const result = lastRevisionDate(relativePath, fallbackDate);
+  revisionCache.set(cacheKey, result);
+  return result;
+}
+
+function lastRevisionDate(relativePath: string, fallbackDate: string): string {
   try {
     const date = execFileSync("git", ["log", "-1", "--format=%cs", "--", relativePath], {
       cwd: REPO_ROOT,
@@ -48,6 +61,15 @@ export function gitRevisionDate(relativePath: string, fallback: unknown): string
 
 export function gitFirstRevisionDate(relativePath: string, fallback: unknown): string {
   const fallbackDate = normalizeDate(fallback) ?? "1970-01-01";
+  const cacheKey = `first\0${relativePath}\0${fallbackDate}`;
+  const cached = revisionCache.get(cacheKey);
+  if (cached !== undefined) return cached;
+  const result = firstRevisionDate(relativePath, fallbackDate);
+  revisionCache.set(cacheKey, result);
+  return result;
+}
+
+function firstRevisionDate(relativePath: string, fallbackDate: string): string {
   try {
     const dates = execFileSync(
       "git",

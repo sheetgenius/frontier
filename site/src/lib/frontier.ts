@@ -29,6 +29,40 @@ export const repoRoot = process.env.BITTER_FRONTIER_ROOT
   ? path.resolve(process.env.BITTER_FRONTIER_ROOT)
   : path.resolve(process.cwd(), "..");
 
+// Build-time memoization.
+//
+// `astro build` renders 1400+ pages from a single process, and every page
+// calls back into these loaders; without a cache each call re-reads and
+// re-parses the same ~600 files under runs/ and content/ (measured at ~85%
+// of a 5.5-minute production build spent in repeated yaml / gray-matter /
+// marked work). Caching is scoped to production builds so `astro dev` keeps
+// re-reading content from disk on every request.
+const CACHE_ENABLED = (import.meta as { env?: { PROD?: boolean } }).env?.PROD === true;
+
+function memo<Args extends unknown[], R>(
+  fn: (...args: Args) => R,
+  key: (...args: Args) => string = (...args) => String(args[0] ?? ""),
+): (...args: Args) => R {
+  if (!CACHE_ENABLED) return fn;
+  const cache = new Map<string, R>();
+  return (...args: Args) => {
+    const k = key(...args);
+    if (!cache.has(k)) cache.set(k, fn(...args));
+    return cache.get(k) as R;
+  };
+}
+
+// Same, for array-returning loaders: hands each caller a fresh copy so an
+// in-place sort at a call site cannot reorder the shared cached array.
+function memoList<Args extends unknown[], R>(
+  fn: (...args: Args) => R[],
+  key?: (...args: Args) => string,
+): (...args: Args) => R[] {
+  if (!CACHE_ENABLED) return fn;
+  const cached = memo(fn, key);
+  return (...args: Args) => [...cached(...args)];
+}
+
 export type MarkdownArtifact = {
   id: string;
   slug: string;
@@ -96,7 +130,7 @@ function rewriteRunLinks(content: string) {
   );
 }
 
-export function readMarkdown(file: string): MarkdownArtifact {
+export const readMarkdown = memo(function readMarkdown(file: string): MarkdownArtifact {
   const raw = fs.readFileSync(file, "utf8");
   const parsed = matter(raw);
   const body = rewriteRunLinks(parsed.content.trim());
@@ -109,11 +143,11 @@ export function readMarkdown(file: string): MarkdownArtifact {
     body,
     html: marked.parse(body) as string,
   };
-}
+});
 
-export function readYaml(file: string): any {
+export const readYaml = memo(function readYaml(file: string): any {
   return YAML.parse(fs.readFileSync(file, "utf8"));
-}
+});
 
 function toTime(value: unknown): number {
   if (!value) return 0;
@@ -129,7 +163,7 @@ function digestSortKey(d: MarkdownArtifact): number {
   return toTime(d.data.window?.end) || toTime(d.data.window?.start);
 }
 
-export function listDigests(): MarkdownArtifact[] {
+export const listDigests = memoList(function listDigests(): MarkdownArtifact[] {
   const dir = repoPath("content", "digests");
   if (!fs.existsSync(dir)) return [];
   return fs
@@ -137,13 +171,13 @@ export function listDigests(): MarkdownArtifact[] {
     .filter((file) => file.endsWith(".md") && file !== "index.md")
     .map((file) => readMarkdown(path.join(dir, file)))
     .sort((a, b) => digestSortKey(b) - digestSortKey(a));
-}
+});
 
 export function getDigest(slug: string): MarkdownArtifact | undefined {
   return listDigests().find((digest) => digest.slug === slug);
 }
 
-export function listRuns(): RunVersion[] {
+export const listRuns = memoList(function listRuns(): RunVersion[] {
   const dir = repoPath("runs");
   if (!fs.existsSync(dir)) return [];
   return fs
@@ -189,7 +223,7 @@ export function listRuns(): RunVersion[] {
       if (av !== bv) return bv - av;
       return b.id.localeCompare(a.id);
     });
-}
+});
 
 export function versionsForDigest(digestId: string): RunVersion[] {
   const directRunIds = new Set(
@@ -366,7 +400,7 @@ function normalizeJsonlSignal(signal: any): SignalEntry {
   };
 }
 
-export function listSignals(): SignalEntry[] {
+export const listSignals = memoList(function listSignals(): SignalEntry[] {
   const seen = new Map<string, SignalEntry>();
 
   // Aggregate from all run signal YAMLs (newest run dirs first)
@@ -423,7 +457,7 @@ export function listSignals(): SignalEntry[] {
   }
 
   return Array.from(seen.values()).sort((a, b) => b.date.localeCompare(a.date));
-}
+});
 
 export function listAcceptedSignals(): SignalEntry[] {
   return listSignals().filter((signal) => signal.status !== "withdrawn");
@@ -446,12 +480,12 @@ export function signalIdsFromOperatorBrief(brief: any): string[] {
   return Array.from(new Set(ids));
 }
 
-export function digestsForSignalId(signalId: string): MarkdownArtifact[] {
+export const digestsForSignalId = memoList(function digestsForSignalId(signalId: string): MarkdownArtifact[] {
   return listDigests().filter((digest) => {
     if ((digest.data.top_signal_ids ?? []).includes(signalId)) return true;
     return signalIdsFromOperatorBrief(digest.data.operator_brief).includes(signalId);
   });
-}
+});
 
 export function findFindingByFindingId(findingId: string): FindingEntry | undefined {
   return listFindings().find((f) => f.data.finding_id === findingId);
@@ -601,7 +635,7 @@ export function logLinkGraphReportOnce(): void {
   }
 }
 
-export function listFindings(): FindingEntry[] {
+export const listFindings = memoList(function listFindings(): FindingEntry[] {
   const runDirs = listRuns()
     .map((run) => ({ runId: run.id, dir: path.join(repoRoot, "runs", run.id, "findings") }))
     .filter((entry) => fs.existsSync(entry.dir));
@@ -619,7 +653,7 @@ export function listFindings(): FindingEntry[] {
     seen.set(artifact.relativePath, { ...artifact, runId: entry.runId, finding, title });
   }
   return Array.from(seen.values()).sort((a, b) => a.relativePath.localeCompare(b.relativePath));
-}
+});
 
 function findingCanonicalTime(finding: FindingEntry): number {
   return toTime(
@@ -631,7 +665,7 @@ function findingCanonicalTime(finding: FindingEntry): number {
   );
 }
 
-export function listCanonicalFindings(): FindingEntry[] {
+export const listCanonicalFindings = memoList(function listCanonicalFindings(): FindingEntry[] {
   const bySlug = new Map<string, FindingEntry>();
   for (const finding of listFindings()) {
     const current = bySlug.get(finding.finding);
@@ -643,7 +677,7 @@ export function listCanonicalFindings(): FindingEntry[] {
     findingCanonicalTime(b) - findingCanonicalTime(a)
     || a.finding.localeCompare(b.finding),
   );
-}
+});
 
 export function getFinding(runId: string, finding: string): FindingEntry | undefined {
   return listFindings().find((entry) => entry.runId === runId && entry.finding === finding);
@@ -703,7 +737,7 @@ export type RunEditorial = {
   blocks: RunEditorialBlock[];
 };
 
-export function runArtifacts(runId: string): RunArtifact[] {
+export const runArtifacts = memoList(function runArtifacts(runId: string): RunArtifact[] {
   const runDir = repoPath("runs", runId);
   if (!fs.existsSync(runDir)) return [];
   const artifacts: RunArtifact[] = [];
@@ -801,7 +835,7 @@ export function runArtifacts(runId: string): RunArtifact[] {
     });
   }
   return artifacts;
-}
+});
 
 export function runEditorial(runId: string): RunEditorial | undefined {
   const editorialPath = repoPath("runs", runId, "editorial.yml");
@@ -854,7 +888,7 @@ function normalizeStringArray(value: unknown): string[] {
 // break both the CSP and the promise on /conversation-layer/ that reading a page
 // reports nothing to any platform. Returns undefined when we hold no image, and
 // the card falls back to a monogram.
-export function localAvatar(handle: string): string | undefined {
+export const localAvatar = memo(function localAvatar(handle: string): string | undefined {
   const clean = String(handle ?? "").replace(/^@/, "").toLowerCase();
   if (!clean) return undefined;
   for (const ext of ["jpg", "png", "webp"]) {
@@ -863,7 +897,7 @@ export function localAvatar(handle: string): string | undefined {
     }
   }
   return undefined;
-}
+});
 
 export type SweepCoverage = {
   watched: number;
@@ -930,7 +964,7 @@ export function renderInlineQuotes(html: string, cards: SocialReceiptCard[]): st
   });
 }
 
-export function sweepCoverage(runId: string): SweepCoverage {
+export const sweepCoverage = memo(function sweepCoverage(runId: string): SweepCoverage {
   const socialDir = repoPath("runs", runId, "social");
   const verifyDir = repoPath("runs", runId, "verify");
   if (!fs.existsSync(socialDir)) {
@@ -965,7 +999,7 @@ export function sweepCoverage(runId: string): SweepCoverage {
     unadjudicated,
     complete: failed.length === 0 && unadjudicated.length === 0,
   };
-}
+});
 
 export type WireItem = {
   title: string;
@@ -990,7 +1024,7 @@ export type WireIssue = {
 // `relayed` means we are accurately reporting that somebody said or published
 // this, and are not vouching for the claim inside it. The tier prints. Blurring
 // the two is the same class of error as a paraphrase in quotation position.
-export function listWireIssues(): WireIssue[] {
+export const listWireIssues = memoList(function listWireIssues(): WireIssue[] {
   const dir = repoPath("content", "wire");
   if (!fs.existsSync(dir)) return [];
   return fs
@@ -1015,13 +1049,13 @@ export function listWireIssues(): WireIssue[] {
     })
     .filter((issue) => issue.items.length > 0)
     .sort((a, b) => b.id.localeCompare(a.id));
-}
+});
 
 export function getWireIssue(id: string): WireIssue | undefined {
   return listWireIssues().find((issue) => issue.id === id);
 }
 
-export function listRunSocialCards(runId: string): SocialReceiptCard[] {
+export const listRunSocialCards = memoList(function listRunSocialCards(runId: string): SocialReceiptCard[] {
   const dir = repoPath("runs", runId, "social-cards");
   if (!fs.existsSync(dir)) return [];
   return fs
@@ -1066,15 +1100,15 @@ export function listRunSocialCards(runId: string): SocialReceiptCard[] {
       })).filter((card: SocialReceiptCard) => card.id && card.sourceUrls.length > 0);
     })
     .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
-}
+});
 
-export function runManifest(runId: string): any | undefined {
+export const runManifest = memo(function runManifest(runId: string): any | undefined {
   const manifestPath = repoPath("runs", runId, "manifest.yml");
   if (!fs.existsSync(manifestPath)) return undefined;
   return readYaml(manifestPath);
-}
+});
 
-export function signalIdsInRun(runId: string): string[] {
+export const signalIdsInRun = memoList(function signalIdsInRun(runId: string): string[] {
   const signalsPath = repoPath("runs", runId, "signals", "frontier-signals.yml");
   if (!fs.existsSync(signalsPath)) return [];
   const yaml = readYaml(signalsPath);
@@ -1082,7 +1116,7 @@ export function signalIdsInRun(runId: string): string[] {
     .filter((signal: any) => signal.status !== "withdrawn")
     .map((signal: any) => signal.id)
     .filter(Boolean);
-}
+});
 
 export function evidenceLinksForFinding(finding: FindingEntry): EvidenceLink[] {
   if (Array.isArray(finding.data.evidence) && finding.data.evidence.length > 0) {
@@ -1114,7 +1148,7 @@ function runsSupersededBy(runId: string): string[] {
   return supersededByIndex.get(runId) ?? [];
 }
 
-export function contributingRunIds(runId?: string): string[] {
+export const contributingRunIds = memoList(function contributingRunIds(runId?: string): string[] {
   if (!runId) return [];
   const ids = new Set<string>();
   const queue = [runId];
@@ -1134,12 +1168,12 @@ export function contributingRunIds(runId?: string): string[] {
     if (typeof manifest.supersedes === "string") queue.push(manifest.supersedes);
   }
   return Array.from(ids);
-}
+});
 
 // Runs record evidence two ways: per-claim findings, or per-source verification
 // crosschecks. An issue has receipts either way, so count both -- otherwise a
 // run that used the second shape publishes no source trail at all.
-export function countRunEvidence(runId?: string): number {
+export const countRunEvidence = memo(function countRunEvidence(runId?: string): number {
   if (!runId) return 0;
   const runIds = new Set(contributingRunIds(runId));
   const findings = listFindings().filter((finding) => runIds.has(finding.runId)).length;
@@ -1148,7 +1182,7 @@ export function countRunEvidence(runId?: string): number {
     0,
   );
   return findings + crosschecks;
-}
+});
 
 export function findingsForSources(
   sourceIds: string[],
@@ -1241,7 +1275,7 @@ export function inboundCompositionForSource(sourceId: string): SignalEntry[] {
   );
 }
 
-export function listSources(): any[] {
+export const listSources = memoList(function listSources(): any[] {
   const index = readYaml(repoPath("sources", "index.yml"));
   return (index.sources ?? []).map((source: any) => {
     const contractRelativePath = source.contract as string;
@@ -1249,7 +1283,7 @@ export function listSources(): any[] {
     const contract = fs.existsSync(contractPath) ? readYaml(contractPath) : {};
     return { ...source, contract_path: contractRelativePath, contract };
   });
-}
+});
 
 const PROFILE_STRIP_HEADINGS = /^## (Profile Hygiene|Internal Notes?|Editorial Notes?)\s*$/im;
 
@@ -1267,11 +1301,11 @@ function stripLeadingTitle(markdown: string): string {
   return markdown.replace(/^#\s+.*(?:\r?\n)+/, "");
 }
 
-function readProfile(file: string): MarkdownArtifact {
+const readProfile = memo(function readProfile(file: string): MarkdownArtifact {
   const artifact = readMarkdown(file);
   const stripped = stripLeadingTitle(stripInternalSections(artifact.body));
   return { ...artifact, body: stripped, html: marked.parse(stripped) as string };
-}
+});
 
 // People are tracked the same way providers are: as a dated posture backed by
 // receipts. The difference is what a receipt proves. A post proves that a person
@@ -1296,7 +1330,7 @@ export type CitedPerson = {
 // quoted, and the issues where we quoted them.
 //
 // No biography, no characterisation, no ranking. Just the receipt trail.
-export function listCitedPeople(): CitedPerson[] {
+export const listCitedPeople = memoList(function listCitedPeople(): CitedPerson[] {
   // Issues and features both quote people through the same card machinery, so
   // both count. `href` keeps the citation list honest about where the quote
   // actually appeared.
@@ -1340,9 +1374,9 @@ export function listCitedPeople(): CitedPerson[] {
   return [...people.values()].sort(
     (a, b) => b.posts - a.posts || a.handle.localeCompare(b.handle),
   );
-}
+});
 
-export function listPeople(): MarkdownArtifact[] {
+export const listPeople = memoList(function listPeople(): MarkdownArtifact[] {
   const dir = repoPath("content", "people");
   if (!fs.existsSync(dir)) return [];
   return fs
@@ -1350,7 +1384,7 @@ export function listPeople(): MarkdownArtifact[] {
     .filter((file) => file.endsWith(".md"))
     .map((file) => readProfile(path.join(dir, file)))
     .sort((a, b) => String(a.data.name ?? a.slug).localeCompare(String(b.data.name ?? b.slug)));
-}
+});
 
 export function getPerson(slug: string): MarkdownArtifact | undefined {
   return listPeople().find((person) => person.slug === slug);
@@ -1367,7 +1401,7 @@ function featureSortKey(f: MarkdownArtifact): number {
   return toTime(f.data.published) || toTime(f.data.last_updated) || toTime(f.data.window?.end);
 }
 
-export function listFeatures(): MarkdownArtifact[] {
+export const listFeatures = memoList(function listFeatures(): MarkdownArtifact[] {
   const dir = repoPath("content", "features");
   if (!fs.existsSync(dir)) return [];
   return fs
@@ -1376,13 +1410,13 @@ export function listFeatures(): MarkdownArtifact[] {
     .map((file) => readMarkdown(path.join(dir, file)))
     .filter((feature) => String(feature.data.status ?? "published") === "published")
     .sort((a, b) => featureSortKey(b) - featureSortKey(a));
-}
+});
 
 export function getFeature(slug: string): MarkdownArtifact | undefined {
   return listFeatures().find((feature) => feature.slug === slug);
 }
 
-export function listProfiles(): MarkdownArtifact[] {
+export const listProfiles = memoList(function listProfiles(): MarkdownArtifact[] {
   const dir = repoPath("content", "profiles");
   if (!fs.existsSync(dir)) return [];
   return fs
@@ -1390,7 +1424,7 @@ export function listProfiles(): MarkdownArtifact[] {
     .filter((file) => file.endsWith(".md"))
     .map((file) => readProfile(path.join(dir, file)))
     .sort((a, b) => String(a.data.label ?? a.slug).localeCompare(String(b.data.label ?? b.slug)));
-}
+});
 
 export function getProfile(slug: string): MarkdownArtifact | undefined {
   const dir = repoPath("content", "profiles");
