@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
     "build": "node scripts/astro-build-ascii.mjs",
-    "postbuild": "node scripts/gen-og.mjs && node scripts/check-static-links.mjs && node scripts/emit-slashless-stubs.mjs",
+    "postbuild": "node scripts/gen-og.mjs && node scripts/check-static-links.mjs",
     "og": "node scripts/gen-og.mjs",
     "preview": "astro preview --host 127.0.0.1",
     "check": "astro check",
