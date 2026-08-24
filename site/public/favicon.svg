@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .ground { fill: #0d0c0a; }
+    .mark { fill: #f7f2e8; }
+    @media (prefers-color-scheme: light) {
+      .ground { fill: #f7f2e8; }
+      .mark { fill: #0d0c0a; }
+    }
+  </style>
+  <rect class="ground" width="64" height="64" rx="12"/>
+  <!-- "BF" set as paths-free monospace text; system mono keeps it legible at 16px -->
+  <text class="mark" x="32" y="45" text-anchor="middle"
+        font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace"
+        font-size="34" font-weight="700" letter-spacing="-2">BF</text>
+</svg>

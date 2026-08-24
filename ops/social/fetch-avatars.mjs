@@ -30,6 +30,7 @@
 //   node ops/social/fetch-avatars.mjs                 # every handle in every run
 //   node ops/social/fetch-avatars.mjs <handle> [...]  # specific handles
 
+import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -76,7 +77,46 @@ async function fetchAvatar(handle, attempt = 0) {
   // portrait. Better to fall back to the monogram than to publish a stranger's
   // default egg as if it were them.
   if (buf.length < 2000) return { ok: false, reason: `suspiciously small (${buf.length}B)` };
-  return { ok: true, buf, ext: type.includes("png") ? "png" : "jpg" };
+  // A profile picture is square. The service's own failure mode is X's
+  // 1202x634 "see what's happening" promo card, which once shipped as a
+  // person's face at 846KB; reject anything that is not square-ish.
+  const dims = imageDims(buf);
+  if (dims && Math.abs(dims.width - dims.height) > Math.max(dims.width, dims.height) * 0.1) {
+    return { ok: false, reason: `not square (${dims.width}x${dims.height}, likely a placeholder card)` };
+  }
+  return { ok: true, buf, ext: type.includes("png") ? "png" : "jpg", width: dims?.width };
+}
+
+// Header-only dimension probe so this script keeps its no-install rule.
+function imageDims(buf) {
+  if (buf.length > 24 && buf.readUInt32BE(0) === 0x89504e47) {
+    return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
+  }
+  if (buf.length > 4 && buf.readUInt16BE(0) === 0xffd8) {
+    let off = 2;
+    while (off + 9 < buf.length) {
+      if (buf[off] !== 0xff) break;
+      const marker = buf[off + 1];
+      const size = buf.readUInt16BE(off + 2);
+      if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+        return { height: buf.readUInt16BE(off + 5), width: buf.readUInt16BE(off + 7) };
+      }
+      off += 2 + size;
+    }
+  }
+  return undefined;
+}
+
+// The largest slot any avatar renders in is 56px; store at 2x that. The
+// originals arrive at 400x400 (25x the bytes the page needs).
+function shrinkInPlace(file, width) {
+  if (!width || width <= 112) return;
+  try {
+    execFileSync("sips", ["-Z", "112", file], { stdio: "ignore" });
+  } catch {
+    // sips is macOS-only; elsewhere the full-size original stays and the
+    // resize happens on the next macOS run.
+  }
 }
 
 async function main() {
@@ -99,6 +139,7 @@ async function main() {
       }
       const file = path.join(OUT, `${handle.toLowerCase()}.${result.ext}`);
       writeFileSync(file, result.buf);
+      shrinkInPlace(file, result.width);
       console.log(`  ok    @${handle} -> avatars/${path.basename(file)} (${result.buf.length}B)`);
       saved += 1;
       await sleep(700);
