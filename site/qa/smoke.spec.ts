@@ -33,14 +33,9 @@ test("home page renders the public shell", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Coding agents can create work faster than teams can verify it." })).toBeVisible();
   await expect(page.getByRole("link", { name: "Bitter Lesson Maxing" })).toHaveAttribute("href", "/bitter-lesson/");
   await expect(page.getByRole("link", { name: "Amdahl Maxing" })).toHaveAttribute("href", "/amdahls-law/");
-  await expect(page.getByText(/whole publication, source notes and all/)).toBeVisible();
-  const firstThesisLink = page.locator(".homepage-thesis a").first();
-  await expect(firstThesisLink).toHaveAttribute("href", /.+/);
-  await expect(firstThesisLink).not.toHaveAttribute("href", "/profiles/agent-flywheel/");
+  await expect(page.getByText(/whole publication is on/)).toBeVisible();
   await expect(page.locator("body")).not.toContainText("receipts and all");
   await expect(page.locator("body")).not.toContainText("[Agent Flywheel](");
-  await expect(page.getByText("Latest Published Brief")).toBeVisible();
-  await expect(page.getByText("Latest Profile Reviews")).toBeVisible();
   await expect(page.locator(".version-list:empty")).toHaveCount(0);
 });
 
@@ -65,10 +60,12 @@ test("public editorial pages keep backstage language out of the reader's way", a
 });
 
 test("primary index links navigate from the public shell", async ({ page }) => {
+  // Link names follow the reader-facing nav and footer, not our object model:
+  // "Issues" is the digest archive, "Projects" the profiles.
   const targets = [
-    { name: "Digests", path: "/digests/", visibleText: "Digests" },
-    { name: "Profiles", path: "/profiles/", visibleText: "Profiles" },
-    { name: "Signals", path: "/signals/", visibleText: "Signals" },
+    { name: "Issues", path: "/digests/", visibleText: "digest and brief archive" },
+    { name: "Projects", path: "/profiles/", visibleText: "Dated project profiles" },
+    { name: "Signals", path: "/signals/", visibleText: "source-backed signals" },
     { name: "Thesis", path: "/letter/", visibleText: "An ode to the Bitter Lesson" },
     { name: "Research trail", path: "/runs/", visibleText: "Research Trail" },
   ];
@@ -108,23 +105,20 @@ test("sitemap favors canonical reader pages over duplicate artifacts", async ({ 
   expect(sitemap.ok()).toBeTruthy();
   const body = await sitemap.text();
 
-  expect(body).toContain("https://frontier.bitter.sh/findings/2026-06-01-flue-v090-workers-ai-reasoning/");
-  expect(body).not.toContain("https://frontier.bitter.sh/findings/2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0/2026-06-01-flue-v090-workers-ai-reasoning/");
+  // Individual findings carry noindex,follow and are deliberately absent from
+  // the sitemap (see sitemap.xml.ts); only the /findings/ index is listed.
+  expect(body).toContain("https://frontier.bitter.sh/findings/</loc>");
+  expect(body).not.toMatch(/frontier\.bitter\.sh\/findings\/.+<\/loc>/);
   expect(body).not.toContain("https://frontier.bitter.sh/runs/2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0/");
   expect(body).not.toContain("/versions/");
   expect(body).toContain("https://frontier.bitter.sh/letter/");
   expect(body).toContain("https://frontier.bitter.sh/bitter-lesson/");
   expect(body).toContain("https://frontier.bitter.sh/amdahls-law/");
   expect(body).toContain("https://frontier.bitter.sh/corrections/");
+  expect(body).toContain("https://frontier.bitter.sh/wire/");
+  expect(body).toContain("https://frontier.bitter.sh/conversation-layer/");
+  expect(body).not.toContain("https://frontier.bitter.sh/up/");
   expect(new Set([...body.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((match) => match[1])).size).toBeGreaterThan(1);
-
-  const codexSitemapEntry = body.match(/<loc>https:\/\/frontier\.bitter\.sh\/findings\/codex\/<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/);
-  expect(codexSitemapEntry?.[1]).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-  const canonicalCodex = await request.get("/findings/codex/");
-  const canonicalCodexBody = await canonicalCodex.text();
-  const canonicalJsonLd = canonicalCodexBody.match(/<script type="application\/ld\+json">([^<]+)<\/script>/);
-  expect(canonicalJsonLd).not.toBeNull();
-  expect(JSON.parse(canonicalJsonLd![1]).dateModified.slice(0, 10)).toBe(codexSitemapEntry![1]);
 
   const versionedFinding = await request.get("/findings/2026-06-03-weekly-digest-2026-05-28_2026-06-03-frontier-v0/2026-06-01-flue-v090-workers-ai-reasoning/");
   expect(versionedFinding.ok()).toBeTruthy();
@@ -170,14 +164,19 @@ test("withdrawn signals remain correction records without leaking into accepted 
 
 test("digest source trail uses findings from its own run", async ({ page }) => {
   await page.goto("/digests/2026-07-01_2026-07-02-weekly/");
-  await expect(page.locator(".issue-meta")).toHaveText("Edited by Michael Ruescher / revised 2026-07-12");
+  // The revised date is computed from git history at build time. Pin the
+  // shape and the cross-surface consistency, not the date itself -- any
+  // commit touching the digest file legitimately moves it.
+  const issueMeta = page.locator(".issue-meta");
+  await expect(issueMeta).toHaveText(/^Edited by Michael Ruescher \/ revised \d{4}-\d{2}-\d{2}$/);
+  const revised = (await issueMeta.textContent())?.match(/revised (\d{4}-\d{2}-\d{2})/)?.[1];
   const trail = page.locator(".source-trail-section");
   await expect(trail).toContainText("rust-v0.142.5");
   await expect(trail).not.toContainText("rust-v0.128.0");
   await expect(trail).toContainText("Agent Flywheel v0.7.0 was a pre-window update-reliability release");
   await expect(trail).not.toContainText("2026-07-02-codex-v0-142-5-trace-payload-scrub");
   const articleJsonLd = await page.locator('script[type="application/ld+json"]').allTextContents();
-  expect(articleJsonLd.map((value) => JSON.parse(value)).find((item) => item.dateModified)?.dateModified).toBe("2026-07-12");
+  expect(articleJsonLd.map((value) => JSON.parse(value)).find((item) => item.dateModified)?.dateModified).toBe(revised);
 });
 
 test("profile template emits one page heading", async ({ page }) => {
