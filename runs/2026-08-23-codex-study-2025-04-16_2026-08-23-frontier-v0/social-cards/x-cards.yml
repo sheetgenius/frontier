@@ -1,0 +1,397 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-08-23-codex-study-2025-04-16_2026-08-23-frontier-v0
+note: >
+  Every verbatim was re-fetched by URL in a capture pass given no expected text
+  (social/capture.raw.md; 18 captured, 0 unavailable; two captured posts are
+  not carded because the feature does not quote them). Inline fragments are
+  sliced with ops/social/slice-quote.mjs, never retyped.
+cards:
+  - id: rohan-software-factory
+    title: "The limiting factor is tools at the right moments"
+    kind: voice
+    date: 2026-06-02
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["TheRohanVarma"]
+    display_name: "Rohan Varma"
+    source_urls:
+      - https://x.com/TheRohanVarma/status/2061680932630024321
+    verbatim: |
+      Our aspiration with Codex is to remove software creation as a limiting factor on the world’s ambition. 
+
+      Not just for product companies and engineers, but also for users across every role and beyond business use-cases (Codex is for everyone).
+
+      Writing code is the first step toward accelerating software creation, but we still haven’t yet seen the true explosion of software that should be possible with advances in AI coding.
+
+      Deploying useful software also requires clear specifications, well-designed code, security guarantees, careful deployment, production monitoring, and constant iteration.
+
+      Thinking of this system as a software factory feels pretty apt. We’ve already seen exciting examples of this working well within OAI, like the work @_lopopolo wrote about in the Harness Engineering blog post. I’ve also seen great examples from customers across startups and enterprises. However, doing this well requires a lot of laborious work to get right.
+
+      I think the model capabilities feel very close to supporting this end-to-end, though we'll make them even better. The limiting factor now is likely giving models and agents access to the right tools, and having them run at the right moments, so they can truly push the whole process forward.
+
+      Once we get there, I think we’ll be in an extremely exciting world where software can be both great and disposable. 
+
+      When we do see that software explosion, I think things will feel significantly different from even what we've seen so far.
+    inline: "The limiting factor now is likely giving models and agents access to the right tools, and having them run at the right moments"
+    summary: >
+      A Codex teammate stating the bet in June: models are close; what remains is tool access and timing.
+    verdict: >
+      Voice. An aspiration statement by a team member, quoted as the opening of the team's public design arc. The Harness Engineering writeup he cites is the design lineage, not a receipt for any product fact.
+
+  - id: tibo-driver-seat
+    title: "Less infrastructure when the model drives"
+    kind: voice
+    date: 2026-06-19
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["thsottiaux"]
+    display_name: "Tibo"
+    source_urls:
+      - https://x.com/thsottiaux/status/2068120572673077274
+    verbatim: |
+      Remote / local handoff in Codex! Removing boundaries one at a time. 
+
+      When you let the model be in the driver seat, you actually need less infrastructure.
+    inline: "When you let the model be in the driver seat, you actually need less infrastructure."
+    summary: >
+      The Codex lead's one-line design thesis, attached to the remote/local handoff ship.
+    verdict: >
+      Voice. A design position from the person running the team, stated on a shipping day. The tree evidence for whether they act on it is in the deletion receipts, not in this post.
+
+  - id: vihaan-may-rule
+    title: "The May rule, remembered"
+    kind: voice
+    date: 2026-08-05
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["vihaanmotwani"]
+    display_name: "Vihaan Motwani"
+    source_urls:
+      - https://x.com/vihaanmotwani/status/2085124301863408082
+    verbatim: |
+      back in may at @aiDotEngineer, i asked @thsottiaux when they wait for a better model instead of patching the harness and he said:
+
+      > “oftentimes we actually ask ourselves: what if we don’t fix this in the harness today? how quickly is it going to be possible to improve the models?”
+
+      now he’s saying today’s codex will look primitive in 2-3 months lol
+
+      man i wish i could see what they’re testing right now
+    summary: >
+      An AI Engineer attendee recalling the Codex lead's rule for when not to patch the harness.
+    verdict: >
+      Voice, and secondhand: a recollection of a May remark that we could not find as a post of its own. It is quoted as what Vihaan says he heard. It is consistent with what the lead posted under his own name on 2026-06-19 and 2026-08-04, which is why it is carried at all.
+
+  - id: tibo-primitive-in-months
+    title: "Primitive in two to three months"
+    kind: voice
+    date: 2026-08-04
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["thsottiaux"]
+    display_name: "Tibo"
+    source_urls:
+      - https://x.com/thsottiaux/status/2084483765158719542
+    verbatim: |
+      Given some of the results I'm seeing recently, it's pretty clear Codex is a good harness.
+
+      But it will seem primitive in 2-3 months and we're about to go through another major evolution in how we use AI at the frontier. The next generation of models need more than your laptop.
+    inline: "But it will seem primitive in 2-3 months and we're about to go through another major evolution in how we use AI at the frontier."
+    summary: >
+      The lead telling operators today's harness is temporary.
+    verdict: >
+      Voice. A prediction by the person shipping the product, cutting against treating the current loop as a durable layer. No product fact asserted.
+
+  - id: lopopolo-let-it-cook
+    title: "Tools and context, let it cook"
+    kind: voice
+    date: 2026-07-14
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["_lopopolo"]
+    display_name: "Ryan Lopopolo"
+    source_urls:
+      - https://x.com/_lopopolo/status/2077149347528261712
+    verbatim: |
+      I am guessing this is a local optimum for you because you have many skills and you invoke them most of the time. I keep saying “give the model tools and context and let it cook.” The skills are for the model and the harness injects the description, so it should be real prose that preserves “what is this and why might I want to learn more”. Most sessions should have no more than 6 skills linked in to them.
+    inline: "give the model tools and context and let it cook."
+    summary: >
+      The author of the Harness Engineering writeup the team cites, on skills as prose for the model rather than a rulebook.
+    verdict: >
+      Voice. Design advice from the person whose internal writeup the team publicly credits, now outside OpenAI. His identity as that author is per Rohan Varma's 2026-06-02 post naming him.
+
+  - id: tibo-deletion-incident
+    title: "The HOME deletion read"
+    kind: claim
+    date: 2026-07-16
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["thsottiaux"]
+    display_name: "Tibo"
+    source_urls:
+      - https://x.com/thsottiaux/status/2077630111499882637
+    verbatim: |
+      On file deletions. We’ve investigated a handful of reports where GPT-5.6 unexpectedly deleted files. 
+
+      What we have  found is that this most commonly occurs when:
+      - Full access mode is enabled and codex is run without sandboxing protections, including without auto review being enabled
+      - The model attempts  to override the $HOME env var to define a temporary directory.
+      - The model makes an honest mistake and mistakenly deletes $HOME instead.
+
+      This is of course not how we want the system to behave, even when a user operates the model in full-access mode without the safeguards of our sandbox or without using auto review which checks for these kinds of high risk actions and rejects them. 
+
+      We are taking steps to mitigate this risk including by updating the developer message, guiding more users towards safer permission modes, and adding additional harness safeguards. Even though this happens extremely rarely, we’ll share a detailed post-mortem in the coming days that goes into more details and what we are doing to minimize risks further.
+    inline: "The model makes an honest mistake and mistakenly deletes $HOME instead."
+    summary: >
+      The team's own account of the July file-deletion reports: full access, no sandbox, no auto-review, an honest mistake.
+    verdict: >
+      Claim, the team's incident read. The failure conditions are their telling; the mitigation list matches the 2026-08-19 recap, and the harness-side checks are visible in-window in the tree (fail-closed parsing, 0.149.0). The rarity claim is theirs and not checkable.
+
+  - id: born2code-yolo-friction
+    title: "Safeguards without the friction"
+    kind: voice
+    date: 2026-07-16
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["born2code"]
+    display_name: "احمد"
+    source_urls:
+      - https://x.com/born2code/status/2077712273057944063
+    verbatim: |
+      The reason we run yolo is because codex is useless if it stops to ask at every step. That doesn’t mean it should do rm -rf on $home. We want the safeguards but without the friction. The proper solution is it fix the permissions system while keeping the sandbox. I am happy to run in a sandbox if I didn’t have to babysit it
+    inline: "We want the safeguards but without the friction."
+    summary: >
+      The operator counter inside the deletion thread: people run full access because approvals are the cost.
+    verdict: >
+      Voice. One operator, but the position the whole approval design has to answer, and the reason a classifier in the approval seat is the team's bet rather than more prompts.
+
+  - id: tibo-layered-recap
+    title: "Prompts, checks, modes, classifier, training"
+    kind: claim
+    date: 2026-08-19
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["thsottiaux"]
+    display_name: "Tibo"
+    source_urls:
+      - https://x.com/thsottiaux/status/2089891927659585918
+    verbatim: |
+      Hi!
+
+      Recapping some changes we have rolled out over the last couple of weeks that have further reduced the risk associated to potentially destructive actions being performed by Codex during its work. 
+
+      A few weeks ago, we started investigating a small number of reports where GPT-5.6 in Codex took destructive actions outside what the user asked for. The most serious pattern we found was a command meant to clean up temporary work that could instead delete the user files. This should obviously not happen. 
+
+      Here’s what we found:
+      - Codex sometimes creates temporary folders while working and cleans them up afterward. In rare cases, GPT-5.6 got that cleanup wrong. One pattern involved reusing a system environment variable like $HOME for temporary work. A malformed cleanup command could then point at the actual home directory instead of the temporary folder. 
+      - There were cases where the model tried to delete or overwrite a temporary path without checking what was already there.
+
+      We’ve added protections at several layers:
+      - Codex is now explicitly instructed to check deletion targets before acting, create fresh temporary directories, avoid repurposing system environment variables, prefer recoverable actions, and stop when the scope is unclear.
+      - We strengthened the execution checks that identify high-risk deletion commands and escalate them for review. If a command is rejected, the model is directed to take a safer approach.
+      - We made Full access harder to enable accidentally, added clearer warnings, and further restricted especially risky permission combinations.
+      - We updated Auto-review to better identify destructive actions.
+      - We built targeted evaluations that replay the failures we observed. We’re also adding reinforcement-learning tasks and graders focused on these risks, and filtering destructive actions from training data.
+
+      In those replay evaluations, the changes substantially reduced the behavior while preserving Codex’s ability to complete normal coding work. 
+
+      Two things to do on your end:
+      - Keep the Codex app up to date. We are always improving safety, performance and many other things.
+      - Use one of the sandbox modes: "Ask for approval" or "Approve for me". Only use Full access for environments you trust and can recover.
+
+      Thanks and happy Codexing out there!
+    inline: "adding reinforcement-learning tasks and graders focused on these risks, and filtering destructive actions from training data."
+    summary: >
+      The full layered-gate design, in the team's own words: instructions, execution checks, harder-to-reach full access, auto-review, and training-side filtering.
+    verdict: >
+      Claim, the team's account of shipped changes. The instruction and execution-check layers are the kind visible in the tree in-window; the auto-review, evaluation, and training claims cannot be checked from outside and are carried as their statement.
+
+  - id: lucasmeijer-ui-nowhere
+    title: "The UI is nowhere to be found"
+    kind: claim
+    date: 2026-07-28
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["lucasmeijer"]
+    display_name: "Lucas Meijer"
+    source_urls:
+      - https://x.com/lucasmeijer/status/2082094287106216077
+    verbatim: |
+      openai folks keep saying that codex is an open source harnass,  but the actual code for the UI of the harnass is nowhere to be found.....
+    inline: "the actual code for the UI of the harnass is nowhere to be found"
+    summary: >
+      The open-source identity fight, opened.
+    verdict: >
+      Claim, and it needs the line drawn precisely: the CLI's terminal UI is in the public tree (codex-rs/tui); the Codex desktop app's UI is not. He is right about the app, wrong if read as the whole product. Two team members then drew the boundary differently the same day.
+
+  - id: tibo-agent-code-is-harness
+    title: "The agent code is the harness"
+    kind: claim
+    date: 2026-07-28
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["thsottiaux"]
+    display_name: "Tibo"
+    source_urls:
+      - https://x.com/thsottiaux/status/2082241730972442912
+    verbatim: |
+      Different definition of harness. The agent code is the harness. The codex app is an app.
+
+      https://github.com/openai/codex
+    inline: "The agent code is the harness. The codex app is an app."
+    summary: >
+      The lead's answer to the openness fight: the loop is the harness, the app is an app.
+    verdict: >
+      Claim about a definition, and the definition matches the repo boundary at read time: agent loop, TUI, protocol, and app-server are public Apache-2; the desktop app is a separate closed artifact.
+
+  - id: openaidevs-app-owns-approvals
+    title: "The app owns approvals"
+    kind: claim
+    date: 2026-08-20
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["OpenAIDevs"]
+    display_name: "OpenAI Developers"
+    source_urls:
+      - https://x.com/OpenAIDevs/status/2090230646497251387
+    verbatim: |
+      Teams are using the open-source Codex harness to bring agents into the tools they already use, from internal apps to operations dashboards.
+
+      Their applications control the interface, context, tools, and approvals while the harness handles the agent loop.
+
+      https://developers.openai.com/blog/codex-as-a-platform
+    inline: "Their applications control the interface, context, tools, and approvals while the harness handles the agent loop."
+    summary: >
+      Official: embedding apps keep interface, context, tools, and approvals; the harness runs the loop.
+    verdict: >
+      Claim, official account. Adjudicated against the 0.148.0 tag in the 2026-08-20 brief: Guardian V2 exists in the binary and is off by default, consistent with the embedding story and inconsistent with treating Guardian as the default gate.
+
+  - id: acsmif-invisible-guardian
+    title: "Charged for an invisible classifier"
+    kind: claim
+    date: 2026-08-20
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["acsmif"]
+    display_name: "colin"
+    source_urls:
+      - https://x.com/acsmif/status/2090477764109533376
+    verbatim: |
+      The charitable interpretation is that codex-auto-review has been deprecated as more is routed to guardian-v2, which was never displayed. But removing auto-review from analytics while also keeping guardian-v2 invisible is nuts.
+
+      If we’re charged for it, we should obviously be able to see it in analytics.
+    inline: "codex-auto-review has been deprecated as more is routed to guardian-v2, which was never displayed"
+    summary: >
+      An operator's read of vanished auto-review analytics: the work moved to guardian-v2, which the dashboard never showed.
+    verdict: >
+      Claim about analytics and billing that the tree cannot settle: the tags show guardianv2 present and default-off, and show nothing about dashboards or charges. Carried as the operator-cost counter to the layered-gate design, with the routing hypothesis marked as his inference.
+
+  - id: pvncher-computer-use-leverage
+    title: "The in-team limit"
+    kind: voice
+    date: 2026-08-10
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["pvncher"]
+    display_name: "eric provencher"
+    source_urls:
+      - https://x.com/pvncher/status/2086829227886694782
+    verbatim: |
+      I only semi agree. 
+      Codex computer and chrome use are part of the harness and add a ton of leverage.
+
+      Multi agent collaboration is also a source of much complexity. Much of it is on the model, but there are harness primitives to get right, and there’s room to innovate on this.
+    inline: "Codex computer and chrome use are part of the harness and add a ton of leverage."
+    summary: >
+      A Codex team member declining the strong thin-harness reading: computer use and Chrome use stay, and multi-agent needs primitives done right.
+    verdict: >
+      Voice. The internal boundary on the less-infrastructure bet, stated in public. It is the tension the piece reports, not a contradiction to resolve.
+
+  - id: pvncher-trained-tools
+    title: "Trained tools, built into the harness"
+    kind: claim
+    date: 2026-08-15
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["pvncher"]
+    display_name: "eric provencher"
+    source_urls:
+      - https://x.com/pvncher/status/2088659020856828120
+    verbatim: |
+      It’s just tools the models are trained to use well, built into the harness
+    inline: "tools the models are trained to use well, built into the harness"
+    summary: >
+      Asked whether multi-agent is model or harness: tools the models are trained to use well, built in.
+    verdict: >
+      Claim. The tools are in the tree (the agents and queue surfaces shipped in 0.149.0); whether models are trained against them is not checkable from outside and is carried as the team's statement.
+
+  - id: onusoz-standardized-pencil
+    title: "The standardized pencil"
+    kind: voice
+    date: 2026-08-23
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex, pi-coding-agent]
+    authors: ["onusoz"]
+    display_name: "Onur Solmaz"
+    source_urls:
+      - https://x.com/onusoz/status/2091434969151267162
+    verbatim: |
+      We need to normalize measuring and judging models against a standardized test harness
+
+      "Oh but model X performs best in their own proprietary harness"
+
+      I could not care less. When I take exams, I go to the standardized classroom, get the standardized pencil and exam sheet, and have to solve it under 2 hours
+
+      This system arose because we have a LOT of people to test
+
+      Guess what? We now have a LOT of models, and they are multiplying by the day
+
+      "Oh but model X performs substantially better in ARC-AGI-3 with a custom harness"
+
+      I don't care... Then imbue model X with enough knowledge so that it can reconstruct that harness on the spot
+
+      The main harness could be mini-swe-agent, terminus 2, vanilla pi or something along those lines
+
+      It needs to be simple, and stay roughly the same over time
+
+      There is already too much complexity in the benchmarking space right now, and I feel like not enough people are putting their feet down to cut away some part of it
+    inline: "We need to normalize measuring and judging models against a standardized test harness"
+    summary: >
+      The eval-side objection: judge models on a thin, stable, common harness, not each lab's own.
+    verdict: >
+      Voice. A maintainer of a competing harness arguing the comparability case. Quoted as the strongest public statement of the position the Codex lead answered the same day.
+
+  - id: tibo-brain-in-the-pencil
+    title: "The harness is a body"
+    kind: voice
+    date: 2026-08-23
+    date_precision: day
+    captured_on: 2026-08-23
+    source_ids: [codex]
+    authors: ["thsottiaux"]
+    display_name: "Tibo"
+    source_urls:
+      - https://x.com/thsottiaux/status/2091563530189521277
+    verbatim: |
+      A better analogy would be to say that your brain suddenly gets placed in the pencil for it to moved around when you need to do the exam. 
+
+      These are entirely different things you are comparing. The harness is much more similar to the body than it is to the classroom and environment.
+    summary: >
+      The lead's reply, and the team's metaphysics in one line.
+    verdict: >
+      Voice. A metaphor, not a measurable claim. It is carried because it is the clearest statement of the design philosophy the whole record above exhibits.
+
