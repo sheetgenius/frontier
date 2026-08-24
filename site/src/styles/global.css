@@ -69,6 +69,10 @@
   --color-night-muted: #aea598;
   --color-night-faint: #82796d;
   --color-night-line: #2d2923;
+  /* Ground behind an inline verified quotation. Quiet enough to sit inside a
+     serif paragraph, present enough that the quoted run reads as an object. */
+  --color-quote-wash: rgba(128, 97, 25, 0.09);
+  --color-chip-ground: rgba(128, 97, 25, 0.05);
 }
 
 :root {
@@ -97,6 +101,8 @@
   --color-faint: var(--color-night-faint);
   --color-line: var(--color-night-line);
   --color-bitter: #c7a75a;
+  --color-quote-wash: rgba(199, 167, 90, 0.14);
+  --color-chip-ground: rgba(199, 167, 90, 0.07);
   color-scheme: dark;
   background: var(--color-ground);
   color: var(--color-ink);
@@ -2897,41 +2903,61 @@ a:hover > .lead-issue-title {
   white-space: normal;
 }
 
+/* The quoted run gets its own ground: a wash the color of the accent, cloned
+   across line fragments so a wrapped quotation reads as one continuous object
+   (the same affordance a reader's text selection gives it, designed). The
+   wash marks exactly the words the capture pass verified -- it must never
+   extend past the <q> element. */
 .xq-text {
   quotes: "\201C" "\201D" "\2018" "\2019";
+  background: var(--color-quote-wash);
+  border-radius: 0.2em;
+  padding: 0.05em 0.28em 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
+/* The attribution is a receipt chip: face plus handle, one link to the post.
+   Small caps-height pill so it rides inside the line without inflating it. */
 .xq-cite {
-  display: inline;
-  margin-left: 0.28em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32em;
+  margin-left: 0.34em;
+  padding: 0.09em 0.55em;
   white-space: nowrap;
   font-family: var(--font-mono);
-  font-size: 0.76em;
+  font-size: 0.68em;
+  line-height: 1.2;
   color: var(--color-muted);
   text-decoration: none;
-  border-bottom: 0;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: var(--color-chip-ground);
+  vertical-align: 0.12em;
+  transition: color 120ms ease, border-color 120ms ease;
+}
+
+.xq-cite:has(.xq-avatar) {
+  padding-left: 0.16em;
 }
 
 .xq-cite:hover {
   color: var(--color-bitter);
+  border-color: var(--color-bitter);
 }
 
 .xq-avatar {
   display: inline-block;
-  width: 1.15em;
-  height: 1.15em;
-  margin-right: 0.28em;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0;
   border-radius: 50%;
   object-fit: cover;
-  vertical-align: -0.24em;
 }
 
 .xq-handle {
-  border-bottom: 1px solid var(--color-line);
-}
-
-.xq-cite:hover .xq-handle {
-  border-bottom-color: var(--color-bitter);
+  border-bottom: 0;
 }
 
 .xpost {
