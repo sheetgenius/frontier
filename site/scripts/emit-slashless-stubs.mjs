@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Emit a tiny redirect stub at dist/<route>.html for every dist/<route>/index.html.
+// Emit a tiny redirect stub at dist/<route>.html for top-level routes.
 //
 // The live edge hard-404s slashless URLs (/about -> empty 404) but does map
 // extensionless paths onto .html files (/up serves dist/up.html), so a stub
@@ -7,6 +7,11 @@
 // instead of a blank 404. The stub is an instant meta refresh -- which search
 // engines treat as a redirect -- plus a canonical pointing at the slashed URL,
 // so nothing duplicate gets indexed. A platform-side 301 would supersede this.
+//
+// Top-level routes only: hand-typed URLs are short (/about, /digests), and
+// the 2026-08-24 deploy incident showed the publish path has a payload limit
+// -- a stub for all 1,424 routes was one of the two features that pushed the
+// artifact past it. Deep links circulate with their trailing slash already.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -21,18 +26,16 @@ function stubHtml(route) {
 }
 
 let emitted = 0;
-function walk(dir) {
+function emitTopLevel(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
     const child = path.join(dir, entry.name);
     const index = path.join(child, "index.html");
     const stub = `${child}.html`;
     if (fs.existsSync(index) && !fs.existsSync(stub)) {
-      const route = `/${path.relative(DIST, child).split(path.sep).join("/")}`;
-      fs.writeFileSync(stub, stubHtml(route));
+      fs.writeFileSync(stub, stubHtml(`/${entry.name}`));
       emitted += 1;
     }
-    walk(child);
   }
 }
 
@@ -40,5 +43,5 @@ if (!fs.existsSync(DIST)) {
   console.error("[slashless] dist/ not found - run `astro build` first.");
   process.exit(1);
 }
-walk(DIST);
+emitTopLevel(DIST);
 console.log(`[slashless] emitted ${emitted} slashless redirect stubs`);
