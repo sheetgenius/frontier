@@ -1,5 +1,5 @@
 schema_version: bitter.frontier_source_index.v0
-last_revised: 2026-08-21
+last_revised: 2026-09-22
 sources:
   - id: codex
     contract: sources/codex.yml
@@ -118,6 +118,12 @@ sources:
   - id: omp
     contract: sources/omp.yml
     notes: sources/omp.notes.md
+    tier: 2
+    status: active
+    cadence: weekly
+  - id: temporal-agent-harness
+    contract: sources/temporal-agent-harness.yml
+    notes: sources/temporal-agent-harness.notes.md
     tier: 2
     status: active
     cadence: weekly
