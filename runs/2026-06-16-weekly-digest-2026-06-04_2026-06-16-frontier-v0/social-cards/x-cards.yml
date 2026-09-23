@@ -29,7 +29,7 @@ cards:
     summary: >
       Claude Code's creator announcing nested subagent support.
     verdict: >
-      The vendor announcing its own feature, quoted as that. What matters is the date: the cap this issue told operators to rely on did not bind for foreground spawns until 2.1.181, which our next issue reported.
+      The vendor announcing its own feature, quoted as that. The announcement is a statement about the feature, not proof the cap bound; the issue carries a correction on foreground spawns.
     tags: [subagents, depth-cap]
 
   - id: crepesupreme-depth-five

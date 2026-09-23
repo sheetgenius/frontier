@@ -144,7 +144,7 @@ describe the doctrine in public.
 
 In June, a Codex teammate located the bottleneck: [[q:rohan-software-factory]].
 Two weeks later the engineering lead, Tibo Sottiaux, attached the thesis to a
-shipping feature: [[q:tibo-driver-seat]]. In August Sottiaux told operators
+shipping feature: [[q:tibo-driver-seat]] In August Sottiaux told operators
 the current product is temporary: [[q:tibo-primitive-in-months]]. An AI Engineer
 attendee supplied the design rule from a May conversation, the only public
 trace of it we could find:
@@ -172,7 +172,7 @@ own deployment -- but they name the real problem this architecture attacks.
 July showed it live. Users reported deleted files; the lead published the
 failure read -- full access, no sandbox, no auto-review, and
 [[q:tibo-deletion-incident]] -- and an operator stated the constraint every
-approval design answers to: [[q:born2code-yolo-friction]]. The
+approval design answers to: [[q:born2code-yolo-friction]] The
 [layered response](https://x.com/thsottiaux/status/2089891927659585918) was
 prompts, execution checks, harder-to-reach full access, an updated reviewer,
 and [[q:tibo-layered-recap]] -- inference three ways, wrapped around an OS
@@ -194,7 +194,7 @@ cannot govern.
 ## The limit of the bet, and the field converging on it
 
 Inside the team, the bet has a stated boundary. Asked whether harnesses stop
-mattering: [[q:pvncher-computer-use-leverage]]. Asked whether multi-agent is
+mattering: [[q:pvncher-computer-use-leverage]] Asked whether multi-agent is
 model or harness: [[q:pvncher-trained-tools]]. And OpenAI's platform post
 gives the strongest reason the harness is not dissolving: on ARC-AGI-3,
 [retained reasoning and context compaction raised GPT-5.6 Sol's score from 13.3% to 38.3%](https://developers.openai.com/blog/codex-as-a-platform)
@@ -243,14 +243,14 @@ adversarial. Compare what got approved, denied, and recorded.
 
 If you embed the loop, know what "open" means here, because the team argued
 it out in public. When a reader complained that [[q:lucasmeijer-ui-nowhere]],
-the lead drew the boundary at the loop: [[q:tibo-agent-code-is-harness]].
+the lead drew the boundary at the loop: [[q:tibo-agent-code-is-harness]]
 The agent code, the terminal UI, the protocol, and App Server are
 [Apache-2](https://github.com/openai/codex/blob/rust-v0.149.0/LICENSE); the
 desktop app is a product. And App Server hands you the reviewer route
 along with the loop -- what it does not hand you is the institution:
 identity, consent, which actions stay human-only, how approvals enter your
 audit record. The official account said it plainly:
-[[q:openaidevs-app-owns-approvals]]. Take them at their word, in both
+[[q:openaidevs-app-owns-approvals]] Take them at their word, in both
 directions.
 
 ## What we expect next

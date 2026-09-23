@@ -219,3 +219,272 @@ cards:
     verdict: >
       A voice post and an unverifiable one: we assert that he said it, not that it is measurable. It sits next to a tagged release whose own notes record roughly 2,789 commits on the default branch in ten days, which is at least consistent with the claim.
     tags: [dogfooding, vendor-voice]
+
+  - id: easyworld-fork-is-not-a-worktree
+    title: "A fork of the conversation, not of the code"
+    kind: claim
+    date: 2026-07-31
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["sh740451"]
+    display_name: "EasyWorld"
+    source_urls:
+      - https://x.com/sh740451/status/2083326063124619546
+    verbatim: |
+      세션 분기와 플러그인 유통 구조를 추가한 Codex CLI 0.146.0
+
+      Codex에서 하나의 작업을 여러 대화 갈래로 나누고, 워크스페이스 단위 플러그인과 외부 마켓플레이스를 통해 에이전트 기능을 배포할 수 있게 됐습니다. 
+
+      OpenAI는 7월 29일 Codex CLI 0.146.0을 공개했습니다. 이번 버전에서는 /new와 /clear로 새 세션을 만들고, 중요한 스레드를 고정하고, 기존 대화를 닫지 않은 채 다른 대화 갈래로 전환할 수 있습니다. 기존 스레드의 과거 기록을 복사해 별도 방향으로 이어가는 thread fork도 지원합니다. 
+      예를 들어 하나의 버그를 조사하다가 원인 후보가 두 개로 갈리면 기존 세션을 버리지 않고 각각 별도 스레드에서 검증할 수 있습니다. 임시 fork는 일반 스레드 목록에 남기지 않을 수도 있어 짧은 실험용 분기로 사용할 수 있습니다. 
+      플러그인 구조도 확대됐습니다. Agent Plugin manifest, 워크스페이스 플러그인 게시, Amazon Bedrock과 Claude Code용 추가 플러그인 마켓플레이스를 지원합니다. 실행 환경이 제공하는 Skill을 발견하고, 사용자가 명시적으로 선택한 Skill의 관련 리소스를 읽는 기능도 포함됐습니다. 
+      원격 실행 측면에서는 Codex app server가 WebSocket을 통해 원격 Code Mode 호스트에 연결할 수 있게 됐습니다. 자체 모델 제공자를 사용하는 경우에도 호환 조건을 충족하면 독립적인 웹 검색 기능을 연결할 수 있습니다. 
+
+      스레드 분기는 단순히 채팅 기록을 복사하는 기능으로만 보면 부족합니다. 같은 저장소 상태를 기준으로 여러 해결 전략을 비교할 수 있지만, 각각의 스레드가 파일을 실제로 수정하면 작업 디렉터리 상태는 공유될 수 있습니다. 따라서 대화 분기와 코드 상태 분리를 같은 것으로 생각하면 안 됩니다.
+      실험 결과를 완전히 분리하려면 각 스레드를 별도 worktree나 별도 실행 환경에 연결하는 편이 안전합니다. 그렇지 않으면 첫 번째 스레드의 파일 수정이 두 번째 스레드의 판단에 섞일 수 있습니다.
+      플러그인은 Codex가 사용할 수 있는 도구와 지침을 확장합니다. 편리한 대신 플러그인이 읽을 수 있는 리소스, 다운로드 출처, 실행 권한이 새 공급망 경계가 됩니다. Codex는 context budget이 부족할 때 Skill 목록이 잘릴 수 있음을 경고하고, 제한된 문맥에서도 더 많은 Skill을 유지하도록 보완했습니다. 
+
+      복잡한 버그나 설계 선택을 여러 방향으로 검토할 때 바로 시험할 수 있습니다.
+      1) 하나의 원인 분석 세션을 시작합니다.
+      2) 첫 번째 가설을 정리한 시점에서 스레드를 fork합니다.
+      3) 각 분기를 별도 git worktree에 연결합니다.
+      4) 테스트 결과, 수정 범위, 토큰 사용량을 비교합니다.
+    inline: "따라서 대화 분기와 코드 상태 분리를 같은 것으로 생각하면 안 됩니다."
+    summary: >
+      A Korean-language walkthrough of Codex CLI 0.146.0, warning that thread fork branches the
+      conversation and not the working directory. Our rendering: so do not treat conversation
+      branching and code-state separation as the same thing.
+    verdict: >
+      A claim post, checked against the rust-v0.146.0 release notes: the feature list it
+      summarises is there (/new and /clear naming, pinned threads, forks with paginated history,
+      ephemeral forks, Agent Plugin manifests, the Bedrock and Claude Code marketplaces), and
+      the notes describe forks of thread history only. The warning that forks share one working
+      tree is the poster's inference, consistent with those notes and not stated in them; the suggested fix is to
+      give each fork its own worktree.
+
+  - id: schott-flue-delegates-coding
+    title: "The same maintainer, minutes later, on how the layers stack"
+    kind: voice
+    date: 2026-08-01
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [flue, omnigent]
+    authors: ["FredKSchott"]
+    display_name: "fks"
+    source_urls:
+      - https://x.com/FredKSchott/status/2083695524503486755
+    verbatim: |
+      One pattern I’ve heard people doing with flue is flue agents owning the main conversation (for durability, sessions, builds, etc) and then delegating coding work to other harnesses via tool call, CLI, or something like omniharness. Idk ymmv
+    inline: "flue agents owning the main conversation (for durability, sessions, builds, etc) and then delegating coding work to other harnesses via tool call, CLI, or something like omniharness"
+    summary: >
+      Flue's maintainer, in the same exchange as his meta-harness reply, describing a pattern he
+      has heard of: Flue keeps the conversation and hands coding to other harnesses.
+    verdict: >
+      A voice post, and hearsay by his own framing ('One pattern I've heard people doing',
+      'ymmv'): we assert only that he described the pattern. It is the second half of the
+      exchange quoted above it, and it shows the stacking happening whether or not anyone calls
+      it a meta-harness.
+
+  - id: dexhorthy-fables-managing-codex
+    title: "A builder's stack, one layer per line"
+    kind: voice
+    date: 2026-08-01
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code, codex]
+    authors: ["dexhorthy"]
+    display_name: "dex"
+    source_urls:
+      - https://x.com/dexhorthy/status/2083582284658245837
+    verbatim: |
+      My AI coding journey so far
+
+      Copy paste ChatGPT to jetbrains
+
+      Cursor autocomplete 
+
+      Codebuff CLI + jetbrains for reading + cursor for polish
+
+      Claude code in terminal + jetbrains for debugging
+
+      4 Claude’s in tmux worktrees with a 5th merging every commit into main
+
+      Claude code - Research with subagents, then impl
+
+      Claude code - research, plan, impl
+
+      CodeLayer (cc) RPI
+
+      Humanlayer (cc) QRSPI
+
+      + nightly gh actions loops to do small incremental changes across migrations and cleanups
+
+      Took the codex pill, 5.5 for all coding
+
+      Fables managing codex subagents and 5.6s managing fables 
+
+      Still read the code, still learning
+    inline: "Fables managing codex subagents and 5.6s managing fables"
+    summary: >
+      A HumanLayer builder listing every stage of his AI coding setup, ending with models from
+      one vendor managing another vendor's harness, and 'Still read the code, still learning'.
+    verdict: >
+      A voice post about his own setup, not a product claim: we assert only that this is how he
+      says he works. It is here because it is the stacking Omnigent sells, assembled by hand by
+      someone who closes the list by saying he still reads the code.
+
+  - id: emanuel-harness-for-a-harness
+    title: "A rule against the layer on top"
+    kind: voice
+    date: 2026-08-03
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [agent-flywheel]
+    authors: ["doodlestein"]
+    display_name: "Jeffrey Emanuel"
+    source_urls:
+      - https://x.com/doodlestein/status/2084374271761989942
+    verbatim: |
+      Here is what my Sol Ultra agent came up with when I confronted it with the message above; but don't try to use it exactly, because the particular malaise in YOUR project likely looks different. When it's done with a first pass, give the result to GPT-5.6 Pro in the web app for a final polishing round.
+
+      Paraphrasing Tolstoy's "Anna Karenina principle" (i.e., "All happy families are alike; each unhappy family is unhappy in its own way."):
+
+      All efficient, well-functioning agent swarms are alike; each pathological, sclerotic, non-functioning agent swarm is inefficient in its own way.
+
+      ---
+
+      ## RULE 0.1: VALUE DELIVERY OVER PROCESS — NO PROCESS PORN
+
+      FrankenSim is still missing substantial product functionality. Agent time, user time, tokens, review attention, and the repository's complexity budget are scarce. The default job is to implement the requested capability or fix the concrete defect, not elaborate the machinery surrounding the work.
+
+      **Process is never the product unless the user explicitly requests process work.** Beads, plans, Agent Mail, audits, manifests, provenance systems, logging, CI, test harnesses, dashboards, status reports, and agent coordination exist only to support delivery. They must never become self-perpetuating substitutes for delivery.
+
+      ### The value test
+
+      Before undertaking non-product work, answer all three questions:
+
+      1. What concrete user-visible capability, correctness defect, or immediate implementation blocker does this work address?
+      2. Is this the smallest direct action that adequately addresses it?
+      3. Do its likely benefits exceed its implementation, maintenance, review, complexity, and delay costs right now?
+
+      If any answer is unclear, **do not do the work**. Return to implementing the requested functionality. Speculative future usefulness, elegance, completeness, or a vague desire for “more confidence” is not sufficient justification.
+
+      ### Hard scope limits
+
+      - A review request authorizes reading the relevant code, reproducing concrete defects, applying the smallest sound fixes, and adding focused regression tests. It does **not** authorize redesigning adjacent infrastructure, inventing a new analyzer, exhaustively hardening hypothetical cases, or chasing unrelated pre-existing failures.
+      - Never turn a small review or repair into hundreds or thousands of lines of CI, harness, analyzer, schema, logging, provenance, or planning code without the user's explicit approval for that expansion.
+      - If incidental support work is becoming comparable to or larger than the requested implementation, stop before expanding it. State the concrete blocker and ask whether the user wants the scope broadened. Time already spent is not justification for continuing.
+      - Do not build a validator for a validator, a harness for a harness, or an analyzer whose principal purpose is to validate internal process artifacts unless that exact system is the requested deliverable.
+      - Do not chase a failure already present on `HEAD` unless it directly blocks the requested deliverable and the user authorizes broadening the scope. Record it briefly, then continue within scope or stop at the real boundary.
+      - Do not repeatedly re-audit, re-plan, re-hash, re-seal, poll, or add reviewers once the requested behavior has proportionate evidence. One coherent implementation with focused verification is better than layers of ceremonial assurance.
+      - Do not spawn an agent swarm for a narrow task. Delegate only concrete, independent implementation work or bounded verification that materially shortens the path to the requested result. Never create recursive review loops or repeatedly wait on agents that have produced no usable deliverable.
+
+      ### Implementation must dominate
+
+      Unless the user explicitly requests planning, governance, CI, or tooling:
+
+      - Spend the dominant share of effort on working product code and direct tests of that product code.
+      - Prefer an existing test seam over creating a new framework. Tests should prove changed behavior, important boundaries, and specifically named claims. Exhaustive testing of internal ceremony is negative value.
+      - Keep logging actionable and proportional. “Great logging” means enough context to diagnose a real failure, not recording every intermediate state or building a second product around evidence collection.
+      - Treat Beads as concise execution bookkeeping. Once a Bead is clear enough to implement safely, implement it. Do not spend hours optimizing issue prose, graph metrics, dependencies, or acceptance wording while the actual functionality remains absent.
+      - Run the narrowest relevant checks while iterating. Run broad DSR or repository-wide gates only when a coherent implementation is ready for that level of verification, or when the user explicitly requests them.
+      - When choosing between missing P0 functionality and optional meta-infrastructure, implement the P0 functionality. Tooling takes priority only when it is a demonstrated blocker to that implementation.
+
+      ### Mandatory checkpoint and stop rule
+
+      At the first sign of scope expansion, pause and state in plain language:
+
+      - the user-facing outcome being delivered;
+      - the files affected and approximate size of the proposed expansion;
+      - why the expansion is strictly necessary; and
+      - the smaller alternatives considered.
+
+      If that explanation cannot establish immediate net value in a few sentences, **do not proceed**. Ask the user before expanding the scope. A “fresh-eyes” instruction does not authorize an unbounded expedition.
+
+      When work has drifted into process porn, stop immediately. Do not add more tests, proof layers, cleanup, or process machinery merely to justify the sunk cost. Stop changing the tree, disclose the exact state candidly, and wait for direction.
+
+      ### Canonical anti-pattern
+
+      Adding roughly 1,500 lines to an internal Beads/CI harness during a fresh-eyes review, then spending hours extending static analysis and evidence machinery while user-facing FrankenSim functionality remains missing, is a canonical failure, not thoroughness.
+
+      **Never repeat it.**
+
+      ---
+
+      ## RULE NUMBER 1: NO FILE DELETION
+    inline: "a validator for a validator, a harness for a harness"
+    summary: >
+      The Agent Flywheel author publishing an anti-process rule for his own agent swarms,
+      drafted by his agent after he confronted it, after agents built harness and evidence
+      machinery instead of missing product.
+    verdict: >
+      A voice post: a rule he published for his own swarms, which he says his agent drafted and
+      which he tells readers not to copy verbatim. It is not about Omnigent and we do not
+      present it as one; it is here as the builder's counterweight to the governance-layer case,
+      from someone who watched the layers eat the product.
+
+  - id: xuli-toolshield-since-v1-36
+    title: "A third OpenHands number"
+    kind: claim
+    date: 2026-08-03
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openhands]
+    authors: ["XuLi135803"]
+    display_name: "Xu Li"
+    source_urls:
+      - https://x.com/XuLi135803/status/2084383457904599065
+    verbatim: |
+      Excited to share that ToolShield is now part of OpenHands, since v1.36.0!
+
+      In our new analyzer, ToolShield provides grounded safety experiences to a guardrail and enhances its safety awareness, cutting ASR 75–88% → 7–10%.
+
+      No more regrets after an agent wipes your whole system.
+
+      Activate it with: analyzer = ToolShieldLLMSecurityAnalyzer(llm=guardrail)
+
+      The default analyzer asks the same LLM that produced a tool call to judge its own risk, the context that causes the bad action also biases the self-assessment.
+
+      A separate guardrail alone only gets to 14–18%. By self-exploring each tool's potential for harm before deployment, ToolShield distills grounded, actionable safety experiences that further strengthen the guardrail.
+
+      Release notes: https://t.co/PytWFcsAm0
+    inline: "ToolShield is now part of OpenHands, since v1.36.0!"
+    summary: >
+      A researcher announcing that the ToolShield security analyzer ships in OpenHands, arguing
+      the default analyzer asks the same model that proposed a tool call to judge its own risk.
+    verdict: >
+      A claim post, checked: ToolShieldLLMSecurityAnalyzer was added in OpenHands/software-agent-sdk
+      v1.36.0, published 2026-07-13 (PR #2911), so the version is the agent SDK's, not
+      the main repository's. The attack-success-rate figures in the post are the authors' own,
+      not verified here.
+
+  - id: chris-a-harness-over-model
+    title: "The installed build, doing the work"
+    kind: voice
+    date: 2026-07-29
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["Chris__A91"]
+    display_name: "Chris A"
+    source_urls:
+      - https://x.com/Chris__A91/status/2082568504944050605
+    verbatim: |
+      Claude Code vs Cursor CLI agent on real mobile work (Gradle → APK → Pixel over ADB)
+
+      Claude Code just ran the whole loop on my machine. Cursor’s agent kept getting blocked by sandbox and shell limits before it could even install or test.
+
+      I like the auto model selection in Cursor, but for agentic terminal work that actually talks to a real device the harness still matters more than which model is winning this week.
+
+      Anyone else hitting this on mobile or hardware stuff?
+    inline: "the harness still matters more than which model is winning this week"
+    summary: >
+      An operator comparing Claude Code and Cursor's CLI agent on a Gradle to APK to Pixel-over-ADB
+      loop, reporting Claude Code ran it end to end while Cursor's agent hit sandbox and
+      shell limits.
+    verdict: >
+      A voice post reporting one operator's run on their own machine; we assert only that it was
+      reported, and make no claim about Cursor's sandbox. It is here because it was written
+      during the ten days Claude Code published nothing, about the build that was still the
+      newest one installable.

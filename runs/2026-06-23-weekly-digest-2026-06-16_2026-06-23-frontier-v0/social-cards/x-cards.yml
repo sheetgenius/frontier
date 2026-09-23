@@ -9,8 +9,7 @@ note: >
   apostrophe.
 
   The hunvreus card quotes a person describing his own workload. It is included
-  because the project is on our watchlist and its bus factor is one, and for no
-  other reason. Removal on request, per CONTRIBUTING.md.
+  because the project's bus factor is one, and for no other reason. Removal on request, per CONTRIBUTING.md.
 cards:
   - id: geminicli-transition-day
     title: "The official notice"
@@ -201,5 +200,5 @@ cards:
     summary: >
       The heypi maintainer on his open-source workload, the night 0.2.0 beta shipped.
     verdict: >
-      A voice post, quoted as something he said publicly and for one operator-facing reason: heypi is on this watchlist and its bus factor is one. Nothing here is an inference about him. If he would rather it were not reproduced, the correction path in CONTRIBUTING.md applies and we will remove it.
+      A voice post, quoted as something he said publicly and for one operator-facing reason: heypi's bus factor is one. Nothing here is an inference about him. If he would rather it were not reproduced, the correction path in CONTRIBUTING.md applies and we will remove it.
     tags: [sustainability, bus-factor, maintainer-voice]

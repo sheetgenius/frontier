@@ -397,6 +397,20 @@ corrections:
     reporter: adversarial-verify
     provenance: internal/adversarial-verify
     pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-06-04_2026-06-16-weekly
+    field: "Claude Code subagent depth cap"
+    kind: other-fact
+    before: "subagents are capped five levels deep"
+    after: "the cap did not bind for foreground spawns until 2.1.181 (published 2026-06-17); the issue now labels this once in the body"
+    receipt: "https://code.claude.com/docs/en/changelog#2-1-181"
+    event_date: 2026-06-17
+    artifact_url: /digests/2026-06-04_2026-06-16-weekly/
+    verdict: "the published claim was false in its own window; the later fix proves it; an earlier revision had carried the fix into the brief unlabeled"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
 ```
 
 <!--

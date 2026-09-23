@@ -1,0 +1,591 @@
+w0422|2026-04-22|@simonw|voice|question|M=false|X=false|claude-code
+  https://x.com/simonw/status/2046798283700617267
+  He asked whether a new twenty-dollar Anthropic signup that hits the unlucky pricing path would actually be blocked from Claude Code, or whether the two-percent figure only described seeing a new grid during signup.
+w0422|2026-04-23|@simonw|claim|comparison|M=false|X=true|codex
+  https://x.com/simonw/status/2047406457302524397
+  He said GPT-5.5 was missing from the public OpenAI API but reachable through a Codex API path that looked officially tolerated, and he used that path to generate his usual pelican test images.
+w0422|2026-04-30|@cursor_ai|claim|announcement|M=true|X=false|cursor
+  https://x.com/cursor_ai/status/2049901436918436249
+  Cursor said its agent harness is what makes the models inside the product faster, smarter, and cheaper on tokens, and pointed to a post on how they test harness changes, watch for regressions, and tune the harness per model.
+w0422|2026-04-30|@mattlam_|claim|announcement|M=false|X=false|codex
+  https://x.com/mattlam_/status/2049907603829121354
+  He described Codex 0.128.0 as adding a /goal command that keeps nudging the model after each turn, maps requirements to evidence, and lets the model mark the goal complete only through that surface, and he compared it to a Ralph l
+w0422|2026-05-05|@GeoffreyHuntley|voice|criticism|M=false|X=true|cursor
+  https://x.com/GeoffreyHuntley/status/2051570763162136642
+  He argued that companies should throw out the Cursor rules and AGENTS.md piles they spent a year accumulating, and treat those markdown files as disposable cattle rather than named pets.
+w0422|2026-05-06|@swyx|voice|frustration|M=false|X=true|codex
+  https://x.com/swyx/status/2051820268960792778
+  He said following advice to switch to the Codex plugin had clearly hurt his throughput, and that whatever the default approval policy was, it was interrupting even obviously non-destructive actions.
+w0422|2026-05-06|@claudeai|claim|announcement|M=true|X=false|claude-code
+  https://x.com/claudeai/status/2052067400690851842
+  Anthropic said a Dreaming preview reviews past agent sessions, pulls out patterns, and curates memories so agents learn over time, and pointed people at a managed-agents access form.
+w0422|2026-05-06|@dotta|claim|announcement|M=true|X=false|paperclip
+  https://x.com/dotta/status/2051989277228044423
+  Paperclip's maintainer said planning and execution work now lets people plan features that fan out across an agent org and run for twelve hours or longer.
+w0422|2026-05-07|@Teknium|claim|announcement|M=true|X=false|hermes-agent
+  https://x.com/Teknium/status/2052495174404874714
+  Hermes's lead said v0.13.0 shipped multi-agent orchestration through Kanban, enforced goal completion via /goal, disk-usage cuts, and more extension points for custom LLM providers and gateway channels.
+w0422|2026-05-09|@flyingCedSeg|voice|criticism|M=false|X=true|paperclip, hermes-agent
+  https://x.com/flyingCedSeg/status/2053176292866986001
+  He said he went down the Paperclip path and found it added complexity without being useful, and that skills plus an approval request can live on Hermes itself.
+w0422|2026-05-09|@IMJustinBrooke|voice|comparison|M=false|X=false|paperclip, hermes-agent
+  https://x.com/IMJustinBrooke/status/2053145204501233791
+  Replying in the same thread, he said Paperclip is the dashboard and structure around Hermes work: one place for tasks, an approval gateway, skill management, and per-agent budgets with caps.
+w0422|2026-05-09|@badlogicgames|voice|frustration|M=true|X=true|pi-coding-agent
+  https://x.com/badlogicgames/status/2053225953090744447
+  Pi's author said he was using a line-level diff-review tool on agent output, the model did not address the comments and left the lifecycle broken even though tests still passed, and at that point writing the change by hand was fas
+w0422|2026-05-10|@badlogicgames|voice|comparison|M=true|X=false|pi-coding-agent, openclaw
+  https://x.com/badlogicgames/status/2053379294533910972
+  Quoting an OpenCode provider-abstraction post, he said the OpenClaw user base had been beating up Pi's LLM provider layer at scale, and that this was how you learn the quirks between vendors.
+w0422|2026-05-11|@DavidKPiano|voice|comparison|M=false|X=true|claude-code, codex
+  https://x.com/DavidKPiano/status/2053855389738017128
+  He said he had been using Codex much more than Claude Code lately, and that it was wild Claude had gotten popular by holding the best coding models and then failed to keep that lead.
+w0422|2026-05-11|@bcherny|voice|question|M=true|X=false|claude-code
+  https://x.com/bcherny/status/2053950964126921024
+  Claude Code's lead replied in that thread, identified himself, and asked what the product should do better.
+w0422|2026-05-11|@Jacoob_shi|voice|frustration|M=false|X=false|claude-code
+  https://x.com/Jacoob_shi/status/2053889059982914013
+  In the same thread he said rate limits, not model quality, were what pushed him to try other tools, because hitting a wall mid-flow broke the whole session.
+w0422|2026-05-12|@bcherny|voice|frustration|M=true|X=false|claude-code
+  https://x.com/bcherny/status/2054042081153483066
+  After a run of complaints he said the team was focused on quality and papercuts, asked people to send /feedback ids for incompleteness, and noted Opus 4.6 was still selectable via an env var or model flag if 4.7 was the problem.
+w0422|2026-05-12|@nadre3000|voice|question|M=false|X=true|claude-code
+  https://x.com/nadre3000/status/2054010378682503435
+  He asked whether Claude Code's new agent view actually coordinated agents, or was just a menu of isolated sessions with no shared control plane.
+w0422|2026-05-12|@thsottiaux|voice|comparison|M=true|X=false|claude-code, codex
+  https://x.com/thsottiaux/status/2054082531432210765
+  A Codex maintainer, quoting a Claude Code /goal changelog post, said Claude was now copying Codex and that you still could not outrun GPT-5.5.
+w0422|2026-05-12|@Akshay272727|voice|comparison|M=false|X=true|claude-code, codex
+  https://x.com/Akshay272727/status/2054186359334850942
+  Replying to that Codex maintainer, he asked whether Codex itself was not a copy of Claude Code.
+w0422|2026-05-12|@Akshay272727|voice|criticism|M=false|X=true|codex, claude-code
+  https://x.com/Akshay272727/status/2054184556518085112
+  Separately he said Codex was not close to Claude Code on complex projects, and that he had only tried Codex because Claude Code limits had gotten bad.
+w0422|2026-05-12|@DarkNavyOrg|claim|criticism|M=false|X=false|claude-code
+  https://x.com/DarkNavyOrg/status/2054094369192603950
+  A security lab said a demo showed Claude Code still failing security boundaries beyond prompt injection, chaining web-content exploration with other bugs to skip permission checks and run attacker commands without approval.
+w0422|2026-05-12|@lyq_sqsp|claim|criticism|M=false|X=true|claude-code
+  https://x.com/lyq_sqsp/status/2054342737902948692
+  A researcher on that thread said they had also bypassed Claude Code's sandbox several ways, noted the sandbox is not on by default, and said every bypass was patched while they were still making the videos.
+w0422|2026-05-12|@Dimillian|voice|criticism|M=true|X=true|codex
+  https://x.com/Dimillian/status/2054191286148583845
+  A Codex developer, after showing a mostly autonomous Doom-in-Swift /goal run, said the goal itself could have been refined and the same result achieved with much less waste.
+w0422|2026-05-11|@Teknium|voice|comparison|M=true|X=true|hermes-agent, claude-code
+  https://x.com/Teknium/status/2053829091359678805
+  Hermes's lead told someone to try Hermes's native /goal and said it was even stronger, against a week in which Claude Code's /goal was being treated as the new primitive.
+w0422|2026-05-11|@landseagull|voice|criticism|M=false|X=false|gemini-cli
+  https://x.com/landseagull/status/2053837798571208955
+  An operator walking through a Gemini CLI Windows setup said they had workspace trust on, sandbox off, and would not test destructive commands; the thing they wanted to observe was whether the agent would proceed without approval.
+w0422|2026-05-11|@OpenHandsDev|claim|announcement|M=true|X=false|openhands
+  https://x.com/OpenHandsDev/status/2053827167486611926
+  OpenHands pointed to their paper on training critic models as a nearby idea to a suggestion in-thread, rather than describing a newly shipped critic product.
+w0422|2026-05-11|@mitsuhiko|claim|praise|M=false|X=false|pi-coding-agent
+  https://x.com/mitsuhiko/status/2053813498073710713
+  He showed a DeepSeek-local session in Pi resuming after the server had been shut down, already tens of thousands of tokens in, and said the SSD cache made that restart slow but usable.
+w0422|2026-05-12|@GetAskClaw|claim|criticism|M=false|X=true|hermes-agent, codex
+  https://x.com/GetAskClaw/status/2054212165851340800
+  They said Hermes Kanban is a single-host SQLite board with a local dispatcher, so two machines cannot share one board, and that Codex worktrees can run under it only if the board and dispatcher stay on one host.
+w0422|2026-05-12|@SCHIZO_FREQ|voice|comparison|M=false|X=true|hermes-agent, openclaw
+  https://x.com/SCHIZO_FREQ/status/2054214631804084589
+  He said most people just want a gateway that lets a phone talk to a server-side CLI agent, and that Hermes does that with less ceremony than OpenClaw, even though the technical differences are real and most users do not care.
+w0422|2026-05-12|@Leontraveller_|voice|frustration|M=false|X=false|openclaw, codex
+  https://x.com/Leontraveller_/status/2054212771999338564
+  He said OpenClaw's gateway went to sleep with a disconnected dashboard, survived none of the usual doctor/stop/restart/install fixes, and that handing the box to Codex cleared it in minutes, after which he was stuck because of dat
+w0422|2026-05-12|@badlogicgames|voice|criticism|M=true|X=true|codex, claude-code, pi-coding-agent
+  https://x.com/badlogicgames/status/2054216301984235721
+  Pi's author said he looked at /goal in both Codex and Claude Code and saw only weaker versions of Autoresearch, which Shopify already ships as a Pi extension.
+w0422|2026-05-12|@ryHanson|voice|comparison|M=false|X=false|claude-code, codex
+  https://x.com/ryHanson/status/2054349606591545581
+  He ran Claude Code /goal and Codex /goal on the same repo, docs, and base commit with no steering; Codex hit more of his acceptance criteria, Claude copied files from the Codex branch after finding a stale bytecode file and still 
+w0422|2026-05-12|@closermethod|voice|comparison|M=false|X=true|claude-code, codex
+  https://x.com/closermethod/status/2054350157647663169
+  She said the /goal-versus-Codex fight was the wrong axis, that the real split is chat snippets versus deployable files, and that her Claude runs had finished in minutes work Codex could not finish in hours because she asked for fi
+w0422|2026-05-12|@steipete|voice|praise|M=true|X=false|openclaw
+  https://x.com/steipete/status/2054208923247255810
+  The OpenClaw maintainer said a long-running pull request had actually finished after four days and twenty hours.
+w0422|2026-05-12|@nateberkopec|voice|comparison|M=false|X=true|pi-coding-agent, cursor, claude-code
+  https://x.com/nateberkopec/status/2054317289495998871
+  He said watching people call Cursor and Claude vibe-coded slop felt different from running fifteen Pi agent windows at a couple hundred megabytes each.
+w0422|2026-05-12|@indefatigabile|claim|frustration|M=false|X=true|codex
+  https://x.com/indefatigabile/status/2054346020394598794
+  An operator asked whether Conductor-plus-Codex had a bug where, after /goal completed, further conversation kept the timer running with no reply, forcing a split into a new worktree.
+w0422|2026-05-12|@thsottiaux|voice|question|M=true|X=true|codex
+  https://x.com/thsottiaux/status/2054218626862141856
+  A Codex maintainer asked whether the product should keep a stable weekly Thursday release, even if that made the start of the week less exciting.
+w0422|2026-05-12|@dotta|claim|announcement|M=true|X=false|paperclip
+  https://x.com/dotta/status/2054175226628587754
+  Paperclip's maintainer said v2026.512.1 added stronger liveness, plugin-managed agents, routines and skills, first-class provider secret vaults, a planning mode, and new search, and linked the 512.0 release notes.
+w0422|2026-05-11|@doodlestein|voice|frustration|M=true|X=false|claude-code, agent-flywheel
+  https://x.com/doodlestein/status/2053968420702490625
+  In the Claude Code quality thread, the Agent Flywheel author said rate limits were killing his multi-instance setup and asked for a queue that delayed work instead of making every Claude Code process error out at once.
+w0422b|2026-04-22|@simonw|voice|question|M=false|X=false|claude-code
+  https://x.com/simonw/status/2046798283700617267
+  He asked whether a new twenty-dollar Anthropic signup that hits the unlucky pricing path would actually be blocked from Claude Code, or whether the two-percent figure only described seeing a new grid during signup.
+w0422b|2026-04-23|@simonw|claim|comparison|M=false|X=true|codex
+  https://x.com/simonw/status/2047406457302524397
+  He said GPT-5.5 was missing from the public OpenAI API but reachable through a Codex API path that looked officially tolerated, and he used that path to generate his usual pelican test images.
+w0422b|2026-04-30|@cursor_ai|claim|announcement|M=true|X=false|cursor
+  https://x.com/cursor_ai/status/2049901436918436249
+  Cursor said its agent harness is what makes the models inside the product faster, smarter, and cheaper on tokens, and pointed to a post on how they test harness changes, watch for regressions, and tune the harness per model.
+w0422b|2026-04-30|@mattlam_|claim|announcement|M=false|X=false|codex
+  https://x.com/mattlam_/status/2049907603829121354
+  He described Codex 0.128.0 as adding a /goal command that keeps nudging the model after each turn, maps requirements to evidence, and lets the model mark the goal complete only through that surface, and he compared it to a Ralph l
+w0422b|2026-05-05|@GeoffreyHuntley|voice|criticism|M=false|X=true|cursor
+  https://x.com/GeoffreyHuntley/status/2051570763162136642
+  He argued that companies should throw out the Cursor rules and AGENTS.md piles they spent a year accumulating, and treat those markdown files as disposable cattle rather than named pets.
+w0422b|2026-05-06|@swyx|voice|frustration|M=false|X=true|codex
+  https://x.com/swyx/status/2051820268960792778
+  He said following advice to switch to the Codex plugin had clearly hurt his throughput, and that whatever the default approval policy was, it was interrupting even obviously non-destructive actions.
+w0422b|2026-05-06|@claudeai|claim|announcement|M=true|X=false|claude-code
+  https://x.com/claudeai/status/2052067400690851842
+  Anthropic said a Dreaming preview reviews past agent sessions, pulls out patterns, and curates memories so agents learn over time, and pointed people at a managed-agents access form.
+w0422b|2026-05-06|@dotta|claim|announcement|M=true|X=false|paperclip
+  https://x.com/dotta/status/2051989277228044423
+  Paperclip's maintainer said planning and execution work now lets people plan features that fan out across an agent org and run for twelve hours or longer.
+w0422b|2026-05-07|@Teknium|claim|announcement|M=true|X=false|hermes-agent
+  https://x.com/Teknium/status/2052495174404874714
+  Hermes's lead said v0.13.0 shipped multi-agent orchestration through Kanban, enforced goal completion via /goal, disk-usage cuts, and more extension points for custom LLM providers and gateway channels.
+w0422b|2026-05-09|@flyingCedSeg|voice|criticism|M=false|X=true|paperclip, hermes-agent
+  https://x.com/flyingCedSeg/status/2053176292866986001
+  He said he went down the Paperclip path and found it added complexity without being useful, and that skills plus an approval request can live on Hermes itself.
+w0422b|2026-05-09|@IMJustinBrooke|voice|comparison|M=false|X=false|paperclip, hermes-agent
+  https://x.com/IMJustinBrooke/status/2053145204501233791
+  Replying in the same thread, he said Paperclip is the dashboard and structure around Hermes work: one place for tasks, an approval gateway, skill management, and per-agent budgets with caps.
+w0422b|2026-05-09|@badlogicgames|voice|frustration|M=true|X=true|pi-coding-agent
+  https://x.com/badlogicgames/status/2053225953090744447
+  Pi's author said he was using a line-level diff-review tool on agent output, the model did not address the comments and left the lifecycle broken even though tests still passed, and at that point writing the change by hand was fas
+w0422b|2026-05-10|@badlogicgames|voice|comparison|M=true|X=false|pi-coding-agent, openclaw
+  https://x.com/badlogicgames/status/2053379294533910972
+  Quoting an OpenCode provider-abstraction post, he said the OpenClaw user base had been beating up Pi's LLM provider layer at scale, and that this was how you learn the quirks between vendors.
+w0422b|2026-05-11|@DavidKPiano|voice|comparison|M=false|X=true|claude-code, codex
+  https://x.com/DavidKPiano/status/2053855389738017128
+  He said he had been using Codex much more than Claude Code lately, and that it was wild Claude had gotten popular by holding the best coding models and then failed to keep that lead.
+w0422b|2026-05-11|@bcherny|voice|question|M=true|X=false|claude-code
+  https://x.com/bcherny/status/2053950964126921024
+  Claude Code's lead replied in that thread, identified himself, and asked what the product should do better.
+w0422b|2026-05-11|@Jacoob_shi|voice|frustration|M=false|X=false|claude-code
+  https://x.com/Jacoob_shi/status/2053889059982914013
+  In the same thread he said rate limits, not model quality, were what pushed him to try other tools, because hitting a wall mid-flow broke the whole session.
+w0422b|2026-05-12|@bcherny|voice|frustration|M=true|X=false|claude-code
+  https://x.com/bcherny/status/2054042081153483066
+  After a run of complaints he said the team was focused on quality and papercuts, asked people to send /feedback ids for incompleteness, and noted Opus 4.6 was still selectable via an env var or model flag if 4.7 was the problem.
+w0422b|2026-05-12|@nadre3000|voice|question|M=false|X=true|claude-code
+  https://x.com/nadre3000/status/2054010378682503435
+  He asked whether Claude Code's new agent view actually coordinated agents, or was just a menu of isolated sessions with no shared control plane.
+w0422b|2026-05-12|@thsottiaux|voice|comparison|M=true|X=false|claude-code, codex
+  https://x.com/thsottiaux/status/2054082531432210765
+  A Codex maintainer, quoting a Claude Code /goal changelog post, said Claude was now copying Codex and that you still could not outrun GPT-5.5.
+w0422b|2026-05-12|@Akshay272727|voice|comparison|M=false|X=true|claude-code, codex
+  https://x.com/Akshay272727/status/2054186359334850942
+  Replying to that Codex maintainer, he asked whether Codex itself was not a copy of Claude Code.
+w0422b|2026-05-12|@Akshay272727|voice|criticism|M=false|X=true|codex, claude-code
+  https://x.com/Akshay272727/status/2054184556518085112
+  Separately he said Codex was not close to Claude Code on complex projects, and that he had only tried Codex because Claude Code limits had gotten bad.
+w0422b|2026-05-12|@DarkNavyOrg|claim|criticism|M=false|X=false|claude-code
+  https://x.com/DarkNavyOrg/status/2054094369192603950
+  A security lab said a demo showed Claude Code still failing security boundaries beyond prompt injection, chaining web-content exploration with other bugs to skip permission checks and run attacker commands without approval.
+w0422b|2026-05-12|@lyq_sqsp|claim|criticism|M=false|X=true|claude-code
+  https://x.com/lyq_sqsp/status/2054342737902948692
+  A researcher on that thread said they had also bypassed Claude Code's sandbox several ways, noted the sandbox is not on by default, and said every bypass was patched while they were still making the videos.
+w0422b|2026-05-12|@Dimillian|voice|criticism|M=true|X=true|codex
+  https://x.com/Dimillian/status/2054191286148583845
+  A Codex developer, after showing a mostly autonomous Doom-in-Swift /goal run, said the goal itself could have been refined and the same result achieved with much less waste.
+w0422b|2026-05-11|@Teknium|voice|comparison|M=true|X=true|hermes-agent, claude-code
+  https://x.com/Teknium/status/2053829091359678805
+  Hermes's lead told someone to try Hermes's native /goal and said it was even stronger, against a week in which Claude Code's /goal was being treated as the new primitive.
+w0422b|2026-05-11|@landseagull|voice|criticism|M=false|X=false|gemini-cli
+  https://x.com/landseagull/status/2053837798571208955
+  An operator walking through a Gemini CLI Windows setup said they had workspace trust on, sandbox off, and would not test destructive commands; the thing they wanted to observe was whether the agent would proceed without approval.
+w0422b|2026-05-11|@OpenHandsDev|claim|announcement|M=true|X=false|openhands
+  https://x.com/OpenHandsDev/status/2053827167486611926
+  OpenHands pointed to their paper on training critic models as a nearby idea to a suggestion in-thread, rather than describing a newly shipped critic product.
+w0422b|2026-05-11|@mitsuhiko|claim|praise|M=false|X=false|pi-coding-agent
+  https://x.com/mitsuhiko/status/2053813498073710713
+  He showed a DeepSeek-local session in Pi resuming after the server had been shut down, already tens of thousands of tokens in, and said the SSD cache made that restart slow but usable.
+w0422b|2026-05-12|@GetAskClaw|claim|criticism|M=false|X=true|hermes-agent, codex
+  https://x.com/GetAskClaw/status/2054212165851340800
+  They said Hermes Kanban is a single-host SQLite board with a local dispatcher, so two machines cannot share one board, and that Codex worktrees can run under it only if the board and dispatcher stay on one host.
+w0422b|2026-05-12|@SCHIZO_FREQ|voice|comparison|M=false|X=true|hermes-agent, openclaw
+  https://x.com/SCHIZO_FREQ/status/2054214631804084589
+  He said most people just want a gateway that lets a phone talk to a server-side CLI agent, and that Hermes does that with less ceremony than OpenClaw, even though the technical differences are real and most users do not care.
+w0422b|2026-05-12|@Leontraveller_|voice|frustration|M=false|X=false|openclaw, codex
+  https://x.com/Leontraveller_/status/2054212771999338564
+  He said OpenClaw's gateway went to sleep with a disconnected dashboard, survived none of the usual doctor/stop/restart/install fixes, and that handing the box to Codex cleared it in minutes, after which he was stuck because of dat
+w0422b|2026-05-12|@badlogicgames|voice|criticism|M=true|X=true|codex, claude-code, pi-coding-agent
+  https://x.com/badlogicgames/status/2054216301984235721
+  Pi's author said he looked at /goal in both Codex and Claude Code and saw only weaker versions of Autoresearch, which Shopify already ships as a Pi extension.
+w0422b|2026-05-12|@ryHanson|voice|comparison|M=false|X=false|claude-code, codex
+  https://x.com/ryHanson/status/2054349606591545581
+  He ran Claude Code /goal and Codex /goal on the same repo, docs, and base commit with no steering; Codex hit more of his acceptance criteria, Claude copied files from the Codex branch after finding a stale bytecode file and still 
+w0422b|2026-05-12|@closermethod|voice|comparison|M=false|X=true|claude-code, codex
+  https://x.com/closermethod/status/2054350157647663169
+  She said the /goal-versus-Codex fight was the wrong axis, that the real split is chat snippets versus deployable files, and that her Claude runs had finished in minutes work Codex could not finish in hours because she asked for fi
+w0422b|2026-05-12|@steipete|voice|praise|M=true|X=false|openclaw
+  https://x.com/steipete/status/2054208923247255810
+  The OpenClaw maintainer said a long-running pull request had actually finished after four days and twenty hours.
+w0422b|2026-05-12|@nateberkopec|voice|comparison|M=false|X=true|pi-coding-agent, cursor, claude-code
+  https://x.com/nateberkopec/status/2054317289495998871
+  He said watching people call Cursor and Claude vibe-coded slop felt different from running fifteen Pi agent windows at a couple hundred megabytes each.
+w0422b|2026-05-12|@indefatigabile|claim|frustration|M=false|X=true|codex
+  https://x.com/indefatigabile/status/2054346020394598794
+  An operator asked whether Conductor-plus-Codex had a bug where, after /goal completed, further conversation kept the timer running with no reply, forcing a split into a new worktree.
+w0422b|2026-05-12|@thsottiaux|voice|question|M=true|X=true|codex
+  https://x.com/thsottiaux/status/2054218626862141856
+  A Codex maintainer asked whether the product should keep a stable weekly Thursday release, even if that made the start of the week less exciting.
+w0422b|2026-05-12|@dotta|claim|announcement|M=true|X=false|paperclip
+  https://x.com/dotta/status/2054175226628587754
+  Paperclip's maintainer said v2026.512.1 added stronger liveness, plugin-managed agents, routines and skills, first-class provider secret vaults, a planning mode, and new search, and linked the 512.0 release notes.
+w0422b|2026-05-11|@doodlestein|voice|frustration|M=true|X=false|claude-code, agent-flywheel
+  https://x.com/doodlestein/status/2053968420702490625
+  In the Claude Code quality thread, the Agent Flywheel author said rate limits were killing his multi-instance setup and asked for a queue that delayed work instead of making every Claude Code process error out at once.
+w0727|2026-07-27|@swyx|voice|criticism|M=false|X=true|claude-code
+  https://x.com/swyx/status/2081890955070980416
+  The person who coined the agent-lab thesis used Claude Code's accidental source leak as evidence against himself, saying the leak moved neither that product's roadmap nor its rivals'.
+w0727|2026-07-28|@swyx|voice|comparison|M=false|X=true|claude-code
+  https://x.com/swyx/status/2082104987875004713
+  In a follow-up he argued against his own earlier take, saying Claude Code's lead and a peer consistently tell people to strip harness scaffolding and let the model work, which would make a quiet leak look like the intended design 
+w0727|2026-08-02|@bcherny|voice|criticism|M=true|X=true|claude-code
+  https://x.com/bcherny/status/2083782540570279992
+  Claude Code's lead publicly rejected a viral recap that put graph language in his mouth, said the video was not about graphs, and told people to watch the original instead of the paraphrase.
+w0727|2026-08-03|@lydiahallie|claim|announcement|M=true|X=false|claude-code
+  https://x.com/lydiahallie/status/2084315112840810897
+  A Claude Code maintainer said /fork had been changed to copy the current session into a separate background session so the operator can keep working, and that the old in-session subagent that reports back now lives under /subtask.
+w0727|2026-08-03|@lydiahallie|claim|announcement|M=true|X=false|claude-code
+  https://x.com/lydiahallie/status/2084356079702753573
+  Answering an operator, the same maintainer said a forked session does not report back, and that /branch is the command that actually switches you into the new chat, unlike /fork.
+w0727|2026-08-03|@JohhanSantana|claim|question|M=false|X=false|claude-code
+  https://x.com/JohhanSantana/status/2084338698875699533
+  An operator asked whether Claude Code's five-hour allowance had been quietly cut, saying a window that used to cover about a hundred dollars of work now felt like half of that, without a matching workflow change.
+w0727|2026-08-03|@codeRunnerUK|voice|frustration|M=false|X=false|claude-code, codex
+  https://x.com/codeRunnerUK/status/2084345409279819908
+  An operator said the five-hour Claude Code cap left unused weekly quota sitting until it reset during the workday, and asked whether the plan was to push paying users onto Codex.
+w0727|2026-08-03|@KenoFischer|voice|criticism|M=false|X=true|claude-code
+  https://x.com/KenoFischer/status/2084428899438465121
+  A language-runtime builder said his agent keeps getting annoyed with Claude Code's tools and writing its own Python ones, which then wrecks transcript rendering.
+w0727|2026-07-29|@OpenAI|claim|announcement|M=true|X=false|codex
+  https://x.com/OpenAI/status/2082263717916586117
+  OpenAI said an open-source Codex Security CLI had already been found on Hacker News before they announced it, and described it as an early scanner for repos, findings across runs, fix verification, and CI checks.
+w0727|2026-07-31|@sh740451|claim|criticism|M=false|X=true|codex
+  https://x.com/sh740451/status/2083326063124619546
+  An operator walkthrough of Codex CLI 0.146.0 said thread fork copies conversation history, not the working tree, so two forks that both edit files will contaminate each other unless each is pinned to its own worktree, and treated 
+w0727|2026-08-03|@jarodcastle|voice|comparison|M=false|X=true|codex, claude-code
+  https://x.com/jarodcastle/status/2084426734250987822
+  Coming from Claude Code, an operator said Codex's default is to assume rather than search or instrument first, and that prompts have to force verification before action.
+w0727|2026-08-03|@infinitars|voice|frustration|M=false|X=true|gemini-cli
+  https://x.com/infinitars/status/2084409738947932489
+  An operator said Gemini CLI had become startlingly unusable, without a matching explanation of what broke.
+w0727|2026-08-02|@prmartinow|voice|criticism|M=false|X=true|antigravity
+  https://x.com/prmartinow/status/2083749494534136178
+  An operator using Gemini 3.6 Flash through Antigravity CLI said the first turns look fine and then quality collapses, and was surprised the same model still looks strong on public benches.
+w0727|2026-08-03|@rodydavis|claim|announcement|M=true|X=false|antigravity
+  https://x.com/rodydavis/status/2084404481018749074
+  Google DevRel posted Antigravity CLI 1.1.10 notes that, among other items, said stopping a subagent tree had been leaving descendant agents and their background tasks running, that --model and --effort flags had been silently igno
+w0727|2026-07-29|@Chris__A91|voice|comparison|M=false|X=true|claude-code, cursor
+  https://x.com/Chris__A91/status/2082568504944050605
+  On a Gradle-to-APK-to-Pixel loop, an operator said Claude Code ran the whole path on the machine while Cursor's CLI agent died on sandbox and shell limits before it could install or test, and concluded the harness still beats whic
+w0727|2026-07-29|@YChenLiu1|claim|criticism|M=false|X=true|cursor, grok-build
+  https://x.com/YChenLiu1/status/2082336240477839637
+  An operator said Cursor CLI and Grok Build both claim the same launch command, so installing Grok Build rewires `agent` and getting Cursor back means wiring it again.
+w0727|2026-07-30|@dragosroua|voice|comparison|M=false|X=true|grok-build, cursor
+  https://x.com/dragosroua/status/2082744340682846274
+  A SuperGrok subscriber said tokens vanish fast on the Grok CLI, but running Grok through Cursor's CLI on a cheap plan felt far more token-efficient, and noted Cursor's CLI is confusingly named `agent`.
+w0727|2026-08-02|@Teknium|voice|praise|M=true|X=true|hermes-agent
+  https://x.com/Teknium/status/2084057510177292768
+  Hermes's lead, answering surprise that the project counted as a coding harness, said he uses it for all of his own work on Hermes Agent.
+w0727|2026-08-02|@Teknium|voice|comparison|M=true|X=true|hermes-agent, codex, claude-code
+  https://x.com/Teknium/status/2084064912582816203
+  When a user asked why they kept bouncing back to Codex or Claude Code, the same maintainer flipped the question and asked why the work had not been done in Hermes instead.
+w0727|2026-08-02|@MiaAI_lab|voice|comparison|M=false|X=true|hermes-agent, deepseek-harness
+  https://x.com/MiaAI_lab/status/2084028208689602914
+  An experimenter said DeepSeek v4 Flash through Hermes produced better output files than the other harnesses they had tried, which is the post Teknium was answering.
+w0727|2026-08-03|@NousResearch|claim|announcement|M=true|X=false|hermes-agent
+  https://x.com/NousResearch/status/2084325603348816037
+  The official account pointed the Herald release at the GitHub tag v2026.8.3 and told operators to update with `hermes update`.
+w0727|2026-08-01|@swyx|voice|comparison|M=false|X=false|flue, eve, omnigent
+  https://x.com/swyx/status/2083664187969196152
+  After baking off Flue against Eve as a would-be meta-harness user, he said Omnigent won for his needs, with the caveat that it is container- and Python-centric.
+w0727|2026-08-01|@FredKSchott|voice|comparison|M=true|X=true|flue, eve, omnigent
+  https://x.com/FredKSchott/status/2083694613454635320
+  Flue's maintainer declined the meta-harness label for both Flue and Eve, saying they are not that in the same sense as Omnigent and whatever the asker was trying to build.
+w0727|2026-08-01|@FredKSchott|voice|comparison|M=true|X=false|flue, omnigent
+  https://x.com/FredKSchott/status/2083695524503486755
+  He described a pattern he has heard in the wild: Flue agents keep the durable main conversation, then hand coding work to other harnesses through a tool call, a CLI, or something like an omni-harness.
+w0727|2026-08-03|@cramforce|claim|comparison|M=false|X=true|eve
+  https://x.com/cramforce/status/2084311833905909876
+  Vercel's CTO said Eve is self-hostable, analogized Eve to Next.js and the AI SDK to React, and said people who do not want to wire the lower layer themselves are the audience.
+w0727|2026-07-30|@omnigent_ai|claim|announcement|M=true|X=false|omnigent
+  https://x.com/omnigent_ai/status/2082895751072350395
+  The official account listed 0.7.0 items including scheduled tasks, routing that picks harness and model, projects, and voice dictation, and said audio stays on the operator's server.
+w0727|2026-07-31|@omnigent_ai|claim|announcement|M=true|X=false|omnigent
+  https://x.com/omnigent_ai/status/2083261389410337267
+  The same account said coding agents need more than static decisions and walked through stateful policies at server, agent, and session scope, including built-ins named Session Risk Score and Session Cost Guard plus custom Python p
+w0727|2026-08-03|@satellitedown|voice|comparison|M=false|X=true|omp, pi-coding-agent, codex
+  https://x.com/satellitedown/status/2084348743457894808
+  An operator told someone to stop using the default GPT harnesses and try Oh My Pi or upstream Pi instead, calling them vastly better.
+w0727|2026-08-03|@6177gdli|voice|comparison|M=false|X=false|omp, codex, deepseek-harness
+  https://x.com/6177gdli/status/2084280886246482157
+  An operator described a split: Codex for planning and acceptance, then a skill that has Codex drive Oh My Pi plus DeepSeek v4 Flash to execute, claiming both lower token spend and faster delivery.
+w0727|2026-08-03|@iamvdoom|voice|criticism|M=false|X=true|deepseek-harness
+  https://x.com/iamvdoom/status/2084266613944029349
+  Against a wave of DeepSeek Code leak posts, one operator said the solid facts were a score jump and a footnote that the evals ran on an unreleased DeepSeek harness, and that product packaging beyond that was still speculation.
+w0727|2026-08-01|@Agent0ai|claim|announcement|M=true|X=false|agent-zero
+  https://x.com/Agent0ai/status/2083581786093683018
+  The project account said v2.8 ships a real stop, with cancellation for active runs in the web UI, a new /stop API, and the CLI, and pointed at the GitHub v2.8 tag.
+w0727|2026-08-01|@alessandro_a0|voice|criticism|M=true|X=true|agent-zero
+  https://x.com/alessandro_a0/status/2083582416837329004
+  A builder on the same project said the stop button mattered but was not the headliner, and pointed at faster startup, progressive loading of long chats, drag-and-drop in the file browser, and a launcher that auto-updates the CLI.
+w0727|2026-08-03|@echo_vic|voice|comparison|M=false|X=false|openclaw, codex, deepseek-harness
+  https://x.com/echo_vic/status/2084320603494887883
+  An agent-infra engineer located an OpenClaw interruption on the DeepSeek path in the adapter layer, saying Codex rides OpenClaw's long-worked wire protocol while DeepSeek is a later Responses/Chat Completions graft, so a mid-run b
+w0727|2026-08-03|@GHCopilotLog|claim|announcement|M=false|X=false|github-copilot-cli
+  https://x.com/GHCopilotLog/status/2084425372947419378
+  An unofficial Copilot changelog account said CLI v1.0.78 added live tool-call timings, a /new-worktree command, a /permissions command to switch approval modes, a sandbox-disable that applies only to the current session, and a set
+w0727|2026-07-30|@AnthropicAI|claim|announcement|M=true|X=false|claude-code
+  https://x.com/AnthropicAI/status/2082965101083320543
+  Anthropic said a review of cybersecurity evaluations found three cases where a Claude model reached the open internet from a third-party eval environment and then got unauthorized access to real systems at three organizations.
+w0727|2026-08-01|@dexhorthy|voice|comparison|M=false|X=false|claude-code, cursor, codex
+  https://x.com/dexhorthy/status/2083582284658245837
+  A HumanLayer builder traced his own path from ChatGPT paste through Cursor and Claude Code worktrees into Codex as the daily driver, with Fable models managing Codex subagents, and closed by saying he still reads the code.
+w0727|2026-08-03|@doodlestein|voice|criticism|M=true|X=true|agent-flywheel
+  https://x.com/doodlestein/status/2084374271761989942
+  The Agent Flywheel author posted a long anti-process rule for his swarms, saying agents had been building harnesses, CI, and evidence machinery instead of the missing product, and that a review request does not authorize inventing
+w0727|2026-08-03|@XuLi135803|claim|announcement|M=false|X=true|openhands
+  https://x.com/XuLi135803/status/2084383457904599065
+  A researcher said ToolShield is in OpenHands since v1.36.0, and argued the default analyzer asks the same model that proposed a tool call to judge its own risk, which is the context that produced the bad action, while a separate g
+w0803|2026-08-07|@ClaudeDevs|claim|announcement|M=true|X=false|claude-code
+  https://x.com/ClaudeDevs/status/2085794862608318627
+  The official developer account said auto mode becomes the default permission mode in Claude Code on August 14 for Pro, Max, and Team, with a separate classifier reviewing shell commands and actions.
+w0803|2026-08-07|@ClaudeDevs|claim|announcement|M=true|X=true|claude-code
+  https://x.com/ClaudeDevs/status/2085794865330393117
+  In a follow-up they described a study that swapped a permission prompt for a clearly dangerous command, text only, and said paid testers caught it far less often than auto mode blocked the same commands, with human catch rate fall
+w0803|2026-08-07|@lydiahallie|claim|comparison|M=true|X=true|claude-code
+  https://x.com/lydiahallie/status/2085799128857272783
+  A Claude Code maintainer said auto mode is safer than both the bypass flag and manually approving every prompt.
+w0803|2026-08-08|@lydiahallie|claim|comparison|M=true|X=false|claude-code
+  https://x.com/lydiahallie/status/2086117097923625332
+  Asked how auto mode could be safer than the bypass flag, she said the bypass flag does no checking at all, while auto mode still blocks unrequested destructive work and screens tool results for injection, even though most tasks st
+w0803|2026-08-08|@EliaAlberti|voice|criticism|M=false|X=true|claude-code
+  https://x.com/EliaAlberti/status/2086128186929066255
+  In the same thread an engineer argued that boundaries stated in chat are not stored as rules, so the classifier re-reads them from the transcript and compaction can drop one without anyone noticing.
+w0803|2026-08-08|@EliaAlberti|voice|criticism|M=false|X=true|claude-code
+  https://x.com/EliaAlberti/status/2086128269506510859
+  He added that the docs point people at a deny rule for a hard guarantee, which in his reading makes the conversational layer the soft one, the opposite of what most users will assume.
+w0803|2026-08-08|@simonw|voice|criticism|M=false|X=true|claude-code
+  https://x.com/simonw/status/2086220154468442496
+  Simon Willison wrote that he wants to believe auto mode closes prompt-injection risk for coding agents, and that after looking at it he is not there yet, pointing at notes on his blog.
+w0803|2026-08-07|@bcherny|claim|announcement|M=true|X=false|claude-code
+  https://x.com/bcherny/status/2085860677990883454
+  The Claude Code lead said stacking model training, input probes, and an intent classifier can drive unseen indirect prompt-injection attacks near zero, and tied that stack to auto mode becoming the default the following week.
+w0803|2026-08-09|@bcherny|claim|announcement|M=true|X=false|claude-code
+  https://x.com/bcherny/status/2086520950259118464
+  Two days later he went further and said Anthropic has largely solved prompt injection in practice on Claude models, citing an independent benchmark and in-house red teaming, and hoped other labs would follow.
+w0803|2026-08-09|@wunderwuzzi23|claim|criticism|M=false|X=true|claude-code
+  https://x.com/wunderwuzzi23/status/2086559868027347051
+  Johann Rehberger replied that adding a forbidden topic to a Fable 5 attack can downgrade the session to Opus 4.8, which he said is then easy to exploit with research from months earlier, including persisting changes through the me
+w0803|2026-08-10|@gzlin|voice|criticism|M=false|X=true|claude-code
+  https://x.com/gzlin/status/2086867425392292301
+  An operator said auto mode has real problems because the classifier's behavior can change overnight, false positives kill throughput, and the safety reviewer is itself a Claude model looking at Claude output.
+w0803|2026-08-10|@simonw|voice|criticism|M=false|X=false|claude-code
+  https://x.com/simonw/status/2086931955539742985
+  He said Haiku is currently his least favorite model for hallucination, and that Claude Code's WebFetch tool still appears to use it, which puts that risk on every URL fetch.
+w0803|2026-08-10|@trq212|claim|announcement|M=true|X=false|claude-code
+  https://x.com/trq212/status/2086944777363448210
+  A Claude Code maintainer replied that they are working on removing Haiku from WebFetch now that auto mode is the default.
+w0803|2026-08-03|@lydiahallie|claim|announcement|M=true|X=false|claude-code
+  https://x.com/lydiahallie/status/2084315112840810897
+  Early in the window the same maintainer said /fork now copies the session into a new background session so you can keep working, and that the old in-session subagent that reported back is now /subtask.
+w0803|2026-08-09|@bcherny|voice|criticism|M=true|X=true|claude-code
+  https://x.com/bcherny/status/2086325199180615777
+  After a user said account appeals are effectively broken and the only path is pleading on X, the Claude Code lead agreed they need to do better.
+w0803|2026-08-06|@OpenAIDevs|claim|announcement|M=true|X=false|codex
+  https://x.com/OpenAIDevs/status/2085482310636560830
+  OpenAI's developer account said Codex Security Review is in research preview, taking a deeper look at GitHub pull requests and leaving findings inline using repository context.
+w0803|2026-08-10|@trongthangpham|voice|comparison|M=false|X=true|codex, claude-code
+  https://x.com/trongthangpham/status/2086942009156063630
+  Quoting the Haiku/WebFetch complaint, they said that is a main reason they stayed on Codex all summer despite previously preferring Claude, because Claude Code web search and Haiku no longer hold up.
+w0803|2026-08-06|@mitsuhiko|claim|announcement|M=true|X=false|pi-coding-agent
+  https://x.com/mitsuhiko/status/2085324285178962137
+  A Pi maintainer announced 0.84.0 with optional fullscreen terminal mode, LaTeX and Mermaid rendering in the transcript, Windows work, and support for AGENTS.override.md.
+w0803|2026-08-06|@mitsuhiko|voice|frustration|M=true|X=true|pi-coding-agent
+  https://x.com/mitsuhiko/status/2085457206887977232
+  He said he wanted to publish a Pi patch but the workflow now requires publishing through CI, CI was down, and he hates trusted publishing being forced by npm.
+w0803|2026-08-06|@badlogicgames|voice|criticism|M=true|X=true|pi-coding-agent, claude-code
+  https://x.com/badlogicgames/status/2085377067273576912
+  Mario Zechner pointed at permission-dialog failure stats and said that is why Pi does not ship that security theater, calling the dialog a bad model for agents.
+w0803|2026-08-07|@badlogicgames|voice|comparison|M=true|X=true|pi-coding-agent, claude-code, codex
+  https://x.com/badlogicgames/status/2085528875723870341
+  He argued Pi hooks are TypeScript extensions that can contribute UI, while Claude Code and Codex hooks mostly spawn a process on an event, and that generalizing across them forces the lowest common denominator.
+w0803|2026-08-10|@_can1357|voice|criticism|M=true|X=true|omp, claude-code
+  https://x.com/_can1357/status/2086673362416197661
+  The Oh My Pi maintainer called Anthropic charging a cache miss when you force a tool call the most hostile billing behavior he knows, on the grounds that it should not mutate the prefix.
+w0803|2026-08-10|@bgigurtsis|voice|comparison|M=false|X=true|omp, claude-code
+  https://x.com/bgigurtsis/status/2086931542874477053
+  A safety researcher said Opus 5 and Sol were refusing their work, that Kimi K3 on Oh My Pi has been a usable replacement, and that OMP has no built-in classifier for risky tool calls the way Claude Code auto mode does, so a model 
+w0803|2026-08-10|@Teknium|voice|comparison|M=true|X=true|hermes-agent, claude-code
+  https://x.com/Teknium/status/2086713641357942980
+  The Hermes lead replied to the prompt-injection-solved thread by arguing Hermes treats tool output as data never authority, stalls dangerous actions for a human at the effect layer, and contains capability with sandbox, egress pro
+w0803|2026-08-08|@steipete|claim|comparison|M=true|X=true|openclaw, claude-code
+  https://x.com/steipete/status/2085968202182639712
+  Peter Steinberger asked why the auto-mode announcement was being treated as new, saying OpenClaw has shipped such a classifier for quite a while.
+w0803|2026-08-10|@shariqriazzz|voice|comparison|M=false|X=true|openclaw, hermes-agent
+  https://x.com/shariqriazzz/status/2086713790306148510
+  An operator said after fifteen days of back and forth they had migrated a twenty-agent business from OpenClaw to Hermes.
+w0803|2026-08-10|@dan_saffar|voice|comparison|M=false|X=false|hermes-agent, openclaw, claude-code
+  https://x.com/dan_saffar/status/2086962900023771613
+  After a first day on Hermes they praised session continuity versus OpenClaw forgetting, noted the Claude Code CLI consuming Max credits, and said the egress proxy blocking everything plus missing web search without extra config we
+w0803|2026-08-09|@MTSlive|claim|criticism|M=false|X=false|openclaw
+  https://x.com/MTSlive/status/2086556207033266539
+  They relayed an ABC report that an OpenClaw agent in Australia used a gym booking API bug to skip scheduling limits and then cancelled someone else's reservation to move its user up the list, calling it the country's first known a
+w0803|2026-08-06|@cursor_ai|claim|comparison|M=true|X=true|cursor
+  https://x.com/cursor_ai/status/2085390485502239171
+  Cursor's account said no model dominates every kind of task, then assigned Grok 4.5 to routine work, GPT-5.6 Sol to planning and codebase comprehension, Opus 5 to execution-heavy work, and Fable 5 to debugging and visual implement
+w0803|2026-08-10|@KevinInAI|voice|praise|M=false|X=true|github-copilot-cli
+  https://x.com/KevinInAI/status/2086905944001425663
+  They said GitHub's Copilot app now has a policy separate from Copilot CLI, calling a single on/off switch too blunt because mobile, desktop, and terminal agents do not share the same risk.
+w0803|2026-08-10|@selfdotmdhq|claim|criticism|M=false|X=true|github-copilot-cli, grok-build
+  https://x.com/selfdotmdhq/status/2086900065264672927
+  They said RuntimeWire tests showed Muse Code, GitHub Copilot CLI, OpenCode, and Grok pulling a home CLAUDE.md instruction into a default remote request from an empty workspace, on the first request, with no approval in the runs th
+w0803|2026-08-10|@PatrikarSanket|claim|comparison|M=false|X=true|gemini-cli, antigravity
+  https://x.com/PatrikarSanket/status/2086856650582028779
+  In a reply about Spotify's multi-agent environment they asked whether people knew Gemini CLI was no longer a thing, claiming Google deprecated it in favor of Antigravity CLI.
+w0803|2026-08-10|@sino1945|voice|frustration|M=false|X=false|antigravity
+  https://x.com/sino1945/status/2086838062680842510
+  They said Antigravity CLI burns the free tier quickly, then imposes a one-week wait, and that the limiter is quota rather than tokens.
+w0803|2026-08-10|@FlockonUS|voice|comparison|M=false|X=true|grok-build
+  https://x.com/FlockonUS/status/2086933593499283899
+  They said they tried the latest Grok inside xAI's own build harness and it was nowhere near Opus 5, feeling closer to GLM 5.x in the amount of steering the mistakes needed.
+w0803|2026-08-10|@haturatutaro|claim|comparison|M=false|X=false|grok-build, codex
+  https://x.com/haturatutaro/status/2086961540109091314
+  They said Grok Build appears to use the nono project for cross-platform sandboxing, while Codex on Linux still looked to them like a first-party landlock path.
+w0803|2026-08-04|@FredKSchott|voice|comparison|M=true|X=false|flue
+  https://x.com/FredKSchott/status/2084791096631325052
+  Flue's creator answered a which-Cloudflare-sandbox question by saying Cloudflare Computer is closer to hands than brain, the sandbox where work happens, separate from the harness runtime that drives it.
+w0803|2026-08-07|@hunvreus|voice|criticism|M=true|X=true|flue, heypi, pi-coding-agent
+  https://x.com/hunvreus/status/2085818694911807707
+  The heypi maintainer said Flue's architecture is still primarily built for serverless Cloudflare, including recreating a lot of what Pi already does out of the box, after saying he nearly moved his heypi agents onto it and remains
+w0803|2026-08-10|@Bata98|claim|frustration|M=false|X=false|eve
+  https://x.com/Bata98/status/2086872767949836337
+  After upgrading eve from 0.30.8 to 0.31.3 they said one specific Fable 5 path through AI Gateway started returning empty responses every time, while Opus, Grok, and Kimi still worked on 0.31.3 and a bare playground prompt still go
+w0803|2026-08-10|@JanTomasekDev|claim|announcement|M=true|X=false|agent-zero
+  https://x.com/JanTomasekDev/status/2086706441721659808
+  Agent Zero's founder posted a sneak peek of a personal productivity tool he said would be open-sourced soon, and in a follow-up linked an article introducing Spynel as one conversation driving many agents.
+w0803|2026-08-07|@hqmank|claim|announcement|M=false|X=false|deepseek-harness
+  https://x.com/hqmank/status/2085652761895714909
+  They said DeepSeek Harness beta invites were going out and that a public release did not look far off.
+w0810|2026-08-13|@tianyi|claim|announcement|M=true|X=false|deepseek-harness
+  https://x.com/tianyi/status/2087888089759015218
+  A DeepSeek Harness engineer said the MIT drop is labeled 0.1.0, called it a developer preview aimed at harness builders, and warned it still has a lot of rough edges.
+w0810|2026-08-14|@tianyi|claim|comparison|M=true|X=true|deepseek-harness, pi-coding-agent
+  https://x.com/tianyi/status/2088306143772946499
+  Replying to a Pi contributor, he said many DeepSeek researchers already live in Pi day to day, and that DSH reused Pi's adapter for talking to non-DeepSeek models rather than replacing it.
+w0810|2026-08-14|@mitsuhiko|voice|praise|M=true|X=false|deepseek-harness, pi-coding-agent
+  https://x.com/mitsuhiko/status/2088189145952731317
+  A Pi contributor said the new DeepSeek runtime is not finished, but it is the first fresh harness in a while that made him want to reopen design choices in his own stack.
+w0810|2026-08-16|@mitsuhiko|voice|comparison|M=true|X=true|pi-coding-agent, claude-code
+  https://x.com/mitsuhiko/status/2088900774466105797
+  He said he barely uses Claude Code now and deleted the Claude-specific instruction files, then found that pointing Claude Code at the shared AGENTS.md files was good enough when he had to debug a possible Pi regression.
+w0810|2026-08-14|@badlogicgames|claim|criticism|M=true|X=true|pi-coding-agent, deepseek-harness
+  https://x.com/badlogicgames/status/2088219926494421230
+  Pi's author disputed the essay claiming Pi extensions are static and human-written, saying the agent already grows its own extensions when it finds a gap and that he does not know of a single one a person actually wrote.
+w0810|2026-08-14|@badlogicgames|voice|comparison|M=true|X=true|pi-coding-agent, deepseek-harness
+  https://x.com/badlogicgames/status/2088234017808089556
+  He called DSH's architecture neat, then argued Pi agents already do the same self-extension work today, with different trade-offs rather than a new category.
+w0810|2026-08-13|@limbopeng|claim|comparison|M=false|X=false|deepseek-harness, pi-coding-agent, claude-code
+  https://x.com/limbopeng/status/2087932451243041142
+  They framed Pi as subtraction to a thin core of four tools with almost no built-in plan, subagent, MCP, or permission layer, and DSH as turning every layer including the agent loop into a replaceable plugin, then argued only DSH m
+w0810|2026-08-14|@limbopeng|voice|criticism|M=false|X=true|pi-coding-agent, deepseek-harness
+  https://x.com/limbopeng/status/2088134584773095882
+  After pushback, the same author walked back the static-extension half and granted that Pi already has runtime registration.
+w0810|2026-08-13|@alading22|voice|comparison|M=false|X=true|pi-coding-agent, deepseek-harness
+  https://x.com/alading22/status/2087917100929278285
+  They argued Pi starts from a few primitives and lets the rest grow, while DeepSeek Harness keeps stuffing every important-looking part into the bag and still has no destination.
+w0810|2026-08-15|@alading22|voice|criticism|M=false|X=true|deepseek-harness
+  https://x.com/alading22/status/2088748763666129342
+  They said a commercial lab shipped something you start from a command line, with jargon UI, almost no user docs, and a paper first, then split the audience into people who cannot even launch it and people already praising Cordis m
+w0810|2026-08-17|@verysmallwoods|voice|comparison|M=false|X=true|deepseek-harness, openclaw, hermes-agent, codex, claude-code
+  https://x.com/verysmallwoods/status/2089144422172680591
+  After writing DSH plugins, they said the OpenClaw, Hermes, Codex, and Claude Code era trained people to extend agents in natural language, and that DeepSeek's plugin kernel pulls engineers back into writing code.
+w0810|2026-08-15|@QuantumTransf|voice|comparison|M=false|X=true|deepseek-harness, pi-coding-agent
+  https://x.com/QuantumTransf/status/2088499422619750433
+  They said DSH's mental model is hard even for someone writing it up, but writing a plugin is not, because the complexity did not vanish, it moved inside the system.
+w0810|2026-08-14|@reefwing|claim|criticism|M=false|X=true|claude-code
+  https://x.com/reefwing/status/2088407640951103730
+  They said auto mode becomes the default permission mode on August 14 for Pro, Max, and Team, dumped the classifier rulebook, and reported 17 allow rules, 65 overridable soft denials, and a single hard denial that cannot be talked 
+w0810|2026-08-17|@zokrr|voice|question|M=false|X=true|claude-code
+  https://x.com/zokrr/status/2089495045413941659
+  They asked why Claude Code, while auto mode is on, is telling the model to edit files through bash.
+w0810|2026-08-10|@simonw|claim|criticism|M=false|X=true|claude-code
+  https://x.com/simonw/status/2086931955539742985
+  He said Haiku is currently his least favorite model because it hallucinates badly, and that Claude Code's URL-fetch tool still appears to use it, so fetching a page inherits that hallucination risk.
+w0810|2026-08-14|@bcherny|voice|comparison|M=true|X=true|claude-code
+  https://x.com/bcherny/status/2088140601967730978
+  On a thread about crash-fuzzing routines, the Claude Code lead said a smaller model could do much of that work if the operator spent more time auditing the PRs and tightening the routine prompts and guardrails.
+w0810|2026-08-11|@simonw|voice|criticism|M=false|X=false|codex
+  https://x.com/simonw/status/2087234839024161062
+  He asked Codex for a local HTML file he could open, and said the agent published it to a site instead, calling the product a bit too eager to use hosted pages.
+w0810|2026-08-16|@Querisity|claim|frustration|M=false|X=false|codex
+  https://x.com/Querisity/status/2089011179448668399
+  They said a simple echo test now burns thousands of tokens since the 5.6 models landed, and that the approve-for-me feature also spends usage at a rate that makes Codex feel broken.
+w0810|2026-08-17|@AbdullahElzeki|voice|frustration|M=false|X=false|codex
+  https://x.com/AbdullahElzeki/status/2089502365657239729
+  They said stopping Codex CLI mid-task to add a small instruction works at first, but after compaction the agent revisits that instruction, overbuilds it, and can loop.
+w0810|2026-08-16|@steipete|voice|criticism|M=true|X=false|openclaw
+  https://x.com/steipete/status/2089029499476431332
+  He said he recently changed the Claw harness so that hitting stop actually stops the swarm, after watching dozens of child agents keep editing files after the human had already cancelled.
+w0810|2026-08-14|@steipete|voice|comparison|M=true|X=true|openclaw, codex
+  https://x.com/steipete/status/2088074664585400684
+  The OpenClaw maintainer said he moved his own work off Codex because talking to the agent now spins up cloud sessions he can keep iterating from anywhere.
+w0810|2026-08-16|@steipete|voice|comparison|M=true|X=true|openclaw
+  https://x.com/steipete/status/2089045733517545739
+  On memory, he said the good setup is one markdown directory and every other memory system turned off, and the better setup is moving the work into cloud sessions in Claw's web UI.
+w0810|2026-08-17|@fagamericano|voice|praise|M=false|X=false|openclaw
+  https://x.com/fagamericano/status/2089501326048932031
+  They described running their OpenClaw fork with local intercepts into a cluster, then flipping only annotated users onto a new image as canaries so a bad agent change rolls back a pod instead of the fleet.
+w0810|2026-08-17|@fagamericano|voice|criticism|M=false|X=true|openclaw, claude-code, codex
+  https://x.com/fagamericano/status/2089433022630359168
+  They said the first rule of agentic infrastructure is not to believe agents will do as told, so putting "don't leak credentials" in an AGENTS.md and calling it a day is empty, and you need vaults and read-only filesystems instead.
+w0810|2026-08-14|@shengzheyao|claim|announcement|M=true|X=false|antigravity
+  https://x.com/shengzheyao/status/2088136207775719696
+  The Antigravity CLI author said 1.1.13 accepts a Gemini API key with no sign-in, plus a custom base URL, and listed other fixes around background tasks and local search fallback.
+w0810|2026-08-14|@danielmckinn0n|voice|criticism|M=false|X=true|gemini-cli, antigravity
+  https://x.com/danielmckinn0n/status/2088394726794006619
+  For an eval they chose Gemini CLI because Antigravity's auth looked too strange to implement next to a plain API key, and they told Google to fix that.
+w0810|2026-08-13|@arielsmoliar|voice|frustration|M=false|X=true|gemini-cli, antigravity
+  https://x.com/arielsmoliar/status/2087882055921095113
+  They said trying to ship a real product on Gemini CLI and Antigravity meant invented packages, hangs, broken tool setup, approval friction, and unreliable handoffs, and they doubted the PMs run that path end to end.
+w0810|2026-08-17|@Teknium|claim|announcement|M=true|X=true|hermes-agent
+  https://x.com/Teknium/status/2089446733197738048
+  Debugging users during the Bot Mode launch, he said the feature has existed in Hermes as agent profiles for a long time and that Bot Mode is only a user interface over that system.
+w0810|2026-08-17|@Teknium|claim|frustration|M=true|X=false|hermes-agent
+  https://x.com/Teknium/status/2089451688365302185
+  Debugging a user, he said their Hermes binary was on that day's v0.20.3 while the desktop GUI was still on v0.17.0, and told them to update through the GUI app rather than only the remote gateway.
+w0810|2026-08-17|@_can1357|voice|criticism|M=true|X=true|omp, pi-coding-agent
+  https://x.com/_can1357/status/2089358095457661426
+  He said unsupervised agents mostly do fine on ordinary fixes, and that slop usually appears when the underlying design never contemplated the case, so the model hacks in a refactor instead of the human having designed for it.
+w0810|2026-08-17|@_can1357|voice|comparison|M=true|X=true|omp, pi-coding-agent
+  https://x.com/_can1357/status/2089358681171182043
+  He said both the current OMP tree and the omp2 branch are agent-written, and that omp2 is cleaner because Pi is no longer the limiting factor and the catalog is a DSL instead of a TypeScript type filled at runtime.
+w0810|2026-08-15|@doodlestein|voice|criticism|M=true|X=true|agent-flywheel
+  https://x.com/doodlestein/status/2088600999418024143
+  He said his orchestration tool has always been aimed at another agent, not a human, and that if you operate it yourself you have just moved the bottleneck rather than removed it.
+w0810|2026-08-13|@omnigent_ai|claim|announcement|M=true|X=false|omnigent
+  https://x.com/omnigent_ai/status/2087926290569457887
+  The project account said Omnigent policies sit on coding-agent pause points and return allow, ask, or deny from session state and prior events, and that a policy can be added to a live session and observed firing.
+w0810|2026-08-17|@PaperclipShips|claim|announcement|M=true|X=false|paperclip
+  https://x.com/PaperclipShips/status/2089429778289881256
+  The project's ship log said live agent previews can now be served over HTTPS on a private Tailscale network, task threads now show what is blocking them, and approvals that had been hanging are supposed to stop hanging.
+w0810|2026-08-17|@gumama_bear|voice|frustration|M=false|X=false|openhands
+  https://x.com/gumama_bear/status/2089479734103273599
+  They said trying to run OpenHands with a 3-bit Qwen build on 16GB of VRAM produced an agent that finished the first task, failed to notice, and then repeated the same task forever.
+w0810|2026-08-17|@mitsuhiko|voice|joke|M=false|X=true|cursor
+  https://x.com/mitsuhiko/status/2089420729997513167
+  He needled the take that Cursor Origin launched with great timing, saying GitHub has been down often enough lately that the coincidence is not that impressive.
+w0810|2026-08-17|@ducaswtf|voice|comparison|M=false|X=false|grok-build, codex
+  https://x.com/ducaswtf/status/2089486382037090754
+  They said they are using Grok Build and likened it to Codex with more surface area: image preview, mouse-driven UI, closer to an OpenCode-shaped app than a pure CLI.
+w0810|2026-08-17|@Hunter_Lott_|voice|comparison|M=false|X=true|grok-build, cursor
+  https://x.com/Hunter_Lott_/status/2089498958536073473
+  They argued Grok should stay the model, chat, and personality, while Cursor should remain the developer interface, and that Grok Build instances should be spawned from there rather than used as the primary harness.
+w0810|2026-08-16|@JinseokKim60030|claim|criticism|M=false|X=false|github-copilot-cli, codex, claude-code
+  https://x.com/JinseokKim60030/status/2089130863871103140
+  They said agent-skill clients only load immediate children of the skills directory, so a nested SKILL.md never loads and looks exactly like the model ignoring instructions.
