@@ -1,14 +1,14 @@
 ---
 schema_version: bitter.frontier_digest.v0
 digest_id: 2026-04-23_2026-05-07-frontier-rollup-expanded
-title: "The Harness Leaves The Chat Box"
+title: "Watchable Is Not Watched"
 window:
   start: 2026-04-23
   end: 2026-05-07
 run_id: 2026-05-07-commit-harvest-2026-04-23_2026-05-07-frontier-v1
 status: published
-artifact_version: 4
-last_updated: 2026-07-02
+artifact_version: 5
+last_updated: 2026-09-23
 sources:
   - codex
   - gemini-cli
@@ -28,184 +28,177 @@ top_signal_ids:
   - 2026-05-07-agent-company-control-planes
   - 2026-05-07-integrations-are-volatile
 operator_brief:
-  thesis: "The action in coding agents has left the model and the transcript. Two weeks of commits across eight projects are about goals, memory, visible computers, permissions, gateways, and supervision layers -- the environment around the agent getting thicker -- and the four sources new to this read (OpenClaw, Agent Zero, Paperclip, OpenHands) each show a different wall of the same building. The durable question is who owns the loop around all of it."
+  thesis: "For two weeks the open agent projects spent their commits making the agent's computer something an operator can look at: Agent Zero's browser and desktop, OpenClaw's progress inside the chat, Paperclip's cost and pause controls, OpenHands' scrubbed logs. In the last two days of the window the vendors shipped agents built to work while nobody looks: Codex in a background browser tab, Claude's dreaming editing memory between sessions. A window into the agent is worth what it costs only if something still tells you when to look through it."
   try:
-    - "Run at least one visible-computer harness. Agent Zero's browser, file browser, screenshots, and desktop surface expose failure modes terminal chat hides. [Signal](/signals/2026-05-07-visible-computer-workcells/)"
-    - "Prefer memory that asks first: Gemini's Auto Memory inbox proposes changes for review instead of writing them silently. [Signal](/signals/2026-05-07-persistent-agent-state/)"
-    - "Read the permissions and sandbox story before an agent touches real credentials -- this fortnight shows who is actually doing that work. [Signal](/signals/2026-05-07-permissions-secrets-and-sandboxes/)"
+    - "Agent Zero: give its native browser a task you would normally hand a headless agent, and check the screenshots against what the transcript claims happened. [Signal](/signals/2026-05-07-visible-computer-workcells/)"
+    - "Gemini CLI: prefer memory that arrives as a patch you accept. The Auto Memory inbox proposes; it does not write silently. [Signal](/signals/2026-05-07-persistent-agent-state/)"
+    - "Before an agent touches real credentials, read what its logs keep. OpenHands found a debug log writing hook-config secrets and deleted it. [Signal](/signals/2026-05-07-permissions-secrets-and-sandboxes/)"
   watch:
-    - "Which visible-computer shape wins: local desktop, browser sandbox, remote workcell, hosted app server, messaging agent, or a mix. [Signal](/signals/2026-05-07-visible-computer-workcells/)"
-    - "Whether agent-company control planes (Paperclip's costs, roles, liveness, pause/resume) keep multi-agent systems legible as they scale. [Signal](/signals/2026-05-07-agent-company-control-planes/)"
+    - "Which of Agent Zero's browser and desktop commits reach a release you can install, and whether they arrive switched on. [Signal](/signals/2026-05-07-visible-computer-workcells/)"
+    - "Whether Paperclip's cost summaries and pause/resume hold up on a multi-agent run long enough to need them. [Signal](/signals/2026-05-07-agent-company-control-planes/)"
   uncertain:
-    - "OpenClaw's commit volume makes it hard to separate durable product movement from rapid stabilization without deeper release review. [Signal](/signals/2026-05-07-accessibility-is-frontier-capability/)"
-    - "Which agent-side memories and goals will be stable enough to integrate deeply, versus merely record as tool-local state. [Signal](/signals/2026-05-07-integrations-are-volatile/)"
+    - "OpenClaw landed 8,210 commits in the fortnight. From commits alone we cannot separate lasting product movement from stabilization. [Signal](/signals/2026-05-07-accessibility-is-frontier-capability/)"
+    - "Which agent-side goals and memories will hold still long enough to build on, and which are tool-local state that will change under you. [Signal](/signals/2026-05-07-integrations-are-volatile/)"
 ---
 
-# The Harness Leaves The Chat Box
+# Watchable Is Not Watched
 
-Two weeks ago, Agent Zero fired the agent that used a browser and gave the
-agent a browser of its own. It replaced a browser-use module with a
-[native browser](https://github.com/agent0ai/agent-zero/commit/983d431a5eb785eb9deba9fdfd471fa93f349603),
-then added a
-[Chromium runtime](https://github.com/agent0ai/agent-zero/commit/fa7eef1919901093b117a98ad6e402d809687cf6),
-tabs, screenshot previews, a searchable file browser, Linux desktop controls,
-a document canvas, a LibreOffice runtime, and OAuth and quota visibility. The
-"workcell" stopped being a metaphor. The agent has a computer now, and the
-operator can watch it work.
+In the fortnight to May 7, Agent Zero fired the agent that used its browser.
+[One commit](https://github.com/agent0ai/agent-zero/commit/983d431a5eb785eb9deba9fdfd471fa93f349603)
+replaced the browser-use sub-agent with a native browser tool the main agent
+drives directly, added a live viewer to the web UI, and moved the old module
+out of core. Around it came a
+[persistent Chromium runtime](https://github.com/agent0ai/agent-zero/commit/fa7eef1919901093b117a98ad6e402d809687cf6),
+[tabs](https://github.com/agent0ai/agent-zero/commit/5012dd3128aa6218cc55f6cbce8be42b2db2fee4),
+[screenshot previews in the tool log](https://github.com/agent0ai/agent-zero/commit/c2fb2c3c94e1e1c85b783252332b3fc003f39f2b),
+[Linux desktop controls](https://github.com/agent0ai/agent-zero/commit/62ac20e7b248179825e05664c1df97ebc6214c54),
+a [document canvas](https://github.com/agent0ai/agent-zero/commit/24dd548ebf221e397323b5aa3a509f037fb1b9ae)
+and a LibreOffice runtime.
 
-That is the loudest version of what every commit stream on this expanded
-watchlist said in the same fortnight: the interesting action in coding agents
-is no longer confined to the model or the chat transcript. Codex is adding
-persistent goals, session metadata, plugin controls, and cloud executor
-paths. Gemini CLI is treating memory as a reviewable patch. Hermes is sanding
-the rough edges off persistent personal agents. Pi keeps proving the opposite
-lesson -- a thin harness moves fast precisely because its integrations are
-disposable.
+The agent has a computer, and you can watch it work. Everything you can now
+watch is also something the agent can now touch: a logged-in browser, a
+desktop, OAuth grants. Agent Zero shipped
+[OAuth disconnect and remaining-quota visibility](https://github.com/agent0ai/agent-zero/commit/0da8f3dc2b640efbce22499053507837101fdf6f)
+in the same fortnight. The machine it had just handed the agent holds real
+credentials, and the operator needs a way to take them back.
 
-And the four projects new to this read each expose a different
-wall of the same building: OpenClaw the front door (messaging surfaces,
-onboarding, visible progress), Agent Zero the machine room, Paperclip the
-management floor, OpenHands the whole leased office.
+Every receipt below is a commit on a project's main branch, not a release. Read
+it as the direction of travel, not as what you have installed.
 
-The frontier is not one
-winning agent. It is the environment around agents getting thicker, and the
-durable question is who owns the loop around all of it.
+## The fortnight's work was making the agent visible
 
-## State becomes product
+Agent Zero's move is also a bet on the model. It deleted a specialist
+sub-agent whose job was to browse, and gave the general agent the browser
+instead. That is [Bitter Lesson Maxing](/bitter-lesson/): building where
+better general agents compound your advantage rather than erase it. The
+browse-for-me wrapper is the part the next model makes redundant. The viewer
+the operator watches is not.
 
-The strongest single signal is still Codex
-[`/goal`](https://github.com/openai/codex/commit/f09e1936e0fd464dcea78fe55b84bd20f721cad6),
-and the telling part is not the feature but the follow-through: goal
-validation, paste handling, queued-command behavior, user guidance. When a
-persistent objective earns that much plumbing, it has stopped being a UX
-affordance and become operating state. Gemini's
-[Auto Memory](https://github.com/google-gemini/gemini-cli/commit/a7beb890d093e2cf66ed1ac8debff690b75e1f6d)
-inbox makes the same point from the other side, and makes it better than
-anyone: memory should be proposed, reviewed, and accepted, not silently
-smeared into hidden context.
+The other projects built windows of their own. OpenClaw put agent progress
+into the chat as
+[timeline spans](https://github.com/openclaw/openclaw/commit/61223a74a43fd8768c426d5b22f1633dbad37477)
+and showed
+[Codex tool progress in channel drafts](https://github.com/openclaw/openclaw/commit/3f210b10ce3a19ef6a04205aa7420353945567a2),
+so the person on the other end of a chat sees the work move. OpenHands exposed its
+[sandbox grouping](https://github.com/OpenHands/OpenHands/commit/90cf5f8003c247597481bcbef9a5aa73eb899e10)
+in the UI. Paperclip added
+[per-issue cost summaries](https://github.com/paperclipai/paperclip/commit/c4269bab59fff7a73ff31797578cc97ece7f160f)
+and [pause and resume](https://github.com/paperclipai/paperclip/commit/43b0f2ae582b18f2872ae60bf468f54b99b614ba)
+for agents in its sidebar.
 
-Hermes added memory scoping and
-[Curator](https://github.com/NousResearch/hermes-agent/commit/fe8560fc1249b4a7e448b5c3b80a7d213df9d78f)
-commands; OpenClaw put agent progress into the chat itself with
-[timeline spans](https://github.com/openclaw/openclaw/commit/61223a74a43fd8768c426d5b22f1633dbad37477).
-On the window's last day Anthropic previewed the version of this that asks
-nobody: dreaming, which [[q:claude-dreaming-preview-0507]]. Agent-side state is
-becoming durable, visible, and operational -- and in one case, curated by a
-process the operator never sees -- which means a serious run now has to be able
-to answer what goal, memory, session, or thread state shaped it.
+State got the same treatment. Codex's
+[`/goal`](https://github.com/openai/codex/commit/f09e1936e0fd464dcea78fe55b84bd20f721cad6)
+drew validation, paste handling and queued-command behavior, which is the
+plumbing a feature earns once people lean on it. Gemini CLI's
+[Auto Memory inbox](https://github.com/google-gemini/gemini-cli/commit/a7beb890d093e2cf66ed1ac8debff690b75e1f6d)
+shows proposed memory as a patch to accept. Hermes added a
+[scoping header to long-term memory](https://github.com/NousResearch/hermes-agent/commit/fe8560fc1249b4a7e448b5c3b80a7d213df9d78f).
+Who decides what those memories hold is the argument of the
+[overlapping rollup](/digests/2026-04-22_2026-05-06-frontier-rollup/); here
+the point is only that each can now be seen.
 
-## The visible computer
+## A log is a window and a copy
 
-Agent Zero's browser-and-desktop build-out leads this thread, but the
-platform side is converging on it too. OpenHands is grouping execution into
-[sandbox groups](https://github.com/OpenHands/OpenHands/commit/90cf5f8003c247597481bcbef9a5aa73eb899e10)
-with app-server routing, user secrets, and model profiles behind it.
-Paperclip is doing
-[remote provisioning](https://github.com/paperclipai/paperclip/commit/90631b09b36fa028ad24ca5375bfa50e3602799c)
-and sandbox-provider work. Codex is building cloud executor paths and
-hardening its sandbox. The chat box is not enough for serious agent work, and
-the projects that understand that are racing to show the operator the actual
-machine: the browser, the files, the runtime, the screenshots, the
-credentials, the artifacts.
+The same visibility that lets an operator supervise also writes things down.
+OpenHands found a
+[debug log that had been recording hook-config secrets](https://github.com/OpenHands/OpenHands/commit/0c6c461555f8651347ed140f1c555ff8a88ddf56)
+and deleted it, and
+[strengthened API-key redaction](https://github.com/OpenHands/OpenHands/commit/61e3dc2cadbefd4e0649b7c141ac2335c021ad2b)
+across its loggers. It also began
+[injecting user secrets into the ACP subprocess environment](https://github.com/OpenHands/OpenHands/commit/cf156b0073350ca8e93067bc2f4ae18b90537a0a),
+which is one more place a credential lives and one more place to audit.
 
-It shipped on the last day of the window. Codex reached Chrome on macOS and
-Windows and [[q:codex-chrome-parallel-tabs]]. The clause worth keeping is the
-final one. An agent that drives your browser while you keep using it is not a
-demo of computer use; it is computer use as a background process, which is a
-different thing to supervise.
+Around it, the boundaries got drawn in public. OpenClaw
+[bounded live exec output](https://github.com/openclaw/openclaw/commit/3ee7c02bcacfdf6327747c1fe24dd6d11de8612a),
+made Telegram
+[honor access-group allowlists](https://github.com/openclaw/openclaw/commit/b6ae0b83a61a1f779ee41b5d639b6049bfd422ce),
+and [documented where sub-agent security stops](https://github.com/openclaw/openclaw/commit/33b112ad314dc8d9dfe0f5a68caed4811a23245a).
+Gemini CLI made
+[sub-agents respect the active approval mode](https://github.com/google-gemini/gemini-cli/commit/40b384de2c1d251c9d13a6359216a9e6cff5a254)
+and showed [workspace trust in its MCP list](https://github.com/google-gemini/gemini-cli/commit/a38f393af77c0ccf50da10d73c84cfb594dd8175).
+Codex added
+[plugin share access controls](https://github.com/openai/codex/commit/5119680f85ed01fe039ee8fba0245de24f3a5e37)
+and a [bundled Linux sandbox](https://github.com/openai/codex/commit/26f355b67b75b040ff16990d1b2e4e8093479213).
+Paperclip made
+[security a first-class agent role](https://github.com/paperclipai/paperclip/commit/c036bbfa98494dcfe2521aab65019a4cd021c769).
 
-## The authority model comes to the foreground
+What this agent could read, change, run, install, send or leak is now
+answerable in some of these tools. The OpenHands log is the reminder that the answer includes
+the tool's own record of the work.
 
-This window is full of permissions work, and the spread is the story. Codex
-shipped [permission profiles](https://github.com/openai/codex/commit/5119680f85ed01fe039ee8fba0245de24f3a5e37),
-sandbox profiles, plugin sharing controls, and Linux sandbox hardening.
-Gemini added
-[workspace trust](https://github.com/google-gemini/gemini-cli/commit/a38f393af77c0ccf50da10d73c84cfb594dd8175),
-private memory-patch allowlists, shell-safety evals, and
-[approval-mode-aware subagents](https://github.com/google-gemini/gemini-cli/commit/40b384de2c1d251c9d13a6359216a9e6cff5a254).
-OpenHands tightened
-[redaction](https://github.com/OpenHands/OpenHands/commit/61e3dc2cadbefd4e0649b7c141ac2335c021ad2b)
-and deleted a
-[log that had been recording secrets](https://github.com/OpenHands/OpenHands/commit/0c6c461555f8651347ed140f1c555ff8a88ddf56).
-OpenClaw fixed
-[allowlists](https://github.com/openclaw/openclaw/commit/b6ae0b83a61a1f779ee41b5d639b6049bfd422ce),
-subagent security docs, OAuth labels, and live exec output limits. Paperclip
-added security roles and sandbox-provider contracts; Agent Zero keeps its
-browser and office surfaces opt-in and exposes OAuth disconnect.
+## Legibility is mostly setup recovery
 
-The harness
-is starting to show its authority model, which is the right direction -- and
-the operator's question is finally answerable in some of these tools: what
-could this agent read, change, execute, install, send, or leak?
+The least glamorous commits in the window do the most for a new user.
+OpenClaw's
+[diff-reviewed onboarding fix](https://github.com/openclaw/openclaw/commit/329580c64d13657592c3fabb97ff567c2e292bb6)
+stops a stale channel plugin from dead-ending setup: it reinstalls from a
+trusted catalog where it can, and leaves channels the operator disabled
+disabled. Beside it sit
+[labels on Claude CLI OAuth status](https://github.com/openclaw/openclaw/commit/2b4b60b5514b47d8e242b9b11d9b395037e6674b)
+and a fix that stops the Discord voice bot
+[hearing itself](https://github.com/openclaw/openclaw/commit/1c2832526f65cf23b469e9a1dc5694915c5be548).
 
-## Accessibility is a frontier capability
+Hermes did the adjacent work: a setup wizard that
+[no longer dead-ends on a system-scope unit](https://github.com/NousResearch/hermes-agent/commit/3cdbf334d5074aff0de857c0f94f278f06745e6b),
+[restart readiness for the gateway](https://github.com/NousResearch/hermes-agent/commit/d797755a1c17566b0aef4d77548a4b460142d26a),
+[push-to-talk parity](https://github.com/NousResearch/hermes-agent/commit/04cf4788ccc05003785992682e3cb25205e509cc).
+Pi made [auth-provider login searchable](https://github.com/badlogic/pi-mono/commit/010e9acfe959f437613bcba7139b264012ca43a4).
 
-OpenClaw is the corrective to an overly technical reading of this market. Its
-fortnight is
-[setup recovery](https://github.com/openclaw/openclaw/commit/329580c64d13657592c3fabb97ff567c2e292bb6),
-stale plugin repair, Discord voice behavior, Telegram reactions, WhatsApp
-identity mapping,
-[OAuth labels](https://github.com/openclaw/openclaw/commit/2b4b60b5514b47d8e242b9b11d9b395037e6674b),
-progress previews, chat drafts, install recovery, and group allowlists --
-work whose only purpose is letting a normal person start, understand,
-recover, and control an agent without learning the project's private
-ontology.
+None of this is polish. An operator who cannot get the agent running again
+after a config goes stale cannot supervise it either. Recovery is where
+visibility starts.
 
-Hermes is doing the adjacent work:
-[setup fixes](https://github.com/NousResearch/hermes-agent/commit/6388aafbd6cbfd22c26036291d884d4055b5f6bc),
-voice push-to-talk parity, gateway restart readiness, provider pickers. Agent
-Zero's [screenshot previews](https://github.com/agent0ai/agent-zero/commit/c2fb2c3c94e1e1c85b783252332b3fc003f39f2b)
-make the computer legible; Pi's
-[quickstart](https://github.com/badlogic/pi-mono/commit/010e9acfe959f437613bcba7139b264012ca43a4)
-and terminal work lower the floor; Gemini's reviewable memory and headless
-auth, and OpenHands' visible model names, do the same from their corners.
+## The newest agents work where nobody is looking
 
-None of this is softness. Accessibility is distribution, trust, and operator
-leverage, and the projects treating it as real engineering are buying
-something the benchmark chasers are not.
+Then the vendors shipped the other half. On May 6, Anthropic previewed
+dreaming, which reviews an agent's past sessions,
+[[q:claude-dreaming-preview-0507]]. No transcript records that curation and no
+operator approves it. On May 7, Codex reached Chrome on macOS and Windows,
+and OpenAI said it [[q:codex-chrome-parallel-tabs]].
 
-## The control plane arrives
+That last clause changes the job. Agent Zero's viewer assumes someone
+watching. An agent that drives your browser while you keep using it is
+computer use as a background process, and nobody supervises a background
+process by staring at it.
 
-Paperclip makes the management problem explicit:
-[runtime specs](https://github.com/paperclipai/paperclip/commit/90631b09b36fa028ad24ca5375bfa50e3602799c),
-sandbox providers,
-[cost summaries](https://github.com/paperclipai/paperclip/commit/c4269bab59fff7a73ff31797578cc97ece7f160f),
-roles, liveness, stale-session recovery, ordered sub-issues, pause and
-resume. OpenHands is consolidating around its
-[app server](https://github.com/OpenHands/OpenHands/commit/5232d96dab0ca98e691d6307bd0759e943220d1c);
-Hermes runs kanban task workers, gateway lifecycle, Curator, and
-[providers](https://github.com/NousResearch/hermes-agent/commit/f0d278412f8c14e94a11678be424f6a6ddb79fa2)
-under a dashboard; Codex is reshaping skills, goals, sessions, and executors
-into app-server-shaped surfaces; OpenClaw manages gateway sessions,
-subagents, and plugin metadata. This is the factory problem in miniature:
-once agents coordinate across tasks and machines, something has to keep the
-system legible, and that something is becoming a product layer of its own.
+This is where [Amdahl Maxing](/amdahls-law/) earns its place: design the
+system so scarce human attention goes to the decisions where it is worth
+most. A live viewer spends attention for as long as someone watches it.
+Paperclip spent the fortnight on the cheaper kind. A cost summary or a stale
+session asks for a human only when something is off. Its
+[runtime specs](https://github.com/paperclipai/paperclip/commit/90631b09b36fa028ad24ca5375bfa50e3602799c)
+go further and delete a human task: each adapter now declares how to install
+itself on a remote sandbox, so nobody hand-writes a provisioning script per
+agent CLI. That is the shape that survives agents which do not wait for you.
 
-## Integrations are weather
+## Provider notes
 
-Pi added providers,
-[removed providers](https://github.com/badlogic/pi-mono/commit/fe66edd943691f8eac295fef68ce36930c35fa05),
-and changed its
-[Codex transport](https://github.com/badlogic/pi-mono/commit/4745a9589883fb8200981ddfecb94a593d6e95a2)
-inside a single window. Hermes is moving model providers into
-[plugins](https://github.com/NousResearch/hermes-agent/commit/9022804d78e88253d138d448e9107a3884b2b96c);
-OpenClaw is externalizing
-[channel plugins](https://github.com/openclaw/openclaw/commit/42a32298f9681b6af7e8ed001401f24caefa895e);
-OpenHands is replacing config surfaces with app-server services; Codex and
-Gemini rework plugin, MCP, memory, and approval surfaces weekly. This is not
-a reason to avoid frontier tools. It is the reason to hold them through a
-loop that stays stable -- objective, permissions, execution environment,
-evidence, review, memory -- while the best agent, provider, runtime, and
-plugin change under it every week.
+**Pi.** The window's reminder that integrations change under you. It added a
+[Cloudflare AI Gateway provider](https://github.com/badlogic/pi-mono/commit/24fb6b833b7263df3d08889cc492b03d46d3779b),
+moved Codex to a
+[cached websocket transport](https://github.com/badlogic/pi-mono/commit/4745a9589883fb8200981ddfecb94a593d6e95a2)
+with an [SSE fallback](https://github.com/badlogic/pi-mono/commit/370fdae6fa23881b044efbab571fb7bf6267ed6e),
+and [removed built-in Gemini CLI and Antigravity support](https://github.com/badlogic/pi-mono/commit/fe66edd943691f8eac295fef68ce36930c35fa05).
+Record the version, provider and transport of any run you care about.
 
-That loop is the fortnight's real subject. Every project above is building a
-piece of it inside its own walls. The operator who wants to switch walls
-without losing the work keeps the loop outside.
+**Hermes.** 2,061 commits. The ones that matter here are above; it also moved
+model providers into
+[plugins](https://github.com/NousResearch/hermes-agent/commit/9022804d78e88253d138d448e9107a3884b2b96c)
+and gave Curator
+[archive and prune commands](https://github.com/NousResearch/hermes-agent/commit/436672de0efd8bcc50c6043a16223c102d30d71b).
 
-*How this was read: this is a commit-harvest window -- commit metadata was
-broad-sampled across all eight projects, with diff-level review only on
-selected high-signal commits. Claude Code is absent because its v0 source
-contract defines no public commit stream. OpenClaw's high commit volume means
-its durable product movement is the hardest to separate from rapid
-stabilization; that caveat stands until a release-note review.*
+**OpenHands.** Consolidating on its
+[app server](https://github.com/OpenHands/OpenHands/commit/5232d96dab0ca98e691d6307bd0759e943220d1c)
+and [removed the V0 runtime](https://github.com/OpenHands/OpenHands/commit/e86067c15b54242fd611877aa9038a2f7a219658).
+Its log fix, above, is the item to act on.
 
+**Codex, Gemini CLI.** Covered above and in the overlapping rollup.
+**Agent Zero, OpenClaw, Paperclip.** Covered above.
+
+## Closing
+
+The open projects spent a fortnight building windows into the agent's
+computer, and the work was worth doing. The agents that shipped at the end of
+it were built so you would not need to look.
+
+Watchable is a feature. Watched is a schedule nobody keeps.

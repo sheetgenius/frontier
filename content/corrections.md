@@ -6,7 +6,7 @@ description: >
   source-cited publication keeps its own receipts: when a date, version,
   channel, or claim is fixed, the fix is itself part of the record. This page
   is the audit trail of the publication correcting itself.
-last_updated: 2026-08-24
+last_updated: 2026-09-23
 ---
 
 # Corrections ledger
@@ -243,6 +243,160 @@ corrections:
     reporter: editor-commissioned outside review
     provenance: external
     pr: run 2026-08-23-codex-study-2025-04-16_2026-08-23-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-06-16_2026-06-23-weekly
+    field: "Flue private-by-default run rewrite and flue logs removal: channel"
+    kind: channel-mismatch
+    before: "in an Unreleased changelog section, not a tag"
+    after: "in beta tag v1.0.0-beta.3 (tag commit 657ebd4, 2026-06-23), inside the window"
+    receipt: "https://github.com/withastro/flue/compare/v1.0.0-beta.3...73b3f6ced9"
+    event_date: 2026-06-23
+    artifact_url: /digests/2026-06-16_2026-06-23-weekly/
+    verdict: "ancestry: 73b3f6ced9 is behind v1.0.0-beta.3 (ahead 0)"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-06-23_2026-06-24-weekly
+    field: "Flue correction: release carrying the run rewrite and logs removal"
+    kind: wrong-version-or-tag
+    before: "shipped in 0.11.0 (2026-06-09)"
+    after: "not in 0.11.0 (73b3f6ced9 is 395 commits after it, dated 2026-06-21); first tag is v1.0.0-beta.3"
+    receipt: "https://github.com/withastro/flue/compare/v0.11.0...73b3f6ced9"
+    event_date: 2026-06-21
+    artifact_url: /digests/2026-06-23_2026-06-24-weekly/
+    verdict: "ancestry: ahead 395, behind 0 from v0.11.0"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-07-01_2026-07-02-weekly
+    field: "Hermes v0.18.0 release name"
+    kind: other-fact
+    before: "the Judgement Release"
+    after: "The Judgment Release"
+    receipt: "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.1"
+    event_date: 2026-07-01
+    artifact_url: /digests/2026-07-01_2026-07-02-weekly/
+    verdict: "release title read from the release page"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-07-01_2026-07-02-weekly
+    field: "OpenClaw v2026.6.11 window membership"
+    kind: wrong-date
+    before: "shipped in the window"
+    after: "published 2026-06-30, the day before the window; announced 2026-07-01"
+    receipt: "https://github.com/openclaw/openclaw/releases/tag/v2026.6.11"
+    event_date: 2026-06-30
+    artifact_url: /digests/2026-07-01_2026-07-02-weekly/
+    verdict: "release published_at 2026-06-30T16:06:39Z"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-05-13_2026-05-27-weekly
+    field: "hermes proxy bind address"
+    kind: other-fact
+    before: "the PR did not state the proxy's bind address or auth model"
+    after: "PR #25969 defaults --host to 127.0.0.1; the proxy does not authenticate local callers"
+    receipt: "https://github.com/NousResearch/hermes-agent/pull/25969"
+    event_date: 2026-05-14
+    artifact_url: /digests/2026-05-13_2026-05-27-weekly/
+    verdict: "PR diff: help text 'Bind address (default: 127.0.0.1)'"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-05-12-weekly
+    field: "Gemini CLI headless workspace trust"
+    kind: other-fact
+    before: "filed as a new capability"
+    after: "a security fix: secure .env loading and enforce workspace trust in headless mode"
+    receipt: "https://github.com/google-gemini/gemini-cli/pull/25814"
+    event_date: 2026-04-23
+    artifact_url: /digests/2026-05-12-weekly/
+    verdict: "PR title and merge date"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-05-12-weekly
+    field: "Agent Zero ODF default, structured-action guidance, persistent desktop: window membership"
+    kind: wrong-date
+    before: "this week"
+    after: "shipped in v1.11 (2026-05-02) to v1.13 (2026-05-05), before the window opened on 2026-05-07"
+    receipt: "https://github.com/agent0ai/agent-zero/releases/tag/v1.13"
+    event_date: 2026-05-05
+    artifact_url: /digests/2026-05-12-weekly/
+    verdict: "release published_at dates"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-05-12-weekly
+    field: "Claude Code version pins for hard_deny and worktree.baseRef"
+    kind: wrong-version-or-tag
+    before: "hard_deny in 2.1.139"
+    after: "hard_deny in 2.1.136; worktree.baseRef in 2.1.133"
+    receipt: "https://github.com/anthropics/claude-code/blob/8187baaaafb3/CHANGELOG.md"
+    event_date: 2026-05-11
+    artifact_url: /digests/2026-05-12-weekly/
+    verdict: "changelog entries at pinned SHA"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-04-23_2026-05-07-frontier-rollup-expanded
+    field: "receipts on 'Curator' and 'setup fixes'"
+    kind: wrong-or-dead-receipt-url
+    before: "links pointed at a memory-scoping commit and a dashboard-theme commit"
+    after: "links point at the commits the run's findings name for each claim"
+    receipt: "https://github.com/NousResearch/hermes-agent/commit/436672de"
+    event_date: 2026-05-07
+    artifact_url: /digests/2026-04-23_2026-05-07-frontier-rollup-expanded/
+    verdict: "receipts re-matched to the run's findings"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-08-03_2026-08-10-weekly
+    field: "Paperclip default-open write change: channel"
+    kind: channel-mismatch
+    before: "in this release"
+    after: "merged to master 2026-08-04 (PR #10804); first stable containing it is v2026.817.0 (2026-08-18); no stable had it at window close"
+    receipt: "https://github.com/paperclipai/paperclip/pull/10804"
+    event_date: 2026-08-18
+    artifact_url: /digests/2026-08-03_2026-08-10-weekly/
+    verdict: "ancestry: merge dfcda676 behind v2026.817.0"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
+
+  - corrected_on: 2026-09-23
+    object: digest 2026-08-03_2026-08-10-weekly
+    field: "Hermes PRs #81152 and #81151: channel"
+    kind: channel-mismatch
+    before: "the same release"
+    after: "merged 2026-08-07; in no tag at window close (both after v2026.8.3)"
+    receipt: "https://github.com/NousResearch/hermes-agent/pull/81152"
+    event_date: 2026-08-07
+    artifact_url: /digests/2026-08-03_2026-08-10-weekly/
+    verdict: "ancestry: merge commits ahead of v2026.8.3"
+    reporter: adversarial-verify
+    provenance: internal/adversarial-verify
+    pr: run 2026-09-23-exemplar-pass-deep-frontier-v0
 ```
 
 <!--

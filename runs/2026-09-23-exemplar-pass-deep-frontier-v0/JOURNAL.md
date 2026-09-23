@@ -19,3 +19,4 @@ skill's hold-first-specimen-for-review step.
   (07-27, 08-03, 08-10, 08-17 windows) and topic sweeps for both 08-23 features.
   Ledger sweeper launched (read-only).
 - Iteration 1 (profile class): 20 profiles rewritten to one dated posture as of 2026-09-21 by 5 drafting agents (scratchpad only), applied serially by the coordinator. Gates green. Bar amended: point 14, exemplars renamed. Also fixed index title, digest Pi v0.85.0 link, Cursor acquisition receipt.
+- Iteration 2 (digest class): 15 digests rewritten by 5 drafting agents (scratchpad), applied serially. 6 retitles (04-22, 04-23, 05-12, 08-03, 08-10, 08-17) ending the gotcha streak. 11 corrections verified by coordinator and logged in content/corrections.md. Study figures in 08-03 attributed to Anthropic's announcement. Fixed unrendered [[q:limbopeng]] token in 08-10. Gates green.

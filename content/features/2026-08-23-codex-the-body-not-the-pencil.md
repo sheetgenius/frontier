@@ -135,7 +135,7 @@ development that matters is not that every install already has a model in the
 gate. It is that model-mediated approval is now a supported architectural
 primitive, one selection away, with V2 -- the anticipatory scorer quoted
 above -- in the stable tag and off, as
-[The Classifier Is Off](/digests/2026-08-17_2026-08-20-weekly/) reported.
+[Approvals Belong to the App](/digests/2026-08-17_2026-08-20-weekly/) reported.
 
 ## The team narrates the bet
 
