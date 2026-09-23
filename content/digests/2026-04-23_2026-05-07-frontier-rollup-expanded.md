@@ -159,11 +159,20 @@ and OpenAI said it [[q:codex-chrome-parallel-tabs]].
 That last clause changes the job. Agent Zero's viewer assumes someone
 watching. An agent that drives your browser while you keep using it is
 computer use as a background process, and nobody supervises a background
-process by staring at it.
+process by staring at it. Hermes, tagging v0.13.0 the same day, went the
+same way without a browser. Its lead's announcement put multi-agent
+orchestration through a Kanban board first, with
+[[q:teknium-v013-enforced-goal]] beside it. Workers hand tasks to each other
+and a goal holds across turns, and neither needs a person at the screen.
 
 This is where [Amdahl Maxing](/amdahls-law/) earns its place: design the
 system so scarce human attention goes to the decisions where it is worth
-most. A live viewer spends attention for as long as someone watches it.
+most. A live viewer spends attention for as long as someone watches it. A
+prompt spends it per action, and one operator paying for it said so. swyx,
+after switching to the Codex plugin, wrote that
+[[q:swyx-nondestructive-prompts]] A prompt on a harmless action spends
+attention where the risk is lowest.
+
 Paperclip spent the fortnight on the cheaper kind. A cost summary or a stale
 session asks for a human only when something is off. Its
 [runtime specs](https://github.com/paperclipai/paperclip/commit/90631b09b36fa028ad24ca5375bfa50e3602799c)

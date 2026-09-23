@@ -83,3 +83,91 @@ cards:
     verdict: >
       A vendor announcement, and the plainest available marker of the window's direction: the constraint that used to bound a long run was compute, and compute got cheaper on 2026-05-06.
     tags: [rate-limits, capacity]
+
+  - id: mattlam-goal-mark-complete
+    title: "The one thing the model may change"
+    kind: claim
+    date: 2026-04-30
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["mattlam_"]
+    display_name: "Matthew Lam"
+    source_urls:
+      - https://x.com/mattlam_/status/2049907603829121354
+    verbatim: |
+      Codex 0.128.0 is huge, even better than a @thsottiaux reset. 
+
+      Codex is moving more goal oriented with a new /goal command, think Ralph loop on steroids:
+      - /goal <objective> to set a new goal
+      - after agent turn finishes, Codex injects a message nudging the model to pick the next concrete action, if the user doesn't type anything
+      - goal requirements are mapped to evidence (files, test results, pr, etc.)
+      - model can only update goal to mark things complete
+
+      Also finally in version 128, "codex update" is supported 🎉
+    inline: "model can only update goal to mark things complete"
+    summary: >
+      An operator's same-day walkthrough of Codex 0.128.0's /goal: set an objective, have Codex
+      nudge the model toward the next action when a turn ends, map requirements to evidence, and
+      let the model touch the goal only to mark it complete.
+    verdict: >
+      A claim post, checked against the primary record: openai/codex PR #18075, merged April 25
+      and shipped in 0.128.0, says update_goal is constrained 'to expose only goal completion',
+      with pause, resume, clear and budget transitions left to the user or the runtime. That
+      part holds. The mapping of requirements to evidence is his description, and we did not
+      find it in the pull requests we read.
+
+  - id: huntley-delete-agentsmd
+    title: "Markdown like cattle"
+    kind: voice
+    date: 2026-05-05
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [cursor]
+    authors: ["GeoffreyHuntley"]
+    display_name: "geoff"
+    source_urls:
+      - https://x.com/GeoffreyHuntley/status/2051570763162136642
+    verbatim: |
+      this is going to sound counterintuitive but perhaps companies should delete their cursor rules/agentsmd they have accumulated over the last year. 
+
+      treat markdown like cattle to be shot, instead of a pet that is named.
+    inline: "perhaps companies should delete their cursor rules/agentsmd they have accumulated over the last year."
+    summary: >
+      Geoffrey Huntley arguing, by his own account counterintuitively, that companies should
+      delete the Cursor rules and AGENTS.md files they built up over a year, and treat markdown
+      as cattle rather than a named pet.
+    verdict: >
+      A voice post and an argument, not a report of any product change. It is here because it
+      answers this issue's question from the human side: the memory that a person curates by
+      hand also goes stale, and his remedy is a person deleting it on purpose, which is the
+      opposite of a background curator doing it on a schedule.
+
+  - id: cursor-harness-per-model
+    title: "A harness tuned per model"
+    kind: claim
+    date: 2026-04-30
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [cursor]
+    authors: ["cursor_ai"]
+    display_name: "Cursor"
+    source_urls:
+      - https://x.com/cursor_ai/status/2049901436918436249
+    verbatim: |
+      Our agent harness makes models inside Cursor faster, smarter, and more token-efficient.
+
+      Here's how we test improvements to the harness, monitor and repair degradations, and customize it for different models.
+
+      https://cursor.com/blog/continually-improving-agent-harness
+    inline: "Here's how we test improvements to the harness, monitor and repair degradations, and customize it for different models."
+    summary: >
+      Cursor pointing to its post on how it tests harness changes, watches for and repairs
+      degradations, and adapts its agent harness to each model.
+    verdict: >
+      A claim post from a vendor about its own harness, reported as a statement: Cursor is not
+      among this issue's receipts and we did not audit the linked post, and 'faster, smarter,
+      and more token-efficient' in the same post is marketing with no method attached. It is
+      here for the part that is structural: the instructions a model runs under are chosen per
+      model by the vendor, which is one more decision made in the layer the operator does not
+      see.

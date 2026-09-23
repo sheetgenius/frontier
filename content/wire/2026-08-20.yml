@@ -2,9 +2,10 @@ schema_version: bitter.frontier_wire.v0
 wire_id: "2026-08-20"
 date: 2026-08-20
 lede: >
-  A three-day window: Codex cut two stables, Asana's testing migration is the
-  vendor story of the week, and a sandbox write-up and an extensible-software
-  essay are the useful ones.
+  Three days, one migration told twice: OpenAI says Asana cleared five years of
+  test-framework work in two weeks with Codex, and Pragmatic Engineer asks what
+  agents actually changed about migrations. Around it, a sandbox measured rather than
+  launched and an argument for keeping a privileged core.
 items:
   - title: "The Pulse: We need to talk about migrations with AI"
     url: https://newsletter.pragmaticengineer.com/p/the-pulse-we-need-to-talk-about-migrations
@@ -12,11 +13,10 @@ items:
     date: 2026-08-20
     tier: relayed
     take: >
-      Asana's two-week test-framework move is also in OpenAI's own Codex
-      write-up. Treat the vendor number as a claim with a method you have not
-      been shown. The useful part is the question: some migrations sat for years
-      because the serial step was human attention, and agents changed that
-      bottleneck without changing whether the result is right.
+      Orosz on why some migrations sat untouched for years: the serial step was
+      human attention, and agents changed that bottleneck without changing
+      whether the result is right. Asana's test-framework move, told by OpenAI
+      below, is one of his cases. Read his framing before the vendor's number.
 
   - title: "The /wayfinder Skill: Navigating the Fog of War of Planning"
     url: https://www.latent.space/p/wayfinder-skill
@@ -24,9 +24,10 @@ items:
     date: 2026-08-20
     tier: relayed
     take: >
-      Matt Pocock on a skill for when the next step is unclear. A planning
-      aid is not a harness change. Recorded because this beat keeps growing
-      skills that sit on top of Claude Code rather than inside it.
+      Matt Pocock on a skill for the moment the next step is unclear. It sits on
+      top of Claude Code rather than inside it, which is where much of the new
+      planning help is being built. A skill is an instruction the model may
+      follow, not a control the harness enforces.
 
   - title: "Asana cleared 5 years of engineering work in 2 weeks with Codex"
     url: https://openai.com/index/asana
@@ -34,10 +35,10 @@ items:
     date: 2026-08-18
     tier: relayed
     take: >
-      The same Asana migration, told by the vendor. "Five years in two weeks"
-      is their framing. The underlying event may be real; the compression ratio
-      is not a method we have. Pair it with the independent Pulse item rather
-      than repeating it as fact.
+      The vendor's telling. "Five years in two weeks" is OpenAI's framing, and
+      we have not seen how the five years were counted. The migration may
+      well have happened; the compression ratio is a claim without a method. Do
+      not quote it as a benchmark.
 
   - title: "smolmachines / smolvm as a sandbox for untrusted Python and JavaScript"
     url: https://simonwillison.net/2026/Aug/19/smolmachines-untrusted-sandbox/
@@ -45,9 +46,10 @@ items:
     date: 2026-08-19
     tier: relayed
     take: >
-      A practitioner putting a fast sandbox through its paces. Adjacent to the
-      watchlist rather than on it. Useful because it is a measurement, not a
-      launch.
+      Willison puts a fast sandbox through its paces for running
+      untrusted Python and JavaScript. It is a practitioner's measurement, not a
+      launch post, which makes it a useful reference if you are choosing where
+      agent-written code runs. The results are his, on his workloads.
 
   - title: "Quoting Jeremy Morrell"
     url: https://simonwillison.net/2026/Aug/19/jeremy-morrell/
@@ -56,9 +58,10 @@ items:
     tier: relayed
     take: >
       Extensible software with a solid core and a sandboxed extension layer,
-      cheaper to author because of LLMs. That is the DeepSeek-plugin argument
-      from the other direction: keep a privileged core. Worth reading next to
-      a harness that says it does not have one.
+      cheaper to author because of LLMs. It is the opposite
+      design from DeepSeek Harness, which put its approval gate in a plugin.
+      If you are choosing between the two shapes, the question is which code
+      you are willing to let an extension replace.
 
   - title: "Recovering Encrypted LLM Reasoning Traces"
     url: https://embracethered.com/blog/posts/2026/recovering-encrypted-llm-thoughts/
@@ -66,7 +69,6 @@ items:
     date: 2026-08-17
     tier: relayed
     take: >
-      A reproduction of a paper on recovering encrypted reasoning traces from
-      proprietary APIs. Not a harness changelog. It is the kind of item this
-      lane exists to catch: a security write-up on a blog that an X sweep
-      can miss.
+      Rehberger reproduces a paper on recovering encrypted reasoning traces from
+      proprietary APIs. If it holds, a trace a vendor encrypts is not a trace
+      you can assume stays private. The reproduction is his; we have not run it.

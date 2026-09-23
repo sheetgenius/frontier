@@ -2,9 +2,10 @@ schema_version: bitter.frontier_wire.v0
 wire_id: "2026-09-22"
 date: 2026-09-22
 lede: >
-  A month of reading, cut to what changes a decision: a published break of
-  Claude Code's auto mode, two pieces on where review attention goes now, and
-  OpenAI selling the Codex harness as a service.
+  A researcher reports that a web page Claude Code was asked to summarize drove
+  auto mode to run attacker code, and that Anthropic answered auto mode is not a
+  security boundary. Around it: two pieces on where review attention goes now, and OpenAI selling
+  the Codex harness as a service.
 items:
   - title: "Breaking Claude Code Opus 5 Auto Mode"
     url: https://embracethered.com/blog/posts/2026/breaking-claude-code-opus-5-and-automode/
@@ -12,12 +13,12 @@ items:
     date: 2026-08-27
     tier: relayed
     take: >
-      An indirect prompt injection in a web page Claude Code was asked to
-      summarize drove auto mode on Opus 5 to run attacker code, in 60 to 80
-      percent of the author's attempts. He reports Anthropic closed it as
-      informative because auto mode is not a security boundary. The docs list auto
-      mode's isolation needed as none. Read the two together and put a sandbox
-      under it.
+      Rehberger reports that an indirect prompt injection in a web page Claude
+      Code was asked to summarize drove auto mode on Opus 5 to run attacker
+      code, in 60 to 80 percent of his attempts. He says Anthropic closed it as
+      informative because auto mode is not a security boundary, and the docs list
+      auto mode's isolation needed as none. Read the two together and put a
+      sandbox under it.
 
   - title: "What is happening with code reviews?"
     url: https://newsletter.pragmaticengineer.com/p/what-is-happening-with-code-reviews
@@ -25,10 +26,10 @@ items:
     date: 2026-09-08
     tier: relayed
     take: >
-      Pull-request volume has outrun human review, and teams are answering with
-      AI-first review, risk-based triage, and reviewing plans and tests instead of
-      every line. This is where the attention an agent saves goes next. The
-      numbers are the teams' own.
+      Orosz reports pull-request volume outrunning human review, with teams
+      answering through AI-first review, risk-based triage, and reviewing plans
+      and tests instead of every line. That is where the attention an agent saves
+      goes next. The numbers are the teams' own.
 
   - title: "Maybe We Shouldn't Be Reviewing All This Code"
     url: https://martinfowler.com/rachels-ramblings/code-review.html
@@ -48,10 +49,10 @@ items:
     tier: relayed
     take: >
       Ramp says its in-house background agent, built on the OpenCode harness in
-      Modal sandboxes, opens about 75 percent of its merged pull requests. It is a
-      company self-report. It is also a data point for the HarnessTax result: the
-      value Ramp describes is in the environment and concurrency around the
-      harness, not in the harness.
+      Modal sandboxes, opens about 75 percent of its merged pull requests. That
+      is a company self-report. It fits the HarnessTax study, which found success
+      tracked the model and cost tracked the harness: the value Ramp describes
+      sits in the environment and concurrency around the harness.
 
   - title: "Introducing the Agents API"
     url: https://openai.com/index/introducing-the-agents-api
@@ -60,10 +61,10 @@ items:
     tier: checked
     receipt: https://developers.openai.com/api/docs/guides/agents-api
     take: >
-      OpenAI now sells the Codex harness as a managed API, with OpenAI running
-      sessions, compaction and subagents in a hosted or self-hosted sandbox. The
-      launch post returned 403; the developer guide is the receipt. Codex is now
-      three channels: the open-source CLI, the app and this API. A finding about
+      OpenAI now sells the Codex harness as a managed API, running sessions,
+      compaction and subagents in a hosted or self-hosted sandbox. The developer
+      guide is the receipt; the launch post would not load. Codex is now three
+      channels, the open-source CLI, the app and this API, and a finding about
       one does not carry to the others.
 
   - title: "Self-generated prompt injections in compaction summaries"
@@ -85,7 +86,7 @@ items:
     take: >
       A crisp case for MCP as a boundary rather than a capability: allow-listing,
       keeping keys out of the agent's hands, and audit logs. It pairs with the
-      month's auto-mode research, where the real boundary also sits outside the
+      auto-mode break above, where the real boundary also sits outside the
       model.
 
   - title: "I Asked 100 Agents to Hack Me"
@@ -94,10 +95,11 @@ items:
     date: 2026-09-08
     tier: relayed
     take: >
-      A self-authorized red-team run: open-weight models with refusals removed,
-      driven through Codex CLI, compromised a few forgotten low-value accounts for
-      a few hundred dollars of GPU time. High-value accounts held. Refusal lives
-      in the model, not in an open harness.
+      A self-authorized red-team run. Shankar reports that open-weight models
+      with refusals removed, driven through Codex CLI, compromised a few
+      forgotten low-value accounts for a few hundred dollars of GPU time, and
+      that high-value accounts held. Refusal lives in the model, not in an open
+      harness.
 
   - title: "OpenClaw Power, MacBook Simplicity: Five Days With Grok Bot"
     url: https://www.latent.space/p/grok-bot
@@ -105,7 +107,7 @@ items:
     date: 2026-09-05
     tier: relayed
     take: >
-      A five-day review of SpaceXAI's hosted Grok Bot. It is not Grok Build, the
-      CLI this publication watches; the author names that separately. Its most
-      useful line concerns OpenClaw 2.0, which reuses an existing Claude Code or
-      Codex login in quick start.
+      A five-day review of SpaceXAI's hosted Grok Bot, which is a different
+      product from the Grok Build CLI on the watchlist; the author names that
+      separately. Its most useful line concerns OpenClaw 2.0, which the review
+      says reuses an existing Claude Code or Codex login in quick start.

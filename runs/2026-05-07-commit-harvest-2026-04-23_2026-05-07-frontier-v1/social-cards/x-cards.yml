@@ -58,3 +58,58 @@ cards:
     verdict: >
       A vendor research preview, quoted as its own description. It lands inside this window and on its argument: agent-side state that no transcript records and no operator approved.
     tags: [memory, background-process]
+
+  - id: teknium-v013-enforced-goal
+    title: "Hermes v0.13.0, in its lead's words"
+    kind: claim
+    date: 2026-05-07
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [hermes-agent]
+    authors: ["Teknium"]
+    display_name: "Teknium 🪽"
+    source_urls:
+      - https://x.com/Teknium/status/2052495174404874714
+    verbatim: |
+      Introducing Hermes Agent v 0.13.0 
+
+      - Multi-Agent orchestration through the Kanban system
+      - Enforced goal completion with /goal
+      - Big optimizations for disk usage
+      - Much more extensibility, custom LLM Providers, custom gateway channels, and much more
+    inline: "Enforced goal completion with /goal"
+    summary: >
+      Hermes Agent's lead announcing v0.13.0 on May 7: multi-agent orchestration through the
+      Kanban board, goal completion enforced with /goal, disk-usage optimizations, and custom
+      LLM providers and gateway channels.
+    verdict: >
+      A claim post, checked against the v0.13.0 release (tag v2026.5.7, May 7): the release adds
+      a persistent /goal that holds across turns and through context compression, and a Kanban
+      board that verifies a worker's claims before a card can close. 'Enforced' is his word; the
+      release notes we read do not say what judges a goal met, which the next weekly issue takes
+      up.
+
+  - id: swyx-nondestructive-prompts
+    title: "Prompts on the harmless actions"
+    kind: voice
+    date: 2026-05-06
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["swyx"]
+    display_name: "swyx"
+    source_urls:
+      - https://x.com/swyx/status/2051820268960792778
+    verbatim: |
+      too many... 
+
+      basicaly switching to the codex plugin, following pash's advice, noticeably killed the productivity. i'd want to swtich back, or read up on approvalpolicy, but whatever this default is is not working for me, particularly on clearly nondestructive actions.
+    inline: "whatever this default is is not working for me, particularly on clearly nondestructive actions."
+    summary: >
+      swyx reporting that switching to the Codex plugin noticeably cut his productivity, and
+      that the default approval policy kept interrupting clearly nondestructive actions.
+    verdict: >
+      A voice post about his own setup, and he says himself he has not yet read up on the
+      approval policy; we make no claim about Codex's defaults from it. It is here because it is
+      what a prompt on every action costs, in the words of someone paying it: attention spent
+      where the risk was lowest.

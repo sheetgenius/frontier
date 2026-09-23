@@ -2,10 +2,10 @@ schema_version: bitter.frontier_wire.v0
 wire_id: "2026-08-17"
 date: 2026-08-17
 lede: >
-  A frontier lab shipped a model on Wednesday and open-sourced a harness for it
-  on Thursday, a meta-harness on our own watchlist grew React-style hooks, and
-  the most useful thing published all week was somebody asking whether a practice
-  everyone has adopted inside the agent loop actually does anything.
+  DeepSeek shipped a model on Wednesday and open-sourced a harness for it on
+  Thursday. Flue, a meta-harness on the watchlist, grew React-style hooks, and
+  the most useful piece of the week asked whether test-first development inside
+  the agent loop does anything at all.
 items:
   - title: "TDD inside the agent loop - theater or actual value?"
     url: https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html
@@ -13,12 +13,11 @@ items:
     date: 2026-08-11
     tier: relayed
     take: >
-      The question in the title is the right one and it is asked honestly rather
-      than rhetorically. Writing a failing test first was a discipline for a human
-      who could not hold the whole change in their head; an agent has different
-      limitations and the ritual may or may not transfer. This is the shape of
-      writing this beat needs more of: an established practice examined rather
-      than assumed, by someone with no product in the answer.
+      Writing a failing test first was a discipline for a human who could not
+      hold the whole change in their head. An agent has different limits, and
+      the piece asks honestly whether the ritual transfers. If your agent
+      instructions require TDD, this is the argument to read before you keep
+      paying for it.
 
   - title: "React for Agents: Astro Creator Brings Hooks to his Meta-Harness, Flue"
     url: https://www.latent.space/p/flue-2
@@ -26,11 +25,10 @@ items:
     date: 2026-08-15
     tier: relayed
     take: >
-      Flue is on our watchlist and this is the clearest public account of where
-      it is going. Treat the framing as the interview it is rather than as a
-      product fact: a hooks model for agent behaviour is a real design position,
-      and whether the runtime enforces what the hooks describe is the question we
-      would want answered before repeating any of it as capability.
+      The clearest public account yet of where Flue is going: a hooks model for
+      agent behaviour, from the creator of Astro. It is an interview, so the
+      design is his description, not a shipped behavior. Before building on it,
+      check whether the runtime enforces what a hook declares.
 
   - title: "DeepSeek V4 Pro 0813 (on OpenRouter)"
     url: https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/
@@ -38,12 +36,11 @@ items:
     date: 2026-08-12
     tier: relayed
     take: >
-      Worth the entry mostly for its date. The model appeared on 12 August and
-      the harness built around it was open-sourced on 13 August. A lab shipping
-      the model and the thing that drives it within a day is the pattern this
-      publication watches for, because it is the point where the question stops
-      being which model is better and starts being who decides what the agent may
-      do with your machine.
+      The model appeared on 12 August and the harness built around it was
+      open-sourced on 13 August. When a lab ships the model and the thing that
+      drives it a day apart, choosing the model starts to mean choosing its
+      defaults for what the agent may do on your machine. Read the harness's
+      permission settings along with the benchmark.
 
   - title: "How Cloudflare detects MCP traffic and helps secure it"
     url: https://blog.cloudflare.com/mcp-security-updates/
@@ -51,11 +48,10 @@ items:
     date: 2026-08-14
     tier: relayed
     take: >
-      A protocol becomes infrastructure at the point where a network vendor
-      starts fingerprinting it in transit. That is a good sign for MCP's
-      durability and an uncomfortable one for anyone who assumed their agent
-      traffic was indistinguishable from ordinary API calls. If you route agent
-      calls through a corporate network, somebody can now tell.
+      Cloudflare says it can now fingerprint MCP traffic in transit. That is a
+      sign the protocol has become infrastructure, and an uncomfortable one for
+      anyone who assumed agent traffic looked like ordinary API calls. If your
+      agents' calls cross a corporate network, assume they can be identified.
 
   - title: "Putting frontier cyber models in more trusted hands"
     url: https://openai.com/index/putting-frontier-cyber-models-in-more-trusted-hands
@@ -63,11 +59,11 @@ items:
     date: 2026-08-10
     tier: relayed
     take: >
-      The distribution half of the story whose evaluation half we carried last
-      wire. Gating capability by who is asking is a different control from gating
-      it by what is asked, and the two fail differently. Recorded because access
-      tiers are becoming a governance surface in their own right, and almost
-      nobody is auditing them the way they audit permissions.
+      OpenAI on who gets its most capable cyber models, six days after its account
+      of third-party evaluations on the 08-10 wire. Gating a capability by who
+      is asking is a different control from gating it by what is asked, and
+      the two fail differently. Access tiers are becoming a governance surface,
+      and few teams audit them the way they audit permissions.
 
   - title: "How I use AI in 2026 (Coding, Writing, Learning, Assistant-ing)"
     url: https://blog.sshh.io/p/how-i-use-ai-in-2026-coding-writing
@@ -75,7 +71,7 @@ items:
     date: 2026-08-17
     tier: relayed
     take: >
-      A practitioner writing down an actual workflow rather than a prediction.
-      These age better than almost anything else published on this beat, and they
-      are the closest thing available to a control group for the vendor claims we
-      spend the rest of our time adjudicating.
+      Shankar writes down the workflow he actually uses rather than a
+      prediction. Accounts like this are the nearest thing to a control group
+      for vendor productivity claims. It is one person's setup, so take the
+      method, not the conclusions.

@@ -197,3 +197,193 @@ cards:
     verdict: >
       A vendor response, quoted as that. It is here because the week's other posts are the feedback it answers, and a maintainer answering complaints in the same thread is the part of the record that usually goes missing.
     tags: [vendor-response, quality]
+
+  - id: badlogic-tests-would-pass
+    title: "Tests would pass, the life-cycle would not"
+    kind: voice
+    date: 2026-05-09
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [pi-coding-agent]
+    authors: ["badlogicgames"]
+    display_name: "Mario Zechner"
+    source_urls:
+      - https://x.com/badlogicgames/status/2053225953090744447
+    verbatim: |
+      i'm using pi-diff-review to go into modified/new files the agent spit out, and give line-based reviews.
+
+      it did not address all of them. without double checking, tests would pass, but the life-cycle would be busted, because it also did not adapt the tests accordingly.
+
+      it's great. at this point, writing things by hand is faster.
+    inline: "without double checking, tests would pass, but the life-cycle would be busted, because it also did not adapt the tests accordingly."
+    summary: >
+      Pi's author, reviewing an agent's changes line by line with pi-diff-review, reporting that
+      it left some of his review comments unaddressed and did not update the tests, and that
+      writing the change by hand had become faster.
+    verdict: >
+      A voice post about one change on his own machine; we assert only that he reported it. It
+      is here because it is the week's plainest case of the gap this issue is about: the suite
+      would have gone green on a broken change, so the only check that caught it was a person
+      reading the diff.
+
+  - id: teknium-hermes-goal-stronger
+    title: "The Hermes lead on his own /goal"
+    kind: voice
+    date: 2026-05-11
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [hermes-agent, claude-code]
+    authors: ["Teknium"]
+    display_name: "Teknium 🪽"
+    source_urls:
+      - https://x.com/Teknium/status/2053829091359678805
+    verbatim: |
+      You should try Hermes native /goal, it’s even stronger imo
+    inline: "You should try Hermes native /goal, it’s even stronger imo"
+    summary: >
+      Hermes Agent's lead, replying in a thread, recommending the Hermes /goal
+      that shipped in v0.13.0 on May 7.
+    verdict: >
+      A voice post and a maintainer's opinion of his own feature, marked 'imo' by him: we report
+      it as a statement. The v0.13.0 release we read documents a /goal that persists across
+      turns and survives context compression; it does not say who judges that the goal is met,
+      which is the comparison that would settle 'stronger'.
+
+  - id: thsottiaux-master-mentee
+    title: "Codex, on Claude Code shipping /goal"
+    kind: voice
+    date: 2026-05-12
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex, claude-code]
+    authors: ["thsottiaux"]
+    display_name: "Tibo"
+    source_urls:
+      - https://x.com/thsottiaux/status/2054082531432210765
+    verbatim: |
+      The master becomes the mentee. At last, Claude is now copying Codex.
+
+      But you cannot out-accelerate GPT-5.5.
+    inline: "The master becomes the mentee. At last, Claude is now copying Codex."
+    summary: >
+      A Codex team member, quoting Claude Code's /goal changelog post, claiming the feature for
+      Codex, which shipped its own /goal in 0.128.0 on April 30.
+    verdict: >
+      A voice post: vendor banter, and we treat it as nothing more. The dates are real (Codex
+      0.128.0 on April 30, Claude Code 2.1.139 in this window), but who copied whom is not
+      something a changelog can show, and three harnesses shipping the same verb in two weeks
+      says more about the verb than about any of them.
+
+  - id: dimillian-goal-could-be-refined
+    title: "The goal was the waste"
+    kind: voice
+    date: 2026-05-12
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["Dimillian"]
+    display_name: "Thomas Ricouard"
+    source_urls:
+      - https://x.com/Dimillian/status/2054191286148583845
+    verbatim: |
+      I know but way too much now, the /goal could have been refine quite a bit and achieved in a much more efficient fashion. Will see once this is all done
+    inline: "the /goal could have been refine quite a bit and achieved in a much more efficient fashion"
+    summary: >
+      Thomas Ricouard, partway through a long Codex /goal run, saying the goal he set could have
+      been refined and the same result reached far more efficiently.
+    verdict: >
+      A voice post about his own run, and a self-assessment rather than a product claim. It is
+      here because it puts the cost where this issue says the decision sits: the completion
+      condition is written by a person, and a loose one is paid for in turns and tokens however
+      well the agent works toward it.
+
+  - id: nadre-just-a-menu
+    title: "Coordination, or a list?"
+    kind: voice
+    date: 2026-05-12
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["nadre3000"]
+    display_name: "nader"
+    source_urls:
+      - https://x.com/nadre3000/status/2054010378682503435
+    verbatim: |
+      hm is there any meta layer of coordination? like when i'm in agent view, it feels like each agent session is a separate isolated piece of work - no agentic coordination on the "claude agents" level (just a menu with a list of ongoing sessions). am i getting that right?
+    inline: "no agentic coordination on the \"claude agents\" level (just a menu with a list of ongoing sessions)"
+    summary: >
+      A user of Claude Code's new agent view asking whether anything coordinates the sessions it
+      shows, or whether each is an isolated piece of work in a list.
+    verdict: >
+      A voice post, and a question, not a finding. Our receipt for agent view describes sessions
+      grouped by state under a supervisor, each background session in its own worktree; it
+      describes no coordination between them, which is consistent with his read and does not
+      prove it.
+
+  - id: askclaw-single-host-board
+    title: "Durable, on one machine"
+    kind: claim
+    date: 2026-05-12
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [hermes-agent, codex]
+    authors: ["GetAskClaw"]
+    display_name: "AskClaw 🦀"
+    source_urls:
+      - https://x.com/GetAskClaw/status/2054212165851340800
+    verbatim: |
+      Hermes Kanban 目前是单主机架构：它使用本地 SQLite 看板，路径是 ~/.hermes/kanban.db；dispatcher 会在同一台机器上启动 worker。文档也明确说明：不支持两台主机共享同一个看板。（Hermes Agent）
+
+      所以最干净的部署方式是：
+
+      一台 VPS / 工作站
+        Hermes gateway + Kanban dispatcher
+        repo + .worktrees/*
+        已安装并认证好的 Codex CLI
+        每个 worktree 跑一个 Codex 实例
+
+      你也可以跨机器使用，但不能把它当成一个共享的 Hermes Kanban 看板。可以用这些模式：
+
+      A) 每台机器一个 Hermes 看板；通过 GitHub issues / PR 协调。  
+      B) 一台 coordinator 主机；Hermes 通过 SSH / container / cloud backend 执行远程命令。  
+      C) Codex remote / app-server 适合交互式使用，但不要把它当成 Kanban 状态层。
+
+      Hermes 支持 SSH / container / cloud terminal backends，所以远程执行是可行的；只是要让看板和 dispatcher 的所有权保持在同一台主机上。（Hermes Agent）
+
+      Codex 本身是本地终端 agent，可以用 --cd 指定目标 worktree。
+    inline: "文档也明确说明：不支持两台主机共享同一个看板。"
+    summary: >
+      A Chinese-language deployment note for running Codex workers under the Hermes Kanban
+      board, saying the board is a local SQLite file with a same-machine dispatcher. Our
+      rendering of the quoted line: the documentation also says plainly that two hosts cannot
+      share one board.
+    verdict: >
+      A claim post that cites Hermes's own documentation, which we did not re-read for this
+      window: the release receipts we hold describe a durable board shared across Hermes
+      profiles and say nothing about hosts, so the single-host limit is reported as their
+      reading of the docs. The workarounds it lists (one board per machine coordinated through
+      GitHub issues and pull requests, or one coordinator host driving remote backends) are
+      their advice.
+
+  - id: berkopec-fifteen-pi-windows
+    title: "Fifteen windows, 200 MB each"
+    kind: voice
+    date: 2026-05-12
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [pi-coding-agent, cursor, claude-code]
+    authors: ["nateberkopec"]
+    display_name: "Nate Berkopec"
+    source_urls:
+      - https://x.com/nateberkopec/status/2054317289495998871
+    verbatim: |
+      How it feels to watch people post about Cursor and Claude being vibecoded slop while I run 15 pi agent windows each at 200mb
+    inline: "I run 15 pi agent windows each at 200mb"
+    summary: >
+      Nate Berkopec describing his own setup of fifteen concurrent Pi agent
+      windows, against a timeline calling Cursor and Claude vibecoded slop.
+    verdict: >
+      A voice post about his own machine; we assert only that he said it, and the memory figure
+      is his. It is here as the other half of the week: while two boards were learning to
+      distrust a finished worker, one operator was running fifteen of them side by side on a
+      lean harness.

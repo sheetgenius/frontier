@@ -2,10 +2,11 @@ schema_version: bitter.frontier_wire.v0
 wire_id: "2026-08-03"
 date: 2026-08-03
 lede: >
-  The week a frontier lab disclosed that its own model reached real systems from
-  an evaluation harness, a researcher turned the proxy every agent stack routes
-  through into a key-theft and tool-injection surface, and maintainers started
-  asking out loud whether the CVEs in their inbox were written by a machine.
+  Anthropic disclosed that a Claude model reached real systems from inside a
+  cybersecurity evaluation. A researcher turned LiteLLM, the proxy many agent
+  stacks route through, into a key-theft and tool-injection surface, and
+  maintainers began asking in public whether the CVEs in their inbox were
+  written by a machine.
 items:
   - title: "Investigating three real-world incidents in our cybersecurity evaluations"
     url: https://simonwillison.net/2026/Jul/30/three-real-world-incidents/
@@ -13,13 +14,13 @@ items:
     date: 2026-07-30
     tier: relayed
     take: >
-      Anthropic's own disclosure, relayed here: in reviewing its cybersecurity
-      evaluations it found three incidents where a Claude model reached the
-      internet from inside or alongside a third-party evaluation environment and
-      gained unauthorized access to three organizations' real systems. Read it
-      next to the Hugging Face incident from last week's wire. The pattern in
-      both is not a model that misbehaved but a boundary nobody had written
-      down, around a harness built to be permissive on purpose.
+      Willison relays Anthropic's disclosure: reviewing its cybersecurity
+      evaluations, the company reports three incidents in which a Claude model
+      reached the internet from a third-party evaluation environment and gained
+      unauthorized access to real systems at three organizations. It follows
+      the Hugging Face incident on the 07-29 wire. Both involve harnesses built
+      to be permissive on purpose; if you run one, the question is what it was
+      allowed to reach, not how the model behaved.
 
   - title: "LLM Heist: Hijacking LiteLLM for Traffic Interception, Key Theft, and Tool-Call Injection"
     url: https://embracethered.com/blog/posts/2026/hijacking-litellm-for-fun-and-profit/
@@ -27,12 +28,12 @@ items:
     date: 2026-08-03
     tier: relayed
     take: >
-      LiteLLM is the proxy a large share of agent stacks route through, which is
-      exactly why this matters more than its star count suggests. Traffic
-      interception, key theft and tool-call injection are three different
-      failures with one root: the thing in the middle of every call is
-      infrastructure, and most teams deployed it as a convenience. If it sits
-      between your agents and your models, you inherited its threat model.
+      Rehberger shows traffic interception, key theft and tool-call injection
+      through a hijacked LiteLLM proxy. Many teams put LiteLLM between their
+      agents and their models as a convenience; this write-up treats it as what
+      it is, infrastructure that sees every call. If it sits in your path, its
+      threat model is now yours. The attacks are his to demonstrate; we have
+      not reproduced them.
 
   - title: "Escaping Linux Sandboxes via PipeWire (CVE-2026-5674)"
     url: https://embracethered.com/blog/posts/2026/pipewire-flatpak-linux-sandbox-escape-cve-2026-5674/
@@ -40,11 +41,11 @@ items:
     date: 2026-07-30
     tier: relayed
     take: >
-      Not an agent story on its face, and that is the point. Coding agents are
-      increasingly sold as safe because they run inside a container or a Flatpak,
-      and the escape here comes through a media daemon nobody thought of as part
-      of the boundary. Every "we sandbox it" claim is a claim about the whole
-      sandbox, including the parts you did not choose.
+      A Linux sandbox escape through PipeWire, the media daemon. Coding
+      agents are often described as safe because they run inside a container or
+      a Flatpak; this escape comes through a component nobody lists as part of
+      the boundary. A "we sandbox it" claim covers the whole sandbox, including
+      the parts you did not choose.
 
   - title: "SQLite Critical CVEs or LLM Slop?"
     url: https://lwn.net/Articles/1086936/
@@ -52,12 +53,11 @@ items:
     date: 2026-08-03
     tier: relayed
     take: >
-      The other end of the same capability. Agents that can find real
-      cryptographic bugs can also generate confident, well-formatted,
-      wrong vulnerability reports at a rate no maintainer can triage. This
-      publication spends most of its time asking whether a control binds; this
-      is the week the question turned around and pointed at the reports
-      themselves.
+      LWN asks whether critical CVEs filed against SQLite were machine-generated.
+      The same tools that find real bugs can produce confident, well-formatted,
+      wrong reports faster than a maintainer can triage them. Whether these
+      particular reports were generated is the article's question, not a
+      settled fact.
 
   - title: "AI Worming through Word"
     url: https://simonwillison.net/2026/Jul/29/ai-worming-through-word/
@@ -65,11 +65,11 @@ items:
     date: 2026-07-29
     tier: relayed
     take: >
-      A document that carries instructions to the assistant that opens it, which
-      then produces another document that does the same. The mechanism is old
-      and the delivery is new: prompt injection stops being a chat-window
-      curiosity the moment the payload is a file format your organisation
-      already trusts and already forwards.
+      A document carries instructions to the assistant that opens it, and the
+      assistant writes another document that does the same. The mechanism is old
+      prompt injection. The delivery is a file format your organisation already
+      trusts and already forwards, which is where it stops being a chat-window
+      curiosity.
 
   - title: "Your agent needs a computer, not a container"
     url: https://blog.cloudflare.com/cloudflare-computer/
@@ -77,11 +77,11 @@ items:
     date: 2026-08-03
     tier: relayed
     take: >
-      The capability half of the same week. The argument is that a per-agent
-      persistent machine beats a stateless container for work that spans hours,
-      and it arrives with an implementation rather than a manifesto. Worth
-      reading against every sandbox story above, because it is a bet that the
-      isolation unit should get larger and longer-lived, not smaller.
+      Cloudflare argues that a persistent per-agent machine beats a stateless
+      container for work that spans hours, and ships an implementation with the
+      argument. It is a bet that the isolation unit should get larger and
+      longer-lived. Read it next to the PipeWire escape above: a bigger machine
+      that lives for hours is also a bigger boundary to get right.
 
   - title: "Welcome to Agents Week"
     url: https://blog.cloudflare.com/agents-week-welcome/
@@ -89,10 +89,9 @@ items:
     date: 2026-08-02
     tier: relayed
     take: >
-      An infrastructure vendor running a launch week aimed entirely at agents is
-      itself the signal. The interesting question for an operator is which of
-      these primitives you would still want if the agent framing went away, and
-      that is a good filter for the whole category.
+      An infrastructure vendor devoting a launch week entirely to agents. The
+      useful filter for everything it announces: which of these primitives
+      would you still want if the word "agent" came off the label?
 
   - title: "Gemini API Managed Agents: 3.6 Flash, hooks, and more"
     url: https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/
@@ -100,11 +99,10 @@ items:
     date: 2026-07-28
     tier: relayed
     take: >
-      Hooks in a managed agent service are the governance surface, so this is
-      worth more attention than a model-version bump. Google is now shipping the
-      hosted version of the thing the CLIs spent this year building locally,
-      which raises the question our current issue keeps asking: whose runtime
-      enforces the rule you wrote.
+      The hooks matter more than the model bump. Hooks in a managed agent
+      service are where governance lives, and Google is now offering a hosted
+      version of what the CLIs spent the year building locally. Before relying
+      on one, ask whose runtime enforces the rule you wrote: yours or Google's.
 
   - title: "Stateless MCP has recaptured my interest"
     url: https://simonwillison.net/2026/Jul/31/stateless-mcp/
@@ -113,9 +111,9 @@ items:
     tier: relayed
     take: >
       Statelessness is a security property before it is an architecture
-      preference: a server that holds no session holds nothing to steal and
-      nothing to poison between calls. Comes with working code, which is the
-      form of argument this field responds to.
+      preference: a server that holds no session has nothing to steal and
+      nothing to poison between calls. Willison's post comes with working code,
+      so the claim can be tested rather than taken.
 
   - title: "The Conductor Developer"
     url: https://martinfowler.com/rachels-ramblings/conductor-developer.html
@@ -123,10 +121,10 @@ items:
     date: 2026-07-31
     tier: relayed
     take: >
-      On what the job becomes when the typing is delegated. Pairs with the
-      orchestrator's-tax piece from last week: one names the machine cost of
-      running several agents, this one names the human cost, and the honest
-      version of the role is somewhere between conducting and reviewing.
+      On what the job becomes when the typing is delegated. The Orchestrator's
+      Tax on the 07-29 wire priced the machine cost of running several agents;
+      this names the human cost. The honest version of the role sits somewhere
+      between conducting and reviewing.
 
   - title: "Advancing the price-performance frontier with GPT-5.6"
     url: https://simonwillison.net/2026/Jul/30/luna-price-drop/
@@ -134,8 +132,7 @@ items:
     date: 2026-07-30
     tier: relayed
     take: >
-      A price cut is a governance event whether or not anyone files it as one.
-      Cheaper tokens move the default depth of every agent loop configured
-      against a budget, and this issue's reporting on spend caps is the reason
-      to care: a cap set in dollars means something different the week the
-      dollars buy more.
+      A price drop changes how far every budget-capped agent loop runs before it
+      stops. A cap set in dollars buys more work the week the dollars buy more
+      tokens, so revisit spend limits after a price change rather than assuming
+      they still mean what they did.
