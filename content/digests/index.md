@@ -4,7 +4,7 @@
 - [The Classifier Is Off](2026-08-17_2026-08-20-weekly.md) -- Bitter Frontier Brief, 2026-08-17 to 2026-08-20
 - [The Gate Is a Plugin](2026-08-10_2026-08-17-weekly.md) -- 2026-08-10 to 2026-08-17
 - [You Approved Something Else](2026-08-03_2026-08-10-weekly.md) -- 2026-08-03 to 2026-08-10
-- [The Newest Thing You Can Install](2026-07-27_2026-08-03-weekly.md) -- 2026-07-27 to 2026-08-03
+- [Newer, Numbered Lower](2026-07-27_2026-08-03-weekly.md) -- 2026-07-27 to 2026-08-03
 - [Rules Became Judgment](2026-07-02_2026-07-27-weekly.md) -- 2026-07-02 to 2026-07-27
 - [Foreground Attention Is No Longer the Control](2026-07-01_2026-07-02-weekly.md) -- special brief, 2026-07-01 to 2026-07-02
 - [Patched for Whom](2026-06-24_2026-07-01-weekly.md) -- 2026-06-24 to 2026-07-01

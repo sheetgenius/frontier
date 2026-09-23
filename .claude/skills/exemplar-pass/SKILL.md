@@ -51,8 +51,10 @@ A rewritten artifact must stay true to its original window.
 
 ## The bar
 
-What excellence looks like, extracted from the best published work ("Patched
-for Whom," "Protected on Paper," the heypi lede, the Antigravity profile).
+What excellence looks like, extracted from the best published work ("Oh My
+Pi, without the Pi," "Before the First Turn," "Newer, Numbered Lower," the
+Temporal Agent Harness profile). Exemplars are re-named at each deep sweep;
+a named exemplar that slips below the bar is replaced, not grandfathered.
 Every rewrite must pass all of these; a sweep flags any public artifact that
 fails one.
 
@@ -98,6 +100,12 @@ fails one.
     when they sharpen a receipted mechanism or consequence. Do not turn a piece
     into institutional paste, and do not force a memorable line that the
     reporting has not earned.
+14. **A profile is one dated posture.** Refreshing a profile means rewriting
+    it to the new date, not prepending a dated section above the old body.
+    Two "Where it stands" sections on one page is a defect: the older one
+    will contradict the newer one within a cycle. (Learned 2026-09-23, when
+    stacked layers left Hermes calling the same guardrails both tagged and
+    untagged.)
 
 ## Steps
 

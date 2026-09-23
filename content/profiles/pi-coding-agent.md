@@ -6,7 +6,7 @@ owner: Earendil Works (formerly badlogic / Mario Zechner)
 source_contract: sources/pi-coding-agent.yml
 homepage: https://pi.dev/
 docs: https://pi.dev/docs/latest
-tagline: "Refuses to govern, ships what it merges, and now lets an installed extension own your provider credentials."
+tagline: "The minimal harness that matched Claude Code's grade at half the bill in one study. It governs almost nothing itself, so every month the extension you install holds more of your authority."
 x:
   maintainers:
     - handle: badlogicgames
@@ -16,7 +16,7 @@ surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
 last_updated: 2026-09-21
-last_full_review: 2026-08-22
+last_full_review: 2026-09-23
 claims:
   - id: harness-tagged
     finding_id: 2026-09-21-pi-coding-agent-the-dev-harness-reached-main-and-a-tag-in-v0-85-0-its-plugin-surface-was-published-to-npm
@@ -26,18 +26,57 @@ claims:
     finding_id: 2026-09-21-pi-coding-agent-harnesstax-study-same-model-same-success-up-to-five-times-the-cost
     last_verified: 2026-09-23
     status: active
+  - id: user-bash-fails-closed
+    finding_id: 2026-09-21-pi-coding-agent-user-bash-fails-closed-an-extension-that-routes-commands-into-a-vm-no-longer-falls-back
+    last_verified: 2026-09-23
+    status: active
+  - id: rpc-steer-input-handlers
+    finding_id: 2026-09-21-pi-coding-agent-rpc-steer-and-follow-up-no-longer-bypass-extension-input-handlers
+    last_verified: 2026-09-23
+    status: active
+  - id: extension-reach-grew
+    finding_id: 2026-09-21-pi-coding-agent-extensions-gained-authenticated-model-calls-and-full-transcript-control-context-handlers
+    last_verified: 2026-09-23
+    status: active
+  - id: bug-upload-radius
+    finding_id: 2026-09-21-pi-coding-agent-bug-uploads-diagnostics-and-optionally-the-transcript-to-radius-without-login
+    last_verified: 2026-09-23
+    status: active
+  - id: compaction-docs-match-package
+    finding_id: 2026-09-21-pi-coding-agent-compaction-docs-now-match-the-package-session-compact-failed-shipped-in-0-84
+    last_verified: 2026-09-23
+    status: active
+  - id: project-trust-system
+    finding_id: 2026-06-08-pi-coding-agent-project-trust-system
+    last_verified: 2026-06-16
+    status: active
+  - id: agents-override-before-trust
+    finding_id: 2026-08-10-pi-coding-agent-agents-override-md-lets-any-directory-replace-the-operator-s-context
+    last_verified: 2026-08-10
+    status: active
+  - id: credential-print-commands
+    finding_id: 2026-08-03-pi-ships-credential-export-commands
+    last_verified: 2026-09-23
+    status: active
+  - id: default-tools-per-project
+    finding_id: 2026-08-17-pi-coding-agent-defaulttools-makes-the-built-in-tool-set-configurable-per-project-the
+    last_verified: 2026-08-17
+    status: active
   - id: dev-hosts-not-plugins
     finding_id: 2026-08-22-pi-dev-hosts-are-not-plugins-kernel-still-design
     last_verified: 2026-08-22
-    status: active
+    status: retired
+    note: "Read at the dev branch SHA a17323e5. That branch is gone and its code is in every tag from v0.85.0; see harness-tagged."
   - id: new-harness-on-dev-not-tagged
     finding_id: 2026-08-20-pi-new-harness-lives-on-dev-not-on-a-tag
     last_verified: 2026-08-22
-    status: active
+    status: retired
+    note: "Superseded. The harness reached a tag in v0.85.0 (2026-09-04)."
   - id: live-docs-compaction-event-not-in-tag
     finding_id: 2026-08-20-pi-live-docs-describe-compaction-event-not-in-0-84-2
     last_verified: 2026-08-20
-    status: active
+    status: retired
+    note: "Superseded. session_compact_failed shipped in v0.84.3."
   - id: typebox-extension-sdk-validation
     finding_id: 2026-05-06-pi-thin-harness-provider-churn
     last_verified: 2026-05-06
@@ -56,7 +95,7 @@ claims:
     status: active
   - id: earendil-works-package-migration
     finding_id: 2026-05-12-pi-earendil-migration-and-harness-sdk
-    last_verified: 2026-05-12
+    last_verified: 2026-09-23
     status: active
   - id: jsonc-models-json
     finding_id: 2026-05-12-pi-earendil-migration-and-harness-sdk
@@ -88,7 +127,7 @@ claims:
     status: active
   - id: no-governance-in-core
     finding_id: 2026-06-23-pi-extension-compaction-event-context
-    last_verified: 2026-06-23
+    last_verified: 2026-09-23
     status: open_question
 posture_basis:
   capability:
@@ -97,353 +136,133 @@ posture_basis:
     - 2026-05-12-pi-earendil-migration-and-harness-sdk
     - 2026-06-23-pi-extension-compaction-event-context
     - 2026-06-23-pi-selective-provider-base-entrypoints
+    - 2026-09-21-pi-coding-agent-harnesstax-study-same-model-same-success-up-to-five-times-the-cost
+    - 2026-09-21-pi-coding-agent-extensions-gained-authenticated-model-calls-and-full-transcript-control-context-handlers
   accessibility:
     - 2026-05-06-pi-thin-harness-provider-churn
     - 2026-05-07-pi-thin-harness-churn
     - 2026-05-12-pi-earendil-migration-and-harness-sdk
     - 2026-06-23-pi-selective-provider-base-entrypoints
   governance:
-    - 2026-05-06-pi-thin-harness-provider-churn
-    - 2026-05-07-pi-thin-harness-churn
-    - 2026-05-12-pi-earendil-migration-and-harness-sdk
-    - 2026-06-23-pi-extension-compaction-event-context
+    - 2026-06-08-pi-coding-agent-project-trust-system
+    - 2026-08-10-pi-coding-agent-agents-override-md-lets-any-directory-replace-the-operator-s-context
+    - 2026-09-21-pi-coding-agent-user-bash-fails-closed-an-extension-that-routes-commands-into-a-vm-no-longer-falls-back
+    - 2026-09-21-pi-coding-agent-rpc-steer-and-follow-up-no-longer-bypass-extension-input-handlers
 stance:
-  use_for: "Embedding agent functionality in custom UIs and runtimes -- Cloudflare Workers, custom CLIs, CI runners -- where you own the product surface and the governance layer. Also the reference case for release honesty on this watchlist: two commits between the newest tag and the default branch, deterministic checksummed source archives, and a medium-severity dependency advisory closed in a tagged release four days after publication."
-  avoid_for: "Operators who want built-in subagents, plan mode, approval prompts, or MCP -- Pi ships none of them by design and delegates sandboxing to Gondolin, Docker, or OpenShell. Anyone installing `@mariozechner/pi-coding-agent`, which is frozen at 0.73.1 and never received the protobufjs fix; the live package is `@earendil-works/pi-coding-agent`. And anyone pinning against the SDK without tracking versions: it took two breaking changes in nine days, and credential storage stopped being a public surface."
-  watch_next: "Whether a tag contains a17323e5, and whether that tag still compiles the experimental service allowlist in host code instead of loading a plugin kernel. On the tagged product: whether extension-registered providers get any review or capability boundary; whether `PI_SESSION_FILE` in every bash subprocess gets a scope or an opt-out; whether the `/base` entry points become a genuinely separate lean SDK; and whether the phantom-tag pattern recurs."
+  use_for: "API-metered coding work where you want the model, not the harness, to spend your money: a small core, per-project tool selection, and a release on npm that is the tag. Embedding an agent in your own UI or runtime where you own the approval and sandbox layer."
+  avoid_for: "Anyone who wants built-in approval prompts, subagents, plan mode or MCP; Pi ships none. Running third-party extensions you have not read on 0.86.0 or later, where an extension can spend your provider credentials and rewrite the whole request. Installing the frozen @mariozechner/pi-coding-agent package. Pinning 0.85.0, the broken publish."
+  watch_next: "A release note that names the facet host as supported and ships dist/experimental/plugin.js on npm; any permission wrapper in the telemetry(permission(sandbox(coreBash))) composition reaching a tag; a gate or opt-out on pi auth print-api-key; whether non-interactive modes ever get a trust decision."
 ---
 
 # Pi Coding Agent
 
+Pi, from Earendil Works, is the watchlist's case for doing less. It ships no
+approval prompts, no subagents, no plan mode and no MCP, and pushes each of
+those to extensions or to a sandbox you bring. On 16 September a UC Berkeley
+and Arena study,
+[HarnessTax](https://arena.ai/blog/coding-agents-harness-tax), put a price on
+that refusal. Holding the model fixed across Claude Code, Codex CLI and Pi,
+the harness barely moved task success and moved cost up to fivefold. Claude
+Fable 5 solved 97.8 percent of attempts in Claude Code at $1.33 on average and
+96.7 percent in Pi at $0.67. That is 30 sampled tasks from each of two
+benchmarks, and nothing long-horizon or subscription-billed. Measure your own
+tasks before you quote it.
+
+This profile is about `earendil-works/pi` only. OMP, its fork, is a separate
+entry, and nothing here was read from the OMP tree.
+
 ## Where it stands, 2026-09-21
 
-The rewritten harness reached main and a tag in v0.85.0; npm is at [0.87.0](https://github.com/earendil-works/pi/releases/tag/v0.87.0). The plugin surface is source-only on npm from 0.85.1. v0.86.0 makes an extension that routes `!` commands into a VM fail closed instead of falling back to the host. The HarnessTax study found Pi matched Claude Code and Codex CLI on success at up to half the cost on its sample.
+**Channel.** Install `@earendil-works/pi-coding-agent`. npm `latest` at close
+is [0.87.0](https://github.com/earendil-works/pi/releases/tag/v0.87.0), and
+every one of the seven tags in the month has a matching release and npm
+version, none a prerelease. The old `@mariozechner/pi-coding-agent` name
+froze at 0.73.1 in May. Our own record watched that frozen name until 27 July
+and read a shipping project as idle. It is the largest error in the record
+and it is ours. Check the scope on your install line before the version.
+Skip 0.85.0: it accidentally published internal experimental code that broke
+SDK imports, and
+[0.85.1 pulled it](https://github.com/earendil-works/pi/releases/tag/v0.85.1).
 
-## Operator Read
+**The rewrite is tagged, not installable.** The harness that lived on the
+`dev` branch in August is in every tag from v0.85.0, although v0.85.0's notes
+never say so. Its
+[plugin design](https://github.com/earendil-works/pi/blob/v0.85.0/packages/agent/docs/plugins.md)
+is still labelled a design specification, and from 0.85.1 the
+`experimental/plugin` export points at source files npm does not ship. To try
+it, build from a tag. Extensions still run through the old extension API. The
+design is candid about the boundary: facets "are not a security sandbox," and
+a permission layer is meant to wrap the bash tool as
+`telemetry(permission(sandbox(coreBash)))`. No such wrapper ships.
 
-### 2026-08-22
+**What Pi does govern.** Since
+[v0.79.0](https://github.com/earendil-works/pi/releases/tag/v0.79.0) in June,
+opening a project asks whether you trust the directory. Two edges matter.
+Context files load regardless of that answer, and since v0.84.0 that includes
+[`AGENTS.override.md`](https://github.com/earendil-works/pi/pull/7681), which
+replaces your `AGENTS.md` for its directory. A cloned repository can swap out
+your guidance before you have said yes to anything. And headless modes (`-p`,
+`--mode json`, `--mode rpc`) show no trust prompt at all. On repositories you
+did not write, grep for the override file or run with `--no-context-files`.
+The nearest thing to a permission boundary is `defaultTools`, which picks the
+built-in tools per project.
 
-The package you can install is still
-[`v0.84.2`](https://github.com/earendil-works/pi/releases/tag/v0.84.2).
-The plugin architecture lives on
-[`dev` at a17323e5](https://github.com/earendil-works/pi/tree/a17323e5b1e766433e76a3ed7a129f640924c079),
-264 commits ahead of `main` as of 2026-08-20, in no tag. Do not install that branch.
+**Extensions now hold more of your authority.**
+[v0.86.0](https://github.com/earendil-works/pi/releases/tag/v0.86.0) lets an
+extension call any configured provider with your resolved credentials.
+[v0.87.0](https://github.com/earendil-works/pi/releases/tag/v0.87.0) lets one
+rewrite the whole request, system prompt included, and send it verbatim, or
+hide messages from the model while the raw log stays intact. In a harness
+whose security model is "extensions are trusted code," installing one is now
+closer to granting a login than adding a tool. Grep third-party
+extensions for `modelRegistry.stream`, `context_with_system` and
+`appendContextEdit` when you upgrade. SDK embedders who assigned
+`agent.state.messages` to change context must port to SessionManager on
+0.87.0.
 
-The docs on that SHA say
-["No privileged built-ins"](https://github.com/earendil-works/pi/blob/a17323e5b1e766433e76a3ed7a129f640924c079/packages/agent/docs/plugins.md).
-Read that as: a built-in feature and a third-party plugin are supposed to get
-the same hooks. It is not DeepSeek Harness's "there is no privileged core to
-patch." At this pin the
-[kernel that would load those plugins is still marked illustrative](https://github.com/earendil-works/pi/blob/a17323e5b1e766433e76a3ed7a129f640924c079/packages/agent/docs/plugins.md).
-The experimental runtime
-[hard-codes which services exist](https://github.com/earendil-works/pi/blob/a17323e5b1e766433e76a3ed7a129f640924c079/packages/coding-agent/src/experimental/services/session-builtins.ts).
-A plugin that arrives later
-[cannot replace Chat](https://github.com/earendil-works/pi/blob/a17323e5b1e766433e76a3ed7a129f640924c079/packages/agent/src/plugins/services/provider.ts).
-There is no permission prompt to cut in front of, because this host does not
-have one. `pi client` only exists when
-[`PI_EXPERIMENTAL=1`](https://github.com/earendil-works/pi/blob/a17323e5b1e766433e76a3ed7a129f640924c079/packages/coding-agent/src/core/experimental.ts).
+**Two extension gates stopped leaking in 0.86.0.** Through 0.85.1, an
+extension that routed your `!` shell commands into a VM
+[ran them on the host](https://github.com/earendil-works/pi/pull/9662) if its
+handler threw. It now fails closed, and handlers that relied on fall-through
+must return `undefined`. And RPC `steer` and `follow_up` messages
+[bypassed extension `input` handlers](https://github.com/earendil-works/pi/commit/faa9863cb8b54689f1d0c2df9dbab1ee1fa9de19),
+so an embedded session gated by an input extension was ungated on those two
+commands. Neither got an advisory; the repository still lists only the four
+it published on 8 June.
 
-Watch for a tag that contains `a17323e5`. Until one exists, this is a design
-plus an experimental host on a feature branch, not a product you run.
+**New egress, off by default.**
+[`/bug`](https://github.com/earendil-works/pi/blob/v0.87.0/packages/coding-agent/src/core/bug-report-upload.ts)
+(0.86.0) uploads environment and settings metadata, and optionally the
+transcript, to Earendil's Radius gateway without a login. On 0.86.x it
+uploaded even in offline mode; 0.87.0 fixed that. In regulated repositories,
+use the zip export and read it before sending.
 
-*Finding: `2026-08-22-pi-dev-hosts-are-not-plugins-kernel-still-design`.*
+**Still true.** `pi auth print-api-key` prints a live credential to stdout,
+and nothing gates it: the command's source is
+[unchanged between 0.84.2 and 0.87.0](https://github.com/earendil-works/pi/blob/v0.87.0/packages/coding-agent/src/cli/auth-command.ts).
+Whether the agent's own bash tool can reach it is up to whatever sandbox you
+put around Pi. Commands the bash tool runs also receive
+[`PI_SESSION_FILE`](https://github.com/earendil-works/pi/blob/v0.82.0/packages/coding-agent/docs/environment-variables.md#bash-tool-session-environment),
+a pointer to the full transcript. Compaction handlers written against the live
+docs fire from
+[0.84.3](https://github.com/earendil-works/pi/blob/v0.84.3/packages/coding-agent/src/core/agent-session.ts#L583-L584).
 
-### Where it stood, 2026-07-27
+## What is unresolved
 
-Pi is a deliberately minimal terminal coding harness from
-[Earendil Works](https://github.com/earendil-works/pi). Its identity is a
-refusal: no subagents, no plan mode, no approval prompts, no MCP, no governance
-in core. The core stays small and the platform grows through extensions. That
-posture is unchanged after ten tagged releases, and Pi's own README at `v0.82.1`
-still says so.
-
-What changed in the 2026-07-02 to 2026-07-27 window is the price of the refusal.
-[`v0.81.0`](https://github.com/earendil-works/pi/releases/tag/v0.81.0) lets an
-extension register a complete provider with its own authentication, model
-refresh, filtering, and custom streaming. An installed extension can now acquire
-credentials and dispatch requests, and Pi supplies no permission prompt to catch
-it. Extension review is credential review. That is a coherent consequence of the
-design rather than a contradiction of it, but it is a materially larger trust
-decision than installing a tool.
-
-Set against that, Pi is the cleanest project on this watchlist to reason about.
-[`compare/v0.82.1...main`](https://github.com/earendil-works/pi/compare/v0.82.1...main)
-reports two commits, both housekeeping. When `main` and the tag are the same
-artifact, the gap between what is fixed and what you can install closes -- and
-so does the space where a public claim about the project is unverifiable. Pi ran
-two commits ahead of its tag while Hermes ran 1,712.
-
-> **Current release**: `v0.82.1` (2026-07-25), on npm as
-> `@earendil-works/pi-coding-agent@0.82.1`. Ten tagged releases landed in window,
-> `v0.80.5` through `v0.82.1`, none of them prereleases. The `legacy-node20`
-> dist-tag sits at `0.74.2`.
-
-## Our own defect, and what it cost
-
-State this plainly, because it is the largest error in the record and it is ours.
-
-`sources/pi-coding-agent.yml` watched
-[`@mariozechner/pi-coding-agent`](https://www.npmjs.com/package/@mariozechner/pi-coding-agent),
-whose `latest` dist-tag is `0.73.1`, published 2026-05-07 and never republished.
-The live package is
-[`@earendil-works/pi-coding-agent`](https://www.npmjs.com/package/@earendil-works/pi-coding-agent/v/0.82.1),
-which reached `0.82.1` on 2026-07-25, and
-[`package.json` at `v0.82.1`](https://github.com/earendil-works/pi/blob/v0.82.1/packages/coding-agent/package.json)
-carries the `@earendil-works` name. For eleven weeks this publication read Pi as
-static while it shipped ten tags, and we did not surface the protobufjs advisory
-fix described below. The contract was corrected on 2026-07-27.
-
-The operator-facing half matters more than our embarrassment. Anyone still
-installing `@mariozechner/pi-coding-agent` is nine minor versions behind and has
-received no update since 2026-05-07, including the dependency fix. Check the
-scope on your install line before you check the version number.
-
-There is a second, smaller version-truth hazard on this project.
-**`v0.80.4` is a phantom tag.** It exists in git at commit `912d0953f6`, dated
-2026-07-09, with the message `Release v0.80.4`. There is no GitHub release and
-no npm publish; the registry jumps from `0.80.3` straight to `0.80.5`. Anything
-that compares version strings against git tags will report a release nobody can
-install. Pin to npm versions on this project, not to tags.
-
-## Two breaking changes in nine days
-
-Pi's SDK is its adapter surface, so an SDK break is a product break for everyone
-embedding it.
-
-[`v0.80.7`](https://github.com/earendil-works/pi/releases/tag/v0.80.7)
-(2026-07-14) removed the `openai-responses` `compat.sendSessionIdHeader` flag
-from `models.json`. Session affinity is now controlled by
-`compat.sessionAffinityFormat` with values `"openai"`, `"openai-nosession"`, or
-`"openrouter"`; a previous `sendSessionIdHeader: false` becomes
-`sessionAffinityFormat: "openai-nosession"`.
-
-[`v0.80.8`](https://github.com/earendil-works/pi/releases/tag/v0.80.8)
-(2026-07-16) is the bigger one. `CreateAgentSessionOptions.authStorage` and
-`modelRegistry` are replaced by an async `modelRuntime` option. `AuthStorage`
-and its storage backends are **no longer exported**; consumers must use
-`ModelRuntime`, a custom pi-ai `CredentialStore`, or `readStoredCredential()`
-for one-off reads of `auth.json`. `ModelRegistry.getApiKeyAndHeaders()` becomes
-`ModelRuntime.getAuth()`, and extension-facing `ModelRegistry.refresh()` changed
-from synchronous `void` to `Promise<void>`, so extensions must await it before
-any synchronous registry read.
-
-The direction is defensible -- every request-auth decision now routes through
-one method instead of a scattered credential surface. The consequence is that
-credential storage stopped being a public SDK surface, and anyone who reached
-into `AuthStorage` is broken. A widely shared community recipe for building a
-DIY Pi web UI, published 2026-07-21, was pinned to `0.80.6` APIs and was already
-two breaks stale on the day it circulated. Pi moves fast in a small surface;
-that is not the same as a stable one.
-
-## Supply chain: the clean case of the window
-
-Two things here, and both deserve credit.
-
-**A dependency advisory closed in four days.**
-[`v0.82.0`](https://github.com/earendil-works/pi/releases/tag/v0.82.0)
-(2026-07-24) updated the packaged `protobufjs` to 7.6.5 to address
-[GHSA-j3f2-48v5-ccww](https://github.com/advisories/GHSA-j3f2-48v5-ccww)
-(CVE-2026-59877, severity medium, a denial of service via infinite loop in
-`.proto` option parsing), published 2026-07-20. The
-[tracking issue](https://github.com/earendil-works/pi/issues/7005) was opened and
-closed on 2026-07-23. Advisory to tagged fix in four days, and the fix is what
-npm serves as `latest`. Across a window where this publication kept finding
-repairs stranded on branches or behind stable channels, that is the shape the
-rest of the field should be measured against.
-
-**Pi became independently rebuildable.**
-[PR #6913](https://github.com/earendil-works/pi/pull/6913), shipped in
-[`v0.81.1`](https://github.com/earendil-works/pi/releases/tag/v0.81.1), adds
-deterministic, checksummed source archives to GitHub releases with
-[documented instructions](https://github.com/earendil-works/pi/blob/v0.81.1/README.md#building-standalone-binaries-from-release-source)
-for rebuilding the standalone binaries; `v0.82.0` followed by including the
-generated provider model data those builds need. You can verify what you run
-against a checksum and rebuild it yourself. That is the strongest supply-chain
-posture on the current watchlist, and the project with the fewest governance
-features has the most verifiable artifact.
-
-## What the window handed to subprocesses
-
-[`v0.82.0`](https://github.com/earendil-works/pi/releases/tag/v0.82.0) exposes
-`PI_SESSION_ID`, `PI_SESSION_FILE`, `PI_PROVIDER`, `PI_MODEL`, and
-`PI_REASONING_LEVEL` as
-[environment variables](https://github.com/earendil-works/pi/blob/v0.82.0/packages/coding-agent/docs/environment-variables.md#bash-tool-session-environment)
-to commands run by built-in and factory-created bash tools
-([PR #6971](https://github.com/earendil-works/pi/pull/6971)). Direct RPC bash
-commands also gained streaming
-[`bash_execution_update`](https://github.com/earendil-works/pi/blob/v0.82.0/packages/coding-agent/docs/rpc.md#bash_execution_update)
-events correlated with request IDs.
-
-For an operator building a governance layer on top of Pi, this is exactly the
-input you wanted: session identity, provider, model, and reasoning level
-available to whatever you run. It also means `PI_SESSION_FILE` hands every
-command Pi launches a first-class pointer to the full session transcript. A
-hostile or merely careless script no longer has to find your history; the path
-is in its environment. Pi's own vendor post announcing the change named the
-model and provider variables and did not mention this one.
-
-Both readings are true at once, which is the honest version of Pi's whole
-bargain: it exposes the primitives cleanly and leaves the consequences to you.
-
-## Capability, briefly
-
-Everything below is `tagged-release`.
-
-- **Constrained tool sampling** (`v0.82.0`): tools can prefer or require strict
-  JSON Schema sampling or OpenAI Lark/regex grammars, with generated capability
-  metadata (`supportsGrammarTools`, `supportsStrictTools`)
-  [preventing unsupported requests](https://github.com/earendil-works/pi/blob/v0.82.0/packages/ai/README.md#constrained-sampling-for-tools)
-  across OpenAI, Anthropic, Bedrock, Gemini, and Mistral.
-- **Cache-friendly dynamic tool loading**
-  ([PR #6474](https://github.com/earendil-works/pi/pull/6474), `v0.80.7`):
-  extensions add tools mid-execution while supported Anthropic and OpenAI
-  Responses models preserve the cached prompt prefix. Combined with constrained
-  sampling, an extension can reshape the tool surface during a run without
-  paying to rebuild the cache, which is the cheap way to keep long sessions
-  affordable.
-- **Local llama.cpp model management**
-  ([`v0.81.0`](https://github.com/earendil-works/pi/blob/v0.81.0/packages/coding-agent/docs/llama-cpp.md)):
-  connect to a llama.cpp router, search and download Hugging Face models, load
-  and unload explicitly with live progress.
-- **Retry on compaction and branch summarization**
-  ([PR #6901](https://github.com/earendil-works/pi/pull/6901), `v0.81.1`):
-  transient provider failures retry under the configured retry policy, with
-  lifecycle events exposed to interactive, JSON, RPC, and SDK consumers.
-- **Subscription OAuth kept expanding**: OpenRouter OAuth PKCE minting a
-  user-controlled key ([PR #6927](https://github.com/earendil-works/pi/pull/6927))
-  and Kimi Code device-authorization OAuth
-  ([PR #6935](https://github.com/earendil-works/pi/pull/6935)) in `v0.82.0`, xAI
-  device-code OAuth ([PR #6651](https://github.com/earendil-works/pi/pull/6651))
-  in `v0.80.8`, Qwen Token Plan providers
-  ([PR #6858](https://github.com/earendil-works/pi/pull/6858)) in `v0.81.0`, and
-  `ANTHROPIC_AUTH_TOKEN` bearer auth for Anthropic-compatible gateways --
-  including for compaction and branch summaries -- in
-  [`v0.82.1`](https://github.com/earendil-works/pi/releases/tag/v0.82.1). Pi
-  keeps routing toward subscriptions people already hold rather than metered API
-  keys.
-- **Claude Opus 5** on Anthropic and Bedrock with adaptive thinking including
-  `xhigh` ([PR #7081](https://github.com/earendil-works/pi/pull/7081), `v0.82.1`).
-
-*Findings: `2026-06-23-pi-selective-provider-base-entrypoints`,
-`2026-06-23-pi-mistral-prompt-caching`.*
-
-## The refusal still holds
-
-Pi's [README at `v0.82.1`](https://github.com/earendil-works/pi/blob/v0.82.1/packages/coding-agent/README.md)
-continues to state that Pi ships powerful defaults but skips features such as
-sub agents and plan mode, and directs users to ask Pi to build what they want or
-install a third-party package. No permission-prompt, subagent, plan-mode, or MCP
-feature landed across ten releases. The docs carry
-[Security](https://github.com/earendil-works/pi/blob/v0.82.1/packages/coding-agent/docs/security.md)
-and Containerization sections, and both files predate this window untouched --
-sandboxing is delegated to Gondolin, Docker, or OpenShell.
-
-So the posture is stable and we should say so without hedging. What is new is
-that the surface delegating governance now also delegates credential handling to
-extensions, which raises the stakes on the one review step Pi asks the operator
-to perform and does not assist with.
-
-*Findings: `2026-06-23-pi-extension-compaction-event-context`.*
-
-## Two facts, reported without inference
-
-**Pi removed its OpenClaw reference.** On 2026-07-26,
-[commit `cee5ff7520`](https://github.com/earendil-works/pi/commit/cee5ff7520)
-("ref: remove openclaw reference from readme", one file) deleted the sentence
-pointing at `openclaw/openclaw` as a real-world SDK integration example. The
-preceding sentence, that Pi runs in four modes -- interactive, print or JSON,
-RPC, and SDK -- is unchanged. Context, receipted: OpenClaw's `v2026.7.2-beta.1`
-notes, published 2026-07-15, advertise discovering OpenCode and Pi sessions from
-paired nodes and resuming Pi sessions directly in a terminal. Eleven days
-separate the two events. We report this as a fact and infer no motive, because
-the record supplies none. The operator-visible result is that the integration
-now runs one way in the documentation: OpenClaw reads Pi sessions, and Pi no
-longer points back.
-
-**The vendor was refuted by its own next tag.** On 2026-07-24 Pi's official
-account suggested a new release might not be needed for Opus 5, because dynamic
-model catalogs would surface it through `pi update --models` or cache expiry.
-`v0.82.1` shipped seventeen and a half hours later bundling Opus 5 model data
-for Anthropic and Bedrock. Pi then said so itself. This is not a mark against
-Pi; it is a clean demonstration that "you will not need to upgrade" is a
-prediction rather than a receipt, from the party best positioned to know.
-
-One structural note on Pi's public conversation, because it is unusually
-measurable. Six release posts across four tags land between 32 seconds *before*
-and 5 minutes 3 seconds *after* the GitHub release, median roughly three
-minutes. On a project where `main` and the tag are the same artifact, there is
-nothing for the conversation to know first, and the record shows it does not.
-Read Pi's social lane as low-latency distribution, never as early warning.
-
-## Open questions
-
-Answered this window, so they stop being asked:
-
-- **Is the Earendil migration settled?** Yes, on Pi's side: the repository is
-  `earendil-works/pi`, the package is `@earendil-works/pi-coding-agent`, and the
-  old npm name has not published since 2026-05-07. The thing that had not
-  migrated was our own source contract.
-- **Is `$PI_SESSION_DIR` reachable beyond tools and extensions?** Advanced
-  substantially: `v0.82.0` puts `PI_SESSION_ID` and `PI_SESSION_FILE` into the
-  environment of every command the bash tools run, so the session transcript
-  path is now reachable from any subprocess. Whether it also reaches the system
-  prompt or context files is still unanswered.
-
-Still open:
-
-- Does an extension-registered provider get any capability boundary? It can now
-  own authentication and request dispatch, Pi ships no permission prompt, and
-  the security and containerization docs predate the change. What does a careful
-  operator actually inspect before installing one?
-- Can `PI_SESSION_FILE` be scoped or withheld per tool? A pointer to the full
-  transcript in every subprocess environment is a reasonable default for a
-  harness that trusts its operator and a poor one for a harness running
-  third-party scripts.
-- Does the lean SDK arrive as a separate distributable, or do the
-  [`/base` entry points](https://github.com/earendil-works/pi/releases/tag/v0.79.8)
-  stay composable pieces inside the CLI packages? Not advanced this window.
-- Is the phantom `v0.80.4` an isolated slip or a repeatable failure mode in the
-  release process? One occurrence is an accident; a second would mean git tags
-  on this project carry no information.
-- Does Earendil Works add a cloud, enterprise, or hosted tier that would put
-  pressure on the no-governance-in-core stance? Still nothing in the record.
-
-## What to watch next
-
-- **Any review or capability surface for extension-registered providers.** This
-  is the change with the largest gap between what it enables and what Pi helps
-  you check, and it is the item most likely to change this profile's stance.
-- **Whether the two-commit channel gap holds.** It is currently Pi's strongest
-  claim on operator trust and the reason claims about Pi are checkable at all.
-- **Whether checksummed archives get adopted as a norm elsewhere.** Pi shipped
-  the most verifiable artifact on the watchlist this window; whether that is a
-  competitive signal or an outlier is a field-level question.
-- **Any plan mode, approval surface, or MCP addition**, which would mark a real
-  departure from the design stance rather than an extension of it.
-- **SDK stability signals.** Two breaking changes in nine days is fine for a 0.x
-  harness and expensive for anyone embedding it; a deprecation policy would
-  change how safely Pi can be built on.
+- When the facet host becomes a supported, installable surface, and whether a
+  permission wrapper ships with it or stays a diagram.
+- Whether headless runs will ever make a trust decision, or keep loading a
+  checkout's context files unasked.
+- Whether extensions that can now spend credentials and rewrite requests get
+  any review or capability boundary.
+- Whether HarnessTax's cost gap holds on long-horizon work, which the study
+  did not test.
 
 ## Profile hygiene
 
-This profile follows the discipline in
-[METHOD.md](../../METHOD.md#the-object-grammar): every concrete claim in the
-prose carries an inline source link, and posture sections cite finding IDs when
-naming a specific feature, behavior change, or cross-project comparison.
-
-Note on this revision. The 2026-07-02 to 2026-07-27 material is carried in prose
-with pinned receipts -- GitHub releases, merged pull requests, files read at
-pinned tags, npm registry records, and a published dependency advisory -- and is
-**not** registered in the `claims:` block, which continues to hold the register
-from the May and June windows. Those claims were re-read against `v0.82.1` and
-still hold, including `no-governance-in-core`, which stays an `open_question`:
-we looked again this cycle and the answer is still that Pi ships no governance in
-core, while noting that `v0.81.0` moved credential handling into the extension
-surface. All ten in-window releases are `tagged-release`; the only
-`main-unreleased` material is the two-commit gap described above.
-
-Correction recorded in this revision: the source contract watched
-`@mariozechner/pi-coding-agent`, frozen since 2026-05-07, and was repointed to
-`@earendil-works/pi-coding-agent` on 2026-07-27. Findings dated between
-2026-05-07 and 2026-07-27 that describe Pi as quiet or unchanged should be read
-with that defect in mind.
+Dated, not evergreen. Every claim above resolves to a finding in
+[the run that produced it](/runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/),
+or an earlier run named in the claims, and this page says what was true on the
+date at the top. See
+[METHOD.md](https://github.com/sheetgenius/frontier/blob/main/METHOD.md) for
+the evidence contract.

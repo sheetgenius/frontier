@@ -5,8 +5,8 @@ label: Flue
 owner: withastro
 source_contract: sources/flue.yml
 homepage: https://www.flueframework.com
-docs: https://github.com/withastro/flue/blob/main/CHANGELOG.md
-tagline: "Tagged nothing this window while its default branch deleted workflows, the CLI, and the entire run surface. The marketing site still sells all three."
+docs: https://flueframework.com/docs
+tagline: "Astro's agent framework rebuilt itself as a Vite plugin with no workflows and no synchronous replies, and it ships your prompts and tool results to your trace backend unless you say no. Pin @flue/runtime 2.1.0."
 x:
   project: flueai
 repo: https://github.com/withastro/flue
@@ -14,11 +14,43 @@ surface_class: open_source_commits
 evidence_floor: commit
 status: active_watch
 last_updated: 2026-09-21
-last_full_review: 2026-07-27
+last_full_review: 2026-09-23
 claims:
   - id: changesets-channel
     finding_id: 2026-09-21-flue-release-channel-changed-changesets-per-package-github-releases-and-a-next-dist-tag
     last_verified: 2026-09-23
+    status: active
+  - id: broken-publishes-2-0-4-2-0-5
+    finding_id: 2026-09-21-flue-2-0-4-and-2-0-5-were-broken-publishes-2-0-6-is-the-first-good-cut-after-v2-0
+    last_verified: 2026-09-23
+    status: active
+  - id: recursion-and-abort-fixes-2-0-7
+    finding_id: 2026-09-21-flue-2-0-7-fixes-harness-tool-infinite-recursion-and-lost-tool-results-on-abort
+    last_verified: 2026-09-23
+    status: active
+  - id: tool-timeout-and-mcp-annotations-2-1-0
+    finding_id: 2026-09-21-flue-2-1-0-per-tool-timeoutms-mcp-tool-annotations-preserved-configurable-trace-budgets
+    last_verified: 2026-09-23
+    status: active
+  - id: allowed-tools-not-enforced
+    finding_id: 2026-09-21-flue-docs-on-main-skill-allowed-tools-is-guidance-not-a-security-boundary
+    last_verified: 2026-09-23
+    status: active
+  - id: agent-behavior-reference
+    finding_id: 2026-08-10-flue-flue-v2-0-2-publishes-an-agent-behavior-reference-page-stating-the
+    last_verified: 2026-08-10
+    status: active
+  - id: prompt-cache-safe-tool-additions
+    finding_id: 2026-08-10-flue-flue-v2-0-2-makes-conditional-tool-additions-prompt-cache-safe-on
+    last_verified: 2026-08-10
+    status: active
+  - id: sandbox-role-renames
+    finding_id: 2026-08-10-flue-flue-v2-0-2-renames-the-sandbox-types-to-their-roles-and-replaces-the
+    last_verified: 2026-08-10
+    status: active
+  - id: cloudflare-agents-pin
+    finding_id: 2026-08-10-flue-flue-v2-0-3-takes-ownership-of-the-cloudflare-agents-sdk-pin-instead-of
+    last_verified: 2026-08-10
     status: active
   - id: virtual-sandbox-default
     finding_id: 2026-05-12-flue-initial-profile-and-observability-wave
@@ -50,15 +82,15 @@ claims:
     status: active
   - id: first-party-connector-ecosystem
     finding_id: 2026-06-23-flue-1.0-beta.1-and-beta.2-tags
-    last_verified: 2026-06-23
+    last_verified: 2026-09-23
     status: active
   - id: one-zero-beta-line
     finding_id: 2026-06-23-flue-1.0-beta.1-and-beta.2-tags
-    last_verified: 2026-06-23
-    status: active
+    last_verified: 2026-09-23
+    status: retired
   - id: durable-recoverable-execution
     finding_id: 2026-06-23-flue-1.0-beta.1-and-beta.2-tags
-    last_verified: 2026-06-23
+    last_verified: 2026-09-23
     status: active
   - id: durable-streams-transport
     finding_id: 2026-06-23-flue-event-index-decoupled-from-stream-offset
@@ -66,32 +98,32 @@ claims:
     status: active
   - id: actions-orchestration-primitive
     finding_id: 2026-06-23-flue-workflows-rebuilt-on-actions
-    last_verified: 2026-06-23
-    status: active
+    last_verified: 2026-09-23
+    status: retired
   - id: define-naming-unification
     finding_id: 2026-06-23-flue-define-naming-unification
     last_verified: 2026-06-23
     status: active
   - id: run-unified-through-http-app
     finding_id: 2026-06-23-flue-run-unified-through-http-app
-    last_verified: 2026-06-23
-    status: active
+    last_verified: 2026-09-23
+    status: retired
   - id: run-observability-private-by-default-staged
     finding_id: 2026-06-23-flue-workflow-runs-private-by-default
-    last_verified: 2026-06-23
-    status: active
+    last_verified: 2026-09-23
+    status: retired
   - id: flue-logs-removed-staged
     finding_id: 2026-06-23-flue-logs-removed-typed-run-apis
-    last_verified: 2026-06-23
-    status: active
+    last_verified: 2026-09-23
+    status: retired
   - id: run-observability-history
     finding_id: 2026-05-12-flue-initial-profile-and-observability-wave
-    last_verified: 2026-06-23
-    status: stale
+    last_verified: 2026-09-23
+    status: retired
   - id: v090-breaking-migration
     finding_id: 2026-06-01-flue-v090-major-refactor
-    last_verified: 2026-06-03
-    status: active
+    last_verified: 2026-09-23
+    status: retired
 posture_basis:
   capability:
     - 2026-05-12-flue-initial-profile-and-observability-wave
@@ -108,284 +140,101 @@ posture_basis:
     - 2026-06-23-flue-logs-removed-typed-run-apis
     - 2026-06-23-flue-workflows-rebuilt-on-actions
 stance:
-  use_for: "Vite shops willing to track an unreleased branch, and anyone studying what a framework does when it concludes its central primitive was wrong. What you can install today is `v1.0.0-beta.9` (2026-06-30): workflows, the CLI, the dev console, the first-party connector ecosystem, and durable recoverable execution. It is a coherent product. It is also the product main has already deleted."
-  avoid_for: "Anyone who needs a deterministic, code-first orchestration entrypoint -- main removed the no-model `run()` body with no v1 replacement, so every job must pass through a model. Anyone with a synchronous request/response integration: `?wait=result` and the SDK `prompt()` are gone on main and agent prompts always return a 202. Anyone shipping traces to a backend who has not explicitly set `content: false`. And anyone reading flueframework.com as a description of the project."
-  watch_next: "Whether the 2.0 rewrite gets a tag at all, and whether the marketing site is corrected before it does; whether trace content returns to off-by-default or the 'installing an instrumentation is the consent' theory holds; whether a deterministic code-first entrypoint comes back in some form; and whether the reply-attribution fix -- which could return another submission's answer -- ever reaches an installable version."
+  use_for: "Vite and Cloudflare shops that want durable, addressable agents over HTTP, with conversations as the only durable unit and an external engine (Cloudflare Workflows, Inngest, Temporal) for anything that must be deterministic. The tool contract is now worth using: per-tool timeouts, recorded outcomes on abort, and checkpointed steps for durable tools."
+  avoid_for: "Any job that must run without a model: the no-model `run()` body is gone and has no direct replacement. Synchronous request/response integrations: agent prompts always return 202. Tracing to a third-party backend before you have decided to set `content: false`. Relying on a skill's `allowed-tools` to restrict it."
+  watch_next: "Whether trace content goes back to opt-in; whether the `allowed-tools` doc fix reaches a release and the type comment stops saying 'pre-approved'; whether any Flue fix ever arrives with an advisory rather than a changelog line; whether `next` prereleases start to lead stables by more than a day."
 ---
 
 # Flue
 
+Flue is the Astro team's TypeScript framework for agents, built on an
+"Agent = Model + Harness" split. It is on this watchlist because it keeps
+making decisions most frameworks avoid, in public: it deleted its own central
+primitive, made the model mandatory for every job, and turned trace capture of
+every conversation on by default. You can disagree with each call. Flue
+writes each one down in its changelog.
+
 ## Where it stands, 2026-09-21
 
-Six stables shipped 9 to 18 September after a quiet month, ending at [2.1.0](https://github.com/withastro/flue/releases/tag/%40flue%2Fruntime%402.1.0). 2.0.4 and 2.0.5 were broken publishes. The project moved to changesets and per-package GitHub Releases, so the root CHANGELOG stops at 2.0.6.
+**Channel.** Pin
+[@flue/runtime 2.1.0](https://github.com/withastro/flue/releases/tag/%40flue%2Fruntime%402.1.0),
+released 18 September, the last of six stables between 9 and 18 September. From 2.0.7 the
+project releases with changesets: one GitHub Release per package per cut
+(runtime, sdk, cli, vite, react, opentelemetry and the channel and store
+packages, 28 in all), tags
+named `@flue/runtime@X`, and prereleases on an npm `next` dist-tag. The root
+CHANGELOG stops at 2.0.6. Read `packages/runtime/CHANGELOG.md` or the release
+body instead.
 
-## Operator Read
+**Skip 2.0.4 and 2.0.5.** According to the
+[changelog at v2.0.6](https://github.com/withastro/flue/blob/v2.0.6/CHANGELOG.md),
+2.0.4 shipped raw `workspace:` dependency specifiers and would not install
+outside the monorepo, and 2.0.5 shipped without its bundled docs. The move to
+changesets came the next day.
 
-Flue is a TypeScript framework for building autonomous agents from the Astro
-organization, [Apache-2.0 licensed](https://github.com/withastro/flue/blob/main/LICENSE),
-built around an explicit "Agent = Model + Harness" split. That framing is why
-Bitter Frontier watches it: the question has always been what an operator
-controls, what the framework owns, and how evidence of agent work reaches a
-human.
+**What 2.x is.** The rewrite that sat unreleased on main in July shipped as
+[2.0.0 on 31 July](https://github.com/withastro/flue/blob/v2.0.0/CHANGELOG.md).
+Flue is now a Vite plugin: `vite dev` and `vite build` own the app, and
+`flue dev`, `flue build` and the terminal console are gone. Workflows are
+removed with no compatibility stubs. A job is now a program that drives an
+agent, through `flue run`, the SDK, or an external durable engine. The old
+no-model `run()` body has no direct replacement, so every job goes through a
+model. Agent prompts always return a 202; there is no `?wait=result`, and
+callers read the reply from history or the stream. The homepage, fetched
+2026-09-23, now describes this product rather than the 1.0 beta.
 
-This window answered a version of that question nobody asked. **Flue published
-no tag and no release between 2026-07-02 and 2026-07-27.** The seven
-`v1.0.0-beta.3` through `v1.0.0-beta.9` tags all date 2026-06-23 to 2026-06-30,
-before the window opened, and `v1.0.0-beta.9` is still what an operator installs.
-Meanwhile nine commits landed on `main` and zero pull requests merged. One of
-those nine, [`b814b82b`](https://github.com/withastro/flue/commit/b814b82b2ce45dc941c77bb010140070e1bd48d5)
-on 2026-07-24, is titled `v2.0.0-nightly.202607240825` and carries
-**+60,306 / -95,918 lines across more than 300 files**. That single commit is an
-architectural rewrite that deletes workflows, the run surface, the CLI's build
-commands, file-based routing, and the terminal console.
+**Trace content is on unless you turn it off.** Since 2.0.0 both
+`createOpenTelemetryInstrumentation()` and `createCloudflareTracing()` emit
+prompts, system instructions, tool arguments and tool results, and the OTel
+adapter adds exception stacks, unless you pass `content: false`. The
+changelog's theory is that installing the instrumentation "is the consent".
+Collapsing five knobs into one boolean and a transform is a clean design. The
+trouble is which way the default points: the most sensitive payload in the
+system flows to a third party because someone wired up tracing. 2.1.0 made the
+56 KiB per-span budget configurable and did not change the default. Set
+`content: false`, or write the transform, before you point Flue at a hosted
+backend.
 
-The commit count fell from 69 in the prior seven-day window to 9 in this
-twenty-five-day one, while the magnitude of change went up by an order of
-magnitude. Neither signal is visible from the tag list, which has not moved since
-June 30.
+**The tool contract firmed up.**
+[2.0.7](https://github.com/withastro/flue/releases/tag/%40flue%2Fruntime%402.0.7)
+stops a harness tool that calls another harness tool from recursing without
+bound, and an aborted submission now keeps the results of calls that finished
+and records the rest as interrupted. Before it, the durable record of an
+aborted batch was incomplete, which matters if you audit what a tool did. 2.1.0
+adds `timeoutMs` per tool: on expiry the signal aborts and the model sees a
+`ToolTimeoutError` instead of one hung call eating the submission's budget.
+Put it on every network-bound tool.
 
-> **Channel reality.** Every finding below is `main-unreleased`. Flue still
-> publishes **zero GitHub Releases**, so a CHANGELOG pinned to a commit SHA is
-> the receipt surface. And note the version string carefully:
-> `v2.0.0-nightly.202607240825` exists only as a *commit subject*. No git tag
-> with that name exists. "Flue is on 2.0" is unreceipted; what is receipted is
-> that main carries a 2.0.0-nightly marker while the newest tag reads
-> 1.0.0-beta.9.
+**MCP hints arrive, unenforced.** 2.1.0 keeps the `annotations` an MCP server
+sends, such as `destructiveHint`, and the release notes say Flue does not act
+on them. Your own gate can read them. They are the server's claim about
+itself, so gate on them only for servers you trust.
 
-## The marketing site sells what main deleted
+**`allowed-tools` limits nothing.** Flue has never enforced a skill's
+`allowed-tools`, and the 2.1.0 type comment still calls them "pre-approved
+tools". A
+[commit on main on 21 September](https://github.com/withastro/flue/commit/c5a2a725fe)
+rewrites the docs to say it is guidance, not a security boundary. That fix is in
+no release. If a skill relies on the field, move the restriction into tool
+code or an approval gate.
 
-As fetched 2026-07-27, [flueframework.com](https://flueframework.com/) badges the
-project "1.0 Beta -- Read the announcement," headlines Workflows as a capability
-("Run structured automations where your code guides agent reasoning from a clear
-input to a finished result"), and describes Flue as a programmable TypeScript
-harness with no mention of Vite.
+**Cost reads $0 for unknown.** 2.0.8 warns once when a Workers AI dynamic
+model resolves, because those models' cost silently read as $0 on your
+dashboards. Unknown, not free.
 
-On [main](https://github.com/withastro/flue/blob/b814b82b2ce45dc941c77bb010140070e1bd48d5/CHANGELOG.md),
-workflows are gone and Flue is a Vite plugin.
+## What is unresolved
 
-This publication spent the window documenting surfaces that disagree with the
-runtime: documentation pinning a vulnerable image, a release body truncating its
-own security clause, an advisory range pointing at a dead package line. Flue is
-the cleanest specimen of the class. An operator evaluating it from the homepage
-today is being sold a central primitive the maintainers have already removed with
-no compatibility stubs. Nothing here is deceptive -- a marketing site describing
-the newest tag is describing the newest tag, which is exactly what a marketing
-site should do. The trap is that on this project the newest tag is now four weeks
-behind a rewrite that contradicts it.
-
-## What main removed
-
-**Workflows, outright.** Quoting the CHANGELOG: `defineWorkflow`, `invoke`, run
-stores and run event streams, the `/runs/:runId` and `POST /workflows/:name`
-routes including `?wait=result`, `listRuns` and `getRun`, the SDK
-`client.workflows` and `client.runs` namespaces, the React workflow hooks, and
-the dev-console run UI are all deleted, **with no compatibility stubs**.
-Conversations are now the only durable unit: a workflow becomes an agent with the
-job as a model-callable `defineAction` in its `actions: [...]`.
-
-The sentence that should stop an operator is the next one. **A deterministic
-code-first entrypoint -- the old no-model `run()` body -- has no v1
-replacement.** There is now no way to run deterministic orchestration in Flue at
-all. Every job passes through a model.
-
-That is a real architectural position and it may even be the right one for what
-Flue is becoming. It is also a capability removal with no migration target, in a
-project whose homepage still advertises the capability.
-
-**The CLI's build path.** `flue dev` and `flue build` are removed. Adoption now
-means adding `flue()` from a new `@flue/vite` package to `vite.config.ts`, and
-`vite dev` and `vite build` own the deployable application. The CLI slims to
-`run`, `init`, `add`, `update`, and `docs`, with `flue run` rewritten as
-transport-free local execution. `@flue/dev-console`, the terminal chat TUI, is
-deleted, with the stated reason that it "is not a direction Flue is investing
-in." The deployment membrane is now someone else's build tool: a lower floor for
-Vite shops, and the end of Flue as a standalone runnable for everyone else.
-
-**File-based routing.** `src/agents/*`, `src/workflows/*`, and `src/channels/*`
-no longer create routes or registrations; `app.ts` is the route map, and an agent
-module joins the application through a `'use agent'` directive as its first
-statement. Watch the consequence: the agent's durable storage identity derives
-from the **file basename**, generating one `Flue<PascalName>Agent` Durable Object
-class per marked file on Cloudflare, with duplicate basenames a build error.
-Renaming a file is a storage-identity change and therefore a data-migration
-event, expressed through wrangler's `renamed_classes`. Renames are not free on
-this design, and nothing in the ordinary developer reflex will tell you that.
-
-**Synchronous replies.** Direct agent prompts are fire-and-forget only. The
-`?wait=result` mode on agent HTTP POSTs is removed and prompts always return a
-202 admission. The SDK's `prompt()` is gone and `wait()` resolves `void`; callers
-read the reply from the conversation transcript through `history()` or the live
-stream. A remote abort is now distinguishable from a failure --
-`FlueExecutionError.failure` reports `'aborted'` rather than `'failed'` -- which
-is a genuine improvement. Every synchronous request/response integration against
-Flue nonetheless breaks.
-
-## The telemetry inversion
-
-This is the change most likely to surprise someone who upgrades without reading.
-
-Trace content is now **captured by default**. Both adapters --
-`createOpenTelemetryInstrumentation()` and the native Cloudflare
-`createCloudflareTracing()` -- emit conversation content
-(`gen_ai.input/output.messages`, system instructions, tool definitions,
-arguments, and results) unless you pass `content: false`. Exception messages and
-stacks ship by default through the same gate. The public content surface
-collapses to `content?: false | { transform }`, and the removed controls are
-named in the CHANGELOG: `GenAIContentPolicy` as a public type, `enabled`,
-`inline`, `externalContent`, `limits`, and the `diagnostic` callback.
-
-The stated theory is that **installing an instrumentation with `instrument(...)`
-is the consent**, and a `transform` is the policy hook.
-
-Take that argument seriously for a moment, because it is not absurd. An operator
-who wires a tracing backend into an agent framework has plausibly decided to
-observe the agent. Simplifying five knobs into one boolean and one transform is
-the knob-deletion instinct that this publication praised elsewhere this window.
-
-The problem is the direction of the default. Deleting a knob is a good move when
-the remaining shape is the safe one. Here the remaining shape is the permissive
-one: prompts, tool arguments, tool results, system instructions, and exception
-stacks flow to a third-party backend unless the operator knows to turn them off.
-Consent inferred from an installation is not consent to the most sensitive
-payload the system handles. If you upgrade past `b814b82b` and do not set
-`content: false`, your trace backend becomes a copy of every conversation.
-
-*Findings: `2026-06-23-flue-workflow-runs-private-by-default`,
-`2026-06-23-flue-logs-removed-typed-run-apis`.*
-
-## A correctness bug worth knowing about
-
-From the same unreleased section: a joined submission's reply is now resolved
-through its settlement's derived linkage instead of by recency. Previously a
-delivery that joined a busy response read "the conversation's last assistant
-message" as its reply, which **silently returned a later submission's answer once
-the conversation moved on**. The recency fallback now applies only to legacy
-settlements that predate attempt stamping.
-
-On a busy conversation, Flue could hand a caller a different submission's answer
-and nothing would signal the mismatch. That is a correctness failure in the one
-thing an agent API has to get right, and the fix exists only on `main`. An
-operator running `v1.0.0-beta.9` still has the bug. Related work in the same
-section settles dangling tool calls deterministically at submission
-terminalization ([commit `c5e7ef4598`](https://github.com/withastro/flue/commit/c5e7ef4598),
-2026-07-04), so a `task` tool call can no longer rest as "still running" forever
-in history projections, and conversations already left dangling self-heal on
-their next prompt.
-
-## Storage is still disposable, twice over
-
-The unreleased section contains two separate persisted-storage breaks. Schema v5
-rejects stores written by earlier versions at open with
-`PersistedSchemaVersionError`, which must be cleared. Schema v8 renames the
-dispatch-receipts `dispatch_id` column to `submission_id` and rejects stores
-written by v7 or earlier. Neither has a migration, and the CHANGELOG describes
-both as "consistent with the pre-1.0 reset-only policy."
-
-That phrase sits on top of a tag that reads **1.0.0-beta.9**. Anyone who read "1.0
-beta" as a durability commitment should read it again: conversation history is
-still explicitly disposable, and the project says so twice in one unreleased
-section.
-
-## What you can still install
-
-The tagged product has not changed since 2026-06-30 and it remains coherent, so
-here is the collapsed version of what `v1.0.0-beta.9` gives you.
-
-A [virtual sandbox](https://github.com/withastro/flue/blob/main/README.md) by
-default, backed by just-bash with an in-memory filesystem and no container, with
-container sandboxes (Daytona, e2b) and a `cloudflareSandbox()` available, plus
-[`sandbox: 'local'`](https://github.com/withastro/flue/commit/c7d278eb) when the
-agent genuinely needs `gh`, `git`, and `npm` and the CI runner is your isolation
-boundary. A first-class harness object from `init()` that resolves sandbox,
-model, skills, role, and deployment target in one place, with
-[`configureProvider()`](https://github.com/withastro/flue/commit/f0de1814) for
-routing traffic through an enterprise gateway. Markdown skills under
-`.agents/skills/` plus a TypeScript-native `defineSkill()` path at parity with
-them. A [first-party connector ecosystem](https://github.com/withastro/flue/commit/05f9d478f5)
-of 15-plus `@flue/*` channel and persistence packages for verified HTTP ingress.
-[Durable, recoverable execution](https://github.com/withastro/flue/commit/05f9d478f5)
-on a built-in SQLite store over the Durable Streams transport. And
-[shell environment values redacted from session history](https://github.com/withastro/flue/commit/850fdcee)
-before persistence, which matters if you hold sessions written before v0.4.1.
-
-*Findings: `2026-05-12-flue-initial-profile-and-observability-wave`,
-`2026-06-23-flue-1.0-beta.1-and-beta.2-tags`,
-`2026-06-23-flue-defineskill-typescript-skills`.*
-
-## Open questions
-
-Answered this window, and one of them answered strangely:
-
-- **Will the staged private-by-default run observability and the `flue logs`
-  removal ship as written?** Moot. The `## Unreleased` section this profile
-  flagged in June is absent from the CHANGELOG at `v1.0.0-beta.9`, and the
-  rewrite then deleted `/runs/:runId`, run event streams, and `client.runs`
-  outright. There is no longer a run surface to make private. The question this
-  profile carried for two windows was resolved by demolition rather than by
-  decision.
-- **Is the 1.0-beta line convergence motion toward GA?** No. It was convergence
-  motion toward a rewrite. Read that as a caution about inferring intent from
-  release-cadence shape.
-
-Still open:
-
-- Will the 2.0 rewrite be tagged, and will the marketing site be corrected before
-  or after it is? Right now the public description and the default branch
-  describe different products.
-- Does a deterministic code-first entrypoint return in some form? Removing the
-  no-model `run()` body with no replacement makes the model mandatory for every
-  job, which is a strong architectural claim to ship without a migration target.
-- Does trace content go back to off-by-default, or does "installing an
-  instrumentation is the consent" hold? This is the single decision that
-  determines whether Flue is safe to instrument in a regulated environment.
-- How should an operator monitor Flue for security-relevant fixes at all? There
-  is no advisory channel, no GitHub Releases, and security fixes land as ordinary
-  CHANGELOG lines -- and the reply-attribution bug shows the class of defect that
-  can hide there.
-- What is the review model for third-party connectors, now that first-party
-  `@flue/*` packages sit alongside the coding-agent-installs-the-adapter path?
-- `sandbox: 'local'` still gives agents direct host access. What guardrail exists
-  below the CI runner?
-
-## What to watch next
-
-- **Whether a tag appears.** Everything interesting about Flue right now is
-  unreleased, and until something is tagged the project has two incompatible
-  public faces.
-- **Whether the homepage catches up.** The gap between flueframework.com and
-  `main` is the most legible "released is not merged" trap on the watchlist, and
-  closing it is a one-afternoon job.
-- **The telemetry default.** Off-by-default to on-by-default on prompts and tool
-  results is the kind of change that usually gets revisited once someone's
-  compliance team reads the trace.
-- **Whether the Vite bet pays.** Making the build tool the deployment membrane
-  lowers adoption cost for one ecosystem and raises it for everyone else; the
-  next window should show which effect dominates.
-- **Whether commit velocity returns.** Nine commits and zero merged pull requests
-  in twenty-five days, with one of them carrying the whole rewrite, is a
-  development pattern that says something about how this project is being built.
+- Flue ships security-relevant fixes as ordinary changelog lines, with no
+  advisory channel. Watching it means reading every package changelog.
+- Whether the Vite bet lowers adoption cost for Vite and Cloudflare shops more
+  than it raises it for everyone else. Nothing in the record measures that yet.
+- Whether the in-browser demo chat grows into the promised new `flue dev`.
 
 ## Profile hygiene
 
-This profile follows the discipline in
-[METHOD.md](../../METHOD.md#the-object-grammar): every concrete claim in the
-prose carries an inline source link, and posture sections cite finding IDs when
-naming a specific feature, behavior change, or cross-project comparison.
-
-Note on receipts. Flue publishes no GitHub Releases, so the canonical surface is
-`CHANGELOG.md` pinned to a commit SHA, and version bumps are recorded as release
-commits and git tags. Everything from the 2026-07-02 to 2026-07-27 window is
-cited against the CHANGELOG at
-[`b814b82b`](https://github.com/withastro/flue/blob/b814b82b2ce45dc941c77bb010140070e1bd48d5/CHANGELOG.md)
-and is **`main-unreleased`** without exception -- no tag was cut in the window.
-Citations are at `commit` and CHANGELOG precision because individual diffs have
-not all been reviewed; the README is cited at `official_docs` precision for
-architectural claims.
-
-Note on this revision. The `claims:` block is unchanged and holds the register
-through the June 2026 windows. Several of those claims describe surfaces the
-2026-07-24 rewrite deletes on `main` -- the workflow and Actions orchestration
-entries, the run-observability entries, and the `flue logs` entry in particular.
-They remain accurate for the installable tag `v1.0.0-beta.9` and should be read
-as **tagged-state claims about a line main has moved past**, not as descriptions
-of current `main`. The new material is carried in prose only.
+Dated, not evergreen. Every claim above resolves to a finding in
+[the run that produced it](/runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/),
+and this page says what was true on the date at the top. The 2.0.0 changelog
+and the homepage were re-read on 2026-09-23. See
+[METHOD.md](https://github.com/sheetgenius/frontier/blob/main/METHOD.md) for
+the evidence contract.

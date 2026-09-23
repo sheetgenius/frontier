@@ -6,7 +6,7 @@ owner: omnigent-ai
 source_contract: sources/omnigent.yml
 homepage: https://omnigent.ai
 docs: https://omnigent.ai/docs
-tagline: "The first meta-harness on this watchlist: a governance layer over the coding agents it drives, whose spend cap is enforced before the call and is a downgrade gate rather than a ceiling."
+tagline: "A meta-harness that governs Claude Code, Codex and a dozen other agents it does not own, and that now answers some of their safety prompts for them."
 compared_with:
   - paperclip
   - openhands
@@ -16,7 +16,7 @@ surface_class: open_source_commits
 evidence_floor: official_docs
 status: active_watch
 last_updated: 2026-09-21
-last_full_review: 2026-08-20
+last_full_review: 2026-09-23
 claims:
   - id: policy-outage-falls-through
     finding_id: 2026-09-21-omnigent-governance-layering-on-policy-server-outage-native-claude-codex-tool-calls-now-defer-to
@@ -26,29 +26,53 @@ claims:
     finding_id: 2026-09-21-omnigent-three-bundle-upload-advisories-published-2026-09-16-all-fixed-in-v0-14-0-by-one
     last_verified: 2026-09-23
     status: active
+  - id: pre-answers-harness-prompts
+    finding_id: 2026-09-21-omnigent-omnigent-now-answers-wrapped-harnesses-safety-prompts-and-flips-their-approval-routing
+    last_verified: 2026-09-23
+    status: active
+  - id: shared-editor-approval-not-narrowed
+    finding_id: 2026-09-21-omnigent-carry-forward-shared-editor-approval-did-not-narrow-adjacent-editor-powers-did-two-of-them
+    last_verified: 2026-09-23
+    status: active
+  - id: spend-gate-before-next-call
+    finding_id: 2026-09-21-omnigent-carry-forward-spend-caps-are-gated-before-the-next-call-on-already-reconciled-spend-the
+    last_verified: 2026-09-23
+    status: active
+  - id: root-budgets-skip-native-descendants
+    finding_id: 2026-09-21-omnigent-budgets-did-not-reach-native-descendants-in-any-in-window-tag-scheduled-task-caps-attach
+    last_verified: 2026-09-23
+    status: active
+  - id: acp-result-fail-open-usage-flag
+    finding_id: 2026-09-21-omnigent-carry-forward-acp-result-phase-fail-open-unchanged-usage-page-still-flag-gated
+    last_verified: 2026-09-23
+    status: active
+  - id: policy-engine-hardening
+    finding_id: 2026-09-21-omnigent-policy-engine-hardening-spawn-bounds-persist-sub-agents-enforce-their-own-guardrails-verdi
+    last_verified: 2026-09-23
+    status: active
   - id: v0-10-0-multi-sandbox-shared-editor-approval
     finding_id: 2026-08-20-omnigent-v0-10-0-adds-multi-sandbox-and-keeps-shared-editor-approval
     last_verified: 2026-08-20
-    status: active
+    status: retired
   - id: worktree-guard-inert-on-windows
     finding_id: 2026-08-03-omnigent-worktree-guard-inert-on-windows-runners
-    last_verified: 2026-08-03
-    status: active
+    last_verified: 2026-09-23
+    status: retired
   - id: v0-10-0-usage-page-off-parent-gates-unchanged
     finding_id: 2026-08-20-omnigent-v0-10-0-usage-page-off-parent-gates-unchanged
     last_verified: 2026-08-20
-    status: active
+    status: retired
   - id: deny-tag-push-in-v0-10-0
     finding_id: 2026-08-20-omnigent-deny-tag-push-reaches-v0-10-0
-    last_verified: 2026-08-20
+    last_verified: 2026-09-23
     status: active
   - id: spend-cap-is-a-downgrade-gate
     finding_id: 2026-08-03-omnigent-spend-cap-is-a-downgrade-gate-not-a-ceiling
-    last_verified: 2026-08-20
+    last_verified: 2026-09-23
     status: active
   - id: cost-gate-fails-closed-on-unpriced-models
     finding_id: 2026-08-03-omnigent-spend-cap-is-a-downgrade-gate-not-a-ceiling
-    last_verified: 2026-08-20
+    last_verified: 2026-09-23
     status: active
   - id: router-picks-harness-and-model
     finding_id: 2026-08-03-omnigent-v070-routing-picks-the-harness
@@ -58,133 +82,133 @@ claims:
     finding_id: 2026-08-03-omnigent-stateful-policies-claim-checks-out-in-the-tag
     last_verified: 2026-08-03
     status: active
+stance:
+  use_for: "Running several coding agents under one set of policies, sandboxes and spend gates, on v0.14.0, with each harness's own permission mode set as if Omnigent were absent."
+  avoid_for: "Granting edit on a shared session whose runner is your workstation on any tag through v0.14.0; treating max_cost_usd as a ceiling; treating a root-session budget as covering native child sessions."
+  watch_next: "Whether v0.15.0 (tagged 22 September) carries the editor shell-proxy and inherited-budget fixes as the PRs describe; whether shared-session approvals ever narrow below any editor; whether the docs, not only PR bodies, document which layer refuses."
 ---
 
 # Omnigent
 
-Every other project on this watchlist is a harness. Omnigent sits above them:
-an open-source meta-harness that orchestrates Claude Code, Codex, Cursor and Pi,
-shipping policies, spend caps and access controls on top of harnesses that
-already carry their own permission systems.
+Everything else on this watchlist is a harness. Omnigent sits on top of them:
+an open-source meta-harness that drives Claude Code, Codex, Cursor, Pi and
+others, and lays its own policies, sandboxes and spend caps over harnesses
+that already have permission systems of their own. That makes it the
+sharpest test of whether a control that exists on paper binds in practice,
+because two governance layers claim the same tool call.
 
-That stacking is why it is here. This publication's standing argument is that a
-control which exists only as an intention is not a control, and a meta-harness is
-the hardest version of that test, because two governance layers now have a claim
-on the same action.
+The short read for 2026-09-21: install v0.14.0, because on every earlier tag
+anyone who can upload an agent bundle to an unsandboxed runner can reach a
+host shell. Do not hand out edit rights on a session your workstation runs.
+Then assume the wrapped harness's
+own permission mode is your last line, because Omnigent increasingly hands
+decisions back to it or answers them for it.
 
 ## Where it stands, 2026-09-21
 
-Latest in window is [v0.14.0](https://github.com/omnigent-ai/omnigent/releases/tag/v0.14.0), which fixes three bundle-upload advisories including a critical host-shell escape. From v0.13.0, when the policy server is unreachable, native Claude Code and Codex tool calls fall through to the wrapped harness's own dialog. Shared-editor approval did not narrow; an editor shell-proxy fix reached v0.15.0 after the window. Spend caps check before the next call against spend counted at turn boundaries.
+**Channel.** Four stable tags in the window, v0.11.0 through
+[v0.14.0](https://github.com/omnigent-ai/omnigent/releases/tag/v0.14.0)
+(15 September), none flagged prerelease. PyPI carries only stables; daily
+`.dev` and rc tags exist on GitHub and nowhere an ordinary install looks.
+CHANGELOG.md at v0.14.0 stops at v0.13.0, so the release page is the only
+place its notes live. v0.15.0 landed on 22 September, after this read, and
+has not been checked here.
 
-## Where it stands, 2026-08-20
+**Upgrade first.** Three advisories published 16 September, all fixed by one
+[PR in v0.14.0](https://github.com/omnigent-ai/omnigent/pull/7457), all
+needing an authenticated user who can upload an agent bundle. The critical
+one,
+[GHSA-598r](https://github.com/omnigent-ai/omnigent/security/advisories/GHSA-598r-29w2-g93q),
+let a terminal's working directory escape the workspace to an unconfined host
+shell when `sandbox.type` is `none`.
+[GHSA-q5jc](https://github.com/omnigent-ai/omnigent/security/advisories/GHSA-q5jc-8hqr-9hm4)
+is the uncomfortable one: the policy-handler allowlist was skipped for one
+YAML shape, so a `function:` policy imported and ran arbitrary Python at
+session start. The governance layer was the way in. Single-user local
+installs are outside the stated threat model; any server that accepts
+bundles from more than one person is not.
 
-**Channel.** [`v0.10.0`](https://github.com/omnigent-ai/omnigent/releases/tag/v0.10.0)
-published 2026-08-19T04:34:41Z. CHANGELOG.md at that tag still starts at
-v0.9.0; the v0.10.0 notes live on the GitHub release body.
+**Which layer refuses.** The question this profile has asked from the start now
+has an answer for one case. From v0.13.0, if the Omnigent policy server is
+unreachable, native Claude Code and Codex tool calls
+[return no opinion](https://github.com/omnigent-ai/omnigent/pull/6429) and
+the harness's own dialog decides. Prompt submission still fails closed. In
+normal operation an Omnigent deny still blocks. If the harness underneath is
+in a bypass or auto mode, an outage means nothing asks. Keep a harness-native
+deny list for anything that must never run.
 
-**What is new.** Several sandbox providers at once, Devin as a built-in
-harness, a Usage page, Copilot via `gh auth login`. The Usage page is
-off unless `OMNIGENT_FEATURES=usage_page`. Unset or empty means every
-release feature is off
-([`feature_flags.py` at v0.10.0](https://github.com/omnigent-ai/omnigent/blob/v0.10.0/omnigent/server/feature_flags.py)).
+**Omnigent now answers for the harness.** Since v0.12.0 it pre-accepts
+Claude Code's bypass-permissions consent dialog whenever a launch requests
+bypass, through an invocation-local settings file, and the PR says org
+policy is still checked first. Since
+[v0.13.0](https://github.com/omnigent-ai/omnigent/pull/5864) the default
+codex-native stance sends escalated Codex approvals, such as an
+out-of-workspace write, to Codex's automatic reviewer instead of you. A
+scheduled task set to Bypass runs Claude Code with no consent prompt and
+nobody watching. Behavior seen through Omnigent belongs to the pair, not to
+the harness alone.
 
-**What did not move.** [`cost.py`](https://github.com/omnigent-ai/omnigent/blob/v0.10.0/omnigent/policies/builtins/cost.py)
-is blob `5b4ca596` at both v0.9.0 and v0.10.0. `max_cost_usd` is still a
-downgrade gate. Omitting `expensive_models` or setting `[]` is the hard
-stop. Shared-editor approval is still any-editor. qwen/goose delegated
-file I/O still fails open on the result phase; a write-result denial
-does not undo the write
-([`qwen_executor.py` at v0.10.0](https://github.com/omnigent-ai/omnigent/blob/v0.10.0/omnigent/inner/qwen_executor.py)).
-Devin is more likely to sit on the generic ACP path, which does not get
-that content gate. Do not attribute Devin behavior observed through
-Omnigent to Devin alone.
+**Shared sessions: any editor approves, and any editor has a shell.** At
+v0.14.0
+[the approval route](https://github.com/omnigent-ai/omnigent/blob/v0.14.0/omnigent/server/routes/sessions/routes/elicitations.py)
+still accepts any user with edit rights. Worse, on every tag through v0.14.0
+the environment shell proxy accepted edit rights too, so an editor could run
+commands on the owner's machine outside every policy and approval gate. The
+fix, [#7619](https://github.com/omnigent-ai/omnigent/pull/7619), merged
+17 September and first shipped in v0.15.0. Read-only shares served `.env`
+and key files verbatim until v0.13.0 made that an owner opt-in.
 
-**Tag-push deny is in the tag.** Two issues ago
-`deny_tag_push` (default true) missed v0.9.0 and lived on nightly.
-[`github.py` at v0.10.0](https://github.com/omnigent-ai/omnigent/blob/v0.10.0/omnigent/policies/builtins/github.py)
-has it. `git push --tags`, `--follow-tags`, and `refs/tags/` refspecs
-are denied unless you set `deny_tag_push: false`.
+**Spend caps are a gate on the next call, not a meter.**
+[`cost.py` at v0.14.0](https://github.com/omnigent-ai/omnigent/blob/v0.14.0/omnigent/policies/builtins/cost.py)
+checks cumulative spend before each turn and tool call, but spend is only
+counted at turn boundaries, so the turn that crosses the cap finishes.
+`max_cost_usd` is, in the module's own words, a "downgrade gate": it denies
+only while an `expensive_models` model is running. Leave that list empty or
+omit it for a hard stop. Unpriced models fail closed. Since v0.13.0 a
+sub-agent cap attached by the orchestrating model asks for approval to lift
+it instead of refusing. Two gaps sit on top of that. On every in-window tag
+a root-session budget did not bind native child sessions with no policies of
+their own ([#7369](https://github.com/omnigent-ai/omnigent/pull/7369), in
+v0.15.0). Scheduled-task caps attach non-fatally, so if the policy store is
+down the session "proceeds uncapped."
 
-## Where it stood, 2026-08-03
+**Quieter fixes worth knowing.** Before v0.14.0 the `spawn_bounds` fan-out
+cap reset on every deployed tool call and did not bind. Before v0.13.0,
+output policies on runner-relayed claude-sdk sessions let denied text stream
+and persist. A retried approval could run arguments other than the ones a
+human reviewed until v0.14.0.
 
-**Channel.** Pre-1.0 and shipping continuously. `v0.7.0` was published
-2026-07-27T22:40Z and is the newest tag; more than a hundred commits landed on
-the default branch in the following week. The tag-to-tag diff carries far more
-than the release note, so anything read here is read at a tag ref rather than on
-main unless stated.
+**What did not move.** ACP delegated file I/O (qwen, goose) still
+[fails open on the result phase](https://github.com/omnigent-ai/omnigent/blob/v0.14.0/omnigent/inner/qwen_executor.py);
+a denied write is not undone, so the call phase is the only gate that binds.
+The Usage page is still off unless `OMNIGENT_FEATURES=usage_page`.
+`deny_tag_push` still defaults true.
 
-**Its spend cap enforces before the call, and is not a ceiling.** Read at
-`v0.7.0`, `cost_budget` gates cumulative session spend at the request phase --
-"before the LLM turn, so text-only turns are budgeted too" -- and at the
-tool-call phase, "the point a native `PreToolUse` hook can block before the
-action runs." That settles the question the source contract opened with: it
-enforces rather than reconciles.
+**Capability.** New harnesses (Antigravity, Grok Build, Jcode, Devin as a
+child session), libkrun microVM and Kubernetes sandbox providers, and git
+acting as the user's own account inside the sandbox. Every bundle advisory
+above is scoped to unsandboxed runners, so the microVM provider is the cheap
+mitigation if you ran `sandbox.type: none` for speed.
 
-The catch is what `max_cost_usd` does when reached. It "forces a model
-downgrade" rather than stopping the session, denying only while the session runs
-a model in the operator-supplied `expensive_models` list, and the module says so
-directly: "the budget becomes a 'downgrade gate,' not a hard stop." An operator
-who sets the number expecting spend to end there has configured the point at
-which the work continues more cheaply.
+## What is unresolved
 
-The gate does close its own worst failure mode. A model with no catalogue pricing
-never writes a cost to the session, which would score it at zero and let it run
-unbounded; instead the gate fails closed when token usage is present and priced
-cost is absent, denying and asking the operator to switch to a priced model. It
-also notes that a single expensive turn can overshoot between checks.
+- Whether v0.15.0 contains the editor shell-proxy, session-bundle and
+  inherited-budget fixes as described. The PRs say yes; nobody here has read
+  the tag.
+- Whether a scheduled task's Bypass mode passes through any Omnigent policy
+  before launch.
+- What `max_cost_usd` does when `expensive_models` is non-empty but does not
+  list the running model.
+- Whether the offloadable dictation worker sends audio off your
+  infrastructure. The v0.7.0 notes said audio "never leaves your server"
+  while describing a remote transcription worker.
+- The layering answer lives in PR bodies; the docs site did not resolve to
+  content when checked.
 
-**Its only write confinement for unsandboxed workers did not bind on Windows.**
-`worktree_guard` reasoned in POSIX terms but normalised with `os.path`, which is
-`ntpath` on Windows and rewrites forward slashes to backslashes, so the
-absolute-path arm was inert on a Windows runner: `/etc/passwd` cleared the
-backslash guard, became `\etc\passwd`, and returned ALLOW, as did paths into
-another worker's tree. Filed 2026-08-01, fixed 2026-08-03 with `posixpath`
-normalisation, a drive-letter arm, and four ALLOW-to-DENY cases pinned by tests
-run on Windows 11. The fix is on main; `v0.7.0` predates it.
+## Profile hygiene
 
-**Its router now picks the harness.** `v0.7.0` ships an "Auto - smart routing"
-option that "lets the router pick both harness and model from your task", and
-smart routing "activates automatically from your `llm:`/`routing:` config (no
-`OMNIGENT_SMART_ROUTING` env var)". On a meta-harness this is the governance
-question in shipped form: the layer an action lands under can change without the
-operator choosing it per action.
-
-**A vendor claim that checked out.** Its official account described stateful
-policies making dynamic session-context decisions at server, agent and session
-level, with a Session Risk Score built in. `policies/builtins/risk_score.py` is
-present at the `v0.7.0` tag. The claim was accurate and shipped.
-
-## Operator posture
-
-Use it as the coordination and spend layer it is, and read its policy modules
-rather than its parameter names. `max_cost_usd` needs `expensive_models` beside
-it to mean anything. If you run unsandboxed implementer worker specs on Windows,
-confirm the posixpath worktree fix is in the tag you install;
-it was on main after v0.7.0.
-
-Do not treat a finding observed through Omnigent as a finding about the harness
-underneath. Adapter lag and policy-layer defects belong to the wrapper.
-
-## Open questions
-
-- When an Omnigent policy and the wrapped harness's own permission system
-  disagree, which one refuses? Still no public answer, and it remains the most
-  interesting open item on the watchlist.
-- Does the offloadable dictation worker send audio off the operator's
-  infrastructure? `v0.7.0` says audio "never leaves your server" while describing
-  the transcription engine as offloadable to a remote worker.
-- Re-read at v0.10.0: `expensive_models` None or `[]` sets
-  `block_all_models=True` (a hard stop). A non-empty list is the
-  downgrade gate. The remaining question is what happens when the list
-  is non-empty but does not match the running model.
-- Sandboxed Linux agents now trust CA roots under the system `capath` to reach
-  hosts behind a corporate MITM proxy. The reason is stated; the blast radius is
-  not.
-
-## Comparison
-
-Closest to **Paperclip**, and the contrast is the useful part: Paperclip manages
-an organisation of agents it owns, Omnigent orchestrates agents it does not.
-**OpenHands** and **Hermes Agent** also position above a single coding loop, but
-both ship the loop as well. Omnigent is the only source here whose entire product
-is governance over somebody else's agent.
+Dated, not evergreen. Every claim above resolves to a finding in
+[the run that produced it](/runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/),
+and this page says what was true on the date at the top. See
+[METHOD.md](https://github.com/sheetgenius/frontier/blob/main/METHOD.md) for
+the evidence contract.

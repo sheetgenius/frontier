@@ -6,7 +6,7 @@ owner: OpenHands
 source_contract: sources/openhands.yml
 homepage: https://openhands.dev/
 docs: https://docs.openhands.dev/
-tagline: "The platform that fronts other harnesses. Its open-source line thawed for four days in July, then refroze."
+tagline: "An agent workspace whose profiles now fence MCP servers and secrets on the server. Until v1.20.0 its Docker setting was not passed through, and conversations ran on the host."
 compared_with:
   - claude-code
   - codex
@@ -23,7 +23,7 @@ surface_class: mixed_official_docs
 evidence_floor: release_note
 status: active_watch
 last_updated: 2026-09-21
-last_full_review: 2026-08-20
+last_full_review: 2026-09-23
 claims:
   - id: docker-runtime-ignored
     finding_id: 2026-09-21-openhands-docker-conversation-runtime-settings-reach-the-bundled-agent-server-v1-20-0-docker-executi
@@ -36,15 +36,15 @@ claims:
   - id: wrong-profile-fix-unreleased-at-2026-08-20
     finding_id: 2026-08-20-openhands-wrong-profile-fix-still-unreleased-at-window-close
     last_verified: 2026-08-20
-    status: active
+    status: retired
   - id: git-sync-404-on-v1-14-0
     finding_id: 2026-08-20-openhands-v1-14-0-git-sync-page-404s-against-bundled-automation
     last_verified: 2026-08-20
-    status: active
+    status: retired
   - id: release-channel-lag
     finding_id: 2026-06-23-openhands-channel-posture
     last_verified: 2026-06-23
-    status: active
+    status: retired
   - id: api-key-redaction
     finding_id: 2026-05-07-openhands-platform-hardening
     last_verified: 2026-05-07
@@ -109,6 +109,30 @@ claims:
     finding_id: 2026-06-23-openhands-hide-personal-workspaces-ui-only
     last_verified: 2026-06-23
     status: open_question
+  - id: wrong-profile-fix-v1-15-and-model-override
+    finding_id: 2026-09-21-openhands-carry-forward-v1-15-0-is-the-in-window-tag-with-the-wrong-profile-fix-and-it-ships-the-opp
+    last_verified: 2026-09-23
+    status: active
+  - id: automation-permissions-run-as
+    finding_id: 2026-09-21-openhands-automations-get-view-manage-permissions-creator-only-re-enable-a-visible-run-as-identity
+    last_verified: 2026-09-23
+    status: active
+  - id: security-fixes-without-advisories
+    finding_id: 2026-09-21-openhands-four-security-fixes-shipped-as-plain-prs-electron-link-origin-bypass-runtime-config-xss
+    last_verified: 2026-09-23
+    status: active
+  - id: pdf-preview-unsandboxed
+    finding_id: 2026-09-21-openhands-v1-15-0-removes-the-pdf-preview-sandbox-tagged
+    last_verified: 2026-09-23
+    status: active
+  - id: acp-harness-list-explicit
+    finding_id: 2026-09-21-openhands-acp-harness-surfacing-becomes-an-explicit-per-harness-decision-the-acp-registry-pin-now
+    last_verified: 2026-09-23
+    status: active
+  - id: ui-ahead-of-server-pin
+    finding_id: 2026-09-21-openhands-provider-connections-ui-shipped-in-v1-15-0-ahead-of-the-server-api-it-works-from-v1-16-0
+    last_verified: 2026-09-23
+    status: active
 posture_basis:
   capability:
     - 2026-05-07-openhands-platform-hardening
@@ -130,424 +154,121 @@ posture_basis:
     - 2026-06-23-openhands-concurrency-limit-revert
     - 2026-06-23-openhands-channel-posture
 stance:
-  use_for: "Teams that want the platform to own sandboxing, evaluation, sub-agent posture, and RBAC rather than build their own, and that can run 1.11.0 or later. Also the strongest option on the watchlist if you want one enterprise shell across GUI, CLI, and SDK -- including the ability to put Claude Code, Codex, or Gemini CLI behind it over ACP."
-  avoid_for: "Self-hosting from the official install page, which still hands you the 1.8 image and calls it current, and for anything where a security fix reaching you on the vendor's own timetable matters. The open-source line was frozen for 26 days, tagged six times in four days, and has been frozen again since 2026-07-09 while six cloud tags shipped -- including the only tags carrying the HIGH-severity vite fix. Also avoid it if you want governance to live in your own codebase; OpenHands ships those decisions as platform defaults."
-  watch_next: "Whether PR #15217 (draft 1.12.0, clean and unmerged since 2026-07-09) ever merges and how long the second freeze runs; whether the install docs are ever bumped past 1.8; and whether the open-source line is now formally a periodic snapshot of the cloud line rather than a co-equal channel."
+  use_for: "Teams that want agent profiles as server-enforced scopes: which MCP servers (v1.19.0) and which saved secrets (v1.20.0) a launch can reach, plus a skill allow-list. One workspace that can put another harness behind it over ACP, with a surfaced harness list that matches the pinned agent server from v1.19.0."
+  avoid_for: "Any Canvas older than v1.20.0 where you set the Docker runtime: conversations ran on the host. Using the home model picker to override a profile you treat as a boundary. Previewing untrusted files in Canvas on v1.15.0 and later, where the PDF frame is unsandboxed. Relying on GitHub advisories to learn about OpenHands security fixes."
+  watch_next: "Docker execution workspaces reaching a tag (main-only at window close); whether security fixes start getting advisories; whether Canvas tags keep shipping pages before the pinned server can serve them; a live check that profile scopes hold in the running agent."
 ---
 
 # OpenHands
 
+OpenHands is on this watchlist as the workspace that fronts other agents. Its
+Agent Canvas can run OpenHands' own agent or hand the work to another harness
+over ACP, and around that it provides profiles, automations and team
+permissions. The question it raises for operators is whether a setting in the
+UI actually reaches the process doing the work. In this window, twice, it did
+not.
+
 ## Where it stands, 2026-09-21
 
-Latest in window is [v1.20.0](https://github.com/OpenHands/OpenHands/releases/tag/v1.20.0). Before it the Docker conversation runtime setting was ignored and conversations ran on the host. v1.19.0 and v1.20.0 made profiles enforceable scopes for MCP servers and secrets. Four security fixes shipped as plain pull requests. v1.15.0 carried the wrong-profile fix.
+**Channel.** The repository now ships Agent Canvas, published on GitHub and to
+npm as `@openhands/agent-canvas`, which stayed within about twelve minutes of
+each GitHub tag. Six stables shipped in the window, v1.15.0 (21 August) through
+[v1.20.0](https://github.com/OpenHands/OpenHands/releases/tag/v1.20.0) (17
+September), and each one fast-forwards the last. Main was 17 commits ahead at
+window close. Always cite the `v` prefix. The repository has two tags named
+1.11.0 from two different histories, and a tool that orders versions will get
+them wrong.
 
-## Operator Read
+**If you set the Docker runtime, upgrade to v1.20.0.** Before
+[#17462](https://github.com/OpenHands/OpenHands/pull/17462), Canvas dropped
+`OH_CONVERSATION_RUNTIME=docker` and started the bundled agent server in local
+mode. The box you configured was not there, and conversations ran on the host.
+v1.20.0 passes through runtime, image, memory, CPU, PID limits and startup
+timeout when they are set. After upgrading, confirm from the container list that
+the conversation process is inside a container. Docker execution workspaces
+were still main-only at window close.
 
-As of 2026-08-20 the installable tag is
-[v1.14.0](https://github.com/OpenHands/OpenHands/releases/tag/v1.14.0).
-The Git Sync page in that tag 404s against bundled automation 1.7.1.
-The silent wrong-profile fallback is still in that tag. Both the
-backend pin and the profile fix are in v1.15.0, published 21 August,
-outside this window.
+**Profiles became scopes.** Before
+[#17289](https://github.com/OpenHands/OpenHands/pull/17289) (v1.19.0), every
+profile could reach every configured MCP server, including ones that make
+changes. Now a profile lists the servers it may use.
+[#17237](https://github.com/OpenHands/OpenHands/pull/17237) (v1.20.0) limits a
+profile to all, none or chosen saved secrets. The agent server
+[advertises that capability](https://github.com/OpenHands/software-agent-sdk/blob/v1.49.1/openhands-agent-server/openhands/agent_server/server_details_router.py#L66)
+and enforces it, and Canvas does no filtering of its own. v1.16.0 already
+turned the skill catalog into an allow-list, with 11 of 59 skills on by default.
+So on v1.20.0 a read-only exploration profile, with no write-capable MCP
+servers and no deploy secrets, is finally something you can build. It has not
+been probed live. Launch the profile and check what the running agent actually
+holds.
 
-OpenHands is an enterprise operating environment that can front other harnesses:
-its Settings page will point the platform at Claude Code, Codex, Gemini CLI, or a
-custom command as the agent actually doing the work, under OpenHands' RBAC,
-sandboxing, and integrations. That positioning is intact and still the reason to
-consider it.
+**Launch from the profile, not the model picker.** v1.15.0 fixed the silent
+fallback to a different profile, and in the
+[same tag](https://github.com/OpenHands/OpenHands/releases/tag/v1.15.0) made
+the home model dropdown win over a profile's pinned model. When the two
+disagree, the profile's non-LLM configuration is dropped for that launch. If
+you use profiles as MCP or secret boundaries, do not override the model.
 
-The load-bearing fact for anyone deciding what to run is that the open-source
-release channel behaved like a valve this window rather than a pipeline. After 25
-days and 22 hours frozen at `1.8.0`, the line was tagged six times in four days,
-2026-07-06 through 2026-07-09, ending at
-[`1.11.0`](https://github.com/OpenHands/OpenHands/releases/tag/1.11.0). Then it
-stopped again. At window close there was no `1.12.0`, the default branch was
-[50 commits ahead](https://github.com/OpenHands/OpenHands/compare/1.11.0...main),
-six more cloud tags had shipped, and the release pull request for the
-open-source line had sat in draft, mergeable and clean, for eighteen days.
+**Security fixes arrive as ordinary pull requests.** The repo's advisory list
+has one entry, from March. Four fixes in the window got none.
+[#16961](https://github.com/OpenHands/OpenHands/pull/16961) (v1.17.0): the
+desktop app treated `http://localhost.evil.com` as its own URL, so an
+agent-written link could open an attacker's page inside an app window.
+[#17175](https://github.com/OpenHands/OpenHands/pull/17175) (v1.19.0): the
+static server injected runtime config unescaped, which allowed XSS, and let
+browsers cache pages that carried `sessionApiKey`.
+[#17060](https://github.com/OpenHands/OpenHands/pull/17060) (v1.17.0) bumps
+DOMPurify past a sanitization bypass.
+[#17134](https://github.com/OpenHands/OpenHands/pull/17134) (v1.17.0) is the
+approval-surface fix: a pending confirmation could render inside a collapsed
+event group, so the agent sat waiting on a person who could not see the
+prompt. Upgrade desktop installs to v1.17.0 and static-server installs to
+v1.19.0. If a proxy or shared browser may have cached a session key, rotate it.
 
-So the practical read has two halves and you need both. **Upgrade to `1.11.0`:**
-[`1.9.0`](https://github.com/OpenHands/OpenHands/releases/tag/1.9.0) drained the
-entire enterprise, ACP, and sandbox backlog this profile tracked as main-only for
-two windows, and closed 21 named advisories in a single tag. **Then accept that
-you are exposed again:** a HIGH-severity vite advisory is in cloud tags and in no
-open-source tag, and the official install page still tells a new self-hoster to
-pull the `1.8` image and calls it the most recent stable release.
+**The preview frame lost its sandbox.**
+[#16702](https://github.com/OpenHands/OpenHands/pull/16702) (v1.15.0) removed
+`sandbox="allow-same-origin"` from the file preview iframe so that PDFs render.
+Opening an agent-produced file in preview is now opening it in your browser.
+For untrusted repositories, download and inspect instead.
 
-That last one is the worst artifact on this profile. A self-hoster who follows
-the documented happy path today lands on the version that every advisory `1.9.0`
-closed still applies to.
+**Automations run as their creator.** v1.17.0 splits viewing automations from
+managing them and makes automations visible across the org.
+[v1.18.0](https://github.com/OpenHands/OpenHands/pull/17138) lets only the
+creator re-enable one, and shows "Automation Runs As", which is the creator's
+email. On team deployments, audit who created each automation. Git Sync works
+from v1.15.0, the first tag whose
+[pinned automation service](https://github.com/OpenHands/OpenHands/blob/v1.15.0/config/defaults.json)
+serves its endpoints.
 
-## Channel posture: thawed, then refrozen
+**A pattern worth one habit.** Twice now a Canvas tag has shipped a page before
+its pinned server could answer it: Git Sync in v1.14.0 and provider connections
+in v1.15.0, which work from v1.16.0. Before you test a new page, read the
+`agentServer` and `automation` pins in `config/defaults.json` at the tag.
 
-Every claim in this section is resolved by git ancestry against the dereferenced
-tag commit, not by version number or date.
+**ACP fronting got more honest.** Before
+[#17228](https://github.com/OpenHands/OpenHands/pull/17228) (v1.18.0), the
+credential form offered fields for harnesses Canvas never listed, because it
+read the SDK registry directly.
+[#17423](https://github.com/OpenHands/OpenHands/pull/17423) (v1.19.0) ties the
+UI's ACP registry to the agent server that launches the adapters, after it had
+drifted seven minor versions behind. On earlier tags, do not enter credentials
+for a harness that appears only in the credential form.
 
-### The thaw
+## What is unresolved
 
-Six open-source tags between 2026-07-06T15:05:19Z and 2026-07-09T19:37:16Z:
-`1.9.0`, `1.9.1`, `1.9.2`, `1.9.3`, `1.10.0`, `1.11.0`.
-[`1.9.0`](https://github.com/OpenHands/OpenHands/releases/tag/1.9.0) is the
-catch-up release, and its body names by hand the cluster this publication had
-been reporting as unreachable: first-signer-owns-default-org (#14752), BYOK
-gating (#14773), `hide_personal_workspaces` (#14741), the `PluginSpec` git-token
-redaction (#14795), the `DynamicRemoteSandboxSpecService` (#14849), and Slack
-attachments (#14934).
+- Whether profile MCP and secret scopes hold in a running agent. The evidence
+  so far is PR text and a capability flag. A launch that shows the denied tools
+  and secrets are missing would settle it.
+- Docker execution workspaces were on main, in no tag, at window close.
+- Whether enterprise surfaces this profile tracked before the Agent Canvas
+  consolidation, such as organization LLM profiles and API keys decoupled from
+  Keycloak, carry into the v1.x line unchanged. We did not recheck them
+  against v1.20.0.
 
-It also closed 21 distinct CVE and GHSA identifiers in one upgrade, across pyjwt,
-starlette, python-multipart, jupyter-server, dompurify, bleach, qs, ws, and
-protobufjs. The size of that batch is itself the measure of how long the line
-went untagged.
+## Profile hygiene
 
-One caution on reading a release body as a feature list: `1.9.0` also names
-`#14168` conversation limits, the per-org and per-user concurrency quota that
-[#14877 had already reverted](https://github.com/OpenHands/OpenHands/pull/14877)
-on 2026-06-17. Both the merge and its revert fall inside the tag range, and
-release-please enumerates merges rather than surviving behavior. Do not expect
-429-based per-tenant quotas in any 1.x; they are not there.
-
-### The correction we owe on authlib
-
-We reported the authlib fix for
-[CVE-2026-44681](https://github.com/advisories/GHSA-r95x-qfjj-fjj2) as main-only
-and framed it as cloud getting patched ahead of open source. On the second half
-we were wrong, and the ancestry says so plainly.
-[PR #14983](https://github.com/OpenHands/OpenHands/pull/14983) merged to `main`
-on 2026-06-29. `cloud-1.39.0` and `cloud-1.40.0` both predate it and do not carry
-it. The first tag on **any** line to carry the fix was open-source `1.9.0`, about
-ten minutes ahead of `cloud-1.41.0`. It sat main-only for seven days, not weeks.
-
-The vulnerability itself is narrower than "authlib CVE" suggests: an
-unauthenticated open redirect in the OIDC Implicit and Hybrid grants, where the
-`openid` scope check runs before `redirect_uri` is validated, so the resulting
-error carries the attacker's raw redirect and Authlib renders it as a 302. No
-tokens leak. The harm is a phishing link that shows your identity provider's
-domain at click time, with the provider issuing the redirect. Deployments running
-only the plain authorization-code flow are unaffected.
-
-### The refreeze
-
-Nothing has been tagged on the open-source line since `1.11.0` on 2026-07-09.
-The mechanism is pinned:
-[PR #15217](https://github.com/OpenHands/OpenHands/pull/15217), "chore(main):
-release 1.12.0", is open, `draft=true`, `mergeable_state=clean`, created
-2026-07-09T20:08:08Z and still updating at window close. Over the same eighteen
-days the cloud-line release pull requests were merged normally and appear as
-ordinary commits on `main`, producing `cloud-1.45.1` through `cloud-1.47.1`.
-
-An unmerged draft holds the open-source line while the cloud line ships on
-schedule. Read that as structural rather than as an oversight: after every
-catch-up burst, self-hosters should expect to re-enter the same unpatched window.
-
-### The new main-only advisory
-
-[PR #14982](https://github.com/OpenHands/OpenHands/pull/14982) fixed
-[CVE-2026-53571](https://nvd.nist.gov/vuln/detail/CVE-2026-53571)
-([GHSA-fx2h-pf6j-xcff](https://github.com/advisories/GHSA-fx2h-pf6j-xcff), High,
-CVSS 7.5) on `main` on 2026-07-16. It reached `cloud-1.47.0` on 2026-07-21 and no
-open-source tag. Manifest proof at the tag commits: `1.11.0` pins
-`vite: 7.3.2` in `frontend/package.json` `dependencies`, inside the advisory's
-vulnerable range of `>= 7.0.0, <= 7.3.4`; `cloud-1.47.1` and `main` pin `7.3.5`,
-the first patched 7.x.
-
-What it allows: an unauthenticated arbitrary file read that bypasses the vite dev
-server's `server.fs.deny` protection on Windows. The deny logic does not
-normalize NTFS alternate-data-stream forms or 8.3 short names before checking, so
-a request like `/.env::$DATA?raw` passes the check and Windows resolves it to the
-file's default data stream. Confidentiality only, no write and no execution, but
-the readable files are `.env` and `*.{crt,pem}`.
-
-Preconditions are narrow and worth checking rather than assuming: the vite **dev**
-server must be network-exposed, the sensitive file must sit inside
-`server.fs.allow`, and the host must be Windows with NTFS or 8.3 short names. The
-uncomfortable detail is that vite is a runtime `dependencies` entry in the
-OpenHands frontend, not a devDependency. On the open-source line there is no tag
-that fixes it. Your options are tracking `main` or pinning vite yourself.
-
-### The install page is the sharpest gap
-
-`OpenHands/docs`, file `openhands/usage/run-openhands/local-setup.mdx`, still
-instructs self-hosters to pull `docker.openhands.dev/openhands/openhands:1.8` and
-still says the command "pulls the most recent stable release of OpenHands." The
-file's last version bump was `6087832ee` on 2026-06-10, for `1.8.0`. The entire
-`1.9.x` through `1.11.0` burst was skipped. The
-[rendered page agrees](https://docs.openhands.dev/openhands/usage/local-setup),
-and it also pins `AGENT_SERVER_IMAGE_TAG=1.26.0-python` while `main` has since
-moved the SDK to
-[v1.37.1](https://github.com/OpenHands/OpenHands/pull/15378).
-
-Of every gap on this profile, that is the purest: a document that does not merely
-fail to describe the system but walks a new user into the version the project
-already fixed.
-
-*Findings: `2026-06-23-openhands-channel-posture`.*
-
-## What is on main and not in any open-source tag
-
-Everything below is confirmed on `main` and absent from `1.11.0`. All of it is
-carried by cloud tags only.
-
-- **Agent Canvas behind SaaS authentication.**
-  [PR #15286](https://github.com/OpenHands/OpenHands/pull/15286) (merged
-  2026-07-17) adds an optional `/canvas` proxy requiring existing SaaS auth,
-  registered before the SPA catch-all so the surface can be protected without a
-  dedicated subdomain. Gated on `AGENT_CANVAS_INTERNAL_URL`. An agent-facing
-  surface that previously needed its own access control is now authenticated by
-  the main app -- for cloud operators.
-- **MCP credentials being lost, fixed twice.**
-  [PR #15257](https://github.com/OpenHands/OpenHands/pull/15257) and
-  [PR #15285](https://github.com/OpenHands/OpenHands/pull/15285) preserve SaaS
-  credentials with encrypted storage and stop a settings GET round-trip from
-  stripping MCP auth secrets. Self-hosters on `1.11.0` still have the bug.
-- **Database pool churn.** LIFO pooling enabled, defaults lowered and made
-  env-tunable, `pool_size` default restored, and
-  [webhook callbacks stopped from starving the pool](https://github.com/OpenHands/OpenHands/pull/15379),
-  all between 2026-07-10 and 2026-07-24. Treat pool sizing on any tag in this
-  range as unsettled.
-- **Agent-profile launch behavior, applied then reverted.** Honoring profile
-  settings in cloud launches landed on 2026-07-16 and was reverted on 2026-07-21,
-  never reaching the open-source line at all. Do not build on agent-profile tool
-  selection yet.
-
-## Platform surfaces you inherit
-
-This is the durable read, now largely reachable on a tag. It is a short version
-of what earlier revisions of this profile spelled out at length; the ancestry
-detail lives in the diff log.
-
-**Fronting other harnesses over ACP.**
-[PR #14401](https://github.com/OpenHands/OpenHands/pull/14401) ships a Settings
-page that wires OpenHands to external Agent Client Protocol agents. While ACP is
-active, LLM, Condenser, and MCP settings grey out because the back-end agent owns
-them. Feature flag `ENABLE_ACP` defaults `false`. This is the cleanest evidence
-that OpenHands is positioning as the enterprise shell around third-party agents
-rather than only as a harness.
-
-**Org-level policy substrate.**
-[PR #14406](https://github.com/OpenHands/OpenHands/pull/14406) adds encrypted
-organization-level LLM profiles in SaaS mode, with six CRUD endpoints and
-two-tier permissions. Activate is the load-bearing operation: one transaction
-updates the org's active profile and the acting member's settings diff, with
-`SELECT ... FOR UPDATE` serializing concurrent writes.
-
-**Per-member isolation of agent settings.**
-[PR #14528](https://github.com/OpenHands/OpenHands/pull/14528) split agent
-settings into shared and private halves after MCP and `acp_env` configuration had
-been broadcast to every org member's row. Operators on pre-2026-05-22 deployments
-should still rotate MCP credentials added by individual members. The broadcast
-vector is now
-[structurally closed](https://github.com/OpenHands/OpenHands/pull/14921): the
-`acp_env` field was removed entirely by the SDK 1.29.0 pin, and ACP provider
-credentials ride the per-user Secrets panel.
-
-**Machine identity split from human SSO.**
-[PR #14867](https://github.com/OpenHands/OpenHands/pull/14867) decouples API-key
-auth from Keycloak offline sessions, so a revoked Keycloak session no longer
-invalidates an `sk-oh-...` key. That removes a class of opaque 401 lockouts for
-webhooks and headless clients, and it **changes the revocation contract**: IdP
-session revocation is no longer a kill switch for machine keys. Revoke at the key
-store instead.
-
-**A per-user conversation secret enricher.**
-[PR #14697](https://github.com/OpenHands/OpenHands/pull/14697), stacked on
-[#14650](https://github.com/OpenHands/OpenHands/pull/14650), injects a user's
-linked third-party OAuth token into the sandbox at conversation start, and not
-only from the originating integration. Jira Data Center is the first consumer;
-the primitive is architectural. The cost is blast radius: any conversation a user
-starts can carry that user's linked identity into the sandbox, and sandbox-side
-actions inherit those permissions. Jira-triggered conversations are validated
-before launch; web, Slack, and API paths are best-effort with no service-account
-fallback.
-
-**Sandbox-spec authority moved to a control plane.**
-[PR #14849](https://github.com/OpenHands/OpenHands/pull/14849) fetches available
-sandbox specs from runtime-api's `GET /api/warm-runtime-configs` rather than a
-hardcoded preset list, with a 60-second cache and a default selected by config
-name. A companion guardrail
-([#14883](https://github.com/OpenHands/OpenHands/pull/14883)) refuses a custom
-image whose agent-server SDK version does not match the app's pinned
-`openhands-sdk`. What image agents execute in is now a runtime-api concern, and
-trust flows from its warm configs.
-
-**Sub-agents and critic scoring, both opt-in.** Behind
-[`enable_sub_agents`](https://github.com/OpenHands/OpenHands/pull/14122)
-(default off), work routes to built-in specialists -- `bash-runner`,
-`code-explorer`, `general-purpose`, `web-researcher` -- with tool surfaces
-declared by `TaskToolSet`; custom sub-agents live in `.agents/agents/*.md`.
-Whether those tool restrictions are runtime-enforced or instruction-level is
-still not established by public evidence, and after this window's field-wide
-lesson about controls that read like boundaries, that is the question to answer
-before relying on one. The
-[`CriticResult`](https://github.com/OpenHands/OpenHands/pull/14133) GUI is an
-evaluation surface, not a verdict; turn it on only if you can route the extra
-model spend separately and test whether the score predicts something your team
-already cares about.
-
-**Reach and dependencies.** GUI, CLI, SDK, and hosted cloud, with Slack, Jira,
-Linear, and GitHub integrations, plus
-[self-hosted GitLab](https://github.com/OpenHands/OpenHands/commit/4e63531fa6595ec55102f08ef129845931fcd8ff).
-Docker and container support are required for the sandbox model.
-
-*Findings: `2026-05-27-openhands-acp-ui-and-org-llm-profiles`,
-`2026-06-23-openhands-acp-env-leak-closed`,
-`2026-06-23-openhands-apikey-keycloak-decouple`,
-`2026-06-23-openhands-conversation-secret-enricher`,
-`2026-06-23-openhands-dynamic-sandbox-spec-service`,
-`2026-05-12-openhands-subagent-delegation-and-critic-evaluation`,
-`2026-05-07-openhands-platform-hardening`.*
-
-## Security posture
-
-Credential handling shows active maintenance rather than assumed defaults:
-[log redaction](https://github.com/OpenHands/OpenHands/commit/61e3dc2cadbefd4e0649b7c141ac2335c021ad2b)
-scrubs credential patterns before write, ACP subprocesses
-[receive injected secrets](https://github.com/OpenHands/OpenHands/commit/cf156b0073350ca8e93067bc2f4ae18b90537a0a)
-without the primary agent context carrying them, and debug logging of hook
-configuration secrets was
-[removed](https://github.com/OpenHands/OpenHands/commit/0c6c461555f8651347ed140f1c555ff8a88ddf56).
-
-The pattern is fixes-as-they-ship, tracked in commit history rather than in a
-published security policy, and this window shows the cost of that: the two
-advisories that mattered most to a self-hoster were legible only by reading
-`pyproject.toml` and `frontend/package.json` at the tag commits. There is no
-surface that tells an operator which advisories their installed version carries.
-
-## What the public conversation added
-
-Nothing, and that is the finding worth recording. Twenty-four public claims about
-OpenHands were adjudicated against the primary record this window: none was
-confirmed in full and none was refutable, because the conversation was about
-benchmark scores, funding, energy studies, and product surfaces in other
-repositories.
-
-Zero posts mentioned the tag freeze, the draft `1.12.0`, the install page still
-pointing at `1.8`, or the cloud-only vite advisory. One release-tracker post got
-the mechanism of a real fix exactly right and attached it to "v1.37.1", which is
-the software-agent-SDK version, not an OpenHands tag -- the open-source line has
-no such release, and the fix it described is main-only. An operator who acted on
-that post by upgrading would get nothing, because there is nothing to upgrade to.
-
-On the single most operator-consequential property of this project, the
-conversation layer is not late. It is blind. Use the tag list, not the timeline.
-
-## What you are trading
-
-Adopt OpenHands when you want the platform to own sandboxing, evaluation,
-identity, and sub-agent posture, and when parity across GUI, CLI, and SDK matters
-more than building your own thin layer. Skip it when you want governance to live
-in your own codebase, because these are platform defaults rather than knobs you
-bolt on.
-
-Add one trade this window made explicit: you are also choosing a release channel
-whose timing you do not control and whose lag is not announced. The features are
-real, the sandboxing is real, and the version of both that you can install is
-decided by a draft pull request. Budget for tracking `main` or for accepting a
-known exposure window, and decide which before you deploy rather than after the
-next advisory.
-
-*Posture basis: `2026-05-07-openhands-platform-hardening`,
-`2026-05-12-openhands-subagent-delegation-and-critic-evaluation`,
-`2026-05-27-openhands-acp-ui-and-org-llm-profiles`,
-`2026-06-23-openhands-apikey-keycloak-decouple`,
-`2026-06-23-openhands-conversation-secret-enricher`,
-`2026-06-23-openhands-dynamic-sandbox-spec-service`,
-`2026-06-23-openhands-concurrency-limit-revert`,
-`2026-06-23-openhands-channel-posture`.*
-
-## Open questions
-
-What this window answered:
-
-- **When does the next 1.x consolidate the enterprise build-out?** Answered:
-  `1.9.0` on 2026-07-06 did, and named the cluster explicitly. The two-window
-  channel gap this profile carried is closed for everything merged before
-  2026-07-09.
-- **Was cloud patched ahead of open source on authlib?** Answered: no. Open-source
-  `1.9.0` was the first tag on any line to carry it. We corrected our own framing
-  above.
-- **Is `hide_personal_workspaces` an access boundary?** Answered: no. It filters
-  the org list and selector; the orgs API still returns personal orgs. It is now
-  shipped in `1.9.0`, which changes its reach but not its meaning. Do not treat it
-  as access control. *Findings:
-  `2026-06-23-openhands-hide-personal-workspaces-ui-only`.*
-- **Will per-tenant concurrency quotas return?** No sign of it. The DB-backed
-  feature was reverted and its columns dropped; the surviving path is
-  runtime-`/list` sandbox cleanup, which is not a policy quota.
-
-Still open:
-
-- Does [#15217](https://github.com/OpenHands/OpenHands/pull/15217) ever merge, and
-  how many days does the second freeze run? It has been clean and unmerged since
-  2026-07-09.
-- Is the open-source line now formally a periodic snapshot of the cloud line
-  rather than a co-equal channel? The `release-line: gui` label on #15217 suggests
-  release-please treats them as separately configured lines, which would make the
-  asymmetry a policy rather than an accident.
-- Do the install docs get bumped when `1.12.0` lands, or does `openhands:1.8`
-  persist as the documented target? The docs repo skipped three tags without
-  anyone noticing.
-- When OpenHands fronts Claude Code, Codex, or Gemini CLI via ACP, how do the
-  org-level LLM profile and the back-end agent's own policy surfaces compose?
-  OpenHands greys out LLM, Condenser, and MCP settings because the back-end owns
-  them, but the org profile still declares preferences. The resolution rule is
-  undocumented.
-- Are custom sub-agent tool lists enforced at runtime, or is `TaskToolSet` an
-  instruction-level restriction? Code or a runtime probe would settle it. See
-  #14122 and SDK PR #2948.
-- For the conversation secret enricher: which best-effort start path leaks which
-  linked credential into a sandbox, and when does the service-account fallback
-  land? There is no consolidated matrix.
-- Does the runtime-api warm-config control plane change the sandbox *security*
-  boundary or only its provisioning path? The boundary semantics are not
-  documented.
-- With API-key validity decoupled from the IdP session, what is the authoritative
-  key-store revocation path and its propagation latency? The deauth contract moved
-  and the runbook has not been published.
-- Can an operator set platform-wide policy on sub-agents and critic in multi-user
-  deployments, or must each user opt in individually?
-- Does the KVM sandbox path (`SANDBOX_KVM_ENABLED`) change the security boundary,
-  or only startup latency?
-
-## What to watch next
-
-- **Whether the second freeze breaks.** This is the whole story. Watch for a
-  `1.12.0` tag, and count the days from 2026-07-09 when it arrives. If the gap
-  matches the first freeze, the pattern is confirmed as the project's normal
-  operating mode rather than a backlog artifact.
-- **Whether the vite fix reaches an open-source tag,** and whether any future
-  cloud-only security fix is announced as such. Right now the only way to know is
-  to diff `frontend/package.json` between tags.
-- **Whether the docs repo ever tracks the tag line again.** A single version bump
-  would resolve the worst operator hazard on this profile.
-- Whether the per-user conversation secret enricher grows a service-account
-  fallback, and which start paths get tightened from best-effort to validated.
-- The custom-sandbox-image program: how the runtime-api warm-config plane composes
-  with per-tenant trust after #14849, #14883, and the lockstep SDK pin.
-- The `acp_providers` registry: which back-end agents land first, and which take
-  longer. The order is a signal about OpenHands' positioning relative to each
-  provider.
-- The composition question, still unanswered across three windows: when OpenHands
-  fronts Claude Code over ACP, which side's policy wins? This is the schema-shape
-  question recorded in amendment-006.
-- Whether RBAC, usage reporting, and budgeting extend to cover sub-agent
-  delegation and critic evaluation spend.
-
-## Profile Hygiene
-
-This profile follows the profile discipline defined in
-[METHOD.md](../../METHOD.md#the-object-grammar): every concrete claim in the prose
-has an inline source link; posture sections may interpret freely but cite finding
-IDs when naming a specific feature, behavior change, or cross-project comparison.
-
-Note on this revision. The 2026-07-02 to 2026-07-27 material is carried in prose
-with pinned receipts and is not registered in the `claims:` block. The registered
-claims continue to describe the platform build-out through 2026-06-23; what
-changed this window is their *channel*, not their content, and the ancestry proof
-for that lives in the run's harvest. Where a release-body claim is load-bearing it
-is backed by manifest evidence at the tag commit rather than by the body alone:
-`authlib = ">=1.6.12,!=1.7.0"` in `pyproject.toml` at `1.9.0`, and `vite: 7.3.2`
-in `frontend/package.json` at `1.11.0` against `7.3.5` at `cloud-1.47.1`.
-
-Earlier revisions of this profile carried the full ancestry narrative for the
-main-unreleased period. That material has been collapsed now that `1.9.0` shipped
-it; git history is the audit trail.
+Dated, not evergreen. Every claim above resolves to a finding in
+[the run that produced it](/runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/),
+and this page says what was true on the date at the top. See
+[METHOD.md](https://github.com/sheetgenius/frontier/blob/main/METHOD.md) for
+the evidence contract.

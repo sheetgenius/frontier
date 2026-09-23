@@ -7,7 +7,7 @@ source_contract: sources/claude-code.yml
 homepage: https://claude.ai/code
 docs: https://code.claude.com/docs/en/overview
 changelog: https://code.claude.com/docs/en/changelog
-tagline: "Background work on a leash whose clasp only locks once you test it."
+tagline: "The classifier that replaced the permission prompt now runs on Anthropic's servers by default, and the stable channel is a pointer someone moves."
 compared_with:
   - codex
   - gemini-cli
@@ -20,7 +20,7 @@ surface_class: closed_source_release_notes
 evidence_floor: release_note
 status: active_watch
 last_updated: 2026-09-21
-last_full_review: 2026-08-20
+last_full_review: 2026-09-23
 claims:
   - id: server-side-classifier-default
     finding_id: 2026-09-21-claude-code-2-1-278-auto-mode-classifier-moves-server-side-by-default
@@ -118,6 +118,50 @@ claims:
     finding_id: 2026-06-23-claude-code-mcp-cli-login-logout
     last_verified: 2026-06-23
     status: active
+  - id: repo-settings-lose-tracing-and-env
+    finding_id: 2026-09-21-claude-code-2-1-251-repository-settings-lose-tracing-env-and-a-symlink-toctou-closes
+    last_verified: 2026-09-23
+    status: active
+  - id: per-command-egress-hosts
+    finding_id: 2026-09-21-claude-code-2-1-271-model-names-its-own-egress-hosts-subagent-output-framed-as-subagent
+    last_verified: 2026-09-23
+    status: active
+  - id: deny-rules-extended-and-reverted
+    finding_id: 2026-09-21-claude-code-deny-rules-extended-into-bash-and-reverted-twice
+    last_verified: 2026-09-23
+    status: active
+  - id: auto-mode-starting-mode-isolation-none
+    finding_id: 2026-09-21-claude-code-auto-mode-is-the-starting-mode-and-docs-list-isolation-needed-none
+    last_verified: 2026-09-23
+    status: active
+  - id: claude-ai-skills-plugins-sync
+    finding_id: 2026-09-21-claude-code-claude-ai-skills-and-plugins-sync-into-terminal-sessions-by-default
+    last_verified: 2026-09-23
+    status: active
+  - id: managed-lists-fail-closed
+    finding_id: 2026-09-21-claude-code-managed-mcp-and-policy-lists-go-fail-closed-allowedmcpservers-semantics-flip
+    last_verified: 2026-09-23
+    status: active
+  - id: agents-md-and-task-tools-removed
+    finding_id: 2026-09-21-claude-code-agents-md-support-and-task-scaffolding-removed-for-current-models
+    last_verified: 2026-09-23
+    status: active
+  - id: gateway-key-telemetry-and-cloud-uploads
+    finding_id: 2026-09-21-claude-code-gateway-key-sent-to-telemetry-and-credential-files-uploaded-to-cloud-sessions
+    last_verified: 2026-09-23
+    status: active
+  - id: effort-model-cost-governance
+    finding_id: 2026-09-21-claude-code-effort-model-and-cost-governance-and-claude-plugin-eval
+    last_verified: 2026-09-23
+    status: active
+  - id: plugin4shell-silent-fix
+    finding_id: 2026-09-21-claude-code-plugin4shell-disclosed-in-window-fix-shipped-in-2-1-179-with-a-silent-changelog
+    last_verified: 2026-09-23
+    status: active
+  - id: restricted-and-prompts-none
+    finding_id: 2026-09-21-claude-code-restricted-and-permission-prompts-none-refuse-instead-of-asking
+    last_verified: 2026-09-23
+    status: active
 posture_basis:
   capability:
     - 2026-05-06-claude-code-review-recap-plugin-surfaces
@@ -140,344 +184,152 @@ posture_basis:
     - 2026-06-23-claude-code-scheduled-trigger-input-classification
     - 2026-06-23-claude-code-background-subagent-permission-prompts
 stance:
-  use_for: "Use Claude Code when supervising several sessions from one screen is the bottleneck, or when work should keep moving against a named completion condition after you leave the terminal. Set the fan-out ceilings rather than inheriting them: per-session subagent and WebSearch caps default to 200, concurrent subagents to 20, and the nesting-depth default changed twice in three days during July."
-  avoid_for: "Do not treat the `stable` channel as a safety posture, and do not treat a written permission rule, plan mode, or `isolation: 'worktree'` as a boundary you have not personally tested. At the 2026-07-27 window close `stable` served 2.1.212, which lacks the v2.1.214 batch of permission checks that had been failing open; plan mode ran file-modifying Bash with no prompt before 2.1.212; worktree and directory isolation leaked three separate ways in eleven days. Separately, do not procure on the assumption that Console / API auth unlocks the cloud-control surfaces -- Remote Control, `/schedule`, and claude.ai MCP connectors disable themselves under `ANTHROPIC_API_KEY`, `apiKeyHelper`, or `ANTHROPIC_AUTH_TOKEN` and require Claude.ai subscription identity."
-  watch_next: "Whether `stable` ever carries the 2.1.214 permission repairs, and whether Anthropic ever routes an authority repair through the advisory feed instead of a changelog line -- across eight authority-repairing releases in July it published none. Also whether the official What's New digest resumes past Week 29, and what the auto-mode classifier actually refuses now that it adjudicates dangerous `rm`, background `&`, and suspicious Windows paths that used to reach a human."
+  use_for: "Supervised background work where auto mode's classifier stands in for most permission prompts, and headless jobs that must refuse rather than ask: `--restricted -p` for graders and untrusted-input review, `--permission-prompts none` for CI. Managed settings now fail closed when unreadable, which makes fleet policy worth writing down."
+  avoid_for: "Treating auto mode as isolation: the vendor's own permission-modes page lists isolation needed as none. Treating `stable` as a one-week soak: it held one build for eighteen days and then jumped 23 versions. Opening untrusted repositories outside a container while the second GitSpawn path has no named fix. Relying on a deny rule you have not run a command against on the build you actually have."
+  watch_next: "A changelog line or advisory naming a fix for the GitSpawn ultrareview path; which platforms and regions actually run the server-side classifier; whether either reverted deny-rule extension re-lands; when stable picks up 2.1.268 and later; whether `CLAUDE_CODE_AUTO_MODE_SERVER` is removed, as the docs say it may be."
 ---
 
 # Claude Code
 
+Claude Code is on this watchlist because it is where a classifier replaced
+the permission prompt as the default. Auto mode is the starting mode on Pro,
+Max and Team, so for many users a model, not a person, now decides which tool
+calls run. The product is closed source, and its changelog is the only record
+of what that judge and the rules around it do. We pin that record at
+[commit 8187baaaafb3](https://github.com/anthropics/claude-code/blob/8187baaaafb3/CHANGELOG.md).
+
 ## Where it stands, 2026-09-21
 
-Stable is [2.1.267](https://github.com/Homebrew/homebrew-cask/commit/67ec5aa16a) and latest is [2.1.278](https://github.com/anthropics/claude-code/releases/tag/v2.1.278). The stable pointer held 2.1.236 from about 28 August to 15 September, then jumped 23 versions. 2.1.278 makes the server-side auto-mode classifier the default on API, Enterprise, cloud and gateway sessions; gateways must pass the `safeguards` and `safeguard_results` fields. 2.1.257 stops a project file putting a clone into bypass mode. Deny rules were extended into Bash twice and reverted twice. The permission-modes page lists auto mode's isolation needed as none. Manifold reports a second GitSpawn path still running on 2.1.252, and no changelog line through 2.1.278 names a fix.
+**Channel.** It installs from npm as `@anthropic-ai/claude-code`, from the
+native installer, or from the Homebrew cask, and all three follow two
+pointers. At window close `stable` was 2.1.267 and `latest` was
+[2.1.278](https://github.com/anthropics/claude-code/releases/tag/v2.1.278),
+after 32 versions in the window. The
+[setup page](https://code.claude.com/docs/en/setup#configure-release-channel)
+says stable is "typically about one week old." In practice the cask that
+follows it sat on 2.1.236 from
+[28 August](https://github.com/Homebrew/homebrew-cask/commit/7506a05707) to
+[15 September](https://github.com/Homebrew/homebrew-cask/commit/67ec5aa16a),
+then skipped 23 versions in one hop. Stable is a pointer someone moves, not
+a lag. Pin `minimumVersion` to the build that carries the fix you need.
+Stable 2.1.267 has the September authority batch below and lacks everything
+from 2.1.268 on.
 
-## Operator Read
+**The judge moved to the server.**
+[2.1.278](https://github.com/anthropics/claude-code/releases/tag/v2.1.278)
+makes the server-side classifier the auto-mode default for API, Enterprise,
+Bedrock, Vertex, Foundry and gateway sessions. The check rides inside the
+session's own model request, and Anthropic
+[stops billing for it](https://code.claude.com/docs/en/auto-mode-classifier-billing).
+Four days earlier 2.1.273 had set the local classifier as the default on the
+three clouds, and `CLAUDE_CODE_AUTO_MODE_SERVER` changed meaning between the
+two: `=1` opted in on 15 September, `=0` opts out now. A gateway that strips
+the `safeguards` request field or the `safeguard_results` response field
+holds each session's first checked action on a notice, which stalls a `-p`
+run. Pass both through, or set the variable to `0` and keep paying for the
+local classifier. The docs call the variable temporary. Which classifier
+decided shows up only in `/status` and a stream-json `system` warning; put
+that in your run records.
 
-**Last material change: [`v2.1.214`](https://github.com/anthropics/claude-code/releases/tag/v2.1.214),
-2026-07-18 -- a batch of permission checks that had been failing open. At window
-close it was not in the `stable` channel.**
+**Auto mode is a review layer, not a wall.** Anthropic's
+[permission-modes page](https://code.claude.com/docs/en/permission-modes)
+lists isolation needed for hands-off auto mode as "None; a sandbox or
+container adds defense in depth." On 26 August Johann Rehberger
+[drove Claude Code on Opus 5 in auto mode](https://embracethered.com/blog/posts/2026/breaking-claude-code-opus-5-and-automode/)
+from a web page to code execution, reporting 60 to 80 percent success, and
+says Anthropic closed the report because auto mode is not a security
+boundary. That is his account, not a vendor statement. Either way, a session
+that reads untrusted content belongs in the sandbox or a container.
+[2.1.271](https://github.com/anthropics/claude-code/releases/tag/v2.1.271)
+also changed who proposes egress: in sandboxed auto mode the model names the
+hosts a command needs, the classifier approves them with the command, and
+any other host is refused with no prompt. A managed `strictAllowlist` still
+overrides that.
 
-The first Claude Code question as of 2026-07-27 is not which feature to use. It
-is which build you are running, because the two documented channels disagreed
-about whether the permission system works. `stable` served `2.1.212` and
-`latest` served `2.1.220`, eight releases and eight days apart, and `v2.1.214`
-sits in the gap. [Channel semantics](https://code.claude.com/docs/en/setup#configure-release-channel)
-put `stable` about a week behind by design. Anyone running
-`"autoUpdatesChannel": "stable"`, the Homebrew `claude-code` cask, or the apt,
-dnf, or apk `stable` repository did not have the fixes.
+**A clone can no longer choose your mode.**
+[2.1.257](https://github.com/anthropics/claude-code/releases/tag/v2.1.257)
+ignores `bypassPermissions` from project and local settings. Before it, a
+`permissions.ask` rule was skipped in auto mode when the command sat inside a
+compound or subshell, so an ask rule was not a human checkpoint. Dismissing
+the Remote Control consent prompt counted as consent.
+[2.1.251](https://github.com/anthropics/claude-code/releases/tag/v2.1.251)
+took raw API body logging, tracing endpoints and `CLAUDE_CONFIG_DIR` away from
+a repository's `.claude/settings.json`. Grep the repos your fleet clones for
+`env` and tracing keys, and rotate anything a raw-body log could have caught.
 
-What was failing open is worth naming, because every item reads like a boundary
-when you write it. `Edit(src/**)` auto-approved writes to a nested `src/`
-anywhere in the tree instead of only `<cwd>/src`. Commands in Windows PowerShell
-5.1 sessions bypassed the check. Bash file-descriptor redirect forms that bash
-parses one way and the permission analyzer parsed another ran unprompted, as did
-commands over ten thousand characters, zsh variable subscripts inside `[[ ]]`
-treated as inert text, and `help` and `man` invocations able to carry unsafe
-options and command substitutions. Six ways to write a rule that reads exactly
-like a boundary and was not one, repaired in a single release, announced as
-ordinary changelog prose.
+**Test the deny rule you rely on.** Anthropic extended `Read()` deny rules
+into Bash twice and
+[reverted](https://github.com/anthropics/claude-code/releases/tag/v2.1.260)
+[both](https://github.com/anthropics/claude-code/releases/tag/v2.1.273), each
+time because a build command started failing. At 2.1.278 a deny binds on the
+file tools, `< file` redirects, recognized reader commands, `tee` targets and
+symlinked path spellings. It does not bind on arbitrary Bash arguments, and
+lines the checker cannot parse, such as `eval`, prompt. Run `cat < .env`,
+`tac .env` and `eval "cat .env"` on your build and write down what happens.
+The answers differ between stable and latest.
 
-The action has two parts and the second is the one people skip. Move to
-`latest`, or pin `minimumVersion` to `2.1.214` -- a floor that auto-update and
-`claude update` refuse to go below, enforceable org-wide from managed settings.
-Then write a deny rule, run the command it forbids, and watch what happens. On
-this surface an announced permission feature is not a permission boundary until
-something refuses.
+**Managed settings fail closed, with one flip.**
+[2.1.259](https://github.com/anthropics/claude-code/releases/tag/v2.1.259)
+refuses to start on an unparseable managed-settings file, where before the
+fleet ran silently unmanaged. Fix syntax before rolling it. The same release
+stops `allowedMcpServers` filtering servers an org ships in
+`managed-mcp.json`, so an excluded server loads on upgrade; move exclusions
+to `deniedMcpServers`. On fleets that layer MDM over server-managed settings,
+MCP deny lists were ignored until 2.1.273, which stable does not have.
 
-The rest of the window rhymes. Remote managed settings delivered to a
-non-interactive run were
-[recorded as consented without the dialog ever appearing](https://github.com/anthropics/claude-code/releases/tag/v2.1.207)
-before `v2.1.207`, so any fleet where a user ran `claude -p` or the SDK holds a
-consent record that is fiction. Plan mode was
-[running file-modifying Bash with no prompt](https://github.com/anthropics/claude-code/releases/tag/v2.1.212)
-until `v2.1.212`, so it was never the read-only containment boundary operators
-used it as. Worktree and directory isolation leaked three distinct ways in
-eleven days. The delegation default reversed twice in three days. And across
-eight releases that repaired authority boundaries, Anthropic published
-[zero security advisories](https://github.com/anthropics/claude-code/security/advisories);
-a patch process triggered by CVEs or GHSAs did not fire once in July. The
-official [What's New digest](https://code.claude.com/docs/en/whats-new) stops at
-Week 29, so `v2.1.214` through `v2.1.220` -- the stretch holding all of the
-above -- has no vendor summary at all. Read the changelog line by line or read
-nothing.
+**What comes in from outside.**
+[2.1.275](https://github.com/anthropics/claude-code/releases/tag/v2.1.275)
+syncs the skills and plugins enabled on a claude.ai account into terminal
+sessions by default. An admin-installed plugin becomes code on every signed-in
+machine; `syncClaudeAiPlugins: false` stops it. Two credential leaks closed
+earlier:
+[2.1.246](https://github.com/anthropics/claude-code/releases/tag/v2.1.246)
+stopped sending a third-party gateway's API key to Anthropic's telemetry,
+so rotate keys that ran before it, and 2.1.248 stopped `/ultrareview` and
+seeded cloud sessions uploading uncommitted `*.tfvars` and key backups.
 
-Underneath the repairs the product's direction is unchanged. Claude Code is a
-supervised background-work system in which auto mode is the default permission
-posture, and this window auto mode
-[absorbed three more decisions that used to reach a human](https://github.com/anthropics/claude-code/releases/tag/v2.1.218):
-dangerous `rm`, background `&`, and suspicious Windows paths now go to the
-classifier instead of a dialog. The cross-project reading of this window is in
-[Rules Became Judgment](/digests/2026-07-02_2026-07-27-weekly/); the
-Claude Code case is written up as its own
-[signal](/signals/2026-07-27-claude-code-permission-rules-did-not-refuse/).
+**Headless jobs can now refuse.**
+[`--restricted`](https://github.com/anthropics/claude-code/releases/tag/v2.1.248)
+strips command execution and WebFetch and reads no user or project settings.
+[`--permission-prompts none`](https://github.com/anthropics/claude-code/releases/tag/v2.1.259)
+turns any would-be prompt into a denial. Both are on stable. Use the first
+for graders, the second for CI.
 
-## Run It Differently
+**Scaffolding came out.**
+[2.1.268](https://github.com/anthropics/claude-code/releases/tag/v2.1.268)
+stopped offering the task-tracking tools on current models, and
+[2.1.277](https://github.com/anthropics/claude-code/releases/tag/v2.1.277)
+removed TaskOutput and reads `AGENTS.md` when a project has no CLAUDE.md
+(not yet on Bedrock, Vertex or Foundry). Parsers keyed on TodoWrite lose
+their signal.
 
-Set the fan-out ceilings rather than inheriting them.
-[`v2.1.212`](https://github.com/anthropics/claude-code/releases/tag/v2.1.212)
-added the first hard per-session caps -- 200 WebSearch calls
-(`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`) and 200 subagent spawns
-(`CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION`, reset by `/clear`) -- and
-[`v2.1.217`](https://github.com/anthropics/claude-code/releases/tag/v2.1.217)
-added a concurrency cap of 20 (`CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS`). Spawn
-depth is the one to set explicitly: `v2.1.217` turned nested subagents off by
-default and
-[`v2.1.219`](https://github.com/anthropics/claude-code/releases/tag/v2.1.219)
-turned them back on at depth 3 three days later. `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1`
-disables nesting. Note also that `--max-budget-usd` did not stop background
-subagents until `v2.1.217`; before that the cap was advisory.
+**Fixes arrive unannounced.** The
+[advisory list](https://github.com/anthropics/claude-code/security/advisories)
+has nothing since 25 June. AIR Security's Plugin4Shell was fixed in 2.1.179,
+and that
+[changelog entry](https://github.com/anthropics/claude-code/blob/8187baaaafb3/CHANGELOG.md)
+does not mention it. Read the changelog line by line.
 
-Add an explicit review step. As of
-[`v2.1.215`](https://github.com/anthropics/claude-code/releases/tag/v2.1.215)
-Claude no longer runs `/verify` or `/code-review` on its own, and `v2.1.218` did
-the same for `/deep-research`. If your quality bar assumed implicit self-review,
-it stopped on 2026-07-19; wire the command into a hook or a workflow step or the
-review stops happening.
+## What is unresolved
 
-Re-baseline anything tied to the model. `v2.1.219` made
-`claude-opus-5` the default Opus model with 1M context and fast mode at $10/$50
-per Mtok, and merged the `/model` picker row. Upgrading past `v2.1.218` silently
-moves your default model and your context window; pin explicitly if "Opus" meant
-a specific model in your evals or cost model.
+- **The second GitSpawn path.**
+  [Manifold reports](https://www.manifold.security/blog/ai-coding-agents-git-hijack)
+  an ultrareview path that ran a repository's git config before the trust
+  prompt, still reproducing on 2.1.252. No changelog line through 2.1.278
+  names a fix, and the silent Plugin4Shell fix means that is not proof it is
+  open. A changelog line or advisory settles it. Until then, open untrusted
+  repositories in a container.
+- **Where the server-side classifier runs.** The billing page says it depends
+  on each platform's rollout and names none.
+- **Whether auto mode is a boundary.** The docs say no isolation is needed;
+  the researcher says the vendor told him it is not a boundary. No vendor
+  document reconciles the two.
 
-Wire `mcp_server_errors` into headless pipelines. The stream-json init event
-(`v2.1.219`) now lists `--mcp-config` entries that config validation silently
-dropped, with a startup warning in terminal runs. Before this the failure was
-invisible.
+## Profile hygiene
 
-Use [`claude agents`](https://code.claude.com/docs/en/agent-view) when terminal
-juggling is the bottleneck: scattered sessions become a supervised queue with
-visible state and background worktrees, and `disableAgentView` is available as a
-managed setting. `/fork` now copies a conversation into its own background
-session with its own row; the in-session subagent it used to launch is
-`/subtask`. Treat [`/goal`](https://code.claude.com/docs/en/changelog#2-1-139)
-as a handoff primitive rather than a command, and
-[`/ultrareview`](https://code.claude.com/docs/en/ultrareview) as the cloud
-review fleet for when the queue rather than authorship is the constraint. All
-three remain Research Preview or preview-shaped surfaces.
-
-Authenticate MCP connectors headlessly with
-[`claude mcp login`/`logout`](https://code.claude.com/docs/en/changelog#2-1-186)
-when a CI or SSH pipeline cannot open the interactive `/mcp` menu; the
-`--no-browser` stdin-redirect path completes OAuth over SSH.
-
-Enterprise operators have one genuinely new lever:
-[`CLAUDE_CODE_PROCESS_WRAPPER`](https://github.com/anthropics/claude-code/releases/tag/v2.1.208)
-(`v2.1.208`) is the first documented way to force every Claude Code self-spawn
-through your own executable. The same release fixed integer environment
-variables written in scientific notation silently using the mantissa, so `1e6`
-was being enforced as `1`. Audit those before you trust any budget you set that
-way.
-
-## Governance Boundaries
-
-**The permission checks that did not refuse.** Nine classes of check were
-failing open before
-[`v2.1.214`](https://github.com/anthropics/claude-code/releases/tag/v2.1.214)
-(2026-07-18): single-segment `dir/**` allow rules matching nested directories
-anywhere in the tree, Windows PowerShell 5.1 sessions, Bash file-descriptor
-redirect forms, commands over 10,000 characters, zsh variable subscripts and
-modifiers in `[[ ]]`, `help` and `man` with unsafe options or command
-substitutions, remote-session prompts that could proceed before the local
-confirmation dialog, `docker` daemon-redirect flags including the Podman shim,
-and `file` with `-m`/`--magic-file` or `-f`/`--files-from`. The same release
-carries a silent break in the other direction: single-segment `dir/**` hook
-`if:` conditions now match only `<cwd>/dir`, so every such hook fires less than
-it used to. Write `**/dir/**` for any-depth matching. `deny` and `ask`
-permission rules keep their any-depth match.
-[`v2.1.216`](https://github.com/anthropics/claude-code/releases/tag/v2.1.216)
-continued the same repair: Bash permission checking for compound statements with
-redirects inside `&&` lists or negations, and PowerShell validation for commands
-containing invisible Unicode characters.
-
-**Consent that was never given, and authority leaving the repository.** Before
-[`v2.1.207`](https://github.com/anthropics/claude-code/releases/tag/v2.1.207)
-(2026-07-11), remote managed settings reaching a non-interactive run (`claude
--p`, the SDK) were permanently recorded as consented without the security
-consent dialog ever being shown. Re-audit which settings your fleet is actually
-running under. The same release strips authority from repository-resident files:
-plugin option values (`pluginConfigs`) are no longer read from project
-`.claude/settings.json`, and auto mode no longer reads `autoMode` from
-`.claude/settings.local.json`, so a repo that committed either loses the setting
-on upgrade and must move it to user or managed settings. Two adjacent moves
-complete the pattern: nested `.claude/rules/*.md` files
-[stopped loading](https://github.com/anthropics/claude-code/releases/tag/v2.1.211)
-when setting sources exclude project settings, and agent frontmatter hooks now
-[require the agent file's own folder to have accepted workspace trust](https://github.com/anthropics/claude-code/releases/tag/v2.1.218).
-Before `v2.1.218`, dropping a third-party agent markdown file into an untrusted
-folder was enough to get its hooks to run.
-
-**Isolation is not a boundary on its own.** Worktree and directory isolation
-leaked three separate ways in eleven days: worktree-isolated subagents running
-git-mutating commands against the
-[main checkout](https://github.com/anthropics/claude-code/releases/tag/v2.1.210)
-(`v2.1.210`, 2026-07-14),
-[`git -C`, `--git-dir`, `GIT_DIR`, and `GIT_WORK_TREE` redirection](https://github.com/anthropics/claude-code/releases/tag/v2.1.216)
-(`v2.1.216`, 2026-07-20), and
-[uncanonicalized symlinked working directories](https://github.com/anthropics/claude-code/releases/tag/v2.1.217)
-that let background sessions escape their workspace folder (`v2.1.217`,
-2026-07-21). Add symlink following in worktree creation (`v2.1.212`) and in
-workflow and scheduled-task writes (`v2.1.216`), plus Windows worktree removal
-[deleting files outside the worktree](https://github.com/anthropics/claude-code/releases/tag/v2.1.205)
-across an NTFS junction (`v2.1.205`) -- that one is data loss, not only
-containment. If you use `isolation: 'worktree'` as a control for untrusted work,
-pair it with filesystem sandboxing and treat the July record, not the
-documentation, as the description of what it does.
-
-**Auto mode keeps absorbing decisions.** Auto mode has been the default
-permission posture since v2.1.152. This window moved three more decisions into
-it: [dangerous `rm`, background `&`, and suspicious Windows paths](https://github.com/anthropics/claude-code/releases/tag/v2.1.218)
-no longer open permission dialogs and are adjudicated by the classifier instead,
-and plan mode with auto stopped prompting for Bash the static analyzer cannot
-prove read-only. The classifier itself is now
-[pinned to Sonnet 5 for external sessions](https://github.com/anthropics/claude-code/releases/tag/v2.1.210),
-validated on the session's first request. One repair ran the other way: before
-[`v2.1.211`](https://github.com/anthropics/claude-code/releases/tag/v2.1.211),
-auto mode could override a `PreToolUse` hook's `ask` decision for unsandboxed
-Bash, so the hook was not the floor operators assumed. If your policy says a
-human sees every `rm -rf` prompt, it does not hold under auto mode.
-
-**The approval surface itself was forgeable.** Permission previews relayed to
-chat channels did not neutralize bidirectional-override, zero-width, or
-look-alike quote characters until `v2.1.211`, "so tool inputs cannot visually
-alter the approval message." Before
-[`v2.1.205`](https://github.com/anthropics/claude-code/releases/tag/v2.1.205),
-text sitting in a session transcript could read as a human approval to a later
-turn and be acted on; background task notifications now state explicitly that no
-human input occurred. If you approve actions from Slack, or audit runs by
-reading transcripts, both were load-bearing assumptions that did not hold.
-
-**Credentials, telemetry, and config that changed under you.** Background and
-agent-view sessions
-[dropped a shell-exported `ANTHROPIC_BASE_URL`](https://github.com/anthropics/claude-code/releases/tag/v2.1.203)
-before `v2.1.203`, sending API keys to `api.anthropic.com` before failing with
-401 -- rotate any key a background agent ran under a gateway configuration,
-because the credential left your boundary before the error appeared. Managed
-settings that set `OTEL_EXPORTER_OTLP_ENDPOINT` did not govern all signals until
-`v2.1.217`, so a lower-scope override could quietly redirect telemetry away from
-the managed endpoint. And `v2.1.219` changed managed MCP allowlist and denylist
-`${VAR}` entries to resolve from the startup environment and managed-settings
-env rather than settings-file env: if your allowlist used a settings-file `env`
-value it resolves differently or not at all after upgrade, which can turn an
-allowlist into a denylist.
-
-**Push authority widened.**
-[`v2.1.206`](https://github.com/anthropics/claude-code/releases/tag/v2.1.206)
-auto-allows `git push` from `/commit-push-pr` to the repository's configured
-push remote (`remote.pushDefault`, or the sole remote when only one exists) in
-addition to `origin`. Following the previous window's change that let background
-agents commit, push, and open draft pull requests, check `remote.pushDefault`
-and confirm branch protection covers that remote in every repository where
-background agents run.
-
-**Nothing came through the advisory channel.** `anthropics/claude-code`
-published [zero GitHub Security Advisories](https://github.com/anthropics/claude-code/security/advisories)
-between 2026-07-01 and 2026-07-27; the newest predates the window. Every item in
-this section shipped as a changelog line. The changelog is the de facto advisory
-surface on this product, and a vulnerability feed showed nothing for the entire
-month.
-
-Two smaller controls stay worth knowing.
-[`settings.autoMode.hard_deny`](https://code.claude.com/docs/en/changelog#2-1-136)
-defines auto-mode rules that block unconditionally, with no allow rule
-overriding them -- the unconditional-refusal layer.
-[`continueOnBlock`](https://code.claude.com/docs/en/changelog#2-1-139) turns
-`PostToolUse` hooks from terminal refusals into advisory constraints: the
-rejection reason feeds back to Claude and the turn continues.
-
-The cloud-auth boundary is unchanged and remains a procurement decision rather
-than a configuration one. When `ANTHROPIC_API_KEY`, `apiKeyHelper`, or
-`ANTHROPIC_AUTH_TOKEN` is set, Remote Control, `/schedule`, claude.ai MCP
-connectors, and notification preferences disappear under that auth path. Those
-surfaces require Claude.ai subscription identity, and in team contexts admin
-policy toggles, SSO configuration, and compliance review on top. Treat Console /
-API procurement and Claude.ai subscription as separate decisions, and test which
-control surfaces your chosen auth path actually exposes.
-
-## Open Questions
-
-- **Resolved this window, in the worst direction.** The June profile asked
-  whether other governance features had been announced before they actually
-  bound. They had, at scale: nine permission-check classes failing open in
-  [`v2.1.214`](https://github.com/anthropics/claude-code/releases/tag/v2.1.214),
-  plan mode running file-modifying Bash in `v2.1.212`, three isolation escapes,
-  a budget cap that did not bound background subagents, and a managed-settings
-  consent record written without a dialog. The pattern was not exhausted. The
-  standing instruction that follows is to re-test every rule a deployment relies
-  on, every window.
-- **When does `stable` carry the permission repairs?** At window close it served
-  `2.1.212`. The documented trade is a week of regression soak-time; on this
-  product that is also a week without authority repairs that ship with no
-  advisory. Whether the trade is net positive is now a live operational
-  question, not a theoretical one.
-- **What is actually in `v2.1.220`?** The entire release note for the current
-  `latest` reads "Bug fixes and reliability improvements." Nothing in the
-  primary record says whether it contains a security fix.
-- **What does the auto-mode classifier refuse?** Still undocumented, and the
-  question widened. The `v2.1.183` destructive-command denylist covers only its
-  enumerated set and only conditionally, and `v2.1.218` handed dangerous `rm`,
-  background `&`, and suspicious Windows paths to the classifier as well. The
-  runtime, not the docs, remains canonical.
-- **Does the What's New digest resume?** Week 29 (`v2.1.207` to `v2.1.212`) is
-  the newest entry and the Week 30 URL returns 404. The eight releases holding
-  the permission batch, two worktree escapes, the nesting reversal, and Opus 5
-  have no official summary. Whether publication is lagging or stopped is not
-  knowable from the surface.
-- **How should a headless caller detect a self-ended session?** `v2.1.214` added
-  the `EndConversation` tool, so a session can now terminate itself. That is not
-  a crash and not a timeout, and the release note does not say how to
-  distinguish it. Scheduled and headless runs need a distinct exit path before
-  retry logic treats it as a failure.
-- `MessageDisplay` (v2.1.152) remains a hook on the output path with no
-  documented policy on whether it is a redaction surface or a way to hide
-  assistant disclosures from the operator.
-- `/ultrareview` still does not document its artifact schema or how a caller
-  should ingest verdicts, and `/goal` still does not document whether goal state
-  survives compaction or surfaces in the agent view row.
-
-## What To Watch Next
-
-- Whether `stable` ever receives `2.1.214`+, and whether Anthropic revisits the
-  channel's semantics now that authority repairs land inside the lag.
-- Whether any authority repair is ever routed through the advisory feed. The
-  answer this window was no, across eight releases.
-- Whether the nesting default holds at depth 3. It changed twice in three days,
-  in opposite directions.
-- Auto-mode-default-on was not reversed under operator pushback this window; it
-  was extended. Watch whether the classifier's remit keeps growing, and whether
-  `disallowed-tools` adoption in skills suggests the operator class wants scope
-  control rather than restored consent.
-- `sandbox.network.strictAllowlist` (v2.1.219), which denies non-allowlisted
-  hosts for sandboxed commands without prompting -- the first egress control
-  here that refuses rather than asks -- and `sandbox.filesystem.disabled`
-  (v2.1.216), which keeps network egress control while skipping filesystem
-  isolation.
-- `CLAUDE_CODE_PROCESS_WRAPPER` adoption as an enterprise control, and whether
-  managed settings gain more surfaces that apply without an approval prompt now
-  that `v2.1.218` exempts "benign" feature and cost toggles.
-- Opus 5 as the default Opus model: whether "Opus" keeps meaning a moving
-  target, and what that does to pinned evals and cost models.
-- Stable-channel arrival of agent view, still a Research Preview, and whether
-  `/code-review` running as a background subagent (v2.1.218) becomes a CI-bound
-  surface.
-- Whether `continueOnBlock` produces a durable hook-as-policy-advisor pattern in
-  production deployments.
-
-## Profile Hygiene
-
-This profile follows the profile discipline defined in
-[METHOD.md](../../METHOD.md#the-object-grammar): posture sections may interpret
-freely, but every concrete claim carries an inline link to the release, probe,
-or documentation page it rests on. Cross-project editorial belongs in the weekly
-digest, not here. Git history is the audit trail; removed claims live in the
-diff log.
-
-The `claims:` block is unchanged from 2026-06-23. The 2026-07-27 research cycle
-published its record as per-source harvest and cross-check artifacts rather than
-individual finding files, so this window's material is carried in the prose with
-inline receipts on the claim-bearing words instead of new `claims:` entries.
-
-The block references
-`finding_id: 2026-05-06-claude-code-review-recap-plugin-surfaces` for the two
-claims seeded from a prior manual run. That finding predates the `finding_id`
-convention; the ID is a retrospective assignment.
+Dated, not evergreen. Every claim above is linked on its words to a release,
+a pinned changelog commit or a docs page, and the current read comes from
+[the run that produced it](/runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/).
+This page says what was true on the date at the top. See
+[METHOD.md](https://github.com/sheetgenius/frontier/blob/main/METHOD.md) for
+the evidence contract.
