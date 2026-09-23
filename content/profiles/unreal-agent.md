@@ -51,6 +51,22 @@ serializable operations run by a swappable operation manager. The
 gives the intended extension: a proxy manager that ships operations to a
 process inside a remote sandbox.
 
+**The async claim, read in code.** The pitch on X is that its async tool
+design saves tokens. The mechanism is real at v0.1.1. A tool call becomes an
+operation that runs on its own. If the model is called while one is still
+going, the
+[Bash tool](https://github.com/unreallabsai/unreal-agent/blob/v0.1.1/harness/tool/bash/bash.go#L84-L85)
+answers "Command is still running." instead of blocking. While the loop is
+waiting only on tools, the
+[coordinator](https://github.com/unreallabsai/unreal-agent/blob/v0.1.1/harness/coordinator/loop.go#L118-L123)
+does not call the model at all. It waits for operation updates or new input,
+and sends the model one heartbeat after
+[ten minutes by default](https://github.com/unreallabsai/unreal-agent/blob/v0.1.1/cmd/internal/agentrunner/run.go#L174).
+That is the opposite of a harness that re-sends the whole conversation to
+poll a background job. It is a plausible saving. It is not a measured one:
+no benchmark results are published, and none of the token figures in
+circulation come with a method.
+
 **The prompt promises a box the runner does not build.** At v0.1.1 the
 default system prompt begins
 ["You are an AI agent running inside an isolated sandbox container."](https://github.com/unreallabsai/unreal-agent/blob/v0.1.1/cmd/internal/agentrunner/run.go#L45)
