@@ -212,3 +212,162 @@ cards:
     verdict: >
       A voice post reporting his own work. We did not verify the port happened or landed. Quoted as same-day adoption, which is the only claim it makes.
     tags: [adoption, code-review]
+
+  - id: darshan-narrow-at-each-spawn
+    title: "Narrower at every level"
+    kind: voice
+    date: 2026-06-10
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["DarshanSays"]
+    display_name: "Darshan Yadav"
+    source_urls:
+      - https://x.com/DarshanSays/status/2064616354481942780
+    verbatim: |
+      Depth-5 nested agents is powerful, but the authorization question matters: does each child agent inherit parent permissions, or does scope narrow as you go deeper? The second option is far safer. Privilege reduction at each spawn level should be the default, not an option. Excited to see where this goes.
+    inline: "Privilege reduction at each spawn level should be the default, not an option."
+    summary: >
+      A builder responding to depth-five nested subagents by asking whether each child inherits
+      its parent's permissions or gets a narrower scope, and arguing that privilege reduction at
+      every spawn level should be the default.
+    verdict: >
+      A voice post and a design proposal, not a claim about the product. Measured against this
+      issue's receipts, what Claude Code shipped is partway there: 2.1.178 has the classifier
+      evaluate a spawn before launch, adds Tool(param:value) rules such as Agent(model:opus),
+      and stops server-level MCP denials being ignored inside a subagent. Those carry the
+      parent's limits down the tree. None of the receipts shows scope narrowing by default at
+      each level, which is what he asks for.
+
+  - id: edwin-nesting-launders-context
+    title: "It launders it"
+    kind: voice
+    date: 2026-06-09
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["EdwinRubioIam"]
+    display_name: "Edwin Rubio"
+    source_urls:
+      - https://x.com/EdwinRubioIam/status/2064482874984697882
+    verbatim: |
+      Depth=5 is generous. The real ceiling isn't recursion, it's signal loss. Every agent spawning another is a game of telephone — by layer 3 the sub-agent is solving a problem the parent already forgot. Nesting doesn't manage context. It launders it.
+    inline: "Nesting doesn't manage context. It launders it."
+    summary: >
+      A reply to the nested-subagent launch calling depth five generous and arguing the real
+      limit is signal loss: each spawn is a game of telephone, and by the third layer a subagent
+      is solving a problem its parent has forgotten.
+    verdict: >
+      A voice post and a counter-read of the launch's stated purpose, which was to manage
+      context better. It is an argument, not a measurement; we ran no test of what survives
+      three layers of delegation. It is here because it disputes the feature on its own terms
+      rather than on safety.
+
+  - id: dotta-low-trust-wont-pwn-org
+    title: "The reviewer that cannot take the org"
+    kind: claim
+    date: 2026-06-09
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [paperclip]
+    authors: ["dotta"]
+    display_name: "dotta 📎"
+    source_urls:
+      - https://x.com/dotta/status/2064465643575955474
+    verbatim: |
+      Low-trust agents means you can have an agent review untrusted inputs and if he’s prompt-injected it won’t pwn the rest of your Paperclip org 
+
+      (requires sandboxed instances)
+    inline: "you can have an agent review untrusted inputs and if he’s prompt-injected it won’t pwn the rest of your Paperclip org"
+    summary: >
+      Paperclip's maintainer describing low-trust agents: an agent can review untrusted input,
+      and if it is prompt-injected it cannot compromise the rest of the Paperclip org, provided
+      instances are sandboxed.
+    verdict: >
+      A claim post by the maintainer about his own feature. The mechanism is in this issue's
+      receipts: PR #7530 in v2026.609.0 adds the deny-by-default low_trust_review preset,
+      source-trust tagging, route-level containment and quarantine. That it holds against a real
+      injection is his statement, not something we tested, and the post itself makes it
+      conditional on sandboxed instances.
+
+  - id: openclaw-install-policy
+    title: "A local command says yes"
+    kind: claim
+    date: 2026-06-09
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openclaw]
+    authors: ["openclaw"]
+    display_name: "OpenClaw🦞"
+    source_urls:
+      - https://x.com/openclaw/status/2064444553634144665
+    verbatim: |
+      security.installPolicy lets operators approve or block skill/plugin installs with a trusted local command. It runs after staging and fails closed when enabled but unavailable.
+      https://docs.openclaw.ai/tools/skills-config#operator-install-policy-securityinstallpolicy
+    inline: "security.installPolicy lets operators approve or block skill/plugin installs with a trusted local command."
+    summary: >
+      OpenClaw announcing security.installPolicy, which lets an operator approve or block skill
+      and plugin installs through a trusted local command that runs after staging and fails
+      closed when enabled but unavailable.
+    verdict: >
+      A claim post from the project, reported as its statement. This issue's receipts show
+      v2026.6.5 keeping install-policy checks on ClawHub installs and v2026.6.6 making exec
+      approvals fail closed on timeout; they do not document the installPolicy setting itself or
+      its fail-closed behavior, which we did not test.
+
+  - id: teknium-width-and-depth
+    title: "The operator sets the shape"
+    kind: claim
+    date: 2026-06-16
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [hermes-agent]
+    authors: ["Teknium"]
+    display_name: "Teknium 🪽"
+    source_urls:
+      - https://x.com/Teknium/status/2066872271877407212
+    verbatim: |
+      They can actually. You can configure width (how many subagents an agent can spawn) and depth (how many layers of subagents spawning subagents) you want :)
+
+      It's configurable in the config.yaml or dashboard
+    inline: "You can configure width (how many subagents an agent can spawn) and depth (how many layers of subagents spawning subagents)"
+    summary: >
+      Hermes Agent's lead, replying in a thread whose parent post we did not capture, saying
+      Hermes lets the operator configure both width (how many subagents an agent can spawn) and
+      depth (how many layers of spawning), in config.yaml or the dashboard.
+    verdict: >
+      A claim post by the project's lead, partly backed by this issue's receipts: commit
+      c66ecf0bc adds a delegation.max_async_children setting, default 3, for background
+      subagents, which is a width cap. We hold no receipt for a depth setting and report that
+      half as his statement. It is here because it is the other answer to the depth question:
+      Claude Code chose five, Hermes says the operator chooses.
+
+  - id: wunderwuzzi-silent-downgrade
+    title: "It said Fable"
+    kind: voice
+    date: 2026-06-10
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["wunderwuzzi23"]
+    display_name: "Johann Rehberger"
+    source_urls:
+      - https://x.com/wunderwuzzi23/status/2064612335629771149
+    verbatim: |
+      That's cool. Can you run /model? 
+
+      I nearly missed the downgrade when using CLI until I turned it off via /config, so it does a hard stop.
+
+      Claude still claimed it's using fable in my case, but it actually got downgraded to Opus
+    inline: "Claude still claimed it's using fable in my case, but it actually got downgraded to Opus"
+    summary: >
+      A security researcher, the day after Fable 5 reached Claude Code, telling another user to
+      run /model: his own session had been downgraded to Opus while Claude still said it was
+      using Fable, and he nearly missed it until he turned the behavior off in /config so the
+      session stops instead.
+    verdict: >
+      A voice post about the author's own session, unverified; we assert only that he reported
+      it. The post does not name what triggered the switch. This issue's receipts show why a
+      switch can happen at all: 2.1.166 added a fallbackModel chain of up to three models and
+      applied --fallback-model to interactive sessions. The model's self-report is the part to
+      distrust, which is his point.

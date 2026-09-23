@@ -395,3 +395,102 @@ cards:
     verdict: >
       Voice. A metaphor, not a measurable claim. It is carried because it is the clearest statement of the design philosophy the whole record above exhibits.
 
+  - id: bolinfest-launch-day-modes
+    title: "The gate was there on day one"
+    kind: claim
+    date: 2025-04-16
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["bolinfest"]
+    display_name: "Michael Bolin"
+    source_urls:
+      - https://x.com/bolinfest/status/1912570039171166414
+    verbatim: |
+      Approval modes are implemented and documented as part of the Codex CLI so the user can pick the mode on a per-action or per-session basis. For more details on the modes, see https://t.co/VWOJUlG93h
+    inline: "so the user can pick the mode on a per-action or per-session basis."
+    summary: >
+      On the day the Codex CLI launched, its original author saying approval modes were already
+      implemented and documented, and that a user could pick a mode per action or per session.
+    verdict: >
+      A claim post, and the tree bears it out: the README in the first commit of 2025-04-16
+      documents an --approval-mode flag with three modes, Suggest by default. Carried because it
+      dates the gate to launch day; everything this piece reports is a change to who sits in it,
+      not whether it exists.
+
+  - id: niresh-readable-rulebook
+    title: "A rulebook you can read"
+    kind: voice
+    date: 2026-08-20
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["the_niresh"]
+    display_name: "Niresh"
+    source_urls:
+      - https://x.com/the_niresh/status/2090453823127212519
+    verbatim: |
+      There is a package inside Codex whose only job is deciding whether the agent may run a given command.
+
+      Not a list of banned words. An actual rulebook you can read, test and change.
+
+      I have been doing this with a hook and a hand-written allowlist. Theirs is better and I am rewriting mine. 🤙🏻
+    inline: "I have been doing this with a hook and a hand-written allowlist. Theirs is better and I am rewriting mine."
+    summary: >
+      An operator describing the Codex package that decides whether a command may run as a
+      readable, testable rulebook, better than the hook and hand-written allowlist he had built,
+      and saying he is rewriting his own.
+    verdict: >
+      A voice post about the author's own setup. Its description of the package matches the
+      tree: at rust-v0.149.0 the execpolicy crate parses written rules to Allow, Prompt or
+      Forbidden. It is here as the builder's half of the deletions, someone adopting the part
+      Codex kept, two days after the preset it replaced was removed.
+
+  - id: thorstenball-leverage-moved
+    title: "The harness is no longer the lever"
+    kind: voice
+    date: 2026-08-10
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["thorstenball"]
+    display_name: "Thorsten Ball"
+    source_urls:
+      - https://x.com/thorstenball/status/2086767485852717256
+    verbatim: |
+      Why I think the harness is no longer what provides the most leverage.
+    inline: "the harness is no longer what provides the most leverage."
+    summary: >
+      The Amp author heading an argument that the harness is no longer what provides the most
+      leverage.
+    verdict: >
+      A voice post, and the opposite read of the one the Codex lead gives. We quote the headline
+      only; the argument behind it is his. It is here because a Codex team member answered it
+      the same day, and that exchange is where the in-team limit on the thin-harness bet was
+      stated in public.
+
+  - id: openai-luna-reviewer-cost
+    title: "The reviewer changes models"
+    kind: claim
+    date: 2026-07-30
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["OpenAI"]
+    display_name: "OpenAI"
+    source_urls:
+      - https://x.com/OpenAI/status/2082878180478910571
+    verbatim: |
+      We’re also upgrading Auto-review in the ChatGPT app and Codex CLI from GPT-5.4 to GPT-5.6 Luna.
+
+      Combined with Luna’s new price, we expect Auto-review to cost about 10x less, making your agentic workflows more cost-efficient.
+    inline: "we expect Auto-review to cost about 10x less"
+    summary: >
+      OpenAI announcing that Auto-review in the ChatGPT app and Codex CLI moves from GPT-5.4 to
+      GPT-5.6 Luna, and that with Luna's price it expects Auto-review to cost about ten times
+      less.
+    verdict: >
+      A claim post, reported as the vendor's statement: the ten-fold figure is an expectation
+      with no published method, and nothing in the tree records which model the reviewer runs on
+      or what it costs. It is here because it is the reviewer's model and price changing by
+      announcement, with no version string an operator could pin.

@@ -180,3 +180,255 @@ cards:
     verdict: >
       A joke, quoted as one, and featured rather than inlined because it is three short paragraphs and no contiguous single-line run carries it. The most compact description anyone wrote this window of the difference between a harness you assemble and one that arrives assembled.
     tags: [positioning, harness]
+
+  - id: mattpocock-say-workflow
+    title: "Say the word, get a fleet"
+    kind: claim
+    date: 2026-05-31
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["mattpocockuk"]
+    display_name: "Matt Pocock"
+    source_urls:
+      - https://x.com/mattpocockuk/status/2061120343922614519
+    verbatim: |
+      So every time I say the word 'workflow' in Claude Code...
+
+      (let's say, when I'm creating a new GitHub workflow)
+
+      ...it tries to enter 'workflow' mode, spinning up dozens of subagents to complete my task.
+
+      Stupid fucking thing
+    inline: "it tries to enter 'workflow' mode, spinning up dozens of subagents to complete my task."
+    summary: >
+      A developer reporting that saying the word 'workflow' in Claude Code, even when he meant a
+      GitHub workflow file, put it into dynamic-workflow mode and spun up dozens of subagents.
+    verdict: >
+      A claim post, and the mechanism checks out: the Claude Code 2.1.160 changelog, published
+      to npm on 1 June, renames the dynamic-workflow trigger keyword from workflow to ultracode
+      and says the word 'no longer triggers a run.' The number of subagents is his account of
+      his own sessions.
+
+  - id: mattpocock-who-thought
+    title: "Who thought this was a good idea"
+    kind: voice
+    date: 2026-05-31
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["mattpocockuk"]
+    display_name: "Matt Pocock"
+    source_urls:
+      - https://x.com/mattpocockuk/status/2061122263194239429
+    verbatim: |
+      It's just the most bizarre design choice, who thought this was a good idea
+    inline: "the most bizarre design choice, who thought this was a good idea"
+    summary: >
+      His follow-up minutes later: hijacking an everyday word was a bizarre design choice.
+    verdict: >
+      A voice post, the second half of his own two-post thread, and a verdict on a design rather
+      than a report. It is here because the vendor changed the design the next day, which is as
+      close to agreement as a changelog gets.
+
+  - id: claudedevs-opus-overspawn
+    title: "Not every fleet was a workflow"
+    kind: claim
+    date: 2026-06-01
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["ClaudeDevs"]
+    display_name: "ClaudeDevs"
+    source_urls:
+      - https://x.com/ClaudeDevs/status/2061501790131265803
+    verbatim: |
+      The issue affected how Opus 4.8 requests were handled, causing the model to trigger more parallel tool calls than intended. It was unrelated to dynamic workflows.
+    inline: "The issue affected how Opus 4.8 requests were handled, causing the model to trigger more parallel tool calls than intended. It was unrelated to dynamic workflows."
+    summary: >
+      Anthropic's developer account saying an issue in how Opus 4.8 requests were handled made
+      the model trigger more parallel tool calls than intended, and that it was unrelated to
+      dynamic workflows.
+    verdict: >
+      A claim post, reported as the vendor's statement: no changelog entry in this window names
+      the Opus 4.8 request-handling fix, so we cannot place it in a release. It matters because
+      it splits one complaint into two defects, a keyword that started a fleet and a serving
+      issue that widened ordinary turns, and only the first is in the 2.1.160 notes.
+
+  - id: dexhorthy-deterministic-over-soup
+    title: "Deterministic workflows, small loops"
+    kind: voice
+    date: 2026-05-28
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["dexhorthy"]
+    display_name: "dex"
+    source_urls:
+      - https://x.com/dexhorthy/status/2060144982372340155
+    verbatim: |
+      someone hit me up about the new "claude dynamic workflows" feature, claiming "see, multi-agent works"
+
+      But really, the launch of this feature proves the exact point that I made back in June of 2025, along with @walden_yan, @tobi, @karpathy, and many others:
+
+      Deterministic workflows orchestrating small agent loops beats non-deterministic multi-agent or "agent soup" systems every dang time
+
+      everything is context engineering
+    inline: "Deterministic workflows orchestrating small agent loops beats non-deterministic multi-agent or \"agent soup\" systems every dang time"
+    summary: >
+      A builder rejecting the reading that dynamic workflows prove multi-agent systems work, and
+      arguing the launch confirms the opposite: deterministic workflows driving small agent
+      loops beat free-form multi-agent systems.
+    verdict: >
+      A voice post and a position he has argued since 2025, not a measurement. It is here
+      because it reads the launch the way its design reads: the orchestrator is a script, and
+      the agents it calls are small.
+
+  - id: thariq-resume-durability
+    title: "As durable as resume"
+    kind: claim
+    date: 2026-06-02
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["trq212"]
+    display_name: "Thariq"
+    source_urls:
+      - https://x.com/trq212/status/2061933039643685316
+    verbatim: |
+      yeah it's definitely not like we shipped temporal inside of your terminal, but we do things in the JS environment to make it more deterministic
+
+      I would model it as roughly as durable as "/resume"ing every subagent
+    inline: "I would model it as roughly as durable as \"/resume\"ing every subagent"
+    summary: >
+      A Claude Code team member saying dynamic workflows do not ship a durable-execution engine
+      like Temporal in the terminal, that the JS environment is made more deterministic, and
+      that operators should model durability as roughly resuming every subagent.
+    verdict: >
+      A claim post, reported as the builder's own description: this issue's receipts show the
+      orchestrator is script-side but contain no durability guarantee to check it against. It is
+      here because it is the vendor setting the expectation lower than the launch did, in terms
+      an operator can plan around.
+
+  - id: brenbuilds-lose-steering
+    title: "You lose steering mid-run"
+    kind: voice
+    date: 2026-06-02
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["BrenBuilds"]
+    display_name: "Bren"
+    source_urls:
+      - https://x.com/BrenBuilds/status/2061891928996610085
+    verbatim: |
+      cursor 3.6 auto-review mode keeps going without approval interrupts
+
+      kick it on a branch, let it run, read the diff when its done
+
+      i use it for sweeping changes like renaming a core export across tests and source. one coherent pass instead of a dozen approval stops
+
+      tradeoff: you get the whole flow, you lose steering mid-run. bigger diff to read if it wanders
+
+      but with a tight scope it usually tracks straight
+    inline: "you get the whole flow, you lose steering mid-run. bigger diff to read if it wanders"
+    summary: >
+      An operator using Cursor 3.6's auto-review mode for sweeping renames on a branch, reading
+      the diff at the end, and naming the trade-off: no approval stops, no steering mid-run, a
+      bigger diff if it wanders.
+    verdict: >
+      A voice post about the author's own practice with a tool this issue does not track;
+      nothing in it is adjudicated. It is here because it states the cost of review-afterward
+      plainly, from someone who pays it and still chooses it.
+
+  - id: teknium-not-for-you
+    title: "Not ready out of the box"
+    kind: voice
+    date: 2026-05-31
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [hermes-agent, openclaw]
+    authors: ["Teknium"]
+    display_name: "Teknium 🪽"
+    source_urls:
+      - https://x.com/Teknium/status/2060936405732438428
+    verbatim: |
+      They're nonsense for you maybe. We didn't make hermes just for you. If you want an empty soulless experience, not ready ootb for anyone, try openclaw
+    inline: "If you want an empty soulless experience, not ready ootb for anyone, try openclaw"
+    summary: >
+      The Hermes maintainer answering a complaint that its bundled skills were nonsense: Hermes
+      was not built for that critic, and anyone who wants a bare agent that is not ready out of
+      the box should try OpenClaw.
+    verdict: >
+      A voice post and a maintainer's positioning, not a claim about either product's contents.
+      It is here as the batteries-included side of the argument Theo's joke compressed, in the
+      words of someone who ships the batteries.
+
+  - id: mario-pi-not-a-claw
+    title: "Pi is not a claw"
+    kind: voice
+    date: 2026-05-31
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [pi-coding-agent]
+    authors: ["badlogicgames"]
+    display_name: "Mario Zechner"
+    source_urls:
+      - https://x.com/badlogicgames/status/2061102941298135309
+    verbatim: |
+      why is pi in this tweet? pi is not a claw.
+    inline: "pi is not a claw."
+    summary: >
+      Pi's author asking why Pi was named in the same start-from-nothing comparison, and saying
+      Pi is not a claw.
+    verdict: >
+      A voice post, and a maintainer declining a category rather than arguing a feature. It is
+      here because the minimal harness in the fight refused to be counted on either side of it.
+
+  - id: openclaw-not-silently-rewriting
+    title: "Not by silently rewriting future runs"
+    kind: claim
+    date: 2026-06-03
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openclaw]
+    authors: ["openclaw"]
+    display_name: "OpenClaw🦞"
+    source_urls:
+      - https://x.com/openclaw/status/2062291555734696268
+    verbatim: |
+      Agents should learn repeated work, but not by silently rewriting future runs.
+
+      Skill Workshop turns reusable agent lessons into reviewable proposals you can tweak, apply, or reject before they become live skills. https://openclaw.ai/blog/openclaw-agent-skill-workshop
+    inline: "Agents should learn repeated work, but not by silently rewriting future runs."
+    summary: >
+      OpenClaw introducing Skill Workshop: reusable agent lessons become proposals a person can
+      tweak, apply or reject before they become live skills.
+    verdict: >
+      A claim post, and the release notes bear out the mechanism: 2026.6.1-beta.1 ships pending
+      proposals with CLI and Gateway review actions. They also ship the skill_workshop tool that
+      lets the agent file proposals, and neither the post nor the notes say whether the agent
+      may approve its own.
+
+  - id: lufzzliz-skip-the-review
+    title: "Just show me the result"
+    kind: voice
+    date: 2026-06-03
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openclaw]
+    authors: ["LufzzLiz"]
+    display_name: "岚叔"
+    source_urls:
+      - https://x.com/LufzzLiz/status/2062323273233555932
+    verbatim: |
+      openclaw也有重复工作转skill的能力了，不过看起来有点繁琐，我更希望自动化一些，不要让我审查提案，而是直接让我看结果👀
+    inline: "不要让我审查提案，而是直接让我看结果"
+    summary: >
+      A Chinese-language post on Skill Workshop. Our rendering: OpenClaw can now turn repeated
+      work into skills too, but it looks a bit tedious; I would rather it be more automated, not
+      make me review proposals, and just let me see the results.
+    verdict: >
+      A voice post, quoted in the language it was written in; the English is our paraphrase. It
+      is here because it is the user the review queue was built to stop, asking for the queue to
+      go away on the day it shipped.
