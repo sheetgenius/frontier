@@ -1,0 +1,178 @@
+schema_version: bitter.frontier_source_contract.v0
+id: unreal-agent
+label: Unreal Agent
+owner: unreallabsai
+homepage: https://unreallabs.ai
+docs: https://github.com/unreallabsai/unreal-agent/blob/main/README.md
+primary_surfaces:
+  - id: repo
+    kind: github_repo
+    url: https://github.com/unreallabsai/unreal-agent
+    priority: 1
+    watch:
+      - releases
+      - tags
+      - commits
+      - breaking_changes
+      - security
+      - contribution_policy
+      - components_published_from_internal_codebase
+  - id: releases
+    kind: github_releases
+    url: https://github.com/unreallabsai/unreal-agent/releases
+    priority: 1
+    watch:
+      - new_features
+      - breaking_changes
+      - session_format_version
+      - operation_version
+  - id: docker-image
+    kind: package_registry
+    url: https://hub.docker.com/r/unrea1labs/unreal-agent
+    priority: 1
+    watch:
+      - tags
+      - namespace
+      - digest_per_release
+    notes: >
+      The official image namespace is unrea1labs, with a digit one, as published by
+      .github/workflows/release.yml. The look-alike namespace unreallabs returned
+      404 on 2026-09-23. Name the namespace and digest in any finding.
+  - id: runner-docs
+    kind: official_docs
+    url: https://github.com/unreallabsai/unreal-agent/blob/main/cmd/unreal-agent-runner/README.md
+    priority: 1
+    watch:
+      - providers
+      - default_system_prompt
+      - tool_set
+      - workspace
+      - egress_proxy
+  - id: benchmarks
+    kind: official_docs
+    url: https://github.com/unreallabsai/unreal-agent/tree/main/benchmarks
+    priority: 2
+    watch:
+      - harbor_adapter
+      - published_scores
+      - method
+  - id: advisories
+    kind: security_advisories
+    url: https://github.com/unreallabsai/unreal-agent/security/advisories
+    priority: 1
+    watch:
+      - published_advisories
+      - severity
+      - affected_ranges
+related_surfaces:
+  standing_status: watched
+  notes: >
+    The repository says it carries selected components from a larger internal
+    codebase, and it does not merge outside pull requests. A gap in public history
+    is not evidence of no work. The openai-codex provider reads a ChatGPT
+    subscription login from the Codex auth file; behaviour observed through that
+    path is a fact about this runner, not about Codex.
+  repositories:
+    - id: unreal-agent
+      url: https://github.com/unreallabsai/unreal-agent
+      role: primary
+    - id: codex
+      url: https://github.com/openai/codex
+      role: credential_source_for_openai_codex_provider
+accepted_evidence:
+  - official_docs
+  - tagged_release
+  - github_release
+  - maintainer_commit
+  - merged_pr
+  - package_registry_release
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+  - marketing_claim_without_doc_or_code
+  - star_count_as_adoption
+  - system_prompt_claim_treated_as_enforced_isolation
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+research_lenses:
+  - thin_harness
+  - durable_execution
+  - idempotency
+  - remote_execution
+  - evaluation
+  - distribution_channel
+high_signal_patterns:
+  - approval
+  - sandbox
+  - egress
+  - SANDBOX_EGRESS_PROXY
+  - operation manager
+  - remote job
+  - session fork
+  - session version
+  - idempotent
+  - inbox
+  - compaction
+  - context builder
+  - skill
+  - openai-codex
+  - auth.json
+  - harbor
+  - terminal-bench
+  - docker
+  - breaking change
+operator_questions:
+  - "The default system prompt tells the model it is inside an isolated sandbox container, and the README's first example runs the runner directly in the current directory. Is there any check that refuses to run outside a container, and does the model behave differently because it believes it is contained?"
+  - "The tool registry holds Bash, ViewImage and skill use, with no approval step visible in the library. Where would an operator put a human or policy gate, and does the operation manager boundary make that a supported seam?"
+  - "Operations are serializable and a proxy operation manager can ship them to a remote sandbox. What authenticates the remote side, and what does it accept?"
+  - "The openai-codex provider reads a ChatGPT subscription token from the Codex auth file and does not refresh it. Is that use within the subscription's terms, and what happens to a long run when the token expires?"
+  - "The org describes its aim as making agents better and cheaper through harness engineering. Which published benchmark results back that, with what method and which models?"
+  - "Session history is versioned and forkable, with an explicit error on unsupported versions. Does a runner upgrade ever strand an in-flight session?"
+default_actionability:
+  release: observe
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  benchmark_claim: observe
+discovery:
+  last_verified: 2026-09-23
+  verified_by: manual_web
+  confidence: medium
+  open_questions:
+    - Does any runner code check for a container before running Bash, or is isolation left entirely to the operator?
+    - Which components of the internal codebase are withheld, and do they include a policy or approval layer?
+    - Will Unreal Labs publish benchmark results with method, and on which suite?
+    - Will the look-alike Docker Hub namespace be claimed by the vendor?
+notes: >
+  Added 2026-09-23. unreallabsai/unreal-agent, MIT, Go, repo created 2026-09-21,
+  v0.1.0 and v0.1.1 published 2026-09-22, 1,183 stars and 55 forks at intake. Its
+  own description: "Async-first agent harness." The org says it exists to make
+  agents better and cheaper through careful engineering of the harness, runtime
+  and inference.
+
+  It earns a slot as the purest thin-harness bet on the list, arriving the week
+  a study found harness choice moves cost far more than success. Three tools
+  (Bash, ViewImage, skill use), idempotent inputs, append-only forkable sessions,
+  and serializable operations that can run in a remote sandbox. No approval layer
+  is visible in the library.
+
+  Handling: Tier 2, weekly. Do not promote on star count. The default system
+  prompt asserts containment the runner does not enforce; report the prompt and
+  the enforcement separately. Name the Docker namespace, unrea1labs, in any
+  finding, and treat a look-alike as untrusted.
