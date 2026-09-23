@@ -202,3 +202,144 @@ cards:
     verdict: >
       A voice post, quoted as something he said publicly and for one operator-facing reason: heypi's bus factor is one. Nothing here is an inference about him. If he would rather it were not reproduced, the correction path in CONTRIBUTING.md applies and we will remove it.
     tags: [sustainability, bus-factor, maintainer-voice]
+
+  - id: bcherny-tag-security-layers
+    title: "It can't see the credential secrets it uses"
+    kind: claim
+    date: 2026-06-23
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["bcherny"]
+    display_name: "Boris Cherny"
+    source_urls:
+      - https://x.com/bcherny/status/2069474685948186797
+    verbatim: |
+      We’ve worked hard to make it secure at every level. 1/ At the model training stage, 2/ the classifiers on top of our models and things like auto mode, 3/ we protect what Claude has access to (websites it can access and it can’t see the credential secrets it uses), and 4/ respecting channel/workspace boundaries
+    inline: "we protect what Claude has access to (websites it can access and it can’t see the credential secrets it uses)"
+    summary: >
+      Claude Code's creator, in the same launch thread as his 65 percent figure, listing four
+      layers of Claude Tag security: model training, classifiers such as auto mode, limits on
+      what Claude can access including credential secrets it cannot see, and respect for channel
+      and workspace boundaries.
+    verdict: >
+      A claim post by the vendor about its own product, reported as his statement. We hold no
+      receipt for Claude Tag's architecture and did not test whether its agent can read the
+      secrets it uses. The nearest receipt in this issue is a different surface: Claude Code
+      2.1.187 added sandbox.credentials the same day, which stops sandboxed CLI commands reading
+      credentials and secret env vars.
+
+  - id: gneubig-harness-plus-llm
+    title: "The harness + the LLM"
+    kind: voice
+    date: 2026-06-18
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openhands, claude-code, codex, gemini-cli]
+    authors: ["gneubig"]
+    display_name: "Graham Neubig"
+    source_urls:
+      - https://x.com/gneubig/status/2067651018217648595
+    verbatim: |
+      Many coding agent benchmarks evaluate LLM performance (with the same harness) or harness performance (with the same LLM).
+
+      But in reality, it is the harness + the LLM that determins the overall performance.
+
+      We introduced new, holistic results that measure both.
+    inline: "it is the harness + the LLM that determins the overall performance."
+    summary: >
+      The opening post of the thread whose results card is already in this issue: most coding-
+      agent benchmarks hold either the harness or the model fixed, while what an operator gets
+      is the pair, so his team published results that measure both.
+    verdict: >
+      A voice post stating the premise of a third-party evaluation we did not run or audit. The
+      premise is argument, not measurement; the thread's numbers are on the separate results
+      card. It is here because it names why the ranking flipping with the model matters.
+
+  - id: xingyaow-verification-stack
+    title: "Time-to-merge, cut by 58%"
+    kind: claim
+    date: 2026-06-23
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openhands]
+    authors: ["xingyaow_"]
+    display_name: "Xingyao Wang"
+    source_urls:
+      - https://x.com/xingyaow_/status/2069448427923021989
+    verbatim: |
+      Coding agents open PRs in minutes. But on consequential codebases, those PRs still wait days for human review. So we built a verification stack, and on our own repo, it cut time-to-merge by 58% without lowering code quality. Here’s how. 🧵
+    inline: "on our own repo, it cut time-to-merge by 58% without lowering code quality"
+    summary: >
+      An OpenHands builder on the review bottleneck: coding agents open PRs in minutes, the PRs
+      wait days for human review on consequential codebases, and a verification stack his team
+      built cut time-to-merge on their own repo by 58 percent without lowering code quality.
+    verdict: >
+      A claim post with a vendor metric about its own repository and no method in this issue's
+      receipts. We did not verify the 58 percent or the quality measure, and neither is a
+      finding. It is here as the builder half of the window: a check that runs before a human
+      looks, rather than a rule that waits on the docs.
+
+  - id: fks-eve-vercel-only
+    title: "eve is vercel-only"
+    kind: claim
+    date: 2026-06-17
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [eve, flue]
+    authors: ["FredKSchott"]
+    display_name: "fks"
+    source_urls:
+      - https://x.com/FredKSchott/status/2067302366718947778
+    verbatim: |
+      some thoughts on eve, especially re: @flueai and the larger agent builder space.
+
+      The biggest surprise: eve is vercel-only. You can't deploy it outside of vercel and it requires a full bet on their stack -- vercel runtime, vercel sandbox, vercel workflows, vercel cron jobs, etc. etc. 
+
+      short-term limitation, or the start of a larger "managed agents" play by vercel?
+
+      eve is filesystemmaxxing. this feels specifically optimized for agents, who love the codebase consistency and have no trouble keeping track of 10+ magic file and folder conventions as the project scales to 100s of files. 
+
+      (^^ this is probably the most interesting design decision here. I have a ton of respect for anyone taking a big swing like this if this is intentionally optimized for agents. makes total sense.)
+
+      eve has a custom-built harness. probably not interesting to most people. I'm curious if they will leverage the new ai sdk HarnessAgent concept to swap different harnesses.
+
+      otherwise there's a lot of great stuff here. lots of good features. The dev-server-as-TUI is great. you can tell how much attention and care went into this. 
+
+      excited to see our two projects continue to explore the same space from different directions!
+    inline: "eve is vercel-only. You can't deploy it outside of vercel and it requires a full bet on their stack"
+    summary: >
+      Flue's maintainer, reading Vercel's new eve framework, calling its Vercel-only deployment
+      the biggest surprise and asking whether it is a short-term limitation or the start of a
+      managed-agents play, alongside real praise for its filesystem conventions and dev-server
+      TUI.
+    verdict: >
+      A claim post about a competitor's product, from the maintainer of a competing one,
+      reported as his reading. This issue holds no eve receipt, and an eve engineer disputed the
+      framing the same day, on the card that follows; the two read together are the record.
+
+  - id: jacobmparis-eve-worlds-adapter
+    title: "NOT vercel only by design"
+    kind: claim
+    date: 2026-06-17
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [eve]
+    authors: ["jacobmparis"]
+    display_name: "jacob paris ▲"
+    source_urls:
+      - https://x.com/jacobmparis/status/2067304736584290662
+    verbatim: |
+      eve is NOT vercel only by design, it uses the same "worlds" adapter approach as Workflow SDK under the hood
+
+      we haven't exposed that yet until we have a non-vercel adapter to publish though, while we iron out the final api surface
+    inline: "eve is NOT vercel only by design, it uses the same \"worlds\" adapter approach as Workflow SDK under the hood"
+    summary: >
+      An eve engineer replying to the Vercel-only reading: eve uses the same worlds adapter
+      approach as Workflow SDK, and the adapter surface is unexposed until a non-Vercel adapter
+      is ready to publish.
+    verdict: >
+      A claim post about his own team's product, reported as his statement. We hold no receipt
+      for the adapter layer; by his own account no non-Vercel adapter was published in this
+      window, so an operator could not yet deploy eve elsewhere. Both posts can be true at once:
+      portable by design, Vercel-only in what shipped.

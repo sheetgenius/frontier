@@ -366,3 +366,4 @@ Bar amendment candidate for SKILL.md. Two of its named exemplars have slipped. "
 
 - 2026-09-23 iteration 1: profile class raised to the bar (ranks 1-7, 9-14, 19-22, 38-40). Bar amended with point 14.
 - 2026-09-23 iteration 2: digest class raised (ranks 8, 15-18, 23-25, 29-33, 41-42). 11 corrections logged.
+- 2026-09-23 iteration 3: enrichment across 14 issues, Codex feature, 7 wire issues. Remaining below-bar items: none known; next sweep should re-rank.

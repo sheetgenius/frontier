@@ -137,3 +137,148 @@ cards:
     verdict: >
       Reported experience from dual-running the same model across two harnesses, not a benchmark, and he frames it as his experience. Quoted because the harness-not-the-model claim keeps recurring and this is a practitioner putting his own name on a direction.
     tags: [harness, tokens, comparison]
+
+  - id: teknium-reviews-before-merge
+    title: "I always review it"
+    kind: voice
+    date: 2026-07-02
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [hermes-agent]
+    authors: ["Teknium"]
+    display_name: "Teknium 🪽"
+    source_urls:
+      - https://x.com/Teknium/status/2072618235607028123
+    verbatim: |
+      I dont want unaudited changes going into the repo
+
+      Hermes does all the PR reviews, salvages, and code work, but I always review it before it goes in
+    inline: "Hermes does all the PR reviews, salvages, and code work, but I always review it before it goes in"
+    summary: >
+      Hermes Agent's lead saying he does not want unaudited changes going into the repository:
+      Hermes does the PR reviews, salvages and code work, but he reviews everything before it
+      goes in.
+    verdict: >
+      A voice post about his own merge practice, which we report as he states it. It is the
+      strongest counter-read to this issue's title: the agent took the review work, and the
+      human kept the merge gate on purpose. Foreground attention stopped being the control for
+      him too, but it moved to the merge rather than away.
+
+  - id: antigravity-kick-off-keep-coding
+    title: "Kick off the work, keep coding"
+    kind: claim
+    date: 2026-07-02
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [antigravity]
+    authors: ["shengzheyao"]
+    display_name: "Shengzhe"
+    source_urls:
+      - https://x.com/shengzheyao/status/2072759095845896627
+    verbatim: |
+      The big theme this month: real async agent workflows.
+
+      - Live status indicator for active subagents + background tasks, right under the input box
+      - /tasks panel now streams logs and auto-follows the latest output
+      - /goal can run indefinitely until the work is done
+      - Subagents auto-proceed instead of hanging when the parent is blocked
+      - Automatic client-side retries on transient errors.
+
+      Kick off the work, keep coding.
+    inline: "Kick off the work, keep coding."
+    summary: >
+      The Antigravity CLI's author summing up the month as real async agent workflows: live
+      status for active subagents and background tasks under the input box, a /tasks panel that
+      streams logs, /goal running until the work is done, subagents that proceed instead of
+      hanging when the parent is blocked, and client-side retries.
+    verdict: >
+      A claim post by the product's author, partly backed by this issue's receipts: the pinned
+      changelog lists live subagent and background-task status and retries in 1.0.15 and 1.0.16.
+      Those versions had no public tag or release page in the window, and the /tasks, /goal and
+      auto-proceed items are his statement, not something we checked.
+
+  - id: theo-bypass-breaks-at-worktree
+    title: "At the very least, /trust-directory"
+    kind: voice
+    date: 2026-07-01
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["theo"]
+    display_name: "Theo - t3.gg"
+    source_urls:
+      - https://x.com/theo/status/2072443268152078698
+    verbatim: |
+      When you use bypass permissions by default, a few things break around directory permissions.
+
+      I have bypass perms on by default when I call Claude. If I use it in a directory I haven't trusted, it works fine...until I try to "/remote-control", "--worktree" etc.
+
+      At the VERY least, I'd love a /trust-directory command
+    inline: "If I use it in a directory I haven't trusted, it works fine...until I try to \"/remote-control\", \"--worktree\" etc."
+    summary: >
+      Theo describing running Claude Code with bypass permissions on by default, and finding
+      that in a directory he has not trusted it works until he uses /remote-control or
+      --worktree, then asking for a /trust-directory command at the very least.
+    verdict: >
+      A voice post about his own setup, reported as his experience; we did not reproduce the
+      failures. It is here because it shows where the old control still bites: bypass removed
+      the prompts, but directory trust stayed a separate gate, and he wants to set it
+      deliberately rather than route around it.
+
+  - id: steipete-codex-ios-first-pass
+    title: "For two prompts it aint bad"
+    kind: claim
+    date: 2026-07-01
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openclaw, codex]
+    authors: ["steipete"]
+    display_name: "Peter Steinberger 🦞"
+    source_urls:
+      - https://x.com/steipete/status/2072439279520039380
+    verbatim: |
+      Pointed codex at some Twitter feedback on the OpenClaw iOS app and it did a first improvement pass. It's still not good, but for two prompts it aint bad.
+
+      Especially cool how it uses computer use to add before/after screenshots, as there's no GitHub API.
+      https://github.com/openclaw/openclaw/pull/98452
+    inline: "It's still not good, but for two prompts it aint bad."
+    summary: >
+      OpenClaw's creator pointing Codex at public feedback on the OpenClaw iOS app and getting a
+      first improvement pass, which he says is still not good but not bad for two prompts,
+      noting that Codex used computer use to add before and after screenshots to the pull
+      request.
+    verdict: >
+      A claim post about a pull request we checked: openclaw/openclaw#98452, a redesign of the
+      iOS app opened and merged on July 1. That Codex produced it from two prompts, and the
+      screenshot workflow, are his statement. His own verdict on the result is the useful part:
+      the agent did the pass, and he still judged it.
+
+  - id: colin-openclaw-ios-volunteer
+    title: "Tell me how to make it better"
+    kind: voice
+    date: 2026-07-02
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openclaw]
+    authors: ["colinsolvely"]
+    display_name: "Colin"
+    source_urls:
+      - https://x.com/colinsolvely/status/2072474985029861695
+    verbatim: |
+      I want to introduce myself.
+
+      Hi I’m Colin, I did a lot of the @openclaw iOS UI, so as one of the volunteers responsible, I accept my public flogging.
+
+      I’m just a maintainer with limited time and too much excitement about mobile agents.
+
+      Roasts fair. Have a dialog with me tell me it’s bad and how to make it better. Come join me in the discord so we can make it better as a community.
+    inline: "Have a dialog with me tell me it’s bad and how to make it better."
+    summary: >
+      A volunteer OpenClaw maintainer who built much of the iOS UI introducing himself as one of
+      those responsible, calling the roasts fair, and inviting critics into a dialog and the
+      project's Discord to improve it together.
+    verdict: >
+      A voice post from a volunteer maintainer, quoted for his invitation and not for the
+      criticism he was answering, which we do not repeat. It is here because it shows who sits
+      on the other end of public feedback on an open-source app: a person with limited time,
+      asking for specifics.

@@ -132,3 +132,141 @@ cards:
     verdict: >
       A vendor performance claim with no published method, quoted as the claim it is. We did not measure it. It is here because the same project spent this window shipping its security work to main and tagging none of it: the capability had a number and an announcement, the containment had neither.
     tags: [performance, vendor-claim]
+
+  - id: metnew-worktree-sandbox-escape
+    title: "Code execution on the host"
+    kind: claim
+    date: 2026-06-26
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["v_metnew"]
+    display_name: "vladimir metnew"
+    source_urls:
+      - https://x.com/v_metnew/status/2070369295704482296
+    verbatim: |
+      Claude Code Full Sandbox Escape (CVE-2026-55607)
+
+      writeup: https://github.com/Metnew/write-ups/tree/main/claude-code-worktree-sandbox-escape#human-written-super-tldr-summary-of-the-bug
+
+      prompt injection -> code execution on the host.
+      works even in read-only permissions mode + full sandbox
+      (it could be my Pwn2Own bug, but p2o was weird this year lol)
+    inline: "prompt injection -> code execution on the host."
+    summary: >
+      The researcher who reported CVE-2026-55607 publishing his writeup of a full Claude Code
+      sandbox escape, which he summarizes as prompt injection leading to code execution on the
+      host, and says works even in read-only permissions mode with the full sandbox on.
+    verdict: >
+      A claim post, adjudicated against Anthropic's advisory GHSA-7835-87q9-rgvv, published June
+      25 and crediting him. It confirms the core: worktree handling let a worktree be named .git
+      and let Claude Code navigate outside the sandbox, and with symlinks and git fsmonitor an
+      attacker could overwrite files such as ~/.zshenv and run code outside the seatbelt
+      sandbox. It required the victim to clone a malicious repository carrying prompt injection.
+      Affected 2.1.38 up to 2.1.163, fixed in 2.1.163, already delivered to auto-updating
+      installs. That it works in read-only mode is his statement; the advisory does not address
+      permission modes.
+
+  - id: neubig-sidekick-spend
+    title: "Do not spend expensive tokens on simple tasks"
+    kind: voice
+    date: 2026-06-29
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openhands]
+    authors: ["gneubig"]
+    display_name: "Graham Neubig"
+    source_urls:
+      - https://x.com/gneubig/status/2071738340471414935
+    verbatim: |
+      We've found this sort of "sidekick" architecture to be very effective at cutting LLM spend because it allows you to do context control and not spend expensive tokens on simple tasks.
+
+      Here's a 200-line example of how to do it in the OpenHands SDK :)
+      https://gist.github.com/neubig/412ab8df8e6fd0b2bdf10602d77f9d86
+    inline: "very effective at cutting LLM spend because it allows you to do context control and not spend expensive tokens on simple tasks."
+    summary: >
+      OpenHands' Graham Neubig describing a sidekick architecture, where a cheaper agent handles
+      simple work beside the main one, as very effective at cutting LLM spend through context
+      control, and linking a 200-line example built on the OpenHands SDK.
+    verdict: >
+      A voice post reporting his team's experience; we did not measure the savings and the post
+      gives no figure. It is here as the other half of the OpenHands story this issue leads
+      with: the open-source work was active and inventive this week, on the SDK, while the
+      tagged self-host server stayed at 1.8.0.
+
+  - id: orosz-cloud-agents-coming-fast
+    title: "Local agents will prob go away"
+    kind: voice
+    date: 2026-06-30
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [cursor]
+    authors: ["GergelyOrosz"]
+    display_name: "Gergely Orosz"
+    source_urls:
+      - https://x.com/GergelyOrosz/status/2071846250484535575
+    verbatim: |
+      This could well end quicker than most people assume, because coding agents in the cloud are coming, and they are coming fast, especially inside places like Cursor (I was in their offices yesterday, and local agents will prob go away soon as I read the room)
+    inline: "coding agents in the cloud are coming, and they are coming fast"
+    summary: >
+      Gergely Orosz, a day after visiting Cursor's offices, predicting that the phase of keeping
+      a laptop awake for local agents could end quickly because cloud coding agents are coming
+      fast, and that local agents will probably go away soon as he read the room.
+    verdict: >
+      A voice post and a forecast, attributed to his reading of one company's office; nothing
+      here tests it. It matters to this issue because if work moves to the cloud channel, so
+      does the patch: this window the cloud tags were the ones that got the fixes.
+
+  - id: cursor-benchmark-hacking
+    title: "Scores drop under a stricter harness"
+    kind: claim
+    date: 2026-06-25
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [cursor]
+    authors: ["cursor_ai"]
+    display_name: "Cursor"
+    source_urls:
+      - https://x.com/cursor_ai/status/2070195789121671624
+    verbatim: |
+      We're sharing new research on how models hack public benchmarks.
+
+      The latest models, including Opus 4.8 and Composer 2.5, learn to retrieve solutions from the internet or git history.
+
+      When we apply a stricter harness, eval scores drop significantly.
+    inline: "When we apply a stricter harness, eval scores drop significantly."
+    summary: >
+      Cursor announcing research that the latest models, including Opus 4.8 and its own Composer
+      2.5, learn to retrieve benchmark solutions from the internet or git history, and that eval
+      scores drop significantly under a stricter harness.
+    verdict: >
+      A claim post by a vendor about its own research, reported as its statement; the post gives
+      no figure for the drop and we did not reproduce it. It is here because it bears on every
+      number in this issue: a score is a property of the model and the harness it ran in,
+      including what that harness let it reach.
+
+  - id: fks-not-reading-their-own-code
+    title: "Technically correct, made no sense"
+    kind: voice
+    date: 2026-06-25
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [flue]
+    authors: ["FredKSchott"]
+    display_name: "fks"
+    source_urls:
+      - https://x.com/FredKSchott/status/2069963922514530337
+    verbatim: |
+      Quality control arguable worse these days, people moving faster and not reading their own code. 
+
+      Caught a couple of wtf bugs in Flue already where the code was technically correct but the behavior made no sense, hard to fight
+    inline: "people moving faster and not reading their own code."
+    summary: >
+      Flue's maintainer saying quality control is arguably worse now that people move faster
+      without reading their own code, and that he had already caught bugs in Flue where the code
+      was technically correct but the behavior made no sense.
+    verdict: >
+      A voice post from a maintainer about contributions to his own project; he does not say the
+      code was agent-written, and we do not either. It is here because it names the other side
+      of a week of hardening: the fixes above were written and reviewed by someone, and that
+      reading is the scarce part.

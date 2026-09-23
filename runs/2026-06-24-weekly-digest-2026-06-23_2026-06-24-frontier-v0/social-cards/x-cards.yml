@@ -142,3 +142,133 @@ cards:
     verdict: >
       A vendor announcing its own fork. Quoted for the framing rather than the product: the governance layer keeps being sold as an org chart, which is a choice about where authority is supposed to feel like it lives.
     tags: [framing, governance, fork]
+
+  - id: 8bit64k-plugin-contracts
+    title: "Break existing plugin contracts"
+    kind: claim
+    date: 2026-06-24
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [hermes-agent]
+    authors: ["8bit64k_X"]
+    display_name: "8bit64k"
+    source_urls:
+      - https://x.com/8bit64k_X/status/2069786178346229948
+    verbatim: |
+      Latest commits on Hermes break existing plugin contracts. 
+      I'm looking into solutions on how to deal with this for Cronalytics and Omatchy but at this time don't have a solid direction, sorry. This is disappointing. @Teknium 
+
+      The extending-the-dashboard.md page was updated in the same commit (8845f3316, Jun 22) to bake in the new contract. Three spots now say the same thing:
+
+      - Directory layout (line 434): plugin_api.py # bundled plugins only — backend API routes (FastAPI)
+      - Layer summary (line 441): dashboard/plugin_api.py — bundled plugins only; backend API routes.
+      - Security notes under "Backend API routes" (line 749): "User-installed and project dashboard plugins may still extend the UI with static JS/CSS, but their Python api files are not auto-imported by the dashboard server. Backend routes are reserved for bundled plugins."
+    inline: "Latest commits on Hermes break existing plugin contracts."
+    summary: >
+      A Hermes plugin author, tagging the project lead, reporting that recent commits broke
+      existing plugin contracts for his dashboard plugins, and citing commit 8845f3316 and the
+      docs it changed: user-installed and project plugins may still extend the UI, but their
+      Python API files are no longer auto-imported; backend routes are reserved for bundled
+      plugins.
+    verdict: >
+      A claim post, and the part that can be checked holds: commit 8845f3316, 'restrict
+      dashboard plugin backend import to bundled plugins (#43719)', landed on Hermes main on 22
+      June and is in no tag, per the previous issue's receipts. That it broke his two plugins is
+      his report, which we did not reproduce.
+
+  - id: teknium-mistaken-change
+    title: "A mistaken change we are reverting"
+    kind: claim
+    date: 2026-06-24
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [hermes-agent]
+    authors: ["Teknium"]
+    display_name: "Teknium 🪽"
+    source_urls:
+      - https://x.com/Teknium/status/2069793198734766345
+    verbatim: |
+      This was a mistaken change we are reverting. The security boundary is not saved by this its saved by people not being stupid and exposing their dashboard insecurely to the internet.
+
+      Being reverted now
+    inline: "The security boundary is not saved by this its saved by people not being stupid and exposing their dashboard insecurely to the internet."
+    summary: >
+      Hermes Agent's lead replying to the plugin author: the change was a mistake and is being
+      reverted, because locking plugin backends does not save the security boundary; not
+      exposing a dashboard insecurely to the internet does.
+    verdict: >
+      A claim post by the project's lead about his own project, reported as his statement. We
+      hold no receipt for the revert inside this two-day window. The position is checkable
+      against the record: the same 22 June wave answered a campaign the project's own commits
+      say targeted exposed dashboards, so he is placing that boundary with the operator's
+      network, not the plugin API.
+
+  - id: ashwingop-own-the-context
+    title: "Own the context"
+    kind: voice
+    date: 2026-06-24
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["ashwingop"]
+    display_name: "Ashwin Gopinath"
+    source_urls:
+      - https://x.com/ashwingop/status/2069814177624121469
+    verbatim: |
+      Claude Tag is a Trojan horse.  Not because Anthropic is doing anything evil. Because the incentives are obvious.
+
+      Day one, this looks like a great feature: tag Claude in Slack, let it follow the thread, remember context, connect to tools, break down tasks, chase work, and act like a teammate.
+
+      But that is exactly the problem. The moment your AI vendor becomes a shared coworker, it stops being just a model provider. It starts becoming the place where work is interpreted, remembered, routed, and eventually executed.
+
+      That is not model lock-in. That is context lock-in. You are now renting your company back from them.
+
+      Models can be swapped. Agents can be copied. But the memory of how your company actually works is much harder, maybe impossible, to move: the Slack scar tissue, the exception paths, the customer promises, the unfinished threads, the weird workflows, the implicit owners, the “we tried that in Q2 and it failed” knowledge.
+
+      Once that lives inside one vendor’s agent layer, you are not renting intelligence anymore. You are renting your company’s operating memory.
+
+      And the pricing model makes it even more dangerous. A human coworker has a salary. Claude has unbounded tokenized activity. The more work moves through it, the more the vendor captures not just IT spend, but labor spend.
+
+      This is the enterprise bargain people will regret: Convenience now, and rapid decent into dependency.
+
+      The right architecture is simple: rent the best intelligence from whoever is best this month. OpenAI, Anthropic, Gemini, open source, whatever. But own the context layer.
+
+      Your company memory should be inspectable, permissioned, portable, and model-neutral. It should not be buried inside the same vendor that sells you the intelligence and the workflow surface.
+
+      Claude Tag is useful. That is why it is dangerous. Rent the intelligence, but own the context. Or, regret later.
+    inline: "Your company memory should be inspectable, permissioned, portable, and model-neutral."
+    summary: >
+      A long post arguing that Claude Tag's risk is context lock-in rather than model lock-in:
+      once a vendor's agent layer holds how a company actually works, the company rents back its
+      own operating memory, so teams should rent intelligence and own the context layer.
+    verdict: >
+      A voice post and an argument about incentives, not a claim that Anthropic did anything; he
+      says so in his first lines. We tested nothing here. It is here because it names the other
+      thing sold separately in this issue: not the right to say no, but the memory the saying-no
+      depends on.
+
+  - id: simonw-egress-blocked
+    title: "GitHub is blocked by egress policy"
+    kind: voice
+    date: 2026-06-24
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["simonw"]
+    display_name: "Simon Willison"
+    source_urls:
+      - https://x.com/simonw/status/2069856334305230902
+    verbatim: |
+      Claude Code for web just started saying  "GitHub is blocked by egress policy", which is a big problem for me because most of my prompts there start with things like "clone simonw/sqlite-utils to /tmp to see the docs in /tmp/sqlite-utils/docs"
+
+      @ClaudeDevs @claudeai known issue?
+    inline: "Claude Code for web just started saying  \"GitHub is blocked by egress policy\""
+    summary: >
+      A heavy Claude Code for web user reporting that sessions began refusing GitHub access with
+      an egress-policy message, which breaks prompts that start by cloning a repo, and asking
+      the vendor whether it was a known issue.
+    verdict: >
+      A voice post about the author's own sessions; we assert only that he reported the message.
+      We hold no receipt for what changed or whether it was intended, and he asked rather than
+      asserted. It is here because it is the refusal from the other side: a policy the user did
+      not write, enforced on him.
