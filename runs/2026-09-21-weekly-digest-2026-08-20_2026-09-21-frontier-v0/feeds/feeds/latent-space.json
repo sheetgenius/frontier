@@ -1,0 +1,128 @@
+{
+ "source": "latent-space",
+ "feed": "https://www.latent.space/feed",
+ "swept_on": "2026-09-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "[AINews] Xiaomi MiMo-V2.6-Pro 1T-A42B: the new top Open Weights model, trained for $3M",
+   "url": "https://www.latent.space/p/ainews-xiaomi-mimo-v26-pro-1t-a42b",
+   "date": "2026-09-22",
+   "summary": "crowning a new Chinese frontier lab"
+  },
+  {
+   "title": "Jev: System One models for Prod, not God — with Diogo Almeida, CEO, TypeSafe AI",
+   "url": "https://www.latent.space/p/jev",
+   "date": "2026-09-21",
+   "summary": "The definitive Jev podcast with its lead creator."
+  },
+  {
+   "title": "[AINews] Here are 6 Clones of Jev in 2 days",
+   "url": "https://www.latent.space/p/ainews-here-are-6-clones-of-jev-in",
+   "date": "2026-09-19",
+   "summary": "Imitation is the sincerest form of Flattery"
+  },
+  {
+   "title": "[AINews] not much happened today",
+   "url": "https://www.latent.space/p/ainews-not-much-happened-today-612",
+   "date": "2026-09-18",
+   "summary": "a quiet day"
+  },
+  {
+   "title": "[AINews] Reality Checks on AI News (Yegge shuts down Gas Town, Databricks’ +60% Astra cost)",
+   "url": "https://www.latent.space/p/ainews-reality-checks-on-ai-news",
+   "date": "2026-09-17",
+   "summary": "A dash of cold water keeps the foomers away."
+  },
+  {
+   "title": "Underwriting Superintelligence: Backing Agents you can Sue — Rune Kvist, AIUC",
+   "url": "https://www.latent.space/p/aiuc",
+   "date": "2026-09-16",
+   "summary": "We sit down with AIUC&#8217;s CEO on their Series A!"
+  },
+  {
+   "title": "[AINews] Jev: a “System One Model” that only decides/classifies/routes/scores — >100x faster, >200x cheaper than small frontier LLMs",
+   "url": "https://www.latent.space/p/ainews-jev-a-system-one-model-that",
+   "date": "2026-09-16",
+   "summary": "congrats to TypeSafe!"
+  },
+  {
+   "title": "Can Skills Learned in Games Transfer to Real-World Work?",
+   "url": "https://www.latent.space/p/good-start-labs",
+   "date": "2026-09-15",
+   "summary": "Good Start Labs trained an AI on a railroad game &#8212; and one version improved at financial research. The difference was the training design."
+  },
+  {
+   "title": "[AINews] AEF-1 standard emerges for Third Party Evaluators, as Xai, OpenAI, and Anthropic all cosign",
+   "url": "https://www.latent.space/p/ainews-aef-1-standard-emerges-for",
+   "date": "2026-09-15",
+   "summary": "Pacing gathers pace."
+  },
+  {
+   "title": "Humanity’s Last Invention — Richard Socher of Recursive",
+   "url": "https://www.latent.space/p/recursive",
+   "date": "2026-09-14",
+   "summary": "Richard Socher is an NLP OG and CEO of You.com, who has now spun out an even more ambitious startup focused on RSI &#8212; already worth $5B!"
+  },
+  {
+   "title": "The Rise of the Forward Deployed Engineer — and How To Do the Job Right",
+   "url": "https://www.latent.space/p/forward-deployed-engineer-best-practices",
+   "date": "2026-09-12",
+   "summary": "Before co-founding Kepler, Vinoo Ganesh led Spark at Palantir and built Project Frontline &#8212; a pioneering program for Forward Deployed Engineers. He takes us through the best practices of FDEs."
+  },
+  {
+   "title": "[AINews] DeepSeek v4.1-Flash: 763B-P8B-D16B novel causal Encoder–Decoder architecture with vision marks the Return of the Whale",
+   "url": "https://www.latent.space/p/ainews-deepseek-v41-flash-763b-p8b",
+   "date": "2026-09-12",
+   "summary": "We agree with Sebastian: this should have been DeepSeek v5"
+  },
+  {
+   "title": "[AINews] not much happened today",
+   "url": "https://www.latent.space/p/ainews-not-much-happened-today-d3b",
+   "date": "2026-09-10",
+   "summary": "a quiet day"
+  },
+  {
+   "title": "[AINews] OpenAI reports Navier-Stokes singularity find in 88 hours using Astra-next, roughly 10,000 agents and 130B tokens (>$40M), a contender for second ever Millennium Prize awarded",
+   "url": "https://www.latent.space/p/ainews-openai-reports-navier-stokes",
+   "date": "2026-09-09",
+   "summary": "Overshadowing Cognition's $48B Series E, Mistral's $24B Series D, Meta's Muse agent, and GPT Image 2.5. The most jam packed, feel the AGI day in the history of AI."
+  },
+  {
+   "title": "The Frontier AEO Tracker: What Astra Chooses (and every other frontier model, and what you can do about it)",
+   "url": "https://www.latent.space/p/aeo",
+   "date": "2026-09-07",
+   "summary": "Our first Astra project dives into AEO trends, a top asked topic from founders and DX leaders we talk to."
+  },
+  {
+   "title": "OpenClaw Power, MacBook Simplicity: Five Days With Grok Bot",
+   "url": "https://www.latent.space/p/grok-bot",
+   "date": "2026-09-05",
+   "summary": "SpaceXAI&#8217;s Grok Bot has the same level of programming power as OpenClaw, but it&#8217;s programmable at a different level of abstraction."
+  },
+  {
+   "title": "[AINews] Collusion.wiki: A second undisclosed OpenAI agent swarm incident...",
+   "url": "https://www.latent.space/p/ainews-collusionwiki-a-second-undisclosed",
+   "date": "2026-09-05",
+   "summary": "AI News for 9/2/2026-9/3/2026."
+  },
+  {
+   "title": "[AINews] GPT-6 Astra: OpenAI’s biggest LLM launch of all time",
+   "url": "https://www.latent.space/p/ainews-gpt-6-astra-openais-biggest",
+   "date": "2026-09-04",
+   "summary": "new SOTA computer use and coding, 2.5x pricier per token, but WAY cheaper per task, less monitorable. overall, a very successful launch of OpenAI&#8217;s new frontier model class."
+  },
+  {
+   "title": "GPT-6 Astra: an automated AI Engineer you can hire for <$6 an hour",
+   "url": "https://www.latent.space/p/astra",
+   "date": "2026-09-03",
+   "summary": "We spent 20B+ tokens of GPT-6 Astra to explore everything. Here&#8217;s our learnings."
+  },
+  {
+   "title": "[AINews] Muse Spark 1.3 matches GPT-5.6-Sol, confirming Meta Superintelligence as the newest Frontier Lab, >90% discount for training",
+   "url": "https://www.latent.space/p/ainews-muse-spark-13-matches-gpt",
+   "date": "2026-09-03",
+   "summary": "an epic comeback story for Meta"
+  }
+ ]
+}

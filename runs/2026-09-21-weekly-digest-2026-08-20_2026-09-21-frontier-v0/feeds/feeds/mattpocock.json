@@ -1,0 +1,20 @@
+{
+ "source": "mattpocock",
+ "feed": "https://www.aihero.dev/rss.xml",
+ "swept_on": "2026-09-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "The /resolving-merge-conflicts Skill",
+   "url": "https://www.aihero.dev/skills-resolving-merge-conflicts",
+   "date": "2026-08-24",
+   "summary": "Finish a merge or rebase conflict, hunk by hunk."
+  },
+  {
+   "title": "The /wait-what Skill",
+   "url": "https://www.aihero.dev/skills-wait-what",
+   "date": "2026-08-24",
+   "summary": "Ask the agent to say that again, in plain English."
+  }
+ ]
+}

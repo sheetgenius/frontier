@@ -17,7 +17,7 @@ surface_class: closed_source_release_notes
 evidence_floor: official_changelog
 status: active_watch
 first_published: 2026-08-21
-last_updated: 2026-08-21
+last_updated: 2026-09-21
 last_full_review: 2026-08-21
 claims:
   - id: github-tracker-is-not-source
@@ -35,6 +35,10 @@ stance:
 ---
 
 # Cursor
+
+## Where it stands, 2026-09-21
+
+SpaceX's acquisition reframed the product: OpenAI proposed ending Cursor's access to its models on 12 November. Projects, a coordinator thread that dispatches agents, is in beta and cloud-only. Cloud agents can run on self-hosted machines, and the docs list what still leaves the network. The CLI changelog stops at 26 August while the install channel serves newer builds. No in-window advisory.
 
 ## Operator Read
 

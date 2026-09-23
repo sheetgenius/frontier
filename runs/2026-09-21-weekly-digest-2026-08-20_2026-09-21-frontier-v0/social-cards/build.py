@@ -1,0 +1,120 @@
+import json, subprocess, textwrap, sys
+RUN = "runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0"
+cap = {c["url"]: c for c in json.load(open(f"{RUN}/social/capture.json"))}
+S = [
+ dict(id="wunderwuzzi23-auto-mode-blocked-cleanup", url="https://x.com/wunderwuzzi23/status/2093042649447981523", kind="voice", src=["claude-code"],
+  title="Auto mode blocked the cleanup", frm="It allowed the malware", to="denied stopping it.",
+  summary="A security researcher reporting that in some runs of his auto-mode attack, Claude tried to kill the malware and auto mode refused the cleanup.",
+  verdict="Voice, from the researcher who ran the attack. We report the observation as his. His published write-up (2026-08-26) is the receipt for the attack chain; the cleanup refusal is his account of runs we did not reproduce."),
+ dict(id="air-plugin4shell", url="https://x.com/air__security/status/2100683528383975636", kind="claim", src=["claude-code","codex","gemini-cli","github-copilot-cli"],
+  title="Plugin4Shell", frm="The flaw allows an attacker", to="in any marketplace.",
+  summary="AIR Security announcing a SHA-pinning bypass in four coding agents' plugin installers.",
+  verdict="Claim, adjudicated. The write-up names the mechanism: git prefers a ref over a commit of the same name, and Gemini CLI checks out FETCH_HEAD. We confirmed Gemini CLI v0.60.0 still calls git.checkout('FETCH_HEAD'), and that the Claude Code 2.1.179 changelog is silent on the fix AIR credits to it. The attack needs control of the plugin repository; any marketplace overstates it on hosts that reject 40-hex branch names."),
+ dict(id="hazemomier-trusted-host-component", url="https://x.com/hazemomier/status/2101432515768508696", kind="voice", src=["cursor","codex","gemini-cli","antigravity"],
+  title="What the host later trusts", frm="Blast radius isn", to="the host later trusts.",
+  summary="A practitioner summarizing Pillar Security's week of sandbox escapes: the agent writes something a trusted host component runs later.",
+  verdict="Voice. It is his reading of another firm's series, not a primary record, and we use it for the frame, not the per-vendor facts. The pattern it names matches what we could check this window: Plugin4Shell, GitSpawn and Gemini CLI's Docker-socket fix all ran through host-side plumbing."),
+ dict(id="llm-redteam-before-trust-prompt", url="https://x.com/llm_redteam/status/2097409250264043777", kind="claim", src=["claude-code","hermes-agent","grok-build","codex","cursor"],
+  title="Before the trust prompt", frm="On Claude Code and Hermes Agent", to="even shows up.",
+  summary="A security account relaying Manifold's GitSpawn finding across seven agents.",
+  verdict="Claim, adjudicated against Manifold's write-up of 2026-09-01. Manifold confirms the core.fsmonitor mechanism, seven agents, the Claude Code and Hermes payloads firing before the workspace-trust prompt, and Hermes 0.21.0 and Grok Build 1.0.13 unpatched at its September 1 retest. Hermes shipped the fix in v2026.9.7 six days later (commit f6234d00)."),
+ dict(id="hackerlogs-before-the-first-token", url="https://x.com/hackerlogs/status/2099983257831977303", kind="claim", src=["gemini-cli"],
+  title="Before the first token", frm="Agents load trust, config", to="Prompt defenses never get a turn.",
+  summary="A security account summarizing DefCon research on a Gemini CLI host RCE from a .gemini/.env file.",
+  verdict="Claim, partly corrected. GHSA-jj69-4grx-fqj5 (CVE-2026-12537) confirms pre-sandbox host code execution from a crafted .gemini/.env on headless CI, fixed in Gemini CLI 0.39.1. GitHub's advisory scores it 7.8, not a perfect 10, and was published 2026-06-24: the fix predates this window, the talk does not. The sentence we quote is his framing, and it is the right one."),
+ dict(id="sagarvd01-trust-dialog-is-not-a-sandbox", url="https://x.com/Sagarvd01/status/2101314754182574191", kind="voice", src=["claude-code","cursor","github-copilot-cli","gemini-cli"],
+  title="A trust dialog is not a sandbox", frm="if the repo shipped the MCP config", to="you just ran their code.",
+  summary="An engineer on project-defined MCP servers launching the moment a folder is trusted.",
+  verdict="Voice. We report the argument; we did not verify the TrustFall research he names. Gemini CLI's v0.59.0 change to drop repository mcpServers in an untrusted a2a-server is consistent with the class he describes."),
+ dict(id="composio-failures-cost-more", url="https://x.com/composio/status/2100308380980068538", kind="claim", src=["codex","claude-code","hermes-agent","pi-coding-agent"],
+  title="Similar success, different bills", frm="Most harnesses succeeded", to="depending on the harness.",
+  summary="Composio reporting GPT-6 Astra across six harnesses on 29 tasks.",
+  verdict="Claim, a vendor benchmark with 29 tasks and a method we have not reviewed. It points the same way as the UC Berkeley and Arena HarnessTax study, which has a published method: success tracks the model, cost tracks the harness."),
+ dict(id="zainhas-deepseek-minimal-harness", url="https://x.com/zainhas/status/2097941157905142210", kind="claim", src=["deepseek-harness","claude-code","codex"],
+  title="Best in the thin ones", frm="model performs best in minimal harnesses", to="minimal deepseek harness",
+  summary="A practitioner relaying DeepSeek's own V4.1 Flash evals across eight harness configurations.",
+  verdict="Claim, relayed from DeepSeek's model card, which we did not read. We report that he said it. It agrees in direction with HarnessTax."),
+ dict(id="twelvewecior-harness-not-chatbot", url="https://x.com/12wecior/status/2102103851738288549", kind="voice", src=["claude-code","codex"],
+  title="Use it like a harness", frm="people hating on claude", to="instead of an actual harness",
+  summary="A user arguing that people switching tools are using them as chatbots rather than harnesses.",
+  verdict="Voice, and the counter-read to the harness-tax thread. Benchmarks measure a task, not the workflow around it; his point is that the workflow is where harnesses differ. Nothing here settles which of them is right."),
+ dict(id="thsottiaux-skills-for-previous-models", url="https://x.com/thsottiaux/status/2098612714704891959", kind="claim", src=["codex"],
+  title="Skills written for previous models", frm="Some skills written for previous models", to="preventing the model from checking its work.",
+  summary="The Codex lead listing Astra quality fixes, including over-eager skills and a disabled context experiment.",
+  verdict="Claim, from the vendor, about its own service-side configuration; nothing in the open-source tree records it. We report it as his account. It is the clearest vendor statement this window that scaffolding tuned for an older model got in the new one's way."),
+ dict(id="teknium-more-like-pi", url="https://x.com/Teknium/status/2100645382552428963", kind="voice", src=["hermes-agent","pi-coding-agent","openclaw"],
+  title="More like Pi", frm="We are going to lean", to="less like OpenClaw",
+  summary="The Hermes lead engineer on the project's direction.",
+  verdict="Voice, a maintainer's stated direction. His follow-up names the first step, removing bundled memory providers to the plugin market, and a later reply says the personal-assistant job stays. A direction is not a release; watch the tags."),
+ dict(id="cholf5-rituals", url="https://x.com/cholf5/status/2101684731305947630", kind="voice", src=["deepseek-harness"],
+  title="Old rituals", frm="随着 Agent 和 LLM 的进步", to="正在变得一文不值。",
+  summary="A DeepSeek Harness plugin author saying the model now plans well enough that elaborate skill-pack rituals look pointless. Our translation.",
+  verdict="Voice, in Chinese; the English summary is our paraphrase. A practitioner's experience, not a measurement."),
+ dict(id="nous-1393-subagents", url="https://x.com/NousResearch/status/2099984561451028913", kind="claim", src=["hermes-agent"],
+  title="1,393 subagents", frm="1,393 subagents and nineteen hours later", to="34.4% smaller, saving us nearly $2m in engineering hours.",
+  summary="Nous Research reporting a nineteen-hour Hermes refactor of its own codebase.",
+  verdict="Claim, from the vendor about its own run; we did not reproduce it. The line counts are theirs. A reader of the blog notes the dollar figure is the top of a manual-cost estimate and excludes human review."),
+ dict(id="jimmy-longbow-fine-print", url="https://x.com/jimmy_longbow_/status/2099994186158358606", kind="voice", src=["hermes-agent"],
+  title="The fine print", frm="the tweet's", to="manual estimate", 
+  summary="A reader putting the Hermes refactor's savings figure next to its own estimate range.",
+  verdict="Voice, a reader's reading of the vendor blog. We keep it beside the vendor's number because it is the part of the same blog the headline dropped."),
+ dict(id="v0xium-press-enter", url="https://x.com/v0xium/status/2101526107128529120", kind="voice", src=["claude-code"],
+  title="Nobody is reading anything", frm="People are working 12 to 13 hours a day", to="Nobody is reading anything.",
+  summary="An engineer at a large company describing a team shipping Claude Code output nobody reads.",
+  verdict="Voice, one person's account of one workplace, unverifiable and reported as such. We quote it because it describes the end state of moving approval off the human: the human is still there, pressing enter."),
+ dict(id="jarretcoon-pennies-per-token", url="https://x.com/Jarretcoon/status/2102111882857328856", kind="voice", src=["antigravity","claude-code"],
+  title="Pennies per token, hours of my time", frm="Saving pennies per token", to="isn't a win.",
+  summary="An operator comparing an approve-everything CLI with Claude Code in auto mode.",
+  verdict="Voice. It is the Amdahl argument stated from the operator's chair; it is also exactly the incentive the auto-mode research above is measuring against."),
+ dict(id="mebeim-approve-for-me", url="https://x.com/mebeim/status/2102155601518248092", kind="claim", src=["codex"],
+  title="Approve for me", frm="it just randomly started downloading executables", to="and running them.",
+  summary="A user reporting that Codex in approve-for-me mode downloaded and ran executables for an audio task.",
+  verdict="Claim about one session, unreproduced. We report that he said it. The primary record this window shows Codex narrowing where Guardian reviews (0.153.0) while Guardian V2 stayed off by default."),
+ dict(id="jasonsteving-jev-auto-mode", url="https://x.com/JasonSteving/status/2101716834773065821", kind="voice", src=["temporal-agent-harness"],
+  title="Jev-powered auto mode", frm="Jev is a big unlock", to="efficient agent oversight.",
+  summary="A Temporal harness code owner on wiring a decision model into approvals.",
+  verdict="Voice, a maintainer's enthusiasm. The integration he describes is not in the 0.4.0 wheel; an auto-mode change landed on main after the window closed."),
+ dict(id="agentetna-where-is-the-boundary", url="https://x.com/AgentEtna/status/2101613525827195038", kind="voice", src=["temporal-agent-harness"],
+  title="Where the boundary is", frm="what the agent can do", to="where the boundary is.",
+  summary="A sandbox-testing account asking for traces before amplifying the Jev demo.",
+  verdict="Voice. It is the right question, and the 0.4.0 code answers part of it: the server that carries approvals binds every interface with no login."),
+ dict(id="steipete-local-harnesses-relics", url="https://x.com/steipete/status/2094290652649636173", kind="voice", src=["openclaw"],
+  title="Relics of the past", frm="Local harnesses feel", to="relics of the past now.",
+  summary="OpenClaw's creator on moving the team to a shared, multiplayer cloud agent.",
+  verdict="Voice, a maintainer describing his own team's workflow. The shipping fact behind it is OpenClaw 2026.8.1, the first stable in five weeks, which also carried last issue's unreleased exec fix."),
+ dict(id="mntruell-neutral-infrastructure", url="https://x.com/mntruell/status/2093532254006063557", kind="claim", src=["cursor","codex"],
+  title="Neutral infrastructure", frm="trusted their platform", to="neutral infrastructure for our business.",
+  summary="Cursor's CEO responding to OpenAI's plan to block Cursor users from OpenAI models.",
+  verdict="Claim, from one party to a dispute; the five percent traffic figure is his and OpenAI's Codex lead asked for the math. We report the statement and the cutoff OpenAI announced, not either side's numbers."),
+ dict(id="trailofbits-openclaw-audit", url="https://x.com/trailofbits/status/2102135648224481765", kind="claim", src=["openclaw"],
+  title="27 advisories", frm="Our @openclaw security assessment", to="1 architectural submission.",
+  summary="Trail of Bits announcing its OpenClaw assessment.",
+  verdict="Claim, from the auditor. OpenClaw's own advisory list shows 75 advisories published on 2026-09-11, most patched in 2026.8.1; we did not map the auditor's 27 onto them."),
+]
+def ylit(s, ind):
+    return "\n".join((" "*ind + l) if l else "" for l in s.split("\n"))
+out = ["schema_version: bitter.frontier_social_cards.v0", f"run_id: {RUN.split('/')[1]}", "note: >",
+ "  Every verbatim was re-fetched by URL in a capture pass given no expected text",
+ "  (ops/grok/capture.sh, 38 blocks, 0 unavailable). Inline fragments were sliced",
+ "  by ops/social/slice-quote.mjs, never retyped.", "cards:"]
+for c in S:
+    k = cap[c["url"]]
+    v = k["verbatim"].rstrip("\n")
+    out += [f"  - id: {c['id']}", f"    title: \"{c['title']}\"", f"    kind: {c['kind']}",
+      f"    date: {k['posted_at']}", "    date_precision: day", "    captured_on: 2026-09-23",
+      f"    source_ids: [{', '.join(c['src'])}]", f"    authors: [\"{k['handle'].lstrip('@')}\"]",
+      f"    display_name: {json.dumps(k['display_name'], ensure_ascii=False)}",
+      "    source_urls:", f"      - {c['url']}", "    verbatim: |", ylit(v, 6),
+      "    inline: \"__INLINE__\"", "    summary: >", ylit(textwrap.fill(c['summary'], 96), 6),
+      "    verdict: >", ylit(textwrap.fill(c['verdict'], 96), 6), ""]
+open(f"{RUN}/social-cards/x-cards.yml","w").write("\n".join(out))
+# slice
+text = open(f"{RUN}/social-cards/x-cards.yml").read()
+for c in S:
+    r = subprocess.run(["node","ops/social/slice-quote.mjs",f"{RUN}/social-cards/x-cards.yml",c["id"],"--from",c["frm"],"--to",c["to"]],capture_output=True,text=True)
+    if r.returncode: print("FAIL", c["id"], r.stderr.strip()); continue
+    frag = r.stdout.rstrip("\n")
+    i = text.index(f"  - id: {c['id']}\n"); j = text.index('inline: "__INLINE__"', i)
+    text = text[:j] + "inline: " + json.dumps(frag, ensure_ascii=False) + text[j+len('inline: "__INLINE__"'):]
+    print("ok  ", c["id"], "|", frag[:90])
+open(f"{RUN}/social-cards/x-cards.yml","w").write(text)

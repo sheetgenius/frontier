@@ -1,0 +1,292 @@
+source: claude-code
+findings:
+  - slug: stable-froze-on-2-1-236-for-eighteen-days-then-jumped-to-2-1-267
+    confidence: high
+    channel: tagged-release (stable pointer, Homebrew cask proxy); docs-only (policy text unchanged)
+    half: defect
+    body: >
+      The stable channel pointer (downloads.claude.ai/claude-code-releases/stable, which the native
+      installer and the Homebrew claude-code cask both follow) moved to 2.1.236 around 2026-08-28
+      (cask commit 7506a05707) and did not move again until about 2026-09-15, when it jumped to
+      2.1.267 (cask commit 67ec5aa16a, patch -version 2.1.236 +version 2.1.267). That skipped 23 npm
+      versions. On 2026-09-15 stable was 27 days behind latest. The setup page still says stable is
+      "typically about one week old" on Wayback captures of 2026-08-25 and 2026-09-18 and on the live
+      page. At window close stable is 2.1.267 and latest is 2.1.278.
+    consequence: >
+      Treat stable as a pointer someone moves, not a fixed lag. A stable fleet took the 2.1.257
+      authority batch, the 2.1.259 MCP allowlist change and the Fable 5.1 default in one hop around
+      09-15. Stable now contains the 2.1.235 Shift+Tab fix, the 2.1.236 read-deny fixes and the 2.1.238
+      headersHelper gate. It does not contain anything from 2.1.268 onward. Pin minimumVersion to the
+      fix you need.
+    evidence:
+      - url: https://github.com/Homebrew/homebrew-cask/commit/67ec5aa16a
+        precision: commit
+      - url: https://github.com/Homebrew/homebrew-cask/commit/7506a05707
+        precision: commit
+      - url: https://code.claude.com/docs/en/setup#configure-release-channel
+        precision: official_docs
+
+  - slug: 2-1-278-auto-mode-classifier-moves-server-side-by-default
+    confidence: high
+    channel: tagged-release (latest 2.1.278; not on stable 2.1.267)
+    half: both
+    body: >
+      2.1.273 (2026-09-15) set the local auto-mode classifier as default on Bedrock, Vertex and Foundry,
+      with CLAUDE_CODE_AUTO_MODE_SERVER=1 to opt into the server classifier. 2.1.278 (2026-09-19)
+      reversed that: auto mode for Claude API, Enterprise, Bedrock, Vertex, Foundry and gateways now
+      defaults to the server-side classifier, which "does not charge for classifier overhead", with
+      CLAUDE_CODE_AUTO_MODE_SERVER=0 as the opt-out on the three clouds and gateways. A new docs page says
+      the server performs the checks inside the session's own model requests. When a gateway strips the
+      safeguards request field or drops safeguard_results, Claude Code holds the action on a notice and
+      Enter continues on the billed local classifier. The page calls the variable temporary. /status gains
+      an Auto mode server row.
+    consequence: >
+      Gateway operators must pass safeguards and safeguard_results through unchanged, or set
+      CLAUDE_CODE_AUTO_MODE_SERVER=0 and keep paying for the local classifier. Otherwise the first checked
+      action in every auto-mode session holds on a notice, including under -p. Record which classifier
+      decided from /status or the stream-json system warning. A fleet that set =1 on 09-15 is now a no-op;
+      one that never set it changed behavior on 09-19.
+    evidence:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.278
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.273
+        precision: github_release
+      - url: https://code.claude.com/docs/en/auto-mode-classifier-billing
+        precision: official_docs
+
+  - slug: restricted-and-permission-prompts-none-refuse-instead-of-asking
+    confidence: high
+    channel: tagged-release (2.1.248 and 2.1.259; both on stable 2.1.267)
+    half: capability
+    body: >
+      2.1.248 (2026-08-27) added --restricted (CLAUDE_CODE_RESTRICTED=1): it removes the built-in tools
+      that run commands or code and WebFetch unless named in --tools, fences file tools to the working
+      directory, refuses bypassPermissions, refuses cloud sessions, and loads only managed settings and
+      --settings. 2.1.259 (2026-09-02) added --permission-prompts none: anything that would prompt is
+      denied while the active permission mode, including auto mode, keeps deciding. 2.1.268 made
+      PermissionRequest hooks fire under --print; 2.1.269 made stream-json permission_denials include
+      path-scoped Read, Edit and Write denials; 2.1.277 made -p exit 1 on an internal error instead of
+      hanging.
+    consequence: >
+      Use --restricted -p for graders and untrusted-input review jobs; the --tools allowlist is the only
+      way to restore a removed tool. Use --permission-prompts none for cron and CI where an ask must fail
+      closed. Adapters that reconciled permission_denials were undercounting before 2.1.269.
+    evidence:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.248
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.259
+        precision: github_release
+      - url: https://code.claude.com/docs/en/cli-reference
+        precision: official_docs
+
+  - slug: 2-1-257-authority-batch-project-bypass-ignored-ask-rules-skipped-in-auto
+    confidence: high
+    channel: tagged-release (2.1.257; on stable 2.1.267)
+    half: both
+    body: >
+      2.1.257 (2026-09-01) makes defaultMode bypassPermissions in project or local settings files take no
+      effect, as auto already did, so a repository can no longer put a clone into bypass mode. It adds an
+      auto-mode rule that stops auto-approving cloud metadata-credential fetches, egress evasion and
+      cross-tenant reach, and a one-time prompt before the first read outside the working directories with
+      permissions.blockReadsOutsideWorkingDirectories. It fixes a permissions.ask rule being skipped in
+      auto mode when the command ran inside a compound command or subshell; Bash Read() and Edit() deny
+      rules not applying to < file redirects or reader commands such as tac and egrep; and dismissing the
+      Remote Control consent prompt with Esc or n counting as consent. Same release makes Claude Fable 5.1
+      the default Fable model.
+    consequence: >
+      Any repo that committed bypassPermissions loses it on upgrade. Any auto-mode policy that treated
+      permissions.ask as the human checkpoint did not hold for a && b or $(...) forms before 2.1.257;
+      re-test with a compound command. Check the claude.ai session list on any Remote Control host where
+      the consent prompt was dismissed on an older build.
+    evidence:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.257
+        precision: github_release
+      - url: https://code.claude.com/docs/en/settings
+        precision: official_docs
+
+  - slug: 2-1-251-repository-settings-lose-tracing-env-and-a-symlink-toctou-closes
+    confidence: high
+    channel: tagged-release (2.1.251; on stable 2.1.267)
+    half: both
+    body: >
+      2.1.251 (2026-08-28) fixes file tools following a symlink swapped inside the working directory after
+      the permission check, which could read or write outside the approved location. Project settings can
+      no longer enable detailed beta tracing or raw API body logging, a lower-scope tracing endpoint can no
+      longer bypass a managed OTLP collector, and project env can no longer set CLAUDE_CONFIG_DIR or the
+      temp directories. Server-managed settings that terminate sandbox TLS, proxy sandbox traffic or inject
+      credentials now require approval. Claude in Chrome actions always go through Claude Code's permission
+      checks. The auto-mode default offer can no longer be accepted by a stray keypress or by the Enter
+      that sends a prompt. PreModelSwitch and PostModelSwitch hook events are added.
+    consequence: >
+      Grep cloned repositories for env and tracing keys in .claude/settings.json; those were live controls
+      until 2.1.251. Rotate anything a project-level raw-body log could have captured. Consent-by-keystroke
+      is now three consecutive fixes (2.1.235, 2.1.236, 2.1.251); do not run interactive builds in
+      unattended panes.
+    evidence:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.251
+        precision: github_release
+
+  - slug: deny-rules-extended-into-bash-and-reverted-twice
+    confidence: high
+    channel: tagged-release (2.1.259 through 2.1.274)
+    half: defect
+    body: >
+      2.1.259 (2026-09-02) applied Read() deny rules to Bash arguments; 2.1.260 (2026-09-03) reverted it
+      because it denied npm run build under a Read(./**/build/**) rule. 2.1.268 (2026-09-10) checked deny
+      rules on Bash lines the checker cannot analyze such as eval and env -C; 2.1.273 (2026-09-15) reverted
+      that because it denied time -p make build. Around those, seven other non-binding cases closed:
+      parentheses in a rule path dropped the rule and left read-only folders writable (2.1.260); one bad
+      pattern broke every file edit (2.1.260); rules on symlinked directories such as /tmp did not match real
+      paths (2.1.268); tee wrote past Edit() deny (2.1.269); a !-prefixed rule leaked across settings
+      sources (2.1.269); wildcards and unrecognized options hid the file (2.1.271); and cd or subshell
+      chains skipped blockReadsOutsideWorkingDirectories in bypass and auto mode (2.1.271, 2.1.273).
+    consequence: >
+      At 2.1.278 a Read() deny binds on file tools, Grep and Glob, Bash redirects and recognized readers,
+      tee targets, wildcard expansions and symlinked spellings. It does not bind on arbitrary Bash arguments
+      or on lines the checker cannot analyze; those prompt. If a deny rule exists to keep .env out of a
+      shell, test cat < .env, tac .env, eval "cat .env" and time cat .env on the build you run. Stable
+      2.1.267 has the 2.1.260 revert and nothing from 2.1.268 onward.
+    evidence:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.260
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.273
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/blob/8187baaaafb3/CHANGELOG.md
+        precision: tagged_commit_file
+
+  - slug: managed-mcp-and-policy-lists-go-fail-closed-allowedmcpservers-semantics-flip
+    confidence: high
+    channel: tagged-release (2.1.259, 2.1.267 on stable; 2.1.271, 2.1.273 latest only)
+    half: both
+    body: >
+      2.1.259 (2026-09-02): an unparseable managed-settings file, drop-in, MDM plist or HKLM value was
+      silently unenforced and now refuses to start; allowedMcpServers now governs only user-added servers,
+      so a managed-mcp.json server the allowlist used to filter loads on upgrade; managedMcpServers ships
+      HTTP and SSE servers to every user. 2.1.267: unreadable allowedHttpHookUrls, httpHookAllowedEnvVars
+      and allowedChannelPlugins admit nothing rather than everything. 2.1.271: an unreadable
+      managed-mcp.json keeps exclusive MCP control instead of being ignored; a cached org policy was reused
+      after switching accounts. 2.1.273: allowManagedMcpServersOnly, deniedMcpServers and
+      disableClaudeAiConnectors set via MDM or managed-settings.json were ignored when server-managed
+      settings were also present.
+    consequence: >
+      If allowedMcpServers filtered managed-mcp.json, move exclusions to deniedMcpServers and check /mcp.
+      Fleets layering MDM on server-managed settings had no working MCP deny list or connector kill switch
+      before 2.1.273, and stable 2.1.267 still lacks that fix. A managed-settings file with a syntax error
+      will now stop Claude Code from starting; fix it before rolling.
+    evidence:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.259
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.273
+        precision: github_release
+
+  - slug: 2-1-271-model-names-its-own-egress-hosts-subagent-output-framed-as-subagent
+    confidence: high
+    channel: tagged-release (2.1.271, 2.1.277; latest only)
+    half: both
+    body: >
+      2.1.271 (2026-09-14) adds per-command allowed_domains to Bash, PowerShell and Monitor in sandboxed
+      auto mode: the classifier reviews the hosts with the command, the sandbox opens them for that command
+      alone, and a host no approved command listed is refused without a prompt or a classifier check.
+      strictAllowlist or allowManagedDomainsOnly refuses per-command lists. The same release routes a
+      skill's inline ! shell through default-mode rules instead of the classifier, has subagents hand back
+      through a reviewed call, and adds omitClaudeMd for subagents. 2.1.277 (2026-09-18) delivers subagent
+      results under a header marking them as subagent output so they cannot pass as the session's own
+      instructions, and strips invisible Unicode tag characters from prompts. 2.1.268 names the rule that
+      blocked an auto-mode action.
+    consequence: >
+      Per-command domains remove per-host network prompts under sandboxing and move egress proposal to the
+      model and approval to the classifier. Set strictAllowlist or allowManagedDomainsOnly if the org must
+      own the allowlist. Adapters that parsed subagent results verbatim must handle the new header and
+      indentation.
+    evidence:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.271
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.277
+        precision: github_release
+      - url: https://code.claude.com/docs/en/sandboxing#per-command-allowed-domains-in-auto-mode
+        precision: official_docs
+
+  - slug: gateway-key-sent-to-telemetry-and-credential-files-uploaded-to-cloud-sessions
+    confidence: high
+    channel: tagged-release (2.1.246, 2.1.248 on stable; 2.1.268, 2.1.275 latest only)
+    half: defect
+    body: >
+      Before 2.1.246 (2026-08-25), telemetry and metrics requests to Anthropic carried the API key
+      configured for a third-party gateway via ANTHROPIC_BASE_URL. Before 2.1.248 (2026-08-27),
+      /ultrareview and locally seeded cloud sessions uploaded uncommitted prod.env-style files, *.tfvars and
+      editor swap or backup copies of key files. 2.1.268 stopped /mcp and plugin screens printing secrets
+      resolved from ${VAR} placeholders. 2.1.275 (2026-09-17) fetches npm-sourced plugins with
+      npm pack --ignore-scripts and integrity verification, so a package's install scripts no longer run.
+      The repository's security-advisory feed published nothing dated in the window.
+    consequence: >
+      Rotate any gateway key that ran with telemetry on before 2.1.246. If /ultrareview or a seeded cloud
+      session ran before 2.1.248 with an uncommitted .tfvars or key backup in the tree, treat those values
+      as disclosed to the cloud container. Scrub CI logs that printed /mcp output before 2.1.268. The
+      advisory feed is not a signal for this product; read the changelog.
+    evidence:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.246
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.248
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.275
+        precision: github_release
+
+  - slug: agents-md-support-and-task-scaffolding-removed-for-current-models
+    confidence: high
+    channel: tagged-release (2.1.268, 2.1.277; latest only)
+    half: both
+    body: >
+      2.1.277 (2026-09-18) reads AGENTS.md as project instructions when a project has no CLAUDE.md (not yet
+      on Bedrock, Vertex or Foundry), removes the deprecated TaskOutput tool, and fixes a
+      sandbox.excludedCommands glob that exempted an entire compound command from the sandbox when only one
+      part matched. 2.1.268 (2026-09-10) offers the TaskCreate/Get/Update/List and TodoWrite tools only on
+      older models (Claude 3.x, Opus 4.0 to 4.7, Sonnet 4.0 to 4.6, Haiku 4.5) unless
+      CLAUDE_CODE_ENABLE_TODO_TOOLS=1. 2.1.260 removed the one-hour cap on subagent background commands.
+      2.1.274 stops /code-review fanning out review subagents on models without tuned settings.
+    consequence: >
+      Delete CLAUDE.md shims that only point at AGENTS.md once past 2.1.277 off the three clouds. Hooks or
+      transcript parsers keyed on TodoWrite or TaskOutput lose their signal on current models. Re-read every
+      excludedCommands entry as exempting the whole line on builds before 2.1.277.
+    evidence:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.277
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.268
+        precision: github_release
+
+  - slug: claude-ai-skills-and-plugins-sync-into-terminal-sessions-by-default
+    confidence: high
+    channel: tagged-release (2.1.275; latest only)
+    half: both
+    body: >
+      2.1.275 (2026-09-17) syncs the skills and plugins enabled on a claude.ai account into terminal sessions
+      signed in with it, opt-out with syncClaudeAiSkills false or syncClaudeAiPlugins false. It also makes
+      Claude in Chrome in auto mode skip the extension's per-site check for classifier-approved calls, as
+      bypass mode does. 2.1.273 fixed skills synced from claude.ai staying available after an organization
+      turned Skills off.
+    consequence: >
+      An admin-installed plugin on claude.ai becomes code that runs on every signed-in developer machine.
+      Set syncClaudeAiPlugins false in managed settings if plugin provenance is reviewed elsewhere, and
+      inventory ~/.claude for @synced entries after upgrade.
+    evidence:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.275
+        precision: github_release
+
+  - slug: effort-model-and-cost-governance-and-claude-plugin-eval
+    confidence: high
+    channel: tagged-release (2.1.243, 2.1.267 on stable; 2.1.269 latest only)
+    half: capability
+    body: >
+      2.1.243 (2026-08-24) adds modelPicker, the modelPricing managed setting, prompt-cache TTL settings and
+      keyless Console sign-in. 2.1.267 (2026-09-09) adds maxEffortLevel, which caps effort on every provider
+      with the lowest cap winning. 2.1.269 (2026-09-11) adds claude plugin eval, which runs a plugin's eval
+      suite and a no-plugin baseline and reports JSON and HTML. 2.1.274 adds a
+      claude_code.managed_settings_resolved OTel event naming the policy sources a session applied.
+    consequence: >
+      maxEffortLevel in managed settings is the first effort ceiling that binds on Bedrock, Vertex and
+      Foundry. Teams that built a bespoke plugin eval harness can compare against the vendor's. Wire the
+      managed_settings_resolved event into the fleet dashboard.
+    evidence:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.267
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.269
+        precision: github_release

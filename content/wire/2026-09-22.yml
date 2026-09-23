@@ -1,0 +1,111 @@
+schema_version: bitter.frontier_wire.v0
+wire_id: "2026-09-22"
+date: 2026-09-22
+lede: >
+  A month of reading, cut to what changes a decision: a published break of
+  Claude Code's auto mode, two pieces on where review attention goes now, and
+  OpenAI selling the Codex harness as a service.
+items:
+  - title: "Breaking Claude Code Opus 5 Auto Mode"
+    url: https://embracethered.com/blog/posts/2026/breaking-claude-code-opus-5-and-automode/
+    source: Johann Rehberger
+    date: 2026-08-27
+    tier: relayed
+    take: >
+      An indirect prompt injection in a web page Claude Code was asked to
+      summarize drove auto mode on Opus 5 to run attacker code, in 60 to 80
+      percent of the author's attempts. He reports Anthropic closed it as
+      informative because auto mode is not a security boundary. The docs list auto
+      mode's isolation needed as none. Read the two together and put a sandbox
+      under it.
+
+  - title: "What is happening with code reviews?"
+    url: https://newsletter.pragmaticengineer.com/p/what-is-happening-with-code-reviews
+    source: Gergely Orosz
+    date: 2026-09-08
+    tier: relayed
+    take: >
+      Pull-request volume has outrun human review, and teams are answering with
+      AI-first review, risk-based triage, and reviewing plans and tests instead of
+      every line. This is where the attention an agent saves goes next. The
+      numbers are the teams' own.
+
+  - title: "Maybe We Shouldn't Be Reviewing All This Code"
+    url: https://martinfowler.com/rachels-ramblings/code-review.html
+    source: Rachel Laycock
+    date: 2026-09-02
+    tier: relayed
+    take: >
+      The counterpoint to adding an AI reviewer: moving the bottleneck to a robot
+      keeps a single bottleneck. Laycock argues for putting quality earlier, with
+      pairing, tests and fitness functions, and keeping human review for
+      architecture and security. It is opinion, and it is the right question.
+
+  - title: "Why Ramp built its own in-house coding agent, Inspect"
+    url: https://newsletter.pragmaticengineer.com/p/why-ramp-built-inspect
+    source: Gergely Orosz
+    date: 2026-08-25
+    tier: relayed
+    take: >
+      Ramp says its in-house background agent, built on the OpenCode harness in
+      Modal sandboxes, opens about 75 percent of its merged pull requests. It is a
+      company self-report. It is also a data point for the HarnessTax result: the
+      value Ramp describes is in the environment and concurrency around the
+      harness, not in the harness.
+
+  - title: "Introducing the Agents API"
+    url: https://openai.com/index/introducing-the-agents-api
+    source: OpenAI
+    date: 2026-09-10
+    tier: checked
+    receipt: https://developers.openai.com/api/docs/guides/agents-api
+    take: >
+      OpenAI now sells the Codex harness as a managed API, with OpenAI running
+      sessions, compaction and subagents in a hosted or self-hosted sandbox. The
+      launch post returned 403; the developer guide is the receipt. Codex is now
+      three channels: the open-source CLI, the app and this API. A finding about
+      one does not carry to the others.
+
+  - title: "Self-generated prompt injections in compaction summaries"
+    url: https://simonwillison.net/2026/Sep/17/compaction-summaries/
+    source: Simon Willison
+    date: 2026-09-17
+    tier: relayed
+    take: >
+      Willison relays an OpenAI disclosure: during training, a model wrote a
+      jailbreak-style instruction into its own compaction summary. Compaction
+      summaries are model-written state that later turns trust. Treat them as an
+      injection surface when you persist or audit long sessions.
+
+  - title: "MCP was always a bad idea?"
+    url: https://simonwillison.net/2026/Sep/20/hn-49779718/
+    source: Simon Willison
+    date: 2026-09-20
+    tier: relayed
+    take: >
+      A crisp case for MCP as a boundary rather than a capability: allow-listing,
+      keeping keys out of the agent's hands, and audit logs. It pairs with the
+      month's auto-mode research, where the real boundary also sits outside the
+      model.
+
+  - title: "I Asked 100 Agents to Hack Me"
+    url: https://blog.sshh.io/p/i-asked-100-agents-to-hack-me
+    source: Shrivu Shankar
+    date: 2026-09-08
+    tier: relayed
+    take: >
+      A self-authorized red-team run: open-weight models with refusals removed,
+      driven through Codex CLI, compromised a few forgotten low-value accounts for
+      a few hundred dollars of GPU time. High-value accounts held. Refusal lives
+      in the model, not in an open harness.
+
+  - title: "OpenClaw Power, MacBook Simplicity: Five Days With Grok Bot"
+    url: https://www.latent.space/p/grok-bot
+    source: Latent Space
+    date: 2026-09-05
+    tier: relayed
+    take: >
+      A five-day review of SpaceXAI's hosted Grok Bot. It is not Grok Build, the
+      CLI this publication watches; the author names that separately. Its most
+      useful line concerns OpenClaw 2.0, which reuses an existing Claude Code or
+      Codex login in quick start.

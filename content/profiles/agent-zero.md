@@ -13,9 +13,17 @@ repo: https://github.com/agent0ai/agent-zero
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: telegram-webhook
+    finding_id: 2026-09-21-agent-zero-v2-12-fixes-an-unauthenticated-telegram-webhook-that-let-anyone-forge-allowed-user-prompts
+    last_verified: 2026-09-23
+    status: active
+  - id: acp-defaults-unchanged
+    finding_id: 2026-09-21-agent-zero-carry-forward-acp-defaults-unchanged-at-v2-11-and-v2-12-ssrf-tests-intact-blob-changed-for
+    last_verified: 2026-09-23
+    status: active
   - id: v2-10-acp-browser-ssrf-tests
     finding_id: 2026-08-20-agent-zero-v2-10-tags-acp-and-interactive-browser-and-adds-ssrf-regression-tests
     last_verified: 2026-08-20
@@ -88,6 +96,10 @@ stance:
 ---
 
 # Agent Zero
+
+## Where it stands, 2026-09-21
+
+Latest is [v2.12](https://github.com/agent0ai/agent-zero/releases/tag/v2.12). It fixes an unauthenticated Telegram webhook, a WhatsApp path traversal and an IMAP allowlist bypass, recorded in a checked-in security ledger rather than advisories. ACP defaults and the SSRF tests are unchanged. The `ready` branch carries secret-substitution and browser fixes in no tag.
 
 ## Operator Read
 

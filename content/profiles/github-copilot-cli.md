@@ -18,9 +18,17 @@ surface_class: closed_source_releases
 evidence_floor: official_changelog
 status: active_watch
 first_published: 2026-08-21
-last_updated: 2026-08-21
+last_updated: 2026-09-21
 last_full_review: 2026-08-21
 claims:
+  - id: allow-all-falsey
+    finding_id: 2026-09-21-github-copilot-cli-1-0-85-copilot-allow-all-falsey-values-used-to-enable-auto-approval
+    last_verified: 2026-09-23
+    status: active
+  - id: plugin4shell-no-fix
+    finding_id: 2026-09-21-github-copilot-cli-plugin4shell-no-changelog-line-names-a-fix-through-1-0-87
+    last_verified: 2026-09-23
+    status: active
   - id: repo-is-not-agent-source
     last_verified: 2026-08-21
     status: open_question
@@ -36,6 +44,10 @@ stance:
 ---
 
 # GitHub Copilot CLI
+
+## Where it stands, 2026-09-21
+
+Six stables through [1.0.87](https://github.com/github/copilot-cli/blob/c13b3dcae4f1/changelog.md). 1.0.83 cut sandbox access to localhost and pinned Linux egress to the proxy, and grants file tools read access to token-bearing dev config by default. 1.0.85 fixed `COPILOT_ALLOW_ALL=0` turning auto-approval on and a managed-hooks bypass. No changelog line names a Plugin4Shell fix.
 
 ## Operator Read
 

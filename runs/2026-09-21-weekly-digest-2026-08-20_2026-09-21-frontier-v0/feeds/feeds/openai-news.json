@@ -1,0 +1,158 @@
+{
+ "source": "openai-news",
+ "feed": "https://openai.com/news/rss.xml",
+ "swept_on": "2026-09-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "Advisory Group on Mathematics and Artificial Intelligence",
+   "url": "https://openai.com/index/advisory-group-on-mathematics-and-ai",
+   "date": "2026-09-21",
+   "summary": "OpenAI is working with an independent Advisory Group on Mathematics and Artificial Intelligence to guide the review and communication of emerging AI results."
+  },
+  {
+   "title": "Higgsfield AI ships new video features in a day with GPT-6 Astra",
+   "url": "https://openai.com/index/higgsfield-from-prompt-to-production-with-astra",
+   "date": "2026-09-21",
+   "summary": "With GPT-6 Astra, Higgsfield AI makes video ad creation easier for small businesses and brings new creative tools to market faster."
+  },
+  {
+   "title": "Building standards for the next phase of AI",
+   "url": "https://openai.com/index/building-standards-next-phase-ai",
+   "date": "2026-09-21",
+   "summary": "OpenAI outlines a path to shared global AI standards, calling for coordinated evaluation, reporting, and governance to improve safety."
+  },
+  {
+   "title": "Expanding OpenAI Academy with new learning paths",
+   "url": "https://openai.com/index/expanding-openai-academy-with-new-learning-paths",
+   "date": "2026-09-21",
+   "summary": "Explore new OpenAI Academy learning paths for employees, developers, leaders, educators, and students to build and demonstrate practical AI skills."
+  },
+  {
+   "title": "How V7 gives AI agents institutional memory",
+   "url": "https://openai.com/index/v7",
+   "date": "2026-09-21",
+   "summary": "Using GPT-5.6, V7 turns scattered company files into context agents can use to complete complex, source-linked work."
+  },
+  {
+   "title": "Introducing the Australian Youth Safety Blueprint",
+   "url": "https://openai.com/index/australian-youth-safety-blueprint",
+   "date": "2026-09-18",
+   "summary": "OpenAI introduces the Australian Youth Safety Blueprint, a six-pillar roadmap for safer AI experiences that protect and empower young people."
+  },
+  {
+   "title": "How Cooley is accelerating IPO work with ChatGPT",
+   "url": "https://openai.com/index/cooley-gopublic",
+   "date": "2026-09-17",
+   "summary": "Cooley built GO Public with ChatGPT Work to bring intelligence to the IPO process, helping lawyers surface issues earlier and focus judgment where it matters most."
+  },
+  {
+   "title": "Introducing Astra for Law",
+   "url": "https://openai.com/index/astra-for-law",
+   "date": "2026-09-17",
+   "summary": "OpenAI for Law brings frontier intelligence for law, custom firm workflows, connected legal data sources, and legal-grade controls for confidential client work."
+  },
+  {
+   "title": "Helping older adults use AI in everyday life",
+   "url": "https://openai.com/index/helping-older-adults-use-ai-in-everyday-life",
+   "date": "2026-09-16",
+   "summary": "OpenAI and AARP are bringing free, hands-on ChatGPT workshops to 1,000 older adults across 10 U.S. cities to build practical AI skills safely."
+  },
+  {
+   "title": "Reimagining advertising with AI",
+   "url": "https://openai.com/index/reimagining-advertising-with-ai",
+   "date": "2026-09-16",
+   "summary": "Explore new AI-powered advertising experiences from OpenAI, including Sponsored Agents, tools for marketers, and integrations with HubSpot and Shopify."
+  },
+  {
+   "title": "Hex turns complex analysis into visual reports with GPT‑6 Astra",
+   "url": "https://openai.com/index/hex-gpt-6-astra",
+   "date": "2026-09-16",
+   "summary": "GPT-6 Astra helps Hex’s data agents turn answers into interactive visualizations that employees are proud to share."
+  },
+  {
+   "title": "How to connect AI usage to business value",
+   "url": "https://openai.com/index/how-to-connect-ai-usage-to-business-value",
+   "date": "2026-09-16",
+   "summary": "Learn how ChatGPT Work and Codex analytics help teams understand AI usage and spend, identify training needs, and connect adoption to business outcomes."
+  },
+  {
+   "title": "Our framework for reporting model misalignment",
+   "url": "https://openai.com/index/model-misalignment-reporting-framework",
+   "date": "2026-09-16",
+   "summary": "OpenAI shares a framework for tracking, investigating, and disclosing model misalignment, alongside six reports of unexpected or concerning model behavior."
+  },
+  {
+   "title": "How workers are unlocking new ways of working",
+   "url": "https://openai.com/index/unlocking-new-ways-of-working",
+   "date": "2026-09-16",
+   "summary": "New OpenAI Economic Research shows how workers use AI beyond traditional roles and which new activities become recurring parts of their work."
+  },
+  {
+   "title": "How Fyxer built an AI executive assistant people trust",
+   "url": "https://openai.com/index/fyxer",
+   "date": "2026-09-14",
+   "summary": "Fyxer uses OpenAI models, fine-tuning, memory, and real user feedback to organize inboxes and draft emails in each user’s voice."
+  },
+  {
+   "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
+   "url": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
+   "date": "2026-09-14",
+   "summary": "Perplexity uses Astra to write communications, change software, and monitor production systems, and checks in much less frequently than with earlier models."
+  },
+  {
+   "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users",
+   "url": "https://openai.com/index/scaling-storage-one-billion-users-part-one",
+   "date": "2026-09-11",
+   "summary": "Learn how OpenAI evolved Habitat from a Python library into a globally distributed storage platform serving 1 billion ChatGPT users and 22M requests per second."
+  },
+  {
+   "title": "Cognition helps Devin test its own work with GPT‑6 Astra",
+   "url": "https://openai.com/index/cognition-devin-testing-with-astra",
+   "date": "2026-09-11",
+   "summary": "GPT‑6 Astra improves Devin’s ability to test software and show that it works, with the goal of helping engineers review less code and ship more."
+  },
+  {
+   "title": "How a researcher uses Codex and ChatGPT to search for new antimicrobial molecules",
+   "url": "https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials",
+   "date": "2026-09-10",
+   "summary": "César de la Fuente’s lab uses Codex and ChatGPT to search living and extinct genomes for antimicrobial candidates to fight drug-resistant infections."
+  },
+  {
+   "title": "Now everyone can put data to work",
+   "url": "https://openai.com/index/put-data-to-work",
+   "date": "2026-09-10",
+   "summary": "Meet the Data agent in ChatGPT Work. Connect company data, uncover insights, and build interactive dashboards with AI using natural language."
+  },
+  {
+   "title": "Introducing ChatGPT for Financial Services",
+   "url": "https://openai.com/index/introducing-chatgpt-financial-services",
+   "date": "2026-09-10",
+   "summary": "Introducing ChatGPT for Financial Services, combining built-in financial data and GPT-6 Astra for research, modeling, and client-ready materials."
+  },
+  {
+   "title": "Expanding AI access and cyber defense for federal, state, local, and tribal governments",
+   "url": "https://openai.com/index/expanding-ai-access-us-government",
+   "date": "2026-09-10",
+   "summary": "OpenAI and GSA will offer eligible federal, state, local, and tribal governments $0 license fees, 50% off usage, and expanded cyber defense support."
+  },
+  {
+   "title": "Build more natural voice experiences with GPT‑Live‑1 in the API",
+   "url": "https://openai.com/index/introducing-gpt-live-1-in-the-api",
+   "date": "2026-09-10",
+   "summary": "GPT‑Live‑1 brings natural, full-duplex voice conversations to the API, with stronger instruction following, custom voices, and telephony support."
+  },
+  {
+   "title": "Introducing the Agents API",
+   "url": "https://openai.com/index/introducing-the-agents-api",
+   "date": "2026-09-10",
+   "summary": "Build and launch cloud agents with the Agents API, a managed service powered by the Codex harness for orchestration, long-running sessions, and tool use."
+  },
+  {
+   "title": "The AI policy window is open. We need to act.",
+   "url": "https://openai.com/index/ai-policy-window",
+   "date": "2026-09-09",
+   "summary": "Chris Lehane argues that stronger AI capabilities require stronger safety evidence, shared standards, and durable policy action while the policy window remains open."
+  }
+ ]
+}

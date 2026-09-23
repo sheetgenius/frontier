@@ -1,0 +1,14 @@
+{
+ "source": "embrace-the-red",
+ "feed": "https://embracethered.com/blog/index.xml",
+ "swept_on": "2026-09-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "Breaking Claude Code Opus 5 Auto Mode",
+   "url": "https://embracethered.com/blog/posts/2026/breaking-claude-code-opus-5-and-automode/",
+   "date": "2026-08-27",
+   "summary": "<p>In this post, we explore how a simple website summary request hijacks <code>Claude Code Opus 5</code> in <code>Auto Mode</code> and achieves code execution with 60-80% attack success rate using a small sample size.</p>&#xA;<p><a href=&#34;https://embracethered.com/blog/images/2026/claude-automode/claude-auto-mode-rce.png&#34;><img src=&#34;https://embracethered.com/blog/images/2026/claude-autom"
+  }
+ ]
+}

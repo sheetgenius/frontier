@@ -1,0 +1,74 @@
+{
+ "source": "pragmatic-engineer",
+ "feed": "https://newsletter.pragmaticengineer.com/feed",
+ "swept_on": "2026-09-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "AI Skills with Matt Pocock",
+   "url": "https://newsletter.pragmaticengineer.com/p/ai-skills-with-matt-pocock",
+   "date": "2026-09-17",
+   "summary": "Matt Pocock explains how he uses AI coding skills and agents to plan and build software, and why engineering fundamentals matter more than ever."
+  },
+  {
+   "title": "Inside OpenAI’s agentic software factory",
+   "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
+   "date": "2026-09-15",
+   "summary": "A deepdive into how Codex has &#8220;taken over&#8221; OpenAI, how the frontier lab builds its agentic software factory, and the engineering challenges of one billion users. Details from inside OpenAI"
+  },
+  {
+   "title": "The Pulse #191: a new trend of CPU shortages",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-191-a-new-trend-of-cpu",
+   "date": "2026-09-10",
+   "summary": "For compute-intensive services: it&#8217;s worth reserving more compute now. Also: growth dreams end for more COVID-era unicorns, engineers losing touch with systems when AI handles incidents, and more"
+  },
+  {
+   "title": "Building Codex with Tibo Sottiaux",
+   "url": "https://newsletter.pragmaticengineer.com/p/building-codex-with-tibo-sottiaux",
+   "date": "2026-09-09",
+   "summary": "OpenAI&#8217;s Tibo Sottiaux shares how Codex was built and how it&#8217;s reshaping software development."
+  },
+  {
+   "title": "What is happening with code reviews?",
+   "url": "https://newsletter.pragmaticengineer.com/p/what-is-happening-with-code-reviews",
+   "date": "2026-09-08",
+   "summary": "AI generates more code than devs can track in 2026, so will the code review process have to adapt &#8211; or is it doomed? A look into this decades-old practice and the approaches that could replace it"
+  },
+  {
+   "title": "The Pulse: tech companies move to open AI models",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-tech-companies-move-to",
+   "date": "2026-09-03",
+   "summary": "Cost-saving efforts reveal that moving simpler workloads to open AI models is the easiest way to save ~50% on AI bills. Also: automated software maintenance experience, and more"
+  },
+  {
+   "title": "The Pragmatic Engineer: Five years",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pragmatic-engineer-five-years",
+   "date": "2026-09-01",
+   "summary": "As the newsletter reaches its fifth birthday, we reflect on how the publication has changed, and what to expect. Also: the launch of the &#8216;How Software Engineering is Changing&#8217; essay contest"
+  },
+  {
+   "title": "The Pulse: Meta wanted to reduce teams by 60% because of AI",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-meta-wanted-to-reduce-teams",
+   "date": "2026-08-27",
+   "summary": "We find out why Meta destroyed its standout engineering culture: it feared AI-native startups doing more with less. Also: thoughts on Ramp&#8217;s AI infra, GitHub&#8217;s load doubles in four months, and more"
+  },
+  {
+   "title": "Why performant code matters (but gets widely ignored), with Casey Muratori",
+   "url": "https://newsletter.pragmaticengineer.com/p/why-performant-code-matters-but-gets",
+   "date": "2026-08-26",
+   "summary": "Casey Muratori explains why software performance matters, how developers can write faster code, and why he challenges conventional engineering practices."
+  },
+  {
+   "title": "Why Ramp built its own in-house coding agent, Inspect",
+   "url": "https://newsletter.pragmaticengineer.com/p/why-ramp-built-inspect",
+   "date": "2026-08-25",
+   "summary": "A fintech company rejected the easy route and homebrewed its own coding agent &#8211; and is now a step ahead of coding agents from frontier AI labs. An in-depth look"
+  },
+  {
+   "title": "The Pulse: We need to talk about migrations with AI",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-we-need-to-talk-about-migrations",
+   "date": "2026-08-20",
+   "summary": "Asana completed a testing framework migration in two weeks, that they would have delayed for years more, and they&#8217;re not alone. Also: AI startups could make Gartner much less relevant, and more"
+  }
+ ]
+}

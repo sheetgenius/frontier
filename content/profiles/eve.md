@@ -11,9 +11,21 @@ repo: https://github.com/vercel/eve
 surface_class: open_source_releases
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: queue-auth
+    finding_id: 2026-09-21-eve-cross-principal-authority-queued-messages-from-different-users-ran-under-the-last-sender
+    last_verified: 2026-09-23
+    status: active
+  - id: byok-key
+    finding_id: 2026-09-21-eve-credential-exposure-byok-provider-key-served-from-eve-v1-info-chatgpt-login-stored-in-plai
+    last_verified: 2026-09-23
+    status: active
+  - id: auto-approval
+    finding_id: 2026-09-21-eve-auto-a-model-can-now-approve-tool-calls
+    last_verified: 2026-09-23
+    status: active
   - id: turnpolicy-queue-did-not-bind-until-0-39-3
     finding_id: 2026-08-20-eve-0-39-3-restores-turnpolicy-queue-after-silent-steer-fallback
     last_verified: 2026-08-20
@@ -78,6 +90,10 @@ stance:
 ---
 
 # Eve
+
+## Where it stands, 2026-09-21
+
+47 tags, through [eve@0.63.0](https://github.com/vercel/eve/releases). 0.52.5 fixed queued messages from different users running under the last sender's authorization, which matters to anyone who followed our earlier advice to set `turnPolicy: queue`, and stopped `/eve/v1/info` serving the owner's BYOK key. 0.59.1 adds `auto()`, a model that approves tool calls. Self-modification gained a deployed mode that opens draft pull requests, off by default.
 
 ## Operator Read
 

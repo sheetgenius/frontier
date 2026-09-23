@@ -21,9 +21,13 @@ evidence_floor: tagged_release
 status: active_watch
 artifact_version: 4
 first_published: 2026-07-02
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-07-27
 claims:
+  - id: v0-7-0-never-installed
+    finding_id: 2026-09-21-agent-flywheel-v0-8-0-the-maintainer-states-v0-7-0-never-installed-v0-8-0-is-the-first-working-pinned-cut
+    last_verified: 2026-09-23
+    status: active
   - id: optional-ee-fmd-pi-pfr-on-main
     finding_id: 2026-08-20-agent-flywheel-optional-ee-fmd-pi-pfr-stack-on-main-no-new-tag
     last_verified: 2026-08-20
@@ -79,7 +83,7 @@ posture_basis:
     - 2026-07-02-agent-flywheel-dcg-hook-fail-open
     - 2026-07-02-agent-flywheel-openai-anthropic-license-rider
 stance:
-  use_for: "Rebuildable VPS experiments where a complete multi-agent operating loop is worth more than a tightly restricted host, and where the operator will pin and inspect the installer before running it. Also worth studying as method: the artifact ladder from plan to task graph to claimed task to closeout is the clearest public account of multi-agent coordination on this watchlist. What you install is still v0.7.0, tagged 2026-06-26."
+  use_for: "Rebuildable VPS experiments where a complete multi-agent operating loop is worth more than a tightly restricted host, and where the operator will pin and inspect the installer before running it. Also worth studying as method: the artifact ladder from plan to task graph to claimed task to closeout is the clearest public account of multi-agent coordination on this watchlist. What you install is v0.9.0, tagged 2026-09-04; the maintainer says v0.7.0 never installed."
   avoid_for: >-
     Do not treat v0.7.0 safe mode as a complete production boundary, and note
     that no tag closed the gap in the 2026-07-02 to 2026-07-27 window.
@@ -100,6 +104,10 @@ stance:
 ---
 
 # Agent Flywheel
+
+## Where it stands, 2026-09-21
+
+Correction, 2026-09-23: the [v0.8.0 release notes](https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup/releases/tag/v0.8.0) say v0.7.0 never installed because it failed its own integrity check. Earlier text on this page that treats v0.7.0 as the cut operators run is wrong on that point. The current tag is v0.9.0, which adds per-tool holds and smoke-checked rollback. Safe mode is still not a boundary, and bundled Codex still installs `@latest`.
 
 ## Operator Read
 

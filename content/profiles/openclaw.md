@@ -18,9 +18,21 @@ repo: https://github.com/openclaw/openclaw
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: exec-fix-stable
+    finding_id: 2026-09-21-openclaw-the-approved-exec-fix-is-now-in-stable-but-not-on-extended-stable
+    last_verified: 2026-09-23
+    status: active
+  - id: extended-stable-unfixed
+    finding_id: 2026-09-21-openclaw-extended-stable-moved-to-a-july-line-that-predates-every-fix-above
+    last_verified: 2026-09-23
+    status: active
+  - id: advisory-batch
+    finding_id: 2026-09-21-openclaw-75-advisories-published-in-one-batch-the-exec-approval-family-is-patched-in-2026-8
+    last_verified: 2026-09-23
+    status: active
   - id: approved-exec-still-unreleased
     finding_id: 2026-08-20-openclaw-approved-exec-fix-still-in-no-release
     last_verified: 2026-08-20
@@ -140,6 +152,10 @@ stance:
 ---
 
 # OpenClaw
+
+## Where it stands, 2026-09-21
+
+The approved-exec fix is in stable [2026.8.1](https://github.com/openclaw/openclaw/releases/tag/v2026.8.1) and every later main-line stable; npm latest is 2026.9.5. The workspace-boundary and sandbox-stop fixes shipped with it. The `extended-stable` tag moved to 2026.7.35, a July line with none of them. The project published 75 advisories on 11 September. Several defaults widened agent reach across 8.2 to 9.5, and release checks were waived on two stables.
 
 ## Operator Read
 

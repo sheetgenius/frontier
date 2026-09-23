@@ -1,0 +1,99 @@
+source: gemini-cli
+findings:
+  - slug: v0-57-0-promotes-every-preview-only-item-from-the-previous-brief
+    channel: tagged-release (v0.57.0, 2026-08-25, and every later stable)
+    half: both
+    body: >
+      v0.57.0 (2026-08-25) contains all four items the previous brief left preview-only: retry and TTL work
+      (fa2f27aee), git subprocess environment neutralization (getSafeGitEnv, c0d192452), the agent registry
+      checking isAgentsEnabled before loading built-ins (753e4cb55), and the Cloud Workstations OAuth
+      redirect (58ba19945). Each is an ancestor of v0.57.0 by compare (behind_by 0). Four stables cut in the
+      window: v0.57.0 (08-25), v0.58.0 (09-01), v0.59.0 (09-08), v0.60.0 (09-15). npm latest at close is
+      0.60.0.
+    consequence: >
+      experimental.enableAgents false now suppresses built-in subagents on stable. Stable Gemini CLI is a
+      weekly promotion of the previous week's preview; plan upgrades on that cadence.
+    evidence:
+      - url: https://github.com/google-gemini/gemini-cli/releases/tag/v0.57.0
+        precision: github_release
+      - url: https://github.com/google-gemini/gemini-cli/blob/v0.57.0/packages/core/src/agents/registry.ts
+        precision: tagged_commit_file
+  - slug: autoedit-path-check-never-loaded-and-seatbelt-reached-docker-socket
+    channel: tagged-release (v0.58.0, 2026-09-01)
+    half: defect
+    body: >
+      Two boundary fixes in v0.58.0. The allowed-path rule for write_file and replace in autoEdit mode was
+      nested in write.toml where the loader silently discarded it, so auto-approved edits were not
+      path-checked on 0.57.0 and earlier (PR 28961). The macOS Seatbelt profile let a sandboxed process
+      reach a running Docker, OrbStack, Colima or Rancher daemon socket and so mount the host filesystem;
+      the .sb profile had no docker rules at v0.57.0 and 22 at v0.58.0 (PR 28935). Neither was published as
+      a security advisory.
+    consequence: >
+      Upgrade to 0.58.0 or later if you used autoEdit or the macOS sandbox with a container runtime running.
+      Treat any autoEdit session on 0.57.0 or earlier as having written wherever the model chose.
+    evidence:
+      - url: https://github.com/google-gemini/gemini-cli/pull/28961
+        precision: merged_pr
+      - url: https://github.com/google-gemini/gemini-cli/pull/28935
+        precision: merged_pr
+      - url: https://github.com/google-gemini/gemini-cli/blob/v0.58.0/packages/cli/src/utils/sandbox-macos-permissive-open.sb
+        precision: tagged_commit_file
+  - slug: v0-59-0-and-v0-60-0-harden-mcp-oauth-web-fetch-credentials-and-extensions
+    channel: tagged-release (v0.59.0 2026-09-08, v0.60.0 2026-09-15)
+    half: both
+    body: >
+      v0.59.0 makes workspace trust fail closed on environment signals, drops repository mcpServers in an
+      untrusted a2a-server, and adds an SSRF guard to MCP OAuth metadata discovery covering loopback, private
+      and metadata addresses (PRs 29099, 29081). v0.60.0 requires a matching iss in MCP OAuth responses (RFC
+      9207, PR 29117), makes web_fetch refuse private, loopback and metadata destinations and pin the resolved
+      IP (PR 29120), stops container sandboxes mounting the host ~/.gemini OAuth and MCP token stores (PR
+      29216), re-prompts consent when an extension changes its env and strips NODE_OPTIONS-class variables (PR
+      28863), bounds read-only shell auto-approval to the workspace and makes ln -s ask (PR 29170), and skips
+      system settings files writable by non-root users (PR 29115).
+    consequence: >
+      0.60.0 breaks MCP OAuth servers that omit iss and breaks web_fetch against a local dev server; both are
+      intended. Read the new extension consent prompt instead of accepting it. Container-sandbox users no
+      longer expose host tokens to the box.
+    evidence:
+      - url: https://github.com/google-gemini/gemini-cli/releases/tag/v0.60.0
+        precision: github_release
+      - url: https://github.com/google-gemini/gemini-cli/pull/29216
+        precision: merged_pr
+      - url: https://github.com/google-gemini/gemini-cli/blob/v0.60.0/packages/core/src/services/environmentSanitization.ts
+        precision: tagged_commit_file
+  - slug: extension-install-still-checks-out-fetch-head-after-plugin4shell-disclosure
+    channel: tagged-release (unfixed at v0.60.0)
+    half: defect
+    body: >
+      AIR Security published Plugin4Shell on 2026-09-17: agents that install a plugin by pinned commit do not
+      verify the checkout resolved to that commit. For Gemini CLI the write-up says the installer runs git
+      fetch then git checkout FETCH_HEAD, and a repository whose default branch is named FETCH_HEAD makes
+      checkout resolve to the branch and discard the fetched commit. AIR reports Google answered on
+      2026-08-04 that Gemini CLI is deprecated and will not be patched. At v0.60.0,
+      packages/cli/src/config/extensions/github.ts line 72 is still git.checkout('FETCH_HEAD'). The same
+      window shipped four security-heavy stables.
+    consequence: >
+      Install Gemini CLI extensions only from repositories you control or can re-verify by hash after
+      install (git rev-parse HEAD inside the extension directory). The attack needs control of the extension
+      repository; Whether a given git host accepts a branch named FETCH_HEAD is the host's answer, not Gemini CLI's.
+    evidence:
+      - url: https://github.com/google-gemini/gemini-cli/blob/v0.60.0/packages/cli/src/config/extensions/github.ts
+        precision: tagged_commit_file
+      - url: https://www.air.security/blog-posts/plugin4shell
+        precision: third_party_research
+  - slug: build-file-edit-gate-is-preview-only-at-close
+    channel: preview-or-beta (v0.61.0-preview.0 only)
+    half: both
+    body: >
+      v0.61.0-preview.0 (2026-09-15) makes build and test runs require confirmation after the agent has
+      edited a build file such as package.json or a Makefile (PR 29250), and refuses to launch the sandbox
+      from sensitive directories (PR 29214). Neither is in stable v0.60.0. ACP emitting a pending tool_call
+      before request_permission (PR 29439) is on main only at window close.
+    consequence: >
+      On stable 0.60.0 an agent-edited package.json script can still run under a previously approved build
+      command. Pin @preview only if you want this gate now.
+    evidence:
+      - url: https://github.com/google-gemini/gemini-cli/releases/tag/v0.61.0-preview.0
+        precision: github_release
+      - url: https://github.com/google-gemini/gemini-cli/pull/29250
+        precision: merged_pr

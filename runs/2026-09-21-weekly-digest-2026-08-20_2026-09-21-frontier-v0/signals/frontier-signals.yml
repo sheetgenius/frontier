@@ -1,0 +1,402 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0
+window:
+  start: 2026-08-20
+  end: 2026-09-21
+note: >
+  A 32-day catch-up window. The judge that decides what an agent may do got
+  better and moved further from the operator: Claude Code's auto-mode classifier
+  went server-side by default, Codex narrowed where Guardian runs, and a workflow
+  vendor made the approval itself a durable object. The breaks that mattered did
+  not go through the judge. They ran in host plumbing the judge never sees: the
+  plugin installer's git checkout, the startup git status, a Docker setting that
+  was silently ignored, an approvals server on every interface. The capability
+  half is the harness getting thinner where the model got better.
+
+signals:
+
+  - id: 2026-09-21-claude-code-auto-mode-judge-moved-server-side
+    status: accepted
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "Auto mode's judge moved to the server; the docs still list its isolation as none"
+    finding_ids:
+      - 2026-09-21-claude-code-2-1-278-auto-mode-classifier-moves-server-side-by-default
+      - 2026-09-21-claude-code-auto-mode-is-the-starting-mode-and-docs-list-isolation-needed-none
+      - 2026-09-21-claude-code-2-1-271-model-names-its-own-egress-hosts-subagent-output-framed-as-subagent
+    summary: >
+      2.1.278 (2026-09-19, latest; stable is 2.1.267) makes the server-side
+      classifier the auto-mode default for API, Enterprise, Bedrock, Vertex,
+      Foundry and gateway sessions, four days after 2.1.273 set the local
+      classifier as the cloud default. 2.1.271 lets the model name the egress
+      hosts a sandboxed command needs, approved by the classifier with no
+      human prompt. The permission-modes page lists auto mode as the starting
+      mode on Pro, Max and Team with isolation needed "None". On 2026-08-26 a
+      researcher published an auto-mode injection with 60 to 80 percent
+      success and reported the vendor closed it as not a security boundary.
+    why_action_bearing:
+      - "Gateway operators: pass the safeguards request field and safeguard_results response field through, or set CLAUDE_CODE_AUTO_MODE_SERVER=0; otherwise the first checked action in each session holds. Record which classifier decided from /status."
+      - "Run auto mode that reads untrusted content inside the Bash sandbox or a container with egress control. The docs call that defense in depth; the published attack says it is the boundary."
+      - "Evidence that would settle residual: vendor documentation stating what the server-side classifier reviews and how its decisions are logged, and a vendor statement on whether auto mode is a security boundary."
+    receipts:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.278
+        precision: github_release
+      - url: https://code.claude.com/docs/en/permission-modes
+        precision: official_docs
+      - url: https://embracethered.com/blog/posts/2026/breaking-claude-code-opus-5-and-automode/
+        precision: third_party_research
+
+  - id: 2026-09-21-claude-code-stable-is-a-pointer-someone-moves
+    status: accepted
+    section: platform
+    source: claude-code
+    channel: tagged-release
+    title: "Stable sat on one build for eighteen days, then jumped 23 versions"
+    finding_ids:
+      - 2026-09-21-claude-code-stable-froze-on-2-1-236-for-eighteen-days-then-jumped-to-2-1-267
+      - 2026-09-21-claude-code-2-1-257-authority-batch-project-bypass-ignored-ask-rules-skipped-in-auto
+      - 2026-09-21-claude-code-managed-mcp-and-policy-lists-go-fail-closed-allowedmcpservers-semantics-flip
+    summary: >
+      The Homebrew claude-code cask, which follows the same stable pointer as the
+      native installer, moved to 2.1.236 on 2026-08-28 and to 2.1.267 on
+      2026-09-15, with nothing between. Latest went from 2.1.251 to 2.1.273 in
+      that time. The setup page kept saying stable is about one week old. The
+      hop delivered the 2.1.257 authority batch (project bypassPermissions
+      ignored, ask rules no longer skipped in auto mode), the 2.1.259 MCP
+      allowlist semantics change and the Fable 5.1 default at once.
+    why_action_bearing:
+      - "Pin minimumVersion to the fixes you need rather than trusting a lag. Stable 2.1.267 has the 2.1.257 authority batch; it lacks 2.1.273's fix for MDM MCP deny lists being ignored beside server-managed settings."
+      - "If allowedMcpServers filtered managed-mcp.json, move exclusions to deniedMcpServers before the next stable hop."
+      - "Evidence that would settle residual: a published stable-promotion log with dates."
+    receipts:
+      - url: https://github.com/Homebrew/homebrew-cask/commit/67ec5aa16a
+        precision: commit
+      - url: https://github.com/Homebrew/homebrew-cask/commit/7506a05707
+        precision: commit
+      - url: https://code.claude.com/docs/en/setup#configure-release-channel
+        precision: official_docs
+
+  - id: 2026-09-21-plugin4shell-a-pin-is-a-request
+    status: accepted
+    section: platform
+    source: gemini-cli
+    channel: tagged-release
+    title: "A pinned plugin commit was a request, not a check, in four agents"
+    finding_ids:
+      - 2026-09-21-gemini-cli-extension-install-still-checks-out-fetch-head-after-plugin4shell-disclosure
+      - 2026-09-21-github-copilot-cli-plugin4shell-no-changelog-line-names-a-fix-through-1-0-87
+      - 2026-09-21-claude-code-plugin4shell-disclosed-in-window-fix-shipped-in-2-1-179-with-a-silent-changelog
+    summary: >
+      AIR Security (2026-09-17): Claude Code, Codex, Copilot and Gemini CLI
+      installed plugins pinned to a commit SHA without verifying the checkout
+      landed on it; git prefers a branch named like the SHA, and Gemini CLI
+      checks out FETCH_HEAD. Claude Code's fix (2.1.179) has no changelog line;
+      Codex's is PR 34644 in 0.146.0. Gemini CLI 0.60.0 still calls
+      git.checkout('FETCH_HEAD'), and Google told AIR the tool is deprecated and
+      will not be patched. No Copilot changelog line through 1.0.87 names a fix.
+    why_action_bearing:
+      - "On Copilot CLI and Gemini CLI, treat a pinned plugin or extension as unverified: source it from a host that rejects 40-hex branch names or a repo you control, and check the installed tree's HEAD after install."
+      - "The attacker must control the plugin repository. Background auto-update is what makes it zero-click; turn it off where you cannot verify sources."
+      - "Evidence that would settle residual: a Copilot CLI release note or advisory naming the fix."
+    receipts:
+      - url: https://www.air.security/blog-posts/plugin4shell
+        precision: third_party_research
+      - url: https://github.com/google-gemini/gemini-cli/blob/v0.60.0/packages/cli/src/config/extensions/github.ts
+        precision: tagged_commit_file
+      - url: https://github.com/anthropics/claude-code/blob/8187baaaafb3/CHANGELOG.md
+        precision: tagged_commit_file
+
+  - id: 2026-09-21-gitspawn-the-harness-ran-git-before-trust
+    status: accepted
+    section: runtime
+    source: hermes-agent
+    channel: tagged-release
+    title: "The harness's own git ran repository code before the trust prompt"
+    finding_ids:
+      - 2026-09-21-hermes-agent-ghsa-7x36-8jrh-v4pw-a-copied-repo-s-git-config-could-run-code-on-the-host-before-any-promp
+      - 2026-09-21-claude-code-gitspawn-ultrareview-path-ran-repo-git-config-before-trust-no-fix-named-through-2-1-278
+      - 2026-09-21-codex-untrusted-projects-stop-feeding-agents-md-and-startup-stops-running-workspace-helpers-befo
+    summary: >
+      Manifold Security (2026-09-01): seven agents run git to orient themselves
+      at startup, and a repository's .git/config can set core.fsmonitor to a
+      command git then runs as the user, outside any sandbox, before or without
+      a prompt. Hermes fixed it in v2026.9.7 (commit f6234d00, GHSA-7x36, not yet
+      published); every tag through v2026.8.31 is exposed. Manifold reports a
+      second Claude Code path still reproducing on 2.1.252, and no changelog line
+      through 2.1.278 names a fix. Codex 0.154.0 stopped running workspace
+      helpers before a project is trusted.
+    why_action_bearing:
+      - "Upgrade Hermes to v2026.9.7 or later. Open untrusted repositories only inside a container or VM; the trust prompt appears after the harness's own git has run."
+      - "Before opening a repo you did not create, check .git/config for command-valued keys such as core.fsmonitor and core.hooksPath."
+      - "Evidence that would settle residual: a Claude Code changelog line or advisory for the second path, and Grok Build's status (unpatched at 1.0.13 per Manifold)."
+    receipts:
+      - url: https://www.manifold.security/blog/ai-coding-agents-git-hijack
+        precision: third_party_research
+      - url: https://github.com/NousResearch/hermes-agent/commit/f6234d00c5d5
+        precision: commit
+
+  - id: 2026-09-21-temporal-approvals-server-has-no-login
+    status: accepted
+    section: control-plane
+    source: temporal-agent-harness
+    channel: preview-or-beta
+    title: "The approvals server binds every interface and asks for no login"
+    finding_ids:
+      - 2026-09-21-temporal-agent-harness-the-packaged-server-binds-0-0-0-0-with-no-authentication-main-adds-wildcard-cors
+      - 2026-09-21-temporal-agent-harness-in-the-coding-example-opencode-always-maps-to-remember-true-which-allow-lists-the-tool-by
+      - 2026-09-21-temporal-agent-harness-the-caller-s-agentconfig-approval-policy-wins-over-the-agent-s-default-dangerously-skip
+    summary: >
+      At 0.4.0 (commit e4bde4be, the PyPI wheel) the packaged serve command
+      defaults to host 0.0.0.0, and its FastAPI app registers GET /api/sessions,
+      POST /api/approve, POST /api/callback-result and POST /api/operator-commands
+      with no authentication. The approvals operator command accepts skip, which
+      sets the dangerously_skip_all policy. In the coding example, OpenCode's
+      "always" posts remember=true, which allow-lists the tool by name, so one
+      "always" on bash covers every later bash command. Main adds wildcard CORS.
+    why_action_bearing:
+      - "Run serve with --host 127.0.0.1 or behind an authenticating proxy. Anyone who can reach the port can list sessions, approve calls and switch a session to skip all approvals."
+      - "Do not answer always to a bash prompt in the coding example; it approves the tool, not the command shown."
+      - "Evidence that would settle residual: a release that binds loopback by default or adds authentication; #137 on main removes the operator-command channel but is in no tag."
+    receipts:
+      - url: https://github.com/temporal-community/temporal-agent-harness/blob/e4bde4beb078d7ec3432c84b71e64e1efd554752/temporal_agent_harness/web/cli.py#L121
+        precision: tagged_commit_file
+      - url: https://github.com/temporal-community/temporal-agent-harness/blob/e4bde4beb078d7ec3432c84b71e64e1efd554752/temporal_agent_harness/web/app.py#L281-L310
+        precision: tagged_commit_file
+
+  - id: 2026-09-21-openhands-docker-runtime-was-ignored
+    status: accepted
+    section: runtime
+    source: openhands
+    channel: tagged-release
+    title: "Asking for Docker got you the host until v1.20.0"
+    finding_ids:
+      - 2026-09-21-openhands-docker-conversation-runtime-settings-reach-the-bundled-agent-server-v1-20-0-docker-executi
+      - 2026-09-21-openhands-profiles-become-enforceable-scopes-mcp-servers-v1-19-0-and-secrets-v1-20-0-with-a-skill
+    summary: >
+      Before v1.20.0 (2026-09-17), OH_CONVERSATION_RUNTIME=docker was not
+      forwarded to the bundled agent server, so conversations ran locally on the
+      host. PR 17462 (merge 3b29fd61) is an ancestor of v1.20.0 and not of
+      v1.19.0. The same two releases made profiles enforceable scopes for MCP
+      servers (v1.19.0) and secrets (v1.20.0); before v1.19.0 every profile could
+      reach every MCP server.
+    why_action_bearing:
+      - "If you set the Docker runtime on OpenHands before v1.20.0, assume those conversations ran on the host and audit what they touched. Upgrade to v1.20.0."
+      - "Evidence that would settle residual: a runtime probe on v1.20.0 showing the conversation process inside the container."
+    receipts:
+      - url: https://github.com/OpenHands/OpenHands/pull/17462
+        precision: merged_pr
+      - url: https://github.com/OpenHands/OpenHands/releases/tag/v1.20.0
+        precision: github_release
+
+  - id: 2026-09-21-openclaw-exec-fix-shipped-extended-stable-did-not
+    status: accepted
+    section: control-plane
+    source: openclaw
+    channel: tagged-release
+    title: "The approved-exec fix finally shipped, and the long-term line moved to a build without it"
+    finding_ids:
+      - 2026-09-21-openclaw-the-approved-exec-fix-is-now-in-stable-but-not-on-extended-stable
+      - 2026-09-21-openclaw-extended-stable-moved-to-a-july-line-that-predates-every-fix-above
+      - 2026-09-21-openclaw-75-advisories-published-in-one-batch-the-exec-approval-family-is-patched-in-2026-8
+    summary: >
+      Merge ab5611f0 (binding exec approvals to the bytes that run), unreleased at
+      the last two issues, is an ancestor of stable v2026.8.1 (2026-08-31) and of
+      every later main-line tag; npm latest and beta are 2026.9.5. The npm
+      extended-stable tag moved to 2026.7.35 on 2026-09-21, a July line that
+      diverges from ab5611f0 and lacks the workspace-boundary and sandbox-stop
+      fixes too. On 2026-09-11 the project published 75 advisories, 30 high,
+      the exec-approval group patched in 2026.8.1.
+    why_action_bearing:
+      - "Run 2026.8.1 or later on the latest channel if you rely on the exec approval prompt. Do not read extended-stable as the safer choice; it is the unfixed one."
+      - "Allow Always saved path-only grants before 2026.8.1 (GHSA-74gc); review persisted grants after upgrading."
+      - "Evidence that would settle residual: an extended-stable build containing ab5611f0."
+    receipts:
+      - url: https://github.com/openclaw/openclaw/releases/tag/v2026.8.1
+        precision: github_release
+      - url: https://github.com/openclaw/openclaw/compare/v2026.7.35...ab5611f0be610380fe48803fe4311896ca85806e
+        precision: git_compare
+      - url: https://github.com/openclaw/openclaw/security/advisories
+        precision: official_docs
+
+  - id: 2026-09-21-codex-default-model-moved-in-a-hotfix
+    status: accepted
+    section: platform
+    source: codex
+    channel: tagged-release
+    title: "Codex changed its default model in a hotfix and removed mcp-server in a minor"
+    finding_ids:
+      - 2026-09-21-codex-default-model-moved-to-gpt-6-astra-in-the-0-153-x-hotfix-train-not-in-a-minor
+      - 2026-09-21-codex-codex-mcp-server-removed-app-server-is-the-only-integration-path-and-it-is-officially-expe
+      - 2026-09-21-codex-guardian-v2-stayed-off-by-default-in-every-stable-of-the-window-carry-forward
+      - 2026-09-21-codex-guardian-no-longer-runs-in-full-access-or-user-approval-mode
+    summary: >
+      In rust-v0.153.4 (2026-09-04) the bundled catalog's gpt-6-astra entry,
+      already priority 1 but hidden, became visible (PR 42874), and the picker
+      default moved from gpt-5.6-sol to gpt-6-astra for sessions with no model
+      set. rust-v0.154.0 removed the deprecated codex mcp-server entry point
+      (PR 42993). Guardian V2 stayed default-off in every stable read, nine of the
+      window's fourteen, and 0.153.0 stopped Guardian review in Full Access and User
+      approval modes. npm latest at close was 0.155.1.
+    why_action_bearing:
+      - "Pin model explicitly if cost, latency or eval baselines matter; a patch upgrade changed it. Grep configs for gpt-5.5 before its 2026-10-14 retirement from ChatGPT sign-in."
+      - "Integrations built on codex mcp-server break at 0.154.0; the app server is the path."
+      - "Do not plan as if a model reviews every call: Guardian V2 is off, and Guardian itself no longer runs in two modes."
+    receipts:
+      - url: https://github.com/openai/codex/releases/tag/rust-v0.153.4
+        precision: github_release
+      - url: https://github.com/openai/codex/blob/rust-v0.153.4/codex-rs/models-manager/models.json
+        precision: tagged_commit_file
+      - url: https://github.com/openai/codex/releases/tag/rust-v0.154.0
+        precision: github_release
+
+  - id: 2026-09-21-gemini-cli-autoedit-was-not-path-checked
+    status: accepted
+    section: control-plane
+    source: gemini-cli
+    channel: tagged-release
+    title: "Gemini CLI's autoEdit path rule never loaded, and its macOS sandbox reached Docker"
+    finding_ids:
+      - 2026-09-21-gemini-cli-autoedit-path-check-never-loaded-and-seatbelt-reached-docker-socket
+      - 2026-09-21-gemini-cli-v0-59-0-and-v0-60-0-harden-mcp-oauth-web-fetch-credentials-and-extensions
+      - 2026-09-21-gemini-cli-v0-57-0-promotes-every-preview-only-item-from-the-previous-brief
+    summary: >
+      v0.58.0 (2026-09-01) fixes an allowed-path rule for write_file and replace in
+      autoEdit mode that the loader silently discarded (PR 28961), and a Seatbelt
+      profile that let a sandboxed process reach a Docker, OrbStack, Colima or
+      Rancher socket and mount the host (PR 28935). Neither got an advisory.
+      v0.59.0 and v0.60.0 add an MCP OAuth SSRF guard, issuer checks, web_fetch
+      address pinning, and stop mounting host tokens into container sandboxes.
+      v0.57.0 carried every preview-only item from the previous issue.
+    why_action_bearing:
+      - "Upgrade to 0.60.0. Treat autoEdit sessions on 0.57.0 or earlier as having written wherever the model chose, and macOS-sandboxed sessions with a container runtime running as host-capable."
+      - "0.60.0 breaks MCP OAuth servers that omit iss and web_fetch to local dev servers, by design."
+    receipts:
+      - url: https://github.com/google-gemini/gemini-cli/pull/28961
+        precision: merged_pr
+      - url: https://github.com/google-gemini/gemini-cli/pull/28935
+        precision: merged_pr
+      - url: https://github.com/google-gemini/gemini-cli/releases/tag/v0.60.0
+        precision: github_release
+
+  - id: 2026-09-21-the-harness-changes-the-bill-not-the-grade
+    status: accepted
+    section: runtime
+    source: pi-coding-agent
+    channel: tagged-release
+    title: "The harness changed the bill, not the grade"
+    finding_ids:
+      - 2026-09-21-pi-coding-agent-harnesstax-study-same-model-same-success-up-to-five-times-the-cost
+      - 2026-09-21-claude-code-agents-md-support-and-task-scaffolding-removed-for-current-models
+      - 2026-09-21-pi-coding-agent-the-dev-harness-reached-main-and-a-tag-in-v0-85-0-its-plugin-surface-was-published-to-npm
+    summary: >
+      HarnessTax (UC Berkeley and Arena, 2026-09-16) ran seven models through
+      Claude Code, Codex CLI and Pi on SWE-bench Lite and Terminal-Bench 2.0
+      samples and found harness choice had little effect on success holding the
+      model fixed, while cost moved up to fivefold. The same window Claude Code
+      stopped offering its task-tracking tools on current models (2.1.268),
+      removed TaskOutput and read AGENTS.md (2.1.277), and Pi's rewritten
+      harness reached a tag in v0.85.0.
+    why_action_bearing:
+      - "For API-metered work, measure your own tasks in a minimal harness before assuming the vendor harness earns its overhead. The study is 30 tasks per benchmark; long-horizon and subscription use are outside it."
+      - "Hooks or transcript parsers keyed on TodoWrite or TaskOutput lose their signal on current Claude models; delete CLAUDE.md shims that only point at AGENTS.md once past 2.1.277."
+    receipts:
+      - url: https://arena.ai/blog/coding-agents-harness-tax
+        precision: third_party_research
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.268
+        precision: github_release
+      - url: https://github.com/earendil-works/pi/releases/tag/v0.85.1
+        precision: github_release
+
+  - id: 2026-09-21-omnigent-policy-outage-falls-through-to-the-harness
+    status: accepted
+    section: control-plane
+    source: omnigent
+    channel: tagged-release
+    title: "When Omnigent's policy server is down, the wrapped harness decides"
+    finding_ids:
+      - 2026-09-21-omnigent-governance-layering-on-policy-server-outage-native-claude-codex-tool-calls-now-defer-to
+      - 2026-09-21-omnigent-omnigent-now-answers-wrapped-harnesses-safety-prompts-and-flips-their-approval-routing
+      - 2026-09-21-omnigent-three-bundle-upload-advisories-published-2026-09-16-all-fixed-in-v0-14-0-by-one
+    summary: >
+      PR 6429 (merge 3f0d9771, in v0.13.0 and not v0.12.0) makes native Claude
+      Code and Codex tool calls fail to ask rather than deny when Omnigent's
+      policy server is unreachable, so the wrapped harness's own dialog decides;
+      prompt submission still fails closed. Since v0.12.0 Omnigent answers Claude
+      Code's bypass-permissions consent prompt for it, and the default Codex Auto
+      mode routes escalations to Codex's own auto-reviewer. Three advisories
+      published 2026-09-16 (GHSA-598r critical, GHSA-q5jc and GHSA-p5x3 high) let
+      an uploaded bundle escape the workspace or run Python on the server; all are
+      fixed in v0.14.0 (2026-09-15).
+    why_action_bearing:
+      - "Upgrade shared Omnigent servers to v0.14.0. Anyone who can upload an agent bundle could get a host shell before it."
+      - "Know which layer refuses: during a policy-server outage your Omnigent deny rules do not apply to native tool calls; the harness's permission mode does. Set that mode as if Omnigent were absent."
+      - "Evidence that would settle residual: a tag containing the editor shell-proxy fix (#7619), which reached v0.15.0 on 2026-09-22, after this window."
+    receipts:
+      - url: https://github.com/omnigent-ai/omnigent/pull/6429
+        precision: merged_pr
+      - url: https://github.com/omnigent-ai/omnigent/security/advisories/GHSA-598r-29w2-g93q
+        precision: official_docs
+      - url: https://github.com/omnigent-ai/omnigent/releases/tag/v0.14.0
+        precision: github_release
+
+  - id: 2026-09-21-eve-queued-messages-ran-under-the-last-sender
+    status: accepted
+    section: control-plane
+    source: eve
+    channel: tagged-release
+    title: "Queued messages from different users ran under the last sender's authorization"
+    finding_ids:
+      - 2026-09-21-eve-cross-principal-authority-queued-messages-from-different-users-ran-under-the-last-sender
+      - 2026-09-21-eve-credential-exposure-byok-provider-key-served-from-eve-v1-info-chatgpt-login-stored-in-plai
+      - 2026-09-21-eve-auto-a-model-can-now-approve-tool-calls
+    summary: >
+      PR 3172 (merge 3bbf8e5c, in eve@0.52.5 and not 0.52.4) groups queued
+      deliveries by auth context; before it, messages from different users
+      queued behind a running turn ran as one turn under the last sender's
+      authorization. The previous issue told operators to set turnPolicy queue.
+      PR 3203 (same release) stopped /eve/v1/info serializing the owner's BYOK
+      provider API key to any caller the channel admits. eve@0.59.1 adds auto(),
+      a model that approves tool calls and falls back to a human if review fails.
+    why_action_bearing:
+      - "If you set turnPolicy queue on a multi-user channel, run eve@0.52.5 or later; before it, one user's message could run with another's authority."
+      - "Rotate any BYOK provider key served by an eve deployment older than 0.52.5."
+      - "Evidence that would settle residual: the first version that exposed the BYOK key, which the release notes do not state."
+    receipts:
+      - url: https://github.com/vercel/eve/pull/3172
+        precision: merged_pr
+      - url: https://github.com/vercel/eve/pull/3203
+        precision: merged_pr
+      - url: https://github.com/vercel/eve/releases/tag/eve%400.52.5
+        precision: github_release
+
+  - id: 2026-09-21-omp-the-repository-writes-the-policy
+    status: accepted
+    section: control-plane
+    source: omp
+    channel: tagged-release
+    title: "In OMP, the repository you open can write the policy that governs it"
+    finding_ids:
+      - 2026-09-21-omp-a-repository-under-review-can-write-omp-s-policy-project-local-config-and-extensions-load
+      - 2026-09-21-omp-v18-2-1-closes-a-cluster-of-approval-bypasses-including-one-where-a-missing-context-resolv
+      - 2026-09-21-omp-collab-relay-sessions-a-view-only-link-could-steer-the-session-after-a-host-reconnect-fixe
+    summary: >
+      At v18.2.8 OMP's extension types say project-local .omp/config.yml and
+      .omp/extensions "are already discovered and loaded unconditionally" and that
+      isProjectTrusted "always returns true"; the approval docs list yolo as the
+      default mode and project config above global config in precedence. A Pi
+      extension that consults Pi's per-directory trust gate is told the project is
+      trusted. v18.2.1 (2026-09-15) closed a cluster of approval bypasses,
+      including a tool run with no approval context being treated as approved,
+      and a view-only collab link that could steer a session after the host
+      reconnected. None got an advisory.
+    why_action_bearing:
+      - "Do not open an untrusted repository in OMP. Inspect .omp/config.yml, .omp/extensions and package.json omp.extensions or pi.extensions in any clone first."
+      - "Upgrade to v18.2.1 or later for the approval and collab fixes. Do not reuse a Pi extension's trust check as a guard under OMP. This is a fact about OMP; Pi has had a trust prompt since June."
+    receipts:
+      - url: https://github.com/can1357/oh-my-pi/blob/v18.2.8/packages/coding-agent/src/extensibility/extensions/types.ts#L508-L520
+        precision: tagged_commit_file
+      - url: https://github.com/can1357/oh-my-pi/blob/v18.2.8/docs/approval-mode.md
+        precision: tagged_commit_file
+      - url: https://github.com/can1357/oh-my-pi/releases/tag/v18.2.1
+        precision: github_release

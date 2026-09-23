@@ -18,9 +18,21 @@ repo: https://github.com/NousResearch/hermes-agent
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: gitspawn-fixed-v2026-9-7
+    finding_id: 2026-09-21-hermes-agent-ghsa-7x36-8jrh-v4pw-a-copied-repo-s-git-config-could-run-code-on-the-host-before-any-promp
+    last_verified: 2026-09-23
+    status: active
+  - id: computer-use-unapproved
+    finding_id: 2026-09-21-hermes-agent-computer-use-ran-destructive-desktop-actions-unapproved-on-every-non-cli-host-until-v2026
+    last_verified: 2026-09-23
+    status: active
+  - id: turn-cap-unlimited
+    finding_id: 2026-09-21-hermes-agent-agent-max-turns-default-flipped-from-500-to-unlimited-in-v2026-8
+    last_verified: 2026-09-23
+    status: active
   - id: skill-scan-on-pull-tagged
     finding_id: 2026-08-20-hermes-git-pull-skill-scan-reached-v2026-8-18
     last_verified: 2026-08-20
@@ -151,6 +163,10 @@ stance:
 ---
 
 # Hermes Agent
+
+## Where it stands, 2026-09-21
+
+Seven stables, through [v2026.9.21](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.9.21). [v2026.9.7](https://github.com/NousResearch/hermes-agent/commit/f6234d00c5d5) closes GitSpawn: every earlier tag runs a repository's git config commands before any prompt. v2026.9.14 stops destructive desktop actions running unapproved on gateway, cron and API hosts. v2026.8.19 made the turn cap unlimited by default. The delegation docs match config from v2026.9.11. The lead engineer says the project will lean toward Pi and move bundled memory providers to the plugin market.
 
 ## Operator Read
 

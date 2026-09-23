@@ -18,9 +18,17 @@ repo: https://github.com/paperclipai/paperclip
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: plaintext-credentials
+    finding_id: 2026-09-21-paperclip-v2026-916-0-agent-apis-stopped-returning-plaintext-credentials-including-to-the-agent-itse
+    last_verified: 2026-09-23
+    status: active
+  - id: thought-text-stable
+    finding_id: 2026-09-21-paperclip-carry-forward-acpx-thought-text-containment-c2cfd55e-11801-first-reached-stable-in-v2026
+    last_verified: 2026-09-23
+    status: active
   - id: namespaced-canary-train-still-running
     finding_id: 2026-08-20-paperclip-namespaced-canary-train-still-running-stable-unmoved
     last_verified: 2026-08-20
@@ -156,6 +164,10 @@ stance:
 ---
 
 # Paperclip
+
+## Where it stands, 2026-09-21
+
+Stable is [v2026.916.1](https://github.com/paperclipai/paperclip/releases). The review-policy lock reached stable in 824.0 and the ACPX thought-text fix in 831.0. v2026.916.0 stops returning stored credentials in plaintext from agent APIs, including to the agent; earlier stables need a key rotation. New standard-trust agents can hire other agents by default from 916.0.
 
 ## Operator Read
 

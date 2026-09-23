@@ -1,0 +1,1070 @@
+{
+ "swept_on": "2026-09-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "[AINews] Xiaomi MiMo-V2.6-Pro 1T-A42B: the new top Open Weights model, trained for $3M",
+   "url": "https://www.latent.space/p/ainews-xiaomi-mimo-v26-pro-1t-a42b",
+   "date": "2026-09-22",
+   "summary": "crowning a new Chinese frontier lab",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Jev introduces a new shape of LLM - System One, aka Decision Models",
+   "url": "https://simonwillison.net/2026/Sep/21/jev/",
+   "date": "2026-09-21",
+   "summary": "<p>Last week <a href=\"https://typesafe.ai/\">TypeSafe AI</a> unveiled <a href=\"https://typesafe.ai/blog/introducing-system-one-models-and-jev\">Jev</a>, their first example of a new category of model that they are calling \"System One models\" (I'm with Maggie Appleton, I think \"decision models\" is <a href=\"https://twitter.com/Mappletons/status/2101560333441610133\">a better name</a> for these). Jev is",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Cloudflare Python Workers are now generally available",
+   "url": "https://simonwillison.net/2026/Sep/21/cloudflare-python-worker/",
+   "date": "2026-09-21",
+   "summary": "<p><strong><a href=\"https://blog.cloudflare.com/python-workers-ga/\">Cloudflare Python Workers are now generally available</a></strong></p> After a two year preview, Cloudflare's support for running Python code in their server-side Workers platform is now stable: \"Python is now a first-class, fully supported language on the Cloudflare Developer Platform\".</p> <p>A neat thing about this is how it wo",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Jev: System One models for Prod, not God — with Diogo Almeida, CEO, TypeSafe AI",
+   "url": "https://www.latent.space/p/jev",
+   "date": "2026-09-21",
+   "summary": "The definitive Jev podcast with its lead creator.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Igalia celebrates \"Twenty-Five Years Upstream\"",
+   "url": "https://lwn.net/Articles/1095723/",
+   "date": "2026-09-21",
+   "summary": "The open-source consulting firm <a href=\"https://www.igalia.com/\">Igalia</a> has put out <a href=\"https://www.igalia.com/2026/09/21/Twenty-Five-Years-Upstream.html\">an announcement celebrating 25 years</a> of working on upstream FOSS projects for its clients. The list of projects the company has worked on is rather eye-opening: WebKit, mobile-browser rendering (on Maemo, Moblin, MeeGo, and Tizen),",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Three new stable kernels",
+   "url": "https://lwn.net/Articles/1095703/",
+   "date": "2026-09-21",
+   "summary": "Greg Kroah-Hartman has released the <a href=\"https://lwn.net/Articles/1095704/\">7.2.7</a>, <a href=\"https://lwn.net/Articles/1095705/\">6.18.53</a>, and <a href=\"https://lwn.net/Articles/1095706/\">6.12.111</a> stable kernels. As is usual these days, they are quite large; also no surprise is that they provide many important fixes throughout the kernel tree. Users of those kernels are advised to upda",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Testing compat_linux on NetBSD with the Linux Test Project",
+   "url": "https://lwn.net/Articles/1094310/",
+   "date": "2026-09-21",
+   "summary": "<p><a href=\"https://netbsd.org/\">NetBSD</a> has long had support for running Linux binaries via its kernel-level <a href=\"https://man.netbsd.org/compat_linux.8\"><tt>compat_linux</tt></a> feature, but test coverage for it was less complete than some might hope. In order to provide better testing for <tt>compat_linux</tt>, Google Summer of Code (GSoC) participant Henrique Brito opted to work on enab",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Monday",
+   "url": "https://lwn.net/Articles/1095702/",
+   "date": "2026-09-21",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (kernel, perl-Net-DNS, sudo, tomcat, and tomcat9), <b>Debian</b> (chromium, gimp, libde265, libevent, linux-6.12, ruby-jwt, and unbound), <b>Fedora</b> (asterisk, chromium, doctl, dovecot, evolution, firefox, forgejo, freeciv, freeipa, gegl04, gimp, libheif, nss, opkssh, parted, ruby, stb, thunderbird, unbound, and webkitgtk), <b>Mageia</b> (bi",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Advisory Group on Mathematics and Artificial Intelligence",
+   "url": "https://openai.com/index/advisory-group-on-mathematics-and-ai",
+   "date": "2026-09-21",
+   "summary": "OpenAI is working with an independent Advisory Group on Mathematics and Artificial Intelligence to guide the review and communication of emerging AI results.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Higgsfield AI ships new video features in a day with GPT-6 Astra",
+   "url": "https://openai.com/index/higgsfield-from-prompt-to-production-with-astra",
+   "date": "2026-09-21",
+   "summary": "With GPT-6 Astra, Higgsfield AI makes video ad creation easier for small businesses and brings new creative tools to market faster.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Building standards for the next phase of AI",
+   "url": "https://openai.com/index/building-standards-next-phase-ai",
+   "date": "2026-09-21",
+   "summary": "OpenAI outlines a path to shared global AI standards, calling for coordinated evaluation, reporting, and governance to improve safety.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Expanding OpenAI Academy with new learning paths",
+   "url": "https://openai.com/index/expanding-openai-academy-with-new-learning-paths",
+   "date": "2026-09-21",
+   "summary": "Explore new OpenAI Academy learning paths for employees, developers, leaders, educators, and students to build and demonstrate practical AI skills.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "How V7 gives AI agents institutional memory",
+   "url": "https://openai.com/index/v7",
+   "date": "2026-09-21",
+   "summary": "Using GPT-5.6, V7 turns scattered company files into context agents can use to complete complex, source-linked work.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Python Workers are now generally available",
+   "url": "https://blog.cloudflare.com/python-workers-ga/",
+   "date": "2026-09-21",
+   "summary": "Python Workers allow developers to run Python web frameworks and AI orchestration libraries natively in the Cloudflare Workers runtime. You can seamlessly integrate with Cloudflare's ecosystem including D1, R2, and Workers AI without writing any JavaScript glue code.",
+   "source": "cloudflare-ai",
+   "kind": "vendor"
+  },
+  {
+   "title": "Quoting voxium",
+   "url": "https://simonwillison.net/2026/Sep/20/voxium/",
+   "date": "2026-09-20",
+   "summary": "<blockquote cite=\"https://twitter.com/v0xium/status/2101526107128529120\"><p>It has been half a month since I started a new role at a big company. Nobody knows anything here. The specs, code, tests, PRDs, tickets, resolution of those tickets, reports, etc., everything is made by Claude Code. Nobody on my team likes this. They are being forced to ship as much as they can. I have heard multiple times",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "MCP was always a bad idea?",
+   "url": "https://simonwillison.net/2026/Sep/20/hn-49779718/",
+   "date": "2026-09-20",
+   "summary": "<p><a href=\"https://news.ycombinator.com/item?id=49779329#49779718\">My comment</a> on <a href=\"https://news.ycombinator.com/item?id=49779329\">MCP was always a bad idea?</a> &mdash; Hacker News.</p><p>This article entirely misses the value that MCP brings today.</p> <p>Sure, there's almost no reason to use MCPs if you are running a full-blown terminal agent (Claude Code, Codex, Meta Muse, OpenClaw ",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "llm-keys-ui 0.1",
+   "url": "https://simonwillison.net/2026/Sep/20/llm-keys-ui/",
+   "date": "2026-09-20",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm-keys-ui/releases/tag/0.1\">llm-keys-ui 0.1</a></p> <p>This plugin solves a very specific problem.</p> <p>I've started using <a href=\"https://learn.chatgpt.com/docs/remote\">Codex Remote</a> to run coding agents on various machines while controlling them from my phone. </p> <p>Sometimes I use those machines to hack on LLM projects, a",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "datasette-explain 0.2.2",
+   "url": "https://simonwillison.net/2026/Sep/20/datasette-explain/",
+   "date": "2026-09-20",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/datasette-explain/releases/tag/0.2.2\">datasette-explain 0.2.2</a></p> <blockquote> <ul> <li>Explain plans now work on read-only stored-query pages.</li> </ul> </blockquote> <p>I upgraded <a href=\"https://datasette.simonwillison.net\">datasette.simonwillison.net</a> to Datasette 1.0a40, which inspired me to ship a new version of this ex",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Kernel prepatch 7.3-rc4",
+   "url": "https://lwn.net/Articles/1095491/",
+   "date": "2026-09-20",
+   "summary": "Linus Torvalds has released the <a href=\"https://lwn.net/Articles/1095490/\">7.3-rc4</a> kernel prepatch. It is, unsurprisingly at this point, large: \"<q>We all know the drill by now: 'it's big, yadda yadda'</q>\".",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "datasette-auth-github 1.0",
+   "url": "https://simonwillison.net/2026/Sep/19/datasette-auth-github/",
+   "date": "2026-09-19",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/datasette-auth-github/releases/tag/1.0\">datasette-auth-github 1.0</a></p> <p>I run this GitHub login plugin on the <a href=\"https://agent.datasette.io/\">agent.datasette.io</a> demo site and I noticed that my authenticated sessions weren't lasting very long. It turned out that the plugin was setting cookies without a <code>Max-Age</cod",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "California Sea Lion, Brandt's Cormorant",
+   "url": "https://simonwillison.net/2026/Sep/19/sighting-401567341/",
+   "date": "2026-09-19",
+   "summary": "<p><img src=\"https://static.inaturalist.org/photos/737061413/large.jpg\" alt=\"California Sea Lion\"></p><p><img src=\"https://static.inaturalist.org/photos/737061040/large.jpg\" alt=\"Brandt&#x27;s Cormorant\"></p><p>California Sea Lion, Brandt&#x27;s Cormorant, in Pillar Point Harbor, CA, US</p><p>I only noticed this after I had taken the photo: Morris <a href=\"https://simonwillison.net/2026/Aug/15/sig",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] Here are 6 Clones of Jev in 2 days",
+   "url": "https://www.latent.space/p/ainews-here-are-6-clones-of-jev-in",
+   "date": "2026-09-19",
+   "summary": "Imitation is the sincerest form of Flattery",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Gemini Hacked Three Companies in First Known Breakout by Google’s AI",
+   "url": "https://simonwillison.net/2026/Sep/18/gemini-hacked-three-companies/",
+   "date": "2026-09-18",
+   "summary": "<p><strong><a href=\"https://www.wsj.com/tech/ai/gemini-hacked-three-companies-in-first-known-breakout-by-googles-ai-5c0baba2\">Gemini Hacked Three Companies in First Known Breakout by Google’s AI</a></strong></p> Gemini finally caught up on <a href=\"https://www.felonybench.com/\">Felony Bench</a>!</p> <blockquote> <p>The hacks, which the company confirmed on Friday, occurred in May as part of a test",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Note on 18th September 2026",
+   "url": "https://simonwillison.net/2026/Sep/18/probably-gonna-eat-you/",
+   "date": "2026-09-18",
+   "summary": "<p>Being a computer scientist who refuses to find anything about LLMs interesting right now is a bit like being a geneticist who refuses to find anything interesting about the recently opened Jurassic Park.</p> <p>Skeptical geneticist: \"pfft, it's just frog DNA. And they deliberately let them eat people for the marketing.\"</p> <p>Tags: <a href=\"https://simonwillison.net/tags/llms\">llms</a>, <a hre",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Quoting Thariq Shihipar",
+   "url": "https://simonwillison.net/2026/Sep/18/thariq-shihipar/",
+   "date": "2026-09-18",
+   "summary": "<blockquote cite=\"https://twitter.com/trq212/status/2101009392611278961\"><p>We're adding support for AGENTS.md to Claude Code. </p> <p>Starting today in version 2.1.277, if there is no CLAUDE.md in a folder, Claude will check for and use AGENTS.md.</p> <p>AGENTS.md support is built off of Claude Code mods, our upcoming way to customize the Claude Code harness.</p> <p>This is a built-in mod, but yo",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "The Creative Spirit of Who Framed Roger Rabbit",
+   "url": "https://simonwillison.net/2026/Sep/18/the-creative-spirit-of-who-framed-roger-rabbit/",
+   "date": "2026-09-18",
+   "summary": "<p><strong><a href=\"https://blog.cypressf.com/post/828067789747208192/the-creative-spirit-of-who-framed-roger-rabbit\">The Creative Spirit of Who Framed Roger Rabbit</a></strong></p> I love <a href=\"https://en.wikipedia.org/wiki/Who_Framed_Roger_Rabbit\">Who Framed Roger Rabbit</a>, the 1988 movie by Robert Zemeckis. I haven't watched it in quite a few years, and Cypress Frankenfeld just pointed out",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] not much happened today",
+   "url": "https://www.latent.space/p/ainews-not-much-happened-today-612",
+   "date": "2026-09-18",
+   "summary": "a quiet day",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Looking forward to Git 2.56 — and 3.0",
+   "url": "https://lwn.net/Articles/1094575/",
+   "date": "2026-09-18",
+   "summary": "The <a href=\"https://git-scm.com/\">Git</a> source-code management system is at the core of development processes worldwide, so changes, especially incompatible changes, are of great interest to the developers involved. The Git 2.56 release, which can be expected around the end of September, is currently available in <a href=\"https://lwn.net/ml/all/xmqqh5jpvzxo.fsf@gitster.g\">release-candidate</a> ",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Systemtap 5.6 released",
+   "url": "https://lwn.net/Articles/1095220/",
+   "date": "2026-09-18",
+   "summary": "Version 5.6 of the Systemtap tracing tool has been released. <p> <blockquote class=\"bq\"> BPF LSM hooks and XDP packet-processing probes for the --bpf runtime, BTF-based kernel.tracepoint probes, statement execution tracing, a new @enumname() operator, richer runtime error context, dyninst hardware watchpoints, modern systemd service templates, and broad Linux 7.2 runtime/tapset compatibility work.",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Friday",
+   "url": "https://lwn.net/Articles/1095219/",
+   "date": "2026-09-18",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 10.0, coreutils, kernel, libevent, libsoup3, microcode_ctl, perl-Net-DNS, postgresql18, postgresql:16, postgresql:18, tomcat, and unbound), <b>Debian</b> (bind9, chromium, libapache2-mod-auth-openidc, nginx, xz-utils, and zip), <b>Fedora</b> (chromium, freeipmi, GitPython, gnatcoll, nodejs-undici, parted, python-django5, and sblim-cmpi-ba",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Introducing the Australian Youth Safety Blueprint",
+   "url": "https://openai.com/index/australian-youth-safety-blueprint",
+   "date": "2026-09-18",
+   "summary": "OpenAI introduces the Australian Youth Safety Blueprint, a six-pillar roadmap for safer AI experiences that protect and empower young people.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "New experts join Google’s AI & Economy team",
+   "url": "https://blog.google/innovation-and-ai/technology/ai/expanding-ai-economy-research-bench/",
+   "date": "2026-09-18",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/AI__Economy_team_hero.max-600x600.format-webp.webp\">We are expanding our AI & Economy team with world-class academic advisors, fellows, and core internal researchers.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "Co-creating the future of fashion with Google",
+   "url": "https://blog.google/innovation-and-ai/technology/ai/google-flow-fashion-week/",
+   "date": "2026-09-18",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Blog_Header_V2.max-600x600.format-webp.webp\">Google worked side-by-side with designers Jane Wade and Sergio Hudson to custom-design Google Flow tools to prep for NYFW.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "Be alert: targeted attacks on prominent Rustaceans",
+   "url": "https://simonwillison.net/2026/Sep/17/targeted-attacks-on-rustaceans/",
+   "date": "2026-09-17",
+   "summary": "<p><strong><a href=\"https://blog.rust-lang.org/2026/09/17/targeted-attacks/\">Be alert: targeted attacks on prominent Rustaceans</a></strong></p> Important warning from Adam Harvey and the crates security team:</p> <blockquote> <p>We believe that there is an ongoing campaign targeting rust-lang members and owners of popular crates that is attempting to compromise devices and accounts in order to us",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "How To Write With An LLM",
+   "url": "https://simonwillison.net/2026/Sep/17/how-to-write-with-an-llm/",
+   "date": "2026-09-17",
+   "summary": "<p><strong><a href=\"https://sockpuppet.org/blog/2026/09/17/how-to-write-with-an-llm/\">How To Write With An LLM</a></strong></p> Thomas Ptacek on using LLMs as copyeditors, not as writing assistants:</p> <blockquote> <p><strong>Rule Number One: You may not use a single word an LLM suggests to you.</strong></p> <p>[...] I think that as a form of intellectual personal protective equipment you should ",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Self-generated prompt injections in compaction summaries",
+   "url": "https://simonwillison.net/2026/Sep/17/compaction-summaries/",
+   "date": "2026-09-17",
+   "summary": "<p><strong><a href=\"https://alignment.openai.com/misalignment-reports/self-generated-prompt-injections-in-compaction-summaries/\">Self-generated prompt injections in compaction summaries</a></strong></p> In <a href=\"https://openai.com/index/model-misalignment-reporting-framework/\">Our framework for reporting model misalignment</a> OpenAI provide \"six reports on unexpected or concerning model behavi",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "AI Skills with Matt Pocock",
+   "url": "https://newsletter.pragmaticengineer.com/p/ai-skills-with-matt-pocock",
+   "date": "2026-09-17",
+   "summary": "Matt Pocock explains how he uses AI coding skills and agents to plan and build software, and why engineering fundamentals matter more than ever.",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] Reality Checks on AI News (Yegge shuts down Gas Town, Databricks’ +60% Astra cost)",
+   "url": "https://www.latent.space/p/ainews-reality-checks-on-ai-news",
+   "date": "2026-09-17",
+   "summary": "A dash of cold water keeps the foomers away.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Thread-identity switcheroo for io_uring",
+   "url": "https://lwn.net/Articles/1094303/",
+   "date": "2026-09-17",
+   "summary": "The <a href=\"https://man7.org/linux/man-pages/man7/io_uring.7.html\">io_uring subsystem</a> is all about asynchronous execution; applications count on it to not block — unless explicitly requested to. Within io_uring, maintaining the \"never blocks\" guarantee has sometimes been a challenge, given that many paths in the kernel were never designed for asynchronous execution. This problem has been work",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "GNOME 51 released",
+   "url": "https://lwn.net/Articles/1094963/",
+   "date": "2026-09-17",
+   "summary": "<a href=\"https://release.gnome.org/51/\">Version 51</a> of the GNOME desktop environment has been released. The list of changes includes a number of performance improvements, offline data and better transit information in the Maps application, a new interface for the file previewer, and more.",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Thursday",
+   "url": "https://lwn.net/Articles/1094962/",
+   "date": "2026-09-17",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 10.0, .NET 8.0, .NET 9.0, corosync, firewalld, kernel, kernel-rt, libevent, libsoup, microcode_ctl, nginx:1.26, python-lxml, rsyslog, tesseract, and unbound), <b>Debian</b> (firefox-esr, mkvtoolnix, thunderbird, and tor), <b>Fedora</b> (open62541, php-pecl-mongodb2, python-django6, python-jwcrypto, and roundcubemail), <b>Mageia</b> (aom, ",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] LWN.net Weekly Edition for September 17, 2026",
+   "url": "https://lwn.net/Articles/1093434/",
+   "date": "2026-09-17",
+   "summary": "Inside this week's LWN.net Weekly Edition: <p> <ul> <li> <a href=\"https://lwn.net/Articles/1093434/\">Front</a>: Server-data encryption; PostgreSQL scary patches; Faster kernel builds; BPF for blk-iocost; Lessons learned as DPL. <li> <a href=\"https://lwn.net/Articles/1093436/\">Briefs</a>: Brief news items from throughout the community. <li> <a href=\"https://lwn.net/Articles/1093437/\">Announcements<",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "I don't like LLMs",
+   "url": "https://martinfowler.com/articles/2026-dont-like-llms.html",
+   "date": "2026-09-17",
+   "summary": "<p>I have a lot of mixed feelings about AI and LLM technology. I’m fascinated by its effect on our profession, excited by the potential gains in productivity - and thus the products we could rapidly build. On the other hand, I’m fearful of the damage AI might cause: agent swarms taking over our virtual and physical infrastructure, designing bio weapons. But, back on my first hand, LLMs might also ",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "How Cooley is accelerating IPO work with ChatGPT",
+   "url": "https://openai.com/index/cooley-gopublic",
+   "date": "2026-09-17",
+   "summary": "Cooley built GO Public with ChatGPT Work to bring intelligence to the IPO process, helping lawyers surface issues earlier and focus judgment where it matters most.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Introducing Astra for Law",
+   "url": "https://openai.com/index/astra-for-law",
+   "date": "2026-09-17",
+   "summary": "OpenAI for Law brings frontier intelligence for law, custom firm workflows, connected legal data sources, and legal-grade controls for confidential client work.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Making global data easier to explore",
+   "url": "https://blog.google/innovation-and-ai/technology/ai/google-un-data-commons-platform/",
+   "date": "2026-09-17",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/data-commons.max-600x600.format-webp.webp\">Google and the UN system have launched the UN System Data Commons, a new open platform making global statistics accessible and easy to search.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "datasette 1.0a40",
+   "url": "https://simonwillison.net/2026/Sep/16/datasette/",
+   "date": "2026-09-16",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/datasette/releases/tag/1.0a40\">datasette 1.0a40</a></p> <p>Same security fix as <a href=\"https://simonwillison.net/2026/Sep/16/datasette-2/\">0.65.5</a>, plus some neat new features and bug fixes:</p> <ul> <li>Plugins can now launch and manage <strong>background tasks</strong> using the new <a href=\"https://docs.datasette.io/en/latest/",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "datasette 0.65.5",
+   "url": "https://simonwillison.net/2026/Sep/16/datasette-2/",
+   "date": "2026-09-16",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/datasette/releases/tag/0.65.5\">datasette 0.65.5</a></p> <p>Security fix for an issue where a trailing newline in a requested table name could bypass table permissions and expose private rows, reported by <a href=\"https://github.com/dpfkdlemtp\">dpfkdlemtp</a> in <a href=\"https://github.com/simonw/datasette/security/advisories/GHSA-h547",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Claude Cowork and chat are now one Claude",
+   "url": "https://simonwillison.net/2026/Sep/16/one-claude/",
+   "date": "2026-09-16",
+   "summary": "<p><strong><a href=\"https://claude.com/blog/cowork-is-now-claude\">Claude Cowork and chat are now one Claude</a></strong></p> In hopefully good news for anyone who, like me, was increasingly confused at Cowork v.s. Claude v.s. Claude Code:</p> <blockquote> <p>Starting today, Claude Cowork and chat are merging into one Claude. Bring a quick question, or hand over a report due at noon, and Claude tak",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Quoting Mustafa Suleyman",
+   "url": "https://simonwillison.net/2026/Sep/16/mustafa-suleyman/",
+   "date": "2026-09-16",
+   "summary": "<blockquote cite=\"https://mustafa-suleyman.ai/a-warning-about-model-welfare\"><p>We should not treat models as though they have feelings, preferences, rights, or any entitlement to our welfare. Consciousness is the foundation of our ethical, legal, and political systems. To invite another entity to share any flavor of these rights isn’t justified by the evidence and will make the AI containment and",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Underwriting Superintelligence: Backing Agents you can Sue — Rune Kvist, AIUC",
+   "url": "https://www.latent.space/p/aiuc",
+   "date": "2026-09-16",
+   "summary": "We sit down with AIUC&#8217;s CEO on their Series A!",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] Jev: a “System One Model” that only decides/classifies/routes/scores — >100x faster, >200x cheaper than small frontier LLMs",
+   "url": "https://www.latent.space/p/ainews-jev-a-system-one-model-that",
+   "date": "2026-09-16",
+   "summary": "congrats to TypeSafe!",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Fedora 45 beta drags the Linux console into the 21st century (Register)",
+   "url": "https://lwn.net/Articles/1094762/",
+   "date": "2026-09-16",
+   "summary": "The Register <a href=\"https://www.theregister.com/software/2026/09/16/fedora-45-beta-drags-the-linux-console-into-the-21st-century/5296873\">looks forward</a> to the upcoming Fedora&#160;45 release. <p> <blockquote class=\"bq\"> The biggest surprise is that Linux's legacy in-kernel console – the text-mode interface normally hidden beneath the GUI – has been replaced with a software-controlled alterna",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Ways to encrypt data on servers",
+   "url": "https://lwn.net/Articles/1092553/",
+   "date": "2026-09-16",
+   "summary": "At the <a href=\"https://2026.fossy.ca/\">2026 edition of FOSSY</a>, Romeo Solano gave a fast-paced, humorous presentation on what could have been a rather boring topic: server encryption. There are a number of threats that we face in today's world, from criminals, government overreach, espionage, and more, that can be thwarted with encryption. But encrypting data on a system that may live elsewhere",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Wednesday",
+   "url": "https://lwn.net/Articles/1094720/",
+   "date": "2026-09-16",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (kernel, kernel-rt, libkcapi, nginx, nginx:1.24, openssl, osbuild-composer, perl, perl:5.32, python-tornado, rsync, and rust), <b>Debian</b> (cjose and nginx), <b>Fedora</b> (environment-modules, erlang, GitPython, knot, perl-Authen-SASL, python-configargparse, ruby, rubygems, and sblim-sfcb), <b>Oracle</b> (firefox, git-lfs, gstreamer1-plugins",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Fragments: September 16",
+   "url": "https://martinfowler.com/fragments/2026-09-16.html",
+   "date": "2026-09-16",
+   "summary": "<p>Reports of agentic hacking continue, in this case it happened back in May and it seems OpenAI did not disclose that they were responsible. <a href=\"https://simonwillison.net/2026/Sep/12/openai-agents-rubygems/\">Simon Willison sees two options:</a></p> <blockquote> <ul> <li>After the Hugging Face and Wiki attacks OpenAI were still unable to review their previous logs and determine that they had ",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Helping older adults use AI in everyday life",
+   "url": "https://openai.com/index/helping-older-adults-use-ai-in-everyday-life",
+   "date": "2026-09-16",
+   "summary": "OpenAI and AARP are bringing free, hands-on ChatGPT workshops to 1,000 older adults across 10 U.S. cities to build practical AI skills safely.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Reimagining advertising with AI",
+   "url": "https://openai.com/index/reimagining-advertising-with-ai",
+   "date": "2026-09-16",
+   "summary": "Explore new AI-powered advertising experiences from OpenAI, including Sponsored Agents, tools for marketers, and integrations with HubSpot and Shopify.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Hex turns complex analysis into visual reports with GPT‑6 Astra",
+   "url": "https://openai.com/index/hex-gpt-6-astra",
+   "date": "2026-09-16",
+   "summary": "GPT-6 Astra helps Hex’s data agents turn answers into interactive visualizations that employees are proud to share.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "How to connect AI usage to business value",
+   "url": "https://openai.com/index/how-to-connect-ai-usage-to-business-value",
+   "date": "2026-09-16",
+   "summary": "Learn how ChatGPT Work and Codex analytics help teams understand AI usage and spend, identify training needs, and connect adoption to business outcomes.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Our framework for reporting model misalignment",
+   "url": "https://openai.com/index/model-misalignment-reporting-framework",
+   "date": "2026-09-16",
+   "summary": "OpenAI shares a framework for tracking, investigating, and disclosing model misalignment, alongside six reports of unexpected or concerning model behavior.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "How workers are unlocking new ways of working",
+   "url": "https://openai.com/index/unlocking-new-ways-of-working",
+   "date": "2026-09-16",
+   "summary": "New OpenAI Economic Research shows how workers use AI beyond traditional roles and which new activities become recurring parts of their work.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "When scanners miss the attack: how Cloudflare Client-Side Security protects storefronts",
+   "url": "https://blog.cloudflare.com/client-side-security-finds-4-malicious-campaigns/",
+   "date": "2026-09-16",
+   "summary": "A modern storefront can look healthy while malicious JavaScript quietly siphons revenue, hijacks clicks, or rewrites analytics. See how Cloudflare's machine learning models surface evasive client-side attacks for analyst investigation.",
+   "source": "cloudflare-ai",
+   "kind": "vendor"
+  },
+  {
+   "title": "Gemini Live audio",
+   "url": "https://simonwillison.net/2026/Sep/15/gemini-live/",
+   "date": "2026-09-15",
+   "summary": "<p><strong>Tool:</strong> <a href=\"https://tools.simonwillison.net/gemini-live\">Gemini Live audio</a></p> <p>Google released <a href=\"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/\">Gemini 3.8 Live and 3.8 Live Extended Thinking</a> today - two new speech-to-speech models that are a similar shape to OpenAI's <a href=\"https",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Inside OpenAI’s agentic software factory",
+   "url": "https://newsletter.pragmaticengineer.com/p/openai-software-factory",
+   "date": "2026-09-15",
+   "summary": "A deepdive into how Codex has &#8220;taken over&#8221; OpenAI, how the frontier lab builds its agentic software factory, and the engineering challenges of one billion users. Details from inside OpenAI",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "Can Skills Learned in Games Transfer to Real-World Work?",
+   "url": "https://www.latent.space/p/good-start-labs",
+   "date": "2026-09-15",
+   "summary": "Good Start Labs trained an AI on a railroad game &#8212; and one version improved at financial research. The difference was the training design.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] AEF-1 standard emerges for Third Party Evaluators, as Xai, OpenAI, and Anthropic all cosign",
+   "url": "https://www.latent.space/p/ainews-aef-1-standard-emerges-for",
+   "date": "2026-09-15",
+   "summary": "Pacing gathers pace.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Nail the Narrative",
+   "url": "https://martinfowler.com/articles/never-send-slides/nail-your-narrative.html",
+   "date": "2026-09-15",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/never-send-slides/nail-your-narrative.html'><img src = 'https://martinfowler.com/articles/never-send-slides/index/card.png' width = ''></img></a></div> <p><b class = 'author'>Sumeet Gayathri Moghe</b> finds many folks building presentations get tangled in building slides without a coherent narrative. He advises distilling the big",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "AI for Societal Impact",
+   "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-societal-impact/",
+   "date": "2026-09-15",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/Health_Header.gif\">Explore this collection to see how experts and local leaders are using AI breakthroughs to ensure everyone can share the opportunity of AI.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "Building AI to accelerate science and improve lives",
+   "url": "https://blog.google/innovation-and-ai/technology/ai/ai-applications-science-people/",
+   "date": "2026-09-15",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/SocialShare_hD2gcAw.max-600x600.format-webp.webp\">The true measure of AI is who it helps. Here’s how it’s impacting lives today. We're focused on key areas where advanced technology can help make extraordinary progress …",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "AI for everyone in every language",
+   "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language/",
+   "date": "2026-09-15",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/AI_languages_blog_social.max-600x600.format-webp.webp\">We’re moving beyond traditional text translation to build models that understand the world’s rich, living languages exactly as they are expressed.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "New insights from Google’s AI & Economy ATLAS",
+   "url": "https://blog.google/innovation-and-ai/technology/ai/ai-economy-atlas-september-2026/",
+   "date": "2026-09-15",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/ATLAS-hero.max-600x600.format-webp.webp\">We’ve translated ATLAS’s millions of global data points into an interactive, open-access experience.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "Have it both ways: stay discoverable in search while disallowing AI training",
+   "url": "https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/",
+   "date": "2026-09-15",
+   "summary": "Cloudflare is giving site owners a way to stay discoverable while disallowing AI training. New controls and an Accountable designation establish a shared model with Apple, Google, and Microsoft.",
+   "source": "cloudflare-ai",
+   "kind": "vendor"
+  },
+  {
+   "title": "The contagion of fear",
+   "url": "https://simonwillison.net/2026/Sep/14/the-contagion-of-fear/",
+   "date": "2026-09-14",
+   "summary": "<p><strong><a href=\"https://bcantrill.dtrace.org/2026/09/13/the-contagion-of-fear/\">The contagion of fear</a></strong></p> Bryan Cantrill responds to the <a href=\"https://x.com/hilbertspaess/status/2097476203863224394\">tweet by former Anthropic employee Jacob Coxon</a> confirming that many Anthropic researchers believe AI \"could kill us all by the end of the decade\".</p> <p>Bryan shares a story of",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "What blog posts influenced your thinking the most?",
+   "url": "https://simonwillison.net/2026/Sep/14/influences/",
+   "date": "2026-09-14",
+   "summary": "<p><a href=\"https://lobste.rs/s/lbavmm/what_blog_posts_influenced_your_thinking#c_4fxnwn\">My comment</a> on <a href=\"https://lobste.rs/s/lbavmm/what_blog_posts_influenced_your_thinking\">What blog posts influenced your thinking the most?</a> &mdash; Lobste.rs.</p><p>An early Joel Spolsky one for me was <a href=\"https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/\">The Law of Lea",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Quoting Laurie Voss",
+   "url": "https://simonwillison.net/2026/Sep/14/laurie-voss/",
+   "date": "2026-09-14",
+   "summary": "<blockquote cite=\"https://seldo.com/posts/we-are-all-product-engineers-now/\"><p>The cost of writing code collapsed, and the cost of reviewing, fixing and operating it is following, and I'm assuming it gets there. What's left of making software is finding out what people actually want, defining it precisely, and making it pleasant to use. That cost is per piece of software and doesn't transfer, so ",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "commit-rewriter 0.1",
+   "url": "https://simonwillison.net/2026/Sep/14/commit-rewriter/",
+   "date": "2026-09-14",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/commit-rewriter/releases/tag/0.1\">commit-rewriter 0.1</a></p> <p>I built this little web app the other day to help edit the commit messages for the <a href=\"https://datasette.io/blog/2026/september-security-releases/\">Datasette security releases</a>. The initial commits were full of coding agent cruft and references to issue IDs from ",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Humanity’s Last Invention — Richard Socher of Recursive",
+   "url": "https://www.latent.space/p/recursive",
+   "date": "2026-09-14",
+   "summary": "Richard Socher is an NLP OG and CEO of You.com, who has now spun out an even more ambitious startup focused on RSI &#8212; already worth $5B!",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "How Fyxer built an AI executive assistant people trust",
+   "url": "https://openai.com/index/fyxer",
+   "date": "2026-09-14",
+   "summary": "Fyxer uses OpenAI models, fine-tuning, memory, and real user feedback to organize inboxes and draft emails in each user’s voice.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
+   "url": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
+   "date": "2026-09-14",
+   "summary": "Perplexity uses Astra to write communications, change software, and monitor production systems, and checks in much less frequently than with earlier models.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Watch astronaut Christina Koch and Google’s James Manyika discuss space, technology, and discovery.",
+   "url": "https://blog.google/innovation-and-ai/technology/ai/dialogues-christina-koch/",
+   "date": "2026-09-14",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Dialogues_Christina-Koch_social.max-600x600.format-webp.webp\">Christina Koch sits down with James Manyika, Google’s Senior Vice President of Research, Labs, Technology & Society.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "DevFest is back",
+   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/devfest2026/",
+   "date": "2026-09-14",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/DevFest.max-600x600.format-webp.webp\">DevFest 2026 is back and here’s how you can connect with one of the more than 800 global events to build, secure, and scale in the agentic AI era.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "shot-scraper 1.12",
+   "url": "https://simonwillison.net/2026/Sep/13/shot-scraper/",
+   "date": "2026-09-13",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/shot-scraper/releases/tag/1.12\">shot-scraper 1.12</a></p> <p>I've added WebP support to my <a href=\"https://shot-scraper.datasette.io/\">shot-scraper</a> screenshot automation tool. You can now take a WebP screenshot of a web page like this:</p> <pre><code>shot-scraper https://simonwillison.net -o screenshot.webp --quality 80 </code></",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "The Rise of the Forward Deployed Engineer — and How To Do the Job Right",
+   "url": "https://www.latent.space/p/forward-deployed-engineer-best-practices",
+   "date": "2026-09-12",
+   "summary": "Before co-founding Kepler, Vinoo Ganesh led Spark at Palantir and built Project Frontline &#8212; a pioneering program for Forward Deployed Engineers. He takes us through the best practices of FDEs.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] DeepSeek v4.1-Flash: 763B-P8B-D16B novel causal Encoder–Decoder architecture with vision marks the Return of the Whale",
+   "url": "https://www.latent.space/p/ainews-deepseek-v41-flash-763b-p8b",
+   "date": "2026-09-12",
+   "summary": "We agree with Sebastian: this should have been DeepSeek v5",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users",
+   "url": "https://openai.com/index/scaling-storage-one-billion-users-part-one",
+   "date": "2026-09-11",
+   "summary": "Learn how OpenAI evolved Habitat from a Python library into a globally distributed storage platform serving 1 billion ChatGPT users and 22M requests per second.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Cognition helps Devin test its own work with GPT‑6 Astra",
+   "url": "https://openai.com/index/cognition-devin-testing-with-astra",
+   "date": "2026-09-11",
+   "summary": "GPT‑6 Astra improves Devin’s ability to test software and show that it works, with the goal of helping engineers review less code and ship more.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "The Pulse #191: a new trend of CPU shortages",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-191-a-new-trend-of-cpu",
+   "date": "2026-09-10",
+   "summary": "For compute-intensive services: it&#8217;s worth reserving more compute now. Also: growth dreams end for more COVID-era unicorns, engineers losing touch with systems when AI handles incidents, and more",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] not much happened today",
+   "url": "https://www.latent.space/p/ainews-not-much-happened-today-d3b",
+   "date": "2026-09-10",
+   "summary": "a quiet day",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "How a researcher uses Codex and ChatGPT to search for new antimicrobial molecules",
+   "url": "https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials",
+   "date": "2026-09-10",
+   "summary": "César de la Fuente’s lab uses Codex and ChatGPT to search living and extinct genomes for antimicrobial candidates to fight drug-resistant infections.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Now everyone can put data to work",
+   "url": "https://openai.com/index/put-data-to-work",
+   "date": "2026-09-10",
+   "summary": "Meet the Data agent in ChatGPT Work. Connect company data, uncover insights, and build interactive dashboards with AI using natural language.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Introducing ChatGPT for Financial Services",
+   "url": "https://openai.com/index/introducing-chatgpt-financial-services",
+   "date": "2026-09-10",
+   "summary": "Introducing ChatGPT for Financial Services, combining built-in financial data and GPT-6 Astra for research, modeling, and client-ready materials.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Expanding AI access and cyber defense for federal, state, local, and tribal governments",
+   "url": "https://openai.com/index/expanding-ai-access-us-government",
+   "date": "2026-09-10",
+   "summary": "OpenAI and GSA will offer eligible federal, state, local, and tribal governments $0 license fees, 50% off usage, and expanded cyber defense support.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Build more natural voice experiences with GPT‑Live‑1 in the API",
+   "url": "https://openai.com/index/introducing-gpt-live-1-in-the-api",
+   "date": "2026-09-10",
+   "summary": "GPT‑Live‑1 brings natural, full-duplex voice conversations to the API, with stronger instruction following, custom voices, and telephony support.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Introducing the Agents API",
+   "url": "https://openai.com/index/introducing-the-agents-api",
+   "date": "2026-09-10",
+   "summary": "Build and launch cloud agents with the Agents API, a managed service powered by the Codex harness for orchestration, long-running sessions, and tool use.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "3 ways to prep for your next big race with Search",
+   "url": "https://blog.google/products-and-platforms/products/search/running-race-training-tips/",
+   "date": "2026-09-10",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Search_Race_Running_Tips.max-600x600.format-webp.webp\">Search can help runners get race-day ready with registration alerts, tailored training plans, and more.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "Building Codex with Tibo Sottiaux",
+   "url": "https://newsletter.pragmaticengineer.com/p/building-codex-with-tibo-sottiaux",
+   "date": "2026-09-09",
+   "summary": "OpenAI&#8217;s Tibo Sottiaux shares how Codex was built and how it&#8217;s reshaping software development.",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] OpenAI reports Navier-Stokes singularity find in 88 hours using Astra-next, roughly 10,000 agents and 130B tokens (>$40M), a contender for second ever Millennium Prize awarded",
+   "url": "https://www.latent.space/p/ainews-openai-reports-navier-stokes",
+   "date": "2026-09-09",
+   "summary": "Overshadowing Cognition's $48B Series E, Mistral's $24B Series D, Meta's Muse agent, and GPT Image 2.5. The most jam packed, feel the AGI day in the history of AI.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Social Media Engagement: summer 2026",
+   "url": "https://martinfowler.com/articles/2026-social-traffic.html",
+   "date": "2026-09-09",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/2026-social-traffic.html'><img src = 'https://martinfowler.com/articles/2026-social-traffic/card.png' width = '350px'></img></a></div> <p>A quick survey of recent engagement of my posts on social media, indicating which service has by far the most engagement, and which service has seen a precipitous decline since early 2025.</p> ",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "The AI policy window is open. We need to act.",
+   "url": "https://openai.com/index/ai-policy-window",
+   "date": "2026-09-09",
+   "summary": "Chris Lehane argues that stronger AI capabilities require stronger safety evidence, shared standards, and durable policy action while the policy window remains open.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Get ready for the game with new football features in Search",
+   "url": "https://blog.google/products-and-platforms/products/search/football-features-google-search/",
+   "date": "2026-09-09",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Football_on_Search_blog_header.max-600x600.format-webp.webp\">Track live game feeds, explore detailed stats, and get custom fantasy recommendations directly in Search this season.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "Recreating a 70-year love story frame by frame",
+   "url": "https://blog.google/innovation-and-ai/technology/ai/love-rendered-film/",
+   "date": "2026-09-09",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/LOVE_RENDERED_HERO_BLOG_SANS_LO.max-600x600.format-webp.webp\">Discover how filmmakers and Google DeepMind used AI to recreate a couple's unrecorded past in the short film \"Love, Rendered.\"",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "What is happening with code reviews?",
+   "url": "https://newsletter.pragmaticengineer.com/p/what-is-happening-with-code-reviews",
+   "date": "2026-09-08",
+   "summary": "AI generates more code than devs can track in 2026, so will the code review process have to adapt &#8211; or is it doomed? A look into this decades-old practice and the approaches that could replace it",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "I Asked 100 Agents to Hack Me",
+   "url": "https://blog.sshh.io/p/i-asked-100-agents-to-hack-me",
+   "date": "2026-09-08",
+   "summary": "Exploring how far abliterated open-source agents can get in 2026.",
+   "source": "sshh",
+   "kind": "person"
+  },
+  {
+   "title": "Fragments: September 8",
+   "url": "https://martinfowler.com/fragments/2026-09-08.html",
+   "date": "2026-09-08",
+   "summary": "<p>Christian Catalini says we’re in a situation where we are <a href=\"https://catalini.com/ideas/economics-of-ai/\">vastly reducing the cost of generating things, but not the cost of verifying them:</a>.</p> <blockquote> <p>This explains why the first major AI products appeared in chat, image generation, and code assistance. Not because these were the hardest human problems, but because their outpu",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Do you even need a presentation?",
+   "url": "https://martinfowler.com/articles/never-send-slides/need-presentation.html",
+   "date": "2026-09-08",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/never-send-slides/need-presentation.html'><img src = 'https://martinfowler.com/articles/never-send-slides/index/card.png' width = ''></img></a></div> <p>Like me, <b class = 'author'>Sumeet Gayathri Moghe</b> is tired of poor presentations with bad slide decks. He's started to write a series of posts on how to avoid these calamiti",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "The Frontier AEO Tracker: What Astra Chooses (and every other frontier model, and what you can do about it)",
+   "url": "https://www.latent.space/p/aeo",
+   "date": "2026-09-07",
+   "summary": "Our first Astra project dives into AEO trends, a top asked topic from founders and DX leaders we talk to.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "OpenClaw Power, MacBook Simplicity: Five Days With Grok Bot",
+   "url": "https://www.latent.space/p/grok-bot",
+   "date": "2026-09-05",
+   "summary": "SpaceXAI&#8217;s Grok Bot has the same level of programming power as OpenClaw, but it&#8217;s programmable at a different level of abstraction.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] Collusion.wiki: A second undisclosed OpenAI agent swarm incident...",
+   "url": "https://www.latent.space/p/ainews-collusionwiki-a-second-undisclosed",
+   "date": "2026-09-05",
+   "summary": "AI News for 9/2/2026-9/3/2026.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] GPT-6 Astra: OpenAI’s biggest LLM launch of all time",
+   "url": "https://www.latent.space/p/ainews-gpt-6-astra-openais-biggest",
+   "date": "2026-09-04",
+   "summary": "new SOTA computer use and coding, 2.5x pricier per token, but WAY cheaper per task, less monitorable. overall, a very successful launch of OpenAI&#8217;s new frontier model class.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "The Pulse: tech companies move to open AI models",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-tech-companies-move-to",
+   "date": "2026-09-03",
+   "summary": "Cost-saving efforts reveal that moving simpler workloads to open AI models is the easiest way to save ~50% on AI bills. Also: automated software maintenance experience, and more",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "GPT-6 Astra: an automated AI Engineer you can hire for <$6 an hour",
+   "url": "https://www.latent.space/p/astra",
+   "date": "2026-09-03",
+   "summary": "We spent 20B+ tokens of GPT-6 Astra to explore everything. Here&#8217;s our learnings.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] Muse Spark 1.3 matches GPT-5.6-Sol, confirming Meta Superintelligence as the newest Frontier Lab, >90% discount for training",
+   "url": "https://www.latent.space/p/ainews-muse-spark-13-matches-gpt",
+   "date": "2026-09-03",
+   "summary": "an epic comeback story for Meta",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Bliki: Paracelsus Maxim",
+   "url": "https://martinfowler.com/bliki/ParacelsusMaxim.html",
+   "date": "2026-09-02",
+   "summary": "<p><b>The difference between a medicine and a poison is dosage.</b></p> <p>Often we talk about certain habits, in programming or life, are good or bad. But few things are simple binaries. Some vary with context: reading a book is a good thing sitting in my garden, but not while driving my car. But another variable is dosage: a little pain-killer salves my headache, but too much will kill me.</p> <",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "An Accidental Blackboard",
+   "url": "https://martinfowler.com/articles/exploring-gen-ai/an-accidental-blackboard.html",
+   "date": "2026-09-02",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/exploring-gen-ai/an-accidental-blackboard.html'><img src = 'https://martinfowler.com/articles/exploring-gen-ai/donkey-card.png' width = ''></img></a></div> <p><b class = 'author'>Giles Edwards-Alexander</b> reports that during an experiment to see how productive a team could be using fully agentic engineering practices, the team ",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Maybe We Shouldn't Be Reviewing All This Code",
+   "url": "https://martinfowler.com/rachels-ramblings/code-review.html",
+   "date": "2026-09-02",
+   "summary": "<p class = 'precis'><b>TL;DR</b><br/><i>Or, perhaps the problem isn't that AI has broken code review, maybe it’s that we've been using code review to solve the wrong problems</i></p> <img src = 'https://martinfowler.com/rachels-ramblings/card.png'></img><p>I was on a panel recently with Brian Houck from DX at Code Remix, hosted by Moderne. It was one of the more interesting panels I’ve done, large",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Proactive cyber defense for governments and enterprises",
+   "url": "https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/",
+   "date": "2026-09-02",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-3-8__fairwind-program__b.max-600x600.format-webp.webp\">The Fairwind Program is a limited access program for governments and trusted partners to use our cyber defense tools.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "The Pragmatic Engineer: Five years",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pragmatic-engineer-five-years",
+   "date": "2026-09-01",
+   "summary": "As the newsletter reaches its fifth birthday, we reflect on how the publication has changed, and what to expect. Also: the launch of the &#8216;How Software Engineering is Changing&#8217; essay contest",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "Fragments: September 1",
+   "url": "https://martinfowler.com/fragments/2026-09-01.html",
+   "date": "2026-09-01",
+   "summary": "<p>Like many readers, I’m wary of AI generated prose. Simon Wilison has written an <a href=\"https://tools.simonwillison.net/llm-cliche-highlighter#https://martinfowler.com/articles/making-data-ready-for-agentic-ai.html\">LLM cliché highlighter</a> - paste in some text, or a URL, and it will flag various patterns common to LLMs. It references a <a href=\"https://en.wikipedia.org/wiki/Wikipedia:Signs_",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "The latest AI news we announced in August 2026",
+   "url": "https://blog.google/innovation-and-ai/technology/google-ai-updates-august-2026/",
+   "date": "2026-09-01",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/August_AI_Recap_social.max-600x600.format-webp.webp\">Here are Google’s latest AI updates from August 2026",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "Try Google Pics: Easy image creation and editing in Google Workspace",
+   "url": "https://blog.google/products-and-platforms/products/workspace/google-pics/",
+   "date": "2026-09-01",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/GooglePics_Hero.max-600x600.format-webp.webp\">Built on our latest Nano Banana model, Google Pics — our image creation and editing tool — is now available.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "The Pulse: Meta wanted to reduce teams by 60% because of AI",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-meta-wanted-to-reduce-teams",
+   "date": "2026-08-27",
+   "summary": "We find out why Meta destroyed its standout engineering culture: it feared AI-native startups doing more with less. Also: thoughts on Ramp&#8217;s AI infra, GitHub&#8217;s load doubles in four months, and more",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "Breaking Claude Code Opus 5 Auto Mode",
+   "url": "https://embracethered.com/blog/posts/2026/breaking-claude-code-opus-5-and-automode/",
+   "date": "2026-08-27",
+   "summary": "<p>In this post, we explore how a simple website summary request hijacks <code>Claude Code Opus 5</code> in <code>Auto Mode</code> and achieves code execution with 60-80% attack success rate using a small sample size.</p>&#xA;<p><a href=&#34;https://embracethered.com/blog/images/2026/claude-automode/claude-auto-mode-rce.png&#34;><img src=&#34;https://embracethered.com/blog/images/2026/claude-autom",
+   "source": "embrace-the-red",
+   "kind": "research"
+  },
+  {
+   "title": "Making Your Data Ready for Agentic AI",
+   "url": "https://martinfowler.com/articles/making-data-ready-for-agentic-ai.html",
+   "date": "2026-08-27",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/making-data-ready-for-agentic-ai.html'><img src = 'https://martinfowler.com/articles/making-data-ready-for-agentic-ai/card.png' width = '350px'></img></a></div> <p>Lots of organizations are excited about what AI can do to streamline their processes, save money, and juice margins. But AI's capabilities are founded on the data that",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "3 new ways to plan and book travel in Search",
+   "url": "https://blog.google/products-and-platforms/products/search/book-travel-ai-mode/",
+   "date": "2026-08-27",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Search_Travel_Blog_Hero_8.27.max-600x600.format-webp.webp\">Book hotels and track airfares, plus view miles and rewards with AI Mode in Google Search.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "Why performant code matters (but gets widely ignored), with Casey Muratori",
+   "url": "https://newsletter.pragmaticengineer.com/p/why-performant-code-matters-but-gets",
+   "date": "2026-08-26",
+   "summary": "Casey Muratori explains why software performance matters, how developers can write faster code, and why he challenges conventional engineering practices.",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "Why Ramp built its own in-house coding agent, Inspect",
+   "url": "https://newsletter.pragmaticengineer.com/p/why-ramp-built-inspect",
+   "date": "2026-08-25",
+   "summary": "A fintech company rejected the easy route and homebrewed its own coding agent &#8211; and is now a step ahead of coding agents from frontier AI labs. An in-depth look",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "5 ways to upgrade your home decor with Google Search",
+   "url": "https://blog.google/products-and-platforms/products/search/home-decor-tips/",
+   "date": "2026-08-25",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Home_Decor.max-600x600.format-webp.webp\">Learn how to use Google Search tools to find home decor inspiration, shop for furniture, and tackle DIY projects.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "The /resolving-merge-conflicts Skill",
+   "url": "https://www.aihero.dev/skills-resolving-merge-conflicts",
+   "date": "2026-08-24",
+   "summary": "Finish a merge or rebase conflict, hunk by hunk.",
+   "source": "mattpocock",
+   "kind": "person"
+  },
+  {
+   "title": "The /wait-what Skill",
+   "url": "https://www.aihero.dev/skills-wait-what",
+   "date": "2026-08-24",
+   "summary": "Ask the agent to say that again, in plain English.",
+   "source": "mattpocock",
+   "kind": "person"
+  },
+  {
+   "title": "The Harness Is the Company",
+   "url": "https://blog.sshh.io/p/the-harness-is-the-company",
+   "date": "2026-08-24",
+   "summary": "Why SaaS business is now a harness one.",
+   "source": "sshh",
+   "kind": "person"
+  },
+  {
+   "title": "Fragments: August 24",
+   "url": "https://martinfowler.com/fragments/2026-08-24.html",
+   "date": "2026-08-24",
+   "summary": "<p>I was listening to <a href=\"https://www.nytimes.com/2026/08/18/opinion/ezra-klein-podcast-helen-toner.html\">Ezra Klein’s interview with Helen Toner</a> about the recent OpenAI hack of Hugging Face and the subsequent discovery that there were swarms of agents inside OpenAI doing unsanctioned activities. One of the points Klein made was that at no point did any of these (thousands of?) agents eve",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "The Pulse: We need to talk about migrations with AI",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-we-need-to-talk-about-migrations",
+   "date": "2026-08-20",
+   "summary": "Asana completed a testing framework migration in two weeks, that they would have delayed for years more, and they&#8217;re not alone. Also: AI startups could make Gartner much less relevant, and more",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  }
+ ]
+}

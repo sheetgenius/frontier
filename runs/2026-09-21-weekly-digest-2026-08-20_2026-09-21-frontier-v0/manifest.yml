@@ -1,0 +1,93 @@
+schema_version: bitter.frontier_run_manifest.v0
+run_id: 2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0
+id: 2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0
+title: Before the First Turn
+mode: weekly_digest
+status: complete
+window:
+  start: 2026-08-20
+  end: 2026-09-21
+parent_window:
+  start: 2026-08-17
+  end: 2026-08-20
+generated_at: 2026-09-23
+sources:
+  - codex
+  - claude-code
+  - gemini-cli
+  - antigravity
+  - grok-build
+  - cursor
+  - github-copilot-cli
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+  - heypi
+  - deepseek-harness
+  - flue
+  - eve
+  - agent-flywheel
+  - omnigent
+  - omp
+  - temporal-agent-harness
+finding_count: 176
+signal_count: 13
+models:
+  coordinator: claude-opus-5-5 (resumed from claude-fable-5-1 after a rate-limit outage)
+  researchers: general-purpose subagents, one per source or small group, read-only
+  x_lane: grok-4.6 via grok CLI on the grok.com subscription
+harness_shape: >
+  One coordinator with editorial authority; 12 read-only Lane A researchers
+  (first launch killed by a weekly rate limit on 2026-09-22 with one harvest on
+  disk; relaunched 2026-09-23); one Lane B reader; Lane C banter plus eight source
+  sweeps and a URL-only capture pass. Findings generated from harvest sections by
+  findings-spec/fromharvest.mjs plus hand-written specs for cross-vendor items.
+outputs:
+  digest:
+    - content/digests/2026-08-20_2026-09-21-weekly.md
+  wire:
+    - content/wire/2026-09-22.yml
+  findings: 176
+  signals:
+    - signals/frontier-signals.yml
+  social_cards:
+    - social-cards/x-cards.yml
+  review:
+    - thread-check.md
+    - audit.md
+    - qa.md
+quality_gates:
+  - channel resolved by git ancestry on every inspectable source
+  - every signal receipt re-fetched by the coordinator (ancestry compares and pinned reads recorded in JOURNAL.md)
+  - Plugin4Shell and GitSpawn adjudicated against the researchers' own write-ups, not press coverage
+  - Gemini CLI CVE-2026-12537 corrected to GHSA score 7.8 and a pre-window fix
+  - Temporal 0.4.0 server exposure verified in code at e4bde4be before publication
+  - no quotation from harvest; capture 38/38, 0 unavailable; fragments sliced by slice-quote.mjs
+  - OMP and Pi kept distinct; Grok Bot kept distinct from Grok Build
+carry_forward_checks:
+  - q: "Whether Guardian V2 is enabled by default in a later Codex stable."
+    answer: "No. default_enabled false at every stable read through rust-v0.155.1."
+  - q: "Whether OpenClaw's approved-exec fix (ab5611f0) becomes an ancestor of any tag."
+    answer: "Yes. Ancestor of stable v2026.8.1 (2026-08-31) and every later main-line tag. Not of extended-stable 2026.7.35."
+  - q: "Whether DeepSeek Harness reaches a non-prerelease tag with the approval path still composable, and whether anything authenticates the Web UI."
+    answer: "No non-prerelease tag. architecture.md unchanged. Web UI requires login from 0.1.2."
+  - q: "Whether Paperclip's review-policy lock and CWE-78 guidance reach a stable."
+    answer: "Yes, v2026.824.0."
+  - q: "Whether Paperclip's ACPX thought-text fix (c2cfd55e) reaches any tag."
+    answer: "Yes, first stable v2026.831.0."
+  - q: "Whether Gemini's preview-only retry/TTL, OAuth redirect, git-env and enableAgents fixes reach stable."
+    answer: "Yes, all four in v0.57.0."
+  - q: "Whether eve 0.39.3 actually queues on Slack and custom channels, and whether the self-mod subagent stays behind eve dev."
+    answer: "Queue binds at 0.63.0. Self-mod gained a deployed mode (0.52.4), off by default. Queue path ran cross-user messages under the last sender until 0.52.5."
+  - q: "Whether a later Hermes tag contains #90224, #90391, #90765."
+    answer: "Yes, v2026.8.19 (published 2026-08-21)."
+lanes:
+  primary: "complete -- 176 findings"
+  writing: "complete -- 15/15 feeds live, 133 items; 22 pieces read (2 OpenAI posts 403)"
+  x_social: "complete -- banter plus 8 source sweeps; 38 URLs captured, 0 unavailable; 22 cards"
+notes: >
+  32-day catch-up window after a month without a digest. Published as one issue
+  rather than four thin ones; the window is visible on the page.

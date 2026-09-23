@@ -15,9 +15,17 @@ repo: https://github.com/omnigent-ai/omnigent
 surface_class: open_source_commits
 evidence_floor: official_docs
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: policy-outage-falls-through
+    finding_id: 2026-09-21-omnigent-governance-layering-on-policy-server-outage-native-claude-codex-tool-calls-now-defer-to
+    last_verified: 2026-09-23
+    status: active
+  - id: bundle-advisories
+    finding_id: 2026-09-21-omnigent-three-bundle-upload-advisories-published-2026-09-16-all-fixed-in-v0-14-0-by-one
+    last_verified: 2026-09-23
+    status: active
   - id: v0-10-0-multi-sandbox-shared-editor-approval
     finding_id: 2026-08-20-omnigent-v0-10-0-adds-multi-sandbox-and-keeps-shared-editor-approval
     last_verified: 2026-08-20
@@ -63,6 +71,10 @@ That stacking is why it is here. This publication's standing argument is that a
 control which exists only as an intention is not a control, and a meta-harness is
 the hardest version of that test, because two governance layers now have a claim
 on the same action.
+
+## Where it stands, 2026-09-21
+
+Latest in window is [v0.14.0](https://github.com/omnigent-ai/omnigent/releases/tag/v0.14.0), which fixes three bundle-upload advisories including a critical host-shell escape. From v0.13.0, when the policy server is unreachable, native Claude Code and Codex tool calls fall through to the wrapped harness's own dialog. Shared-editor approval did not narrow; an editor shell-proxy fix reached v0.15.0 after the window. Spend caps check before the next call against spend counted at turn boundaries.
 
 ## Where it stands, 2026-08-20
 

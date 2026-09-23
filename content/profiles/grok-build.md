@@ -19,9 +19,13 @@ surface_class: open_source_commits
 evidence_floor: official_changelog
 status: active_watch
 first_published: 2026-08-21
-last_updated: 2026-08-21
+last_updated: 2026-09-21
 last_full_review: 2026-08-21
 claims:
+  - id: folder-trust-gates-project-rules
+    finding_id: 2026-09-21-grok-build-folder-trust-now-gates-project-permission-rules-instructions-and-skills-previously-applied
+    last_verified: 2026-09-23
+    status: active
   - id: which-channel-is-the-product
     last_verified: 2026-08-21
     status: open_question
@@ -37,6 +41,10 @@ stance:
 ---
 
 # Grok Build
+
+## Where it stands, 2026-09-21
+
+Builds are now pinnable: `install.sh | bash -s <version>` installs a named version, and the download store lists dated builds with checksums. The in-tree docs changed between the [19 August](https://github.com/xai-org/grok-build/blob/19d42e35c07a9c9244f03f6df0c4c353f970d4f9/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md) and [19 September](https://github.com/xai-org/grok-build/blob/4247f661689354b831191f11eeeac8424993fe3d/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md#L559) syncs: a checkout's own allow rules now wait for folder trust. Sandbox profiles now deny writes to Grok's own config and trust files; the sandbox is still off by default and hooks still fail open. Manifold reported GitSpawn unpatched at 1.0.13. The public web changelog is a lagging subset of the in-tree notes. Grok Bot is a different product.
 
 ## Operator Read
 

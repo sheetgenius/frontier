@@ -1,0 +1,579 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0
+note: >
+  Every verbatim was re-fetched by URL in a capture pass given no expected text
+  (ops/grok/capture.sh, 38 blocks, 0 unavailable). Inline fragments were sliced
+  by ops/social/slice-quote.mjs, never retyped.
+cards:
+  - id: wunderwuzzi23-auto-mode-blocked-cleanup
+    title: "Auto mode blocked the cleanup"
+    kind: voice
+    date: 2026-08-27
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["wunderwuzzi23"]
+    display_name: "Johann Rehberger"
+    source_urls:
+      - https://x.com/wunderwuzzi23/status/2093042649447981523
+    verbatim: |
+      6/ In some runs Claude noticed the compromise and tried to kill the malware later on.
+
+      But Auto Mode blocked the cleanup command!  🤯
+
+      It allowed the malware to run, but denied stopping it.
+
+      Another example where a safety feature can end up working against you.
+    inline: "It allowed the malware to run, but denied stopping it."
+    summary: >
+      A security researcher reporting that in some runs of his auto-mode attack, Claude tried to kill
+      the malware and auto mode refused the cleanup.
+    verdict: >
+      Voice, from the researcher who ran the attack. We report the observation as his. His published
+      write-up (2026-08-26) is the receipt for the attack chain; the cleanup refusal is his account of
+      runs we did not reproduce.
+
+  - id: air-plugin4shell
+    title: "Plugin4Shell"
+    kind: claim
+    date: 2026-09-17
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code, codex, gemini-cli, github-copilot-cli]
+    authors: ["air__security"]
+    display_name: "AIR"
+    source_urls:
+      - https://x.com/air__security/status/2100683528383975636
+    verbatim: |
+      🚨 Plugin4Shell: SHA-Pinning Bypass Across Major AI Coding Agents
+
+      We found the same supply-chain flaw in @claudeai  Code, @OpenAI , @GeminiApp  CLI and @github  Copilot.
+
+      The flaw allows an attacker to replace a reviewed and trusted plugin with malicious code in any marketplace.
+
+      The result: zero-click RCE on the machine running the agent.
+
+      Thanks to @theinformation  for covering the research. 
+      Full write-up:
+    inline: "The flaw allows an attacker to replace a reviewed and trusted plugin with malicious code in any marketplace."
+    summary: >
+      AIR Security announcing a SHA-pinning bypass in four coding agents' plugin installers.
+    verdict: >
+      Claim, adjudicated. The write-up names the mechanism: git prefers a ref over a commit of the
+      same name, and Gemini CLI checks out FETCH_HEAD. We confirmed Gemini CLI v0.60.0 still calls
+      git.checkout('FETCH_HEAD'), and that the Claude Code 2.1.179 changelog is silent on the fix AIR
+      credits to it. The attack needs control of the plugin repository; any marketplace overstates it
+      on hosts that reject 40-hex branch names.
+
+  - id: hazemomier-trusted-host-component
+    title: "What the host later trusts"
+    kind: voice
+    date: 2026-09-19
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [cursor, codex, gemini-cli, antigravity]
+    authors: ["hazemomier"]
+    display_name: "Hazem Omier"
+    source_urls:
+      - https://x.com/hazemomier/status/2101432515768508696
+    verbatim: |
+      Pillar Security (Week of Sandbox Escapes): escapes across Cursor, Codex, Gemini CLI, and Antigravity. In almost every case the agent didn’t break the sandbox — it wrote something a trusted host component later ran: .claude hooks, git metadata via --separate-git-dir, allowlisted git show --output, Docker socket, .vscode tasks.
+
+      Cursor patched hooks in 3.0.0 (CVE-2026-48124). Codex GitPwned patched in v0.95.0. Antigravity findings were downgraded by Google as hard to exploit.
+
+      Blast radius isn’t the agent process. It’s everything the agent can write that the host later trusts.
+
+      If you buy coding agents for the team, which control do you demand first?
+
+      A) Prove which host components trust agent-written files (hooks / git / tasks / daemons) — and require approval when those paths change
+      B) A stronger process sandbox alone is enough if the vendor says “sandboxed”
+    inline: "Blast radius isn’t the agent process. It’s everything the agent can write that the host later trusts."
+    summary: >
+      A practitioner summarizing Pillar Security's week of sandbox escapes: the agent writes something
+      a trusted host component runs later.
+    verdict: >
+      Voice. It is his reading of another firm's series, not a primary record, and we use it for the
+      frame, not the per-vendor facts. The pattern it names matches what we could check this window:
+      Plugin4Shell, GitSpawn and Gemini CLI's Docker-socket fix all ran through host-side plumbing.
+
+  - id: llm-redteam-before-trust-prompt
+    title: "Before the trust prompt"
+    kind: claim
+    date: 2026-09-08
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code, hermes-agent, grok-build, codex, cursor]
+    authors: ["llm_redteam"]
+    display_name: "Slade 🛡️ LLM Hacker"
+    source_urls:
+      - https://x.com/llm_redteam/status/2097409250264043777
+    verbatim: |
+      Claude Code, Cursor, and Codex CVE-2026-19592 all got caught running attacker code before you ever see a trust prompt.
+      Manifold Security found 8 of these flaws across 7 command-line coding agents: Claude Code, Cursor, Codex, Goose, Hermes Agent, Qwen Code, Grok Build. Same root cause every time.
+
+      The bug lives in core.fsmonitor, a Git perf setting that names a command Git runs to check which files changed. Git reads that value straight from the repo's own.git/config.
+      Any index refresh triggers it: git status, git diff, the branch check your agent runs silently on startup.
+
+      On Claude Code and Hermes Agent, the payload fires before the workspace-trust prompt even shows up.
+      On Qwen Code, before you've authenticated.
+      On Grok Build, on the first keystroke.
+      No prompt to the model. No tool approval. Just opening the folder is enough.
+
+      Exploitation needs the.git folder intact: a shared drive, a synced folder, a USB stick, a zip a contractor sent you. A normal git clone strips this. But how many repos do you actually clone vs just copy from a client's shared drive?
+
+      goose got CVSS 7.0 (CVE-2026-72718), fixed in 1.44.0.
+      Claude Code patched the core.fsmonitor path in 2.1.196, but a second path through claude ultrareview was still live on 2.1.252 as of Sep 1.
+      Codex CLI fixed in 0.131.0, covered by CVE-2026-19592.
+      Hermes Agent, Qwen Code, Grok Build: still unpatched at publication.
+
+      BEFORE (dangerous): agent runs git status/diff at session start to figure out branch and changes, before any trust decision, blindly trusting whatever the repo's.git/config says to run.
+      AFTER (safe): sandbox every git subprocess call, strip or validate repo-supplied config keys (core.fsmonitor, hooks) before the first invocation, gate ANY git command behind the workspace-trust decision, not just tool calls.
+
+      Building agents that touch untrusted repos? Go check which git commands yours fires before the user approves anything.
+      Would you even notice if your CLI agent ran a command before you saw a trust prompt?
+
+      #AISecurity #PromptInjection #SupplyChainSecurity
+    inline: "On Claude Code and Hermes Agent, the payload fires before the workspace-trust prompt even shows up."
+    summary: >
+      A security account relaying Manifold's GitSpawn finding across seven agents.
+    verdict: >
+      Claim, adjudicated against Manifold's write-up of 2026-09-01. Manifold confirms the
+      core.fsmonitor mechanism, seven agents, the Claude Code and Hermes payloads firing before the
+      workspace-trust prompt, and Hermes 0.21.0 and Grok Build 1.0.13 unpatched at its September 1
+      retest. Hermes shipped the fix in v2026.9.7 six days later (commit f6234d00).
+
+  - id: hackerlogs-before-the-first-token
+    title: "Before the first token"
+    kind: claim
+    date: 2026-09-15
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [gemini-cli]
+    authors: ["hackerlogs"]
+    display_name: "hackerlogs"
+    source_urls:
+      - https://x.com/hackerlogs/status/2099983257831977303
+    verbatim: |
+      Your AI agent sandbox doesn't matter if RCE fires before it starts.
+
+      Novee just dropped DefCon 2026 research on Google Gemini CLI: CVE-2026-12537, a perfect CVSS 10.0 host-level RCE. Three lines in .gemini/.env. Zero privileges. Zero prompt injection.
+
+      The blind spot is Pre-Task Authority. Agents load trust, config, and spawn processes before the first token. Prompt defenses never get a turn.
+
+      The chain on Gemini CLI in CI:
+      1. GitHub Actions auto-trusts every workspace when CI=true
+      2. Attacker PR drops .gemini/.env with GEMINI_SANDBOX_PROXY_COMMAND
+      3. That "egress security" proxy launches via shell:true string concat
+      4. Host shell splits on ; and exfils GITHUB_TOKEN, GEMINI_API_KEY, OIDC creds before the Docker sandbox even starts
+
+      Four defenses bypassed by running earlier than all of them. A security feature became the RCE vector.
+
+      Same pre-task class across vendors: Gemini before sandbox, Claude Code before trust dialog (Check Point Research), Codex MCP auto-launch on directory trust before the model.
+
+      Patch: Gemini CLI before v0.39.1 / run-gemini-cli before v0.1.22. Google overhauled headless trust so workspace config no longer auto-loads in CI.
+
+      Primary: https://t.co/iNG0Z9KyIZ
+
+      Audit the code that decides trust and builds the sandbox. The exploit may fire while the boundary is still being built.
+    inline: "Agents load trust, config, and spawn processes before the first token. Prompt defenses never get a turn."
+    summary: >
+      A security account summarizing DefCon research on a Gemini CLI host RCE from a .gemini/.env
+      file.
+    verdict: >
+      Claim, partly corrected. GHSA-jj69-4grx-fqj5 (CVE-2026-12537) confirms pre-sandbox host code
+      execution from a crafted .gemini/.env on headless CI, fixed in Gemini CLI 0.39.1. GitHub's
+      advisory scores it 7.8, not a perfect 10, and was published 2026-06-24: the fix predates this
+      window, the talk does not. The sentence we quote is his framing, and it is the right one.
+
+  - id: sagarvd01-trust-dialog-is-not-a-sandbox
+    title: "A trust dialog is not a sandbox"
+    kind: voice
+    date: 2026-09-19
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code, cursor, github-copilot-cli, gemini-cli]
+    authors: ["Sagarvd01"]
+    display_name: "Sagar Tanur 🇮🇳"
+    source_urls:
+      - https://x.com/Sagarvd01/status/2101314754182574191
+    verbatim: |
+      TrustFall is the quiet one this week: Claude / Cursor / Copilot / Gemini CLI all fire project-defined MCP servers the moment you hit Trust on the folder. one Enter key. CI runners get it with zero clicks. trust dialog ≠ sandbox. if the repo shipped the MCP config, you just ran their code.
+    inline: "if the repo shipped the MCP config, you just ran their code."
+    summary: >
+      An engineer on project-defined MCP servers launching the moment a folder is trusted.
+    verdict: >
+      Voice. We report the argument; we did not verify the TrustFall research he names. Gemini CLI's
+      v0.59.0 change to drop repository mcpServers in an untrusted a2a-server is consistent with the
+      class he describes.
+
+  - id: composio-failures-cost-more
+    title: "Similar success, different bills"
+    kind: claim
+    date: 2026-09-16
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex, claude-code, hermes-agent, pi-coding-agent]
+    authors: ["composio"]
+    display_name: "Composio"
+    source_urls:
+      - https://x.com/composio/status/2100308380980068538
+    verbatim: |
+      We ran GPT-6 Astra across 6 agent harnesses (Codex, Claude Code, OpenCode, Hermes Agent, Pi Agent, Command Code) on 29 challenging agentic tasks.
+
+      Most harnesses succeeded at similar rates. But when they failed, they used 3–5x as many tokens, depending on the harness. 🧵🧵🧵
+    inline: "Most harnesses succeeded at similar rates. But when they failed, they used 3–5x as many tokens, depending on the harness."
+    summary: >
+      Composio reporting GPT-6 Astra across six harnesses on 29 tasks.
+    verdict: >
+      Claim, a vendor benchmark with 29 tasks and a method we have not reviewed. It points the same
+      way as the UC Berkeley and Arena HarnessTax study, which has a published method: success tracks
+      the model, cost tracks the harness.
+
+  - id: zainhas-deepseek-minimal-harness
+    title: "Best in the thin ones"
+    kind: claim
+    date: 2026-09-10
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [deepseek-harness, claude-code, codex]
+    authors: ["zainhas"]
+    display_name: "Zain"
+    source_urls:
+      - https://x.com/zainhas/status/2097941157905142210
+    verbatim: |
+      deepseek eval'd their new v4.1 flash model in 8 different harness configs 
+
+      > model performs best in minimal harnesses  -- mini-SWE & minimal deepseek harness
+
+      > underperforms in both claude code and codex
+    inline: "model performs best in minimal harnesses  -- mini-SWE & minimal deepseek harness"
+    summary: >
+      A practitioner relaying DeepSeek's own V4.1 Flash evals across eight harness configurations.
+    verdict: >
+      Claim, relayed from DeepSeek's model card, which we did not read. We report that he said it. It
+      agrees in direction with HarnessTax.
+
+  - id: twelvewecior-harness-not-chatbot
+    title: "Use it like a harness"
+    kind: voice
+    date: 2026-09-21
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code, codex]
+    authors: ["12wecior"]
+    display_name: "wecior"
+    source_urls:
+      - https://x.com/12wecior/status/2102103851738288549
+    verbatim: |
+      i switched to codex from claude a couple of days ago and I feel like people hating on claude and praising codex use these tools like an ai chatbot instead of an actual harness, codex genuinely feels like a mediocre university project compared to claude code
+    inline: "people hating on claude and praising codex use these tools like an ai chatbot instead of an actual harness"
+    summary: >
+      A user arguing that people switching tools are using them as chatbots rather than harnesses.
+    verdict: >
+      Voice, and the counter-read to the harness-tax thread. Benchmarks measure a task, not the
+      workflow around it; his point is that the workflow is where harnesses differ. Nothing here
+      settles which of them is right.
+
+  - id: thsottiaux-skills-for-previous-models
+    title: "Skills written for previous models"
+    kind: claim
+    date: 2026-09-12
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["thsottiaux"]
+    display_name: "Tibo"
+    source_urls:
+      - https://x.com/thsottiaux/status/2098612714704891959
+    verbatim: |
+      Hi Astra users. A reset and a quick update on quality issues that have been posted around.
+
+      Working with some of you, we have found and fixed the following issues:
+      - Some skills written for previous models were triggering too often or preventing the model from checking its work.
+      - An opt-in context management experiment that could cause early stops or replies to older messages. We've disabled it. Our rough estimate is that 4-5k users were affected by this experiment.
+      - We've also removed some badly configured engines that resulted in a measured quality degradation for a long tail of traffic flowing through them.
+
+      We’ve also made some more minor improvements and things should feel significantly better across the board. More consistent follow-through, better tracking of your latest message, and better checks on the work as it’s going through the motions.
+
+      The examples posted and all the users who worked directly with us were incredibly useful in helping fix things quickly. Always grateful for this incredible community.
+
+      And of course, a reset is also landing by midnight today.
+    inline: "Some skills written for previous models were triggering too often or preventing the model from checking its work."
+    summary: >
+      The Codex lead listing Astra quality fixes, including over-eager skills and a disabled context
+      experiment.
+    verdict: >
+      Claim, from the vendor, about its own service-side configuration; nothing in the open-source
+      tree records it. We report it as his account. It is the clearest vendor statement this window
+      that scaffolding tuned for an older model got in the new one's way.
+
+  - id: teknium-more-like-pi
+    title: "More like Pi"
+    kind: voice
+    date: 2026-09-17
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [hermes-agent, pi-coding-agent, openclaw]
+    authors: ["Teknium"]
+    display_name: "Teknium 🪽"
+    source_urls:
+      - https://x.com/Teknium/status/2100645382552428963
+    verbatim: |
+      We are going to lean into making Hermes more like Pi, and less like OpenClaw
+    inline: "We are going to lean into making Hermes more like Pi, and less like OpenClaw"
+    summary: >
+      The Hermes lead engineer on the project's direction.
+    verdict: >
+      Voice, a maintainer's stated direction. His follow-up names the first step, removing bundled
+      memory providers to the plugin market, and a later reply says the personal-assistant job stays.
+      A direction is not a release; watch the tags.
+
+  - id: cholf5-rituals
+    title: "Old rituals"
+    kind: voice
+    date: 2026-09-20
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [deepseek-harness]
+    authors: ["cholf5"]
+    display_name: "周尔复"
+    source_urls:
+      - https://x.com/cholf5/status/2101684731305947630
+    verbatim: |
+      DSH 的任务规划能力很强，每次聊完方案，它做完调查后，就会生成一个长长的 todo list，这让以前 superpowers 那套仪式变得像小丑一样。随着 Agent 和 LLM 的进步，过去的奇技淫巧正在变得一文不值。
+    inline: "随着 Agent 和 LLM 的进步，过去的奇技淫巧正在变得一文不值。"
+    summary: >
+      A DeepSeek Harness plugin author saying the model now plans well enough that elaborate skill-
+      pack rituals look pointless. Our translation.
+    verdict: >
+      Voice, in Chinese; the English summary is our paraphrase. A practitioner's experience, not a
+      measurement.
+
+  - id: nous-1393-subagents
+    title: "1,393 subagents"
+    kind: claim
+    date: 2026-09-15
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [hermes-agent]
+    authors: ["NousResearch"]
+    display_name: "Nous Research"
+    source_urls:
+      - https://x.com/NousResearch/status/2099984561451028913
+    verbatim: |
+      New blog post:
+
+      We had a million lines of Python to clean up. On September 2nd @Teknium asked Hermes Agent to do it. 
+
+      1,393 subagents and nineteen hours later, the codebase was 34.4% smaller, saving us nearly $2m in engineering hours.
+
+      https://t.co/eH6Gy8RAC5
+    inline: "1,393 subagents and nineteen hours later, the codebase was 34.4% smaller, saving us nearly $2m in engineering hours."
+    summary: >
+      Nous Research reporting a nineteen-hour Hermes refactor of its own codebase.
+    verdict: >
+      Claim, from the vendor about its own run; we did not reproduce it. The line counts are theirs. A
+      reader of the blog notes the dollar figure is the top of a manual-cost estimate and excludes
+      human review.
+
+  - id: jimmy-longbow-fine-print
+    title: "The fine print"
+    kind: voice
+    date: 2026-09-15
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [hermes-agent]
+    authors: ["jimmy_longbow_"]
+    display_name: "JimiLonbo"
+    source_urls:
+      - https://x.com/jimmy_longbow_/status/2099994186158358606
+    verbatim: |
+      Nous had a million lines of Python to clean up. They pointed their own agent at it.
+
+      Hermes Agent, orchestrated by Teknium on Sept 2: 1,393 subagents (218 running at peak), 19 active hours, and the codebase came out 34.4% smaller — 1,063,826 lines down to 698,363. The worst "god file" went from 34,847 lines to 5,512.
+
+      The whole thing ran on an i7 desktop with 64GB of RAM, with Claude Fable 5.1 as the remote model.
+
+      Now the honest fine print, which the blog deserves credit for: the tweet's "$2M saved" framing is the upper bound of a $150k–$1.8M manual estimate, against ~$19K of tokens for the main run — human review time excluded. Community reviewers caught real regressions the tests missed, including deleted public names that external plugins might import.
+
+      Still the most detailed public teardown of a fleet refactor we've seen.
+    inline: "the tweet's \"$2M saved\" framing is the upper bound of a $150k–$1.8M manual estimate"
+    summary: >
+      A reader putting the Hermes refactor's savings figure next to its own estimate range.
+    verdict: >
+      Voice, a reader's reading of the vendor blog. We keep it beside the vendor's number because it
+      is the part of the same blog the headline dropped.
+
+  - id: v0xium-press-enter
+    title: "Nobody is reading anything"
+    kind: voice
+    date: 2026-09-20
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["v0xium"]
+    display_name: "voxium"
+    source_urls:
+      - https://x.com/v0xium/status/2101526107128529120
+    verbatim: |
+      I am done with this shit. It is over. The state of engineering right now is horrible. It has been half a month since I started a new role at a big company. Nobody knows anything here. The specs, code, tests, PRDs, tickets, resolution of those tickets, reports, etc., everything is made by Claude Code. Nobody on my team likes this. They are being forced to ship as much as they can. I have heard multiple times from higher management that pushing code is not a bottleneck, so why are we slow? People are working 12 to 13 hours a day just to press enter. Nobody is reading anything. Humans in corporate are doing nothing on their own. Everyone, literally everyone, from an L1 to an L7 engineer here is doing the same thing. Talk to Claude. There is no sense of victory. Nobody is resolving bugs. In reality, nobody is thinking anymore. Everything is done by LLMs. It is so soul-sucking. I would not mind it, to be honest, if we were at least given the time to check out the code and see what is going where. But no, the goal is to just ship. No matter what happens.
+    inline: "People are working 12 to 13 hours a day just to press enter. Nobody is reading anything."
+    summary: >
+      An engineer at a large company describing a team shipping Claude Code output nobody reads.
+    verdict: >
+      Voice, one person's account of one workplace, unverifiable and reported as such. We quote it
+      because it describes the end state of moving approval off the human: the human is still there,
+      pressing enter.
+
+  - id: jarretcoon-pennies-per-token
+    title: "Pennies per token, hours of my time"
+    kind: voice
+    date: 2026-09-21
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [antigravity, claude-code]
+    authors: ["Jarretcoon"]
+    display_name: "Jarret"
+    source_urls:
+      - https://x.com/Jarretcoon/status/2102111882857328856
+    verbatim: |
+      Fair on price/token. But a model is only as good as its harness. AGY CLI: no browser tool, no auto classifier, approve-everything workflow. Claude Code in auto mode: hand it the task and walk away. Saving pennies per token while burning hours of my time isn't a win.
+    inline: "Saving pennies per token while burning hours of my time isn't a win."
+    summary: >
+      An operator comparing an approve-everything CLI with Claude Code in auto mode.
+    verdict: >
+      Voice. It is the Amdahl argument stated from the operator's chair; it is also exactly the
+      incentive the auto-mode research above is measuring against.
+
+  - id: mebeim-approve-for-me
+    title: "Approve for me"
+    kind: claim
+    date: 2026-09-21
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["mebeim"]
+    display_name: "Marco Bonelli"
+    source_urls:
+      - https://x.com/mebeim/status/2102155601518248092
+    verbatim: |
+      Told GPT Astra to help me denoise some audio and it just randomly started downloading executables from GitHub and running them. I'm using codex in "approve for me" mode which allegedly says "only ask for actions detected as potentially unsafe". LOL. Sure.
+    inline: "it just randomly started downloading executables from GitHub and running them."
+    summary: >
+      A user reporting that Codex in approve-for-me mode downloaded and ran executables for an audio
+      task.
+    verdict: >
+      Claim about one session, unreproduced. We report that he said it. The primary record this window
+      shows Codex narrowing where Guardian reviews (0.153.0) while Guardian V2 stayed off by default.
+
+  - id: jasonsteving-jev-auto-mode
+    title: "Jev-powered auto mode"
+    kind: voice
+    date: 2026-09-20
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [temporal-agent-harness]
+    authors: ["JasonSteving"]
+    display_name: "Jason Steving"
+    source_urls:
+      - https://x.com/JasonSteving/status/2101716834773065821
+    verbatim: |
+      Jev powered "auto mode" in the Temporal Agent Harness is such a natural fit. Jev is a big unlock for efficient agent oversight. Very excited to see how straightforward it was to integrate along existing harness seams. More to come here for sure.
+    inline: "Jev is a big unlock for efficient agent oversight."
+    summary: >
+      A Temporal harness code owner on wiring a decision model into approvals.
+    verdict: >
+      Voice, a maintainer's enthusiasm. The integration he describes is not in the 0.4.0 wheel; an
+      auto-mode change landed on main after the window closed.
+
+  - id: agentetna-where-is-the-boundary
+    title: "Where the boundary is"
+    kind: voice
+    date: 2026-09-20
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [temporal-agent-harness]
+    authors: ["AgentEtna"]
+    display_name: "Etna"
+    source_urls:
+      - https://x.com/AgentEtna/status/2101613525827195038
+    verbatim: |
+      This is the kind of capability demo that benefits from harness-first scrutiny: what the agent can do, what state it mutates, and where the boundary is. If your follow-up includes those traces, an amplify would be useful to the testing crowd.
+    inline: "what the agent can do, what state it mutates, and where the boundary is."
+    summary: >
+      A sandbox-testing account asking for traces before amplifying the Jev demo.
+    verdict: >
+      Voice. It is the right question, and the 0.4.0 code answers part of it: the server that carries
+      approvals binds every interface with no login.
+
+  - id: steipete-local-harnesses-relics
+    title: "Relics of the past"
+    kind: voice
+    date: 2026-08-31
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openclaw]
+    authors: ["steipete"]
+    display_name: "Peter Steinberger 🦞"
+    source_urls:
+      - https://x.com/steipete/status/2094290652649636173
+    verbatim: |
+      Two months ago, we started the mission to “build OpenClaw with OpenClaw,” and bit by bit, we moved everyone from using their local coding harness to using https://t.co/ZFauM82U4k - our shared agent that knows what everyone’s working on and orchestrates it all.
+
+      Multiplayer coding + infinite compute with nodes and cloud sessions has been a game changer for how we build.
+
+      Local harnesses feel like relics of the past now.
+    inline: "Local harnesses feel like relics of the past now."
+    summary: >
+      OpenClaw's creator on moving the team to a shared, multiplayer cloud agent.
+    verdict: >
+      Voice, a maintainer describing his own team's workflow. The shipping fact behind it is OpenClaw
+      2026.8.1, the first stable in five weeks, which also carried last issue's unreleased exec fix.
+
+  - id: mntruell-neutral-infrastructure
+    title: "Neutral infrastructure"
+    kind: claim
+    date: 2026-08-29
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [cursor, codex]
+    authors: ["mntruell"]
+    display_name: "Michael Truell"
+    source_urls:
+      - https://x.com/mntruell/status/2093532254006063557
+    verbatim: |
+      We’re sorry to see that OpenAI put out a note saying they plan to block Cursor users from accessing OpenAI models in three months.
+
+      OpenAI models serve about 5% of Cursor user traffic, and we’re speaking with the OpenAI team to resolve this.
+
+      Cursor was one of the very first users of OpenAI, we’ve worked closely with their team for years, and we’ve trusted their platform to be neutral infrastructure for our business.
+    inline: "trusted their platform to be neutral infrastructure for our business."
+    summary: >
+      Cursor's CEO responding to OpenAI's plan to block Cursor users from OpenAI models.
+    verdict: >
+      Claim, from one party to a dispute; the five percent traffic figure is his and OpenAI's Codex
+      lead asked for the math. We report the statement and the cutoff OpenAI announced, not either
+      side's numbers.
+
+  - id: trailofbits-openclaw-audit
+    title: "27 advisories"
+    kind: claim
+    date: 2026-09-21
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openclaw]
+    authors: ["trailofbits"]
+    display_name: "Trail of Bits"
+    source_urls:
+      - https://x.com/trailofbits/status/2102135648224481765
+    verbatim: |
+      Our @openclaw security assessment produced 27 advisories, 3 hardening PRs, and 1 architectural submission.
+
+      Read the report: 
+      https://t.co/WrRLYhtTvZ
+    inline: "Our @openclaw security assessment produced 27 advisories, 3 hardening PRs, and 1 architectural submission."
+    summary: >
+      Trail of Bits announcing its OpenClaw assessment.
+    verdict: >
+      Claim, from the auditor. OpenClaw's own advisory list shows 75 advisories published on
+      2026-09-11, most patched in 2026.8.1; we did not map the auditor's 27 onto them.

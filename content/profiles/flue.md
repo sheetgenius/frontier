@@ -13,9 +13,13 @@ repo: https://github.com/withastro/flue
 surface_class: open_source_commits
 evidence_floor: commit
 status: active_watch
-last_updated: 2026-07-27
+last_updated: 2026-09-21
 last_full_review: 2026-07-27
 claims:
+  - id: changesets-channel
+    finding_id: 2026-09-21-flue-release-channel-changed-changesets-per-package-github-releases-and-a-next-dist-tag
+    last_verified: 2026-09-23
+    status: active
   - id: virtual-sandbox-default
     finding_id: 2026-05-12-flue-initial-profile-and-observability-wave
     last_verified: 2026-05-12
@@ -110,6 +114,10 @@ stance:
 ---
 
 # Flue
+
+## Where it stands, 2026-09-21
+
+Six stables shipped 9 to 18 September after a quiet month, ending at [2.1.0](https://github.com/withastro/flue/releases/tag/%40flue%2Fruntime%402.1.0). 2.0.4 and 2.0.5 were broken publishes. The project moved to changesets and per-package GitHub Releases, so the root CHANGELOG stops at 2.0.6.
 
 ## Operator Read
 

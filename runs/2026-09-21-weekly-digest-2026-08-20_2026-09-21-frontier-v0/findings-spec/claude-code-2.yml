@@ -1,0 +1,44 @@
+source: claude-code
+findings:
+  - slug: plugin4shell-disclosed-in-window-fix-shipped-in-2-1-179-with-a-silent-changelog
+    channel: tagged-release (2.1.179, before the window)
+    half: defect
+    body: >
+      AIR Security published Plugin4Shell on 2026-09-17. A marketplace plugin pinned to a 40-hex commit SHA
+      could be swapped for other code, because git checkout prefers a ref over a commit of the same name and
+      the agent did not verify the checkout resolved to the pinned commit. The attacker needs control of the
+      plugin repository; AIR says GitHub rejects 40-hex branch names while Bitbucket and self-hosted git do
+      not. AIR dates Anthropic's fix confirmation to 2026-06-17 in 2.1.179. The 2.1.179 changelog entry at
+      SHA 8187baaaafb3 lists nine items and none mentions SHA verification or plugin checkout.
+    consequence: >
+      Any Claude Code at 2.1.179 or later is not exposed to this variant, and stable 2.1.267 is well past it.
+      The durable lesson is about the channel: an operator reading the changelog to decide upgrades could not
+      have known this fix existed. Plugins sourced from Bitbucket or self-hosted git on older builds are the
+      exposure to check.
+    evidence:
+      - url: https://www.air.security/blog-posts/plugin4shell
+        precision: third_party_research
+      - url: https://github.com/anthropics/claude-code/blob/8187baaaafb3/CHANGELOG.md
+        precision: tagged_commit_file
+  - slug: auto-mode-is-the-starting-mode-and-docs-list-isolation-needed-none
+    channel: docs-only (permission-modes page observed 2026-09-23)
+    half: defect
+    confidence: medium
+    body: >
+      The permission-modes page describes auto mode as the built-in starting permission mode on Pro, Max
+      and Team, and its table row for working hands-off in auto mode lists isolation needed as "None; a
+      sandbox or container adds defense in depth". The bypassPermissions section points users who want
+      background safety checks to auto mode. On 2026-08-26 Johann Rehberger published an indirect prompt
+      injection from a summarized web page that drove Claude Code on Opus 5 in auto mode to run attacker
+      code, reporting 60 to 80 percent success, and wrote that Anthropic closed the report as Informative
+      because auto mode is not a security boundary. The vendor's response is reported by the researcher,
+      not published by the vendor.
+    consequence: >
+      Treat auto mode as a review layer, not isolation. Any session that reads untrusted web content in
+      auto mode should also run in the Bash sandbox or a container with egress control; the docs call that
+      defense in depth, the researcher's result says it is the boundary.
+    evidence:
+      - url: https://code.claude.com/docs/en/permission-modes
+        precision: official_docs
+      - url: https://embracethered.com/blog/posts/2026/breaking-claude-code-opus-5-and-automode/
+        precision: third_party_research

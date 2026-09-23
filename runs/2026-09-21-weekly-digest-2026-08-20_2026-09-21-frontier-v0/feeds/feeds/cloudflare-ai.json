@@ -1,0 +1,26 @@
+{
+ "source": "cloudflare-ai",
+ "feed": "https://blog.cloudflare.com/tag/ai/rss/",
+ "swept_on": "2026-09-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "Python Workers are now generally available",
+   "url": "https://blog.cloudflare.com/python-workers-ga/",
+   "date": "2026-09-21",
+   "summary": "Python Workers allow developers to run Python web frameworks and AI orchestration libraries natively in the Cloudflare Workers runtime. You can seamlessly integrate with Cloudflare's ecosystem including D1, R2, and Workers AI without writing any JavaScript glue code."
+  },
+  {
+   "title": "When scanners miss the attack: how Cloudflare Client-Side Security protects storefronts",
+   "url": "https://blog.cloudflare.com/client-side-security-finds-4-malicious-campaigns/",
+   "date": "2026-09-16",
+   "summary": "A modern storefront can look healthy while malicious JavaScript quietly siphons revenue, hijacks clicks, or rewrites analytics. See how Cloudflare's machine learning models surface evasive client-side attacks for analyst investigation."
+  },
+  {
+   "title": "Have it both ways: stay discoverable in search while disallowing AI training",
+   "url": "https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/",
+   "date": "2026-09-15",
+   "summary": "Cloudflare is giving site owners a way to stay discoverable while disallowing AI training. New controls and an Accountable designation establish a shared model with Apple, Google, and Microsoft."
+  }
+ ]
+}

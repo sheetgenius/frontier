@@ -15,9 +15,17 @@ repo: https://github.com/earendil-works/pi
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-08-22
+last_updated: 2026-09-21
 last_full_review: 2026-08-22
 claims:
+  - id: harness-tagged
+    finding_id: 2026-09-21-pi-coding-agent-the-dev-harness-reached-main-and-a-tag-in-v0-85-0-its-plugin-surface-was-published-to-npm
+    last_verified: 2026-09-23
+    status: active
+  - id: harnesstax
+    finding_id: 2026-09-21-pi-coding-agent-harnesstax-study-same-model-same-success-up-to-five-times-the-cost
+    last_verified: 2026-09-23
+    status: active
   - id: dev-hosts-not-plugins
     finding_id: 2026-08-22-pi-dev-hosts-are-not-plugins-kernel-still-design
     last_verified: 2026-08-22
@@ -106,6 +114,10 @@ stance:
 ---
 
 # Pi Coding Agent
+
+## Where it stands, 2026-09-21
+
+The rewritten harness reached main and a tag in v0.85.0; npm is at [0.87.0](https://github.com/earendil-works/pi/releases/tag/v0.87.0). The plugin surface is source-only on npm from 0.85.1. v0.86.0 makes an extension that routes `!` commands into a VM fail closed instead of falling back to the host. The HarnessTax study found Pi matched Claude Code and Codex CLI on success at up to half the cost on its sample.
 
 ## Operator Read
 

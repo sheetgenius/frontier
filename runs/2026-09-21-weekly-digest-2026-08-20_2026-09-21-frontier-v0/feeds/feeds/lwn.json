@@ -1,0 +1,98 @@
+{
+ "source": "lwn",
+ "feed": "https://lwn.net/headlines/rss",
+ "swept_on": "2026-09-22",
+ "since": "2026-08-20",
+ "items": [
+  {
+   "title": "Igalia celebrates \"Twenty-Five Years Upstream\"",
+   "url": "https://lwn.net/Articles/1095723/",
+   "date": "2026-09-21",
+   "summary": "The open-source consulting firm <a href=\"https://www.igalia.com/\">Igalia</a> has put out <a href=\"https://www.igalia.com/2026/09/21/Twenty-Five-Years-Upstream.html\">an announcement celebrating 25 years</a> of working on upstream FOSS projects for its clients. The list of projects the company has worked on is rather eye-opening: WebKit, mobile-browser rendering (on Maemo, Moblin, MeeGo, and Tizen),"
+  },
+  {
+   "title": "Three new stable kernels",
+   "url": "https://lwn.net/Articles/1095703/",
+   "date": "2026-09-21",
+   "summary": "Greg Kroah-Hartman has released the <a href=\"https://lwn.net/Articles/1095704/\">7.2.7</a>, <a href=\"https://lwn.net/Articles/1095705/\">6.18.53</a>, and <a href=\"https://lwn.net/Articles/1095706/\">6.12.111</a> stable kernels. As is usual these days, they are quite large; also no surprise is that they provide many important fixes throughout the kernel tree. Users of those kernels are advised to upda"
+  },
+  {
+   "title": "[$] Testing compat_linux on NetBSD with the Linux Test Project",
+   "url": "https://lwn.net/Articles/1094310/",
+   "date": "2026-09-21",
+   "summary": "<p><a href=\"https://netbsd.org/\">NetBSD</a> has long had support for running Linux binaries via its kernel-level <a href=\"https://man.netbsd.org/compat_linux.8\"><tt>compat_linux</tt></a> feature, but test coverage for it was less complete than some might hope. In order to provide better testing for <tt>compat_linux</tt>, Google Summer of Code (GSoC) participant Henrique Brito opted to work on enab"
+  },
+  {
+   "title": "Security updates for Monday",
+   "url": "https://lwn.net/Articles/1095702/",
+   "date": "2026-09-21",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (kernel, perl-Net-DNS, sudo, tomcat, and tomcat9), <b>Debian</b> (chromium, gimp, libde265, libevent, linux-6.12, ruby-jwt, and unbound), <b>Fedora</b> (asterisk, chromium, doctl, dovecot, evolution, firefox, forgejo, freeciv, freeipa, gegl04, gimp, libheif, nss, opkssh, parted, ruby, stb, thunderbird, unbound, and webkitgtk), <b>Mageia</b> (bi"
+  },
+  {
+   "title": "Kernel prepatch 7.3-rc4",
+   "url": "https://lwn.net/Articles/1095491/",
+   "date": "2026-09-20",
+   "summary": "Linus Torvalds has released the <a href=\"https://lwn.net/Articles/1095490/\">7.3-rc4</a> kernel prepatch. It is, unsurprisingly at this point, large: \"<q>We all know the drill by now: 'it's big, yadda yadda'</q>\"."
+  },
+  {
+   "title": "[$] Looking forward to Git 2.56 — and 3.0",
+   "url": "https://lwn.net/Articles/1094575/",
+   "date": "2026-09-18",
+   "summary": "The <a href=\"https://git-scm.com/\">Git</a> source-code management system is at the core of development processes worldwide, so changes, especially incompatible changes, are of great interest to the developers involved. The Git 2.56 release, which can be expected around the end of September, is currently available in <a href=\"https://lwn.net/ml/all/xmqqh5jpvzxo.fsf@gitster.g\">release-candidate</a> "
+  },
+  {
+   "title": "Systemtap 5.6 released",
+   "url": "https://lwn.net/Articles/1095220/",
+   "date": "2026-09-18",
+   "summary": "Version 5.6 of the Systemtap tracing tool has been released. <p> <blockquote class=\"bq\"> BPF LSM hooks and XDP packet-processing probes for the --bpf runtime, BTF-based kernel.tracepoint probes, statement execution tracing, a new @enumname() operator, richer runtime error context, dyninst hardware watchpoints, modern systemd service templates, and broad Linux 7.2 runtime/tapset compatibility work."
+  },
+  {
+   "title": "Security updates for Friday",
+   "url": "https://lwn.net/Articles/1095219/",
+   "date": "2026-09-18",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 10.0, coreutils, kernel, libevent, libsoup3, microcode_ctl, perl-Net-DNS, postgresql18, postgresql:16, postgresql:18, tomcat, and unbound), <b>Debian</b> (bind9, chromium, libapache2-mod-auth-openidc, nginx, xz-utils, and zip), <b>Fedora</b> (chromium, freeipmi, GitPython, gnatcoll, nodejs-undici, parted, python-django5, and sblim-cmpi-ba"
+  },
+  {
+   "title": "[$] Thread-identity switcheroo for io_uring",
+   "url": "https://lwn.net/Articles/1094303/",
+   "date": "2026-09-17",
+   "summary": "The <a href=\"https://man7.org/linux/man-pages/man7/io_uring.7.html\">io_uring subsystem</a> is all about asynchronous execution; applications count on it to not block — unless explicitly requested to. Within io_uring, maintaining the \"never blocks\" guarantee has sometimes been a challenge, given that many paths in the kernel were never designed for asynchronous execution. This problem has been work"
+  },
+  {
+   "title": "GNOME 51 released",
+   "url": "https://lwn.net/Articles/1094963/",
+   "date": "2026-09-17",
+   "summary": "<a href=\"https://release.gnome.org/51/\">Version 51</a> of the GNOME desktop environment has been released. The list of changes includes a number of performance improvements, offline data and better transit information in the Maps application, a new interface for the file previewer, and more."
+  },
+  {
+   "title": "Security updates for Thursday",
+   "url": "https://lwn.net/Articles/1094962/",
+   "date": "2026-09-17",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 10.0, .NET 8.0, .NET 9.0, corosync, firewalld, kernel, kernel-rt, libevent, libsoup, microcode_ctl, nginx:1.26, python-lxml, rsyslog, tesseract, and unbound), <b>Debian</b> (firefox-esr, mkvtoolnix, thunderbird, and tor), <b>Fedora</b> (open62541, php-pecl-mongodb2, python-django6, python-jwcrypto, and roundcubemail), <b>Mageia</b> (aom, "
+  },
+  {
+   "title": "[$] LWN.net Weekly Edition for September 17, 2026",
+   "url": "https://lwn.net/Articles/1093434/",
+   "date": "2026-09-17",
+   "summary": "Inside this week's LWN.net Weekly Edition: <p> <ul> <li> <a href=\"https://lwn.net/Articles/1093434/\">Front</a>: Server-data encryption; PostgreSQL scary patches; Faster kernel builds; BPF for blk-iocost; Lessons learned as DPL. <li> <a href=\"https://lwn.net/Articles/1093436/\">Briefs</a>: Brief news items from throughout the community. <li> <a href=\"https://lwn.net/Articles/1093437/\">Announcements<"
+  },
+  {
+   "title": "Fedora 45 beta drags the Linux console into the 21st century (Register)",
+   "url": "https://lwn.net/Articles/1094762/",
+   "date": "2026-09-16",
+   "summary": "The Register <a href=\"https://www.theregister.com/software/2026/09/16/fedora-45-beta-drags-the-linux-console-into-the-21st-century/5296873\">looks forward</a> to the upcoming Fedora&#160;45 release. <p> <blockquote class=\"bq\"> The biggest surprise is that Linux's legacy in-kernel console – the text-mode interface normally hidden beneath the GUI – has been replaced with a software-controlled alterna"
+  },
+  {
+   "title": "[$] Ways to encrypt data on servers",
+   "url": "https://lwn.net/Articles/1092553/",
+   "date": "2026-09-16",
+   "summary": "At the <a href=\"https://2026.fossy.ca/\">2026 edition of FOSSY</a>, Romeo Solano gave a fast-paced, humorous presentation on what could have been a rather boring topic: server encryption. There are a number of threats that we face in today's world, from criminals, government overreach, espionage, and more, that can be thwarted with encryption. But encrypting data on a system that may live elsewhere"
+  },
+  {
+   "title": "Security updates for Wednesday",
+   "url": "https://lwn.net/Articles/1094720/",
+   "date": "2026-09-16",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (kernel, kernel-rt, libkcapi, nginx, nginx:1.24, openssl, osbuild-composer, perl, perl:5.32, python-tornado, rsync, and rust), <b>Debian</b> (cjose and nginx), <b>Fedora</b> (environment-modules, erlang, GitPython, knot, perl-Authen-SASL, python-configargparse, ruby, rubygems, and sblim-sfcb), <b>Oracle</b> (firefox, git-lfs, gstreamer1-plugins"
+  }
+ ]
+}

@@ -15,9 +15,17 @@ repo: https://github.com/can1357/oh-my-pi
 surface_class: open_source_commits
 evidence_floor: official_docs
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: repo-writes-policy
+    finding_id: 2026-09-21-omp-a-repository-under-review-can-write-omp-s-policy-project-local-config-and-extensions-load
+    last_verified: 2026-09-23
+    status: active
+  - id: approval-bypasses-18-2-1
+    finding_id: 2026-09-21-omp-v18-2-1-closes-a-cluster-of-approval-bypasses-including-one-where-a-missing-context-resolv
+    last_verified: 2026-09-23
+    status: active
   - id: write-broker-in-unreleased-tags
     finding_id: 2026-08-17-omp-omp-tags-v17-3-6-and-v17-3-7-carry-an-extension-hook-that-brokers
     last_verified: 2026-08-18
@@ -52,6 +60,10 @@ Same basename, different scope, seventeen majors apart, both published in the
 same week. This publication spent its 2026-08-03 issue on a release line
 renumbered below its own predecessor. This is that failure mode from the other
 direction, and an adjacent-tool entry could not carry the handling rule it needs.
+
+## Where it stands, 2026-09-21
+
+Latest is [18.2.8](https://github.com/can1357/oh-my-pi/releases), and the four install paths agree on it at window close. At 18.2.8 project-local config and extensions load unconditionally, the trust shim always returns true, and the default approval mode is `yolo`. v18.2.1 closed a cluster of approval bypasses and a view-only collab link that could steer a session. Tag-ahead-of-release recurred three times, and 17.3.6 never got a release. The omp2 Rust rewrite is in no tag.
 
 ## Where it stands, 2026-08-20
 

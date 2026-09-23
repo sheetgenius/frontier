@@ -16,9 +16,17 @@ repo: https://github.com/deepseek-ai/deepseek-harness
 surface_class: open_source_commits
 evidence_floor: official_docs
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: web-ui-login
+    finding_id: 2026-09-21-deepseek-harness-the-web-ui-now-requires-authentication-on-every-api-request-the-host-fence-comment-still
+    last_verified: 2026-09-23
+    status: active
+  - id: still-prerelease
+    finding_id: 2026-09-21-deepseek-harness-still-no-non-prerelease-tag-the-project-split-into-an-rc-line-and-an-alpha-line-and-npm
+    last_verified: 2026-09-23
+    status: active
   - id: gate-is-a-plugin
     finding_id: 2026-08-17-deepseek-harness-everything-is-a-plugin-including-the-components-that-enforce-the-limits
     last_verified: 2026-08-20
@@ -56,6 +64,10 @@ It is not here for the attention. The repository took roughly 154,000 stars in
 four days, the largest number this watchlist has recorded at intake, and that
 figure tells an operator nothing. `star_count_as_adoption` is written into the
 source contract's rejected evidence for exactly that reason.
+
+## Where it stands, 2026-09-21
+
+Still no non-prerelease tag; the project split into an rc line (0.1.5-rc.2) and an alpha line. The Web UI requires a login from 0.1.2. architecture.md still says any row can be replaced. The public repository is a mirror of a private organization. The alpha line sends more session data to DeepSeek by default, and an experimental Auto review lets a model approve calls. A Bubblewrap escape was fixed without an advisory.
 
 ## Where it stands, 2026-08-20
 

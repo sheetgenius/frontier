@@ -17,9 +17,17 @@ surface_class: closed_source_releases
 evidence_floor: official_changelog
 status: active_watch
 first_published: 2026-07-01
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: sandbox-valueless-flag
+    finding_id: 2026-09-21-antigravity-1-1-18-a-valueless-prompt-flag-could-silently-turn-the-sandbox-off
+    last_verified: 2026-09-23
+    status: active
+  - id: gates-loosened
+    finding_id: 2026-09-21-antigravity-default-gates-loosened-workspace-reads-auto-granted-1-1-20-always-proceed-now-covers-mcp
+    last_verified: 2026-09-23
+    status: active
   - id: settings-json-no-longer-overwritten
     finding_id: 2026-08-20-antigravity-1-1-16-no-longer-overwrites-unreadable-settings-json-with-defaults
     last_verified: 2026-08-20
@@ -67,6 +75,10 @@ stance:
 ---
 
 # Antigravity CLI
+
+## Where it stands, 2026-09-21
+
+Nineteen stables, 1.1.18 through [1.2.7](https://github.com/google-antigravity/antigravity-cli/releases), and each tag now carries its own notes and a unique binary. Before 1.1.18 a headless `--sandbox` with no value ran with no sandbox. Workspace reads, MCP calls under always-proceed and headless plan review stopped asking; URL fetch started asking. Remote-triggered turns ignored the session's permission mode until 1.2.6. Use 1.1.20 or later for the settings.json fix.
 
 ## Operator Read
 

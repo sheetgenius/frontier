@@ -1,0 +1,20 @@
+start 2026-09-22T07:38:43Z
+wrote runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/social/banter.raw.md
+banter exit=0
+wrote runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/social/codex.raw.md
+source codex exit=0
+wrote runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/social/claude-code.raw.md
+source claude-code exit=0
+wrote runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/social/openclaw.raw.md
+source openclaw exit=0
+wrote runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/social/hermes-agent.raw.md
+source hermes-agent exit=0
+wrote runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/social/deepseek-harness.raw.md
+source deepseek-harness exit=0
+wrote runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/social/gemini-cli.raw.md
+source gemini-cli exit=0
+wrote runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/social/cursor.raw.md
+source cursor exit=0
+wrote runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/social/temporal-agent-harness.raw.md
+source temporal-agent-harness exit=0
+end 2026-09-22T08:39:04Z

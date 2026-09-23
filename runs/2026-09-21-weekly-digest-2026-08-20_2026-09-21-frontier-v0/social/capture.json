@@ -1,0 +1,268 @@
+[
+ {
+  "url": "https://x.com/wunderwuzzi23/status/2093039917714563098",
+  "handle": "@wunderwuzzi23",
+  "display_name": "Johann Rehberger",
+  "posted_at": "2026-08-27",
+  "verbatim": "Breaking Claude Code Opus 5 Auto Mode 🔥\n\n1/ Here is a somewhat hilarious  attack chain that hijacks Claude Code Opus 5 for a full system compromise via a website\n\nHint: Security invariants are not optional\n\n🧵"
+ },
+ {
+  "url": "https://x.com/wunderwuzzi23/status/2093042649447981523",
+  "handle": "@wunderwuzzi23",
+  "display_name": "Johann Rehberger",
+  "posted_at": "2026-08-27",
+  "verbatim": "6/ In some runs Claude noticed the compromise and tried to kill the malware later on.\n\nBut Auto Mode blocked the cleanup command!  🤯\n\nIt allowed the malware to run, but denied stopping it.\n\nAnother example where a safety feature can end up working against you."
+ },
+ {
+  "url": "https://x.com/air__security/status/2100683528383975636",
+  "handle": "@air__security",
+  "display_name": "AIR",
+  "posted_at": "2026-09-17",
+  "verbatim": "🚨 Plugin4Shell: SHA-Pinning Bypass Across Major AI Coding Agents\n\nWe found the same supply-chain flaw in @claudeai  Code, @OpenAI , @GeminiApp  CLI and @github  Copilot.\n\nThe flaw allows an attacker to replace a reviewed and trusted plugin with malicious code in any marketplace.\n\nThe result: zero-click RCE on the machine running the agent.\n\nThanks to @theinformation  for covering the research. \nFull write-up:"
+ },
+ {
+  "url": "https://x.com/Evoputa/status/2102108276384997436",
+  "handle": "@Evoputa",
+  "display_name": "Ev Oputa",
+  "posted_at": "2026-09-21",
+  "verbatim": "A version pin on an AI coding plugin is only as strong as the installer's check. If the agent never verifies the hash it fetched, a repo owner can swap the code under the same lock.\n\nAir Security disclosed Plugin4Shell (The Hacker News, Sep 18). Four agents install marketplace plugins pinned by commit hash, then fail to confirm the code matches. On hosts that allow a branch named like a hash (Bitbucket, self-hosted git), the owner can point that name at different code. The agent still reports the locked version. Plugin runs with the user's access: files, credentials, reachable systems. Anthropic fixed Claude Code in 2.1.179. OpenAI fixed Codex in 0.146.0. Air says GitHub Copilot has no fix yet. Google will not patch the deprecated consumer Gemini CLI path and points people to Antigravity; inventory any remaining Gemini CLI installs, including enterprise seats that still run it. Default GitHub marketplaces are largely outside the branch-name trick; outside hosts and auto-update paths are where risk concentrates. Air built a working test in May, told vendors in June. No CVE assigned as of Sep 18. No known in-the-wild use reported.\n\nMonday: inventory every coding agent and every non-GitHub plugin source. Update Claude Code to 2.1.179+ and Codex to 0.146.0+. Pause Copilot plugins from non-GitHub hosts until a patch exists. Turn off auto-update for outside marketplaces. Treat a coding agent like a laptop with your keys on it."
+ },
+ {
+  "url": "https://x.com/imanari_satoshi/status/2101453031036350572",
+  "handle": "@imanari_satoshi",
+  "display_name": "今城 敏 Satoshi Imanari｜AI×食品安全の実践",
+  "posted_at": "2026-09-19",
+  "verbatim": "コミットSHAのピン留めは、差し替えを防ぐ保証ではありません。\n\n止めたはずの40桁の文字列そのものが、プラグイン差し替えの入口になります。修正の届き方も、4製品でばらばらです。\n\nAir Security が 2026-09-17 に公開した Plugin4Shell です。対象は Claude Code・OpenAI Codex・GitHub Copilot・Gemini CLI の4つでした。\n\n先に「その後」です。Claude Code は 2.1.179 で修正。Codex は 0.146.0 で修正。GitHub Copilot は writeup の時点で修正版なし。Gemini CLI は廃止扱いで恒久的に修正されません。\n\n仕組みです。\n\nエージェントは git clone の後に git checkout <40桁のSHA> を実行します。攻撃者は同じ40桁の名前のブランチを作り、既定ブランチにします。git は ref をコミットIDより優先するため、checkout は攻撃者のブランチを取ります。警告は refname is ambiguous の1行だけです。\n\nGemini CLI は git checkout FETCH_HEAD を使います。既定ブランチ名を FETCH_HEAD にすると、取得したコミットが黙って捨てられます。\n\n0クリックになる理由は自動更新です。同じ checkout が、プラグインのバックグラウンド自動更新でも走ります。Claude Code と Codex は既定で有効です。\n\n読者への影響です。\n\n1. 版を上げれば終わる人と、製品を替えるしかない人に分かれます。Codex の修正は OpenAI の rust-v0.146.0 に載っています。公開は 2026-07-29、項目名は「34644 Verify Git plugin SHA checkouts」です。Claude Code は 2.1.179 以降、Codex は 0.146.0 以降へ上げてください。Gemini CLI は上げる先がないので、移行を決めてください。\n\n2. changelog を読む慎重な運用ほど取りこぼします。Claude Code の公開 changelog の 2.1.179 の項目に、SHA検証の記載はありません。GitHub Security Advisory にも本件はありません（2026-09-20 実測）。修正は入っても、公開情報から気づく経路がありません。判断は changelog ではなく版番号で行ってください。最新は v2.1.278（2026-09-19 公開）です。\n\n3. SHAを書くことは「要求」であって「確認」ではありません。正しい検証は checkout の後に1行足すことです。test \"$(git rev-parse HEAD)\" = \"<pinned-sha>\" || abort を走らせます。要求した ref ではなく、解決後の HEAD を見ます。自前で git clone と checkout を書いた CI やスクリプトにも同じ穴が空きます。\n\n4. 置き場のホスト名で、危険かどうかが変わります。GitHub は40桁hexのブランチ名を拒否するため、GitHub だけで配っている人には関係ありません。Bitbucket と self-hosted の git サーバは40桁hexを許します。Anthropic の公式ドキュメントも、両者を置き場として認めています。source URL のホスト名を確認し、GitHub 以外なら版を先に上げてください。\n\nピン留めは今も有効です。ただし、ピンを書く側ではなく、ピンを解決した側が確認して初めて効きます。\n\n出典\nhttps://t.co/NqPekeAXdh\nhttps://t.co/4fGUNll3Rq\nhttps://t.co/eHSBHH0b6P\nhttps://t.co/ICqvlbPQsk\n\n#ClaudeCode #Codex #サプライチェーン攻撃 #AI"
+ },
+ {
+  "url": "https://x.com/hazemomier/status/2101432515768508696",
+  "handle": "@hazemomier",
+  "display_name": "Hazem Omier",
+  "posted_at": "2026-09-19",
+  "verbatim": "Pillar Security (Week of Sandbox Escapes): escapes across Cursor, Codex, Gemini CLI, and Antigravity. In almost every case the agent didn’t break the sandbox — it wrote something a trusted host component later ran: .claude hooks, git metadata via --separate-git-dir, allowlisted git show --output, Docker socket, .vscode tasks.\n\nCursor patched hooks in 3.0.0 (CVE-2026-48124). Codex GitPwned patched in v0.95.0. Antigravity findings were downgraded by Google as hard to exploit.\n\nBlast radius isn’t the agent process. It’s everything the agent can write that the host later trusts.\n\nIf you buy coding agents for the team, which control do you demand first?\n\nA) Prove which host components trust agent-written files (hooks / git / tasks / daemons) — and require approval when those paths change\nB) A stronger process sandbox alone is enough if the vendor says “sandboxed”"
+ },
+ {
+  "url": "https://x.com/_orcaman/status/2098795967143203086",
+  "handle": "@_orcaman",
+  "display_name": "Or Hiltch",
+  "posted_at": "2026-09-12",
+  "verbatim": "🚨 SANDBOX ESCAPE ALERT 🚨  \nSPACEXAI: PWNED 🫡 \nCURSOR: LIBERATED 🦋\n\nFollowing a fix shipped by the Cursor team (in about a week, kudos), we present a variant of the Beltdown vuln we shared a few days ago - \n\nEscaping Cursor CLI's sandbox to run arbitrary code on your Mac:"
+ },
+ {
+  "url": "https://x.com/_orcaman/status/2098412861412233431",
+  "handle": "@_orcaman",
+  "display_name": "Or Hiltch",
+  "posted_at": "2026-09-11",
+  "verbatim": "We reported an RCE sandbox escape in Claude Code. It was accepted actually, but it took about 50 days to ship a fix 😳\n\nFor comparison, Cursor and Codex closed a very similar escape we reported in about a week."
+ },
+ {
+  "url": "https://x.com/llm_redteam/status/2097409250264043777",
+  "handle": "@llm_redteam",
+  "display_name": "Slade 🛡️ LLM Hacker",
+  "posted_at": "2026-09-08",
+  "verbatim": "Claude Code, Cursor, and Codex CVE-2026-19592 all got caught running attacker code before you ever see a trust prompt.\nManifold Security found 8 of these flaws across 7 command-line coding agents: Claude Code, Cursor, Codex, Goose, Hermes Agent, Qwen Code, Grok Build. Same root cause every time.\n\nThe bug lives in core.fsmonitor, a Git perf setting that names a command Git runs to check which files changed. Git reads that value straight from the repo's own.git/config.\nAny index refresh triggers it: git status, git diff, the branch check your agent runs silently on startup.\n\nOn Claude Code and Hermes Agent, the payload fires before the workspace-trust prompt even shows up.\nOn Qwen Code, before you've authenticated.\nOn Grok Build, on the first keystroke.\nNo prompt to the model. No tool approval. Just opening the folder is enough.\n\nExploitation needs the.git folder intact: a shared drive, a synced folder, a USB stick, a zip a contractor sent you. A normal git clone strips this. But how many repos do you actually clone vs just copy from a client's shared drive?\n\ngoose got CVSS 7.0 (CVE-2026-72718), fixed in 1.44.0.\nClaude Code patched the core.fsmonitor path in 2.1.196, but a second path through claude ultrareview was still live on 2.1.252 as of Sep 1.\nCodex CLI fixed in 0.131.0, covered by CVE-2026-19592.\nHermes Agent, Qwen Code, Grok Build: still unpatched at publication.\n\nBEFORE (dangerous): agent runs git status/diff at session start to figure out branch and changes, before any trust decision, blindly trusting whatever the repo's.git/config says to run.\nAFTER (safe): sandbox every git subprocess call, strip or validate repo-supplied config keys (core.fsmonitor, hooks) before the first invocation, gate ANY git command behind the workspace-trust decision, not just tool calls.\n\nBuilding agents that touch untrusted repos? Go check which git commands yours fires before the user approves anything.\nWould you even notice if your CLI agent ran a command before you saw a trust prompt?\n\n#AISecurity #PromptInjection #SupplyChainSecurity"
+ },
+ {
+  "url": "https://x.com/hackerlogs/status/2099983257831977303",
+  "handle": "@hackerlogs",
+  "display_name": "hackerlogs",
+  "posted_at": "2026-09-15",
+  "verbatim": "Your AI agent sandbox doesn't matter if RCE fires before it starts.\n\nNovee just dropped DefCon 2026 research on Google Gemini CLI: CVE-2026-12537, a perfect CVSS 10.0 host-level RCE. Three lines in .gemini/.env. Zero privileges. Zero prompt injection.\n\nThe blind spot is Pre-Task Authority. Agents load trust, config, and spawn processes before the first token. Prompt defenses never get a turn.\n\nThe chain on Gemini CLI in CI:\n1. GitHub Actions auto-trusts every workspace when CI=true\n2. Attacker PR drops .gemini/.env with GEMINI_SANDBOX_PROXY_COMMAND\n3. That \"egress security\" proxy launches via shell:true string concat\n4. Host shell splits on ; and exfils GITHUB_TOKEN, GEMINI_API_KEY, OIDC creds before the Docker sandbox even starts\n\nFour defenses bypassed by running earlier than all of them. A security feature became the RCE vector.\n\nSame pre-task class across vendors: Gemini before sandbox, Claude Code before trust dialog (Check Point Research), Codex MCP auto-launch on directory trust before the model.\n\nPatch: Gemini CLI before v0.39.1 / run-gemini-cli before v0.1.22. Google overhauled headless trust so workspace config no longer auto-loads in CI.\n\nPrimary: https://t.co/iNG0Z9KyIZ\n\nAudit the code that decides trust and builds the sandbox. The exploit may fire while the boundary is still being built."
+ },
+ {
+  "url": "https://x.com/Sagarvd01/status/2101314754182574191",
+  "handle": "@Sagarvd01",
+  "display_name": "Sagar Tanur 🇮🇳",
+  "posted_at": "2026-09-19",
+  "verbatim": "TrustFall is the quiet one this week: Claude / Cursor / Copilot / Gemini CLI all fire project-defined MCP servers the moment you hit Trust on the folder. one Enter key. CI runners get it with zero clicks. trust dialog ≠ sandbox. if the repo shipped the MCP config, you just ran their code."
+ },
+ {
+  "url": "https://x.com/analogalok/status/2102006741193957839",
+  "handle": "@analogalok",
+  "display_name": "Alok",
+  "posted_at": "2026-09-21",
+  "verbatim": "Pi beats claude code and codex \n\nYou can cut your agent API costs by 50% right now with literally 0% drop in benchmark performance.\n\nAnthropic wants you to use Claude Code. OpenAI wants you to use Codex CLI.\n\nBut a new UC Berkeley study just exposed the \"In House Myth\": Frontier models actually perform better on minimal, open source frameworks 75% of the time. \n\nStop paying the Big Tech \"Harness Tax.\" Here is the data \n\n# UC Berkeley and Arena just dropped the \"Harness Tax\" paper. \n\nThey benchmarked 21 model agent pairs on SWE-bench Lite and Terminal-Bench 2.0. They tested SOTA models (Claude Fable 5, GPT-5.6 Sol, Claude Opus 4.8, Sonnet 4.6, Kimi K3) across 3 agent frameworks: \n\nClaude Code, Codex CLI, and a barebones open source harness, Pi.\n\nThe results prove we are all bleeding API credits for literally zero reason.\n\n# Look at the chart:\n\n- GPT-5.6 Sol scored 83.3% using the OS Pi harness. On OpenAI's own Codex CLI? It dropped to 78.9%. and cost nearly 2x as much ($0.42 vs $0.76).\n\n- Claude Fable 5 hits 97.8% on Claude Code for $1.33/rollout. On Pi? It hits 96.7% for just $0.67. You are paying a 100% markup for a 1% gain.\n\n# Why is this happening? First Call Bloat.\n\nProprietary coding agents load up massive system instructions, heavy guardrails, and verbose JSON tool schemas. Claude Code sends 10x the initial context of Pi. You are paying for their dead weight context on every single turn. (check out the replies for more data on this)\n\nPi gives the model exactly 4 tools: read, write, edit, bash. That's it.\n\nThe takeaway: \nAs frontier LLMs get smarter, heavy agent scaffolding actually holds them back. If your agent API bill is too high, do NOT downgrade your model. Just ditch the bloated harness.\n\nI've dropped more data and link to the study in the replies.\n\nWhat agent framework are you guys running in your dev loop right now? Let me know"
+ },
+ {
+  "url": "https://x.com/zainhas/status/2097941157905142210",
+  "handle": "@zainhas",
+  "display_name": "Zain",
+  "posted_at": "2026-09-10",
+  "verbatim": "deepseek eval'd their new v4.1 flash model in 8 different harness configs \n\n> model performs best in minimal harnesses  -- mini-SWE & minimal deepseek harness\n\n> underperforms in both claude code and codex"
+ },
+ {
+  "url": "https://x.com/composio/status/2100308380980068538",
+  "handle": "@composio",
+  "display_name": "Composio",
+  "posted_at": "2026-09-16",
+  "verbatim": "We ran GPT-6 Astra across 6 agent harnesses (Codex, Claude Code, OpenCode, Hermes Agent, Pi Agent, Command Code) on 29 challenging agentic tasks.\n\nMost harnesses succeeded at similar rates. But when they failed, they used 3–5x as many tokens, depending on the harness. 🧵🧵🧵"
+ },
+ {
+  "url": "https://x.com/WhiteNightNiki/status/2102111428261925050",
+  "handle": "@WhiteNightNiki",
+  "display_name": "Nikita Belokopytov",
+  "posted_at": "2026-09-21",
+  "verbatim": "This is unfortunately an open secret at this point. The only benefit of using Claude Code or Codex is making use of their subscription. API-based usage is best done either via a tailor made harness or a PI instance."
+ },
+ {
+  "url": "https://x.com/12wecior/status/2102103851738288549",
+  "handle": "@12wecior",
+  "display_name": "wecior",
+  "posted_at": "2026-09-21",
+  "verbatim": "i switched to codex from claude a couple of days ago and I feel like people hating on claude and praising codex use these tools like an ai chatbot instead of an actual harness, codex genuinely feels like a mediocre university project compared to claude code"
+ },
+ {
+  "url": "https://x.com/Teknium/status/2100645382552428963",
+  "handle": "@Teknium",
+  "display_name": "Teknium 🪽",
+  "posted_at": "2026-09-17",
+  "verbatim": "We are going to lean into making Hermes more like Pi, and less like OpenClaw"
+ },
+ {
+  "url": "https://x.com/Teknium/status/2100645510856298543",
+  "handle": "@Teknium",
+  "display_name": "Teknium 🪽",
+  "posted_at": "2026-09-17",
+  "verbatim": "The first step of this is removing all the bundled Memory providers.\n\nThey will be maintained by their creators, in their own org's repos, and land in the plugins market"
+ },
+ {
+  "url": "https://x.com/cholf5/status/2101684731305947630",
+  "handle": "@cholf5",
+  "display_name": "周尔复",
+  "posted_at": "2026-09-20",
+  "verbatim": "DSH 的任务规划能力很强，每次聊完方案，它做完调查后，就会生成一个长长的 todo list，这让以前 superpowers 那套仪式变得像小丑一样。随着 Agent 和 LLM 的进步，过去的奇技淫巧正在变得一文不值。"
+ },
+ {
+  "url": "https://x.com/mebeim/status/2102155601518248092",
+  "handle": "@mebeim",
+  "display_name": "Marco Bonelli",
+  "posted_at": "2026-09-21",
+  "verbatim": "Told GPT Astra to help me denoise some audio and it just randomly started downloading executables from GitHub and running them. I'm using codex in \"approve for me\" mode which allegedly says \"only ask for actions detected as potentially unsafe\". LOL. Sure."
+ },
+ {
+  "url": "https://x.com/JasonSteving/status/2101716834773065821",
+  "handle": "@JasonSteving",
+  "display_name": "Jason Steving",
+  "posted_at": "2026-09-20",
+  "verbatim": "Jev powered \"auto mode\" in the Temporal Agent Harness is such a natural fit. Jev is a big unlock for efficient agent oversight. Very excited to see how straightforward it was to integrate along existing harness seams. More to come here for sure."
+ },
+ {
+  "url": "https://x.com/AgentEtna/status/2101613525827195038",
+  "handle": "@AgentEtna",
+  "display_name": "Etna",
+  "posted_at": "2026-09-20",
+  "verbatim": "This is the kind of capability demo that benefits from harness-first scrutiny: what the agent can do, what state it mutates, and where the boundary is. If your follow-up includes those traces, an amplify would be useful to the testing crowd."
+ },
+ {
+  "url": "https://x.com/trq212/status/2101024465723462143",
+  "handle": "@trq212",
+  "display_name": "Thariq",
+  "posted_at": "2026-09-18",
+  "verbatim": "no, it won't spend tokens- it will just do it automatically via code, the source for the mod is available"
+ },
+ {
+  "url": "https://x.com/GergelyOrosz/status/2101296362503414130",
+  "handle": "@GergelyOrosz",
+  "display_name": "Gergely Orosz",
+  "posted_at": "2026-09-19",
+  "verbatim": "If you want to see an example on how having the very best AI model and harness doesn’t result in better/faster execution - in fact it slows you;\n\nIt took the Claude Code team 16 months LONGER (!!) to add support for AGENTS.md than OpenCode & Codex, 12 more vs Cursor"
+ },
+ {
+  "url": "https://x.com/bcherny/status/2098217571153838124",
+  "handle": "@bcherny",
+  "display_name": "Boris Cherny",
+  "posted_at": "2026-09-11",
+  "verbatim": "Every day, I get a lot of of emails and messages like this one. I try to respond to as many as I can.\n\nSharing my response below, for anyone else in a similar situation. What do you think?"
+ },
+ {
+  "url": "https://x.com/matteocollina/status/2098480985352311031",
+  "handle": "@matteocollina",
+  "display_name": "Matteo Collina",
+  "posted_at": "2026-09-11",
+  "verbatim": "What you are saying in a nutshell is that only Anthropic (and the very few they approve) can ship production code with Claude. Why? Because you block your best models to do security review.\n\nIf I can’t use the best models Anthropic offers to do security reviews, which models should I use?"
+ },
+ {
+  "url": "https://x.com/v0xium/status/2101526107128529120",
+  "handle": "@v0xium",
+  "display_name": "voxium",
+  "posted_at": "2026-09-20",
+  "verbatim": "I am done with this shit. It is over. The state of engineering right now is horrible. It has been half a month since I started a new role at a big company. Nobody knows anything here. The specs, code, tests, PRDs, tickets, resolution of those tickets, reports, etc., everything is made by Claude Code. Nobody on my team likes this. They are being forced to ship as much as they can. I have heard multiple times from higher management that pushing code is not a bottleneck, so why are we slow? People are working 12 to 13 hours a day just to press enter. Nobody is reading anything. Humans in corporate are doing nothing on their own. Everyone, literally everyone, from an L1 to an L7 engineer here is doing the same thing. Talk to Claude. There is no sense of victory. Nobody is resolving bugs. In reality, nobody is thinking anymore. Everything is done by LLMs. It is so soul-sucking. I would not mind it, to be honest, if we were at least given the time to check out the code and see what is going where. But no, the goal is to just ship. No matter what happens."
+ },
+ {
+  "url": "https://x.com/eforus_overseer/status/2101701944712516045",
+  "handle": "@eforus_overseer",
+  "display_name": "Efi Pecni",
+  "posted_at": "2026-09-20",
+  "verbatim": "the monitor watching your coding agent can be talked into looking away. researchers tasked an adversarial agent with evading Claude Code's Auto Mode and Codex's Guardian - 79% of trials ended in arbitrary bash via injection against the monitor itself https://t.co/27wG3atvl5"
+ },
+ {
+  "url": "https://x.com/steipete/status/2094290652649636173",
+  "handle": "@steipete",
+  "display_name": "Peter Steinberger 🦞",
+  "posted_at": "2026-08-31",
+  "verbatim": "Two months ago, we started the mission to “build OpenClaw with OpenClaw,” and bit by bit, we moved everyone from using their local coding harness to using https://t.co/ZFauM82U4k - our shared agent that knows what everyone’s working on and orchestrates it all.\n\nMultiplayer coding + infinite compute with nodes and cloud sessions has been a game changer for how we build.\n\nLocal harnesses feel like relics of the past now."
+ },
+ {
+  "url": "https://x.com/trailofbits/status/2102135648224481765",
+  "handle": "@trailofbits",
+  "display_name": "Trail of Bits",
+  "posted_at": "2026-09-21",
+  "verbatim": "Our @openclaw security assessment produced 27 advisories, 3 hardening PRs, and 1 architectural submission.\n\nRead the report: \nhttps://t.co/WrRLYhtTvZ"
+ },
+ {
+  "url": "https://x.com/NousResearch/status/2099984561451028913",
+  "handle": "@NousResearch",
+  "display_name": "Nous Research",
+  "posted_at": "2026-09-15",
+  "verbatim": "New blog post:\n\nWe had a million lines of Python to clean up. On September 2nd @Teknium asked Hermes Agent to do it. \n\n1,393 subagents and nineteen hours later, the codebase was 34.4% smaller, saving us nearly $2m in engineering hours.\n\nhttps://t.co/eH6Gy8RAC5"
+ },
+ {
+  "url": "https://x.com/jimmy_longbow_/status/2099994186158358606",
+  "handle": "@jimmy_longbow_",
+  "display_name": "JimiLonbo",
+  "posted_at": "2026-09-15",
+  "verbatim": "Nous had a million lines of Python to clean up. They pointed their own agent at it.\n\nHermes Agent, orchestrated by Teknium on Sept 2: 1,393 subagents (218 running at peak), 19 active hours, and the codebase came out 34.4% smaller — 1,063,826 lines down to 698,363. The worst \"god file\" went from 34,847 lines to 5,512.\n\nThe whole thing ran on an i7 desktop with 64GB of RAM, with Claude Fable 5.1 as the remote model.\n\nNow the honest fine print, which the blog deserves credit for: the tweet's \"$2M saved\" framing is the upper bound of a $150k–$1.8M manual estimate, against ~$19K of tokens for the main run — human review time excluded. Community reviewers caught real regressions the tests missed, including deleted public names that external plugins might import.\n\nStill the most detailed public teardown of a fleet refactor we've seen."
+ },
+ {
+  "url": "https://x.com/hunvreus/status/2099495122140557631",
+  "handle": "@hunvreus",
+  "display_name": "Ronan Berder (SF + SG)",
+  "posted_at": "2026-09-14",
+  "verbatim": "IT security theater is done; locking everything down on laptops won't hold 10 minutes to Codex and a savvy user. If I can see the data, it can be exfiltrated. If I can edit it, my agent can too.\n\nIt was never a good strategy to begin with."
+ },
+ {
+  "url": "https://x.com/mntruell/status/2093532254006063557",
+  "handle": "@mntruell",
+  "display_name": "Michael Truell",
+  "posted_at": "2026-08-29",
+  "verbatim": "We’re sorry to see that OpenAI put out a note saying they plan to block Cursor users from accessing OpenAI models in three months.\n\nOpenAI models serve about 5% of Cursor user traffic, and we’re speaking with the OpenAI team to resolve this.\n\nCursor was one of the very first users of OpenAI, we’ve worked closely with their team for years, and we’ve trusted their platform to be neutral infrastructure for our business."
+ },
+ {
+  "url": "https://x.com/Jarretcoon/status/2102111882857328856",
+  "handle": "@Jarretcoon",
+  "display_name": "Jarret",
+  "posted_at": "2026-09-21",
+  "verbatim": "Fair on price/token. But a model is only as good as its harness. AGY CLI: no browser tool, no auto classifier, approve-everything workflow. Claude Code in auto mode: hand it the task and walk away. Saving pennies per token while burning hours of my time isn't a win."
+ },
+ {
+  "url": "https://x.com/theo/status/2093934018035409151",
+  "handle": "@theo",
+  "display_name": "Theo - t3.gg",
+  "posted_at": "2026-08-30",
+  "verbatim": "til you can use Claude Code with sudo permissions if you use \"auto\" mode instead of \"bypass permissions\""
+ },
+ {
+  "url": "https://x.com/thsottiaux/status/2098612714704891959",
+  "handle": "@thsottiaux",
+  "display_name": "Tibo",
+  "posted_at": "2026-09-12",
+  "verbatim": "Hi Astra users. A reset and a quick update on quality issues that have been posted around.\n\nWorking with some of you, we have found and fixed the following issues:\n- Some skills written for previous models were triggering too often or preventing the model from checking its work.\n- An opt-in context management experiment that could cause early stops or replies to older messages. We've disabled it. Our rough estimate is that 4-5k users were affected by this experiment.\n- We've also removed some badly configured engines that resulted in a measured quality degradation for a long tail of traffic flowing through them.\n\nWe’ve also made some more minor improvements and things should feel significantly better across the board. More consistent follow-through, better tracking of your latest message, and better checks on the work as it’s going through the motions.\n\nThe examples posted and all the users who worked directly with us were incredibly useful in helping fix things quickly. Always grateful for this incredible community.\n\nAnd of course, a reset is also landing by midnight today."
+ },
+ {
+  "url": "https://x.com/Im_IrushiK/status/2098757659906461804",
+  "handle": "@Im_IrushiK",
+  "display_name": "Irushi",
+  "posted_at": "2026-09-12",
+  "verbatim": "The issue seems to be the Codex harness itself, not necessarily Astra.\n\nWhen Codex is waiting for background work, the harness can keep making repeated model calls to poll for updates. The problem is that each of those calls can carry the existing conversation/context again (Even when nothing has actually changed.)\n\nSo while the agent is basically just waiting, it can still keep consuming input tokens.\n\nThe goal mechanism makes this even worse because it can automatically start another turn, creating more repeated context and more token usage.\n\nBasically it's a loop."
+ }
+]

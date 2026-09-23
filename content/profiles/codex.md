@@ -17,9 +17,21 @@ x:
 surface_class: mixed_official_docs
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: default-model-hotfix
+    finding_id: 2026-09-21-codex-default-model-moved-to-gpt-6-astra-in-the-0-153-x-hotfix-train-not-in-a-minor
+    last_verified: 2026-09-23
+    status: active
+  - id: mcp-server-removed
+    finding_id: 2026-09-21-codex-codex-mcp-server-removed-app-server-is-the-only-integration-path-and-it-is-officially-expe
+    last_verified: 2026-09-23
+    status: active
+  - id: guardian-v2-still-off
+    finding_id: 2026-09-21-codex-guardian-v2-stayed-off-by-default-in-every-stable-of-the-window-carry-forward
+    last_verified: 2026-09-23
+    status: active
   - id: goal-persistent-validation
     finding_id: 2026-05-07-codex-stateful-control-plane
     last_verified: 2026-05-07
@@ -158,6 +170,10 @@ stance:
 ---
 
 # Codex
+
+## Where it stands, 2026-09-21
+
+npm latest at close was [0.155.1](https://github.com/openai/codex/releases/tag/rust-v0.155.1), the last of fourteen stables in the window. Guardian V2 is still `default_enabled: false` in every stable read, and 0.153.0 stopped Guardian review in Full Access and User approval modes. The 0.153.4 hotfix moved the picker default to `gpt-6-astra` for sessions with no model set. 0.154.0 removed `codex mcp-server` and stopped running workspace helpers before trust. The Plugin4Shell fix is #34644 in 0.146.0.
 
 ## Operator Read
 

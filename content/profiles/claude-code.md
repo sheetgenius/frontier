@@ -19,9 +19,25 @@ x:
 surface_class: closed_source_release_notes
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: server-side-classifier-default
+    finding_id: 2026-09-21-claude-code-2-1-278-auto-mode-classifier-moves-server-side-by-default
+    last_verified: 2026-09-23
+    status: active
+  - id: stable-pointer-jump
+    finding_id: 2026-09-21-claude-code-stable-froze-on-2-1-236-for-eighteen-days-then-jumped-to-2-1-267
+    last_verified: 2026-09-23
+    status: active
+  - id: project-bypass-ignored
+    finding_id: 2026-09-21-claude-code-2-1-257-authority-batch-project-bypass-ignored-ask-rules-skipped-in-auto
+    last_verified: 2026-09-23
+    status: active
+  - id: gitspawn-second-path
+    finding_id: 2026-09-21-claude-code-gitspawn-ultrareview-path-ran-repo-git-config-before-trust-no-fix-named-through-2-1-278
+    last_verified: 2026-09-23
+    status: active
   - id: macos-read-deny-and-mcp-headershelper
     finding_id: 2026-08-20-claude-code-2-1-236-macos-read-deny-wildcards-bind-2-1-238-trust-gates-mcp-headershelper
     last_verified: 2026-08-20
@@ -130,6 +146,10 @@ stance:
 ---
 
 # Claude Code
+
+## Where it stands, 2026-09-21
+
+Stable is [2.1.267](https://github.com/Homebrew/homebrew-cask/commit/67ec5aa16a) and latest is [2.1.278](https://github.com/anthropics/claude-code/releases/tag/v2.1.278). The stable pointer held 2.1.236 from about 28 August to 15 September, then jumped 23 versions. 2.1.278 makes the server-side auto-mode classifier the default on API, Enterprise, cloud and gateway sessions; gateways must pass the `safeguards` and `safeguard_results` fields. 2.1.257 stops a project file putting a clone into bypass mode. Deny rules were extended into Bash twice and reverted twice. The permission-modes page lists auto mode's isolation needed as none. Manifold reports a second GitSpawn path still running on 2.1.252, and no changelog line through 2.1.278 names a fix.
 
 ## Operator Read
 

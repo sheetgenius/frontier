@@ -18,9 +18,17 @@ repo: https://github.com/google-gemini/gemini-cli
 surface_class: open_source_commits
 evidence_floor: commit_diff_reviewed
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: autoedit-and-seatbelt
+    finding_id: 2026-09-21-gemini-cli-autoedit-path-check-never-loaded-and-seatbelt-reached-docker-socket
+    last_verified: 2026-09-23
+    status: active
+  - id: plugin4shell-unpatched
+    finding_id: 2026-09-21-gemini-cli-extension-install-still-checks-out-fetch-head-after-plugin4shell-disclosure
+    last_verified: 2026-09-23
+    status: active
   - id: v0-56-0-stable-is-two-chore-commits
     finding_id: 2026-08-20-gemini-cli-v0-56-0-is-stable-and-two-chore-commits-past-v0-55-1
     last_verified: 2026-08-20
@@ -154,6 +162,10 @@ stance:
 ---
 
 # Gemini CLI
+
+## Where it stands, 2026-09-21
+
+Latest is [0.60.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.60.0). v0.57.0 carried every preview-only fix from August. v0.58.0 fixed an autoEdit path rule the loader never loaded and a macOS sandbox profile that could reach a Docker socket; neither got an advisory. At 0.60.0 the extension installer still checks out `FETCH_HEAD`, and AIR Security reports Google called the tool deprecated and declined to patch Plugin4Shell. Four stables in the window were almost entirely hardening.
 
 ## Operator Read
 

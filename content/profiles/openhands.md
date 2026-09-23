@@ -22,9 +22,17 @@ repo: https://github.com/OpenHands/OpenHands
 surface_class: mixed_official_docs
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-08-20
+last_updated: 2026-09-21
 last_full_review: 2026-08-20
 claims:
+  - id: docker-runtime-ignored
+    finding_id: 2026-09-21-openhands-docker-conversation-runtime-settings-reach-the-bundled-agent-server-v1-20-0-docker-executi
+    last_verified: 2026-09-23
+    status: active
+  - id: profiles-scopes
+    finding_id: 2026-09-21-openhands-profiles-become-enforceable-scopes-mcp-servers-v1-19-0-and-secrets-v1-20-0-with-a-skill
+    last_verified: 2026-09-23
+    status: active
   - id: wrong-profile-fix-unreleased-at-2026-08-20
     finding_id: 2026-08-20-openhands-wrong-profile-fix-still-unreleased-at-window-close
     last_verified: 2026-08-20
@@ -128,6 +136,10 @@ stance:
 ---
 
 # OpenHands
+
+## Where it stands, 2026-09-21
+
+Latest in window is [v1.20.0](https://github.com/OpenHands/OpenHands/releases/tag/v1.20.0). Before it the Docker conversation runtime setting was ignored and conversations ran on the host. v1.19.0 and v1.20.0 made profiles enforceable scopes for MCP servers and secrets. Four security fixes shipped as plain pull requests. v1.15.0 carried the wrong-profile fix.
 
 ## Operator Read
 
