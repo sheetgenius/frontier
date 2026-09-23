@@ -25,7 +25,10 @@ const [latest, ...earlier] = digests;
 // the issue becomes a strip beneath it, so the fold still proves the cadence.
 const allFeatures = listFeatures();
 const [latestFeature] = allFeatures;
-const featureDate = latestFeature ? String(latestFeature.data.published ?? "") : "";
+// Both sides go through formatDate. A YAML date parses to a Date object, and
+// String(Date) ("Sun Aug 23 2026 ...") sorts above any ISO date, which let a
+// feature out-rank every later issue.
+const featureDate = latestFeature ? formatDate(latestFeature.data.published) : "";
 const digestDate = latest ? String(formatDate(latest.data.window?.end)) : "";
 const featureLeads = Boolean(latestFeature && featureDate >= digestDate);
 // When a feature leads it vacates the features list; when the issue leads the
@@ -117,7 +120,7 @@ const watchlist = profiles
         {latest && (
           <div class="brief-strip rule mt-8 pt-6">
             <p class="small-caps eyebrow">
-              The latest brief / {formatDate(latest.data.window?.start)} to {formatDate(latest.data.window?.end)}
+              {latest.data.series === "Bitter Frontier Brief" ? "The latest brief" : "This week in agentic harnesses"} / {formatDate(latest.data.window?.start)} to {formatDate(latest.data.window?.end)}
             </p>
             <p class="brief-strip-title">
               <a href={`/digests/${latest.slug}/`}>{latest.data.title}</a>
