@@ -200,3 +200,196 @@ cards:
     verdict: >
       Second-hand: we hold no primary source and attribute nothing to a named person on this basis. The figures are not findings. Quoted as a claim that circulated widely during the window Auto mode became the default.
     tags: [adoption, unverified-claim]
+
+  - id: bcherny-containers-punch-holes
+    title: "Containers, with the holes punched"
+    kind: claim
+    date: 2026-05-25
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["bcherny"]
+    display_name: "Boris Cherny"
+    source_urls:
+      - https://x.com/bcherny/status/2058893312128323816
+    verbatim: |
+      We use both together. In practice, for containers to be useful, you often have to punch some holes: GitHub, Anthropic API, kube, other MCPs.
+
+      Auto mode makes interacting with these safer. It significantly reduces the risks of accidental data deletion, exfiltration, and prompt injection.
+    inline: "for containers to be useful, you often have to punch some holes: GitHub, Anthropic API, kube, other MCPs."
+    summary: >
+      Boris Cherny, in his own words and in the window, saying his team runs Auto mode and
+      containers together because a useful container needs openings to GitHub, the Anthropic
+      API, kube and other MCPs, and that Auto mode makes using those openings safer.
+    verdict: >
+      A claim post, reported as his statement: the 2.1.152 changelog says Auto mode no longer
+      asks for consent and publishes no list of what it treats as safe, so his claim that it
+      'significantly reduces the risks' of deletion, exfiltration and prompt injection is not
+      something this issue's receipts can check. The container half is his account of how his
+      own team works, and it is the sentence this issue quotes.
+
+  - id: takara-switched-back-from-auto
+    title: "Back to bypassPermissions"
+    kind: voice
+    date: 2026-05-15
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["takara_infra"]
+    display_name: "たから@インフラエンジニア×ClaudeCode"
+    source_urls:
+      - https://x.com/takara_infra/status/2055161569592647865
+    verbatim: |
+      Claude Codeの/configからdefault permissionでauto modeが実装されてめっちゃ便利！
+      みたいなポスト流れてくるから試しました。
+      元々、bypassPermissionsでしたがそれよりも確認や判断、決断や操作がめちゃくちゃ増えたので戻しました。
+    inline: "元々、bypassPermissionsでしたがそれよりも確認や判断、決断や操作がめちゃくちゃ増えたので戻しました。"
+    summary: >
+      A Japanese-language post from an infrastructure engineer who tried Auto mode as the
+      default permission after seeing it praised, and went back. Our rendering: I had been on
+      bypassPermissions, but Auto added far more confirmations, judgment calls, decisions and
+      operations, so I switched back.
+    verdict: >
+      A voice post about one operator's own setup; we assert only that the author reported switching
+      back. It cuts against the fortnight's default-autonomy story from the side nobody expects:
+      for someone already on bypassPermissions, Auto mode was the more cautious setting, not the
+      less.
+
+  - id: klieret-simpler-generalizes
+    title: "The same result, with a reason attached"
+    kind: voice
+    date: 2026-05-27
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code, codex]
+    authors: ["KLieret"]
+    display_name: "Kilian Lieret"
+    source_urls:
+      - https://x.com/KLieret/status/2059643437964497161
+    verbatim: |
+      DeepSWE finds that mini-swe-agent significantly outperforms ClaudeCode and Codex on the benchmark. The simpler the system, the better it generalizes (and mini's core agent class is just ~150 lines of code)
+    inline: "The simpler the system, the better it generalizes"
+    summary: >
+      A mini-swe-agent author, the same day as Ofir Press's post, reporting that DeepSWE found
+      mini-swe-agent outperforming Claude Code and Codex, and giving the reason he draws from
+      it.
+    verdict: >
+      A voice post in the same thread as the Ofir Press card, not a second result: the benchmark
+      is the same one, and we did not run it. What it adds is the interpretation, that
+      simplicity is why the small agent generalizes, which is his reading of his own team's
+      benchmark.
+
+  - id: mlcatttt-benchmark-does-the-work
+    title: "The counter-read: the benchmark is doing the lifting"
+    kind: voice
+    date: 2026-05-27
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code, codex]
+    authors: ["MLCatttt"]
+    display_name: "engineer cat 🐈"
+    source_urls:
+      - https://x.com/MLCatttt/status/2059699888741605668
+    verbatim: |
+      if mini-swe-agent at 150 lines matches the frontier on this benchmark, the benchmark is doing a lot of the work. most production complexity lives in the long tail, not the canonical task shape
+    inline: "the benchmark is doing a lot of the work. most production complexity lives in the long tail, not the canonical task shape"
+    summary: >
+      A reply to the mini-swe-agent result arguing that if 150 lines match the frontier, the
+      benchmark rather than the harness is doing the work, because production complexity sits in
+      the long tail.
+    verdict: >
+      A voice post and a counter-read, not a measurement: it questions what the benchmark can
+      see rather than disputing the score. It is here so the result that cuts against this
+      publication meets the objection that cuts back.
+
+  - id: evanboyle-autopilot-in-january
+    title: "Goal mode was not the first"
+    kind: claim
+    date: 2026-05-13
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [github-copilot-cli, codex]
+    authors: ["_Evan_Boyle"]
+    display_name: "Evan Boyle"
+    source_urls:
+      - https://x.com/_Evan_Boyle/status/2054433099006771623
+    verbatim: |
+      Congratulations to everyone who has discovered /goal in the last two weeks. 
+
+      Copilot CLI shipped `autopilot` mode in January.
+    inline: "Copilot CLI shipped `autopilot` mode in January."
+    summary: >
+      A post on the first day of the window congratulating people who discovered /goal in the
+      previous two weeks, and saying Copilot CLI shipped an autopilot mode in January.
+    verdict: >
+      A claim about Copilot CLI's release history, reported as his statement: none of this
+      issue's receipts cover Copilot CLI, and we did not check the January date. It is here as
+      the priority argument the Codex graduation invited, not as a finding.
+
+  - id: roygbiv-omp-goal-overnight
+    title: "The first one he leaves alone"
+    kind: voice
+    date: 2026-05-18
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [omp, codex]
+    authors: ["usr_bin_roygbiv"]
+    display_name: "Roy"
+    source_urls:
+      - https://x.com/usr_bin_roygbiv/status/2056385453679419817
+    verbatim: |
+      5.5 xhigh with the omp /goal mode feels like the first agent i actually trust to leave alone 24/7. codex does not hold a candle
+    inline: "feels like the first agent i actually trust to leave alone 24/7"
+    summary: >
+      An operator saying GPT-5.5 at xhigh in OMP's /goal mode is the first agent he trusts to
+      leave running around the clock, and that Codex does not compare.
+    verdict: >
+      A voice post about his own trust in his own setup; we assert only that he said it, and
+      make no comparison of OMP and Codex. It is here because it is what a goal loop becoming
+      ordinary sounds like from the person running it.
+
+  - id: bengold-computer-use-not-chronicle
+    title: "He granted one thing and got another"
+    kind: claim
+    date: 2026-05-27
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["bengold"]
+    display_name: "Ben Gold"
+    source_urls:
+      - https://x.com/bengold/status/2059773234698936713
+    verbatim: |
+      Yes, I gave it access for Computer Use, not Chronicle, the feature that caused it to record my screen on a regular basis and generate markdown files for additional connect even when I wasn’t using codex
+    inline: "I gave it access for Computer Use, not Chronicle, the feature that caused it to record my screen on a regular basis"
+    summary: >
+      A Codex user saying he granted access for Computer Use, not for Chronicle, and that
+      Chronicle recorded his screen on a regular basis and wrote markdown files even when he was
+      not using Codex.
+    verdict: >
+      A claim about Codex behaviour, reported as his statement only: this issue's receipts cover
+      the 26.519 remote computer use surface and say nothing about Chronicle, so we have not
+      verified what it records or when. It is here because it is the consent question of this
+      issue in one user's words: a permission granted for one feature, read as covering another.
+
+  - id: owenology-course-staff-hooks
+    title: "The repo's hooks, not the operator's"
+    kind: voice
+    date: 2026-05-21
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code, cursor]
+    authors: ["owenology"]
+    display_name: "Owen"
+    source_urls:
+      - https://x.com/owenology/status/2057603396723781791
+    verbatim: |
+      Just found out that Berkeley course staff are writing hooks inside course repos so if a student opens an assignment in Claude Code or Cursor the agent will automatically ping the staff 😵‍💫 well played
+    inline: "if a student opens an assignment in Claude Code or Cursor the agent will automatically ping the staff"
+    summary: >
+      A post relaying that Berkeley course staff put hooks in course repositories so an agent
+      opening an assignment in Claude Code or Cursor pings the staff.
+    verdict: >
+      A voice post and second-hand by its own framing ('Just found out'): we have not seen the
+      repositories and assert only that he reported it. It is here because it shows a checked-in
+      file governing an agent on behalf of someone other than the person running it.

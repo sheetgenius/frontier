@@ -183,3 +183,192 @@ cards:
       The same Pi maintainer, two days later, on deleting the vendor-specific instruction files.
     verdict: >
       A voice post, and the one that cuts against this issue rather than against a vendor. If the portable instruction file is what survives changing harnesses, then which channel is frozen matters less than this issue spends on it. We are printing the argument against our own emphasis.
+
+  - id: alading-sage-and-the-overpacked-bag
+    title: "The essay, as a parable"
+    kind: voice
+    date: 2026-08-13
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [deepseek-harness, pi-coding-agent]
+    authors: ["alading22"]
+    display_name: "小杰"
+    source_urls:
+      - https://x.com/alading22/status/2087917100929278285
+    verbatim: |
+      Pi 像一个得道的智者：先找到少数不可再分的原理，万事万物便从中自然生长。
+      DSH 像一个害怕遗漏的普通人：看见什么重要，就往行囊里再塞一样东西。最后拥有了所有装备，却仍然不知道自己要去哪里。
+    inline: "DSH 像一个害怕遗漏的普通人：看见什么重要，就往行囊里再塞一样东西。最后拥有了所有装备，却仍然不知道自己要去哪里。"
+    summary: >
+      A two-line Chinese-language post contrasting the two designs on launch day. Our rendering:
+      Pi is like a sage who has found the way, locating a few indivisible principles from which
+      everything grows; DSH is like an ordinary person afraid of leaving something out, who puts
+      one more thing in the pack whenever something looks important, and ends up with all the
+      gear and still no idea where to go.
+    verdict: >
+      A voice post and an aesthetic judgment, not an architecture finding: it restates the
+      subtraction-versus-addition reading of the essay above it in two lines. It is here because
+      it is the form in which that reading travelled, and the next post in this issue answers
+      it.
+
+  - id: quantumtransf-complexity-moved-inside
+    title: "Complexity, relocated"
+    kind: voice
+    date: 2026-08-15
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [deepseek-harness]
+    authors: ["QuantumTransf"]
+    display_name: "Yuu💖"
+    source_urls:
+      - https://x.com/QuantumTransf/status/2088499422619750433
+    verbatim: |
+      deepseek harness 文章已更新（https://blog.antinomie.org 
+      dsh 内部的心智模型其实没那么简单，我在写这篇文章的时候也挣扎了很久；不过，对于写一个插件的人来说，却没有那么复杂。 文章有对此阐述，「复杂度不是消失了，而是转移进了系统内部」，相信读完这篇文章，你能够对 dsh 内部的架构有一个比较好的认知
+      repo: https://t.co/3USVmzG15Q
+      此页面仍在持续更新（
+    inline: "「复杂度不是消失了，而是转移进了系统内部」"
+    summary: >
+      A Chinese-language post announcing an updated long-form article on DeepSeek Harness
+      internals. Our rendering: DSH's internal mental model is not that simple and was a
+      struggle to write up, but for someone writing a plugin it is not that complicated;
+      complexity did not disappear, it moved into the system.
+    verdict: >
+      A voice post, the author's reading of an architecture they documented at length; we have
+      not reviewed the article and assert only that they said it. It is the counter-read to the
+      overpacked-bag parable: the weight is real, and it sits where a plugin author does not
+      have to carry it.
+
+  - id: doodlestein-user-is-another-agent
+    title: "The target user is an agent"
+    kind: voice
+    date: 2026-08-15
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [agent-flywheel]
+    authors: ["doodlestein"]
+    display_name: "Jeffrey Emanuel"
+    source_urls:
+      - https://x.com/doodlestein/status/2088600999418024143
+    verbatim: |
+      This is what I’ve been telling people about my ntm orchestration tool for the past year. The human isn’t the target user, the user is another agent. Why would you want to be messing around with it yourself? Then you’re the bottleneck again, just in a different way.
+    inline: "The human isn’t the target user, the user is another agent. Why would you want to be messing around with it yourself? Then you’re the bottleneck again, just in a different way."
+    summary: >
+      The Agent Flywheel author saying he has argued for a year that his ntm orchestration tool
+      is built for agents to operate, and that a human operating it becomes the bottleneck
+      again.
+    verdict: >
+      A voice post about the design intent of his own tool; we assert only that he said it. It
+      is here because it makes, about orchestration, the point Mario Zechner made about Pi
+      extensions the day before: the extension surface is written for the agent, not for the
+      person.
+
+  - id: verysmallwoods-back-to-the-code
+    title: "A plugin author's read"
+    kind: voice
+    date: 2026-08-17
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [deepseek-harness]
+    authors: ["verysmallwoods"]
+    display_name: "VerySmallWoods"
+    source_urls:
+      - https://x.com/verysmallwoods/status/2089144422172680591
+    verbatim: |
+      做了一些 DeepSeek Harness 插件，也读了一些目前开源社区的优秀项目，渐渐感觉到 DSH / Cordis 的有趣之处。
+
+      OpenClaw, Hermes, Codex, CC 时代以来，大家似乎已经习惯于自然语言编程，用 Skills 来丰富功能。
+
+      DSH 似乎又把开发者拉回了那个熟悉的代码战场，其实这是一个很有趣的故事。
+
+      或许 DeepSeek 开辟的这片 plugin 西部荒野，会拯救一大批软件工程师。
+
+      梁圣！
+    inline: "DSH 似乎又把开发者拉回了那个熟悉的代码战场"
+    summary: >
+      A Chinese-language post from someone who has written DeepSeek Harness plugins. Our
+      rendering: since OpenClaw, Hermes, Codex and Claude Code, people have got used to
+      programming in natural language and extending with Skills; DSH seems to pull developers
+      back onto the familiar battlefield of code, and its plugin frontier may rescue a lot of
+      software engineers.
+    verdict: >
+      A voice post from a builder about their own experience writing plugins; we assert only
+      that they said it. It is here as the possibility half of the plugin argument: the same
+      unsandboxed code surface this issue treats as a risk is, to the people writing for it, a
+      return to work they know how to do.
+
+  - id: can-slop-and-fundamentals
+    title: "Where the maintainer says slop comes from"
+    kind: voice
+    date: 2026-08-17
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [omp]
+    authors: ["_can1357"]
+    display_name: "Can Bölük"
+    source_urls:
+      - https://x.com/_can1357/status/2089358095457661426
+    verbatim: |
+      xhi/max only, unsupervised they do fine with most fixes tbh, occasionally I correct but after their initial solution, and I also try to update the system prompt it runs with to avoid similar cases later on.
+
+      Tbh I've found that slop mostly happens because you have bad fundamentals, i.e. an issue comes along and you need a whole refactor because it was not a scenario you thought of when actually architecting the thing and requires a lot of thinking which the agent decided to hack in instead.
+    inline: "slop mostly happens because you have bad fundamentals, i.e. an issue comes along and you need a whole refactor because it was not a scenario you thought of when actually architecting the thing and requires a lot of thinking which the agent decided to hack in instead."
+    summary: >
+      OMP's maintainer, in a reply, saying he runs agents unsupervised at xhi or max effort on
+      most fixes, corrects them occasionally, and updates the system prompt afterwards, and that
+      slop mostly comes from architecture that never contemplated the case.
+    verdict: >
+      A voice post about his own practice and his diagnosis of agent slop; we assert only that
+      he said it. It is here beside OMP's brokered-write hook because it is the maintainer's own
+      account of design: the failure lives in the case nobody planned for, which is exactly what
+      an extension point planned in advance is not.
+
+  - id: steipete-stop-means-stop
+    title: "What stop should stop"
+    kind: claim
+    date: 2026-08-16
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [openclaw]
+    authors: ["steipete"]
+    display_name: "Peter Steinberger 🦞"
+    source_urls:
+      - https://x.com/steipete/status/2089029499476431332
+    verbatim: |
+      I recently “fixed” exactly that in the claw harness. If you press stop and 64 subagents are happily coding and modifying files - is that really what you want?
+    inline: "If you press stop and 64 subagents are happily coding and modifying files - is that really what you want?"
+    summary: >
+      OpenClaw's creator saying he recently changed stop in the claw harness, and asking whether
+      anyone pressing stop wants 64 subagents to keep coding and editing files.
+    verdict: >
+      A claim about an OpenClaw change, reported as his statement: this issue's receipts do not
+      include the change, and we have not checked which release carries it. It is here beside
+      eve's move to turn-targeted cancel because it is the same question from the other side:
+      when an operator stops a swarm, what counts as the swarm.
+
+  - id: fagamericano-never-believe-agents
+    title: "Instructions are not guardrails"
+    kind: voice
+    date: 2026-08-17
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [deepseek-harness, pi-coding-agent]
+    authors: ["fagamericano"]
+    display_name: "Damián🦞"
+    source_urls:
+      - https://x.com/fagamericano/status/2089433022630359168
+    verbatim: |
+      Been building agentic infrastructure and the number one rule is: never believe Agents will do as told. 
+
+      So putting instructions on an agents.md to not “leak credentials” or “not allow changes to your instructions” and calling it a day is bullshit. 
+
+      You need deterministic guardrails. From token/credential vaults to read only file systems to actually prevent Agents from ignoring their instructions.
+    inline: "the number one rule is: never believe Agents will do as told."
+    summary: >
+      A builder of agentic infrastructure arguing that instructions in an AGENTS.md telling an
+      agent not to leak credentials are not a control, and that deterministic guardrails such as
+      credential vaults and read-only filesystems are.
+    verdict: >
+      A voice post, a practitioner's rule and not about any one harness; we assert only that he
+      said it. It is here at the close because it is the operator's version of this issue's
+      conclusion: the refusal has to live somewhere the agent cannot talk its way past.

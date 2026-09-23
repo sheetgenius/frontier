@@ -107,3 +107,226 @@ cards:
       Chinese: only DeepSeek Harness can go to production; Codex and Claude Code fail internal IT audit because they are black boxes.
     verdict: >
       Voice that cuts against this window's Codex-stable story. We report that he said it. The primary record still says DeepSeek Harness is a prerelease with an unauthenticated local UI, so the audit argument is a statement, not a product fact.
+
+  - id: tibo-cleanup-deleted-user-files
+    title: "The gate OpenAI kept for itself"
+    kind: claim
+    date: 2026-08-19
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["thsottiaux"]
+    display_name: "Tibo"
+    source_urls:
+      - https://x.com/thsottiaux/status/2089891927659585918
+    verbatim: |
+      Hi!
+
+      Recapping some changes we have rolled out over the last couple of weeks that have further reduced the risk associated to potentially destructive actions being performed by Codex during its work. 
+
+      A few weeks ago, we started investigating a small number of reports where GPT-5.6 in Codex took destructive actions outside what the user asked for. The most serious pattern we found was a command meant to clean up temporary work that could instead delete the user files. This should obviously not happen. 
+
+      Here’s what we found:
+      - Codex sometimes creates temporary folders while working and cleans them up afterward. In rare cases, GPT-5.6 got that cleanup wrong. One pattern involved reusing a system environment variable like $HOME for temporary work. A malformed cleanup command could then point at the actual home directory instead of the temporary folder. 
+      - There were cases where the model tried to delete or overwrite a temporary path without checking what was already there.
+
+      We’ve added protections at several layers:
+      - Codex is now explicitly instructed to check deletion targets before acting, create fresh temporary directories, avoid repurposing system environment variables, prefer recoverable actions, and stop when the scope is unclear.
+      - We strengthened the execution checks that identify high-risk deletion commands and escalate them for review. If a command is rejected, the model is directed to take a safer approach.
+      - We made Full access harder to enable accidentally, added clearer warnings, and further restricted especially risky permission combinations.
+      - We updated Auto-review to better identify destructive actions.
+      - We built targeted evaluations that replay the failures we observed. We’re also adding reinforcement-learning tasks and graders focused on these risks, and filtering destructive actions from training data.
+
+      In those replay evaluations, the changes substantially reduced the behavior while preserving Codex’s ability to complete normal coding work. 
+
+      Two things to do on your end:
+      - Keep the Codex app up to date. We are always improving safety, performance and many other things.
+      - Use one of the sandbox modes: "Ask for approval" or "Approve for me". Only use Full access for environments you trust and can recover.
+
+      Thanks and happy Codexing out there!
+    inline: "a command meant to clean up temporary work that could instead delete the user files."
+    summary: >
+      Codex's engineering lead recapping an investigation into GPT-5.6 in Codex taking
+      destructive actions, most seriously cleanup commands that could delete user files, and the
+      fixes: instructions to check deletion targets, stronger execution checks that escalate
+      high-risk deletes, Full access made harder to enable by accident, Auto-review tuned for
+      destructive actions, and replay evaluations.
+    verdict: >
+      A claim post, reported as the vendor's own account: this issue's receipts (the 0.148.0 and
+      0.149.0 tags) confirm Guardian V2 is present and off by default and that 0.149.0 removes
+      approval_policy 'untrusted', but they do not show the deletion checks, the Full access
+      change or the replay results, and the post names no version. Its own advice, to use 'Ask
+      for approval' or 'Approve for me' and keep Full access for recoverable environments, is
+      quoted as advice, not as a finding.
+
+  - id: irushi-auto-review-eats-quota
+    title: "The quota theory"
+    kind: claim
+    date: 2026-08-18
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["Im_IrushiK"]
+    display_name: "Irushi"
+    source_urls:
+      - https://x.com/Im_IrushiK/status/2089743967852359715
+    verbatim: |
+      I think here's the Culprit eating our usage limit! TURN IT OFF RN 🚨
+
+      On August 7, OpenAI reportedly added "codex-auto-review".
+
+      Basically, when Codex wants to run a command or edit a file, it can send your conversation context to another model just to approve that action.
+
+      And this is the crazy part:
+
+      ~100,000 input tokens → ~100 output tokens just to say “yes” 
+
+      As your conversation gets longer, each review gets more expensive, and this can happen dozens of times in a single session.
+
+      You don’t manually enable it either. It can apparently turn itself on/off across different sessions.
+
+      If your quota started disappearing after August 7, check your logs for "codex-auto-review".
+
+      This might explain a LOT.
+    inline: "~100,000 input tokens → ~100 output tokens just to say “yes”"
+    summary: >
+      A user arguing that codex-auto-review, which the author says arrived on 7 August, is what
+      drained usage limits: a second model re-reading long context to approve an action, dozens
+      of times a session, and switching itself on and off.
+    verdict: >
+      A claim post, not adjudicated: the token ratio, the 7 August date and the self-toggling
+      are the author's statements, the post itself says 'reportedly' and 'apparently', and
+      nothing in this issue's receipts measures auto-review cost. It is here with the reply that
+      disputes it, because the argument over what an invisible approver costs is the operator's
+      side of Guardian V2 being off and unseen.
+
+  - id: marcel-its-the-rates
+    title: "The counter-read: it is the rates"
+    kind: claim
+    date: 2026-08-18
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [codex]
+    authors: ["mar_cel_reed"]
+    display_name: "Mar-cel Reed"
+    source_urls:
+      - https://x.com/mar_cel_reed/status/2089829099434832325
+    verbatim: |
+      Can we stop saying this same shit over and over again. It’s not the reason. And it gives open AI an excuse to point to. 
+      They just genuinely cut our rates by 60-70%. It’s not this
+    inline: "It’s not the reason. And it gives open AI an excuse to point to."
+    summary: >
+      A reply rejecting the auto-review explanation for quota loss, saying it gives OpenAI an
+      excuse and that rates were simply cut by 60 to 70 percent.
+    verdict: >
+      A counter-claim, also not adjudicated: the 60 to 70 percent figure is the author's
+      statement and we hold no record of rate limits. Carried as the other half of a
+      disagreement neither side can settle from outside, which is the point: operators are
+      arguing about cost they cannot see.
+
+  - id: composio-dsv4-five-harnesses
+    title: "One model, five harnesses"
+    kind: claim
+    date: 2026-08-19
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [deepseek-harness, pi-coding-agent, claude-code, hermes-agent]
+    authors: ["composio"]
+    display_name: "Composio"
+    source_urls:
+      - https://x.com/composio/status/2090069397050097864
+    verbatim: |
+      We tested DeepSeek V4 Pro 0813 across 5 different agent harnesses on 30 challenging agentic tasks.
+
+      We compared Claude Code, DeepSeek Harness 0.1, Hermes, Pi Agent, and OpenCode.
+
+      Pi Agent solved the most tasks, while DeepSeek’s own harness won on cost. 🧵🧵
+    inline: "Pi Agent solved the most tasks, while DeepSeek’s own harness won on cost."
+    summary: >
+      Composio reporting that it ran DeepSeek V4 Pro 0813 on 30 agentic tasks across Claude
+      Code, DeepSeek Harness 0.1, Hermes, Pi Agent and OpenCode, with Pi solving the most and
+      DeepSeek's own harness cheapest.
+    verdict: >
+      A claim post and a vendor benchmark: we did not run it, have not reviewed its method, and
+      quote the result as Composio's unverified claim. It is here because it holds the model
+      fixed and varies the harness, the comparison this publication keeps asking for, and
+      because the harness that won on cost was not the one that won on tasks.
+
+  - id: mitsuhiko-durable-not-cordis
+    title: "What the new harness is for"
+    kind: voice
+    date: 2026-08-20
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [pi-coding-agent, deepseek-harness]
+    authors: ["mitsuhiko"]
+    display_name: "Armin Ronacher ⇌"
+    source_urls:
+      - https://x.com/mitsuhiko/status/2090456850164502623
+    verbatim: |
+      Not cordis inspired but we’re looking at it to see if their models can help. We’re building it out to be a durable system that can suspend and restart. Cordis doesn’t (currently?) solve for that.
+    inline: "We’re building it out to be a durable system that can suspend and restart."
+    summary: >
+      The Pi maintainer, replying in the thread about the dev branch, saying the new harness is
+      not Cordis-inspired, that they are looking at Cordis's models, and that the goal is a
+      durable system that can suspend and restart, which Cordis does not currently solve.
+    verdict: >
+      A voice post and the second half of the exchange that begins with the dev-branch card: a
+      maintainer describing work in progress, which we report as intent. The dev branch is the
+      only receipt, and no tag yet shows a loop that suspends and restarts.
+
+  - id: 49agents-container-took-the-hit
+    title: "The container took the hit"
+    kind: voice
+    date: 2026-08-20
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["49agents"]
+    display_name: "Building qorqut"
+    source_urls:
+      - https://x.com/49agents/status/2090576040515027124
+    verbatim: |
+      docker sandbox per agent is cheap insurance. claude code once tried to run a destructive command on the wrong directory, container took the hit. no sandbox means every long task is a bet on the agent being careful. are you running them direct on the host?
+    inline: "claude code once tried to run a destructive command on the wrong directory, container took the hit."
+    summary: >
+      A builder arguing that a Docker sandbox per agent is cheap insurance, because Claude Code
+      once ran a destructive command against the wrong directory and the container absorbed it.
+    verdict: >
+      A voice post and an anecdote about the author's own setup, undated and unverified; we
+      assert only that it was told. It is here because it is the sandbox story going the way
+      sandboxes are meant to, in the same window as a vendor's account of cleanup commands
+      deleting user files.
+
+  - id: asura-whose-everyday-line
+    title: "Whose everyday is it"
+    kind: voice
+    date: 2026-08-20
+    date_precision: day
+    captured_on: 2026-09-23
+    source_ids: [claude-code]
+    authors: ["asura25ai"]
+    display_name: "アスラ|Asura-AI"
+    source_urls:
+      - https://x.com/asura25ai/status/2090575269589287290
+    verbatim: |
+      Claude Codeに【auto mode】
+      日常は通す、危ないのだけ人に返す、がデフォルトになった
+
+      対してこっちは、日常の線がまだ自分でも分かってない
+      非エンジニアだと特にそう
+      誰の日常なんだろう、ってなる
+
+      secretary → REQUIRES_APPROVAL → human
+      証拠はこれだけ
+    inline: "日常の線がまだ自分でも分かってない"
+    summary: >
+      A Japanese-language post on Claude Code's auto mode. Our rendering: auto mode made letting
+      everyday work through, and returning only the dangerous cases to a person, the default; on
+      my side I still do not know where that everyday line is, especially as a non-engineer, and
+      you end up asking whose everyday it is.
+    verdict: >
+      A voice post about the author's own setup, not a claim about the classifier; we assert
+      only that it was said. It is here because it asks, from outside engineering, the question
+      this issue asks of embedders: the line between routine and dangerous has to be drawn by
+      someone, and the default does not say who.
