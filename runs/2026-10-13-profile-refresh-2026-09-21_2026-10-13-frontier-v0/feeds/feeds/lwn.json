@@ -1,0 +1,98 @@
+{
+ "source": "lwn",
+ "feed": "https://lwn.net/headlines/rss",
+ "swept_on": "2026-10-13",
+ "since": "2026-09-21",
+ "items": [
+  {
+   "title": "[$] The 2026 Maintainers Summit",
+   "url": "https://lwn.net/Articles/1099594/",
+   "date": "2026-10-12",
+   "summary": "The Maintainers Summit is a one-day, invitation-only gathering of about 30 kernel developers; it is held once each year to discuss policy-related issues that are not always amenable to resolution via email. The 2026 event was scheduled for October&#160;8 in Prague, Czechia. Unsurprisingly, the discussion there was dominated by large language models (LLMs) and their effect on the development commun"
+  },
+  {
+   "title": "LineageOS 24 released",
+   "url": "https://lwn.net/Articles/1099950/",
+   "date": "2026-10-12",
+   "summary": "<p>The <a href=\"https://lineageos.org/\">LineageOS</a> project, which produces an Android-based distribution for mobile devices, has <a href=\"https://lineageos.org/Changelog-32/\">announced</a> the release of LineageOS 24.0.</p> <blockquote class=\"bq\"> <p>We're a bit sentimental about this release, as it precedes a really fun upcoming milestone.</p> <p>On December 24, 2026, LineageOS will celebrate "
+  },
+  {
+   "title": "Security updates for Monday",
+   "url": "https://lwn.net/Articles/1099949/",
+   "date": "2026-10-12",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (cjose, compat-openssl10, compat-openssl11, curl, dogtag-pki, dovecot, emacs, glibc, kernel, openssl, python3.12, python3.14, and sssd), <b>Debian</b> (chromium, ghostscript, tor, and vips), <b>Fedora</b> (kernel, libical, markdownlint-cli2, openbao, openvpn, php-getid3, python3.10, python3.11, and python3.13), <b>Mageia</b> (capnproto, chirp, "
+  },
+  {
+   "title": "Kernel prepatch 7.3-rc7",
+   "url": "https://lwn.net/Articles/1099798/",
+   "date": "2026-10-12",
+   "summary": "The <a href=\"https://lwn.net/Articles/1099809/\">7.3-rc7</a> kernel prepatch is out for testing. According to Linus: \"<q>As always, I would have preferred to see a smaller rc, but it's not like anything in here looks like a reason to delay the final release. So that's still set for next weekend unless something new comes up.</q>\" <p> One notable change that slipped into the mainline this week is th"
+  },
+  {
+   "title": "Stable kernels 7.2.10 and 6.18.56",
+   "url": "https://lwn.net/Articles/1099764/",
+   "date": "2026-10-11",
+   "summary": "The <a href=\"https://lwn.net/Articles/1099765/\">7.2.10</a> and <a href=\"https://lwn.net/Articles/1099766/\">6.18.56</a> stable kernels have been released. Each contains another several hundred important fixes."
+  },
+  {
+   "title": "Python 3.15 released",
+   "url": "https://lwn.net/Articles/1099602/",
+   "date": "2026-10-09",
+   "summary": "<p><a href=\"https://www.python.org/downloads/release/python-3150/\">Version 3.15</a> of the Python programming language has been released. Notable changes in this release include the addition of the <tt>sentinel</tt> and <a href=\"https://lwn.net/Articles/1047238/\"><tt>frozendict</tt></a> built-in types, the use of UTF-8 encoding by default, <a href=\"https://docs.python.org/3.15/library/site.html#si"
+  },
+  {
+   "title": "[$] Adding kernel control-flow-integrity checking to GCC",
+   "url": "https://lwn.net/Articles/1098670/",
+   "date": "2026-10-09",
+   "summary": "While many developers are struggling to keep up with the flood of vulnerability reports, others are still focused on preventing those reports from happening in the first place. Control-flow integrity (CFI) is the term for preventing (or at least detecting) exploits that divert the flow of control from its intended paths. At the 2026 <a href=\"https://gnu-tools-cauldron.org/\">GNU Tools Cauldron</a>,"
+  },
+  {
+   "title": "[$] The state of systemd: 2026 edition",
+   "url": "https://lwn.net/Articles/1099024/",
+   "date": "2026-10-09",
+   "summary": "<p>At the 2026 <a href=\"https://all-systems-go.io/\">All Systems Go!</a> conference, systemd maintainers Luca Boccassi and Zbigniew Jędrzejewski-Szmek delivered the traditional \"state of the project\" session with an overview of the systemd project's accomplishments in the past year. That was followed by a maintainer round table where Boccassi, Jędrzejewski-Szmek, Daan De&#160;Meyer, and project lea"
+  },
+  {
+   "title": "Let's Encrypt moving to 64-day certificate lifetimes in 2027",
+   "url": "https://lwn.net/Articles/1099588/",
+   "date": "2026-10-09",
+   "summary": "<p><a href=\"https://letsencrypt.org/2026/10/07/64-day-certs.html\">Let's Encrypt</a>, the nonprofit that provides free TLS certificates for millions of sites, has <a href=\"https://letsencrypt.org/2026/10/07/64-day-certs.html\">announced</a> that it will be moving to certificates with 64-day lifetimes on February&#160;10, 2027:</p> <blockquote class=\"bq\"> <p>This means that any certificate we issue o"
+  },
+  {
+   "title": "Security updates for Friday",
+   "url": "https://lwn.net/Articles/1099587/",
+   "date": "2026-10-09",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (bind, bind9.16, freerdp, glibc, kbd, mod_auth_openidc, openssl, perl-DBI, python3.12, python3.14, and tftp), <b>Debian</b> (rails and twitter-bootstrap3), <b>Fedora</b> (barman, cockpit, hcloud, libmodsecurity, nginx-mod-modsecurity, perl-DBI, sudo, and xorg-x11-server-Xwayland), <b>Mageia</b> (libxfont2), <b>Oracle</b> (bind9.18, firefox, ker"
+  },
+  {
+   "title": "[$] An update on Rust's project goals",
+   "url": "https://lwn.net/Articles/1098617/",
+   "date": "2026-10-08",
+   "summary": "<p> Tomáš Šedovič is a program manager at the Rust Foundation. He co-leads the <a href=\"https://rust-lang.org/governance/teams/#team-goals\"> goals team</a>, which helps organize the Rust project's <a href=\"https://goals.rust-lang.org/2026/goals.html\"> overall goals</a>, including making sure that the people who have agreed to work on one have the support they need. At Kangrejos 2026, he provided a"
+  },
+  {
+   "title": "[$] The [vx]swap showdown",
+   "url": "https://lwn.net/Articles/1098399/",
+   "date": "2026-10-08",
+   "summary": "The kernel's swap layer has undergone <a href=\"https://lwn.net/Articles/1057102/\">some significant changes</a> over the course of the last year and a number of longstanding problems have been addressed. One problem that has <i>not</i> yet been solved in the mainline is the direct tie between slots in the swap cache and space in persistent swap files, which can cause highly inefficient resource use"
+  },
+  {
+   "title": "Security updates for Thursday",
+   "url": "https://lwn.net/Articles/1099388/",
+   "date": "2026-10-08",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (bind, firefox, freerdp, ghostscript, glibc, kernel, kernel-rt, perl-DBI, python3.12, rust-rpm-sequoia, rust-sequoia-sq, rust-sequoia-sqv, and vim), <b>Debian</b> (gst-plugins-base1.0, python3.11, and xz-utils), <b>Fedora</b> (7zip, chromium, curl, docker-buildx, kernel, Lmod, and sos), <b>Mageia</b> (tesseract), <b>Oracle</b> (dovecot, firefox"
+  },
+  {
+   "title": "[$] LWN.net Weekly Edition for October 8, 2026",
+   "url": "https://lwn.net/Articles/1097859/",
+   "date": "2026-10-08",
+   "summary": "Inside this week's LWN.net Weekly Edition: <p> <ul> <li> <a href=\"https://lwn.net/Articles/1097859/\">Front</a>: Kernel bugs; Gentoo's Chromium package; Rust smart pointers; Sashiko; Charon; LAVD scheduler; Python random-number modules. <li> <a href=\"https://lwn.net/Articles/1097861/\">Briefs</a>: OpenSSH 10.6; RustConf recordings; Rust 1.99.0; Picard 3.0; Zig 0.17; Quotes; ... <li> <a href=\"https:/"
+  },
+  {
+   "title": "[$] Analyzing Rust programs with Charon",
+   "url": "https://lwn.net/Articles/1097198/",
+   "date": "2026-10-07",
+   "summary": "<p> Nadrieril is a long-time Rust contributor, and the maintainer of the rustc pattern-matching infrastructure. During his involvement with Rust, he has noticed a problem with the usability of the language: it is difficult to automatically extract information from a Rust crate for use with other tooling. <a href=\"https://github.com/AeneasVerif/charon#charon\"> The Charon project</a> aims to fix tha"
+  }
+ ]
+}

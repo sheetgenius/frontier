@@ -1,0 +1,44 @@
+{
+ "source": "martin-fowler",
+ "feed": "https://martinfowler.com/feed.atom",
+ "swept_on": "2026-10-13",
+ "since": "2026-09-21",
+ "items": [
+  {
+   "title": "Fragments: October 4",
+   "url": "https://martinfowler.com/fragments/2026-10-04.html",
+   "date": "2026-10-05",
+   "summary": "<p>In response to my <a href=\"https://martinfowler.com/fragments/2026-09-29.html\">last fragments</a> (probably the bit about us worrying if LLMs have consciousness when we when we should be wondering why they don’t have a conscience) <a href=\"https://x.com/metalanguage_os/status/2104934457333707058\">“Metalanguage” replied</a>:</p> <blockquote> <p>we shipped the id and forgot the superego. classic "
+  },
+  {
+   "title": "Principles for effective slides",
+   "url": "https://martinfowler.com/articles/never-send-slides/slide-principles.html",
+   "date": "2026-09-30",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/never-send-slides/slide-principles.html'><img src = 'https://martinfowler.com/articles/never-send-slides/index/card.png' width = ''></img></a></div> <p>Not every presentation needs slides, but when they earn their place, they work as a visual channel that complements the speaker rather than replacing them. <b class = 'author'>Sum"
+  },
+  {
+   "title": "Bliki: Sensible Default",
+   "url": "https://martinfowler.com/bliki/SensibleDefault.html",
+   "date": "2026-09-29",
+   "summary": "<p>A Sensible Default is a practice that, absent some overriding context, should be used when carrying out a certain kind of task. In software development such sensible defaults might include things like “use version control”, “separate UI logic from domain logic”, “automate deployment pipelines”.</p> <p>The term “sensible default” is a deliberate contrast to “best practice”. Folks dislike calling"
+  },
+  {
+   "title": "Fragments: September 29",
+   "url": "https://martinfowler.com/fragments/2026-09-29.html",
+   "date": "2026-09-29",
+   "summary": "<p><a href=\"https://simonwillison.net/2026/Sep/24/harder/\">Simon Willison:</a></p> <blockquote> <p>The more time I spend working with coding agents, the more convinced I am that they make software engineering even harder</p> <p>We can do amazing things with them, but unlocking their full potential requires extraordinary discipline and knowledge</p> </blockquote> <p>This has been a constant impress"
+  },
+  {
+   "title": "Fragments: September 24",
+   "url": "https://martinfowler.com/fragments/2026-09-24.html",
+   "date": "2026-09-24",
+   "summary": "<p>Rob Bowley is “flipping tables in his head” with <a href=\"https://blog.robbowley.net/2026/09/18/the-ai-threat-is-real-it-just-isnt-the-one-in-the-headlines/\">anger at the current media coverage of the danger of AI killing us all</a></p> <blockquote> <p>The risk I’m worried about isn’t a future machine deciding to wipe us out. It’s today’s AI, being wired into everything, carelessly and fast.</p"
+  },
+  {
+   "title": "Healthy Feedback",
+   "url": "https://martinfowler.com/articles/healthy-peer-feedback.html",
+   "date": "2026-09-24",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/healthy-peer-feedback.html'><img src = 'https://martinfowler.com/articles/healthy-peer-feedback/card.png' width = '350px'></img></a></div> <p>Human collaboration, like most things, improves with feedback. But it's not obvious how to make feedback effective. <b class = 'author'>Anuja Karnik</b> and <b class = 'author'>Sumeet Gayat"
+  }
+ ]
+}

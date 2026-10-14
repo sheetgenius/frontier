@@ -8,180 +8,227 @@ homepage: https://docs.github.com/copilot/concepts/agents/about-copilot-cli
 docs: https://docs.github.com/copilot/concepts/agents/about-copilot-cli
 changelog: https://github.com/github/copilot-cli/blob/main/changelog.md
 repo: https://github.com/github/copilot-cli
-tagline: "The most pinnable of the closed terminal agents, whose 1.0.85 notes admit that setting COPILOT_ALLOW_ALL=0 used to turn auto-approval on."
+tagline: "Sandbox GA earns a trial of authenticated shell work after settings migration and host checks."
 compared_with:
   - claude-code
-  - antigravity
-  - cursor
-  - grok-build
 surface_class: closed_source_releases
 evidence_floor: official_changelog
 status: active_watch
 first_published: 2026-08-21
-last_updated: 2026-09-21
-last_full_review: 2026-09-23
+last_updated: 2026-10-13
+last_full_review: 2026-10-13
 claims:
   - id: allow-all-falsey
     finding_id: 2026-09-21-github-copilot-cli-1-0-85-copilot-allow-all-falsey-values-used-to-enable-auto-approval
-    last_verified: 2026-09-23
-    status: active
+    last_verified: 2026-10-13
+    status: retired
+    note: "Historical 1.0.85 repair still documented; the current install decision is 1.0.97."
   - id: plugin4shell-no-fix
     finding_id: 2026-09-21-github-copilot-cli-plugin4shell-no-changelog-line-names-a-fix-through-1-0-87
-    last_verified: 2026-09-23
+    last_verified: 2026-10-13
     status: active
+    note: "Rechecked through 1.0.97 as no named checkout-verification repair found, without asserting current exploitability."
   - id: sandbox-localhost-proxy-egress
     finding_id: 2026-09-21-github-copilot-cli-1-0-83-sandbox-cuts-localhost-and-pins-linux-egress-to-the-proxy-breaking-default
-    last_verified: 2026-09-23
-    status: active
+    last_verified: 2026-10-13
+    status: retired
+    note: "Replaced by GA defaults and platform network documentation; enabling local network alone does not restore macOS self-connect with credential proxying."
   - id: sandbox-file-tools-read-dev-config
     finding_id: 2026-09-21-github-copilot-cli-1-0-83-sandbox-grants-file-tools-read-access-to-token-bearing-dev-config-by-default
-    last_verified: 2026-09-23
+    last_verified: 2026-10-13
     status: active
   - id: managed-hooks-bypass
     finding_id: 2026-09-21-github-copilot-cli-1-0-85-allowmanagedhooksonly-was-bypassable-by-extension-callbacks
-    last_verified: 2026-09-23
-    status: active
+    last_verified: 2026-10-13
+    status: retired
+    note: "Historical extension-registered callback repair still documented; arbitrary extension code is a separate surface."
   - id: session-sandbox-bypass
     finding_id: 2026-09-21-github-copilot-cli-1-0-85-session-scoped-sandbox-bypass-for-users-when-policy-allows
-    last_verified: 2026-09-23
-    status: active
+    last_verified: 2026-10-13
+    status: retired
+    note: "Corrected scope: approval can apply to one attempt, with a separate explicit session-wide opt-out when policy permits."
   - id: fail-closed-managed-settings-acp-revoke
     finding_id: 2026-09-21-github-copilot-cli-1-0-81-fail-closed-managed-settings-acp-allow-all-revoke-fixed-per-entry-managed-plugins
-    last_verified: 2026-09-23
+    last_verified: 2026-10-13
     status: active
+    note: "Retained only for the documented forced-refresh restriction, rechecked against the corrected 2026-10-13 docs. ACP entry-point coverage and sandbox minimums have separate current claims; runtime enforcement is untested."
   - id: parser-rewrite-breaking
     finding_id: 2026-09-21-github-copilot-cli-1-0-85-cli-parser-rewrite-and-copilot-plugins-flag-removals-breaking
-    last_verified: 2026-09-23
-    status: active
+    last_verified: 2026-10-13
+    status: retired
+    note: "Historical parser costs still documented; current upgrade guidance prioritizes settings migration and routing fallback."
   - id: login-pinning-mcp-race-marketplaces
     finding_id: 2026-09-21-github-copilot-cli-1-0-83-and-1-0-87-enterprise-login-pinning-mcp-policy-race-closed-marketplace-lockdown
-    last_verified: 2026-09-23
-    status: active
+    last_verified: 2026-10-13
+    status: retired
+    note: "Historical repairs remain documented with first-party MCP exemptions; current prose prioritizes entry-point coverage and runtime pinning."
   - id: worktrees-fleet-custom-agents
     finding_id: 2026-09-21-github-copilot-cli-capability-worktrees-out-of-experimental-fleet-custom-agents-read-repo-instructions
-    last_verified: 2026-09-23
-    status: active
+    last_verified: 2026-10-13
+    status: retired
+    note: "Replaced by the current rule-file ingestion, directory-grant and fleet-channel decisions."
   - id: content-exclusion-docs
     finding_id: 2026-09-21-github-copilot-cli-content-exclusion-now-documented-as-applying-to-the-cli-docs-only
-    last_verified: 2026-09-23
+    last_verified: 2026-10-13
     status: active
   - id: repo-is-not-agent-source
-    last_verified: 2026-09-23
-    status: open_question
-    note: "github/copilot-cli is license, docs, changelog and installer. The agent is not in that tree, so no enforcement line in the notes can be read in code."
+    finding_id: 2026-10-13-github-copilot-cli-ten-stable-releases-after-the-baseline-pinning-the-package-does-not-disable-cli-or-plugin
+    last_verified: 2026-10-13
+    status: active
+    note: "The proprietary agent remains outside the public release tree; binary enforcement has not been tested."
   - id: latest-lags-prerelease
-    last_verified: 2026-09-23
+    finding_id: 2026-10-13-github-copilot-cli-ten-stable-releases-after-the-baseline-pinning-the-package-does-not-disable-cli-or-plugin
+    last_verified: 2026-10-13
     status: retired
-    note: "Settled: the latest/prerelease split is structural. At every stable from 1.0.81 to 1.0.87 a newer prerelease already existed."
+    note: "Stable and preview publication are distinct. Exact historical npm dist-tag transitions were not verified."
+  - id: stable-runtime-and-update-policy
+    finding_id: 2026-10-13-github-copilot-cli-ten-stable-releases-after-the-baseline-pinning-the-package-does-not-disable-cli-or-plugin
+    last_verified: 2026-10-13
+    status: active
+  - id: managed-policy-entry-points
+    finding_id: 2026-10-13-github-copilot-cli-1-0-88-managed-settings-now-reach-acp-ahp-host-and-server-sessions-which-previously-ran
+    last_verified: 2026-10-13
+    status: active
+  - id: local-sandbox-ga-and-bypass-policy
+    finding_id: 2026-10-13-github-copilot-cli-1-0-93-opens-local-sandboxing-to-every-user-it-stays-off-by-default-and-a-server-managed
+    last_verified: 2026-10-13
+    status: active
+  - id: cloud-sandbox-preview-billing
+    finding_id: 2026-10-13-github-copilot-cli-1-0-93-opens-local-sandboxing-to-every-user-it-stays-off-by-default-and-a-server-managed
+    last_verified: 2026-10-13
+    status: retired
+    note: "Documented preview and billing distinction retained in the supporting record; omitted from this local-shell posture."
+  - id: platform-network-docs
+    finding_id: 2026-10-13-github-copilot-cli-ga-docs-rewrite-the-sandbox-network-rules-local-network-off-macos-and-linux-egress-forced
+    last_verified: 2026-10-13
+    status: active
+  - id: credential-withholding-and-masking
+    finding_id: 2026-10-13-github-copilot-cli-sandboxed-commands-now-get-placeholder-credentials-github-token-withheld-1-0-92-and-a-loca
+    last_verified: 2026-10-13
+    status: active
+  - id: managed-domain-boundary
+    finding_id: 2026-10-13-github-copilot-cli-1-0-93-adds-permissions-limitto-a-managed-domain-boundary-that-allow-all-cannot-widen
+    last_verified: 2026-10-13
+    status: active
+  - id: assisted-permissions-controls-and-attribution
+    finding_id: 2026-10-13-github-copilot-cli-approvals-got-finer-and-assisted-permissions-the-llm-approval-judge-got-an-admin-off-switc
+    last_verified: 2026-10-13
+    status: active
+  - id: settings-location-and-model-default
+    finding_id: 2026-10-13-github-copilot-cli-1-0-93-ignores-user-settings-left-in-copilot-config-json-breaking-plus-retired-models-and
+    last_verified: 2026-10-13
+    status: active
+    note: "The current body uses the settings-location break; the docs-only default-model change is left in the supporting record."
+  - id: repository-inputs-and-directory-grants
+    finding_id: 2026-10-13-github-copilot-cli-repository-controlled-inputs-widened-claude-rules-1-0-89-hot-applied-mcp-config-1-0-93-add
+    last_verified: 2026-10-13
+    status: active
+  - id: computer-use-and-workflow-permissions
+    finding_id: 2026-10-13-github-copilot-cli-docs-describe-preview-computer-use-and-dynamic-workflows-with-different-permission-surface
+    last_verified: 2026-10-13
+    status: active
+  - id: stable-resume-and-hook-repairs
+    finding_id: 2026-10-13-github-copilot-cli-stable-1-0-97-repairs-resumed-plugin-hooks-and-canceled-writes-and-denies-unattended-hook
+    last_verified: 2026-10-13
+    status: active
+  - id: json-output-secret-redaction
+    finding_id: 2026-10-13-github-copilot-cli-stable-1-0-97-repairs-json-secret-redaction-and-mcp-selection-inline-images-now-default
+    last_verified: 2026-10-13
+    status: active
+  - id: telemetry-capture-policy
+    finding_id: 2026-10-13-github-copilot-cli-docs-separate-telemetry-identity-from-five-content-capture-classes-all-off-by-default
+    last_verified: 2026-10-13
+    status: retired
+    note: "Documented but omitted from this operating posture to keep the containment and upgrade decisions short."
+  - id: managed-sandbox-client-minimum
+    finding_id: 2026-10-13-github-copilot-cli-managed-sandbox-docs-require-cli-1-0-93-and-block-older-client-connections
+    last_verified: 2026-10-13
+    status: active
+  - id: fast-routing-fallback
+    finding_id: 2026-10-13-github-copilot-cli-1-0-89-removes-fast-routing-saved-preferences-fall-back-to-balance
+    last_verified: 2026-10-13
+    status: active
+  - id: custom-agent-precedence
+    finding_id: 2026-10-13-github-copilot-cli-custom-agent-docs-put-personal-definitions-ahead-of-repository-and-organization-definition
+    last_verified: 2026-10-13
+    status: retired
+    note: "Documentary correction retained in the supporting record; omitted from the public body to avoid a configuration catalog."
+  - id: workflow-billing-eligibility
+    finding_id: 2026-10-13-github-copilot-cli-dynamic-workflow-preview-excludes-annual-pro-plans-still-on-legacy-request-billing
+    last_verified: 2026-10-13
+    status: active
+  - id: fleet-channel-limits
+    finding_id: 2026-10-13-github-copilot-cli-ten-stable-releases-after-the-baseline-pinning-the-package-does-not-disable-cli-or-plugin
+    last_verified: 2026-10-13
+    status: active
 stance:
-  use_for: "A GitHub-native terminal agent with a dated, pinnable release train. Pin a GitHub Release or an npm version at 1.0.85 or later. Enterprise admins get managed settings that fail closed and an explicit sandbox-bypass policy, as the notes describe them."
-  avoid_for: "Anyone who needs to read the agent; the repo is not it. Installing plugins from sources you do not control while no fix for Plugin4Shell is named. Environments that set COPILOT_ALLOW_ALL=0 on 1.0.84 or earlier."
-  watch_next: "A release note or advisory naming a Plugin4Shell fix; a local probe of the 1.0.83 sandbox network rules and the 1.0.85 managed-hooks fix; whether --fleet gets a changelog line and a version."
+  use_for: '<a href="#try-authenticated-git-before-broad-delegation">Run a bounded authenticated Git trial before expanding delegation.</a>'
+  avoid_for: 'Avoid relying on Windows proxy host rules as your sole egress boundary.'
+  watch_next: '<a href="#what-is-unresolved">Target-host boundary test results before wider delegation.</a>'
 ---
 
 # GitHub Copilot CLI
 
-This is the `copilot` binary, npm `@github/copilot`. It is not VS Code
-Copilot, Copilot Chat, the cloud coding agent, or the older `gh copilot`
-extension. Among the large closed coding agents it is the easiest to pin:
-every stable is a GitHub Release with a matching npm version and a dated
-changelog section. The code is not public.
-[github/copilot-cli](https://github.com/github/copilot-cli) holds a
-proprietary license, a README, the changelog and an installer. So the
-release notes tell you what GitHub says the sandbox does, and only a local
-run tells you whether it does.
+## Where it stands, 2026-10-13
 
-The short read for 2026-09-21: be on 1.0.85 or later, because earlier
-builds turned auto-approval on when told to turn it off and let extension
-hooks slip past a managed-only lockdown. Then re-test anything that runs
-inside the sandbox, because 1.0.83 changed what it can reach.
+On 7 October 2026, [1.0.93 made command sandboxing available to every user](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L42), but [left it off by default](https://github.com/github/docs/blob/602021b0ba16/content/copilot/concepts/security-governance-and-network-settings/about-cloud-and-local-sandboxes.md?plain=1#L42). The same release [stopped reading user settings from `~/.copilot/config.json`](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L45). An upgrade can therefore leave old containment settings behind.
 
-## Where it stands, 2026-09-21
+Stable [1.0.97 was released on 13 October 2026](https://github.com/github/copilot-cli/releases/tag/v1.0.97) and is available as [`npm install -g @github/copilot@1.0.97`](https://registry.npmjs.org/@github/copilot/1.0.97). The [runtime updater defaults to on](https://github.com/github/docs/blob/602021b0ba16/content/copilot/reference/copilot-cli-reference/cli-config-dir-reference.md?plain=1#L452-L453); set [`COPILOT_AUTO_UPDATE=false` for CI pins](https://github.com/github/docs/blob/602021b0ba16/content/copilot/reference/copilot-cli-reference/cli-programmatic-reference.md?plain=1#L144) and check `copilot --version`. At the 2026-10-13 UTC cutoff, the newest published preview was [1.0.98-0](https://github.com/github/copilot-cli/releases/tag/v1.0.98-0).
 
-**Channel.** Six stables in the window, 1.0.81 (27 August) through
-[1.0.87](https://github.com/github/copilot-cli/releases/tag/v1.0.87)
-(21 September). At every stable, a newer build was already out on npm's
-`prerelease` tag; that split is how the project ships, not a lag. One oddity: npm carries a
-plain `1.0.84` (15 September) with no tag, no release and no changelog
-section. 1.0.85 followed under four hours later. If you installed in that
-gap, you got an unnoted build. Releases carry no checksum file.
+**Check the 1.0.97 repairs before unattended work.** [Disabled plugin hooks no longer return on resume, and canceled writes are not replayed when suspended sessions resume](https://github.com/github/copilot-cli/blob/76c3172eb38f5e7537b90b9800a7023d81156438/changelog.md?plain=1#L17-L22). Inspect the hook list and interrupted calls in an existing session. [The release also repairs `--output-format json` secret redaction](https://github.com/github/copilot-cli/blob/76c3172eb38f5e7537b90b9800a7023d81156438/changelog.md?plain=1#L16); inspect saved output because the note does not bound earlier exposure. [Autopilot denies a `preToolUse` hook's `ask` decision](https://github.com/github/copilot-cli/blob/76c3172eb38f5e7537b90b9800a7023d81156438/changelog.md?plain=1#L8), so review hooks that expect a human answer.
 
-**Off meant on.** Before 1.0.85, `COPILOT_ALLOW_ALL=0` or another falsey
-value
-[enabled automatic tool approval](https://github.com/github/copilot-cli/blob/c13b3dcae4f1/changelog.md?plain=1#L99).
-A CI job that set it to 0 to be safe was running with every tool
-auto-approved. No advisory was published. Upgrade, then remove the variable
-rather than setting it false.
+For preview capabilities and unversioned entry points, see [workflow permissions](#shared-configuration-can-widen-authority) and [the open questions](#what-is-unresolved).
 
-**Managed controls got teeth, late.** Also in 1.0.85,
-[`allowManagedHooksOnly`](https://github.com/github/copilot-cli/blob/c13b3dcae4f1/changelog.md?plain=1#L127)
-now blocks extension-registered tool hooks, which "previously bypassed the
-managed-only lockdown." Managed Edit and Write rules now catch shell
-redirections and in-place `sed`, so expect new prompts in scripts that
-write that way. Since
-[1.0.81](https://github.com/github/copilot-cli/releases/tag/v1.0.81),
-`forceRemoteSettingsRefresh` fails closed when GitHub is unreachable, and
-revoking allow-all from an ACP client actually reaches the permission
-engine; before, it could report success and change nothing. A session
-launched with `--allow-all-*` keeps that baseline whatever the ACP client
-says. Since 1.0.83, denied MCP servers no longer start before the
-enterprise policy loads, and `forceLoginOrgs` pins sign-in to approved orgs.
+**Migrate settings before enabling the sandbox.** Move the affected keys to [`~/.copilot/settings.json`](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L45), starting with sandbox controls and URL rules.
 
-**The sandbox moved in both directions.** In
-[1.0.83](https://github.com/github/copilot-cli/blob/c13b3dcae4f1/changelog.md?plain=1#L181-L185),
-sandboxed commands on macOS and Linux lost access to local services,
-including a server the command itself starts on 127.0.0.1, and Linux egress
-is pinned to the configured proxy. Test suites that bind a port will fail on
-macOS until you turn on "Allow local network" in `/sandbox`; Linux hosts
-need slirp4netns, nsenter and the iptables tools on PATH. The same release
-[let file tools read](https://github.com/github/copilot-cli/blob/c13b3dcae4f1/changelog.md?plain=1#L168)
-the developer-tool paths shell commands already could, "including
-token-bearing registry config such as ~/.npmrc." Set
-`sandbox.allowDevToolAccess: false` if prompt-injected token theft is in
-your threat model, and check that managed policy uses that key name: the
-older `allowDevToolCaches` is silently ignored.
+Before expanding the trial, complete the [host, credential and network checks](#try-authenticated-git-before-broad-delegation), then review [shared configuration and unattended work](#shared-configuration-can-widen-authority).
 
-**Who can turn the sandbox off.** From 1.0.85, `/sandbox disable` turns it
-off for the session when the organisation's `sandbox.allowBypass` permits,
-and one approved bypass prompt in a managed session disables it for the
-rest of the session, not for one command. Admins should set `allowBypass`
-deliberately.
+Use [`/sandbox enable`, or `copilot --sandbox -p 'TASK'` per CI job](https://github.com/github/docs/blob/d67ced7268844cdf7d856f4eb0b9b2018406da29/content/copilot/how-tos/cloud-and-local-sandboxes/using-local-sandboxing.md), then inspect [`/sandbox status` and `/sandbox policy`](https://github.com/github/docs/blob/d67ced7268844cdf7d856f4eb0b9b2018406da29/content/copilot/how-tos/cloud-and-local-sandboxes/using-local-sandboxing.md?plain=1#L131-L140).
 
-**Plugin4Shell has no named fix.**
-[AIR Security reported](https://www.air.security/blog-posts/plugin4shell)
-on 17 September that Copilot's plugin install checks out a pinned commit
-SHA without verifying the result, so a branch named after that SHA can
-serve different code. Through 1.0.87 no changelog line names a fix. Claude
-Code fixed the same bug without a changelog line, so silence proves
-nothing either way. Until GitHub says otherwise, a pinned SHA is a request,
-not a verification. Install plugins from repositories you control and
-check the installed tree's HEAD.
+<h2 id="try-authenticated-git-before-broad-delegation">Try authenticated Git before broad delegation</h2>
 
-**Upgrade costs.** 1.0.85 rewrote argument parsing.
-`copilot plugins install --skill` became `copilot skill add`, several
-`copilot plugins` flags are gone, and `plugins list --json` now emits a flat
-array. Grep provisioning scripts first. Anyone who shared debug logs from
-before 1.0.87 should assume they may contain secrets from the launching
-shell.
+[1.0.92 withholds ambient `GITHUB_TOKEN` from sandboxed shells unless configured](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L60). GitHub documents [placeholder Git/gh credentials replaced by a proxy at restricted destinations](https://github.com/github/docs/blob/602021b0ba16/content/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings.md?plain=1#L151-L156), and [`sandbox.credentials.envVars.<NAME>.injectHosts` for other masked variables](https://github.com/github/docs/blob/602021b0ba16/content/copilot/reference/copilot-cli-reference/cli-config-dir-reference.md?plain=1#L502). Keep destination lists narrow. With sandboxing enabled, try a read-only authenticated Git operation on an authorized repository. Record completion and exceptions before expanding the workload.
 
-**What you gain.** Worktrees are out of experimental, custom agents can opt
-into AGENTS.md and CLAUDE.md, and GitHub's docs now say the CLI honours
-content exclusion for Business and Enterprise. The docs also describe
-`--fleet` for parallel sub-tasks, with no version named; check
-`copilot --help` before building on it.
+That is the bargain to test: less credential checking command by command, more care over destinations and exceptions. Count both before expanding the workload.
 
-## What is unresolved
+**Require sandbox policy on capable hosts.** Check [Windows 11 prerequisites: 25H2 with KB5124010 or later, or 26H1 with KB5124006 or later, plus BaseContainer support; on Linux, `bwrap` 0.5.0+ and `slirp4netns` on PATH](https://github.com/github/docs/blob/602021b0ba16/data/reusables/cli/local-sandboxing-prereqs.md). For mandatory containment, apply [`sandbox.enabled: true`, `sandbox.failIfUnavailable: true` and `sandbox.allowBypass: false`](https://github.com/github/docs/blob/602021b0ba16/content/copilot/reference/enterprise-administrators/enterprise-managed-settings.md?plain=1#L351-L363) through device policy.
 
-- Whether any of the 1.0.83 and 1.0.85 sandbox and hook changes bind as
-  described. Nothing here has been probed locally.
-- Whether content exclusion covers files the agent reads through the shell.
-  The docs do not say.
-- When, or whether, a Plugin4Shell fix ships under a name.
+The docs say [server-managed enablement alone can be declined on unsupported hosts](https://github.com/github/docs/blob/602021b0ba16/content/copilot/concepts/security-governance-and-network-settings/about-cloud-and-local-sandboxes.md?plain=1#L116-L118), and [managed sandbox settings block clients below 1.0.93](https://github.com/github/docs/blob/d67ced7268844cdf7d856f4eb0b9b2018406da29/content/copilot/reference/enterprise-administrators/enterprise-managed-settings.md?plain=1#L463-L471). If bypass is permitted, distinguish [one-attempt approval from a session-wide opt-out](https://github.com/github/docs/blob/602021b0ba16/content/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings.md?plain=1#L136-L147).
+
+**Restrict token-file access before widening grants.** Masking [does not hide credential files or unmasked variables](https://github.com/github/docs/blob/d67ced7268844cdf7d856f4eb0b9b2018406da29/content/copilot/how-tos/cloud-and-local-sandboxes/using-local-sandboxing.md?plain=1#L182). Disable [developer-tool access, which is on by default](https://github.com/github/docs/blob/602021b0ba16/content/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings.md?plain=1#L215) with [`sandbox.allowDevToolAccess: false` to remove grants to token-bearing files such as `~/.npmrc`](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L353). Grant only the paths you need. Built-in file tools [apply policy in software on a best-effort basis](https://github.com/github/docs/blob/602021b0ba16/content/copilot/concepts/security-governance-and-network-settings/about-cloud-and-local-sandboxes.md?plain=1#L64). A [full bypass also skips masking and the proxy](https://github.com/github/docs/blob/d67ced7268844cdf7d856f4eb0b9b2018406da29/content/copilot/how-tos/cloud-and-local-sandboxes/using-local-sandboxing.md?plain=1#L103).
+
+**Test egress and localhost on each target OS.** The GA docs describe [proxy-enforced egress on macOS/Linux, while Windows programs can ignore the proxy and bypass host rules](https://github.com/github/docs/blob/602021b0ba16/content/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings.md?plain=1#L291). Keep an OS firewall where Windows egress restrictions must hold.
+
+Windows [masking requires Allow local network, which also permits private-network access](https://github.com/github/docs/blob/d67ced7268844cdf7d856f4eb0b9b2018406da29/content/copilot/how-tos/cloud-and-local-sandboxes/using-local-sandboxing.md?plain=1#L39). On macOS, [default Git/gh masking activates a proxy that blocks a command connecting directly to its own listener even with local network enabled](https://github.com/github/docs/blob/602021b0ba16/content/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings.md?plain=1#L264-L266). Test a blocked destination and localhost suites before requiring sandboxing.
+
+**Pair domain permissions with network containment.** [1.0.93 adds `permissions.limitTo`](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L33). The docs say [saved approvals and allow-all cannot widen it, but it checks domain requests rather than restricting shell, read or write operations themselves](https://github.com/github/docs/blob/602021b0ba16/content/copilot/reference/copilot-cli-reference/cli-config-dir-reference.md?plain=1#L712-L726).
+
+**Check denials through every integration you run.** [1.0.88 repairs managed MCP, permission and plugin policy coverage for integration sessions launched through ACP, Agent Host or the SDK server](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L172). Test the same denied operation through each entry point.
+
+<h2 id="shared-configuration-can-widen-authority">Shared configuration can widen authority</h2>
+
+Copilot [reads Claude Code's `.claude/rules` from 1.0.89](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L123), and [MCP configuration changes apply between turns from 1.0.93](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L43). [One repository's rules can steer both agents](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1084). Review those files. Treat [`/add-dir` as a session read/write sandbox grant subject to managed policy](https://github.com/github/docs/blob/d67ced7268844cdf7d856f4eb0b9b2018406da29/content/copilot/how-tos/cloud-and-local-sandboxes/using-local-sandboxing.md?plain=1#L142).
+
+**Pin a supported model for comparisons.** [1.0.89 sends saved, exported or resumed Fast preferences to Balance](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L139). Choose a model explicitly before comparing behavior or cost across the upgrade.
+
+**Sample the approval judge's decisions.** [Assisted Permissions lets a model judge requests for auto-approval](https://github.com/github/docs/blob/602021b0ba16/content/copilot/reference/copilot-cli-reference/cli-command-reference.md?plain=1#L769-L775). Inspect the [1.0.96 timeline's attribution to you, the judge, policy or unattended fallback](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L11). Review disputed decisions; [managed policy can require Manual Approval from 1.0.94](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L29). Use the attribution to decide which exceptions still need your attention.
+
+**Review workflow code before pre-granting tools.** [Dynamic workflows remain public preview](https://github.com/github/docs/blob/602021b0ba16/content/copilot/concepts/agents/dynamic-workflows.md?plain=1#L14); [existing annual Pro/Pro+ subscribers still on legacy premium request billing are excluded](https://github.com/github/docs/commit/1230337ad5f6292d236569791a6fe5d79777c76f). [`copilot workflow run` shows no approval prompts, subagents inherit session grants, and extension code can run outside those prompts](https://github.com/github/docs/blob/602021b0ba16/content/copilot/concepts/agents/dynamic-workflows.md?plain=1#L104-L114). Approve the code before granting tools narrowly.
+
+<h2 id="what-is-unresolved">What is unresolved</h2>
+
+The [public repository contains notes and an installer, not the agent implementation](https://github.com/github/copilot-cli/tree/v1.0.97).
+
+- **Get boundary test results before broadening delegation.** Test the documented masking and file-tool rules in 1.0.97. Controlled allowed and denied credential-destination requests and token-file reads would settle those cases. Use the platform network checks and integration denial checks for those paths.
+- **Test failed refresh before requiring fresh policy.** GitHub [documents restrictions when a required policy refresh fails](https://github.com/github/docs/blob/d67ced7268844cdf7d856f4eb0b9b2018406da29/content/copilot/reference/enterprise-administrators/enterprise-managed-settings.md?plain=1#L241-L249). Check effective permission decisions under failure, separately at unmanaged startup, known-managed startup, cached-policy startup and forced fresh fetch.
+- **Specify the judge's exceptions before standardizing it.** The [1.0.94 policy note does not name the managed disable key](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L29); the [1.0.96 attribution note does not define unattended fallback](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L11). Docs naming the key and defining fallback decisions would settle deployment and exception handling.
+- **Test shell reads and constructed destinations before relying on exclusions.** [For Business and Enterprise users, content exclusion promises context-use exclusion](https://github.com/github/docs/blob/602021b0ba16/content/copilot/concepts/copilot-surfaces/copilot-cli.md?plain=1#L214-L216), without establishing a shell-read boundary. An excluded-file shell read and a runtime-constructed destination against `limitTo` would settle these two untested paths.
+- **Keep computer use a separate containment trial.** It is [public preview and off by default; actions follow tool permissions](https://github.com/github/docs/blob/602021b0ba16/content/copilot/concepts/agents/computer-use.md?plain=1#L13-L55), and [managed `features.computerUse: false` prevents users from enabling it](https://github.com/github/docs/blob/602021b0ba16/content/copilot/reference/enterprise-administrators/enterprise-managed-settings.md?plain=1#L132-L134). Test desktop actions against command sandbox restrictions before expanding access.
+- **Check plugin checkout results before loading code.** [AIR Security's 17 September 2026 Plugin4Shell report describes substitution through 40-hex default branches on hosts that permit them, and says GitHub rejects those names](https://www.air.security/blog-posts/plugin4shell). We found no named checkout-verification repair in [notes through 1.0.97](https://github.com/github/copilot-cli/blob/76c3172eb38f5e7537b90b9800a7023d81156438/changelog.md). Use controlled repositories and compare installed plugin files with the corresponding files at the expected pinned commit; [installed plugins omit the source repository's `.git` directory](https://github.com/github/copilot-cli/blob/76c3172eb38f5e7537b90b9800a7023d81156438/changelog.md?plain=1#L1412). A named, released repair or controlled install result would settle the mechanism for its stated version and host. Silence proves neither a patch nor current exploitability.
+- **Require release versions before reproducible multi-agent rollout.** [The multi-agent `--fleet` mode](https://github.com/github/docs/blob/602021b0ba16/content/copilot/reference/copilot-cli-reference/cli-programmatic-reference.md?plain=1#L46) and [workflow commands](https://github.com/github/docs/blob/602021b0ba16/content/copilot/reference/copilot-cli-reference/cli-programmatic-reference.md?plain=1#L54-L70) are documented, but their introduction versions are unverified. This profile does not establish whether those entry points are available in 1.0.97. The programmatic reference [excludes `--fleet` in ACP server mode](https://github.com/github/docs/blob/602021b0ba16/content/copilot/reference/copilot-cli-reference/cli-programmatic-reference.md?plain=1#L46). Release notes naming those entry points would settle which deployment can reproduce them.
 
 ## Profile hygiene
 
-Dated, not evergreen. Every claim above resolves to a finding in
-[the run that produced it](/runs/2026-09-21-weekly-digest-2026-08-20_2026-09-21-frontier-v0/),
-and this page says what was true on the date at the top. See
-[METHOD.md](https://github.com/sheetgenius/frontier/blob/main/METHOD.md) for
-the evidence contract.
+Dated, not evergreen. Scope: through 2026-10-13.
+See [METHOD.md](https://github.com/sheetgenius/frontier/blob/3d3ecfdbcf2e690470a2d00c218e52b50566e402/METHOD.md)
+for how this profile uses sources.

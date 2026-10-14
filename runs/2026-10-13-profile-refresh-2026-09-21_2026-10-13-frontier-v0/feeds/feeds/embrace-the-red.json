@@ -1,0 +1,14 @@
+{
+ "source": "embrace-the-red",
+ "feed": "https://embracethered.com/blog/index.xml",
+ "swept_on": "2026-10-13",
+ "since": "2026-09-21",
+ "items": [
+  {
+   "title": "From SELECT to SYSADMIN with SQL Copilot (CVE-2026-65669)",
+   "url": "https://embracethered.com/blog/posts/2026/from-select-to-sysadmin-sql-copilot-bluehat-asia/",
+   "date": "2026-09-30",
+   "summary": "<p>Two weeks back I presented at BlueHat Asia 2026 about my research on Microsoft&rsquo;s Copilot in SSMS, the SQL Server Management Studio.</p>&#xA;<p>This post is a write up about the talk, which covered <a href=&#34;https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-65669&#34;>CVE-2026-65669</a>, a SQL Server Elevation of Privilege Vulnerability rated critical by Microsoft.</p>&#xA;"
+  }
+ ]
+}

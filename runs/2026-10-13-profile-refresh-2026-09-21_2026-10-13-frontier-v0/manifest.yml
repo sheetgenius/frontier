@@ -1,0 +1,80 @@
+schema_version: bitter.frontier_run_manifest.v0
+run_id: 2026-10-13-profile-refresh-2026-09-21_2026-10-13-frontier-v0
+id: 2026-10-13-profile-refresh-2026-09-21_2026-10-13-frontier-v0
+title: Watchlist refresh to 2026-10-13
+mode: profile_refresh
+status: complete
+window:
+  start: 2026-09-21
+  end: 2026-10-13
+parent_window:
+  start: 2026-08-20
+  end: 2026-09-21
+generated_at: 2026-10-14
+sources:
+  - codex
+  - claude-code
+  - gemini-cli
+  - antigravity
+  - grok-build
+  - cursor
+  - github-copilot-cli
+  - hermes-agent
+  - pi-coding-agent
+  - openclaw
+  - paperclip
+  - agent-zero
+  - openhands
+  - heypi
+  - deepseek-harness
+  - flue
+  - eve
+  - agent-flywheel
+  - omnigent
+  - omp
+  - temporal-agent-harness
+  - unreal-agent
+finding_count: 494
+models:
+  coordinator: claude-opus-5-5
+  researchers: claude-opus-5-5 subagents at max effort, one per source, read-only
+  verifiers: claude-opus-5-5 (3 sources) and gpt-6-astra via Codex CLI 0.162.1 (19 sources)
+  writers_and_editors: gpt-6.1-sol via Codex CLI 0.162.1
+  fact_check_and_receipt_judge: gpt-6-astra via Codex CLI 0.162.1
+harness_shape: >
+  One coordinator with editorial authority. Research: 22 read-only researchers,
+  one per watched source, each followed by an adversarial verifier. Write-ups:
+  one author per source applies the verifier's corrections, generates findings
+  with findings-spec/fromharvest.mjs, and writes a first profile draft. Synthesis:
+  six independent lenses (consistency, three-question lens, thread check, reader
+  utility, posture and fairness, comparison map) merged into SYNTHESIS.md and one
+  directive file per profile. Drafting, per profile and serial: final draft,
+  structural edit, fact-check against harvest and crosscheck, language pass,
+  then a three-judge panel (cold read, receipts, house bar) with up to two fix
+  rounds; a mechanical gate after every writing stage; a whole-set review last.
+  Research ran on Claude until the coordinator hit its usage limit; everything
+  after the first three crosschecks ran on Codex CLI at the operator's direction.
+outputs:
+  profiles: 22
+  findings: 494
+  synthesis:
+    - synthesis/SYNTHESIS.md
+    - synthesis/directives/
+  review:
+    - synthesis/set-review.md
+    - audit.md
+    - qa.md
+quality_gates:
+  - channel resolved by git ancestry on every inspectable source; registry and dist-tag reads for packaged channels
+  - every harvest adversarially re-checked; the write-up applies the crosscheck and the owning harvest decides disputes
+  - every profile draft passes a mechanical gate (finding ids resolve, one dated posture, ASCII, pinned GitHub receipts, no backstage vocabulary)
+  - three-judge panel per profile with fix rounds; whole-set review for cross-profile contradictions
+  - no social quotation (X lane down)
+lanes:
+  primary: "complete -- 22 harvests, 22 crosschecks, 494 findings"
+  writing: "complete -- 15/15 feeds live, 161 items; used as leads by researchers"
+  x_social: "down -- grok CLI not signed in; no capture pass, profiles quote nobody"
+notes: >
+  Refresh of the whole watchlist with no digest and no signals. Each profile's
+  2026-09-21 posture (Unreal Agent: 2026-09-23) is replaced by a 2026-10-13
+  posture; prior claims were re-checked and retired, kept or narrowed.

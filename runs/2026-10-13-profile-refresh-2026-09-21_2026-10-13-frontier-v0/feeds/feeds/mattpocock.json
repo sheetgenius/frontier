@@ -1,0 +1,158 @@
+{
+ "source": "mattpocock",
+ "feed": "https://www.aihero.dev/rss.xml",
+ "swept_on": "2026-10-13",
+ "since": "2026-09-21",
+ "items": [
+  {
+   "title": "v1.3: /implement-spec, /pr, /retro, and GLOSSARY.md",
+   "url": "https://www.aihero.dev/skills-changelog-v13-implement-spec-pr-retro-and-glossary-md",
+   "date": "2026-10-05",
+   "summary": "Skills v1.3: /implement-spec builds a whole spec, /pr writes reviewable PR bodies, /retro improves your agent's environment, and CONTEXT.md becomes GLOSSARY.md."
+  },
+  {
+   "title": "The /implement-spec Skill",
+   "url": "https://www.aihero.dev/skills-implement-spec",
+   "date": "2026-10-05",
+   "summary": "Build a whole spec at once, with parallel subagents."
+  },
+  {
+   "title": "The /pr Skill",
+   "url": "https://www.aihero.dev/skills-pr",
+   "date": "2026-10-05",
+   "summary": "The shape a pull request body should take."
+  },
+  {
+   "title": "The /retro Skill",
+   "url": "https://www.aihero.dev/skills-retro",
+   "date": "2026-10-05",
+   "summary": "Look back on a session and suggest repo improvements."
+  },
+  {
+   "title": "An Introduction To Plan Mode",
+   "url": "https://www.aihero.dev/plan-mode-introduction",
+   "date": "2026-09-30",
+   "summary": "Learn how plan mode transforms AI coding agents. Iterate on requirements before writing code, build context, and get better results from tools like Claude Code."
+  },
+  {
+   "title": "AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary",
+   "date": "2026-09-24",
+   "summary": "The vocabulary of AI coding, translated into plain English for engineers."
+  },
+  {
+   "title": "AI | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/ai",
+   "date": "2026-09-24",
+   "summary": "A moving label, not a technology. Points at whatever computers can newly, impressively do — right now, large language models."
+  },
+  {
+   "title": "Model | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/model",
+   "date": "2026-09-24",
+   "summary": "The parameters. Stateless — does next-token prediction and nothing else. Cannot do anything agentic on its own."
+  },
+  {
+   "title": "Parameters | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/parameters",
+   "date": "2026-09-24",
+   "summary": "The numbers inside a model — often billions — tuned during training. Everything the model knows lives in them. Also called weights."
+  },
+  {
+   "title": "Training | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/training",
+   "date": "2026-09-24",
+   "summary": "The process that sets a model's parameters by exposing it to vast amounts of text and adjusting to improve next-token prediction."
+  },
+  {
+   "title": "Inference | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/inference",
+   "date": "2026-09-24",
+   "summary": "Running a trained model to generate output — what happens on every model provider request. Parameters stay fixed."
+  },
+  {
+   "title": "Effort | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/effort",
+   "date": "2026-09-24",
+   "summary": "A dial for how much reasoning the model does before it answers. More effort spends more output tokens for a better shot at hard problems."
+  },
+  {
+   "title": "Token | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/token",
+   "date": "2026-09-24",
+   "summary": "The atomic unit a model reads and writes. Roughly word-sized but not exactly. Context window size, cost, and latency all count tokens."
+  },
+  {
+   "title": "Next-token prediction | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/next-token-prediction",
+   "date": "2026-09-24",
+   "summary": "What the model actually does. Samples one next token from the context, appends it, and runs again. Its only mode of operation."
+  },
+  {
+   "title": "Non-determinism | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/non-determinism",
+   "date": "2026-09-24",
+   "summary": "The same input can produce different output. A property of how models generate text and how providers serve requests."
+  },
+  {
+   "title": "Model provider | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/model-provider",
+   "date": "2026-09-24",
+   "summary": "Whatever serves a model for inference. Usually remote (Anthropic, OpenAI, Google), but can also be local (Ollama, llama.cpp)."
+  },
+  {
+   "title": "Harness | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/harness",
+   "date": "2026-09-24",
+   "summary": "Everything around the model that turns it into an agent: tools, system prompt, context-window management, permissions, hooks."
+  },
+  {
+   "title": "Model provider request | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/model-provider-request",
+   "date": "2026-09-24",
+   "summary": "One round-trip from the harness to the model provider. The harness sends context; the provider returns one response."
+  },
+  {
+   "title": "Input tokens | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/input-tokens",
+   "date": "2026-09-24",
+   "summary": "Tokens the harness sends on each model provider request. Billed at a lower rate than output tokens."
+  },
+  {
+   "title": "Output tokens | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/output-tokens",
+   "date": "2026-09-24",
+   "summary": "Tokens the model generates back. Billed at a higher rate than input tokens, since they cost more compute to produce."
+  },
+  {
+   "title": "Prefix cache | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/prefix-cache",
+   "date": "2026-09-24",
+   "summary": "The provider-side store that lets consecutive requests skip re-processing a shared prefix, billing those tokens at a lower rate."
+  },
+  {
+   "title": "Cache tokens | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/cache-tokens",
+   "date": "2026-09-24",
+   "summary": "Input tokens the provider has cached from a previous request via its prefix cache, billed at a much lower rate."
+  },
+  {
+   "title": "Stateless | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/stateless",
+   "date": "2026-09-24",
+   "summary": "Carries no information forward. The model is stateless across requests; an agent is stateless across sessions by default."
+  },
+  {
+   "title": "Context | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/context",
+   "date": "2026-09-24",
+   "summary": "The relevant information the agent has access to right now — what the agent knows that's pertinent to the task."
+  },
+  {
+   "title": "Context window | AI Coding Dictionary",
+   "url": "https://www.aihero.dev/ai-coding-dictionary/context-window",
+   "date": "2026-09-24",
+   "summary": "Everything the model sees on each model provider request. Finite, model-specific, the only surface through which the model perceives."
+  }
+ ]
+}
