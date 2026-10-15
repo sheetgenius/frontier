@@ -2,9 +2,10 @@
 import type { RunEditorial, SocialReceiptCard } from "../lib/frontier";
 import SocialPostEmbed from "./SocialPostEmbed.astro";
 
-const { editorial, cards } = Astro.props as {
+const { editorial, cards, notesHref } = Astro.props as {
   editorial: RunEditorial;
   cards: SocialReceiptCard[];
+  notesHref?: string | false;
 };
 
 const cardsById = new Map(cards.map((card) => [card.id, card]));
@@ -37,7 +38,7 @@ const cardsById = new Map(cards.map((card) => [card.id, card]));
       }
       if (block.type === "social_embed") {
         const card = cardsById.get(block.cardId);
-        return card ? <SocialPostEmbed card={card} caption={block.caption} /> : null;
+        return card ? <SocialPostEmbed card={card} caption={block.caption} notesHref={notesHref} /> : null;
       }
       return <p>{block.text}</p>;
     })}

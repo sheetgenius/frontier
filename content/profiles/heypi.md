@@ -306,7 +306,7 @@ heypi [persists queued work but does not replay in-flight model execution](https
 Recovery needs its own integration. Run [one supervised process per state directory](https://github.com/hunvreus/heypi/blob/436da22ceab0bc4e2db133e8626649b4bf76286d/packages/heypi/docs/guides/deployment.md#L3-L8)
 and reconcile interrupted work.
 
-<h2 id="what-is-unresolved">What is unresolved</h2>
+## What is unresolved
 
 - just-bash's deployed skills boundary: a tagged wrapper repair covering the full mutation API, with tests confirming denied file and directory creation under deployed permissions, would show that deployed skills stay read-only.
 - Pi and Cloudflare upgrades: a heypi tag porting the imports and session interfaces, with integration results including the caller-owned Worker, would show those versions work together.

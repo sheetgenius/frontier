@@ -26,7 +26,36 @@ function smartenText(text: string): string {
     .replace(/(^|[^.])\.\.\.(?!\.)/g, "$1\u2026");
 }
 
+// Headings get GitHub-style ids so in-page links ("#where-it-stands-2026-10-13")
+// resolve without hand-written HTML. Ids are deduplicated per parse, the way
+// GitHub suffixes a repeated heading with -1, -2.
+let headingSlugCounts = new Map<string, number>();
+function headingSlug(html: string): string {
+  const base = html
+    .replace(/<[^>]+>/g, "")
+    .replace(/&[a-z0-9#]+;/gi, "")
+    .toLowerCase()
+    .replace(/[^\w\- ]+/g, "")
+    .trim()
+    .replace(/ /g, "-");
+  const seen = headingSlugCounts.get(base) ?? 0;
+  headingSlugCounts.set(base, seen + 1);
+  return seen ? `${base}-${seen}` : base;
+}
+
 marked.use({
+  hooks: {
+    preprocess(markdown: string) {
+      headingSlugCounts = new Map();
+      return markdown;
+    },
+  },
+  renderer: {
+    heading(this: any, { tokens, depth }: any) {
+      const inner = this.parser.parseInline(tokens);
+      return `<h${depth} id="${headingSlug(inner)}">${inner}</h${depth}>\n`;
+    },
+  },
   walkTokens(token: any) {
     if (token.type === "text" && !token.tokens && typeof token.text === "string") {
       token.text = smartenText(token.text);

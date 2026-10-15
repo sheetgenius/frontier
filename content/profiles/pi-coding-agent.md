@@ -373,7 +373,7 @@ Rebaseline long-prompt costs with
 
 </details>
 
-<h2 id="what-is-unresolved">What is unresolved</h2>
+## What is unresolved
 
 - When Nix will catch up after [the failed release build](https://github.com/earendil-works/pi/actions/runs/38318646655).
   [The repair is only on main](https://github.com/earendil-works/pi/commit/0a8cfff4cbcbbdb0071ebe056f1fcb5710e7fcf0).

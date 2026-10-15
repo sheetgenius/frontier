@@ -108,7 +108,7 @@ Check [approval authority](#who-can-release-a-waiting-tool),
 [worker compatibility](#what-changes-on-the-workers), and
 [optional integrations](#what-the-optional-integrations-require) before choosing your pilot.
 
-<h2 id="who-can-release-a-waiting-tool">Who can release a waiting tool</h2>
+## Who can release a waiting tool
 
 **Protect the server before connecting real tools.** It [binds to 0.0.0.0 by
 default](https://github.com/temporal-community/temporal-agent-harness/blob/04a49d1b037de46da2cba31676d2aa2f4c59118f/temporal_agent_harness/web/cli.py#L149)
@@ -155,7 +155,7 @@ OpenCode shim [maps an "always" reply to `remember=true`](https://github.com/tem
 [granting the bare tool name](https://github.com/temporal-community/temporal-agent-harness/blob/04a49d1b037de46da2cba31676d2aa2f4c59118f/temporal_agent_harness/harness/agent_workflow.py#L2292-L2295)
 and [bypassing auto mode while that name remains allowed](https://github.com/temporal-community/temporal-agent-harness/blob/04a49d1b037de46da2cba31676d2aa2f4c59118f/temporal_agent_harness/harness/agent_protocol/agent_interface.py#L455-L482).
 
-<h2 id="what-changes-on-the-workers">What changes on the workers</h2>
+## What changes on the workers
 
 **Replay-test Code Mode, the script interpreter, before moving existing
 workflow histories to 0.6.0.**
@@ -186,7 +186,7 @@ and [leaves Nexus unchanged](https://github.com/temporal-community/temporal-agen
 Inspect installed versions and affected call paths; [wheel resolution can
 differ from checkout locks](https://github.com/temporal-community/temporal-agent-harness/blob/04a49d1b037de46da2cba31676d2aa2f4c59118f/pyproject.toml).
 
-<h2 id="what-the-optional-integrations-require">What the optional integrations require</h2>
+## What the optional integrations require
 
 **Review the generated plan before pressing Run.** DAG Studio is a
 [checkout-only example](https://github.com/temporal-community/temporal-agent-harness/blob/04a49d1b037de46da2cba31676d2aa2f4c59118f/README.md#L205-L207) for [inspecting generated plans before executing them

@@ -310,7 +310,7 @@ the documented [`origin pr requirements` and
 before relying on them to bind a merge to the reviewed head. Their inclusion
 and runtime behavior were not tested.
 
-<h2 id="what-is-unresolved">What is unresolved</h2>
+## What is unresolved
 
 - **Verify Run Everything's configuration exception before relying on it.**
   The [3.24 note names a `permissions.json` exception](https://cursor.com/docs/release-notes/ide#oct-9-2026),

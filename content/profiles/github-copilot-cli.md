@@ -185,7 +185,7 @@ Before expanding the trial, complete the [host, credential and network checks](#
 
 Use [`/sandbox enable`, or `copilot --sandbox -p 'TASK'` per CI job](https://github.com/github/docs/blob/d67ced7268844cdf7d856f4eb0b9b2018406da29/content/copilot/how-tos/cloud-and-local-sandboxes/using-local-sandboxing.md), then inspect [`/sandbox status` and `/sandbox policy`](https://github.com/github/docs/blob/d67ced7268844cdf7d856f4eb0b9b2018406da29/content/copilot/how-tos/cloud-and-local-sandboxes/using-local-sandboxing.md?plain=1#L131-L140).
 
-<h2 id="try-authenticated-git-before-broad-delegation">Try authenticated Git before broad delegation</h2>
+## Try authenticated Git before broad delegation
 
 [1.0.92 withholds ambient `GITHUB_TOKEN` from sandboxed shells unless configured](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L60). GitHub documents [placeholder Git/gh credentials replaced by a proxy at restricted destinations](https://github.com/github/docs/blob/602021b0ba16/content/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings.md?plain=1#L151-L156), and [`sandbox.credentials.envVars.<NAME>.injectHosts` for other masked variables](https://github.com/github/docs/blob/602021b0ba16/content/copilot/reference/copilot-cli-reference/cli-config-dir-reference.md?plain=1#L502). Keep destination lists narrow. With sandboxing enabled, try a read-only authenticated Git operation on an authorized repository. Record completion and exceptions before expanding the workload.
 
@@ -205,7 +205,7 @@ Windows [masking requires Allow local network, which also permits private-networ
 
 **Check denials through every integration you run.** [1.0.88 repairs managed MCP, permission and plugin policy coverage for integration sessions launched through ACP, Agent Host or the SDK server](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L172). Test the same denied operation through each entry point.
 
-<h2 id="shared-configuration-can-widen-authority">Shared configuration can widen authority</h2>
+## Shared configuration can widen authority
 
 Copilot [reads Claude Code's `.claude/rules` from 1.0.89](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L123), and [MCP configuration changes apply between turns from 1.0.93](https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md?plain=1#L43). [One repository's rules can steer both agents](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1084). Review those files. Treat [`/add-dir` as a session read/write sandbox grant subject to managed policy](https://github.com/github/docs/blob/d67ced7268844cdf7d856f4eb0b9b2018406da29/content/copilot/how-tos/cloud-and-local-sandboxes/using-local-sandboxing.md?plain=1#L142).
 
@@ -215,7 +215,7 @@ Copilot [reads Claude Code's `.claude/rules` from 1.0.89](https://github.com/git
 
 **Review workflow code before pre-granting tools.** [Dynamic workflows remain public preview](https://github.com/github/docs/blob/602021b0ba16/content/copilot/concepts/agents/dynamic-workflows.md?plain=1#L14); [existing annual Pro/Pro+ subscribers still on legacy premium request billing are excluded](https://github.com/github/docs/commit/1230337ad5f6292d236569791a6fe5d79777c76f). [`copilot workflow run` shows no approval prompts, subagents inherit session grants, and extension code can run outside those prompts](https://github.com/github/docs/blob/602021b0ba16/content/copilot/concepts/agents/dynamic-workflows.md?plain=1#L104-L114). Approve the code before granting tools narrowly.
 
-<h2 id="what-is-unresolved">What is unresolved</h2>
+## What is unresolved
 
 The [public repository contains notes and an installer, not the agent implementation](https://github.com/github/copilot-cli/tree/v1.0.97).
 

@@ -161,7 +161,7 @@ In [stable 18.10.4](https://github.com/can1357/oh-my-pi/releases/tag/v18.10.4), 
 
 Before rollout, [review who can approve and configure the work](#decide-who-can-approve-and-configure-the-work), [set upgrade contracts](#set-contracts-before-rolling-out-the-upgrade), and [choose how much work to delegate](#choose-how-much-work-the-agent-can-operate).
 
-<h2 id="decide-who-can-approve-and-configure-the-work">Decide who can approve and configure the work</h2>
+## Decide who can approve and configure the work
 
 **Inspect project inputs before first launch.** [OMP loads them without trust approval](https://github.com/can1357/oh-my-pi/blob/v18.10.4/README.md#L593-L602), [project config outranks global policy](https://github.com/can1357/oh-my-pi/blob/v18.10.4/docs/approval-mode.md#L166), and [approval defaults to `yolo`](https://github.com/can1357/oh-my-pi/blob/v18.10.4/packages/coding-agent/src/tools/settings.ts#L311-L315). Read `.omp`, package extension declarations, hooks, commands and project tools. Put approval and provider exclusions in [runtime controls or a `--config` overlay above project config](https://github.com/can1357/oh-my-pi/blob/v18.10.4/docs/approval-mode.md#L166). For [project MCP exclusion, use nested YAML: `mcp: { enableProjectConfig: false }`](https://github.com/can1357/oh-my-pi/blob/v18.10.4/README.md#L595-L602).
 
@@ -179,7 +179,7 @@ Test Pi extensions individually: [Pi imports resolve to OMP's bundled copies](ht
 
 **Keep credentials out of plugin URLs.** [Non-GitHub Git specs are sanitized, while GitHub specs still reach Bun unchanged](https://github.com/can1357/oh-my-pi/blob/v18.10.4/packages/coding-agent/src/extensibility/plugins/manager.ts#L77-L96). Inspect existing `~/.omp/plugins/package.json` and lockfiles on any version. Rotate any embedded credentials you find.
 
-<h2 id="set-contracts-before-rolling-out-the-upgrade">Set contracts before rolling out the upgrade</h2>
+## Set contracts before rolling out the upgrade
 
 **Restore task validation for machine consumers.** Set `task.structured: true` before upgrading: [18.10.2 changed task results to plain text by default](https://github.com/can1357/oh-my-pi/releases/tag/v18.10.2). [Eval `agent()` and `workpool()` spawns remain structured independently](https://github.com/can1357/oh-my-pi/blob/v18.10.4/packages/coding-agent/src/task/settings.ts#L255-L265).
 
@@ -200,7 +200,7 @@ Test Pi extensions individually: [Pi imports resolve to OMP's bundled copies](ht
 
 **Choose whether saved output must be complete.** [Bash, Python and JavaScript eval artifacts default to a 16 MiB cap, keeping the beginning and rolling tail](https://github.com/can1357/oh-my-pi/commit/cbf7898ce150c8a903db24fabe8f111567a3dc97). If they feed an audit or parser, inspect truncation notices. [`tools.artifactMaxBytes: 0` disables the cap](https://github.com/can1357/oh-my-pi/blob/v18.10.4/docs/settings.md#L615), at the cost of unbounded storage.
 
-<h2 id="choose-how-much-work-the-agent-can-operate">Choose how much work the agent can operate</h2>
+## Choose how much work the agent can operate
 
 **Give parallel sessions separate working trees.** For fresh interactive sessions, [set `worktree.onStart: create` or `ask`; startup defaults off and exit defaults to keep](https://github.com/can1357/oh-my-pi/blob/v18.10.4/packages/coding-agent/src/task/settings.ts#L104-L128). [`bash.gitGuard` defaults off and covers only embedded-shell git, with a conflict-resolution exception; path-invoked git, pty, services and other programs bypass it](https://github.com/can1357/oh-my-pi/blob/v18.10.4/docs/settings.md#L677-L679). Use [default-on status in compatible terminals to find sessions waiting for a decision](https://github.com/can1357/oh-my-pi/releases/tag/v18.8.7), reducing the need to poll panes.
 
@@ -208,7 +208,7 @@ Test Pi extensions individually: [Pi imports resolve to OMP's bundled copies](ht
 
 **Transfer credentials separately from session state.** [`omp session pack` and `omp session unpack` transfer artifacts; `omp session moved` makes the source copy fork on resume](https://github.com/can1357/oh-my-pi/commit/3df76b1c6f1a92c9f64196701321be26045f329d). [`omp auth export` writes plain JSON with live refresh tokens, and destination refresh can sign out the source](https://github.com/can1357/oh-my-pi/blob/v18.10.4/packages/coding-agent/src/commands/auth.ts#L202-L225). Use a protected transfer path. An ordinary transcript is a poor place for a sign-in.
 
-<h2 id="what-is-unresolved">What is unresolved</h2>
+## What is unresolved
 
 - Project trust: whether a pre-load trust gate will ship. A tagged loading path and tests showing project inputs blocked until trust is decided would change the [first-run advice](#decide-who-can-approve-and-configure-the-work).
 - Narrower delegation: whether restricted [plan responders](https://github.com/can1357/oh-my-pi/blob/v18.10.4/docs/extensions.md#L555-L560) and key-scoped [`cfg://` grants](https://github.com/can1357/oh-my-pi/blob/v18.10.4/packages/coding-agent/src/internal-urls/cfg-protocol.ts#L120-L148) will ship. Tagged controls and tests showing unapproved responders and unrelated keys refused would justify delegating less authority.

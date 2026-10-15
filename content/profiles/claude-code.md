@@ -277,13 +277,9 @@ stance:
 
 From [2.1.286, mods load by default](https://web.archive.org/web/20261012024958/https://code.claude.com/docs/en/plugins/mods/admin). Mods are [plugin code that can answer permission checks](https://web.archive.org/web/20261012012019/https://code.claude.com/docs/en/plugins/mods/overview). A mod can [approve over an ask rule or non-managed PreToolUse block and skip the classifier](https://web.archive.org/web/20261012180805/https://code.claude.com/docs/en/permissions#extend-permissions-with-hooks). Admitting a plugin now includes deciding whether its code may answer permission questions.
 
-<span id="where-it-stands-2026-10-13"></span>
-
 ## Where it stands, 2026-10-13
 
 Install [latest 2.1.296](https://github.com/anthropics/claude-code/releases/tag/v2.1.296) with `npm install -g @anthropic-ai/claude-code@2.1.296` for jobs relying on mods, policy hooks or restricted tool sets. The upgrade brings [hook-failure blocking and restrictions on built-ins registered after launch, added in 2.1.295](https://github.com/anthropics/claude-code/releases/tag/v2.1.295). At this date, [stable was 2.1.287](https://github.com/Homebrew/homebrew-cask/commit/a1326862d9154547bcda62a60c007b734cf36dc4).
-
-<span id="review-plugins-before-delegating-permission-checks"></span>
 
 ## Review plugins before delegating permission checks
 
@@ -297,8 +293,6 @@ Install [latest 2.1.296](https://github.com/anthropics/claude-code/releases/tag/
 
 On either kind of machine, contain the process: [mods run unsandboxed and tool deny rules do not cover their own filesystem and process calls](https://web.archive.org/web/20261012024958/https://code.claude.com/docs/en/plugins/mods/admin).
 
-<span id="make-unattended-policy-explicit"></span>
-
 ## Make unattended policy explicit
 
 **Set the CI permission mode per job.** Unconfigured [terminal and VS Code sessions default to auto across plans and providers](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1112); from 2.1.285, so do [third-party and telemetry-off `-p` and Python Agent SDK sessions](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1002). Without an explicit mode, [headless sessions fetching flags and sessions eligible for the HIPAA configuration default to `default`](https://web.archive.org/web/20261012151817/https://code.claude.com/docs/en/permission-modes#which-mode-a-session-starts-in). Pass `--permission-mode` explicitly. For auto jobs, use Anthropic's own [pattern pairing the classifier with an enforced egress allowlist](https://github.com/anthropics/claude-code/blob/2301018b1f61/CLAUDE.md). Decide whether this job may use server-side permission review, then confirm coverage using the [checks under What is unresolved](#what-is-unresolved).
@@ -310,8 +304,6 @@ On either kind of machine, contain the process: [mods run unsandboxed and tool d
 **Test the command shape your rule must block.** [2.1.289 repairs sandbox auto-allow skipping deny and ask rules after `X=1; rm -rf build` or `TZ="$HOME" rm -rf build`](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L603-L604). Test both with disposable targets. [Read and Edit denies still do not cover arbitrary subprocesses](https://web.archive.org/web/20261012180805/https://code.claude.com/docs/en/permissions#bash-rule-limits); keep a sandbox or container.
 
 **Preserve gateway review fields and alert on fallback.** On billed accounts, a gateway that strips review fields [makes `-p` continue on local checks; a gateway acknowledgment on the same machine within 24 hours suppresses the stderr notice](https://web.archive.org/web/20260921092459/https://code.claude.com/docs/en/auto-mode-classifier-billing). Pass [`safeguards` and `safeguard_results` through](https://web.archive.org/web/20260921092459/https://code.claude.com/docs/en/auto-mode-classifier-billing). Do not rely on timeout alerts for this change of judge and cost.
-
-<span id="check-data-boundaries-and-integration-costs"></span>
 
 ## Check data boundaries and integration costs
 
@@ -328,8 +320,6 @@ On either kind of machine, contain the process: [mods run unsandboxed and tool d
 **Test MCP handshakes before fleet rollout.** [2.1.292 makes local stdio connections negotiate protocol 2026-07-28 by default](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L368); [2.1.295 extends it to claude.ai connectors without flag fetching](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L202). Use [`MCP_PROTOCOL_NEGOTIATION=legacy`](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L368) for compatibility while fixing a handshake.
 
 **Read repository advisories alongside release notes.** The [9 October 2026 advisory for the plugin commit-pin bypass names a fix in 2.1.179](https://github.com/anthropics/claude-code/security/advisories/GHSA-pq7j-f95f-qfcv) that [its changelog did not name](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L4369).
-
-<span id="what-is-unresolved"></span>
 
 ## What is unresolved
 

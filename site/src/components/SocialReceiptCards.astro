@@ -2,7 +2,7 @@
 import SocialPostEmbed from "./SocialPostEmbed.astro";
 import type { SocialReceiptCard } from "../lib/frontier";
 
-const { cards = [] } = Astro.props as { cards: SocialReceiptCard[] };
+const { cards = [], notesHref } = Astro.props as { cards: SocialReceiptCard[]; notesHref?: string | false };
 
 // This used to render its own grid: kind label, byline, excerpt, summary, why it
 // matters, verification, status, tags, caveat, all stacked as labelled fields.
@@ -31,7 +31,7 @@ const { cards = [] } = Astro.props as { cards: SocialReceiptCard[] };
       </div>
       <div class="social-receipt-feed">
         {cards.map((card) => (
-          <SocialPostEmbed card={card} research={true} />
+          <SocialPostEmbed card={card} research={true} notesHref={notesHref} />
         ))}
       </div>
     </section>

@@ -43,11 +43,26 @@ if (!fs.existsSync(DIST_DIR)) {
 }
 
 const missing = new Map();
+// Same-page fragments are checked too: a "#heading" link whose id is not on the
+// page scrolls nowhere, and nothing else in the build notices.
+const missingFragments = new Map();
 for (const file of walkHtml(DIST_DIR)) {
   const html = fs.readFileSync(file, "utf8");
   const sourceRoute = routeForFile(file);
+  let ids = null;
   for (const match of html.matchAll(/href="([^"]+)"/g)) {
     const href = match[1];
+    if (href.startsWith("#") && href.length > 1) {
+      ids ??= new Set([...html.matchAll(/\s(?:id|name)="([^"]+)"/g)].map((m) => m[1]));
+      let fragment = href.slice(1);
+      try { fragment = decodeURIComponent(fragment); } catch {}
+      if (!ids.has(fragment)) {
+        const list = missingFragments.get(sourceRoute) ?? new Set();
+        list.add(href);
+        missingFragments.set(sourceRoute, list);
+      }
+      continue;
+    }
     if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) continue;
 
     let url;
@@ -68,6 +83,13 @@ for (const file of walkHtml(DIST_DIR)) {
   }
 }
 
+if (missingFragments.size > 0) {
+  console.error(`static link check: ${missingFragments.size} page(s) with in-page links to missing ids`);
+  for (const [route, hrefs] of [...missingFragments.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+    console.error(`  ${route}: ${[...hrefs].sort().join(" ")}`);
+  }
+}
+
 if (missing.size > 0) {
   console.error(`static link check: ${missing.size} missing internal target(s)`);
   for (const [target, sources] of [...missing.entries()].sort(([a], [b]) => a.localeCompare(b))) {
@@ -76,5 +98,6 @@ if (missing.size > 0) {
   }
   process.exit(1);
 }
+if (missingFragments.size > 0) process.exit(1);
 
 console.log("static link check: clean");

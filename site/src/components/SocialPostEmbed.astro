@@ -14,7 +14,9 @@ import { listPeople, localAvatar, type SocialReceiptCard } from "../lib/frontier
 // The full identifier is printed once, at the foot of the piece, where a reader
 // who is checking our work will look for it and where it survives print and
 // copy-paste. Repeating it here made it the loudest thing in the line.
-const { card } = Astro.props as { card: SocialReceiptCard };
+// notesHref: where the Sources and handling notes live. Empty on the piece's own
+// page; the digest page from a run page; false where no notes exist.
+const { card, notesHref = "" } = Astro.props as { card: SocialReceiptCard; notesHref?: string | false };
 
 const handle = (card.authors?.[0] ?? "").replace(/^@/, "").trim();
 const monogram = (handle.match(/[A-Za-z0-9]/)?.[0] ?? "?").toUpperCase();
@@ -87,11 +89,11 @@ const cutAfter = at >= 0 && at + squash(quoted).length < squash(full).length;
       {postUrl
         ? <a class="xpost-date" href={postUrl}><time datetime={card.date}>{card.date}</time></a>
         : <time class="xpost-date" datetime={card.date}>{card.date}</time>}
-      {card.sourceNote && (
-        <sup class="note-ref note-ref--source"><a href={`#source-${card.sourceNote}`}>{card.sourceNote}</a></sup>
+      {notesHref !== false && card.sourceNote && (
+        <sup class="note-ref note-ref--source"><a href={`${notesHref}#source-${card.sourceNote}`}>{card.sourceNote}</a></sup>
       )}
-      {card.handlingNote && (
-        <sup class="note-ref note-ref--handling"><a href={`#handling-${card.handlingNote}`}>{card.handlingNote}</a></sup>
+      {notesHref !== false && card.handlingNote && (
+        <sup class="note-ref note-ref--handling"><a href={`${notesHref}#handling-${card.handlingNote}`}>{card.handlingNote}</a></sup>
       )}
     </span>
   </figcaption>
