@@ -1,5 +1,6 @@
 # Bitter Frontier Digests
 
+- [The Handoff Has an API](2026-09-21_2026-10-13-weekly.md) -- 2026-09-21 to 2026-10-13
 - [Before the First Turn](2026-08-20_2026-09-21-weekly.md) -- 2026-08-20 to 2026-09-21
 - [Approvals Belong to the App](2026-08-17_2026-08-20-weekly.md) -- Bitter Frontier Brief, 2026-08-17 to 2026-08-20
 - [Extensible All the Way Down](2026-08-10_2026-08-17-weekly.md) -- 2026-08-10 to 2026-08-17

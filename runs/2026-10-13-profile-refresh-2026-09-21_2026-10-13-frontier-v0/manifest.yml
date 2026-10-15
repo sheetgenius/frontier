@@ -1,8 +1,8 @@
 schema_version: bitter.frontier_run_manifest.v0
 run_id: 2026-10-13-profile-refresh-2026-09-21_2026-10-13-frontier-v0
 id: 2026-10-13-profile-refresh-2026-09-21_2026-10-13-frontier-v0
-title: Watchlist refresh to 2026-10-13
-mode: profile_refresh
+title: The Handoff Has an API
+mode: weekly_digest
 status: complete
 window:
   start: 2026-09-21
@@ -10,7 +10,7 @@ window:
 parent_window:
   start: 2026-08-20
   end: 2026-09-21
-generated_at: 2026-10-14
+generated_at: 2026-10-15
 sources:
   - codex
   - claude-code
@@ -35,12 +35,14 @@ sources:
   - temporal-agent-harness
   - unreal-agent
 finding_count: 494
+signal_count: 14
 models:
   coordinator: claude-opus-5-5
   researchers: claude-opus-5-5 subagents at max effort, one per source, read-only
   verifiers: claude-opus-5-5 (3 sources) and gpt-6-astra via Codex CLI 0.162.1 (19 sources)
   writers_and_editors: gpt-6.1-sol via Codex CLI 0.162.1
   fact_check_and_receipt_judge: gpt-6-astra via Codex CLI 0.162.1
+  x_lane: grok-4.6 via grok CLI (sweeps at xhigh, URL-only capture at high)
 harness_shape: >
   One coordinator with editorial authority. Research: 22 read-only researchers,
   one per watched source, each followed by an adversarial verifier. Write-ups:
@@ -54,13 +56,30 @@ harness_shape: >
   rounds; a mechanical gate after every writing stage; a whole-set review last.
   Research ran on Claude until the coordinator hit its usage limit; everything
   after the first three crosschecks ran on Codex CLI at the operator's direction.
+  The weekly issue was then built from the same run: signals written from the
+  findings and adversarially verified; Lane C banter plus nine source sweeps,
+  a social pick, a URL-only capture pass that never saw the expected text, and
+  cards sliced programmatically from that capture; two competing drafts merged
+  by a chief editor; structure, fact and language passes; three judge rounds
+  (cold read, receipts, house bar) with fix passes; a receipts recheck; and a
+  readability pass judged by a cold reader who saw the quote text.
 outputs:
+  digest:
+    - content/digests/2026-09-21_2026-10-13-weekly.md
+  wire:
+    - content/wire/2026-10-14.yml
+  signals:
+    - signals/frontier-signals.yml
+  social_cards:
+    - social-cards/x-cards.yml
   profiles: 22
   findings: 494
   synthesis:
     - synthesis/SYNTHESIS.md
     - synthesis/directives/
   review:
+    - thread-check.md
+    - verify/signals.crosscheck.md
     - synthesis/set-review.md
     - audit.md
     - qa.md
@@ -69,12 +88,101 @@ quality_gates:
   - every harvest adversarially re-checked; the write-up applies the crosscheck and the owning harvest decides disputes
   - every profile draft passes a mechanical gate (finding ids resolve, one dated posture, ASCII, pinned GitHub receipts, no backstage vocabulary)
   - three-judge panel per profile with fix rounds; whole-set review for cross-profile contradictions
-  - no social quotation (X lane down)
+  - every signal re-verified adversarially against its receipts (6 kept, 8 corrected, 0 dropped)
+  - no quotation from sweeps; capture 36/36, 0 unavailable; card fragments sliced from the capture, never retyped
+  - every claim card adjudicated against a pinned primary receipt before its verdict
+carry_forward_checks:
+  - q: "Whether Guardian V2 is enabled by default in a later Codex stable."
+    answer: >
+      At the pinned stable rust-v0.162.1 and preview rust-v0.163.0-alpha.10,
+      Guardian V2 is false by default. The older Guardian reviewer is a
+      different, default-on feature. This check does not establish every
+      intermediate stable or a later main default. Receipts:
+      https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/features/src/lib.rs#L1763-L1814
+      and https://github.com/openai/codex/blob/rust-v0.163.0-alpha.10/codex-rs/features/src/lib.rs .
+  - q: "Whether OpenClaw's approved-exec fix (ab5611f0) becomes an ancestor of any tag."
+    answer: >
+      Yes, and this window closes the remaining extended-stable watch: v2026.8.35 inherits ab5611f0,
+      as does stable v2026.10.3; July v2026.7.35 did not gain it. The new generic hook-argument
+      binding repair is separate and only in 2026.10.5 betas. Receipts:
+      https://github.com/openclaw/openclaw/compare/ab5611f0...v2026.8.35 and
+      https://github.com/openclaw/openclaw/releases/tag/v2026.8.35 .
+  - q: "Whether DeepSeek Harness reaches a non-prerelease tag with the approval path still composable, and whether anything authenticates the Web UI."
+    answer: >
+      No non-prerelease GitHub release exists through the cutoff; the ordinary
+      release remains 0.2.0-rc.2. Web login verifies signed cookies using a
+      persistent credential-provider secret. That establishes authentication,
+      not isolation from agent commands running as the same OS user. The stronger
+      claim that those commands can retrieve the signing material was not confirmed
+      from this receipt alone and is removed. Receipts:
+      https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.2.0-rc.2
+      and
+      https://github.com/deepseek-ai/deepseek-harness/blob/639ed015397290b3745d163aafe02ffee4aa3f84/packages/client/connection/src/browser-auth.ts#L125-L202 .
+  - q: "Whether Paperclip's review-policy lock and CWE-78 guidance reach a stable."
+    answer: >
+      Stable v2026.824.0 lists serialized review-policy verdicts, prevention of
+      policy downgrades and safer npx-form CLI guidance. GitHub records publication
+      at 2026-08-25T04:23:27Z, before this window. This is a historical delivery
+      check, not an October event or a complete upgrade recommendation. Receipt:
+      https://github.com/paperclipai/paperclip/releases/tag/v2026.824.0 .
+  - q: "Whether Paperclip's ACPX thought-text fix (c2cfd55e) reaches any tag."
+    answer: >
+      Stable v2026.831.0 contains c2cfd55e; v2026.824.0 and v2026.824.1 do not.
+      That is a completed historical delivery check, not new October work. The
+      comparison does not by itself prove that no other earlier tag contains it.
+      Receipt:
+      https://github.com/paperclipai/paperclip/compare/c2cfd55e...v2026.831.0 .
+  - q: "Whether Gemini's preview-only retry/TTL, OAuth redirect, git-env and enableAgents fixes reach stable."
+    answer: >
+      Nothing reopens the prior closure: all four earlier preview-only repairs reached stable
+      v0.57.0. This window adds a distinct build-file gate in 0.61.0, with final headless
+      ASK-to-DENY conversion only in 0.63.0; current stable is 0.64.0. Receipts:
+      https://github.com/google-gemini/gemini-cli/releases/tag/v0.57.0 and
+      https://github.com/google-gemini/gemini-cli/commit/2fe7c2d3f065dc40ad573d50b2091116f8a4aa18 .
+  - q: "Whether eve 0.39.3 actually queues on Slack and custom channels, and whether the self-mod subagent stays behind eve dev."
+    answer: >
+      The specific 0.39.3 behavior and the earlier claim that queue policy first
+      bound in 0.63.0 were not reconfirmed. At 0.79.0 the queue path exists, but a
+      held approval can still consume requester text queued before the prompt.
+      Local self-modification is mounted by default in eve dev from 0.65.0;
+      deployment uses a separate, explicitly mounted remote extension. Stable at
+      cutoff, 0.79.0, includes the 0.78.0 requester-credential repair but lacks
+      the pre-prompt queued-text repair. Receipts:
+      https://github.com/vercel/eve/blob/eve%400.79.0/packages/eve/src/execution/session/input-queue.ts#L229-L244
+      and https://github.com/vercel/eve/blob/eve%400.79.0/docs/guides/self-modification.md .
+  - q: "Whether a later Hermes tag contains #90224, #90391, #90765."
+    answer: >
+      All three PR merge commits are ancestors of v2026.8.19, published
+      2026-08-21T12:16:39Z. This verifies delivery in that tag, without asserting
+      it was the first containing tag or a universal safety floor. Later startup
+      filter and unattended-Gateway repairs are listed in v0.21.6 and v0.21.7.
+      Receipts:
+      https://api.github.com/repos/NousResearch/hermes-agent/pulls/90224 ,
+      https://api.github.com/repos/NousResearch/hermes-agent/pulls/90391 ,
+      https://api.github.com/repos/NousResearch/hermes-agent/pulls/90765 ,
+      https://github.com/NousResearch/hermes-agent/releases/tag/v2026.8.19
+      and https://github.com/NousResearch/hermes-agent/blob/v0.21.7/tools/approval.py#L910-L942 .
+  - q: "Whether an Eve tag contains 0dea0ded869be7db30ae90ed8072d29e6e57df61 and rejects an approve message queued before its prompt, while accepting a later intentional answer."
+  - q: "Whether an OpenClaw stable or verified extended-stable backport contains the final-hook-argument binding of 34d07e7b0dc1b5f0ed54de67a9647d9e6b8c23de and passes replacement-argument approval tests."
+  - q: "Whether a Claude Code released binary includes the ask and environment holds at bf2323b3021c9d3db7a31e1e7d61068c3f704497, with the guard loaded and tested in each deployed mode."
+  - q: "Whether a Codex stable contains d570b3632b100e36f931797cdbdb8906d0fcafa8 and makes the daemon updater obey blocked-network policy and failed configuration loading."
+  - q: "Whether Gemini CLI stable contains the 0.65.0-preview.0 project-scoped MCP-add refusal and rapid-cancellation history repair, including 204db94ae2a33f70afec7400ebf6b78f1b5e2575."
+  - q: "Whether a Canvas tag delivers in-conversation secret requests after da4c7564dcf460f80d1889fee1c951802c448c56, and local/Docker tests show a saved-but-excluded secret remains inaccessible with the actual inherited credentials."
+  - q: "Whether Pi releases the cutoff-main internal dependency pins, resumed-tool recovery and Bun codemode cancellation/two-worker repairs, with resolved package versions and cancellation behavior checked."
+  - q: "Whether Omnigent stable contains repository-scoped Git SSH brokering from 6cf6acf2fde6b80ec929e0b1565ec5e50e6f7306 and the MCP registry/gateway prototype from 03beb88c01a966b04c6c762e723e8b4463dc16e0, with initiating principal and credential owner traced."
+  - q: "Whether Grok Build stable receives the wrong-checkout fork repair documented in non-stable 1.0.54 and runs a forked shell in the intended worktree."
+  - q: "Whether an OMP tag receives the post-18.10.4 composer-steering and waiting-call-denial changes without losing the downstream approval boundary."
+  - q: "Whether Agent Flywheel releases 2354efbaa6b355b93a53d6052fcc8f56950893b1 so one unapproved external-byte change no longer blocks unrelated eligible checksum repins."
+  - q: "Whether DeepSeek Harness reaches its first non-prerelease release with approval still composable and a demonstrated separation between same-user agent commands and the Web operator signing key."
+  - q: "Whether Temporal Agent Harness moves beyond the 0.6.0 preview with authenticated, origin-restricted approval routes and a replay-tested cutover for relevant 0.5.0 Code Mode histories."
+  - q: "Whether Paperclip stable receives the October 13 canary call_api permission-parity repair and beta accounting fixes, demonstrated on scoped tool calls and independently reconciled spend."
 lanes:
   primary: "complete -- 22 harvests, 22 crosschecks, 494 findings"
   writing: "complete -- 15/15 feeds live, 161 items; used as leads by researchers"
-  x_social: "down -- grok CLI not signed in; no capture pass, profiles quote nobody"
+  x_social: "complete -- banter plus 9 source sweeps, 340 posts read; 36 URLs captured, 0 unavailable; 24 cards"
 notes: >
-  Refresh of the whole watchlist with no digest and no signals. Each profile's
-  2026-09-21 posture (Unreal Agent: 2026-09-23) is replaced by a 2026-10-13
-  posture; prior claims were re-checked and retired, kept or narrowed.
+  Began as a refresh of the whole watchlist: each profile's 2026-09-21 posture
+  (Unreal Agent: 2026-09-23) is replaced by a 2026-10-13 posture, with prior
+  claims re-checked and retired, kept or narrowed. The same run then produced
+  the 23-day catch-up weekly for 2026-09-21..2026-10-13, published as one issue
+  with the window visible on the page, and the 2026-10-14 wire.

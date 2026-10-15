@@ -1,0 +1,774 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-10-13-profile-refresh-2026-09-21_2026-10-13-frontier-v0
+window:
+  start: 2026-09-21
+  end: 2026-10-13
+note: >
+  A 23-day catch-up window, inclusive, UTC. All current, stable, latest and main
+  labels describe the 2026-10-13T23:59:59Z cutoff, not the retrieval date.
+  Pi's native tool composition, OMP's programmable plan review and OpenHands'
+  testable automation drafts put more of
+  the work around a coding task within an agent's reach. Temporal moves script
+  continuation into workflow workers, while Copilot makes local sandboxing
+  generally available. These gains can replace specific adapters and handoffs;
+  no supplied measurement establishes fewer human hours across the workflow.
+  Codex's independently moving server and the distinct Eve/OpenClaw consent
+  repairs show where attention moves next: qualify the running service, admit
+  the code that can decide, and bind consent to an exact action, requester and
+  moment. Use native primitives where they cover the job, and spend retained
+  review on authority, exceptions and completed outcomes.
+
+signals:
+
+  - id: 2026-10-13-codex-interactive-server-has-its-own-version
+    status: accepted
+    section: runtime
+    source: codex
+    channel: tagged-release
+    title: "Interactive Codex shares a server that can move beyond its CLI pin"
+    finding_ids:
+      - 2026-10-13-codex-interactive-codex-now-attaches-to-a-shared-background-app-server-by-default-from-0-157
+      - 2026-10-13-codex-the-auto-started-background-server-can-update-itself-past-a-pinned-npm-or-homebrew-cli
+    summary: >
+      From 0.157.0 (2026-09-25), eligible interactive launches use a shared
+      background app server. At stable 0.162.1, a newly seeded eligible npm or
+      Homebrew server package can follow latest independently of the CLI,
+      retaining the environment from server startup. Explicit standalone-release
+      pins behave differently; codex exec does not use this daemon path. The
+      stable CLI uses a service whose lifecycle contract remains experimental.
+    why_action_bearing:
+      - >
+        Interactive fleets and evaluation owners: run 0.162.1 and record both
+        codex --version and codex app-server daemon version. Use --no-daemon for
+        a fixed per-launch baseline, or set {"updater":{"autoUpdateEnabled":false}}
+        in CODEX_HOME/app-server-daemon/settings.json and restart the daemon.
+      - >
+        Restart after changing inherited credentials or PATH. Restart keeps the
+        selected server package; it does not undo an earlier update. Shared
+        service operation replaces repeated startup with environment and update
+        administration. Disabling updates returns patch scheduling to the owner.
+      - >
+        Keep the updater off where managed network policy must hold on 0.162.1.
+        A stable containing d570b3632b100e36f931797cdbdb8906d0fcafa8, now preview-only,
+        plus blocked-network and failed-config probes would settle enforcement;
+        a recorded pinned-install update trace would settle actual update behavior.
+    accessibility_consequence:
+      what_got_easier: "Interactive terminals can reuse a persistent local agent service."
+      who_can_use_now: "Eligible interactive CLI users from 0.157.0, including stable 0.162.1."
+      authority_visibility: "Record the serving package and startup environment alongside the client pin."
+    security_consequence:
+      threat_blocked_or_opened: "An unchanged CLI can use newer service code and credentials retained from an earlier shell."
+      attacker_model: "Untrusted tasks within an already admitted session; no remote updater compromise is established."
+      enforcement: "Service/package selection and updater configuration; per-client environment isolation is absent."
+      cost_to_operator: "Inventory two versions, restart after environment changes and schedule held updates."
+      residual: "Source-derived behavior, without an observed auto-update or interruption measurement."
+    receipts:
+      - url: https://github.com/openai/codex/releases/tag/rust-v0.157.0
+        precision: github_release
+      - url: https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L1-L68
+        precision: tagged_commit_file
+      - url: https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/src/prepare_install.rs#L245-L338
+        precision: tagged_commit_file
+      - url: https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/cli/src/main.rs#L2360-L2372
+        precision: tagged_commit_file
+      - url: https://github.com/openai/codex/commit/d570b3632b100e36f931797cdbdb8906d0fcafa8
+        precision: commit_diff_reviewed
+
+  - id: 2026-10-13-pi-coding-agent-native-mcp-and-tool-scripting
+    status: accepted
+    section: runtime
+    source: pi-coding-agent
+    channel: tagged-release
+    title: "Pi's CLI connects MCP servers and composes their tools in JavaScript"
+    finding_ids:
+      - 2026-10-13-pi-coding-agent-mcp-is-built-into-the-cli-from-0-99-0-project-servers-wait-for-trust-stdio-servers-inherit
+      - 2026-10-13-pi-coding-agent-codemode-lets-the-model-script-tool-calls-the-tool-calls-stay-gated-its-model-calls-do-not
+      - 2026-10-13-pi-coding-agent-tools-stopped-being-a-strict-allowlist-once-codemode-or-tool-search-is-in-the-list-1-0
+    summary: >
+      0.99.0 (2026-09-29) brings built-in MCP and codemode to the CLI; current
+      stable is 1.2.0. Scripts compose registered tools without a private MCP
+      bridge. Enabled MCP servers with default exposure can activate codemode;
+      SDK sessions do not load these built-ins automatically. Nested tool calls
+      traverse hooks, while script classifier and image-model operations use
+      session credentials outside the individual tool-call hooks.
+    why_action_bearing:
+      - >
+        CLI integrators: try a configured MCP server and one multi-tool script
+        on 1.2.0 before maintaining an equivalent bridge. Compare accepted
+        outcomes, setup and review time before removing it; no net time saving
+        or current-version quality comparison was measured.
+      - >
+        Read global and trusted-project mcp.json before launch. Stdio servers
+        inherit Pi's environment and run beside the harness, so contain the whole
+        process or scrub its environment. --no-mcp disables built-in MCP;
+        autoEnableCodemode: false only prevents its automatic codemode activation.
+      - >
+        Keep authorization in hooks and govern script model credentials. Tool
+        declarations and codemode-only presentation do not prove a callable-set
+        restriction. Denial tests covering root calls, nested calls and model
+        spend would settle a particular deployment's boundary; watch for tagged
+        repairs to issue 10426 before relying on only-mode enforcement.
+    accessibility_consequence:
+      what_got_easier: "CLI users can reach MCP services and script multi-tool work without an adapter extension."
+      who_can_use_now: "Configured CLI sessions from 0.99.0; use current stable 1.2.0. SDK embedding remains opt-in."
+      authority_visibility: "Inspect server configuration, nested hooks and model credentials separately."
+    security_consequence:
+      threat_blocked_or_opened: "Trusting project MCP configuration can start host processes with inherited provider credentials."
+      attacker_model: "An admitted repository/server or injected content reaching available tools and script model operations."
+      enforcement: "Project trust gates configuration; nested tools traverse hooks, but model operations require separate credential control."
+      cost_to_operator: "Server admission and containment replace bridge maintenance; scripted work still needs outcome review."
+      residual: "Source checks establish dispatch paths, not containment or productivity in an installed deployment."
+    receipts:
+      - url: https://github.com/earendil-works/pi/commit/8562bcf66a8eeefdf75ddd231ca9d7aa7d64f86e
+        precision: commit_diff_reviewed
+      - url: https://github.com/earendil-works/pi/blob/v1.2.0/packages/coding-agent/docs/mcp.md
+        precision: tagged_commit_file
+      - url: https://github.com/earendil-works/pi/blob/v1.2.0/packages/mcp/src/transports/stdio.ts#L94
+        precision: tagged_commit_file
+      - url: https://github.com/earendil-works/pi/blob/v1.2.0/packages/coding-agent/src/core/agent-session.ts#L730-L760
+        precision: tagged_commit_file
+      - url: https://github.com/earendil-works/pi/blob/v1.2.0/packages/coding-agent/src/extensions/codemode/execute.ts#L740-L751
+        precision: tagged_commit_file
+      - url: https://github.com/earendil-works/pi/blob/v1.2.0/packages/coding-agent/docs/cli.md#L111-L138
+        precision: tagged_commit_file
+      - url: https://github.com/earendil-works/pi/blob/v1.2.0/packages/coding-agent/src/core/agent-session.ts#L1771-L1789
+        precision: tagged_commit_file
+      - url: https://github.com/earendil-works/pi/blob/v1.2.0/packages/agent/src/agent-loop.ts#L708-L735
+        precision: tagged_commit_file
+
+  - id: 2026-10-13-eve-approved-calls-keep-requester-credentials
+    status: accepted
+    section: control-plane
+    source: eve
+    channel: tagged-release
+    title: "Eve approvals stop lending the approver's credentials to the requester"
+    finding_ids:
+      - 2026-10-13-eve-approved-calls-ran-with-the-approver-s-identity-and-credentials-until-0-78
+    summary: >
+      0.78.0 (2026-10-13) makes approval consent only: execution and its policy
+      recheck use the requester's identity and connections. In confirmed affected
+      versions 0.70.0 through 0.77.0, another person's approval could lend their
+      tool access; through 0.71.2 the rest of the turn could borrow it too.
+      Stable 0.79.0 at cutoff contains this repair, but its separate queued-reply
+      consent defect remains open.
+    why_action_bearing:
+      - >
+        Deployments admitting other approval responders or anonymous requesters
+        with user-scoped connections: upgrade to 0.79.0; the credential repair
+        first ships in 0.78.0. Inspect approval.settled
+        events where responderPrincipalId differs from the requester, then audit
+        effects under the approver's credentials, including later turn calls on
+        0.70.0 through 0.71.2.
+      - >
+        Rework flows that intentionally borrowed an IT or release approver's
+        access. They stop working under consent-only execution; the proposed
+        explicit credential-delegation API was unmerged at the 2026-10-13 cutoff.
+        The human keeps responsibility for consent while tool policy owns
+        execution authority.
+      - >
+        A requester lacking access must still be denied after an authorized
+        second person approves. Record that test with both identities and the
+        dispatched credential owner; it would establish the deployed boundary.
+        The pre-0.70.0 affected range is unverified, and this fix does not close
+        the separately signaled queued-text path.
+    accessibility_consequence:
+      what_got_easier: "Teams can separate another person's consent from the requesting user's available access."
+      who_can_use_now: "Multi-user Eve deployments on 0.78.0 or later; stable at cutoff is 0.79.0."
+      authority_visibility: "Keep the approver in the consent record and the requester as execution principal."
+    security_consequence:
+      threat_blocked_or_opened: "Closes privilege escalation through another user's tool connections after approval."
+      attacker_model: "A lower-access requester whose call an admitted, higher-access responder approves."
+      enforcement: "Requester-owned dispatch plus policy rechecks before approved workflow and agent calls."
+      cost_to_operator: "Audit mismatched principals and replace workflows that relied on borrowed access."
+      residual: "Confirmed range starts at 0.70.0; queued-reply timing remains unfixed in 0.79.0."
+    receipts:
+      - url: https://github.com/vercel/eve/commit/9559de83b65e89c24172c2b9c1a80382033556aa
+        precision: commit_diff_reviewed
+      - url: https://github.com/vercel/eve/releases/tag/eve%400.78.0
+        precision: github_release
+      - url: https://github.com/vercel/eve/releases/tag/eve%400.71.3
+        precision: github_release
+      - url: https://api.github.com/repos/vercel/eve/pulls/4604
+        precision: github_api
+      - url: https://github.com/vercel/eve/blob/eve%400.79.0/docs/tools/human-in-the-loop.md#L257
+        precision: tagged_commit_file
+
+  - id: 2026-10-13-eve-queued-consent-needs-a-newer-prompt
+    status: accepted
+    section: control-plane
+    source: eve
+    channel: main-unreleased
+    title: "A queued reply can approve a later Eve prompt; the repair was on main at cutoff"
+    finding_ids:
+      - 2026-10-13-eve-queued-approval-text-can-settle-a-prompt-that-did-not-exist-when-it-was-sent-the-fix-is
+    summary: >
+      Stable 0.79.0 can consume approval-shaped requester text sent with
+      turnPolicy queue before its later prompt existed. Commit 0dea0ded, merged
+      2026-10-13 at 22:38:36Z, records the hold's admission sequence and excludes
+      earlier queued messages. It is present at cutoff main 80f15de2 and absent
+      from 0.79.0. The regression test was read, not executed.
+    why_action_bearing:
+      - >
+        Chat-approval owners: keep consequential effects off this affected
+        typed-reply path until a containing release passes the exact sequence.
+        A held turn and requester-owned credentials do not establish that the
+        person saw the request they appeared to approve.
+      - >
+        Watch for a tag containing 0dea0ded869be7db30ae90ed8072d29e6e57df61.
+        Queue approve before the prompt, verify no settlement or tool execution,
+        then send a new answer after the prompt and verify the intended effect.
+        Record delivery, hold and settlement order; main alone is not delivery.
+      - >
+        Retaining an application gate costs review attention now. Remove it only
+        after the installed release passes the timing test; the patch does not
+        establish closure of every default-steer timing case.
+    accessibility_consequence:
+      what_got_easier: "The main-only repair distinguishes stale queued text from an answer to the current request."
+      who_can_use_now: "Cutoff-main testers; no released fix through stable 0.79.0."
+      authority_visibility: "Consent must name a request that existed when the answer was admitted."
+    security_consequence:
+      threat_blocked_or_opened: "Stable can execute a later tool using earlier text as consent."
+      attacker_model: "A workflow producing a later approval hold after an admitted requester has queued approval-shaped text."
+      enforcement: "Main adds a queue-admission cutoff; the stable queue lacks it."
+      cost_to_operator: "Retain a deliberate gate and run an ordered-message regression before adoption."
+      residual: "No live reproduction here; other steer timing cases need their own tests."
+    receipts:
+      - url: https://github.com/vercel/eve/commit/0dea0ded869be7db30ae90ed8072d29e6e57df61
+        precision: commit_diff_reviewed
+      - url: https://api.github.com/repos/vercel/eve/pulls/4749
+        precision: github_api
+      - url: https://github.com/vercel/eve/blob/eve%400.79.0/packages/eve/src/execution/session/input-queue.ts#L229-L244
+        precision: tagged_commit_file
+
+  - id: 2026-10-13-omp-extensions-can-resolve-plan-review
+    status: accepted
+    section: control-plane
+    source: omp
+    channel: tagged-release
+    title: "OMP extensions can revise a plan and answer its review"
+    finding_ids:
+      - 2026-10-13-omp-18-10-4-lets-extensions-revise-and-execute-the-plan-review-while-tool-approvals-require
+      - 2026-10-13-omp-project-inputs-still-load-without-trust-approval-and-18-7-0-documented-that-design
+    summary: >
+      18.10.4, released 2026-10-13 at 19:38:04Z, lets an extension revise a plan,
+      answer execute while the terminal picker remains live, reopen an idle
+      dismissed review and choose an available execution tier. First answer wins;
+      downstream tool policy still applies. This is the shipping TypeScript line,
+      not the untagged Rust successor.
+    why_action_bearing:
+      - >
+        Teams forwarding plan decisions between panes: try a reviewed extension
+        using resolvePlanReview and openPlanReview on 18.10.4. Remote or
+        policy-based review can now reach the actual decision instead of asking
+        a person to copy the answer into the terminal.
+      - >
+        When plan choice must remain human, use --no-extensions or an exact
+        trusted-extension allowlist. Project configuration and extensions still
+        load without a trust prompt; Pi API-name compatibility does not import
+        Pi's trust gate. Restricting extensions gives up this review automation.
+      - >
+        Exercise simultaneous terminal/extension answers, plan revisions and
+        downstream denied tool calls before adoption. Those recorded results,
+        alongside accepted work and review time, would settle usefulness and
+        enforcement for the installed extension; the source API proves neither
+        better judgment nor a reduction in total review.
+    accessibility_consequence:
+      what_got_easier: "A reviewed extension can connect remote review to the plan's execution decision."
+      who_can_use_now: "OMP extension authors and interactive users on stable 18.10.4."
+      authority_visibility: "Extension admission can delegate plan choice; tool authorization is a later decision."
+    security_consequence:
+      threat_blocked_or_opened: "An admitted extension can execute its revised plan before a terminal user answers."
+      attacker_model: "Project-local or user-installed extension code that the operator admits."
+      enforcement: "First-answer-wins review API, followed by separate tool policy; no project trust gate."
+      cost_to_operator: "Review extension authority once and verify competing-answer behavior and outcomes."
+      residual: "Source-derived workflow, without measured review savings or a shipped Rust migration."
+    receipts:
+      - url: https://github.com/can1357/oh-my-pi/releases/tag/v18.10.4
+        precision: github_release
+      - url: https://github.com/can1357/oh-my-pi/blob/v18.10.4/docs/extensions.md#L555-L561
+        precision: tagged_commit_file
+      - url: https://github.com/can1357/oh-my-pi/commit/d40b86cf7d6607fc349545ec67ed321023e53425
+        precision: commit_diff_reviewed
+      - url: https://github.com/can1357/oh-my-pi/blob/v18.10.4/packages/coding-agent/src/extensibility/extensions/runner.ts#L1401-L1404
+        precision: tagged_commit_file
+
+  - id: 2026-10-13-openclaw-approval-binds-final-hook-arguments-in-beta
+    status: accepted
+    section: control-plane
+    source: openclaw
+    channel: preview-or-beta
+    title: "OpenClaw's beta binds approval to a hook's final arguments"
+    finding_ids:
+      - 2026-10-13-openclaw-hooks-can-rewrite-approved-arguments-on-stable-binding-is-fixed-only-in-beta
+    summary: >
+      Stable 2026.10.3 and extended-stable 2026.8.35 accept trusted inline
+      approval before ordinary before_tool_call hooks can replace the arguments.
+      The repair first appears in 2026.10.5-beta.2 and remains in beta.3, published
+      2026-10-13. It isolates the approved snapshot and blocks replacement unless
+      the hook requests approval for its final parameters. This is separate from
+      the August exec-byte repair now inherited by extended-stable.
+    why_action_bearing:
+      - >
+        Operators on either stable line: inventory before_tool_call hooks and
+        remove or pin plugins you do not control. An approval for the original
+        arguments does not cover a later replacement. Spend review on the hook's
+        actual transformation rather than trusting the displayed approval.
+      - >
+        Plugin authors can try beta.3 and return requireApproval with final
+        parameters. Test that an unapproved rewrite is blocked and an approved
+        replacement executes exactly those parameters; plugins relying on silent
+        replacement must change.
+      - >
+        A stable containing 34d07e7b0dc1b5f0ed54de67a9647d9e6b8c23de or a verified
+        equivalent backport, plus the replacement-argument test, would settle
+        adoption. Neither a future version number nor an issue closure proves
+        inclusion; no exploit was executed here.
+    accessibility_consequence:
+      what_got_easier: "Beta plugin authors can request consent for the transformed action they actually intend to run."
+      who_can_use_now: "Beta.3 testers; the repair is absent from both inspected stable lines."
+      authority_visibility: "Approval binds to final parameters instead of the pre-hook display."
+    security_consequence:
+      threat_blocked_or_opened: "Stable permits an ordinary hook to change an already approved tool effect."
+      attacker_model: "An admitted transforming hook, including a plugin the operator does not control."
+      enforcement: "Beta isolates the approval snapshot and requires renewed approval for replacements."
+      cost_to_operator: "Audit stable hooks and update transforming plugins before adopting the repair."
+      residual: "Beta-only source repair; stable delivery and deployed behavior remain unverified."
+    receipts:
+      - url: https://github.com/openclaw/openclaw/commit/34d07e7b0dc1b5f0ed54de67a9647d9e6b8c23de
+        precision: commit_diff_reviewed
+      - url: https://github.com/openclaw/openclaw/blob/v2026.10.3/src/agents/agent-tools.before-tool-call.policy.ts#L303-L411
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/blob/v2026.8.35/src/agents/agent-tools.before-tool-call.policy.ts#L277-L405
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/blob/v2026.10.5-beta.3/src/agents/agent-tools.before-tool-call.policy.ts#L291-L436
+        precision: tagged_commit_file
+
+  - id: 2026-10-13-claude-code-mods-can-answer-permission-checks
+    status: accepted
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "Claude mods join the permission chain before the classifier"
+    finding_ids:
+      - 2026-10-13-claude-code-mods-ship-on-by-default-in-2-1-286-and-can-approve-tool-calls-deny-rules-hold-over-them
+      - 2026-10-13-claude-code-unreleased-on-main-after-2-1-296-the-mods-guard-extends-to-ask-verdicts-and-pins-policy
+    summary: >
+      Mods are released and enabled by default in 2.1.287, which ignores the old
+      environment off switch. At cutoff, stable is 2.1.287 and latest is 2.1.296.
+      Admitted mod code can replace an ask or non-managed hook block and, in auto mode, skip the
+      classifier. Deny precedence depends on the built-in guard loading under
+      managed settings or Team/Enterprise sign-in, with
+      allowModsToOverrideDenyRules left false; mods' own process and file
+      calls remain outside tool rules. Ask and environment holds are main-only.
+    why_action_bearing:
+      - >
+        Managed fleets: use latest 2.1.296 and set managed
+        pluginConfigs["cc-plugin-sec-default@builtin"].options.allowManagedModsOnly
+        to true. Stable lacks later guard repairs. Before adding disableSideloadFlags,
+        check CI invocations: it also rejects --agents and --mcp-config.
+      - >
+        Unmanaged users: inspect claude plugin validate for tool.check, then
+        review or remove untrusted mods, or use --safe-mode or
+        --settings '{"disableAllHooks":true}';
+        built-in mods remain. CLAUDE_CODE_ENABLE_FUNCTION_HOOKS=0 is ineffective
+        from 2.1.287. Keep whole-process containment because mods are unsandboxed.
+      - >
+        Plugin admission now requires reviewing code that can answer permission
+        questions. A released binary containing the main guard's ask and
+        environment holds, plus mode-specific denial tests, would settle that
+        narrower repair; it would not turn the guard into hostile-code isolation.
+    accessibility_consequence:
+      what_got_easier: "Plugins can implement review and permission behavior inside the running session."
+      who_can_use_now: "Users on released 2.1.287+, including stable 2.1.287 and latest 2.1.296 at cutoff."
+      authority_visibility: "Inspect who answers tool.check and whether the organization guard actually loads."
+    security_consequence:
+      threat_blocked_or_opened: "A mod can approve over earlier checks; unmanaged deny rules may not hold."
+      attacker_model: "An admitted user/plugin mod running unsandboxed as the Claude Code user."
+      enforcement: "Managed mod admission and guard routing; tool rules do not confine mod filesystem/process access."
+      cost_to_operator: "Code admission replaces some per-call prompts and can break CI sideload arguments."
+      residual: "Released guard is deny-only; ask/environment holds at bf2323b3 are not in a published binary."
+    receipts:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.287
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/blob/2301018b1f61073c501a8e7a4813ef48c239163b/mods/sec-default/README.md
+        precision: git_commit
+      - url: https://github.com/anthropics/claude-code/blob/2301018b1f61073c501a8e7a4813ef48c239163b/mods/sec-default/hooks/register.ts#L67-L114
+        precision: commit_line_range
+      - url: https://github.com/anthropics/claude-code/blob/bf2323b3021c9d3db7a31e1e7d61068c3f704497/mods/sec-default/README.md
+        precision: git_commit
+      - url: https://web.archive.org/web/20261012024958/https://code.claude.com/docs/en/plugins/mods/admin
+        precision: official_docs
+      - url: https://web.archive.org/web/20261012012019/https://code.claude.com/docs/en/plugins/mods/overview
+        precision: official_docs
+      - url: https://web.archive.org/web/20261012180805/https://code.claude.com/docs/en/permissions#extend-permissions-with-hooks
+        precision: official_docs
+
+  - id: 2026-10-13-claude-code-restricted-graders-need-late-tool-fix
+    status: accepted
+    section: runtime
+    source: claude-code
+    channel: tagged-release
+    title: "Restricted Claude graders now filter built-ins registered after launch"
+    finding_ids:
+      - 2026-10-13-claude-code-graders-and-unattended-runs-restricted-left-gaps-until-2-1-290-and-2-1-295-background-comm
+    summary: >
+      2.1.295 (2026-10-08) fixes --restricted and --tools failing to apply to
+      late-registering built-ins, and deprecated names reaching tools outside
+      the caller's set. Earlier 2.1.290 also closes restricted cross-session
+      messaging and a changed-link read path. Latest at cutoff, 2.1.296, contains these
+      repairs; stable 2.1.287 does not. The previous issue's stable grader
+      recommendation therefore needs a newer minimum.
+    why_action_bearing:
+      - >
+        CI and evaluation owners using restricted graders: pin latest 2.1.296;
+        2.1.295 is the first release with the late-tool fix. Keep sandbox or
+        container restrictions and --permission-prompts none where an ask must
+        stop unattended work. A package on the stable channel is insufficient.
+      - >
+        Enumerate available tools after late registration and try a harmless
+        excluded built-in, a deprecated alias and cross-session messaging.
+        Record denial and absence of side effects before treating the tool set
+        as effective. This acceptance work replaces a false restricted-mode
+        assumption, not the grader's assessment of output quality.
+    accessibility_consequence:
+      what_got_easier: "Unattended graders can retain a narrower built-in tool set after startup."
+      who_can_use_now: "Restricted/explicit-tool-list users on 2.1.295+, preferably latest 2.1.296."
+      authority_visibility: "Check the post-registration callable set rather than only launch flags."
+    security_consequence:
+      threat_blocked_or_opened: "Earlier restricted runs could reach late built-ins or deprecated aliases outside the intended tool set."
+      attacker_model: "Untrusted grading input that induces the model to request an unintended available tool."
+      enforcement: "Released tool-set filtering; containment remains a separate boundary."
+      cost_to_operator: "Upgrade latest and qualify actual late-registration denial before unattended use."
+      residual: "Vendor-described repair; no grader runtime probe was performed here."
+    receipts:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.295
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/blob/2301018b1f61073c501a8e7a4813ef48c239163b/CHANGELOG.md#L123
+        precision: commit_line_range
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.296
+        precision: github_release
+
+  - id: 2026-10-13-openhands-agents-prepare-testable-automation-drafts
+    status: accepted
+    section: platform
+    source: openhands
+    channel: tagged-release
+    title: "OpenHands agents fill automation forms that can be saved and tested"
+    finding_ids:
+      - 2026-10-13-openhands-automations-the-agent-fills-the-setup-form-v1-27-0-and-enterprise-transcripts-become-org
+      - 2026-10-13-openhands-the-v1-27-0-docker-image-crash-loops-v1-27-1-fixes-it-and-adds-a-boot-test-before-tags-mov
+    summary: >
+      Canvas 1.27.0 (2026-10-12) adds a conversation beside the automation form:
+      the agent fills fields, drafts persist and a draft can be test-run before
+      creation. Use 1.27.1, which replaces the crash-looping 1.27.0 Docker image.
+      This moves setup into the conversation while preserving a human decision
+      about future work that runs as its creator. Hosted Cloud rollout timing
+      is not established by the client tag.
+    why_action_bearing:
+      - >
+        Operators preparing recurring jobs: trial a persisted, testable draft on
+        Canvas 1.27.1 instead of manually copying fields from chat. Review trigger,
+        schedule, profile and test output before creating the automation, and
+        confirm the creator is the intended execution identity.
+      - >
+        Count setup and correction time alongside accepted runs before retiring
+        a form-filling wrapper. Test saved-draft reload and a harmless scheduled
+        run with the actual backend versions; those results would settle whether
+        the handoff works on your stack. A UI tag alone does not prove Cloud delivery.
+      - >
+        Preserve credential separation when enabling administration: do not solve
+        form access by handing untrusted local agents the stack key. Use the
+        separately signaled local-secret checks before giving these jobs sensitive
+        credentials. The gain is less duplicate entry; the person still decides
+        which repeated work deserves their authority.
+    accessibility_consequence:
+      what_got_easier: "A user can prepare, persist and test a future automation through the adjacent conversation."
+      who_can_use_now: "Canvas users with compatible automation backends from 1.27.0; deploy 1.27.1."
+      authority_visibility: "Review the saved configuration and creator before authorizing future execution."
+    security_consequence:
+      threat_blocked_or_opened: "Agent-entered setup can become repeated execution under the creator's identity."
+      attacker_model: "Mistaken or injected instructions influencing an automation draft before its creation."
+      enforcement: "Draft/test/creation checkpoints and application credentials; no autonomous authority guarantee."
+      cost_to_operator: "Review schedule, trigger, profile and trial result instead of re-entering each field."
+      residual: "Flows were not exercised; Cloud's serving version and net attention savings remain unknown."
+    receipts:
+      - url: https://github.com/OpenHands/OpenHands/commit/5ce3d0be2b1891a3e6dc3aba2e583583979117ea
+        precision: commit_diff_reviewed
+      - url: https://github.com/OpenHands/OpenHands/commit/235d6f3367e19bbdd9b86adbfff6dd400ee89bae
+        precision: commit_diff_reviewed
+      - url: https://github.com/OpenHands/OpenHands/blob/v1.27.1/src/components/features/automations/detail/configuration-section.tsx#L21-L28
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/OpenHands/releases/tag/v1.27.1
+        precision: github_release
+
+  - id: 2026-10-13-openhands-local-terminal-inherits-the-stack-key
+    status: accepted
+    section: runtime
+    source: openhands
+    channel: tagged-release
+    title: "OpenHands' local terminal inherits a key that reaches excluded secrets"
+    finding_ids:
+      - 2026-10-13-openhands-profile-secret-scopes-do-not-bind-the-agent-s-own-terminal-the-stack-s-session-key-is-in
+      - 2026-10-13-openhands-per-conversation-docker-containers-ship-through-oh-conversation-runtime-the-execution-only
+    summary: >
+      At Canvas 1.27.1 with SDK/agent-server 1.54.0, the default local runtime's
+      terminal can inherit OPENHANDS_AUTOMATION_API_KEY, an alias of the stack
+      session key. SDK sanitization misses the alias, and the authenticated
+      raw-secret route lacks a conversation-profile check. Profile selection
+      therefore does not establish a credential boundary on that path. This is
+      a source-derived path across pinned releases, not a reproduced exploit.
+    why_action_bearing:
+      - >
+        npm, desktop and Docker-image users running terminal-enabled local
+        conversations: keep production/deploy secrets out of this shared store
+        when agents read untrusted repositories. Inspect the terminal environment
+        and whether its effective key can retrieve a saved-but-excluded test secret.
+      - >
+        Where secret selection must hold, trial OH_CONVERSATION_RUNTIME=docker
+        with OH_CONVERSATION_IMAGE pinned to ghcr.io/openhands/agent-server:1.54.0-python
+        and exclude the automation key from the profile. This construction does
+        not copy the outer alias wholesale; withholding it removes this
+        inherited-key route to automation creation.
+      - >
+        Require a released alias removal, sanitization repair or automation-only
+        key and denied-secret tests on both runtimes before trusting the boundary.
+        Container construction alone is insufficient. The review moves from the
+        profile label to actual terminal credentials and protected-route behavior.
+    accessibility_consequence:
+      what_got_easier: "The automation alias gives local agent tools direct access to stack administration APIs."
+      who_can_use_now: "Terminal-enabled default-local Canvas conversations on the inspected 1.27.1/1.54.0 stack."
+      authority_visibility: "Inspect inherited credentials and routes, not only selected profile secrets."
+    security_consequence:
+      threat_blocked_or_opened: "A local conversation can use the inherited stack key to retrieve secrets its profile excludes."
+      attacker_model: "An agent or injected repository instructions able to read its terminal environment and call the server."
+      enforcement: "Server authentication accepts the alias; profile launch filtering does not constrain that raw-secret route."
+      cost_to_operator: "Separate sensitive stores or qualify per-conversation containers; withholding the alias removes this route to automation creation."
+      residual: "Live local/Docker secret-denial tests remain open; no universal container isolation is claimed."
+    receipts:
+      - url: https://github.com/OpenHands/OpenHands/blob/v1.27.1/scripts/dev-with-automation.mjs#L906-L915
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/software-agent-sdk/blob/v1.54.0/openhands-sdk/openhands/sdk/utils/command.py#L16-L30
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/software-agent-sdk/blob/v1.54.0/openhands-agent-server/openhands/agent_server/settings_router.py#L492-L522
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/software-agent-sdk/blob/v1.54.0/openhands-agent-server/openhands/agent_server/api.py#L469-L503
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/software-agent-sdk/blob/v1.54.0/openhands-agent-server/openhands/agent_server/dependencies.py#L25-L37
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/software-agent-sdk/blob/v1.54.0/openhands-agent-server/openhands/agent_server/docker_runtime/registry.py#L411-L452
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/OpenHands/blob/v1.27.1/README.md#L107-L122
+        precision: tagged_commit_file
+
+  - id: 2026-10-13-omnigent-bubblewrap-helper-escape-fixed
+    status: accepted
+    section: runtime
+    source: omnigent
+    channel: tagged-release
+    title: "Omnigent 0.18.0 closes a host escape through bubblewrap helper files"
+    finding_ids:
+      - 2026-10-13-omnigent-linux-bubblewrap-helpers-could-escape-through-host-temporary-files-before-v0-18
+    summary: >
+      GHSA-v3vj-mch3-x6c2, published 2026-10-13, affects Omnigent before 0.18.0
+      on named Linux bubblewrap helper paths. Code already executing inside an
+      affected sandbox could use host temporary files to compromise the launcher
+      and execute as Omnigent's host OS account, exposing that account's data
+      and processes. Administrator privileges are not required. Stable 0.18.0
+      removes the broad grants and rejects launcher-directory exposure.
+    why_action_bearing:
+      - >
+        Linux execution-host owners: install stable 0.18.0 on affected hosts and
+        restart helpers, not only the central server. The 2026-10-13 nightly
+        predates the patch. Until patched, use the advisory's disposable VM or
+        container without sensitive host credentials or mounts.
+      - >
+        Inventory ACP, Goose, Kimi, Pi and Qwen helper processes and their running
+        package versions. Check that launcher-directory write grants are rejected
+        after restart; a patched server does not replace running host helpers.
+      - >
+        A fixed host package, restarted process identity and a test rejecting
+        launcher-directory write exposure would establish deployed remediation.
+        The advisory and source do not measure exploitation or qualify every
+        sandbox backend. The patch requires host maintenance now instead of
+        relying on model approval to contain already executing code.
+    accessibility_consequence:
+      what_got_easier: "The affected helper paths can retain Linux sandbox use with narrower host-file grants."
+      who_can_use_now: "Omnigent execution hosts on stable 0.18.0 after helper restart."
+      authority_visibility: "Check the execution host and process, not just the service's displayed version."
+    security_consequence:
+      threat_blocked_or_opened: "Fixes sandbox-to-host code execution as the OS account running Omnigent."
+      attacker_model: "Code already running in an affected Linux bubblewrap sandbox, without administrator privilege."
+      enforcement: "Remove broad temporary writes, reject launcher-directory grants and restrict launcher file permissions."
+      cost_to_operator: "Upgrade distributed hosts and restart affected helpers; use external isolation until then."
+      residual: "No local exploitation or remediation probe; other sandbox paths require their own evidence."
+    receipts:
+      - url: https://github.com/omnigent-ai/omnigent/security/advisories/GHSA-v3vj-mch3-x6c2
+        precision: canonical_advisory
+      - url: https://github.com/omnigent-ai/omnigent/commit/d2e077a1e3d502748ec0d792dfdede7319ccb968
+        precision: commit_diff_reviewed
+      - url: https://github.com/omnigent-ai/omnigent/releases/tag/v0.18.0
+        precision: github_release
+
+  - id: 2026-10-13-hermes-agent-unattended-gateway-policy-now-applies
+    status: accepted
+    section: control-plane
+    source: hermes-agent
+    channel: tagged-release
+    title: "Hermes 0.21.7 routes unattended Gateway commands through configured policy"
+    finding_ids:
+      - 2026-10-13-hermes-agent-unattended-deny-did-not-apply-inside-a-running-gateway-until-v0-21-7-webhook-turns-reached
+    summary: >
+      v0.21.7 (2026-10-12) repairs the running Gateway's webhook,
+      msgraph_webhook and no-notifier API paths. Previously its process-wide ask
+      flag could bypass approvals.unattended_mode and, in smart mode, send commands
+      to the guardian; a model approval could execute them despite intended unattended
+      denial. No-notifier API requests could also return unanswerable pending
+      results. The repair consults the configured unattended branch before the
+      guardian on these paths.
+    why_action_bearing:
+      - >
+        Unattended Gateway owners: upgrade to v0.21.7 and inspect
+        approvals.unattended_mode before launch, especially a saved approve value.
+        Previously model-approved jobs can now be blocked. Add only intended
+        command_allowlist patterns rather than broadly disabling approval.
+      - >
+        Review flagged commands executed by earlier webhook sessions. Test a
+        harmless denied command on each used no-notifier path and record whether
+        it executes; test notifier-backed requests separately. Earlier user denies
+        and hard floors remain, and container/YOLO/allowlist branches differ.
+      - >
+        Those mode-specific results would settle the installed policy's effect.
+        The stronger retained stop can create exceptions needing attention, while
+        no-notifier requests no longer depend on a human reply they cannot accept.
+    accessibility_consequence:
+      what_got_easier: "Named unattended Gateway paths can make a deterministic configured decision without an unavailable responder."
+      who_can_use_now: "Webhook and no-notifier API Gateway operators on stable v0.21.7."
+      authority_visibility: "Inspect unattended_mode and the actual request/notifier branch."
+    security_consequence:
+      threat_blocked_or_opened: "Closes a routing path where model approval bypassed configured unattended denial."
+      attacker_model: "Instructions in an admitted unattended request that induce a flagged command."
+      enforcement: "The repaired presence logic reaches unattended policy after earlier guards."
+      cost_to_operator: "Inspect saved approve settings, audit earlier work and handle newly blocked intended commands."
+      residual: "This is not a universal gate across YOLO, isolated-container, prepared-batch and allowlist paths."
+    receipts:
+      - url: https://github.com/NousResearch/hermes-agent/commit/8918717b1ad2b52d1389756a3581a9860b98397b
+        precision: commit_diff_reviewed
+      - url: https://github.com/NousResearch/hermes-agent/commit/71ff5238ec4643ddc6bddcfbc8be4b1cdd400684
+        precision: commit_diff_reviewed
+      - url: https://github.com/NousResearch/hermes-agent/blob/v0.21.7/tools/approval.py#L910-L942
+        precision: tagged_commit_file
+      - url: https://github.com/NousResearch/hermes-agent/blob/v0.21.7/tools/approval.py#L1128-L1169
+        precision: tagged_commit_file
+
+  - id: 2026-10-13-temporal-agent-harness-code-mode-moves-into-workflow
+    status: accepted
+    section: runtime
+    source: temporal-agent-harness
+    channel: preview-or-beta
+    title: "Temporal Code Mode waits without storing interpreter snapshots in workflow history"
+    finding_ids:
+      - 2026-10-13-temporal-agent-harness-0-6-0-moves-code-mode-into-the-workflow-old-code-mode-histories-need-a-tested-cutover
+    summary: >
+      Preview 0.6.0 (2026-10-03) moves Monty script stepping from batch activities
+      into workflow workers. Scripts use workflow time and durable timers;
+      suspended tool or human waits hold no interpreter subprocess. Host tools
+      retain their dispatch semantics. The code-mode extra pins Monty 1.0.0,
+      and no compatibility path for relevant 0.5.0 histories was established.
+    why_action_bearing:
+      - >
+        Temporal teams building multi-step scripts: trial
+        temporal-agent-harness[ui,code-mode]==0.6.0 on every serving workflow worker
+        with pydantic-monty 1.0.0. This can replace batch-snapshot transport and
+        custom wait bookkeeping; inspect the workflow host's execution authority.
+      - >
+        Keep old Code Mode histories on compatible workers until a versioned
+        cutover passes representative 0.5.0-history replay on 0.6.0. Record worker
+        and interpreter versions and outcomes. Replay risk is inferred, not a
+        demonstrated universal failure; blind reset is not an established remedy.
+      - >
+        Authenticate and restrict origins on the approval service, whose 0.6.0
+        server still binds all interfaces without login and includes wildcard
+        CORS. Make external effects idempotent. Test replay, denied routes and
+        resumed effects before replacing application recovery code; fewer waits
+        in process do not establish exactly-once effects or net attention savings.
+    accessibility_consequence:
+      what_got_easier: "Scripted workflows can use durable timers and human/tool waits without storing interpreter snapshots in workflow history."
+      who_can_use_now: "Temporal experimenters installing prerelease 0.6.0 with code-mode on workflow workers."
+      authority_visibility: "Worker/interpreter versions and retained history now form one upgrade decision."
+    security_consequence:
+      threat_blocked_or_opened: "Model-written scripts now execute on workflow hosts; the packaged approval API still needs access control."
+      attacker_model: "Admitted scripts and any caller or browser that can reach the unauthenticated service under local network policy."
+      enforcement: "Interpreter limits and workflow replay; application authentication/origin checks remain required."
+      cost_to_operator: "Own the replay cutover, compatible workers, credential custody and side-effect idempotency."
+      residual: "No replay failure or cross-origin exploit reproduced; durable history is not exactly-once execution."
+    receipts:
+      - url: https://github.com/temporal-community/temporal-agent-harness/releases/tag/0.6.0
+        precision: github_release
+      - url: https://api.github.com/repos/temporal-community/temporal-agent-harness/commits/2d0c06bdeaf08e80500256ebd3c5405e9a342e01
+        precision: commit_diff_reviewed
+      - url: https://github.com/temporal-community/temporal-agent-harness/blob/04a49d1b037de46da2cba31676d2aa2f4c59118f/pyproject.toml#L79-L84
+        precision: tagged_commit_file
+      - url: https://github.com/temporal-community/temporal-agent-harness/blob/04a49d1b037de46da2cba31676d2aa2f4c59118f/temporal_agent_harness/harness/code_mode/monty_stepper.py#L9-L106
+        precision: tagged_commit_file
+      - url: https://github.com/temporal-community/temporal-agent-harness/blob/04a49d1b037de46da2cba31676d2aa2f4c59118f/temporal_agent_harness/web/app.py#L176-L184
+        precision: tagged_commit_file
+      - url: https://github.com/temporal-community/temporal-agent-harness/blob/04a49d1b037de46da2cba31676d2aa2f4c59118f/temporal_agent_harness/web/cli.py#L145-L154
+        precision: tagged_commit_file
+
+  - id: 2026-10-13-github-copilot-cli-local-sandbox-and-credential-proxy
+    status: accepted
+    section: runtime
+    source: github-copilot-cli
+    channel: tagged-release
+    title: "Copilot CLI makes local sandboxing available to every user"
+    finding_ids:
+      - 2026-10-13-github-copilot-cli-1-0-93-opens-local-sandboxing-to-every-user-it-stays-off-by-default-and-a-server-managed
+      - 2026-10-13-github-copilot-cli-sandboxed-commands-now-get-placeholder-credentials-github-token-withheld-1-0-92-and-a-loca
+      - 2026-10-13-github-copilot-cli-1-0-93-ignores-user-settings-left-in-copilot-config-json-breaking-plus-retired-models-and
+      - 2026-10-13-github-copilot-cli-ga-docs-rewrite-the-sandbox-network-rules-local-network-off-macos-and-linux-egress-forced
+    summary: >
+      1.0.93 (2026-10-07) makes local command sandboxing generally available;
+      it remains default-off. Earlier 1.0.92 withholds ambient GITHUB_TOKEN
+      unless configured and adds masked Git authentication. The documented
+      proxy can inject selected credentials at permitted destinations. Stable
+      at cutoff is 1.0.97. User settings left in config.json are ignored from
+      1.0.93, so upgrading alone does not enable an existing policy.
+    why_action_bearing:
+      - >
+        Individual and managed CLI users: install 1.0.97, move user settings to
+        settings.json and try /sandbox enable or copilot --sandbox -p for a
+        controlled job. Inspect /sandbox status and /sandbox policy, then perform
+        one authenticated Git operation and one denied destination test.
+      - >
+        Fleets requiring containment must set sandbox.enabled and
+        sandbox.failIfUnavailable true and sandbox.allowBypass false, verifying supported
+        hosts and managed delivery. Server-managed enabled alone can be declined
+        on unsupported hosts; built-in file tools use best-effort software checks.
+      - >
+        Scope each masked secret's injectHosts and inspect credential files
+        separately. Test localhost workloads on macOS; Windows host rules rely
+        on programs honoring the proxy. Full bypass restores ordinary credentials.
+        Recorded platform-specific denial and credential-use results would settle
+        the deployed boundary. This replaces some repeated credential inspection
+        with maintained host lists and deliberate exceptions, without measured savings.
+    accessibility_consequence:
+      what_got_easier: "All CLI users can try local containment and authenticated Git through credential brokerage."
+      who_can_use_now: "Supported hosts on 1.0.93+ with explicit enablement; use stable 1.0.97."
+      authority_visibility: "GA availability, effective settings and host support are separate checks."
+    security_consequence:
+      threat_blocked_or_opened: "Configured credential masking narrows ambient exposure; stale settings or unsupported hosts can leave commands uncontained."
+      attacker_model: "Injected agent instructions reaching shell credentials or destinations; exfiltration resistance was not tested."
+      enforcement: "OS command sandbox plus proxy on supported hosts; Windows egress is cooperative and file tools are best-effort."
+      cost_to_operator: "Migrate settings, maintain injection hosts and qualify localhost/bypass behavior per OS."
+      residual: "Masking excludes credential files, unmasked variables and remote MCP authentication; no runtime probe here."
+    receipts:
+      - url: https://github.com/github/copilot-cli/blob/v1.0.97/changelog.md
+        precision: tagged_commit_file
+      - url: https://github.com/github/docs/blob/602021b0ba16b4a90e9c0a962a67ca9744eac82e/content/copilot/concepts/security-governance-and-network-settings/about-cloud-and-local-sandboxes.md#L42-L118
+        precision: commit_line_range
+      - url: https://github.com/github/docs/blob/602021b0ba16b4a90e9c0a962a67ca9744eac82e/content/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings.md#L151-L157
+        precision: commit_line_range
+      - url: https://github.com/github/docs/blob/602021b0ba16b4a90e9c0a962a67ca9744eac82e/content/copilot/how-tos/cloud-and-local-sandboxes/using-local-sandboxing.md
+        precision: git_commit
+      - url: https://github.com/github/docs/blob/602021b0ba16b4a90e9c0a962a67ca9744eac82e/content/copilot/reference/enterprise-administrators/enterprise-managed-settings.md#L351-L363
+        precision: commit_line_range

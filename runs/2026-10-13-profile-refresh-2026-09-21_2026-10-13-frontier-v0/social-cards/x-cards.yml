@@ -1,0 +1,378 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-10-13-profile-refresh-2026-09-21_2026-10-13-frontier-v0
+note: "Window 2026-09-21 through 2026-10-13 inclusive, UTC; captured_on 2026-10-14. 36 available posts were parsed from the two independent capture files; UNAVAILABLE blocks are excluded by the parser. Verbatim and display names are copied without edits. Inline excerpts are sliced by unique anchors and contain no newline. Unicode escapes preserve exact decoded text, including non-English posts. source_urls lists the captured post first and any primary receipts opened for its adjudication afterward. Claims are documentary checks, not reproduced behavior; the October 14 hook reference establishes documented posture, not an in-window release date. 24 cards selected, 12 available posts excluded."
+
+# Excluded available captures (reasons, not judgments of their authors):
+# https://x.com/HarshChavd1a/status/2108199825179349015: Permission-review distinction is already carried by Tibo's announcement and the pinned routing code; omit the personal jab.
+# https://x.com/XShude/status/2107202044960587980: Useful Chinese comparison recipe, but the daemon inventory card carries the runtime decision with fewer configuration claims to qualify.
+# https://x.com/Teknium/status/2106970980606488807: Catalog review limits need a pinned catalog policy and an installed-plugin check; no catalog safety conclusion is needed for this issue.
+# https://x.com/badlogicgames/status/2107207172128182541: CLI versus Durable package correction is useful background; omit the personal exchange and retain the side-effect question and durability-first counter-read.
+# https://x.com/g48in/status/2107058099345375323: The portability concern is useful, but the post mixes an unverified library constraint with speculation about developers' motives. Do not strain a voice verdict around those claims.
+# https://x.com/shardara/status/2109321803386540241: Multiplayer steering defaults require a separate sender-policy check and do not establish either Eve consent repair.
+# https://x.com/Madeactual/status/2110130052683694117: Keep the audit requirement in research; the repair-evidence card already carries an acceptance standard, and this post does not diagnose Eve's viewer.
+# https://x.com/cursor_ai/status/2102786814633464159: The vendor's 7 percent/no-quality-loss metric remains unverified with no published reproducible method. Its months-long implementation history is not a dated client change.
+# https://x.com/doodlestein/status/2108541775623196759: Cloud-tooling portability is relevant, but the installer has mixed preview/main delivery and the output metrics are unverified vendor claims with no published method. Omit the promotional card.
+# https://x.com/OpenHandsDev/status/2107872222463353178: Broad Canvas recap repeats the narrower triage card and would require separate runtime and credential qualifications.
+# https://x.com/kazuhiro_jinma/status/2107765415766102203: Japanese release recap adds another provider summary and several bundled claims; the proposal, human checkpoint and follow-up already carry the planning argument.
+# https://x.com/openclaw/status/2108408104295768372: Multiplayer role scope is separate from OpenClaw's approval-argument repair; the post lacks a pinned delivered role contract for this verdict.
+cards:
+  - id: "trq212-plan-mode-proposal"
+    title: "Does the model still need plan mode?"
+    kind: "claim"
+    date: "2026-09-23"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["claude-code"]
+    authors: ["trq212"]
+    display_name: "Thariq"
+    source_urls: ["https://x.com/trq212/status/2102813194196758746","https://github.com/anthropics/claude-code/releases/tag/v2.1.287","https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md"]
+    verbatim: "we\u2019re thinking of killing plan mode and using the shift+tab hotkey to adjust effort levels\n\nI don\u2019t think the models need plan mode anymore, but if you\u2019re a plan mode diehard would love to get your feedback on why"
+    inline: "I don\u2019t think the models need plan mode anymore, but if you\u2019re a plan mode diehard would love to get your feedback on why"
+    summary: "Thariq proposes removing plan mode and asks users what it still does for them."
+    verdict: "Claim about a proposal, not a shipped removal. Claude Code 2.1.287 delivered mods; the pinned 2.1.296 changelog still records plan-mode repairs. Neither establishes that models no longer need a planning mode. The human-checkpoint reply and Thariq's follow-up belong beside the proposal."
+
+  - id: "exyota-plan-mode-for-me"
+    title: "The checkpoint is for me"
+    kind: "voice"
+    date: "2026-09-23"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["claude-code"]
+    authors: ["exyota"]
+    display_name: "rishi"
+    source_urls: ["https://x.com/exyota/status/2102821139332333895"]
+    verbatim: "plan mode isn't for the agent it's for me lol"
+    inline: "plan mode isn't for the agent it's for me lol"
+    summary: "A user answers the removal proposal by locating plan mode's value in their own judgment."
+    verdict: "Voice, a direct counter-read to judging plan mode only by the model's needs. Rishi wants a place to think before execution. The reply establishes that preference, not a measured safety or productivity advantage for plan mode."
+
+  - id: "trq212-plan-mode-follow-up"
+    title: "Keep the mode, change its home"
+    kind: "claim"
+    date: "2026-09-24"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["claude-code"]
+    authors: ["trq212"]
+    display_name: "Thariq"
+    source_urls: ["https://x.com/trq212/status/2103212051065921632","https://github.com/anthropics/claude-code/releases/tag/v2.1.287","https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md"]
+    verbatim: "lots feedback here, many of you are planning yourself & don't need plan mode\n\nothers prefer the UX of entering a mode where Claude is just thinking & brainstorming with you\n\nmy plan is to:\n- make plan mode into a built-in mod\n- allow mods to add new modes or override shift+tab"
+    inline: "others prefer the UX of entering a mode where Claude is just thinking & brainstorming with you"
+    summary: "Thariq follows up with a plan to preserve planning as a built-in mod and let mods add modes."
+    verdict: "Claim about intended implementation after feedback. The 2.1.287 release confirms the mod system shipped, and the later pinned changelog still has plan mode. We did not establish delivery of this specific built-in plan mod or the proposed Shift+Tab override. The follow-up retracts the simple removal framing without proving a conversion shipped."
+
+  - id: "claudedevs-mods-launch"
+    title: "The harness becomes programmable"
+    kind: "claim"
+    date: "2026-10-01"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["claude-code"]
+    authors: ["ClaudeDevs"]
+    display_name: "ClaudeDevs"
+    source_urls: ["https://x.com/ClaudeDevs/status/2105721434807083061","https://github.com/anthropics/claude-code/releases/tag/v2.1.287","https://github.com/anthropics/claude-code/blob/2301018b1f61/mods/types/claude-code.d.ts#L2734-L2994"]
+    verbatim: "You can now mod Claude Code:\n\n- Change how it behaves\n- Customize the UI\n- Swap in your own features\n\nWrite one with a few lines of TypeScript, or have Claude build it for you. Mods ship inside plugins, so you install them with /plugin in the CLI or desktop app.\n\nA few examples:"
+    inline: "Mods ship inside plugins, so you install them with /plugin in the CLI or desktop app."
+    summary: "ClaudeDevs announces mods that change behavior and interface through plugins."
+    verdict: "Claim, corroborated by the October 1 release of Claude Code 2.1.287 and the pinned mod API, which exposes tool checks, filesystem access and process execution. This is delivered extensibility in the terminal release, not proof that the launch reached every Desktop installation or that a generated mod behaves correctly."
+
+  - id: "claudedevs-mods-machine-access"
+    title: "Installation grants machine access"
+    kind: "claim"
+    date: "2026-10-01"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["claude-code"]
+    authors: ["ClaudeDevs"]
+    display_name: "ClaudeDevs"
+    source_urls: ["https://x.com/ClaudeDevs/status/2105721440490361312","https://github.com/anthropics/claude-code/releases/tag/v2.1.287","https://github.com/anthropics/claude-code/blob/2301018b1f61/mods/types/claude-code.d.ts#L2734-L2994"]
+    verbatim: "Keep mods to yourself, or submit them to the Claude directory if others might find them useful. Mods run with the same access to your machine as Claude Code itself, so make sure to only install mods from sources you trust.\n\nhttps://t.co/BwAvIVj8Dv"
+    inline: "Mods run with the same access to your machine as Claude Code itself, so make sure to only install mods from sources you trust."
+    summary: "The launch thread warns that a mod receives Claude Code's access to the machine."
+    verdict: "Claim, supported by the released mod system and its public filesystem and process APIs. The warning concerns executable plugin code, not just extra prompt text. We did not test a third-party mod or certify a directory submission; trust in its publisher remains a separate installation decision."
+
+  - id: "lydiahallie-hooks-allow-is-approval"
+    title: "Allow is already an answer"
+    kind: "claim"
+    date: "2026-10-12"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["claude-code"]
+    authors: ["lydiahallie"]
+    display_name: "Lydia Hallie \u2728"
+    source_urls: ["https://x.com/lydiahallie/status/2109716193468874978","https://web.archive.org/web/20261014213355/https://code.claude.com/docs/en/hooks","https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md"]
+    verbatim: "Sorted this out over DMs but replying here as well in case anyone else hits this! Root cause was PreToolUse hooks returning \"allow\" by default, which tells Claude that the command is already approved, so it skips the step where the auto mode classifier would normally run. Easy to miss, we're looking at changing this on our end too. \n\nIn the meantime; if you have any deny hooks, make sure they print nothing instead of \"allow\" when there's nothing to block! That way the command still goes through the classifier. If you want Claude to always ask before deleting files (even in auto mode) add \"Bash(rm *)\" under permissions.ask"
+    inline: "Root cause was PreToolUse hooks returning \"allow\" by default, which tells Claude that the command is already approved, so it skips the step where the auto mode classifier would normally run."
+    summary: "Lydia Hallie attributes a privately diagnosed auto-mode surprise to a hook that returned allow."
+    verdict: "Claim about a private diagnosis. The October 14 archived hook reference confirms that allow skips permission prompting, while ask forces a prompt even in auto mode; the pinned 2.1.296 changelog records separate hook repairs. We did not inspect the DM session or prove that silent output reaches the classifier on every path. The diagnosis and proposed future change remain Hallie's account."
+
+  - id: "thsottiaux-free-auto-review"
+    title: "A reviewer for permission requests"
+    kind: "claim"
+    date: "2026-10-06"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["codex"]
+    authors: ["thsottiaux"]
+    display_name: "Tibo"
+    source_urls: ["https://x.com/thsottiaux/status/2107368734981517634","https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/ext/guardian-reviewer/src/routing.rs#L54-L102"]
+    verbatim: "Day 2.1/\n\nWe have made Auto-review free for all users signed in through a ChatGPT account. You can enable it in settings > permissions > auto-review. Auto-review improves upon the default sandbox setting that requires you to approve everything, which is prone to decision fatigue unless you spend a lot of time configuring specific rules.\n\nIt allows you to run long tasks while having a second agent review all actions taken by the primary agent. Its only goal is to prevent high-risk actions from being taken and to protect against unwanted actions that are not aligned with the original user intent. This  Auto-review feature is now free and does not draw usage from your plan."
+    inline: "Auto-review improves upon the default sandbox setting that requires you to approve everything, which is prone to decision fatigue unless you spend a lot of time configuring specific rules."
+    summary: "Tibo announces free Auto-review for ChatGPT sign-ins as an answer to approval fatigue."
+    verdict: "Claim, partly corroborated. Codex 0.162.1 routes eligible permission requests to AutoReview, but its Full Access path approves without that model review. That does not support review of every action or a safety guarantee. The free-for-ChatGPT and no-plan-usage statements remain the vendor's billing claims; we did not verify account eligibility or bills."
+
+  - id: "lucas-builds-review-slot-machine"
+    title: "Review without an end"
+    kind: "voice"
+    date: "2026-10-11"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["claude-code"]
+    authors: ["lucas_builds"]
+    display_name: "Lucas"
+    source_urls: ["https://x.com/lucas_builds/status/2109252687477031014"]
+    verbatim: "Asking Claude to review your code is a slot machine.\n\nEvery review finds brand new bugs. Review again: more. Review a tenth time: it still finds something.\n\nIt never runs out of bugs to find... so how do you decide your code is actually done?"
+    inline: "It never runs out of bugs to find... so how do you decide your code is actually done?"
+    summary: "Lucas describes repeated review producing more alleged bugs without a completion rule."
+    verdict: "Voice, frustration with repeated Claude review. We have no repository, review transcripts or confirmed bug set for those ten passes, so this is not evidence of a defect rate. It poses the completion question that John Rood's reply answers."
+
+  - id: "john-rood-review-stop-rule"
+    title: "Give review a stop rule"
+    kind: "voice"
+    date: "2026-10-11"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["claude-code"]
+    authors: ["johnroodepic"]
+    display_name: "John Rood"
+    source_urls: ["https://x.com/johnroodepic/status/2109369506107937114"]
+    verbatim: "The loop never closes because \"find bugs\" has no stop rule, so every fix earns another pass. Done has to come from something binary, a failing test or an unmet spec, not from a reviewer running out of ideas."
+    inline: "Done has to come from something binary, a failing test or an unmet spec, not from a reviewer running out of ideas."
+    summary: "John Rood proposes tests or a specification as the stopping condition for review."
+    verdict: "Voice, a proposed acceptance rule for Lucas's endless-review problem. A failing test or unmet requirement gives this team something concrete to resolve; no reviewed task here demonstrates that the rule catches every consequential bug. It is advice about declaring done, not a claim that automated review can replace judgment."
+
+  - id: "hackerlogs-codex-runtime-inventory"
+    title: "The installed version is not the whole inventory"
+    kind: "claim"
+    date: "2026-10-12"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["codex"]
+    authors: ["hackerlogs"]
+    display_name: "hackerlogs"
+    source_urls: ["https://x.com/hackerlogs/status/2109761263240696115","https://github.com/openai/codex/releases/tag/rust-v0.157.0","https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L22-L74"]
+    verbatim: "Codex CLI leaves a self-updating background daemon running after you close the terminal. It is on by default.\n\nWhat is on the record (openai/codex issue #48195, open since Sep 25, on the HN front page today):\n\nSince 0.157.0, opening an interactive codex session starts \"codex app-server --managed-daemon\". It runs with no TTY and gets reparented to PID 1, so it survives every window you close until you stop it or reboot.\n\nIt copies the whole platform package, about 374 MB including bundled bwrap, zsh and rg, into ~/.codex/packages/app-server-daemon/ and runs from that copy. The backend version is now decoupled from whatever npm or brew installed.\n\nA detached updater (pid-update-loop) checks for releases 5 minutes after start, then hourly, downloads them and restarts the backend, which can kill active turns.\n\nIt also pins the environment of whichever session started it. The reporter's per-invocation HTTPS_PROXY stuck to the daemon's outbound traffic for every later session.\n\nAnd \"codex app-server daemon stop\" leaves the updater alive. The 0.162 release notes (Oct 8) still tune daemon auto-start rather than drop it.\n\nIf you run Codex from @OpenAIDevs on a work laptop or CI image, you now have a coding agent that executes commands on your machine and ships its own long-lived, self-replacing binary outside your package manager. Your inventory says one version; the process answering turns may be another.\n\nTonight:\n1. Run \"codex features disable daemon_auto_start\" (or set daemon_auto_start = false in config.toml) on every dev box and CI image\n2. Stop it fully: \"codex app-server daemon stop\", then pkill -f 'app-server daemon pid-update-loop', then delete ~/.codex/packages/app-server-daemon\n3. Add a fleet or EDR check for codex processes parented to PID 1 and binaries running from ~/.codex/packages\n\nClosing the window should end the agent.\n\nhttps://t.co/lzOCb1sJQP"
+    inline: "Your inventory says one version; the process answering turns may be another."
+    summary: "A daemon recap asks operators to inventory the running Codex backend as well as the CLI package."
+    verdict: "Claim, corroborated at narrower scope. Release 0.157.0 enables automatic daemon startup; the 0.162.1 README confirms retained startup environment and independent updates for eligible managed daemons. We did not reproduce the reporter's proxy incident, package size or updater-survives-stop claim, and do not endorse the blanket CI cleanup recipe. Inventory both versions before deciding which runtime to keep."
+
+  - id: "tonbi-hermes-update-channels"
+    title: "Choose releases or main"
+    kind: "claim"
+    date: "2026-10-13"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["hermes-agent"]
+    authors: ["tonbistudio"]
+    display_name: "tonbi"
+    source_urls: ["https://x.com/tonbistudio/status/2110155915513221301","https://github.com/NousResearch/hermes-agent/releases/tag/v0.21.7","https://github.com/NousResearch/hermes-agent/blob/v0.21.7/website/docs/getting-started/updating.md#L33-L51"]
+    verbatim: "Hermes Agent now has two ways to update:\n\n1. Stable: The default, your Hermes will only update to stable releases\n\n2. Main: The previous approach, your Hermes will update to the very latest commit\n\nI made a short video showing the difference, and how to switch between the modes!"
+    inline: "Stable: The default, your Hermes will only update to stable releases"
+    summary: "Tonbi describes Hermes Agent's stable and main update choices."
+    verdict: "Claim, confirmed for official managed source checkouts by Hermes v0.21.7: the default follows published stable releases and main is selectable. Forks retain main tracking; Store, MSIX and bundled Desktop installs use other channels. An unconfigured checkout already ahead of stable waits for a newer release, so this is not an automatic downgrade or a universal Hermes updater rule."
+
+  - id: "pidotdev-native-mcp"
+    title: "MCP moves into Pi"
+    kind: "claim"
+    date: "2026-09-29"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["pi-coding-agent"]
+    authors: ["pidotdev"]
+    display_name: "Pi"
+    source_urls: ["https://x.com/pidotdev/status/2104992471155696120","https://github.com/earendil-works/pi/releases/tag/v0.99.0","https://github.com/earendil-works/pi/blob/v1.2.0/packages/coding-agent/docs/mcp.md#L22-L34"]
+    verbatim: "A pretty big change is that Pi now has MCP at the core. How is this even possible? What made us change our way? https://t.co/q7M4oM49L1"
+    inline: "A pretty big change is that Pi now has MCP at the core."
+    summary: "Pi's account announces native MCP after a change in design direction."
+    verdict: "Claim, confirmed in Pi 0.99.0: MCP and codemode ship as built-in extensions, with stdio and streamable HTTP support. The 1.2.0 docs keep project MCP configuration behind project trust. Native support can replace an adapter; it does not make an arbitrary server safe or establish the author's explanation for the reversal."
+
+  - id: "shantanugoel-batching-dissent"
+    title: "Batching can make work"
+    kind: "voice"
+    date: "2026-09-30"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["pi-coding-agent"]
+    authors: ["shantanugoel"]
+    display_name: "Shantanu Goel"
+    source_urls: ["https://x.com/shantanugoel/status/2105251106444226901","https://github.com/earendil-works/pi/blob/v1.2.0/packages/coding-agent/src/extensions/codemode/index.ts#L1-L45"]
+    verbatim: "Glad that codemode is disabled by default. I've always had trouble with it (tried in dsh / prime etc). Models keep fighting their own batching issues (scripting problems, or batching incorrectly and then having to re batch again because one command was wrong etc)."
+    inline: "Models keep fighting their own batching issues (scripting problems, or batching incorrectly and then having to re batch again because one command was wrong etc)."
+    summary: "Shantanu Goel reports scripting and rebatching costs in other codemode implementations."
+    verdict: "Voice, a counter-read to native scripting as an automatic efficiency gain. The post names dsh and prime, not a tested Pi run. Pi 1.2.0 registers codemode inactive, though MCP exposure can activate it; that code does not measure the reported rebatching cost or establish that every Pi configuration leaves it off."
+
+  - id: "japanaibuilders-resume-side-effects"
+    title: "A resumed send is still a send"
+    kind: "voice"
+    date: "2026-10-05"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["pi-coding-agent"]
+    authors: ["japanaibuilders"]
+    display_name: "Shiro - Japan AI Builders"
+    source_urls: ["https://x.com/japanaibuilders/status/2107256352984940775"]
+    verbatim: "Checkpointing is the part we'd test hardest: a resumed run that replays a send is worse than a crash. Our browser job was audited five times by a second model before it ran unattended. When Pi resumes, does it replay side-effecting steps?"
+    inline: "Checkpointing is the part we'd test hardest: a resumed run that replays a send is worse than a crash."
+    summary: "Shiro asks whether resuming a run can repeat an external send."
+    verdict: "Voice, a recovery acceptance question, not a report that Pi duplicates sends. Neither the five model audits nor an execution trace is supplied. Keeping a durable log and proving that a resumed browser job cannot repeat a side effect are different tests; this post asks for the latter without establishing its result."
+
+  - id: "badlogicgames-minimal-loop-challenge"
+    title: "How much loop do you need?"
+    kind: "voice"
+    date: "2026-10-13"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["pi-coding-agent"]
+    authors: ["badlogicgames"]
+    display_name: "Mario Zechner"
+    source_urls: ["https://x.com/badlogicgames/status/2110080102797308207","https://github.com/earendil-works/pi/releases/tag/v0.99.0"]
+    verbatim: "what does it tell you that a shitty little coding agent with 4 tools and no subagents is at the pareto frontier?"
+    inline: "what does it tell you that a shitty little coding agent with 4 tools and no subagents is at the pareto frontier?"
+    summary: "Mario Zechner challenges the assumption that more tools and subagents necessarily improve results."
+    verdict: "Voice, a challenge worth keeping beside the orchestration launches. The Pareto-frontier assertion is unverified here, with no published method or tested-version mapping in the capture. Pi's 0.99.0 release also adds native MCP and codemode, so the four-tool framing is not an inventory of every capability available in current Pi."
+
+  - id: "jasonsteving-durability-first"
+    title: "Durability before the shortlist"
+    kind: "voice"
+    date: "2026-10-03"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["temporal-agent-harness","pi-coding-agent","deepseek-harness"]
+    authors: ["JasonSteving"]
+    display_name: "Jason Steving"
+    source_urls: ["https://x.com/JasonSteving/status/2106492644671234434"]
+    verbatim: "Couldn't have said it better myself. And durability shouldn't be the secondary afterthought bolted on later. Won't be long until we get the Temporal Agent Harness on that shortlist."
+    inline: "And durability shouldn't be the secondary afterthought bolted on later."
+    summary: "Jason Steving argues that durability belongs in the initial design of an agent system."
+    verdict: "Voice, the affirmative case for specialized runtime engineering alongside the minimal-loop argument. The hope that Temporal Agent Harness will join a shortlist is not a delivered integration, a replay test or evidence that it outperforms Pi. The design priority is Steving's; the comparison remains unsettled."
+
+  - id: "andrew-barba-eve-loop-control"
+    title: "Replace the default loop's tools"
+    kind: "claim"
+    date: "2026-09-29"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["eve"]
+    authors: ["andrew_barba"]
+    display_name: "Andrew Barba"
+    source_urls: ["https://x.com/andrew_barba/status/2104944521834357086","https://github.com/vercel/eve/blob/eve%400.66.0/docs/concepts/built-in-tools.md#L14-L22","https://github.com/vercel/eve/blob/eve%400.66.0/packages/eve/src/compiler/default-tool-policy.ts#L71-L92"]
+    verbatim: "eve is one of the few frameworks that gives you full control over building the exact agent loop that you want.\n\ndefaultTools: false\n\ngo build the exact loop for your use case. all of our default tools are build on public eve api. we give you full access to the background task model, dynamic workflows, parking, HITL. I'm not sure of any other framework that gives you the low level tools that eve gives you."
+    inline: "eve is one of the few frameworks that gives you full control over building the exact agent loop that you want."
+    summary: "Andrew Barba points builders to Eve's defaultTools setting and public agent primitives."
+    verdict: "Claim, confirmed in part by Eve 0.66.0: defaultTools: false removes optional framework tools and preserves authored replacements. The same code retains required connection discovery, so the flag is not a promise to remove every framework tool. We did not establish that every listed primitive is freely replaceable or that competing frameworks lack comparable control."
+
+  - id: "kushbhuwalka-retired-plumbing"
+    title: "Stop owning the Slack plumbing"
+    kind: "voice"
+    date: "2026-10-05"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["eve"]
+    authors: ["kushbhuwalka"]
+    display_name: "Kush"
+    source_urls: ["https://x.com/kushbhuwalka/status/2106902660578472208"]
+    verbatim: "before @eve, we had built an agent called fluffles. it ran on a mac mini that sits across me.\n\nthe goal was for it to be a god agent - an agent so powerful it could operate indistinguishably from a human, with no restrictions whatsoever. \n\nwe wanted to give it a credit card, phone number, patched browser - the whole 9 yards.\n\nwe mapped out what primitives it would need, and came up with the architecture shown. we thought it would be straightforward.\n\nbut building the harness was unbelievably painful. from automations to subagents. \n\nthere wasn't one specific thing that was hard, it was that the surface area of shit that can go wrong is unbounded. \n\nwhen eve came out, we ported over almost immediately. the scaffolding let us focus on agent behavior instead of the intricacies of a slack integration. \n\nwe're excited to show you our work, and will be launching this week."
+    inline: "the scaffolding let us focus on agent behavior instead of the intricacies of a slack integration."
+    summary: "A builder says adopting Eve let the team concentrate on agent behavior instead of integrations."
+    verdict: "Voice, one builder's account of retiring custom harness plumbing for Eve. We did not inspect fluffles, the migration or the promised launch, and no measured net time saving follows. The useful counterweight to framework skepticism is the specific work the post says the team stopped owning: Slack integration details."
+
+  - id: "cursor-rollouts-fix-handoff"
+    title: "From deploy telemetry to a repair task"
+    kind: "claim"
+    date: "2026-10-02"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["cursor"]
+    authors: ["cursor_ai"]
+    display_name: "Cursor"
+    source_urls: ["https://x.com/cursor_ai/status/2106066782155157603","https://web.archive.org/web/20261002225942/https://cursor.com/changelog/rollouts-and-security-reviewer"]
+    verbatim: "When Rollouts catches a regression, it finds the offending PR and opens an issue. One click starts a cloud agent to fix it.\n\nRollouts usage credits are included through Oct 3."
+    inline: "One click starts a cloud agent to fix it."
+    summary: "Cursor describes handing a deployment regression to a cloud agent for repair."
+    verdict: "Claim, supported as a hosted-product description by Cursor's September 23 announcement, preserved October 2: Rollouts can identify a suspected change and hand a finding to a cloud agent. The same receipt leaves merge and rollback with people. We did not test detection or an accepted fix; the post's October 3 credit deadline is historical, not an offer for this issue's reader."
+
+  - id: "akashc777-repair-evidence-chain"
+    title: "Keep the failing input attached"
+    kind: "voice"
+    date: "2026-10-04"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["cursor"]
+    authors: ["akashc777"]
+    display_name: "Akash Hadagali"
+    source_urls: ["https://x.com/akashc777/status/2106567332223205658"]
+    verbatim: "The useful part is the feedback loop, not the one-click fix. Keep the failing input, offending commit, and post-fix regression test attached to the agent task, or you will automate guesswork."
+    inline: "Keep the failing input, offending commit, and post-fix regression test attached to the agent task, or you will automate guesswork."
+    summary: "Akash Hadagali asks for the failing case, offending commit and regression test to travel with an agent repair."
+    verdict: "Voice, an acceptance standard for the Rollouts handoff, not an allegation that Rollouts omits these records. We have no completed repair trace showing this evidence chain. The distinction matters: opening the next task is observable progress, while accepting the repaired behavior still needs a retained test case."
+
+  - id: "cursor-origin-marketplace"
+    title: "The provider reaches into delivery"
+    kind: "claim"
+    date: "2026-10-13"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["cursor"]
+    authors: ["cursor_ai"]
+    display_name: "Cursor"
+    source_urls: ["https://x.com/cursor_ai/status/2110075611633074295","https://web.archive.org/web/20261013185441/https://cursor.com/changelog/origin-app-marketplace"]
+    verbatim: "Origin, Cursor\u2019s code hosting platform, now supports over 20 integrations.\n\nConnect your repos to tools for CI, deployments, code review, security, monitoring, and project management."
+    inline: "Connect your repos to tools for CI, deployments, code review, security, monitoring, and project management."
+    summary: "Cursor announces Origin integrations across delivery, security, review and project management."
+    verdict: "Claim, confirmed as vendor-described availability by the October 13 archived Origin announcement, which names partner apps and opens public submissions. It documents installation tokens, webhooks and write-back operations. The over-20 count remains the vendor's catalog count; we did not test the integrations or measure their quality. This challenges the idea that providers will stop at the coding loop."
+
+  - id: "gneubig-automated-triage-and-review"
+    title: "The receiving side gets automated too"
+    kind: "claim"
+    date: "2026-10-02"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["openhands"]
+    authors: ["gneubig"]
+    display_name: "Graham Neubig"
+    source_urls: ["https://x.com/gneubig/status/2105833104648667520","https://github.com/OpenHands/OpenHands/releases/tag/v1.22.0","https://github.com/OpenHands/OpenHands/releases/tag/v1.24.0"]
+    verbatim: "This is so true!\n\nAt OpenHands we have have reached the \"bonus stage\" from the original post.\n\nOur process has been rebuilt around the assumption that if an issue is opened on the repo, we are guaranteed get a vibe-coded PR opened, so our defense is: (1) make sure that all the issues are maximally clear through automated issue triage, and (2) automate code review so that we only accept high-quality contributions.\n\nAll of these are powered by OpenHands automations:\nhttps://t.co/NW7D3ULZDt"
+    inline: "make sure that all the issues are maximally clear through automated issue triage, and (2) automate code review so that we only accept high-quality contributions."
+    summary: "Graham Neubig describes automated issue triage and review as OpenHands' response to generated pull requests."
+    verdict: "Claim about the team's practice. OpenHands v1.22.0 confirms the automation service and Git Sync path; v1.24.0 delivers read-only access to automation conversations. Those releases establish supporting machinery, not the stated guarantee that each issue gets a PR or that automated review admits only high-quality changes. We did not audit the team's runs, acceptance rate or human review effort."
+
+  - id: "iamandresvilla-sandbox-is-not-offline"
+    title: "Aislamiento con salida a internet"
+    kind: "claim"
+    date: "2026-10-10"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["github-copilot-cli"]
+    authors: ["iamandresvilla"]
+    display_name: "Andres Villa | AI"
+    source_urls: ["https://x.com/iamandresvilla/status/2108910010851856461","https://github.com/github/docs/blob/602021b0ba16/content/copilot/how-tos/cloud-and-local-sandboxes/using-local-sandboxing.md#L25-L71","https://github.com/github/docs/blob/602021b0ba16/content/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings.md#L243-L291"]
+    verbatim: "2/3 En Copilot CLI:\n\n/sandbox enable \u2192 activa el aislamiento.\n/sandbox status \u2192 comprueba si se aplica en esa sesi\u00f3n.\n\nOjo: el acceso saliente a internet est\u00e1 permitido por defecto. Activarlo no equivale a desconectar al agente."
+    inline: "Ojo: el acceso saliente a internet est\u00e1 permitido por defecto. Activarlo no equivale a desconectar al agente."
+    summary: "A Spanish-language reminder that enabling Copilot CLI's sandbox does not disconnect its network. This summary is our paraphrase."
+    verdict: "Claim, in Spanish; the English summary is our paraphrase. GitHub's pinned CLI docs confirm /sandbox enable, per-session status and outbound internet enabled by default. Local-network access and destination rules are separate settings, with OS-specific enforcement. We checked the documented contract, not live Windows, macOS or Linux isolation; enabling the sandbox alone does not establish an offline run."
+
+  - id: "kylian-cros-outside-recovery-owner"
+    title: "Who restarts the agent?"
+    kind: "voice"
+    date: "2026-10-12"
+    date_precision: "day"
+    captured_on: "2026-10-14"
+    source_ids: ["openclaw"]
+    authors: ["kylianCros"]
+    display_name: "Kylian"
+    source_urls: ["https://x.com/kylianCros/status/2109566198291771531"]
+    verbatim: "works until the bug takes down the agent itself. \n\nwe host openclaw agents and what breaks is rarely the model, its the box: ram blows up mid build, disk fills, logins expire. \n\nif nothing outside brings it back, theres no one left to read the error"
+    inline: "if nothing outside brings it back, theres no one left to read the error"
+    summary: "A host of OpenClaw agents says memory, disk and expired logins can stop the agent that would diagnose them."
+    verdict: "Voice, an attributed hosting experience that cuts against a self-maintaining agent closing its own loop. We did not inspect that fleet or verify which failures dominate it. The retained question is concrete even without that frequency claim: name the outside process or person that can recover the box when the agent itself is down."
+

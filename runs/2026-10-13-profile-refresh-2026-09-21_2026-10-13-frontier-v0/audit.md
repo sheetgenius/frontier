@@ -1,6 +1,6 @@
 # Audit -- 2026-10-13-profile-refresh-2026-09-21_2026-10-13-frontier-v0
 
-Window 2026-09-21 to 2026-10-13. Parent: "Before the First Turn" (2026-08-20 to 2026-09-21). Scope: the 22 watched-harness profiles; no digest, no signals.
+Window 2026-09-21 to 2026-10-13. Parent: "Before the First Turn" (2026-08-20 to 2026-09-21). Scope: the 22 watched-harness profiles, then the weekly issue for the same window ("The Handoff Has an API"), its 14 signals, 24 social cards and the 2026-10-14 wire.
 
 ## What was read
 
@@ -24,4 +24,27 @@ Live vendor documentation pages are cited through dated archive captures where a
 - Cursor's default CLI pointer is a morning observation, not an end-of-day reconstruction. Grok's closing alpha pointer was not recovered.
 - Claude Code: server-side review coverage by platform and region, and whether the /ultrareview path Manifold reported is fixed on the recommended build.
 - Main-only guard and hardening work across several sources (Claude Code, Agent Flywheel, Eve) has no release yet; each profile names what would settle it.
-- No social evidence this run. A vendor or maintainer statement on X may exist that a profile would have reported as a statement.
+- The profiles carry no social evidence: the X lane was down while they were written and was restored only for the issue. A vendor or maintainer statement on X may exist that a profile would have reported as a statement.
+
+## The issue
+
+The thesis came from the run's synthesis and survived both drafts: harnesses
+are taking over the handoffs people and private adapters used to perform
+(composing tool calls, preparing recurring jobs, answering plan reviews), and
+the operator's job moves to deciding which choices must still wait for a
+person. The issue carries capability (Pi's native MCP and scripting, OpenHands
+automation drafts, Temporal's durable script stepping, Cursor Rollouts and
+Origin) on the same receipt standard as the failures (Eve's consent timing,
+OpenClaw hook arguments, the OpenHands terminal key, Claude mods answering
+permission checks).
+
+Evidence that cuts against the thesis is kept: rishi's plan-mode reply
+against the claim that better models retire the planning pause; Shantanu Goel
+and Mario Zechner against native batching as a free win; the Unreal comparison
+left unsettled rather than dismissed. One correction to "Before the First Turn"
+is printed in the issue.
+
+Uncertain and not settled here: every OpenHands, Pi, Eve and Temporal runtime
+path is source-derived; no trial or replay was run. Vendor and practitioner
+posts are reported as statements; no claimed saving or team practice was
+audited.

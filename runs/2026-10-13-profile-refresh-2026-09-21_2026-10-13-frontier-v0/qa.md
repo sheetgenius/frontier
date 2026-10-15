@@ -8,10 +8,16 @@
 - Profiles refreshed: 22, each with one "Where it stands, 2026-10-13" posture
 - Synthesis: six lens analyses, SYNTHESIS.md, 22 directive files, set-review.md
 - Lane B: 15/15 feeds, 161 items, offered to researchers as leads
-- Lane C (X): down. The grok CLI was not signed in and the device-code login
-  needs a person. No capture pass ran, so no profile quotes a post. Restore with
-  `grok login --device-code` before the next cycle.
-- Signals, digest, wire and social cards: none; this run refreshes profiles only.
+- Lane C (X): down during the profile refresh (the grok CLI was not signed
+  in), so no profile quotes a post. Restored on 2026-10-14 after the operator
+  approved a device login: banter plus 9 source sweeps (340 posts read, all
+  exit 0), 36 URLs chosen and captured URL-only, 36/36, 0 unavailable.
+- Signals: 14 written (5 capability), adversarially verified: 6 kept, 8
+  corrected, 0 dropped (verify/signals.crosscheck.md). Integrity indexes them.
+- Social cards: 24, every fragment sliced from the capture; all placed in the
+  issue.
+- Wire: 6 relayed items (content/wire/2026-10-14.yml), each URL copied from
+  the feed artifact and re-checked by a second model.
 
 ## Outage and cutover
 
@@ -81,10 +87,14 @@ had narrowed to a single bug fix (Grok Build, heypi).
   invented; Agent Flywheel's moved from 5 to 6.
 - Normalized the opening title to `# <label>` (the template strips it) and the
   internal section to exactly `## Profile hygiene` (the template strips from it).
-- The profile template renders bodies with marked, which assigns no heading ids,
-  and the static link check skips fragments. A rendered-page check found 20
-  unresolved in-page links; the target headings now carry explicit ids. 60
-  in-page links, 0 unresolved.
+- The profile template rendered bodies with marked, which assigned no heading
+  ids, and the static link check skipped fragments. A rendered-page check found
+  20 unresolved in-page links. The site now gives every rendered heading a
+  GitHub-style id and the static link check fails on any same-page fragment
+  with no target; the explicit ids added at install were converted back to
+  plain Markdown headings. 60 in-page links on profile pages, 0 unresolved.
+  The new check also caught card note markers on 11 older run pages pointing
+  at notes that render only on the digest page; they now link there.
 - npm publish times: Codex 0.162.1 (2026-10-09) and Claude Code 2.1.296
   (2026-10-09) are the newest releases in the window; Grok 1.0.52 is npm
   `latest`, with 1.0.53 to 1.0.58 on alpha or enterprise, as the profile says.
@@ -96,3 +106,46 @@ had narrowed to a single bug fix (Grok Build, heypi).
 The cutoff is the full UTC day 2026-10-13. Hermes v0.22.0 (published
 2026-10-14T03:21:46Z) is out of window and named as such. Harvests are dated to
 the 2026-10-13 read.
+
+## The issue: "The Handoff Has an API"
+
+Signals were written from the findings (gpt-6.1-sol, max effort) and then
+attacked by an independent verifier (gpt-6-astra) that reopened each receipt:
+6 kept as written, 8 corrected (channel, scope or wording), 0 dropped.
+
+Social: the social editor chose 36 posts from the sweeps for what they carry,
+including counter-reads, and wrote their URLs to two files. A separate capture
+pass fetched those URLs without seeing why they were chosen or what they were
+expected to say. The card editor sliced every quoted fragment from that capture
+programmatically, adjudicated each claim card against a pinned primary receipt,
+and kept 24 cards.
+
+Drafting: two drafts written independently from the same record ("The Handoff
+Is Becoming Agent Work", "The Handoff Has an API"); a chief editor took B's
+spine and A's strongest passages. Then serial passes: structure, fact check
+against harvest, crosscheck and profiles, language (humanizer and slop test).
+
+Judges (pass at 8 or more with nothing to fix; receipts scored out of 100):
+
+| Round | Version | Cold read | Receipts | House bar | Then |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | v4 | fail 7 | fail 92 | fail 7 | fix pass |
+| 2 | v5 | fail 7 | fail 92 | fail 7 | fix pass |
+| 3 | v6 | fail 7 | pass 98 | pass 8 | fix pass, receipts recheck (no corrections) |
+| 4 | v9 | pass 8 | fail 85 | - | fix pass, receipts recheck |
+| 5 | v11 | pass 8 | - | - | installed |
+
+The cold reader failed three rounds on the same complaint: technical
+compression that asks a newcomer to supply context. It was also reading quote
+markers without their text. Round 4 followed a dedicated readability pass and
+gave the cold reader the quote text inline. That pass decompressed the
+reference sections (each note now opens with who is affected and what to do)
+and removed gendered pronouns the editors had inferred for quoted people. The
+receipts judge then caught six places where plainer wording had overstated a
+protection or detached a receipt. All six were repaired. A final recheck
+narrowed one more claim and added direct receipts to three.
+
+Coordinator edits at install: two posts promoted to featured cards to break up
+the densest stretches, one quote lead-in rewritten, last_updated set to the
+publication date. The same pronoun fix was applied to seven card verdicts
+(build.mjs and x-cards.yml, regenerated identically) and to the wire.

@@ -1,0 +1,290 @@
+[
+  {
+    "url": "https://x.com/trq212/status/2102813194196758746",
+    "handle": "@trq212",
+    "display_name": "Thariq",
+    "date": "2026-09-23",
+    "text": "we\u2019re thinking of killing plan mode and using the shift+tab hotkey to adjust effort levels\n\nI don\u2019t think the models need plan mode anymore, but if you\u2019re a plan mode diehard would love to get your feedback on why",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/trq212/status/2103212051065921632",
+    "handle": "@trq212",
+    "display_name": "Thariq",
+    "date": "2026-09-24",
+    "text": "lots feedback here, many of you are planning yourself & don't need plan mode\n\nothers prefer the UX of entering a mode where Claude is just thinking & brainstorming with you\n\nmy plan is to:\n- make plan mode into a built-in mod\n- allow mods to add new modes or override shift+tab",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/ClaudeDevs/status/2105721440490361312",
+    "handle": "@ClaudeDevs",
+    "display_name": "ClaudeDevs",
+    "date": "2026-10-01",
+    "text": "Keep mods to yourself, or submit them to the Claude directory if others might find them useful. Mods run with the same access to your machine as Claude Code itself, so make sure to only install mods from sources you trust.\n\nhttps://t.co/BwAvIVj8Dv",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/thsottiaux/status/2107368734981517634",
+    "handle": "@thsottiaux",
+    "display_name": "Tibo",
+    "date": "2026-10-06",
+    "text": "Day 2.1/\n\nWe have made Auto-review free for all users signed in through a ChatGPT account. You can enable it in settings > permissions > auto-review. Auto-review improves upon the default sandbox setting that requires you to approve everything, which is prone to decision fatigue unless you spend a lot of time configuring specific rules.\n\nIt allows you to run long tasks while having a second agent review all actions taken by the primary agent. Its only goal is to prevent high-risk actions from being taken and to protect against unwanted actions that are not aligned with the original user intent. This  Auto-review feature is now free and does not draw usage from your plan.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/lucas_builds/status/2109252687477031014",
+    "handle": "@lucas_builds",
+    "display_name": "Lucas",
+    "date": "2026-10-11",
+    "text": "Asking Claude to review your code is a slot machine.\n\nEvery review finds brand new bugs. Review again: more. Review a tenth time: it still finds something.\n\nIt never runs out of bugs to find... so how do you decide your code is actually done?",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/XShude/status/2107202044960587980",
+    "handle": "@XShude",
+    "display_name": "\u968f\u673a\u6bd4\u7279",
+    "date": "2026-10-05",
+    "text": "\u5982\u679c\u60f3\u56de\u5230\u6bd4\u8f83\u7eaf\u7cb9\u7684\u7ec8\u7aef\u4ea4\u4e92\uff0c\u53ef\u4ee5\u5148\u770b\u4e0b\u672c\u673a\u7684 `codex --help`\u3002\u8981\u662f\u652f\u6301\u8fd9\u4e24\u4e2a\u53c2\u6570\uff0c\u4e0d\u59a8\u8bd5\u8bd5 `codex --no-alt-screen --no-daemon`\uff1a\u5b83\u4e0d\u4f1a\u5207\u5230\u5168\u5c4f\u3001\u80fd\u4fdd\u7559\u539f\u672c\u7684\u7ec8\u7aef\u6eda\u52a8\u8bb0\u5f55\uff0c\u4e5f\u4e0d\u8fde\u63a5\u5171\u4eab\u540e\u53f0\u670d\u52a1\u3002\u6392\u67e5\u5f02\u5e38\u6216\u8005\u60f3\u5c11\u70b9\u5e72\u6270\u65f6\uff0c\u53ef\u4ee5\u62ff\u6765\u5f53\u4e2a\u7b80\u5316\u5bf9\u7167\u3002",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/tonbistudio/status/2110155915513221301",
+    "handle": "@tonbistudio",
+    "display_name": "tonbi",
+    "date": "2026-10-13",
+    "text": "Hermes Agent now has two ways to update:\n\n1. Stable: The default, your Hermes will only update to stable releases\n\n2. Main: The previous approach, your Hermes will update to the very latest commit\n\nI made a short video showing the difference, and how to switch between the modes!",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/pidotdev/status/2104992471155696120",
+    "handle": "@pidotdev",
+    "display_name": "Pi",
+    "date": "2026-09-29",
+    "text": "A pretty big change is that Pi now has MCP at the core. How is this even possible? What made us change our way? https://t.co/q7M4oM49L1",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/badlogicgames/status/2107207172128182541",
+    "handle": "@badlogicgames",
+    "display_name": "Mario Zechner",
+    "date": "2026-10-05",
+    "text": "ok, so you not only misunderstand what durability means, you also did not understand that pi the coding agent does not use pi durable, and that pi durable is a library to build agentic apps like a coding agent, cloud agents, etc.\n\ngood talk.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/japanaibuilders/status/2107256352984940775",
+    "handle": "@japanaibuilders",
+    "display_name": "Shiro - Japan AI Builders",
+    "date": "2026-10-05",
+    "text": "Checkpointing is the part we'd test hardest: a resumed run that replays a send is worse than a crash. Our browser job was audited five times by a second model before it ran unattended. When Pi resumes, does it replay side-effecting steps?",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/JasonSteving/status/2106492644671234434",
+    "handle": "@JasonSteving",
+    "display_name": "Jason Steving",
+    "date": "2026-10-03",
+    "text": "Couldn't have said it better myself. And durability shouldn't be the secondary afterthought bolted on later. Won't be long until we get the Temporal Agent Harness on that shortlist.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/kushbhuwalka/status/2106902660578472208",
+    "handle": "@kushbhuwalka",
+    "display_name": "Kush",
+    "date": "2026-10-05",
+    "text": "before @eve, we had built an agent called fluffles. it ran on a mac mini that sits across me.\n\nthe goal was for it to be a god agent - an agent so powerful it could operate indistinguishably from a human, with no restrictions whatsoever. \n\nwe wanted to give it a credit card, phone number, patched browser - the whole 9 yards.\n\nwe mapped out what primitives it would need, and came up with the architecture shown. we thought it would be straightforward.\n\nbut building the harness was unbelievably painful. from automations to subagents. \n\nthere wasn't one specific thing that was hard, it was that the surface area of shit that can go wrong is unbounded. \n\nwhen eve came out, we ported over almost immediately. the scaffolding let us focus on agent behavior instead of the intricacies of a slack integration. \n\nwe're excited to show you our work, and will be launching this week.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/Madeactual/status/2110130052683694117",
+    "handle": "@Madeactual",
+    "display_name": "Madeactual",
+    "date": "2026-10-13",
+    "text": "We've been requiring the human approval event on the same timeline as the tool calls, with the approver's handle and the payload hash. Otherwise the viewer shows what ran but not who signed off.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/cursor_ai/status/2106066782155157603",
+    "handle": "@cursor_ai",
+    "display_name": "Cursor",
+    "date": "2026-10-02",
+    "text": "When Rollouts catches a regression, it finds the offending PR and opens an issue. One click starts a cloud agent to fix it.\n\nRollouts usage credits are included through Oct 3.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/cursor_ai/status/2110075611633074295",
+    "handle": "@cursor_ai",
+    "display_name": "Cursor",
+    "date": "2026-10-13",
+    "text": "Origin, Cursor\u2019s code hosting platform, now supports over 20 integrations.\n\nConnect your repos to tools for CI, deployments, code review, security, monitoring, and project management.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/gneubig/status/2105833104648667520",
+    "handle": "@gneubig",
+    "display_name": "Graham Neubig",
+    "date": "2026-10-02",
+    "text": "This is so true!\n\nAt OpenHands we have have reached the \"bonus stage\" from the original post.\n\nOur process has been rebuilt around the assumption that if an issue is opened on the repo, we are guaranteed get a vibe-coded PR opened, so our defense is: (1) make sure that all the issues are maximally clear through automated issue triage, and (2) automate code review so that we only accept high-quality contributions.\n\nAll of these are powered by OpenHands automations:\nhttps://t.co/NW7D3ULZDt",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/kazuhiro_jinma/status/2107765415766102203",
+    "handle": "@kazuhiro_jinma",
+    "display_name": "\u795e\u99ac\u4e00\u535a",
+    "date": "2026-10-07",
+    "text": "Gemini CLI v0.63.0\uff08\u5b89\u5b9a\u7248\uff09\u304c10\u67086\u65e5\uff08\u7c73\u56fd\u6642\u9593\uff09\u306b\u516c\u958b\u3055\u308c\u307e\u3057\u305f\u3002\n\n\u3053\u308c\u307e\u3067Plan Mode\u3092\u975e\u5bfe\u8a71\u30e2\u30fc\u30c9\uff08gemini -p \"...\" -y \u306a\u3069\uff09\u3067\u4f7f\u3046\u3068\u3001\u30d7\u30ed\u30f3\u30d7\u30c8\u304c\u300c\u30e6\u30fc\u30b6\u30fc\u3068\u5408\u610f\u3059\u308b\u307e\u3067\u5f85\u3064\u300d\u3088\u3046\u6307\u793a\u3057\u3066\u3044\u305f\u305f\u3081\u3001\u30c4\u30fc\u30eb\u30921\u56de\u3082\u547c\u3070\u305a\u306b\u65b9\u91dd\u306e\u30e1\u30c3\u30bb\u30fc\u30b8\u3060\u3051\u3092\u51fa\u3057\u3066\u30bb\u30c3\u30b7\u30e7\u30f3\u304c\u7d42\u4e86\u3057\u3001\u30bf\u30b9\u30af\u304c\u5b9f\u884c\u3055\u308c\u306a\u3044\u3053\u3068\u304c\u3042\u308a\u307e\u3057\u305f\u3002\u4eca\u56de\u304b\u3089\u975e\u5bfe\u8a71\u6642\u306f\u3001\u65b9\u91dd\u3092\u81ea\u3089\u307e\u3068\u3081\u3066\u8a08\u753b\u306e\u4f5c\u6210\u306b\u9032\u307f\u3001exit_plan_mode\u3092\u547c\u3093\u3067\u5b9f\u88c5\u306b\u79fb\u308a\u307e\u3059\u3002\u9577\u6642\u9593\u306e\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u30eb\u30fc\u30d7\u3067\u30c4\u30fc\u30eb\u51fa\u529b\u306e\u30b5\u30a4\u30ba\u3092\u5236\u9650\u3057\u3001\u30e1\u30e2\u30ea\u7ba1\u7406\u3092\u6539\u5584\u3059\u308b\u4fee\u6b63\u3082\u542b\u307e\u308c\u307e\u3059\u3002\n\nhttps://t.co/wvolgvYiLT",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/openclaw/status/2108408104295768372",
+    "handle": "@openclaw",
+    "display_name": "OpenClaw\ud83e\udd9e",
+    "date": "2026-10-09",
+    "text": "Right now permissions are pretty basic but we're starting to see needs for things like read only or can participate in but not start sessions\n\nDrop in discord and have your say!",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/exyota/status/2102821139332333895",
+    "handle": "@exyota",
+    "display_name": "rishi",
+    "date": "2026-09-23",
+    "text": "plan mode isn't for the agent it's for me lol",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/ClaudeDevs/status/2105721434807083061",
+    "handle": "@ClaudeDevs",
+    "display_name": "ClaudeDevs",
+    "date": "2026-10-01",
+    "text": "You can now mod Claude Code:\n\n- Change how it behaves\n- Customize the UI\n- Swap in your own features\n\nWrite one with a few lines of TypeScript, or have Claude build it for you. Mods ship inside plugins, so you install them with /plugin in the CLI or desktop app.\n\nA few examples:",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/lydiahallie/status/2109716193468874978",
+    "handle": "@lydiahallie",
+    "display_name": "Lydia Hallie \u2728",
+    "date": "2026-10-12",
+    "text": "Sorted this out over DMs but replying here as well in case anyone else hits this! Root cause was PreToolUse hooks returning \"allow\" by default, which tells Claude that the command is already approved, so it skips the step where the auto mode classifier would normally run. Easy to miss, we're looking at changing this on our end too. \n\nIn the meantime; if you have any deny hooks, make sure they print nothing instead of \"allow\" when there's nothing to block! That way the command still goes through the classifier. If you want Claude to always ask before deleting files (even in auto mode) add \"Bash(rm *)\" under permissions.ask",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/HarshChavd1a/status/2108199825179349015",
+    "handle": "@HarshChavd1a",
+    "display_name": "Harsh Chavda",
+    "date": "2026-10-08",
+    "text": "Omg these idiots just reads name of the feature on X and decides what it is.\n\nIt's not a free code review, it's about codex's permissiom mode where now on auto review it checks for you if agents action are safe to run or not.\n\nReplacing dangerously skip permission for better.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/johnroodepic/status/2109369506107937114",
+    "handle": "@johnroodepic",
+    "display_name": "John Rood",
+    "date": "2026-10-11",
+    "text": "The loop never closes because \"find bugs\" has no stop rule, so every fix earns another pass. Done has to come from something binary, a failing test or an unmet spec, not from a reviewer running out of ideas.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/hackerlogs/status/2109761263240696115",
+    "handle": "@hackerlogs",
+    "display_name": "hackerlogs",
+    "date": "2026-10-12",
+    "text": "Codex CLI leaves a self-updating background daemon running after you close the terminal. It is on by default.\n\nWhat is on the record (openai/codex issue #48195, open since Sep 25, on the HN front page today):\n\nSince 0.157.0, opening an interactive codex session starts \"codex app-server --managed-daemon\". It runs with no TTY and gets reparented to PID 1, so it survives every window you close until you stop it or reboot.\n\nIt copies the whole platform package, about 374 MB including bundled bwrap, zsh and rg, into ~/.codex/packages/app-server-daemon/ and runs from that copy. The backend version is now decoupled from whatever npm or brew installed.\n\nA detached updater (pid-update-loop) checks for releases 5 minutes after start, then hourly, downloads them and restarts the backend, which can kill active turns.\n\nIt also pins the environment of whichever session started it. The reporter's per-invocation HTTPS_PROXY stuck to the daemon's outbound traffic for every later session.\n\nAnd \"codex app-server daemon stop\" leaves the updater alive. The 0.162 release notes (Oct 8) still tune daemon auto-start rather than drop it.\n\nIf you run Codex from @OpenAIDevs on a work laptop or CI image, you now have a coding agent that executes commands on your machine and ships its own long-lived, self-replacing binary outside your package manager. Your inventory says one version; the process answering turns may be another.\n\nTonight:\n1. Run \"codex features disable daemon_auto_start\" (or set daemon_auto_start = false in config.toml) on every dev box and CI image\n2. Stop it fully: \"codex app-server daemon stop\", then pkill -f 'app-server daemon pid-update-loop', then delete ~/.codex/packages/app-server-daemon\n3. Add a fleet or EDR check for codex processes parented to PID 1 and binaries running from ~/.codex/packages\n\nClosing the window should end the agent.\n\nhttps://t.co/lzOCb1sJQP",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/Teknium/status/2106970980606488807",
+    "handle": "@Teknium",
+    "display_name": "Teknium \ud83e\udebd",
+    "date": "2026-10-05",
+    "text": "Yes, we review that they aren't viruses or malicious to hermes users. We do not verify they are hardened or secure outside of that. Community constantly reviews submissions to the plugin catalog, and they are checked for our guidelines before acceptence:\n\nhttps://t.co/ERE8T7g0el",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/shantanugoel/status/2105251106444226901",
+    "handle": "@shantanugoel",
+    "display_name": "Shantanu Goel",
+    "date": "2026-09-30",
+    "text": "Glad that codemode is disabled by default. I've always had trouble with it (tried in dsh / prime etc). Models keep fighting their own batching issues (scripting problems, or batching incorrectly and then having to re batch again because one command was wrong etc).",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/g48in/status/2107058099345375323",
+    "handle": "@g48in",
+    "display_name": "Gabin \ud83c\udf31",
+    "date": "2026-10-05",
+    "text": "Pi Durable is nailing a lot of good design decisions \ud83c\udfaf\n\nhowever even if it looks like \u201cmodular\u201d because you can swipe the storage implem (sqlite, pg, etc), it is not after carefully reading its code.\n\nit assumes you\u2019ll stay in the pi ecosystem but the reality is completely different \n\nyes you need a durable event log to materialise different state views and forge the optimal context window (cc optchat), but in practice you use many harnesses from different vendors: claude, codex, grok bot, etc:\n\ni wonder why no one pushed back on this design? maybe because pi devs are exclusively building in pi ecosystem and have no real business to automate",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/badlogicgames/status/2110080102797308207",
+    "handle": "@badlogicgames",
+    "display_name": "Mario Zechner",
+    "date": "2026-10-13",
+    "text": "what does it tell you that a shitty little coding agent with 4 tools and no subagents is at the pareto frontier?",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/andrew_barba/status/2104944521834357086",
+    "handle": "@andrew_barba",
+    "display_name": "Andrew Barba",
+    "date": "2026-09-29",
+    "text": "eve is one of the few frameworks that gives you full control over building the exact agent loop that you want.\n\ndefaultTools: false\n\ngo build the exact loop for your use case. all of our default tools are build on public eve api. we give you full access to the background task model, dynamic workflows, parking, HITL. I'm not sure of any other framework that gives you the low level tools that eve gives you.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/shardara/status/2109321803386540241",
+    "handle": "@shardara",
+    "display_name": "Shar",
+    "date": "2026-10-11",
+    "text": "by default only the person being answered can steer. the other message waits its turn, and the model reconciles both with the full thread in view\n\nall of it is also customizable: queue instead of steer, or your own rules for who can steer",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/cursor_ai/status/2102786814633464159",
+    "handle": "@cursor_ai",
+    "display_name": "Cursor",
+    "date": "2026-09-23",
+    "text": "We've reduced token costs in Cursor by 7% with no drop in agent quality.\n\nSavings came from tighter prompts, selective tool loading, better caching, and compressed file reads.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/akashc777/status/2106567332223205658",
+    "handle": "@akashc777",
+    "display_name": "Akash Hadagali",
+    "date": "2026-10-04",
+    "text": "The useful part is the feedback loop, not the one-click fix. Keep the failing input, offending commit, and post-fix regression test attached to the agent task, or you will automate guesswork.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/doodlestein/status/2108541775623196759",
+    "handle": "@doodlestein",
+    "display_name": "Jeffrey Emanuel",
+    "date": "2026-10-09",
+    "text": "There\u2019s a big push now by OpenAI, Anthropic, and other players to get people to use cloud instances instead of running a harness on their own machine or VPS.\n\nI\u2019ve been playing with these offerings, particularly the Claude one because they gave out all these $250 credits for all 28 of my 20x Claude Max accounts.\n\nBut I hated that I didn\u2019t have access to my Agent Flywheel tooling, like beads_rust, beads_viewer, cass, ubs, etc. Not to mention easy access to my skills from my skills site via my jsm cli tool.\n\nSo I decided to make a very streamlined version of my acfs system for managing the Flywheel tools specifically for these Cloud agent instances.\n\nIt supports Claude, ChatGPT, and several others. The easiest way to use it is to paste the instructions from the site into the ChatGPT desktop app with the Computer plugin and just let the agent do everything for you in your browser.\n\nBut if you want to do it manually, I also have step-by-step instructions with screenshots.\n\nYou can get it all here:\n\nhttps://t.co/qZqLqQBcGg\n\nIf you\u2019ve been curious about trying my Agent Flywheel system but didn\u2019t have access to your own Linux cloud machine or were a bit intimidated by the setup, this is a great way to try it out very quickly and easily.\n\nThese tools are how I\u2019m able to out-ship literally everyone else right now with massive amounts of high-quality software (currently over 50k commits per month across 100+ projects using ~840B tokens, not to mention  thousands of happy users and ~33k GH stars, etc.).\n\nIt\u2019s all free and open source except for my skills, which are optional (but recommended to get the most out of the tools). If you want to get the skills, check out jeffreys-skills.md ($20/month and worth every penny).",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/OpenHandsDev/status/2107872222463353178",
+    "handle": "@OpenHandsDev",
+    "display_name": "OpenHands",
+    "date": "2026-10-07",
+    "text": "Agentic development isn\u2019t one task for one agent.\n\nIt\u2019s a system: triage the issue, write the code, run it safely, review the PR, and keep the work moving when feedback comes in.\n\nThat\u2019s where we focused in September across eight Agent Canvas releases:\n \u2699\ufe0f More powerful automations that carry context from issue \u2192 development \u2192 PR review\n\ud83c\udf9b\ufe0f Agent Profiles with scoped tools and credentials, so each agent can be configured for the job it needs to do\n\ud83d\udc33 Isolated Docker runtimes that give each conversation its own execution environment\n\nWe also made Apps easier to build and share, alongside dozens of improvements across the Agent Canvas workspace.\n\nRead the full September product update: https://t.co/03SoAaaETn",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/iamandresvilla/status/2108910010851856461",
+    "handle": "@iamandresvilla",
+    "display_name": "Andres Villa | AI",
+    "date": "2026-10-10",
+    "text": "2/3 En Copilot CLI:\n\n/sandbox enable \u2192 activa el aislamiento.\n/sandbox status \u2192 comprueba si se aplica en esa sesi\u00f3n.\n\nOjo: el acceso saliente a internet est\u00e1 permitido por defecto. Activarlo no equivale a desconectar al agente.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/kylianCros/status/2109566198291771531",
+    "handle": "@kylianCros",
+    "display_name": "Kylian",
+    "date": "2026-10-12",
+    "text": "works until the bug takes down the agent itself. \n\nwe host openclaw agents and what breaks is rarely the model, its the box: ram blows up mid build, disk fills, logins expire. \n\nif nothing outside brings it back, theres no one left to read the error",
+    "unavailable": false
+  }
+]

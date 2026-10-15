@@ -108,3 +108,14 @@ in-page links (the template's renderer assigns none), two taglines rewritten.
 npm publish times spot-checked for Codex, Claude Code and Grok. Build,
 integrity, static links and a rendered-page anchor check are clean. Committed
 locally; not pushed.
+
+## 2026-10-15 09:00 -- issue published
+
+The X lane came back on 2026-10-14 after the operator approved a device login.
+Signals (14, verified 6 kept / 8 corrected), sweeps (10), pick (36), blind
+capture (36/36), cards (24), wire (6). Two drafts, chief merge, structure, fact
+and language passes, three judge rounds; the cold reader stayed at 7. A
+readability pass with quote text visible to the cold reader brought it to 8;
+the receipts judge failed that pass on six overstatements, all repaired and
+rechecked. Coordinator: two featured cards, pronoun fixes in the issue, card
+verdicts and wire. Build, integrity and static links clean.

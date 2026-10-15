@@ -1,0 +1,83 @@
+schema_version: bitter.frontier_wire.v0
+wire_id: "2026-10-14"
+date: 2026-10-14
+lede: >
+  Willison reports having Codex build a file editor so a credentials file
+  never passes through a model; Hashimoto wants terminals to tell you which
+  agent needs an answer. Around them, four more reads from September 21 to
+  October 13, 2026,
+  on CLI help, session retrospectives, adaptive testing, and coding by voice.
+items:
+  - title: "Release: web-edit 0.1a0"
+    url: https://simonwillison.net/2026/Oct/12/web-edit/
+    source: Simon Willison
+    date: 2026-10-12
+    tier: relayed
+    take: >
+      Willison describes web-edit 0.1a0, a file editor built with Codex for
+      updating a credentials file from a phone without routing its contents
+      through the model. It is meant to run over Tailscale. If remote coding
+      has you pasting secrets into chat just to change a file, keep a direct
+      editing path alongside the agent.
+
+  - title: "A Terminal Protocol for Program Status (OSC 7501)"
+    url: https://mitchellh.com/writing/program-status-osc7501
+    source: Mitchell Hashimoto
+    date: 2026-10-06
+    tier: relayed
+    take: >
+      Hashimoto proposes OSC 7501 so terminal programs can report when they
+      are working, finished, or waiting on you. For anyone juggling agent
+      terminals, an explicit blocked state could replace the round of tab
+      switching to find who needs an answer. The Claude Code and Codex
+      examples are proofs of concept in plugins or forks; check adoption
+      before replacing your status detector.
+
+  - title: "The /retro Skill"
+    url: https://www.aihero.dev/skills-retro
+    source: Matt Pocock
+    date: 2026-10-05
+    tier: relayed
+    take: >
+      Pocock describes /retro as a session debrief that proposes repo
+      improvements and waits for a human to pick one. Its useful distinction
+      is between mistakes a failing check could catch and judgment calls for
+      the reviewer agent. Try it after a painful run, then reject any advice you
+      cannot trace to a specific moment in that session.
+
+  - title: "--help on your CLI is all you need for LLM context until you don't."
+    url: https://ghuntley.com/tier/
+    source: Geoffrey Huntley
+    date: 2026-10-09
+    tier: relayed
+    take: >
+      Huntley argues that a CLI's help text deserves its own evaluation: can a
+      model follow the subcommands and finish a task with few tool calls?
+      Before adding another skill pack, measure a fresh agent's path through
+      your help output and revise the instructions where it gets lost.
+
+  - title: "We tested our own WAF with frontier AI models. Here's what we found"
+    url: https://blog.cloudflare.com/adaptive-ai-waf-testing/
+    source: Cloudflare
+    date: 2026-09-29
+    tier: relayed
+    take: >
+      Cloudflare reports 1,107 attempts against an authorized customer staging
+      environment. Its tester mutated blocked requests and used responses to
+      choose the next variation. Requests that got through became leads for
+      human review; passing the WAF did not prove an exploit. If you try adaptive testing against your own staging
+      application, retain the requests and responses so a reviewer can
+      reproduce the interesting cases.
+
+  - title: "A new feature for my blog, built using my voice"
+    url: https://simonwillison.net/2026/Oct/9/built-using-my-voice/
+    source: Simon Willison
+    date: 2026-10-09
+    tier: relayed
+    take: >
+      Willison reports building most of a Django newsletter archive by talking
+      to Codex while cooking dinner. Finishing it took another half hour of
+      keyboard prompting and review, including replacing a Git subprocess with
+      an API-based import. A good trial for voice-driven development is a
+      bounded feature with a preview you can glance at and a pull request you
+      can inspect afterward.
