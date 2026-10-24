@@ -1,0 +1,38 @@
+{
+ "source": "cloudflare-ai",
+ "feed": "https://blog.cloudflare.com/tag/ai/rss/",
+ "swept_on": "2026-10-24",
+ "since": "2026-10-13",
+ "items": [
+  {
+   "title": "How Commerce.com and Cloudflare are getting storefronts ready for AI agents",
+   "url": "https://blog.cloudflare.com/webmcp-commerce/",
+   "date": "2026-10-21",
+   "summary": "Almost 100,000 Commerce.com domains now give AI agents real shopping tools through WebMCP on Cloudflare. Here's how we turned it on across every store at once, while keeping each merchant in control."
+  },
+  {
+   "title": "Cutting our inference bill by 68% by being obsessive about optimization",
+   "url": "https://blog.cloudflare.com/obsessive-inference-optimization/",
+   "date": "2026-10-19",
+   "summary": "When our AI code reviewer's cost per run doubled, we dug into the token usage to find out why. Learn how we used prompt caching and intelligent model routing to slash our inference bill by 68% while speeding up reviews."
+  },
+  {
+   "title": "Introducing Clairic, a new System One class of extraction models",
+   "url": "https://blog.cloudflare.com/clairic-extraction-model/",
+   "date": "2026-10-19",
+   "summary": "Clairic is a new model from Cloudflare that is a System One extraction modeI, capable of extracting, computing, estimating, and forecasting data from unstructured inputs."
+  },
+  {
+   "title": "Continuous accountability for Verified bots",
+   "url": "https://blog.cloudflare.com/verified-bots-accountability/",
+   "date": "2026-10-16",
+   "summary": "Identity alone doesn't guarantee a bot will behave responsibly. We are introducing a system to continuously evaluate whether Verified bots honor site preferences, like robots.txt and HTTP 429s, ensuring they remain accountable over time."
+  },
+  {
+   "title": "Cloudflare and OpenAI: Making AI discovery better for everyone",
+   "url": "https://blog.cloudflare.com/cloudflare-openai-discovery-agentic-web/",
+   "date": "2026-10-15",
+   "summary": "How Cloudflare and OpenAI are working together to help AI find useful content, keep up with changes, and make fewer wasted requests — making the experience better for users and website owners alike."
+  }
+ ]
+}

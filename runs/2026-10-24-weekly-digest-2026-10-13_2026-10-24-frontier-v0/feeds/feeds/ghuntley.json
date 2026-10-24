@@ -1,0 +1,44 @@
+{
+ "source": "ghuntley",
+ "feed": "https://ghuntley.com/rss/",
+ "swept_on": "2026-10-24",
+ "since": "2026-10-13",
+ "items": [
+  {
+   "title": "patch the planet",
+   "url": "https://ghuntley.com/patch/",
+   "date": "2026-10-20",
+   "summary": "I don't know if you've seen this, but a CA just got popped. Their keys got leaked, which means the industry as a whole now has some pretty major problems. It was revealed two hours ago. eMudhra Intermediate CA Compromise eMudhra Intermediate CA Compromise Now you&"
+  },
+  {
+   "title": "pooling OpenAI subscriptions and bypassing regional inference capacity limits",
+   "url": "https://ghuntley.com/underclass/",
+   "date": "2026-10-17",
+   "summary": "by now, most people should be aware that we're in a cost of compute crisis. The cost of CPU and memory is through the roof. There just isn't enough. Meanwhile, there definitely aren't enough GPUs in the world. If you've been using"
+  },
+  {
+   "title": "state of agentic coding #11: the curiosity test, lisp, and labs that can't fail",
+   "url": "https://ghuntley.com/toronto/",
+   "date": "2026-10-16",
+   "summary": "Armin Ronacher and Ben Vinegar had me on State of Agentic Coding to talk about the curiosity test, DHH coming around, durable agents, a Lisp you program by talking to it, and why the labs cannot afford to fail."
+  },
+  {
+   "title": "revisiting some of my priors about openclaw",
+   "url": "https://ghuntley.com/bot/",
+   "date": "2026-10-16",
+   "summary": "I have to say, Peter Steinberg (aka lobster man) is absolutely brilliant. He was so ahead of his time with OpenClaw. I remember when he first tweeted about it last year, and when it turned into utter lobster madness at the beginning of the year. Heck, I even ran OpenClaw"
+  },
+  {
+   "title": "a new model for open source: closed to pull requests, open to remix.",
+   "url": "https://ghuntley.com/remix/",
+   "date": "2026-10-14",
+   "summary": "All right, I'm going to open up a history lesson because it's been a couple of generations of software engineers since this essay, and I have to assume not everyone knows what a cathedral is. Everyone knows what a bazaar is because they're using"
+  },
+  {
+   "title": "nobody should type code by hand anymore. here's what's left.",
+   "url": "https://ghuntley.com/agency/",
+   "date": "2026-10-13",
+   "summary": "Josh Wulf and I talked loop engineering for four episodes. The models stopped being the constraint a long time ago; what's left is vision, verification and agency. Delete your skill packs, put the whole system under test, and revisit everything that used to be hard."
+  }
+ ]
+}

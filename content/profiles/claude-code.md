@@ -7,7 +7,7 @@ source_contract: sources/claude-code.yml
 homepage: https://claude.ai/code
 docs: https://code.claude.com/docs/en/overview
 changelog: https://code.claude.com/docs/en/changelog
-tagline: "Claude Code can answer routine prompts; its plugins can answer first."
+tagline: "Claude Code now resumes workflows without rerunning finished agents, while some headless defaults got stricter."
 compared_with: []
 x:
   project: AnthropicAI
@@ -17,8 +17,8 @@ x:
 surface_class: closed_source_release_notes
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-10-13
-last_full_review: 2026-10-13
+last_updated: 2026-10-24
+last_full_review: 2026-10-24
 claims:
   - id: server-side-classifier-default
     finding_id: 2026-09-21-claude-code-2-1-278-auto-mode-classifier-moves-server-side-by-default
@@ -35,7 +35,7 @@ claims:
   - id: gitspawn-second-path
     finding_id: 2026-09-21-claude-code-gitspawn-ultrareview-path-ran-repo-git-config-before-trust-no-fix-named-through-2-1-278
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: macos-read-deny-and-mcp-headershelper
     finding_id: 2026-08-20-claude-code-2-1-236-macos-read-deny-wildcards-bind-2-1-238-trust-gates-mcp-headershelper
     last_verified: 2026-10-13
@@ -126,7 +126,7 @@ claims:
     status: retired
   - id: deny-rules-extended-and-reverted
     finding_id: 2026-09-21-claude-code-deny-rules-extended-into-bash-and-reverted-twice
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: auto-mode-starting-mode-isolation-none
     finding_id: 2026-09-21-claude-code-auto-mode-is-the-starting-mode-and-docs-list-isolation-needed-none
@@ -163,46 +163,46 @@ claims:
   - id: install-and-channel-lag
     finding_id: 2026-10-13-claude-code-stable-moved-seven-times-in-small-steps-once-about-a-day-after-publish-it-now-serves-2-1
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: mods-permission-authority
     finding_id: 2026-10-13-claude-code-mods-ship-on-by-default-in-2-1-286-and-can-approve-tool-calls-deny-rules-hold-over-them
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: guard-ask-and-env-holds-unreleased
     finding_id: 2026-10-13-claude-code-unreleased-on-main-after-2-1-296-the-mods-guard-extends-to-ask-verdicts-and-pins-policy
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: auto-start-across-providers
     finding_id: 2026-10-13-claude-code-auto-mode-becomes-the-starting-mode-on-every-plan-and-provider-and-for-claude-p-on-third
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: server-review-and-headless-fallback
     finding_id: 2026-10-13-claude-code-the-server-side-classifier-reaches-every-direct-api-session-type-read-only-and-sandboxed
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: managed-os-read-denial-exception
     finding_id: 2026-10-13-claude-code-managed-settings-an-os-denied-read-now-starts-sessions-without-that-source-s-policy-parse
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: hook-failure-block-is-opt-in
     finding_id: 2026-10-13-claude-code-hooks-still-fail-open-by-default-2-1-295-adds-onfailure-block
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: grader-late-tool-registration
     finding_id: 2026-10-13-claude-code-graders-and-unattended-runs-restricted-left-gaps-until-2-1-290-and-2-1-295-background-comm
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: sandbox-auto-allow-rule-tests
     finding_id: 2026-10-13-claude-code-bash-checks-deny-and-ask-rules-were-skipped-under-sandbox-auto-allow-dangerous-rm-now-time
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: symlink-write-destination-check
     finding_id: 2026-10-13-claude-code-symlink-writes-now-ask-about-where-they-land-instead-of-their-in-tree-spelling
     last_verified: 2026-10-13
     status: retired
   - id: cloud-review-machine-off-switch
     finding_id: 2026-10-13-claude-code-disableworkflows-no-longer-stops-cloud-reviews-unless-machine-policy-sets
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: plan-mode-connector-ask-policy
     finding_id: 2026-10-13-claude-code-plan-mode-stops-auto-approving-mutating-connector-tools-with-a-server-ask-policy
@@ -211,126 +211,247 @@ claims:
   - id: agents-md-portability-and-instruction-limits
     finding_id: 2026-10-13-claude-code-agents-md-reaches-all-providers-in-2-1-281-managed-only-still-admits-nested-instructions
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: model-alias-and-provider-governance
     finding_id: 2026-10-13-claude-code-defaults-moved-to-opus-5-5-sonnet-5-5-and-haiku-5-5-new-managed-keys-pin-exact-model-versi
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: safety-switch-overrides-opus-pin
     finding_id: 2026-10-13-claude-code-safety-related-model-switches-can-override-a-pinned-opus-model
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: gateway-meter-correction
     finding_id: 2026-10-13-claude-code-the-claude-apps-gateway-spend-meter-stops-undercounting-cache-writes-and-server-tools
     last_verified: 2026-10-13
     status: retired
   - id: otel-prompt-text-masking
     finding_id: 2026-10-13-claude-code-telemetry-and-data-exposure-otel-prompt-text-gains-a-second-attribute-background-telemetry
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: runner-system-prompt-files
     finding_id: 2026-10-13-claude-code-self-hosted-runners-pass-prompts-as-files-and-wrappers-must-use-file-flags
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: mcp-negotiation-default
     finding_id: 2026-10-13-claude-code-local-mcp-connections-negotiate-protocol-2026-07-28-by-default-on-latest
     last_verified: 2026-10-13
-    status: active
+    status: retired
   - id: plugin4shell-advisory-names-fixed-build
     finding_id: 2026-10-13-claude-code-four-repository-advisories-in-fifteen-days-disclose-earlier-fixes-plugin4shell-among-them
     last_verified: 2026-10-13
+    status: retired
+  - id: released-policy-guard
+    finding_id: 2026-10-24-claude-code-the-published-guard-now-holds-policy-asks-and-environment-pins-over-user-mods
+    last_verified: 2026-10-24
+    status: active
+  - id: headless-mode-reversal
+    finding_id: 2026-10-24-claude-code-unconfigured-headless-jobs-revert-from-auto-to-default-in-several-cases
+    last_verified: 2026-10-24
+    status: active
+  - id: sandbox-and-shell-recovery
+    finding_id: 2026-10-24-claude-code-latest-closes-more-sandbox-escape-paths-and-shell-edits-lose-a-rewind-shortcut
+    last_verified: 2026-10-24
+    status: active
+  - id: nested-namespace-trade
+    finding_id: 2026-10-24-claude-code-linux-can-admit-nested-user-namespaces-at-the-cost-of-a-sandbox-boundary
+    last_verified: 2026-10-24
+    status: active
+  - id: ultrareview-workspace-trust
+    finding_id: 2026-10-24-claude-code-ultrareview-now-refuses-untrusted-noninteractive-workspaces-unless-explicitly-trusted
+    last_verified: 2026-10-24
+    status: active
+  - id: windows-hook-repair-set
+    finding_id: 2026-10-24-claude-code-hook-failures-and-approval-paths-receive-further-fail-closed-repairs
+    last_verified: 2026-10-24
+    status: active
+  - id: mcp-admission-retry-contract
+    finding_id: 2026-10-24-claude-code-mcp-admission-and-retries-change-which-servers-start-and-which-calls-repeat
+    last_verified: 2026-10-24
+    status: active
+  - id: eligible-idle-compaction
+    finding_id: 2026-10-24-claude-code-idle-compaction-reduces-recaching-work-by-replacing-long-idle-context-with-a-summary
+    last_verified: 2026-10-24
+    status: retired
+  - id: native-forks-and-journal-resume
+    finding_id: 2026-10-24-claude-code-forked-delegation-reaches-headless-sessions-while-lifecycle-and-budget-holes-close
+    last_verified: 2026-10-24
+    status: active
+  - id: gateway-search-and-monitors
+    finding_id: 2026-10-24-claude-code-gateway-tool-search-and-provider-native-monitors-absorb-more-integration-code
+    last_verified: 2026-10-24
+    status: active
+  - id: request-transcripts-and-leak-repairs
+    finding_id: 2026-10-24-claude-code-reproduction-transcripts-gain-request-contents-while-prompt-and-gateway-key-leaks-are-repa
+    last_verified: 2026-10-24
+    status: active
+  - id: native-safety-events
+    finding_id: 2026-10-24-claude-code-safety-events-make-the-reason-for-an-interruption-easier-to-inspect
+    last_verified: 2026-10-24
+    status: retired
+  - id: mcp-tasks-beta-contract
+    finding_id: 2026-10-24-claude-code-mcp-tasks-introduces-server-owned-jobs-with-session-and-cancellation-limits
+    last_verified: 2026-10-24
+    status: active
+  - id: hosted-review-ga
+    finding_id: 2026-10-24-claude-code-hosted-code-review-leaves-preview-and-exposes-review-depth-and-stopping-controls
+    last_verified: 2026-10-24
+    status: active
+  - id: desktop-supervision-scope
+    finding_id: 2026-10-24-claude-code-desktop-documents-saved-environments-and-in-session-tasks-while-cloud-access-gets-role-con
+    last_verified: 2026-10-24
+    status: active
+  - id: python-sdk-resume-injection
+    finding_id: 2026-10-24-claude-code-python-sdk-resume-injection-enters-nvd-after-its-july-fix
+    last_verified: 2026-10-24
+    status: active
+  - id: remote-control-sandbox-flags
+    finding_id: 2026-10-24-claude-code-remote-control-rejects-two-sandbox-flags-that-previously-did-nothing
+    last_verified: 2026-10-24
+    status: active
+  - id: deletion-and-fallback-changes
+    finding_id: 2026-10-24-claude-code-deletion-prompts-narrow-while-unavailable-sandbox-write-fallbacks-are-refused
+    last_verified: 2026-10-24
+    status: active
+  - id: policy-loading-and-transport
+    finding_id: 2026-10-24-claude-code-managed-policy-refresh-and-hosted-transport-settings-gain-stricter-boundaries
+    last_verified: 2026-10-24
+    status: retired
+  - id: mcp-name-and-redirect-rules
+    finding_id: 2026-10-24-claude-code-mcp-rule-names-and-anthropic-proxy-redirects-become-stricter
+    last_verified: 2026-10-24
+    status: retired
+  - id: skill-grants-and-hook-admission
+    finding_id: 2026-10-24-claude-code-skill-grants-now-depend-more-closely-on-admitted-hooks-and-managed-settings
+    last_verified: 2026-10-24
+    status: retired
+  - id: hook-delivery-and-model-failures
+    finding_id: 2026-10-24-claude-code-plugin-hook-delivery-failures-refuse-actions-and-missing-agent-hook-models-fall-back
+    last_verified: 2026-10-24
+    status: active
+  - id: background-policy-continuity
+    finding_id: 2026-10-24-claude-code-background-restart-preserves-safe-mode-and-remote-mod-revocation-reaches-open-sessions
+    last_verified: 2026-10-24
+    status: retired
+  - id: worktree-cleanup-retention
+    finding_id: 2026-10-24-claude-code-worktree-exit-cleanup-is-repaired-where-it-could-discard-commits
+    last_verified: 2026-10-24
+    status: active
+  - id: runner-setup-and-unknown-outcomes
+    finding_id: 2026-10-24-claude-code-runner-setup-gains-a-timeout-and-interrupted-remote-tool-outcomes-become-explicit
+    last_verified: 2026-10-24
+    status: retired
+  - id: install-channel-snapshot
+    finding_id: 2026-10-24-claude-code-latest-is-2-1-310-while-the-stable-selector-remains-2-1-308
+    last_verified: 2026-10-24
     status: active
 posture_basis:
   capability:
-    - 2026-10-13-claude-code-mods-ship-on-by-default-in-2-1-286-and-can-approve-tool-calls-deny-rules-hold-over-them
     - 2026-10-13-claude-code-hooks-still-fail-open-by-default-2-1-295-adds-onfailure-block
-    - 2026-10-13-claude-code-agents-md-reaches-all-providers-in-2-1-281-managed-only-still-admits-nested-instructions
-    - 2026-10-13-claude-code-local-mcp-connections-negotiate-protocol-2026-07-28-by-default-on-latest
-    - 2026-10-13-claude-code-self-hosted-runners-pass-prompts-as-files-and-wrappers-must-use-file-flags
+    - 2026-10-24-claude-code-forked-delegation-reaches-headless-sessions-while-lifecycle-and-budget-holes-close
+    - 2026-10-24-claude-code-gateway-tool-search-and-provider-native-monitors-absorb-more-integration-code
+    - 2026-10-24-claude-code-mcp-tasks-introduces-server-owned-jobs-with-session-and-cancellation-limits
+    - 2026-10-24-claude-code-hosted-code-review-leaves-preview-and-exposes-review-depth-and-stopping-controls
+    - 2026-10-24-claude-code-desktop-documents-saved-environments-and-in-session-tasks-while-cloud-access-gets-role-con
   accessibility:
-    - 2026-10-13-claude-code-auto-mode-becomes-the-starting-mode-on-every-plan-and-provider-and-for-claude-p-on-third
     - 2026-10-13-claude-code-the-server-side-classifier-reaches-every-direct-api-session-type-read-only-and-sandboxed
-    - 2026-10-13-claude-code-stable-moved-seven-times-in-small-steps-once-about-a-day-after-publish-it-now-serves-2-1
+    - 2026-10-24-claude-code-unconfigured-headless-jobs-revert-from-auto-to-default-in-several-cases
+    - 2026-10-24-claude-code-latest-is-2-1-310-while-the-stable-selector-remains-2-1-308
   governance:
-    - 2026-10-13-claude-code-mods-ship-on-by-default-in-2-1-286-and-can-approve-tool-calls-deny-rules-hold-over-them
-    - 2026-10-13-claude-code-unreleased-on-main-after-2-1-296-the-mods-guard-extends-to-ask-verdicts-and-pins-policy
-    - 2026-10-13-claude-code-four-repository-advisories-in-fifteen-days-disclose-earlier-fixes-plugin4shell-among-them
     - 2026-10-13-claude-code-managed-settings-an-os-denied-read-now-starts-sessions-without-that-source-s-policy-parse
     - 2026-10-13-claude-code-hooks-still-fail-open-by-default-2-1-295-adds-onfailure-block
-    - 2026-10-13-claude-code-bash-checks-deny-and-ask-rules-were-skipped-under-sandbox-auto-allow-dangerous-rm-now-time
-    - 2026-10-13-claude-code-graders-and-unattended-runs-restricted-left-gaps-until-2-1-290-and-2-1-295-background-comm
     - 2026-10-13-claude-code-telemetry-and-data-exposure-otel-prompt-text-gains-a-second-attribute-background-telemetry
-    - 2026-10-13-claude-code-defaults-moved-to-opus-5-5-sonnet-5-5-and-haiku-5-5-new-managed-keys-pin-exact-model-versi
     - 2026-10-13-claude-code-disableworkflows-no-longer-stops-cloud-reviews-unless-machine-policy-sets
-    - 2026-10-13-claude-code-safety-related-model-switches-can-override-a-pinned-opus-model
     - 2026-09-21-claude-code-deny-rules-extended-into-bash-and-reverted-twice
-    - 2026-09-21-claude-code-gitspawn-ultrareview-path-ran-repo-git-config-before-trust-no-fix-named-through-2-1-278
+    - 2026-10-24-claude-code-the-published-guard-now-holds-policy-asks-and-environment-pins-over-user-mods
+    - 2026-10-24-claude-code-latest-closes-more-sandbox-escape-paths-and-shell-edits-lose-a-rewind-shortcut
+    - 2026-10-24-claude-code-linux-can-admit-nested-user-namespaces-at-the-cost-of-a-sandbox-boundary
+    - 2026-10-24-claude-code-ultrareview-now-refuses-untrusted-noninteractive-workspaces-unless-explicitly-trusted
+    - 2026-10-24-claude-code-hook-failures-and-approval-paths-receive-further-fail-closed-repairs
+    - 2026-10-24-claude-code-mcp-admission-and-retries-change-which-servers-start-and-which-calls-repeat
+    - 2026-10-24-claude-code-reproduction-transcripts-gain-request-contents-while-prompt-and-gateway-key-leaks-are-repa
+    - 2026-10-24-claude-code-python-sdk-resume-injection-enters-nvd-after-its-july-fix
+    - 2026-10-24-claude-code-remote-control-rejects-two-sandbox-flags-that-previously-did-nothing
+    - 2026-10-24-claude-code-deletion-prompts-narrow-while-unavailable-sandbox-write-fallbacks-are-refused
+    - 2026-10-24-claude-code-plugin-hook-delivery-failures-refuse-actions-and-missing-agent-hook-models-fall-back
+    - 2026-10-24-claude-code-worktree-exit-cleanup-is-repaired-where-it-could-discard-commits
 stance:
-  use_for: 'Terminal and background coding jobs with an explicit permission policy. <a href="#make-unattended-policy-explicit">Choose the mode for each job.</a>'
-  avoid_for: 'Work where unreviewed plugins make permission decisions. <a href="#review-plugins-before-delegating-permission-checks">Review plugin admission and containment.</a>'
-  watch_next: 'A published guard update. <a href="#what-is-unresolved">Check which controls reached a release.</a>'
+  use_for: 'A bounded native-delegation pilot on 2.1.310 after <a href="#delegated-limits">testing child limits</a>.'
+  avoid_for: 'Unreviewed user plugins. <a href="#mod-admission">Choose which plugins may run.</a>'
+  watch_next: 'A released fix or reproducible test for <a href="#what-is-unresolved">Manifold''s GitSpawn report</a>.'
 ---
 
 # Claude Code
 
 <span id="claude-code"></span>
 
-From [2.1.286, mods load by default](https://web.archive.org/web/20261012024958/https://code.claude.com/docs/en/plugins/mods/admin). Mods are [plugin code that can answer permission checks](https://web.archive.org/web/20261012012019/https://code.claude.com/docs/en/plugins/mods/overview). A mod can [approve over an ask rule or non-managed PreToolUse block and skip the classifier](https://web.archive.org/web/20261012180805/https://code.claude.com/docs/en/permissions#extend-permissions-with-hooks). Admitting a plugin now includes deciding whether its code may answer permission questions.
+Claude Code [2.1.305 can resume workflows without repeating completed `pipeline()` and `parallel()` agents](https://github.com/anthropics/claude-code/releases/tag/v2.1.305). Try [built-in fork subagents, now enabled by default in headless and SDK runs](https://github.com/anthropics/claude-code/releases/tag/v2.1.302), before maintaining your own prompt-copy and restart code.
 
-## Where it stands, 2026-10-13
+Where the built-in security plugin is active, [2.1.299](https://github.com/anthropics/claude-code/releases/tag/v2.1.299) [by default prevents user plugins from weakening permission requests required by policy](https://github.com/anthropics/claude-code/blob/v2.1.310/mods/sec-default/README.md#deny-rules-hold).
 
-Install [latest 2.1.296](https://github.com/anthropics/claude-code/releases/tag/v2.1.296) with `npm install -g @anthropic-ai/claude-code@2.1.296` for jobs relying on mods, policy hooks or restricted tool sets. The upgrade brings [hook-failure blocking and restrictions on built-ins registered after launch, added in 2.1.295](https://github.com/anthropics/claude-code/releases/tag/v2.1.295). At this date, [stable was 2.1.287](https://github.com/Homebrew/homebrew-cask/commit/a1326862d9154547bcda62a60c007b734cf36dc4).
+## Where it stands, 2026-10-24
 
-## Review plugins before delegating permission checks
+Install [2.1.310](https://github.com/anthropics/claude-code/releases/tag/v2.1.310) using the pinned npm command below; [stable](https://registry.npmjs.org/@anthropic-ai%2fclaude-code) and the [ordinary Homebrew cask](https://github.com/Homebrew/homebrew-cask/blob/9ec411cdc7fb37ffd19f74613fe46b8859117ad0/Casks/c/claude-code.rb) [still lack repairs](https://github.com/anthropics/claude-code/releases/tag/v2.1.309). Before unattended runs, set permission modes explicitly, test policy enforcement, and [preserve recovery outside `/rewind`](https://github.com/anthropics/claude-code/releases/tag/v2.1.309). Avoid [unreviewed user plugins](https://github.com/anthropics/claude-code/blob/v2.1.310/mods/sec-default/README.md#pinned-variables) and [nested user namespaces without adequate outer containment](https://web.archive.org/web/20261023145040/https://code.claude.com/docs/en/sandboxing). [MCP Tasks remains gated public beta](https://web.archive.org/web/20261024085041/https://code.claude.com/docs/en/mcp); [hosted Code Review is GA for Team/Enterprise](https://claude.dev/blog/solving-code-review-at-anthropic/). [Changes on public main after 2.1.310 are documentation and comments only](https://github.com/anthropics/claude-code/compare/v2.1.310...318b7e6ac4e726e88a4ad326214866a93c373b1b).
 
-**Treat plugins as permission code.** [Review their approval authority](https://web.archive.org/web/20261012180805/https://code.claude.com/docs/en/permissions#extend-permissions-with-hooks) before enabling them. [2.1.287 ignores the old `CLAUDE_CODE_ENABLE_FUNCTION_HOOKS=0` off switch](https://web.archive.org/web/20261012012019/https://code.claude.com/docs/en/plugins/mods/overview).
+**Channel.** Test and pin [non-prerelease 2.1.310](https://github.com/anthropics/claude-code/releases/tag/v2.1.310) with [`npm install -g @anthropic-ai/claude-code@2.1.310`](https://registry.npmjs.org/@anthropic-ai%2fclaude-code/2.1.310). At 10:18 UTC on 24 October 2026, [npm latest and next were 2.1.310; stable was 2.1.308](https://registry.npmjs.org/@anthropic-ai%2fclaude-code). The ordinary [Homebrew cask also carried 2.1.308](https://github.com/Homebrew/homebrew-cask/blob/9ec411cdc7fb37ffd19f74613fe46b8859117ad0/Casks/c/claude-code.rb), missing [2.1.309's sandbox and workspace-trust repairs](https://github.com/anthropics/claude-code/releases/tag/v2.1.309) and [2.1.310's remaining Windows hook fix](https://github.com/anthropics/claude-code/releases/tag/v2.1.310).
 
-**Make machine policy readable.** In [2.1.285+, an OS-denied managed-settings read warns and starts without that source's policy; parse errors and other read errors still stop sessions](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L920). If no other admin source supplies policy, [the session runs unmanaged](https://web.archive.org/web/20261011174406/https://code.claude.com/docs/en/managed-settings). Check permissions as the account running Claude Code and alert on the [read-failure notices in `/status` and `-p` stderr](https://web.archive.org/web/20261011174406/https://code.claude.com/docs/en/managed-settings).
+## Set the policy before a job starts
 
-**On managed fleets, reject user mods.** With the built-in guard loaded, set [`pluginConfigs["cc-plugin-sec-default@builtin"].options.allowManagedModsOnly: true` in managed settings](https://github.com/anthropics/claude-code/blob/2301018b1f61/mods/sec-default/README.md#options-an-administrator-sets). Set managed [`requiredMinimumVersion`](https://web.archive.org/web/20261012152039/https://code.claude.com/docs/en/settings-reference#requiredminimumversion) to 2.1.296 for the [guard repair stable lacks](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L450). Before adding [`disableSideloadFlags`, check CI: it also rejects `--agents` and `--mcp-config`](https://web.archive.org/web/20261012024958/https://code.claude.com/docs/en/plugins/mods/admin).
+**Choose the permission mode in every unattended job.** Unconfigured [`claude -p` and Agent SDK sessions now start in `default` on third-party providers, with telemetry disabled, or on a fresh install](https://github.com/anthropics/claude-code/releases/tag/v2.1.302). If the job needs auto, [pass `--permission-mode auto` explicitly](https://github.com/anthropics/claude-code/releases/tag/v2.1.302). Before launch, decide what the job may do unattended. Test an action it should refuse and one it should complete.
 
-**On unmanaged machines, remove unreviewed mods.** Without managed settings or a Team/Enterprise sign-in, a mod can [approve over a deny rule](https://github.com/anthropics/claude-code/blob/2301018b1f61/mods/sec-default/README.md#deny-rules-hold). Inspect [`claude plugin validate` for `tool.check`](https://web.archive.org/web/20261012024958/https://code.claude.com/docs/en/plugins/mods/admin), or use [`--safe-mode` or `disableAllHooks: true`; built-in mods remain](https://web.archive.org/web/20261012012019/https://code.claude.com/docs/en/plugins/mods/overview). Review the hooks before enabling the mod.
+<span id="delegated-limits"></span>
 
-On either kind of machine, contain the process: [mods run unsandboxed and tool deny rules do not cover their own filesystem and process calls](https://web.archive.org/web/20261012024958/https://code.claude.com/docs/en/plugins/mods/admin).
+**Test delegated limits before removing your wrappers.** [2.1.299 closes mod-prompt routes past turn and budget limits](https://github.com/anthropics/claude-code/releases/tag/v2.1.299), [2.1.304 closes further spawn/resume routes](https://github.com/anthropics/claude-code/releases/tag/v2.1.304), and [2.1.309 makes split-pane teammates inherit the leader's command-line tool deny and `--tools` rules](https://github.com/anthropics/claude-code/releases/tag/v2.1.309). Before deleting your delegation wrapper, test a child hitting its limit and attempting a denied tool. Count completed jobs and the minutes you spend approving, investigating and recovering them. Make the native path earn its keep on that total, and retain external spend controls where the job requires them.
 
-## Make unattended policy explicit
+<span id="mod-admission"></span>
 
-**Set the CI permission mode per job.** Unconfigured [terminal and VS Code sessions default to auto across plans and providers](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1112); from 2.1.285, so do [third-party and telemetry-off `-p` and Python Agent SDK sessions](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1002). Without an explicit mode, [headless sessions fetching flags and sessions eligible for the HIPAA configuration default to `default`](https://web.archive.org/web/20261012151817/https://code.claude.com/docs/en/permission-modes#which-mode-a-session-starts-in). Pass `--permission-mode` explicitly. For auto jobs, use Anthropic's own [pattern pairing the classifier with an enforced egress allowlist](https://github.com/anthropics/claude-code/blob/2301018b1f61/CLAUDE.md). Decide whether this job may use server-side permission review, then confirm coverage using the [checks under What is unresolved](#what-is-unresolved).
+**Choose which user plugins may run.** Claude Code [calls these plugins mods](https://github.com/anthropics/claude-code/blob/v2.1.310/mods/sec-default/README.md). These [plugins can start processes with your access; environment pins do not contain their code](https://github.com/anthropics/claude-code/blob/v2.1.310/mods/sec-default/README.md#pinned-variables). The [guard depends on managed policy or the relevant Team/Enterprise sign-in](https://github.com/anthropics/claude-code/blob/v2.1.310/mods/sec-default/README.md). To reject user mods on load or reload, [set `allowManagedModsOnly: true` under the built-in guard's managed `pluginConfigs` options](https://github.com/anthropics/claude-code/blob/v2.1.310/mods/sec-default/README.md#options-an-administrator-sets). [Administrators can relax the verdict holds; ordinary permission-dialog asks are not universally protected](https://github.com/anthropics/claude-code/blob/v2.1.310/mods/sec-default/README.md).
 
-**Let policy hooks block their own failures.** [Use the release named above](https://github.com/anthropics/claude-code/releases/tag/v2.1.296). For synchronous command or HTTP `PreToolUse` policy hooks, [set `onFailure: "block"`](https://web.archive.org/web/20261011225234/https://code.claude.com/docs/en/hooks#block-the-action-when-a-hook-fails) and test failure and timeout behavior; [the default remains continue](https://web.archive.org/web/20261011225234/https://code.claude.com/docs/en/hooks#block-the-action-when-a-hook-fails). Once those tests pass, retire wrappers that only catch those failures.
+**Keep consequential approvals person-only when the job demands it.** [2.1.304 adds `decider: "person"`, refusing when neither a dialog nor host callback can answer](https://github.com/anthropics/claude-code/releases/tag/v2.1.304). Regenerate installed mod types before using it: [2.1.310's public mirror still lists only `host`](https://github.com/anthropics/claude-code/blob/v2.1.310/mods/types/claude-code.d.ts#L10130).
 
-**[Use 2.1.296 for unattended grading jobs that depend on restricted tool sets](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L123).** Retain containment.
+**Check policy as the account running the job.** [When no admin source supplies policy, an OS-denied managed-settings read is reported and skipped; other read failures stop startup](https://web.archive.org/web/20261017104632/https://code.claude.com/docs/en/managed-settings). Check which policy sources loaded before relying on their restrictions.
 
-**Test the command shape your rule must block.** [2.1.289 repairs sandbox auto-allow skipping deny and ask rules after `X=1; rm -rf build` or `TZ="$HOME" rm -rf build`](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L603-L604). Test both with disposable targets. [Read and Edit denies still do not cover arbitrary subprocesses](https://web.archive.org/web/20261012180805/https://code.claude.com/docs/en/permissions#bash-rule-limits); keep a sandbox or container.
+**Test that policy-hook failures block actions.** Set [`onFailure: "block"` on applicable command or HTTP hooks; continuing remains the general default](https://web.archive.org/web/20261019030048/https://code.claude.com/docs/en/hooks). On Windows, test missing Git, PowerShell exits and quoted executable paths against [2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309) and [2.1.310](https://github.com/anthropics/claude-code/releases/tag/v2.1.310). [PermissionRequest needs decision JSON to deny a call; exit 2 does not deny it](https://web.archive.org/web/20261019030048/https://code.claude.com/docs/en/hooks). [Failed plugin-event delivery can withhold an already-run tool's result](https://github.com/anthropics/claude-code/releases/tag/v2.1.299). Reconcile the tool's effects before retrying.
 
-**Preserve gateway review fields and alert on fallback.** On billed accounts, a gateway that strips review fields [makes `-p` continue on local checks; a gateway acknowledgment on the same machine within 24 hours suppresses the stderr notice](https://web.archive.org/web/20260921092459/https://code.claude.com/docs/en/auto-mode-classifier-billing). Pass [`safeguards` and `safeguard_results` through](https://web.archive.org/web/20260921092459/https://code.claude.com/docs/en/auto-mode-classifier-billing). Do not rely on timeout alerts for this change of judge and cost.
+## Choose the containment and recovery boundary
 
-## Check data boundaries and integration costs
+**Test the containment paths your commands use.** [2.1.309 repairs shell startup outside the sandbox on macOS/Linux, MCP-config writes, macOS symlinked write denies and Linux write denies on background commands that outlive the session](https://github.com/anthropics/claude-code/releases/tag/v2.1.309). Test those paths with disposable targets. [File deny rules cover recognized shell commands and redirects, not arbitrary Python/Node file access or recursive commands that omit the target](https://web.archive.org/web/20261023144933/https://code.claude.com/docs/en/permissions). Keep a process boundary around untrusted code.
 
-**Put the cloud-review stop on the reviewing machine.** From [2.1.285, Code Review PR reviews and `/ultrareview` run despite `disableWorkflows` unless MDM or that machine's managed-settings file sets it](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L997). To disable those reviews, deploy `disableWorkflows: true` there and verify it loads. Verify upload prevention separately before relying on this setting for a no-upload policy.
+**Leave nested user namespaces off unless an outer boundary is adequate.** The opt-in [`sandbox.allowNestedUserNamespaces` can enable Chromium/Electron workloads while letting malicious commands escape Claude Code's restrictions, including protected paths and credential-file rules](https://web.archive.org/web/20261023145040/https://code.claude.com/docs/en/sandboxing). The [setting alone is insufficient for rootless Podman or Buildah](https://web.archive.org/web/20261023145040/https://code.claude.com/docs/en/sandboxing).
 
-**Mask both prompt attributes.** [2.1.287 adds `prompt_text` as a copy of `prompt` on the OTel `user_prompt` event](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L715). Add it to every masking or drop rule that covers `prompt`.
+**Check the Python SDK separately from the CLI.** When an application forwards an untrusted resume ID, [claude-agent-sdk below 0.2.121 lets an attacker inject MCP configuration and execute commands at startup outside SDK permission controls; use 0.2.121 or later](https://github.com/anthropics/claude-agent-sdk-python/security/advisories/GHSA-h4mw-j7qp-8mwm). The [fix shipped on 17 July 2026](https://github.com/anthropics/claude-agent-sdk-python/releases/tag/v0.2.121); [16 October 2026 was its NVD publication](https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2026-96620). Check that dependency even when upgrading the CLI.
 
-**Pin intended models and record served identity.** Pro and Team Standard [changed from Sonnet to Opus](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1597), whose [default is 5.5](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1520). Set `model` if you intended Sonnet. For evals, pin full IDs. In managed settings, pair an [`availableModels` allowlist with `availableModelsMatch: "exact"`](https://github.com/anthropics/claude-code/releases/tag/v2.1.283) to make later versions a deliberate choice. Record the returned model: [safety-triggered Opus switches on the Anthropic API can override `ANTHROPIC_DEFAULT_OPUS_MODEL` or `modelOverrides`](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1116).
+**Inspect the MCP servers admitted after upgrading.** From [2.1.305, managed stdio definitions whose substitutions occur only in `env` are no longer filtered by `allowedMcpServers`](https://github.com/anthropics/claude-code/releases/tag/v2.1.305). Compare connected servers with policy intent and [use `deniedMcpServers` for explicit prohibitions](https://github.com/anthropics/claude-code/releases/tag/v2.1.305).
 
-**Retire AGENTS.md forwarding shims.** [2.1.281 reads AGENTS.md across providers and telemetry-off sessions](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1477). Once fleet pins support it, delete CLAUDE.md files that only forward to it. If you keep local notes, [CLAUDE.local.md suppresses AGENTS.md under the default; set Project instructions to `claude-md-and-agents-md` to read both](https://github.com/anthropics/claude-code/blob/2301018b1f61/mods/agents-md/README.md).
+**Remove obsolete Remote Control flags.** [`claude remote-control` now rejects `--sandbox` and `--no-sandbox`, which previously did nothing; use `sandbox.enabled`](https://github.com/anthropics/claude-code/releases/tag/v2.1.300). Check launch wrappers before upgrading.
 
-**Use file flags in runner wrappers.** [2.1.281 passes self-hosted runner system prompts as private files, allowing large prompts to launch](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1479). Change wrappers and command hooks to [pass prompt files with `--system-prompt-file` or `--append-system-prompt-file`](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1479).
+**Recheck deletion policy that depended on prompts.** [2.1.299 stops prompting for runtime-built `rm` in unreadable scripts unless `CLAUDE_CODE_STRICT_INLINE_SHELL_RM_PROMPT=1` is set](https://github.com/anthropics/claude-code/releases/tag/v2.1.299). In Desktop and VS Code bypass mode, [2.1.309 instead makes dangerous rm/rmdir prompts deny immediately with a rewrite hint](https://github.com/anthropics/claude-code/releases/tag/v2.1.309). Test the intended refusals before leaving those jobs unattended.
 
-**Test MCP handshakes before fleet rollout.** [2.1.292 makes local stdio connections negotiate protocol 2026-07-28 by default](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L368); [2.1.295 extends it to claude.ai connectors without flag fetching](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L202). Use [`MCP_PROTOCOL_NEGOTIATION=legacy`](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L368) for compatibility while fixing a handshake.
+**Keep recovery independent of session cleanup.** [`sed -i` is now ordinary Bash work, so `/rewind` no longer restores its edits](https://github.com/anthropics/claude-code/releases/tag/v2.1.309). Keep a diff or version-control recovery route. Test retention too: [2.1.301 repairs cleanup of hook-created worktrees with possible unpushed commits](https://github.com/anthropics/claude-code/releases/tag/v2.1.301), and [2.1.304 repairs commit-loss paths after detached HEAD or branch changes](https://github.com/anthropics/claude-code/releases/tag/v2.1.304).
 
-**Read repository advisories alongside release notes.** The [9 October 2026 advisory for the plugin commit-pin bypass names a fix in 2.1.179](https://github.com/anthropics/claude-code/security/advisories/GHSA-pq7j-f95f-qfcv) that [its changelog did not name](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L4369).
+**Inspect diagnostic exports before sharing them.** [2.1.300 adds system prompts, tools and API request parameters to local transcripts](https://github.com/anthropics/claude-code/releases/tag/v2.1.300). Limit transcript retention and sharing, and [mask both OTel `prompt` and `prompt_text`](https://github.com/anthropics/claude-code/blob/v2.1.308/CHANGELOG.md#L1298).
+
+## Decide which wrappers the native tools can replace
+
+**Try MCP Tasks only with a recovery plan.** The [gated public beta requires 2.1.304+, flag fetching, a supporting protocol-2026-07-28 server and eligible main-conversation CLI/SDK/GitHub Actions calls; one-shot `claude -p`, third-party providers, telemetry-off sessions, Desktop and VS Code are excluded](https://web.archive.org/web/20261024085041/https://code.claude.com/docs/en/mcp). [Streaming headless sessions also need open input and the documented background settings](https://web.archive.org/web/20261024085041/https://code.claude.com/docs/en/mcp). Eligible [remote tasks survive client exit and can be followed by resuming the same session](https://web.archive.org/web/20261024085041/https://code.claude.com/docs/en/mcp). Preserve server, connection and session identity. [Cancellation cannot guarantee stopped effects; expired unknown outcomes need server-side reconciliation](https://web.archive.org/web/20261024085041/https://code.claude.com/docs/en/mcp).
+
+**Test native waiting before maintaining another polling loop.** [2.1.310 makes Monitor available on Bedrock, Vertex, Foundry and telemetry-off sessions, which now also block long foreground sleeps](https://github.com/anthropics/claude-code/releases/tag/v2.1.310). Test that provider path before replacing sleep-based waits.
+
+**Measure hosted review against human review time.** [Hosted Code Review became GA for Team/Enterprise on 15 October 2026](https://claude.dev/blog/solving-code-review-at-anthropic/). Choose [Quick, Standard or Deep per repository; Standard is default, and the service neither approves nor blocks a PR](https://web.archive.org/web/20261017030656/https://code.claude.com/docs/en/code-review). Count missed bugs, useful comments and reviewer minutes before retiring PR-comment automation. Include the time spent dismissing bad comments. Keep the service only if the review queue gets shorter without letting more bugs through.
+
+**Set review prohibitions on the machine running the review.** [Code Review PR reviews and ultrareview run despite `disableWorkflows` unless that machine's MDM or managed-settings file sets it](https://github.com/anthropics/claude-code/blob/v2.1.308/CHANGELOG.md#L1580). For a no-upload policy, test upload prevention separately.
+
+**Check which sessions Desktop can supervise.** The [Code tab documents saved environments, parallel sessions and in-session subagents, background shell commands and dynamic workflows](https://web.archive.org/web/20261023144411/https://code.claude.com/docs/en/desktop). Its [cross-session view covers Desktop-run local/SSH/WSL sessions, excluding cloud, terminal CLI and VS Code](https://web.archive.org/web/20261023144411/https://code.claude.com/docs/en/desktop). Test that coverage before replacing a broader dashboard.
 
 ## What is unresolved
 
-- **Wait for released guard checks before relying on them.** [Additional guard checks that stop user mods from overriding some requests for permission or changing policy and code-loading environment variables](https://github.com/anthropics/claude-code/blob/bf2323b3021c9d3db7a31e1e7d61068c3f704497/mods/sec-default/README.md) [were main-only at this date](https://github.com/anthropics/claude-code/compare/v2.1.296...bf2323b3021c9d3db7a31e1e7d61068c3f704497). A release note and matching published binary would confirm delivery. The [environment pin explicitly does not stop hostile plugins](https://github.com/anthropics/claude-code/blob/bf2323b3021c9d3db7a31e1e7d61068c3f704497/mods/sec-default/README.md#pinned-variables), so shipping it would not settle which mods to admit.
-- **Check protection before using `claude ultrareview` on received repository bundles.** [Manifold reported a repository-supplied command running on the host before workspace trust, still confirmed on 2.1.252 on 1 September 2026](https://www.manifold.security/blog/ai-coding-agents-git-hijack); [no line through 2.1.296 names its fix](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md). Protection for a reported /ultrareview security issue remains unverified on the recommended build. A released fix naming the path or a reproducible test on the fleet's pinned build would settle protection there.
-- **Confirm server review in the sessions you depend on.** [Server-side review covers direct-API headless, SDK and IDE session types as the rollout reaches them](https://web.archive.org/web/20261012151817/https://code.claude.com/docs/en/permission-modes#server-side-classifier-review). Platform and region coverage remain unverified here. Capture the [/status Auto mode server row and stream-json warning](https://web.archive.org/web/20260921092459/https://code.claude.com/docs/en/auto-mode-classifier-billing) on each platform in use. Those readouts establish coverage for the observed sessions. A supported version alone does not.
+- **Trust received repositories deliberately.** [2.1.309 adds ultrareview workspace trust and noninteractive refusal unless explicitly trusted](https://github.com/anthropics/claude-code/releases/tag/v2.1.309). Decide before adding `--trust-workspace` to CI. Protection for [Manifold's withheld GitSpawn configuration](https://www.manifold.security/blog/ai-coding-agents-git-hijack) remains unverified here. A released fix naming it or a reproducible test on the pinned build would settle that question.
 
-Claude Code is absorbing pieces of the surrounding workflow: [instruction forwarding](https://github.com/anthropics/claude-code/blob/2301018b1f61/CHANGELOG.md?plain=1#L1477) and [hook-failure handling](https://github.com/anthropics/claude-code/releases/tag/v2.1.295). Retire those wrappers after the checks above pass. Spend the judgment on [which plugins may approve a command](https://web.archive.org/web/20261012180805/https://code.claude.com/docs/en/permissions#extend-permissions-with-hooks) and what contains the process once it runs.
+- **Check who reviews your sessions and what it costs.** [Server-side auto review remains rollout dependent](https://web.archive.org/web/20261022024756/https://code.claude.com/docs/en/permission-modes). A readable current billing contract and matched session, fallback and billing records would settle coverage and cost. The detailed [21 September 2026 gateway-warning guidance](https://web.archive.org/web/20260921092459/https://code.claude.com/docs/en/auto-mode-classifier-billing) remains historical here.
+
+- **Prove task recovery with the intended server.** Record handles and external outcomes across disconnect, resume, cancellation and expiry under the [MCP Tasks lifecycle](https://web.archive.org/web/20261024085041/https://code.claude.com/docs/en/mcp). Use those trials to check whether a consequential job recovers without duplicating work.
 
 ## Profile hygiene
 
-This page describes the 2026-10-13 posture, with no claim about later releases
+This page describes the 24 October 2026 posture, with no claim about later releases
 or rollouts. See [METHOD.md](https://github.com/sheetgenius/frontier/blob/90bb1d1af32606608d2387bcb5d5796b88e00e5a/METHOD.md)
 for the evidence contract.

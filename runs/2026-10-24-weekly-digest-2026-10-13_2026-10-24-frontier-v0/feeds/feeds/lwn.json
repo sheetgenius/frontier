@@ -1,0 +1,98 @@
+{
+ "source": "lwn",
+ "feed": "https://lwn.net/headlines/rss",
+ "swept_on": "2026-10-24",
+ "since": "2026-10-13",
+ "items": [
+  {
+   "title": "[$] The first part of the 7.4 merge window",
+   "url": "https://lwn.net/Articles/1101211/",
+   "date": "2026-10-23",
+   "summary": "<p> Since the merge window for 7.4 opened, there have been 6,753 non-merge changesets pulled into the mainline repository. Many more are expected, especially given the possibility that this merge window will be extended to three weeks. Still, even this initial set brought in a number of new features, in addition to the continued general cleanups and security fixes that the kernel has seen recently"
+  },
+  {
+   "title": "[$] Seeking smaller kernel stacks",
+   "url": "https://lwn.net/Articles/1100271/",
+   "date": "2026-10-23",
+   "summary": "Memory has always been a scarce resource in computing systems, but the problem seems to have worsened recently. In particular, the worldwide shortage of memory chips has led to a renewed focus by systems developers on reducing memory usage. During the memory-management microconference at the 2026 <a href=\"https://lpc.events/\">Linux Plumbers Conference</a>, Will Deacon discussed one specific consum"
+  },
+  {
+   "title": "Security updates for Friday",
+   "url": "https://lwn.net/Articles/1102546/",
+   "date": "2026-10-23",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (buildah, expat, grafana, grafana-pcp, httpd, iperf3, openssh, php, php8.4, php:7.4, php:8.2, and php:8.3), <b>Debian</b> (aide, chromium, clamav, erlang, linux-6.12, roundcube, unbound, and webkit2gtk), <b>Fedora</b> (bind9-next, ca-certificates, clevis-pin-trustee, golang-x-mobile, knot-resolver, maradns, ntpsec, php, socat, and vlc), <b>Mage"
+  },
+  {
+   "title": "[$] The end of __get_user() and __put_user()",
+   "url": "https://lwn.net/Articles/1102061/",
+   "date": "2026-10-22",
+   "summary": "Linus Torvalds rarely writes significant amounts of kernel code these days, so the <a href=\"https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=22a78a25438d\">merging</a> of a 48-part patch series from him is an unusual event. This series, destined for the 7.4 kernel release, performs some long-delayed kernel cleanup by removing a couple of the primitives used to access us"
+  },
+  {
+   "title": "KeePassXC 2.8.0 released",
+   "url": "https://lwn.net/Articles/1102270/",
+   "date": "2026-10-22",
+   "summary": "<p><a href=\"https://keepassxc.org/blog/2026-10-21-2.8.0-released/\">Version 2.8.0</a> of the <a href=\"https://keepassxc.org/\">KeePassXC</a> password-management application has been released.</p> <blockquote class=\"bq\"> The new release brings a lot of long-awaited new features, many bugfixes, and several security updates. Among the major features are the migration from Qt5 to Qt6, Auto-Type on Wayla"
+  },
+  {
+   "title": "[$] Rust features in the future",
+   "url": "https://lwn.net/Articles/1099606/",
+   "date": "2026-10-22",
+   "summary": "<p> There are several Rust features that kernel developers have been hoping to stabilize, but Josh Triplett wanted to describe all of the <em>other</em> features that the Rust project is currently working on. He spoke about the topic at Kangrejos 2026, leaving the assembled kernel developers with several ideas about how to use these upcoming Rust features in the kernel. The features included refin"
+  },
+  {
+   "title": "Security updates for Thursday",
+   "url": "https://lwn.net/Articles/1102265/",
+   "date": "2026-10-22",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 10.0, .NET 8.0, .NET 9.0, cockpit-files, cockpit-machines, fetchmail, glycin-loaders, go-toolset:rhel8, golang, hostapd, jackson-core, kernel, kernel-rt, librsvg2, lrzsz, mariadb11.8, openexr, openssh, openssl, perl-DBI:1.641, python-urllib3, python3.12-urllib3, qt5-qtbase, rust-sequoia-sq, and xorg-x11-server-Xwayland), <b>Arch Linux</b>"
+  },
+  {
+   "title": "[$] LWN.net Weekly Edition for October 22, 2026",
+   "url": "https://lwn.net/Articles/1100612/",
+   "date": "2026-10-22",
+   "summary": "Inside this week's LWN.net Weekly Edition: <p> <ul> <li> <a href=\"https://lwn.net/Articles/1100612/\">Front</a>: Android vendor hooks; Reproducible builds and kernel integrity; Rust data structures; NFS server changes; Setting no_new_privs for PID 1; Rust XArray; Rust cross-crate declarations; 7.3 statistics; Nix flakes. <li> <a href=\"https://lwn.net/Articles/1100614/\">Briefs</a>: eMudhra CA compro"
+  },
+  {
+   "title": "Today's PHP Security Release, and How We're Strengthening PHP Security (PHP Foundation)",
+   "url": "https://lwn.net/Articles/1102060/",
+   "date": "2026-10-21",
+   "summary": "The PHP Foundation has put out <a href=\"https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/\">a blog entry</a> explaining how the vulnerabilities disclosed today came about and why they took so long to fix. <p> <blockquote class=\"bq\"> To fix the OOM problem, the PHP security team developed several competing approaches, but each came with it"
+  },
+  {
+   "title": "More vulnerabilities in widely deployed software",
+   "url": "https://lwn.net/Articles/1102044/",
+   "date": "2026-10-21",
+   "summary": "<p> The Node.js project has <a href=\"https://nodejs.org/en/blog/vulnerability/october-2026-security-releases\">released a number of security updates</a> to fix, among other vulnerabilities, a remote-code-execution bug affecting programs that use Brotli compression. And, in case any programmers who use compiled languages thought they could relax, the <a href=\"https://musl.libc.org/\">musl libc projec"
+  },
+  {
+   "title": "[$] Hash-based module integrity for reproducible distributions",
+   "url": "https://lwn.net/Articles/1100026/",
+   "date": "2026-10-21",
+   "summary": "We last looked in on <a href=\"https://lwn.net/Articles/1012946/\">hash-based integrity checking for kernel modules</a> just over a year and half ago. Since that time, the <a href=\"https://lwn.net/ml/all/20260505-module-hashes-v5-0-e174a5a49fce@weissschuh.net/\">patch set</a> has undergone multiple revisions. At the 2026 <a href=\"https://lpc.events/\">Linux Plumbers Conference</a> (LPC), Thomas Weißsc"
+  },
+  {
+   "title": "Upstreaming Tyr: Rust, DRM, and the Linux Kernel (Collabora)",
+   "url": "https://lwn.net/Articles/1102024/",
+   "date": "2026-10-21",
+   "summary": "The Collabora blog <a href=\"https://www.collabora.com/news-and-blog/blog/2026/10/21/upstreaming-tyr-rust-drm-and-the-linux-kernel/\">provides an update on Tyr</a>, a driver for Arm Mali GPUs. <p> <blockquote class=\"bq\"> One of our biggest challenges has been developing Tyr while the Rust kernel abstractions and driver interfaces are also being developed. As the driver interfaces are naturally revis"
+  },
+  {
+   "title": "[$] Understanding Nix flakes",
+   "url": "https://lwn.net/Articles/1094226/",
+   "date": "2026-10-21",
+   "summary": "<p><a href=\"https://wiki.nixos.org/wiki/Flakes\">Nix flakes</a> are an experimental feature of the <a href=\"https://wiki.nixos.org/wiki/Nix_(package_manager)\">Nix package-management tool</a> designed to build projects in a more self-contained and reproducible way. Despite the feature's experimental status, it has become increasingly popular for open-source projects to publish <tt>flake.nix</tt> fil"
+  },
+  {
+   "title": "PHP patches released for two critical RCEs",
+   "url": "https://lwn.net/Articles/1102014/",
+   "date": "2026-10-21",
+   "summary": "<p>The PHP project has <a href=\"https://www.php.net/archive/2026.php#2026-10-21-5\">published</a> PHP versions <a href=\"https://www.php.net/archive/2026.php#2026-10-21-4\">8.5.12</a>, <a href=\"https://www.php.net/archive/2026.php#2026-10-21-3\">8.4.27</a>, <a href=\"https://www.php.net/archive/2026.php#2026-10-21-2\">8.3.36</a> and <a href=\"https://www.php.net/archive/2026.php#2026-10-21-1\">8.2.35</a> "
+  },
+  {
+   "title": "Four stable kernels for Wednesday",
+   "url": "https://lwn.net/Articles/1101758/",
+   "date": "2026-10-21",
+   "summary": "<p>Greg Kroah-Hartman has announced the release of the <a href=\"https://lwn.net/Articles/1101759/\">7.2.12</a>, <a href=\"https://lwn.net/Articles/1101760/\">6.18.58</a>, <a href=\"https://lwn.net/Articles/1101761/\">6.12.114</a>, and <a href=\"https://lwn.net/Articles/1101762/\">6.6.160</a> stable kernels. Each contains a number of important fixes; users are advised to upgrade.</p> <p></p>"
+  }
+ ]
+}

@@ -8,15 +8,15 @@ homepage: https://developers.openai.com/codex/
 docs: https://learn.chatgpt.com/docs
 changelog: https://learn.chatgpt.com/docs/changelog
 repo: https://github.com/openai/codex
-tagline: "Codex's shared background server makes a CLI version pin an incomplete runtime policy."
+tagline: "Codex 0.164.0 deserves a recovery trial before another conversation supervisor."
 compared_with: []
 x:
   project: OpenAICodexCli
 surface_class: mixed_official_docs
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-10-13
-last_full_review: 2026-10-13
+last_updated: 2026-10-24
+last_full_review: 2026-10-24
 claims:
   - id: default-model-hotfix
     finding_id: 2026-09-21-codex-default-model-moved-to-gpt-6-astra-in-the-0-153-x-hotfix-train-not-in-a-minor
@@ -168,283 +168,292 @@ claims:
     status: retired
   - id: current-install-and-sdk
     finding_id: 2026-10-13-codex-channel-fourteen-stables-in-eighteen-days-model-and-daemon-changes-in-patches-sdks-in-lock
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: shared-background-server
     finding_id: 2026-10-13-codex-interactive-codex-now-attaches-to-a-shared-background-app-server-by-default-from-0-157
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: daemon-updates-independent-of-cli
     finding_id: 2026-10-13-codex-the-auto-started-background-server-can-update-itself-past-a-pinned-npm-or-homebrew-cli
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: model-and-server-defaults
     finding_id: 2026-10-13-codex-default-model-moved-again-in-a-hotfix-and-fresh-tui-threads-now-take-the-server-s-defaults
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: stable-sandbox-helper-fixes
     finding_id: 2026-10-13-codex-sandbox-escapes-closed-as-release-note-bullets-in-0-156-0-and-0-162-0-with-no-matching-new
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: escalated-terminal-input-review
     finding_id: 2026-10-13-codex-typing-into-an-escalated-terminal-now-needs-approval-by-default-from-0-158
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: explicit-distrust-and-project-config
     finding_id: 2026-10-13-codex-projectless-folders-skip-the-trust-prompt-and-the-agents-md-gate-fires-only-on-an-explicit
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: guardian-policy-and-audit-export
     finding_id: 2026-10-13-codex-guardian-v2-is-still-off-auto-review-gained-policy-template-and-audit-log-controls-plus
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: steering-and-worktree-tools
     finding_id: 2026-10-13-codex-defaults-switched-on-in-the-window-voice-worktrees-api-key-model-discovery-and-unannounced
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: stable-daybreak-gate
     finding_id: 2026-10-13-codex-stable-0-162-1-keeps-cli-daybreak-off-current-docs-scope-the-approve-for-me-switch-to-desk
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: remote-execution-authentication
     finding_id: 2026-10-13-codex-remote-execution-surfaces-exec-server-auth-is-opt-in-and-the-app-server-docs-lag-the-code
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: removed-apis-and-fork-context
     finding_id: 2026-10-13-codex-scaffolding-removed-personality-prompt-suggestions-plugin-creator-skill-thread-rollback
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: preview-isolation-work
     finding_id: 2026-10-13-codex-on-0-163-0-previews-through-alpha-10-credential-masking-proxy-dns-authorization-sandbox
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: deny-globs-ignore-ripgrep-config
     finding_id: 2026-10-13-codex-ripgrep-deny-glob-expansion-now-ignores-user-configuration
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: forced-macos-managed-preferences
     finding_id: 2026-10-13-codex-macos-managed-configuration-accepts-only-forced-preferences
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: fresh-child-dynamic-tools-opt-in
     finding_id: 2026-10-13-codex-fresh-v2-subagents-can-inherit-dynamic-tools-behind-a-default-off-flag
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: ranked-tool-discovery-and-streaming
     finding_id: 2026-10-13-codex-code-mode-adds-ranked-tool-discovery-and-settlement-streaming
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: user-goal-origin-survives-compaction
     finding_id: 2026-10-13-codex-explicit-user-goal-edits-persist-before-state-changes-and-survive-compaction
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: preview-daybreak-defaults
     finding_id: 2026-10-13-codex-alpha-10-enables-cli-daybreak-and-api-key-cyber-program-gates
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: main-classifier-fallback
     finding_id: 2026-10-13-codex-cutoff-main-changes-the-guardian-v2-classifier-fallback-to-conversation
     last_verified: 2026-10-13
     status: retired
+  - id: stable-updater-network-policy
+    finding_id: 2026-10-24-codex-stable-updater-requests-now-require-successfully-loaded-network-policy
+    last_verified: 2026-10-24
+    status: active
+  - id: stable-masking-with-fallback
+    finding_id: 2026-10-24-codex-proxy-hardening-and-credential-masking-reached-stable-with-an-unmasked-fallback
+    last_verified: 2026-10-24
+    status: active
+  - id: escalation-retry-review
+    finding_id: 2026-10-24-codex-guardian-must-reassess-a-retry-that-requests-more-authority
+    last_verified: 2026-10-24
+    status: active
+  - id: plugin-trust-follows-contents
+    finding_id: 2026-10-24-codex-plugin-hook-approval-now-checks-file-contents-before-execution
+    last_verified: 2026-10-24
+    status: active
+  - id: sandbox-alias-and-package-identity
+    finding_id: 2026-10-24-codex-sandbox-protection-covers-case-aliases-and-replaceable-helper-paths
+    last_verified: 2026-10-24
+    status: active
+  - id: completed-compaction-and-resume
+    finding_id: 2026-10-24-codex-compaction-commits-only-completed-summaries-and-resume-restores-more-state
+    last_verified: 2026-10-24
+    status: active
+  - id: enterprise-mcp-and-proxy-auth
+    finding_id: 2026-10-24-codex-enterprise-authentication-gains-native-mcp-grants-and-windows-proxy-support
+    last_verified: 2026-10-24
+    status: retired
+  - id: parallel-reads-and-fork-prefix
+    finding_id: 2026-10-24-codex-read-only-calls-can-overlap-and-full-history-forks-preserve-their-prefix
+    last_verified: 2026-10-24
+    status: active
+  - id: patched-shell-and-switch-retirement
+    finding_id: 2026-10-24-codex-patched-zsh-and-retired-feature-switches-leave-less-configuration-to-maintain
+    last_verified: 2026-10-24
+    status: active
+  - id: terminal-presets-and-settings
+    finding_id: 2026-10-24-codex-terminal-configuration-becomes-easier-to-inspect-and-reuse
+    last_verified: 2026-10-24
+    status: retired
+  - id: stable-daybreak-defaults-on
+    finding_id: 2026-10-24-codex-daybreak-s-cli-and-api-key-gates-are-now-stable-defaults
+    last_verified: 2026-10-24
+    status: active
+  - id: runtime-signing-default-off
+    finding_id: 2026-10-24-codex-runtime-signing-is-present-but-default-off-with-ephemeral-keys
+    last_verified: 2026-10-24
+    status: retired
+  - id: windows-systemroot-fix-untagged
+    finding_id: 2026-10-24-codex-the-windows-resume-helper-s-systemroot-fix-is-still-untagged
+    last_verified: 2026-10-24
+    status: active
+  - id: google-cloud-provider-preview
+    finding_id: 2026-10-24-codex-the-google-cloud-provider-is-in-preview-while-public-availability-remains-prospective
+    last_verified: 2026-10-24
+    status: active
+  - id: v8-sort-runtime-backport
+    finding_id: 2026-10-24-codex-v8-sort-safety-backport-reaches-stable-code-mode
+    last_verified: 2026-10-24
+    status: active
+  - id: catalog-and-oauth-defaults
+    finding_id: 2026-10-24-codex-incremental-tools-and-coordinated-mcp-oauth-refresh-now-default
+    last_verified: 2026-10-24
+    status: active
+  - id: model-request-observation-hooks
+    finding_id: 2026-10-24-codex-native-model-request-hooks-observe-attempts-without-authorizing-them
+    last_verified: 2026-10-24
+    status: retired
+  - id: github-oidc-proxy
+    finding_id: 2026-10-24-codex-the-responses-api-proxy-can-exchange-github-actions-oidc-credentials
+    last_verified: 2026-10-24
+    status: retired
+  - id: live-mcp-catalogs-opt-in
+    finding_id: 2026-10-24-codex-mcp-catalogs-can-refresh-during-a-turn-behind-a-default-off-flag
+    last_verified: 2026-10-24
+    status: active
+  - id: marketplace-host-fix-preview
+    finding_id: 2026-10-24-codex-preview-blocks-a-marketplace-host-allowlist-parser-mismatch
+    last_verified: 2026-10-24
+    status: active
+  - id: reviewer-defaults-preview
+    finding_id: 2026-10-24-codex-preview-fresh-terminal-sessions-defer-reviewer-selection-to-the-server
+    last_verified: 2026-10-24
+    status: active
+  - id: approval-policy-defaults-main
+    finding_id: 2026-10-24-codex-startup-approval-policy-precedence-is-repaired-only-on-main
+    last_verified: 2026-10-24
+    status: active
+  - id: queued-permissions-and-stdin-grants
+    finding_id: 2026-10-24-codex-permission-menus-hold-queued-prompts-and-active-grants-permit-stdin-review
+    last_verified: 2026-10-24
+    status: active
+  - id: current-cli-sdk-split
+    finding_id: 2026-10-24-codex-cli-and-typescript-reach-0-164-0-while-python-remains-0-163
+    last_verified: 2026-10-24
+    status: active
+  - id: chatgpt-auto-review-cost
+    finding_id: 2026-10-24-codex-current-documentation-makes-chatgpt-authenticated-auto-review-free
+    last_verified: 2026-10-24
+    status: active
 posture_basis:
   capability:
     - 2026-10-13-codex-interactive-codex-now-attaches-to-a-shared-background-app-server-by-default-from-0-157
     - 2026-10-13-codex-default-model-moved-again-in-a-hotfix-and-fresh-tui-threads-now-take-the-server-s-defaults
-    - 2026-10-13-codex-defaults-switched-on-in-the-window-voice-worktrees-api-key-model-discovery-and-unannounced
     - 2026-10-13-codex-fresh-v2-subagents-can-inherit-dynamic-tools-behind-a-default-off-flag
     - 2026-10-13-codex-code-mode-adds-ranked-tool-discovery-and-settlement-streaming
-    - 2026-10-13-codex-explicit-user-goal-edits-persist-before-state-changes-and-survive-compaction
+    - 2026-10-24-codex-compaction-commits-only-completed-summaries-and-resume-restores-more-state
+    - 2026-10-24-codex-read-only-calls-can-overlap-and-full-history-forks-preserve-their-prefix
+    - 2026-10-24-codex-incremental-tools-and-coordinated-mcp-oauth-refresh-now-default
+    - 2026-10-24-codex-mcp-catalogs-can-refresh-during-a-turn-behind-a-default-off-flag
   accessibility:
-    - 2026-10-13-codex-defaults-switched-on-in-the-window-voice-worktrees-api-key-model-discovery-and-unannounced
-    - 2026-10-13-codex-channel-fourteen-stables-in-eighteen-days-model-and-daemon-changes-in-patches-sdks-in-lock
-    - 2026-10-13-codex-alpha-10-enables-cli-daybreak-and-api-key-cyber-program-gates
+    - 2026-10-24-codex-daybreak-s-cli-and-api-key-gates-are-now-stable-defaults
+    - 2026-10-24-codex-cli-and-typescript-reach-0-164-0-while-python-remains-0-163
+    - 2026-10-24-codex-current-documentation-makes-chatgpt-authenticated-auto-review-free
   governance:
     - 2026-10-13-codex-interactive-codex-now-attaches-to-a-shared-background-app-server-by-default-from-0-157
     - 2026-10-13-codex-the-auto-started-background-server-can-update-itself-past-a-pinned-npm-or-homebrew-cli
-    - 2026-10-13-codex-sandbox-escapes-closed-as-release-note-bullets-in-0-156-0-and-0-162-0-with-no-matching-new
     - 2026-10-13-codex-typing-into-an-escalated-terminal-now-needs-approval-by-default-from-0-158
-    - 2026-10-13-codex-projectless-folders-skip-the-trust-prompt-and-the-agents-md-gate-fires-only-on-an-explicit
     - 2026-10-13-codex-guardian-v2-is-still-off-auto-review-gained-policy-template-and-audit-log-controls-plus
     - 2026-10-13-codex-remote-execution-surfaces-exec-server-auth-is-opt-in-and-the-app-server-docs-lag-the-code
-    - 2026-10-13-codex-on-0-163-0-previews-through-alpha-10-credential-masking-proxy-dns-authorization-sandbox
-    - 2026-10-13-codex-ripgrep-deny-glob-expansion-now-ignores-user-configuration
-    - 2026-10-13-codex-macos-managed-configuration-accepts-only-forced-preferences
-    - 2026-10-13-codex-explicit-user-goal-edits-persist-before-state-changes-and-survive-compaction
+    - 2026-10-24-codex-stable-updater-requests-now-require-successfully-loaded-network-policy
+    - 2026-10-24-codex-proxy-hardening-and-credential-masking-reached-stable-with-an-unmasked-fallback
+    - 2026-10-24-codex-guardian-must-reassess-a-retry-that-requests-more-authority
+    - 2026-10-24-codex-plugin-hook-approval-now-checks-file-contents-before-execution
+    - 2026-10-24-codex-sandbox-protection-covers-case-aliases-and-replaceable-helper-paths
+    - 2026-10-24-codex-the-windows-resume-helper-s-systemroot-fix-is-still-untagged
+    - 2026-10-24-codex-v8-sort-safety-backport-reaches-stable-code-mode
+    - 2026-10-24-codex-preview-blocks-a-marketplace-host-allowlist-parser-mismatch
+    - 2026-10-24-codex-preview-fresh-terminal-sessions-defer-reviewer-selection-to-the-server
+    - 2026-10-24-codex-startup-approval-policy-precedence-is-repaired-only-on-main
+    - 2026-10-24-codex-permission-menus-hold-queued-prompts-and-active-grants-permit-stdin-review
 stance:
-  use_for: "Interactive coding teams that want <a href=\"https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L22-L28\">clients to share a background server</a> and will control its version and permissions."
-  avoid_for: "Embedding the background daemon where deployment requires a <a href=\"https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L1-L9\">guaranteed lifecycle contract</a>."
-  watch_next: "Watch for <a href=\"https://github.com/openai/codex/commit/d570b3632b100e36f931797cdbdb8906d0fcafa8\">stable updater network enforcement</a> before enabling updates in restricted fleets."
+  use_for: "Long coding runs where a team can <a href='#test-recovery-before-replacing-a-supervisor'>compare native resume with their existing supervisor</a>."
+  avoid_for: "Workflows that cannot tolerate <a href='#check-approval-and-isolation-boundaries'>unmasked credential fallback</a>."
+  watch_next: "Wait for <a href='#where-it-stands-2026-10-24'>stable marketplace host enforcement</a> before relying on host restrictions."
 ---
 
 # Codex
 
-On [2026-09-25, Codex 0.157.0 enabled automatic background-server startup for eligible interactive sessions](https://github.com/openai/codex/releases/tag/rust-v0.157.0). [Eligible servers seeded from npm or Homebrew can update independently of the CLI](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/src/prepare_install.rs#L245-L338). A pin can hold the command you typed while the service doing the work moves on.
+On [23 October 2026, Codex 0.164.0](https://github.com/openai/codex/releases/tag/rust-v0.164.0) began [saving compaction summaries only after completion](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/core/src/compact.rs#L858-L890), [resuming compressed histories](https://github.com/openai/codex/commit/76ed3b484d62ccceb9fa512ff4dd139f421814c3) and [restoring saved thread settings](https://github.com/openai/codex/commit/430a16799d90e296fb27b1e94f206023902b7e56).
 
-## Where it stands, 2026-10-13
+Start with [stable 0.164.0](https://github.com/openai/codex/releases/tag/rust-v0.164.0): [`npm install -g @openai/codex@0.164.0`](https://registry.npmjs.org/@openai%2fcodex/0.164.0), then [`codex --no-daemon`](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/tui/src/cli.rs#L88-L89) for a fixed interactive baseline. Prioritize [recovery](#test-recovery-before-replacing-a-supervisor), [permissions and plugin-hook checks](#check-approval-and-isolation-boundaries) during rollout.
 
-**Stable baseline: 0.162.1.** The [2026-10-09 release repairs startup failures
-when the CLI and running server disagree about feature defaults](https://github.com/openai/codex/releases/tag/rust-v0.162.1).
-Install [`npm install -g @openai/codex@0.162.1`](https://registry.npmjs.org/@openai%2fcodex/0.162.1);
-embedding clients should use matching [Python](https://pypi.org/pypi/openai-codex/0.162.1/json)
-or [TypeScript SDK](https://registry.npmjs.org/@openai%2fcodex-sdk/0.162.1) versions.
+Preview alpha.1 adds [the marketplace repair](https://github.com/openai/codex/commit/61a991990fa4fd0c511ccaaab3875371796be956) and [Google Cloud provider](https://github.com/openai/codex/blob/rust-v0.165.0-alpha.1/codex-rs/model-provider-info/src/lib.rs); the [Windows helper](https://github.com/openai/codex/commit/d4bdafd378a8e328a67a4cd3557b5fe634af378c) and [approval-policy repairs remain main-only](https://github.com/openai/codex/commit/398500106707f0a3217c7cf83edc2bf226cc342f). Avoid [unauthenticated remote listeners](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/exec-server/src/server/transport.rs) and [secret-bearing execution paths where unmasked fallback is unacceptable](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/core/src/tools/runtimes/unified_exec.rs#L706-L745).
 
-The immediate actions: [control server updates separately from the CLI](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L104-L120),
-[restart after changing credentials supplied through environment variables](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L22-L28),
-and [set model and reasoning effort explicitly](https://github.com/openai/codex/commit/b527ce47348e7937730d06bc3504f17a8ac723f2).
-Embedding clients also need to handle [new terminal approvals](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/core/src/unified_exec/stdin_approval.rs#L190-L251)
-and changed [fork](https://github.com/openai/codex/commit/6221a217e2b24701ecbf05a239e4ca899ae3a359)
-and [rollback behavior](https://github.com/openai/codex/commit/3052bbcf8c9d48e130599308c583784db43e57aa).
+## Where it stands, 2026-10-24
 
-**Use `codex --no-daemon` when the interactive baseline must stay fixed.**
-[Explicit standalone-release pins stay pinned](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L117-L120).
-The [`--no-daemon` option keeps an interactive launch off that shared
-service](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/tui/src/cli.rs#L83-L85);
-[`codex exec` does not use the shared background service](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/exec/src/lib.rs#L731-L754).
+**Channel.** At the 24 October 2026 read, [TypeScript is also 0.164.0](https://registry.npmjs.org/@openai%2fcodex-sdk/0.164.0), but [Python remains 0.163.0](https://pypi.org/pypi/openai-codex/json); check SDKs separately. The [newest published preview](https://github.com/openai/codex/releases) is [0.165.0-alpha.1](https://github.com/openai/codex/releases/tag/rust-v0.165.0-alpha.1). In stable, [credential masking, ranked tool discovery in Code Mode and inheritance of client-defined dynamic tools by fresh V2 subagents remain off by default](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/features/src/lib.rs).
 
-**If you keep the server, control its updater separately.** For a fixed
-version, [set `{"updater":{"autoUpdateEnabled":false}}` in
-`app-server-daemon/settings.json` inside your Codex home directory (`CODEX_HOME`), then run
-`codex app-server daemon restart` to apply it](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L48-L68).
-Compare `codex app-server daemon version` with `codex --version`.
-[Restart reuses the selected server package, so it will not undo an earlier
-update](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L125-L142).
-Leaving updates on [can deliver fixes without changing the
-CLI](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L104-L120).
+**Keep a second boundary around marketplace installs.** Stable 0.164.0 lacks [alpha.1's repair for URL forms that policy parsing and Git can interpret as different destinations](https://github.com/openai/codex/commit/61a991990fa4fd0c511ccaaab3875371796be956). Constrain inputs and destinations separately until a stable tag contains the patch and passes rejection tests.
 
-Keep the updater disabled where managed network restrictions must hold:
-0.162.1 [can fall back to a default HTTP client when configuration loading
-fails](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/cli/src/main.rs#L2360-L2372).
+**Check the bundled CLI when Windows resume fails.** The [desktop report names bundled CLI 0.163.0-alpha.11.2](https://github.com/openai/codex/issues/56264). The [matching SystemRoot helper patch is main-only, absent from stable and alpha.1](https://github.com/openai/codex/commit/d4bdafd378a8e328a67a4cd3557b5fe634af378c). Require a release containing the patch, then test resume on the affected desktop/bundled-CLI pair.
 
-**Set the server's environment and telemetry.** Shared clients
-[retain the environment from server startup; clearing a token in a new
-terminal does not clear its copy](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L22-L28).
-Restart after changing tokens, cloud profiles or PATH. [Daemon launches enable
-analytics by default](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/src/backend/pid.rs#L408-L412);
-set [`analytics.enabled=false` in `config.toml`](https://github.com/openai/codex/commit/2cc65cdd4c7c167f0c7252fcb5165d649c16aca0)
-where required.
+## Test recovery before replacing a supervisor
 
-**Set the model and effort for cost or evaluation baselines.**
-[0.159.1 changed the default to GPT-6.1 Sol on 2026-09-29](https://github.com/openai/codex/releases/tag/rust-v0.159.1).
-From 0.162.0, [fresh terminal threads defer unselected settings to the server,
-except for explicit profile launches](https://github.com/openai/codex/commit/b527ce47348e7937730d06bc3504f17a8ac723f2).
-Set `model` and `model_reasoning_effort` explicitly.
-[`multiAgentMode` is deprecated and ignored in favor of Ultra effort](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-protocol/src/protocol/v2/thread.rs#L110-L113);
-stop relying on that delegation control.
+For long coding runs, compare native resume with your current supervisor. [Interrupt compaction](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/core/src/compact.rs#L858-L890), [restart from a compressed history](https://github.com/openai/codex/commit/76ed3b484d62ccceb9fa512ff4dd139f421814c3), and compare restored [model, effort](https://github.com/openai/codex/commit/430a16799d90e296fb27b1e94f206023902b7e56) and [permissions](https://github.com/openai/codex/commit/7c9bfb910ef65c8f4a957c53affbd43d5fac2882). Record completed jobs and human repair minutes. Retire recovery code only if completed work per hour of human attention improves. Check the outcome of interrupted external writes before retrying them.
 
-## Trust and execution have separate gates
+[Vercel's 19 October description of its Codex adapter puts intent/outcome logging and replay outside the harness, with Vercel Sandbox required and built-in tools opt-in](https://vercel.com/blog/making-every-harness-durable). That addresses a different layer from restoring conversation state. Include a process crash after an external write in the comparison before treating the approaches as substitutes.
 
-**Upgrade before opening untrusted Linux repositories, then test denied-file rules.**
-Stable 0.162.0 blocks [sandbox-writable `bwrap` discovery](https://github.com/openai/codex/commit/7aa8f510496316b86a91a75ed0a71598ef03c640)
-and [workspace-writable `rg` execution before confinement](https://github.com/openai/codex/commit/ccde2fc8b7fd08216757d3d3f67362847ab8341b).
-It also stops [ripgrep configuration suppressing deny-glob masks](https://github.com/openai/codex/commit/ac9b5b8380517ded445b09dd3196d8d9e2ba3c59).
-On the recommended baseline, test denied reads and writes with
-`RIPGREP_CONFIG_PATH` set, and confirm permitted files still work.
+## Pin the runtime that does the work
 
-**Record explicit distrust for hostile unattended checkouts.** Codex
-[reads project AGENTS.md](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/core/src/agents_md.rs#L63-L66)
-unless the project is [explicitly Untrusted](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/config/src/config_toml.rs#L614-L616).
-[No saved trust decision still allows those
-instructions](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/config/src/config_toml.rs#L614-L616).
-[Project config, hooks and exec policies have a separate trust gate: CI needs
-trust for those](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/config/src/loader/mod.rs#L1098-L1109).
+**Pin the process doing the work.** [Eligible interactive sessions use a shared background daemon](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/tui/src/startup_orchestration.rs) whose [package selection is independent of the CLI](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/app-server-daemon/src/prepare_install.rs#L324-L331). Use [`codex --no-daemon`](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/tui/src/cli.rs#L88-L89) for a fixed interactive baseline. Otherwise, [disable automatic updates in `CODEX_HOME/app-server-daemon/settings.json` and restart; explicit updates can still select stable and interrupt work](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/app-server-daemon/README.md#L48-L70). Record CLI and daemon versions separately. Restart after changing credentials: [the daemon keeps its startup environment](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/app-server-daemon/README.md#L22-L28).
 
-**Deliver macOS management settings as forced preferences.** Since 0.156.0,
-[only forced preferences count as administrator configuration](https://github.com/openai/codex/commit/73bf1812722f9b6fdbfac4997b2d96d7b64ff7c3).
-Confirm the MDM payload uses that delivery mode.
+**Test saved network policy before enabling automatic updates.** [Codex 0.163.0 and the current stable enforce the updater's loaded network policy and propagate configuration failures](https://github.com/openai/codex/commit/d570b3632b100e36f931797cdbdb8906d0fcafa8). Test blocked destinations and broken configuration. [Invoking CLI overrides do not configure this updater](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/app-server-daemon/README.md#L63-L70); inspect its saved settings.
 
-**Authenticate remote execution before exposing it.**
-[`exec-server` permits unauthenticated listeners](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/exec-server/src/server/transport.rs#L1-L40),
-while [app-server refuses them beyond loopback](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-transport/src/transport/websocket.rs#L135-L142).
-Add `--ws-auth` and TLS before exposing `exec-server`.
+## Check approval and isolation boundaries
 
-**Govern auto-review with policy and sampled decisions.** The older Guardian
-reviewer [defaults on](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/features/src/lib.rs#L1763-L1766).
-In stable, the newer automatic approval reviewer,
-[Guardian V2, remains off by default in 0.162.1](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/features/src/lib.rs#L1805-L1808).
-[Full Access skips the older reviewer's model review](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/ext/guardian-reviewer/src/routing.rs#L85-L91).
-Put organization rules in [managed `guardian_extra_policy`](https://github.com/openai/codex/commit/26cb4d73e2ce25575644038d7af5beb2440d0ed0).
-Enable [`otel.log_guardian_assessments` with an OTLP log exporter to inspect
-completed synchronous assessments; cached V2 approvals are
-excluded](https://github.com/openai/codex/commit/30758e5c77c14e6ddcc53a6c7407a477fed4ac76).
-Put human review into the managed rules and sampled approval decisions.
+**Retest an approved command that asks for more authority.** In 0.164.0, [a prior approval from Guardian, Codex's automatic reviewer, no longer exempts an escalated retry from fresh review](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/core/src/tools/orchestrator.rs#L484-L518). Test that review covers the retry's authority when an approved command fails inside the sandbox and requests escalation.
 
-**Handle approval requests after a terminal starts.** From 0.158.0,
-[meaningful input to escalated terminals needs review; empty polls and non-TTY
-Ctrl-C are exceptions](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/core/src/unified_exec/stdin_approval.rs#L190-L251).
-Clients driving shells or REPLs must handle these requests.
+**Reinspect plugin-hook approvals.** 0.164.0 [binds hook trust to file contents as well as the declaration; changed contents require approval again](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/hooks/src/engine/plugin_trust.rs). [Older declaration-only approvals acquire their content baseline on first use](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/hooks/src/engine/plugin_trust.rs). Inspect those files before migration, then test that a later edit stops the hook.
 
-## Native orchestration still needs an integration test
+**[Credential masking is off by default](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/features/src/lib.rs); verify it after enabling.** When enabled, masking covers [supported remote Bash commands and Zsh snapshot sessions](https://github.com/openai/codex/releases/tag/rust-v0.164.0), but [unsupported execution paths can warn and run with unmasked credentials](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/core/src/tools/runtimes/unified_exec.rs#L706-L745). Inspect tool environments and fallback warnings before treating masking as secret isolation. Keep secrets off paths where that fallback is unacceptable.
 
-**Compare native discovery and result streaming with your existing adapters.** In
-stable 0.162.0, [enable `features.code_mode_tool_search=true` for ranked tool
-discovery](https://github.com/openai/codex/commit/4d15794336668d6098c0e36eb8e96cbbbfdb1d2d).
-[It defaults off, needs model support and preserves nested-tool policy
-filtering](https://github.com/openai/codex/commit/4d15794336668d6098c0e36eb8e96cbbbfdb1d2d).
-[`as_settled` and `stream_settled` expose concurrent results in completion
-order](https://github.com/openai/codex/commit/28a264fbc766a59f2b550b8318f88e4a4b8dffe1).
-For new V2 subagents started without their parent's conversation history, [separately enable
-`features.multi_agent_v2_dynamic_tools=true` to inherit client-defined
-tools; that flag also defaults off](https://github.com/openai/codex/commit/e4e33a56b073b5d9a550aaf513798480f88e4a38).
+**Include runtime and sandbox integrations in the upgrade canary.** 0.164.0 [backports a V8 repair for invalid array-storage writes during sort](https://github.com/openai/codex/blob/rust-v0.164.0/patches/v8_array_sort_elements_kind.patch), [protects macOS repository metadata against case aliases](https://github.com/openai/codex/commit/3bae578af33e43268e7bc2d6d5d0266f704bb554) and [checks replaceable Linux helper paths and ancestors](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/sandboxing/src/bwrap.rs#L179-L310). Test case variants and replaceable paths on the relevant platform. Windows integrations must also pass [the new installed-package identity requirement for sandbox provisioning; debug foreground mode retains an exception](https://github.com/openai/codex/commit/d34f104c22ae815fc213641b8a637c5947f14ac1). Check unpackaged clients before rollout.
 
-Measure end-to-end gains by comparing accepted tasks and human setup and
-review time before deleting catalog-scanning or tool-reinjection code.
+**Keep clients ready for approvals after shell launch.** [Active matching grants can let terminal input reach review with granular sandbox prompts disabled; each input still needs review](https://github.com/openai/codex/commit/d292f721242ef355ce5a38da90e0e33edc4790e6), [while expired grants are rejected under that granular policy; Never's early rejection has an exception when strict automatic review is active](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/core/src/tools/approvals.rs#L459-L474). Test input after grant expiry.
 
-**Retest clients that steer a running response or limit fork context.** Stable
-0.162.0 [enables `instant_interrupt` by default while marking it under
-development](https://github.com/openai/codex/commit/a028250541f18b4f3040744be1325214ed5cc832).
-[Legacy positive integer fork strings now
-inherit all history; zero and invalid values are rejected, and model overrides
-require `fork_turns: "none"`](https://github.com/openai/codex/commit/6221a217e2b24701ecbf05a239e4ca899ae3a359).
-Check context volume before upgrading those clients.
+**Govern automatic review through policy and sampled decisions.** [Guardian approval defaults on; the newer Guardian V2 and optional Decisions comparison remain off](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/features/src/lib.rs). [Full Access skips the older model reviewer](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/ext/guardian-reviewer/src/routing.rs#L88-L94). Set [managed review policy](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/config/src/config_requirements.rs#L1083-L1084) and sample [opt-in, best-effort OTLP assessments, which exclude cached V2 approvals and cap rationale length](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/otel/README.md#L158-L174). Before relying on complete audit coverage, require a tested export that accounts for cached decisions too.
 
-**Migrate embedding calls and preserve user authority.**
-[`thread/rollback` is gone; assess `thread/revert` for paginated
-threads](https://github.com/openai/codex/commit/3052bbcf8c9d48e130599308c583784db43e57aa).
-For goal updates, set `origin` deliberately and handle recording failures.
-From 0.161.0, [explicit user edits persist before state changes and survive
-compaction; automatic or omitted origins grant no user
-authorization](https://github.com/openai/codex/commit/de020167989fde4937204a064ea2fedd54f3c931).
+**Authenticate remote execution before exposure.** [`exec-server` still permits unauthenticated listeners](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/exec-server/src/server/transport.rs); [app-server rejects unauthenticated non-loopback WebSocket listeners](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/app-server-transport/src/transport/websocket.rs#L166-L172). Verify the deployed listener's authentication instead of assuming the other server's rules apply.
 
-## Preview hardening remains a trial
+## Measure what native coordination replaces
 
-**Keep the 0.163.0 hardening trial off production.**
-[Alpha.10, published 2026-10-13](https://github.com/openai/codex/releases/tag/rust-v0.163.0-alpha.10),
-is the newest published preview at this date. [Credential masking is
-preview-only, default-off and requires an enabled proxy](https://github.com/openai/codex/commit/bd274564e1b1b3febb3886d274e6d97c2a3d275e).
-[Sandbox integrity checks are observational; preparation failures and timeouts
-do not stop execution](https://github.com/openai/codex/commit/cba716c0f1caa4f2528dedbb1075b50126709d7e).
-Alpha.10 also [enables API-key cyber-program controls, still subject to model
-eligibility and opt-outs](https://github.com/openai/codex/commit/6cc7d9cc5c702c0ca133f7ea48432166e0b880be).
+**Compare native delegation with context-copying glue.** [Eligible read-only calls can overlap](https://github.com/openai/codex/commit/c9e0fffbbc05c36478686444f6ab1edbadfe2768), and [full-history forks preserve their prefix by default, with a legacy-compaction exception](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/features/src/feature_configs.rs#L316-L319). Before deleting your wrapper, measure accepted work, context volume and human repair time. Measure cache lifetime and quota cost separately.
+
+**Retest tool integrations with the new defaults.** [Tool catalogs sent incrementally to the model in Responses Lite](https://github.com/openai/codex/commit/c953dacb42d2773d0ca9cc25a01129bba2ca36a8) and [MCP OAuth credential renewal coordinated across clients](https://github.com/openai/codex/commit/35757adb728b268a1e75eabeb3e4cf9a6def5c18) now default on. Test catalog-history compatibility and multi-client credential renewal before retiring synchronization code. [Within-turn MCP catalog refresh remains a separate default-off feature, `mcp_tool_list_changed`](https://github.com/openai/codex/commit/0df4aa67781ae45a3c97befa4db48b734afe46d9).
+
+## Clean up configuration before rollout
+
+**Remove obsolete configuration.** Codex [stopped bundling patched zsh](https://github.com/openai/codex/commit/a645742bb5615026ae673c9527f146ee551d4949) and [retired worktree/realtime feature switches](https://github.com/openai/codex/commit/bb64b894fd67158be0f874872e6d7bfe717e7368). Remove those assumptions from templates and test shell snapshots and permissions on the supported path.
+
+## Confirm service access
+
+**Confirm account and model approval before planning cyber work.** [Both `cli_daybreak` and `api_key_cyber_access_programs` now default on in stable](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/features/src/lib.rs#L1449-L1459). [Identity, organization, model and surface approvals remain separate](https://learn.chatgpt.com/docs/cyber-safety).
+
+**Test the Google Cloud route in preview.** [Alpha.1 contains the `gcp` provider](https://github.com/openai/codex/blob/rust-v0.165.0-alpha.1/codex-rs/model-provider-info/src/lib.rs), while [OpenAI's 21 October 2026 announcement places general availability in coming weeks](https://openai.com/index/openai-models-google-cloud/). Confirm service access before building against it.
 
 ## What is unresolved
 
-- **Trace a pinned installation before relying on update timing.** On a
-  test machine, trace CLI, selected daemon package and updater identities
-  across a successful update to establish that installation's behavior and
-  interruption costs.
-  [Five minutes then hourly is the default check schedule](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L48-L68),
-  not an update deadline.
-- **Wait for stable updater network enforcement.** The [fail-closed
-  network-policy fix is in the 0.163.0 previews](https://github.com/openai/codex/commit/d570b3632b100e36f931797cdbdb8906d0fcafa8).
-  A stable tag containing that commit would settle release availability.
-  Then probe with blocked network access and failed configuration loading to
-  establish behavior under the fleet's actual restrictions.
-- **Require a lifecycle commitment before embedding the daemon.** The
-  [0.162.1 daemon README describes its lifecycle contract as experimental](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/app-server-daemon/README.md#L1-L9).
-  For deployments that depend on daemon lifecycle behavior, require a
-  versioned provider commitment covering that behavior.
-- **Confirm review prices and the account charged before budgeting them.**
-  In 0.162.1, the default-off
-  [`guardianv2_decisions_comparison`](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/features/src/lib.rs#L1805-L1814)
-  [can send transcript-bearing classifier requests](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/ext/guardian-v2/src/async_scorer/decisions.rs#L118-L188)
-  [using a selected API credential](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/ext/guardian-v2/src/async_scorer/startup.rs#L55-L66).
-  [Usage labels identify review activity](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/tui/src/analytics/normalize.rs#L314-L324),
-  not its price. Dated provider pricing would settle ordinary review cost. A
-  billing record matched to comparison requests would show which account was
-  charged and how much.
+- **The recovery benefit remains unmeasured.** Settle whether native resume reduces human repair work with [the recovery comparison](#test-recovery-before-replacing-a-supervisor).
+- **Check server defaults setting by setting.** Stable [defers unselected model/effort to the server, with explicit-profile exceptions](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/tui/src/app_server_session/startup_launch.rs). [Reviewer precedence is repaired in alpha.1](https://github.com/openai/codex/commit/47a1f6bb77baa8ba237757196a62cadf97dc854b); [approval-policy precedence is repaired only on main](https://github.com/openai/codex/commit/398500106707f0a3217c7cf83edc2bf226cc342f). Require stable tags and first-turn tests with overrides, profiles and queued prompts. Set model and effort explicitly for evaluations.
+- **Get a versioned provider commitment before embedding the daemon.** [Its lifecycle contract remains experimental](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/app-server-daemon/README.md#L1-L9). On a test machine, trace selected packages and interruption costs before embedding those lifecycle assumptions.
+- **Price optional API comparison separately.** Current documentation says [ChatGPT-authenticated auto-review checks are free and outside plan limits](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan). [Decisions comparison selects a separate API credential path](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/ext/guardian-v2/src/async_scorer/startup.rs#L57-L70). Provider terms and request-matched billing would establish its account and cost.
 
 ## Profile hygiene
 
-This page describes Codex as of 2026-10-13. See
+This page describes Codex as of 24 October 2026. See
 [METHOD.md](https://github.com/sheetgenius/frontier/blob/3d3ecfdbcf2e690470a2d00c218e52b50566e402/METHOD.md) for the
 evidence contract.
+
+Correction, 24 October 2026: the backend [already applied model and effort independently of fork history in 0.162.1](https://github.com/openai/codex/blob/rust-v0.162.1/codex-rs/core/src/agent/child_config.rs#L51-L84), and [0.164.0 retains that behavior](https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/core/src/agent/child_config.rs#L52-L85), so the earlier `fork_turns: "none"` requirement was overstated. Follow any stricter caller contract.

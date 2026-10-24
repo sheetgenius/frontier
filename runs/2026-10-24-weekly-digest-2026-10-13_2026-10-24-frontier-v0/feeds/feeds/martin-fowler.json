@@ -1,0 +1,38 @@
+{
+ "source": "martin-fowler",
+ "feed": "https://martinfowler.com/feed.atom",
+ "swept_on": "2026-10-24",
+ "since": "2026-10-13",
+ "items": [
+  {
+   "title": "Fragments: October 21",
+   "url": "https://martinfowler.com/fragments/2026-10-21.html",
+   "date": "2026-10-21",
+   "summary": "<p>Gergely Orosz is frustrated at those that entered his explicitly “No AI” essay competition and used AI. He <a href=\"https://x.com/GergelyOrosz/status/2108863325756961274\">goes on to say:</a></p> <blockquote> <p>When I start to suspect some part is AI about someone I don’t know: how can I tell how much of it is? And how much time and effort do I want to invest to figure out?</p> <p>I fear most p"
+  },
+  {
+   "title": "When Software Meets Hardware",
+   "url": "https://martinfowler.com/articles/software-meets-hardware.html",
+   "date": "2026-10-15",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/software-meets-hardware.html'><img src = 'https://martinfowler.com/articles/software-meets-hardware/card.png' width = ''></img></a></div> <p>When software meets hardware, engineering principles remain largely the same, but the sensible defaults often change. <b class = 'author'>Kuldeep Singh</b> describes our experience modernizi"
+  },
+  {
+   "title": "Build your slide template",
+   "url": "https://martinfowler.com/articles/never-send-slides/build-your-slide-template.html",
+   "date": "2026-10-14",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/never-send-slides/build-your-slide-template.html'><img src = 'https://martinfowler.com/articles/never-send-slides/index/card.png' width = ''></img></a></div> <p>Building a slide template starts with three foundational choices &#x2014; colours, fonts and layouts. <b class = 'author'>Sumeet Gayathri Moghe</b> covers the basics of c"
+  },
+  {
+   "title": "The Craft of Practitioner Voice",
+   "url": "https://martinfowler.com/articles/practitioner-voice.html#TheCraftOfPractitionerVoice",
+   "date": "2026-10-13",
+   "summary": "<p>A couple of months ago <b class = 'author'>Jim Highsmith</b> explained how practitioners writing for each other forms a distinct style of writing. He now adds a section to the article with more detail on the craft of how we write in this style. How the writer shows up in the prose, its four principles, the role of story, how to sensibly use AI, three levels of editing, and clarity of the audien"
+  },
+  {
+   "title": "Are Harnesses Worth the Cost?",
+   "url": "https://martinfowler.com/articles/are-harnesses-worth-the-cost.html",
+   "date": "2026-10-13",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/are-harnesses-worth-the-cost.html'><img src = 'https://martinfowler.com/articles/exploring-gen-ai/donkey-card.png' width = ''></img></a></div> <p><b class = 'author'>Naresh Jain</b> compares coding agents building the same API service with and without a behavioral harness. A frontier model, GPT-6 Sol, passed every external evalua"
+  }
+ ]
+}

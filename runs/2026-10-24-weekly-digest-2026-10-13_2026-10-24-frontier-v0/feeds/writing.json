@@ -1,0 +1,878 @@
+{
+ "swept_on": "2026-10-24",
+ "since": "2026-10-13",
+ "items": [
+  {
+   "title": "[AINews] Kimi 3.1 Pro 104BA-2.8T: Fable-5.1-Class Open Weights narrows Closed-AI lead to 1 month... and Pro Highspeed API with 2-3× speed",
+   "url": "https://latent.space/p/ainews-kimi-31/",
+   "date": "2026-10-24",
+   "summary": "We have Fable at home... or so we are being told by paid shills",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Quick Study",
+   "url": "https://simonwillison.net/2026/Oct/23/quick-study-painter/",
+   "date": "2026-10-23",
+   "summary": "<p><strong>Tool:</strong> <a href=\"https://tools.simonwillison.net/quick-study-painter\">Quick Study</a></p> <p>Prompt <a href=\"https://claude.ai/share/71adda96-193f-4f2a-97c0-454e08066afb\">to Claude Opus 5.5 High</a>:</p> <blockquote> <p><code>Build an artifact where you open a photo and it rapidly (in a few seconds) paints a version of that photo using a canvas element and simulated paintbrush</c",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Introducing Kimi K3.1 Pro",
+   "url": "https://simonwillison.net/2026/Oct/23/kimi-k31-pro/",
+   "date": "2026-10-23",
+   "summary": "<p><strong><a href=\"https://www.kimi.ai/blog/kimi-k3-1-pro\">Introducing Kimi K3.1 Pro</a></strong></p> Kimi K3.1 Pro landed on the Kimi API today - it's not yet open weights, but Moonshot promise \"Full model weights will be released by Nov 4, 2026\".</p> <p>They're also offering a \"Highspeed\" version that's 2-3x faster, at twice the price (except for input token cache hits, which are priced the sam",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "AI Is Getting Good at Math. Here’s Why.",
+   "url": "https://latent.space/p/ai-is-getting-good-at-math/",
+   "date": "2026-10-23",
+   "summary": "AI models are solving more mathematical problems. A pattern is emerging in their successes that could help us predict which problems they’ll solve next.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] Black October",
+   "url": "https://latent.space/p/ainews-black-october/",
+   "date": "2026-10-23",
+   "summary": "the Cyber onslaught continues.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] The first part of the 7.4 merge window",
+   "url": "https://lwn.net/Articles/1101211/",
+   "date": "2026-10-23",
+   "summary": "<p> Since the merge window for 7.4 opened, there have been 6,753 non-merge changesets pulled into the mainline repository. Many more are expected, especially given the possibility that this merge window will be extended to three weeks. Still, even this initial set brought in a number of new features, in addition to the continued general cleanups and security fixes that the kernel has seen recently",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Seeking smaller kernel stacks",
+   "url": "https://lwn.net/Articles/1100271/",
+   "date": "2026-10-23",
+   "summary": "Memory has always been a scarce resource in computing systems, but the problem seems to have worsened recently. In particular, the worldwide shortage of memory chips has led to a renewed focus by systems developers on reducing memory usage. During the memory-management microconference at the 2026 <a href=\"https://lpc.events/\">Linux Plumbers Conference</a>, Will Deacon discussed one specific consum",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Friday",
+   "url": "https://lwn.net/Articles/1102546/",
+   "date": "2026-10-23",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (buildah, expat, grafana, grafana-pcp, httpd, iperf3, openssh, php, php8.4, php:7.4, php:8.2, and php:8.3), <b>Debian</b> (aide, chromium, clamav, erlang, linux-6.12, roundcube, unbound, and webkit2gtk), <b>Fedora</b> (bind9-next, ca-certificates, clevis-pin-trustee, golang-x-mobile, knot-resolver, maradns, ntpsec, php, socat, and vlc), <b>Mage",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
+   "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
+   "date": "2026-10-23",
+   "summary": "Learn how OpenAI scaled Habitat with reliable multi-tenancy, global caching, and Azure Cosmos DB to deliver 12× faster reads for ChatGPT.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Securing our frontier model training environment",
+   "url": "https://openai.com/index/securing-our-frontier-model-training-environment",
+   "date": "2026-10-23",
+   "summary": "OpenAI explains how we strengthened containment for frontier model training and evaluation, including offline environments and high-compute red-teaming.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "OpenAI and Poland’s NASK partner to advance AI safety and security",
+   "url": "https://openai.com/index/openai-nask-ai-safety-security-partnership",
+   "date": "2026-10-23",
+   "summary": "OpenAI and Poland’s NASK are partnering on AI safety, security, and technical research to strengthen safeguards and support a more resilient digital ecosystem.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "DE STAAT - FREEDOM (Official Music Video)",
+   "url": "https://simonwillison.net/2026/Oct/22/de-staat-freedom/",
+   "date": "2026-10-22",
+   "summary": "<p><strong><a href=\"https://www.youtube.com/watch?v=hKO4pQtIXow\">DE STAAT - FREEDOM (Official Music Video)</a></strong></p> OK well this is a first for me... at <a href=\"https://www.youtube.com/watch?v=hKO4pQtIXow&amp;t=44s\">00:44</a> in this new music video by Dutch alternative rock band <a href=\"https://en.wikipedia.org/wiki/De_Staat\">De Staat</a>:</p> <p><video src=\"https://static.simonwillison",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Donating Agent Skills to the Agentic AI Foundation",
+   "url": "https://simonwillison.net/2026/Oct/22/donating-agent-skills/",
+   "date": "2026-10-22",
+   "summary": "<p><strong><a href=\"https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation\">Donating Agent Skills to the Agentic AI Foundation</a></strong></p> News today from Anthropic:</p> <blockquote> <p>We’re committed to keeping Agent Skills open, community-driven, and vendor-neutral. Today, we are donating the standard to the Agentic AI Foundation (AAIF) under the Linux Foundation",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Quoting Armin Ronacher",
+   "url": "https://simonwillison.net/2026/Oct/22/armin-ronacher/",
+   "date": "2026-10-22",
+   "summary": "<blockquote cite=\"https://twitter.com/mitsuhiko/status/2113207589978636646\"><p>As fun as AI is, we built so much bad software over the last 30 years, and now the universe is punishing us for our sins.</p></blockquote> <p class=\"cite\">&mdash; <a href=\"https://twitter.com/mitsuhiko/status/2113207589978636646\">Armin Ronacher</a></p> <p>Tags: <a href=\"https://simonwillison.net/tags/security\">security<",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "The Pulse: Time to rethink software security because of AI?",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-do-we-need-to-rethink-software",
+   "date": "2026-10-22",
+   "summary": "A month&#8217;s worth of security breaches in a single day &#8211; will things get worse before they improve? Also: Anthropic accused of version control &#8220;rip off&#8221;, and more",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "Why AI Compute Comes in Rectangles — Erik Bernhardsson, Modal CEO",
+   "url": "https://latent.space/p/modal-d/",
+   "date": "2026-10-22",
+   "summary": "Elastic GPUs, sandbox growth, and the economics of the agent cloud",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "You are the Team — Anekha Sokhal, Moshi",
+   "url": "https://latent.space/p/moshi/",
+   "date": "2026-10-22",
+   "summary": "How Moshi turns market data into actionable insights, and why AI tools have to fit the trader’s workflow.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] OpenAI’s Patch the Planet program is 1 of 2 parties to discover PHP2Shell vulnerabilities in core PHP affecting 70% of the web, using GPT-5.6 Sol; coordinated response over 2 months",
+   "url": "https://latent.space/p/ainews-openais-patch-the-planet-program/",
+   "date": "2026-10-22",
+   "summary": "The Big Hardening begins",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] The end of __get_user() and __put_user()",
+   "url": "https://lwn.net/Articles/1102061/",
+   "date": "2026-10-22",
+   "summary": "Linus Torvalds rarely writes significant amounts of kernel code these days, so the <a href=\"https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=22a78a25438d\">merging</a> of a 48-part patch series from him is an unusual event. This series, destined for the 7.4 kernel release, performs some long-delayed kernel cleanup by removing a couple of the primitives used to access us",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "KeePassXC 2.8.0 released",
+   "url": "https://lwn.net/Articles/1102270/",
+   "date": "2026-10-22",
+   "summary": "<p><a href=\"https://keepassxc.org/blog/2026-10-21-2.8.0-released/\">Version 2.8.0</a> of the <a href=\"https://keepassxc.org/\">KeePassXC</a> password-management application has been released.</p> <blockquote class=\"bq\"> The new release brings a lot of long-awaited new features, many bugfixes, and several security updates. Among the major features are the migration from Qt5 to Qt6, Auto-Type on Wayla",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Rust features in the future",
+   "url": "https://lwn.net/Articles/1099606/",
+   "date": "2026-10-22",
+   "summary": "<p> There are several Rust features that kernel developers have been hoping to stabilize, but Josh Triplett wanted to describe all of the <em>other</em> features that the Rust project is currently working on. He spoke about the topic at Kangrejos 2026, leaving the assembled kernel developers with several ideas about how to use these upcoming Rust features in the kernel. The features included refin",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Security updates for Thursday",
+   "url": "https://lwn.net/Articles/1102265/",
+   "date": "2026-10-22",
+   "summary": "Security updates have been issued by <b>AlmaLinux</b> (.NET 10.0, .NET 8.0, .NET 9.0, cockpit-files, cockpit-machines, fetchmail, glycin-loaders, go-toolset:rhel8, golang, hostapd, jackson-core, kernel, kernel-rt, librsvg2, lrzsz, mariadb11.8, openexr, openssh, openssl, perl-DBI:1.641, python-urllib3, python3.12-urllib3, qt5-qtbase, rust-sequoia-sq, and xorg-x11-server-Xwayland), <b>Arch Linux</b>",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] LWN.net Weekly Edition for October 22, 2026",
+   "url": "https://lwn.net/Articles/1100612/",
+   "date": "2026-10-22",
+   "summary": "Inside this week's LWN.net Weekly Edition: <p> <ul> <li> <a href=\"https://lwn.net/Articles/1100612/\">Front</a>: Android vendor hooks; Reproducible builds and kernel integrity; Rust data structures; NFS server changes; Setting no_new_privs for PID 1; Rust XArray; Rust cross-crate declarations; 7.3 statistics; Nix flakes. <li> <a href=\"https://lwn.net/Articles/1100614/\">Briefs</a>: eMudhra CA compro",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Build more responsive apps with the Decisions API",
+   "url": "https://openai.com/index/decisions-api",
+   "date": "2026-10-22",
+   "summary": "Fast, focused, low-cost decisions for any application.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "What FDE means at OpenAI",
+   "url": "https://openai.com/index/forward-deployed-engineering-means",
+   "date": "2026-10-22",
+   "summary": "What forward deployed engineering means at OpenAI",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Uber brings ChatGPT Work to all employees with OpenAI",
+   "url": "https://openai.com/index/uber-chatgpt-work-rollout",
+   "date": "2026-10-22",
+   "summary": "Uber is rolling out ChatGPT Work to more than 30,000 employees, helping teams research, analyze data, create presentations, and complete complex workflows.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Today's PHP Security Release, and How We're Strengthening PHP Security",
+   "url": "https://simonwillison.net/2026/Oct/21/php-security-release/",
+   "date": "2026-10-21",
+   "summary": "<p><strong><a href=\"https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/\">Today&#x27;s PHP Security Release, and How We&#x27;re Strengthening PHP Security</a></strong></p> If you're running anything on PHP it's vital you upgrade - today's updates (across the entire PHP 8.x line) address two remote code execution holes, and there have been e",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Panache — RTS Belle Époque pour mobile",
+   "url": "https://simonwillison.net/2026/Oct/21/panache/",
+   "date": "2026-10-21",
+   "summary": "<p><strong><a href=\"https://github.com/menufactory43/panache/\">Panache — RTS Belle Époque pour mobile</a></strong></p> Well this is delightful: I <a href=\"https://simonwillison.net/2026/Oct/20/battledrones/\">released Battle Drones</a> yesterday under an Apache 2.0 License and there's already a French language fork which reskins the game to take place in steampunk 1900s France and adds an animated ",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "The revised rules of engineering management with Will Larson",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-revised-rules-of-engineering",
+   "date": "2026-10-21",
+   "summary": "Will Larson, CTO of Imprint, explores how AI and shifting industry expectations are changing engineering management, career ladders, and the path from engineer to CTO.",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "Claude Mods: Flipping the Harness Inside Out",
+   "url": "https://latent.space/p/claude-mods/",
+   "date": "2026-10-21",
+   "summary": "Claude Mods is an early form of the Attention Interface. It flips the agent harness paradigm from the harness facing the machine, to the harness facing the human.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] DeepSeek DeepInfer: Open Source SOTA Inference running 155T toks/day/cluster making $22m/day at ~80% margin for a 81 day payback",
+   "url": "https://latent.space/p/ainews-deepseek-deepinfer-open-source/",
+   "date": "2026-10-21",
+   "summary": "An open source “bomb” drops from China",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "AI for the Fortune 2000: How Tenex Builds an AI-Native SDLC — Alex Lieberman & CJ Hess",
+   "url": "https://latent.space/p/tenex/",
+   "date": "2026-10-21",
+   "summary": "Paying for outcomes, building with agents, and the last mile of enterprise AI adoption",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Today's PHP Security Release, and How We're Strengthening PHP Security (PHP Foundation)",
+   "url": "https://lwn.net/Articles/1102060/",
+   "date": "2026-10-21",
+   "summary": "The PHP Foundation has put out <a href=\"https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/\">a blog entry</a> explaining how the vulnerabilities disclosed today came about and why they took so long to fix. <p> <blockquote class=\"bq\"> To fix the OOM problem, the PHP security team developed several competing approaches, but each came with it",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "More vulnerabilities in widely deployed software",
+   "url": "https://lwn.net/Articles/1102044/",
+   "date": "2026-10-21",
+   "summary": "<p> The Node.js project has <a href=\"https://nodejs.org/en/blog/vulnerability/october-2026-security-releases\">released a number of security updates</a> to fix, among other vulnerabilities, a remote-code-execution bug affecting programs that use Brotli compression. And, in case any programmers who use compiled languages thought they could relax, the <a href=\"https://musl.libc.org/\">musl libc projec",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Hash-based module integrity for reproducible distributions",
+   "url": "https://lwn.net/Articles/1100026/",
+   "date": "2026-10-21",
+   "summary": "We last looked in on <a href=\"https://lwn.net/Articles/1012946/\">hash-based integrity checking for kernel modules</a> just over a year and half ago. Since that time, the <a href=\"https://lwn.net/ml/all/20260505-module-hashes-v5-0-e174a5a49fce@weissschuh.net/\">patch set</a> has undergone multiple revisions. At the 2026 <a href=\"https://lpc.events/\">Linux Plumbers Conference</a> (LPC), Thomas Weißsc",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Upstreaming Tyr: Rust, DRM, and the Linux Kernel (Collabora)",
+   "url": "https://lwn.net/Articles/1102024/",
+   "date": "2026-10-21",
+   "summary": "The Collabora blog <a href=\"https://www.collabora.com/news-and-blog/blog/2026/10/21/upstreaming-tyr-rust-drm-and-the-linux-kernel/\">provides an update on Tyr</a>, a driver for Arm Mali GPUs. <p> <blockquote class=\"bq\"> One of our biggest challenges has been developing Tyr while the Rust kernel abstractions and driver interfaces are also being developed. As the driver interfaces are naturally revis",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "[$] Understanding Nix flakes",
+   "url": "https://lwn.net/Articles/1094226/",
+   "date": "2026-10-21",
+   "summary": "<p><a href=\"https://wiki.nixos.org/wiki/Flakes\">Nix flakes</a> are an experimental feature of the <a href=\"https://wiki.nixos.org/wiki/Nix_(package_manager)\">Nix package-management tool</a> designed to build projects in a more self-contained and reproducible way. Despite the feature's experimental status, it has become increasingly popular for open-source projects to publish <tt>flake.nix</tt> fil",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "PHP patches released for two critical RCEs",
+   "url": "https://lwn.net/Articles/1102014/",
+   "date": "2026-10-21",
+   "summary": "<p>The PHP project has <a href=\"https://www.php.net/archive/2026.php#2026-10-21-5\">published</a> PHP versions <a href=\"https://www.php.net/archive/2026.php#2026-10-21-4\">8.5.12</a>, <a href=\"https://www.php.net/archive/2026.php#2026-10-21-3\">8.4.27</a>, <a href=\"https://www.php.net/archive/2026.php#2026-10-21-2\">8.3.36</a> and <a href=\"https://www.php.net/archive/2026.php#2026-10-21-1\">8.2.35</a> ",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Four stable kernels for Wednesday",
+   "url": "https://lwn.net/Articles/1101758/",
+   "date": "2026-10-21",
+   "summary": "<p>Greg Kroah-Hartman has announced the release of the <a href=\"https://lwn.net/Articles/1101759/\">7.2.12</a>, <a href=\"https://lwn.net/Articles/1101760/\">6.18.58</a>, <a href=\"https://lwn.net/Articles/1101761/\">6.12.114</a>, and <a href=\"https://lwn.net/Articles/1101762/\">6.6.160</a> stable kernels. Each contains a number of important fixes; users are advised to upgrade.</p> <p></p>",
+   "source": "lwn",
+   "kind": "publication"
+  },
+  {
+   "title": "Fragments: October 21",
+   "url": "https://martinfowler.com/fragments/2026-10-21.html",
+   "date": "2026-10-21",
+   "summary": "<p>Gergely Orosz is frustrated at those that entered his explicitly “No AI” essay competition and used AI. He <a href=\"https://x.com/GergelyOrosz/status/2108863325756961274\">goes on to say:</a></p> <blockquote> <p>When I start to suspect some part is AI about someone I don’t know: how can I tell how much of it is? And how much time and effort do I want to invest to figure out?</p> <p>I fear most p",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "How AT&T is rethinking in-house legal work with OpenAI",
+   "url": "https://openai.com/index/att-legal",
+   "date": "2026-10-21",
+   "summary": "AT&T is working with OpenAI to make legal knowledge easier to access. Learn how its LegalEdge team is rethinking intake and scaling legal judgment.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Broad access through consistent standards",
+   "url": "https://openai.com/index/broad-access-through-consistent-standards",
+   "date": "2026-10-21",
+   "summary": "How OpenAI works with distribution partners to uphold consistent safeguards, support responsible access, and clarify expectations in our Usage Policies.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "OpenAI models are coming to Google Cloud",
+   "url": "https://openai.com/index/openai-models-google-cloud",
+   "date": "2026-10-21",
+   "summary": "OpenAI and Google Cloud are bringing frontier models and Codex workflows to Gemini’s Model Garden, available through Google Cloud Marketplace.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Patch the Planet: global response coordination as agents uncover critical vulnerabilities",
+   "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities",
+   "date": "2026-10-21",
+   "summary": "Patch the Planet connects security researchers, maintainers, and incident responders to help address critical vulnerabilities across open source.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "ChatGPT Ads expands to 26 new countries as over 100,000 advertisers have used the platform",
+   "url": "https://openai.com/index/chatgpt-ads-expands-26-new-countries",
+   "date": "2026-10-21",
+   "summary": "From local businesses to global brands, more advertisers can now reach people as they explore, compare and decide what to buy in ChatGPT.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Using thousands of AI agents to uncover new leads in biological data",
+   "url": "https://openai.com/index/scaling-ai-research-for-complex-biological-data",
+   "date": "2026-10-21",
+   "summary": "See how OpenAI, PerturbAI, and Scripps Research used distributed AI agents to uncover promising research leads in data from millions of brain cells.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Cloudflare links vulnerability discovery to defense with OpenAI",
+   "url": "https://openai.com/index/cloudflare-cyber",
+   "date": "2026-10-21",
+   "summary": "Cloudflare uses OpenAI Daybreak to investigate vulnerabilities and propose fixes for review. Its developers use Codex to build faster and improve code quality.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "How we built ChatGPT’s novel ad stack for user trust and relevance",
+   "url": "https://openai.com/index/building-chatgpt-ad-stack",
+   "date": "2026-10-21",
+   "summary": "Learn how OpenAI built ChatGPT’s LLM-powered ad stack to understand conversational intent, keep ads separate from answers, and deliver relevant ads at scale.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Democratic governance of frontier AI, part II: Empowering cyber defenders",
+   "url": "https://openai.com/index/empowering-cyber-defenders",
+   "date": "2026-10-21",
+   "summary": "OpenAI outlines a blueprint for empowering cyber defenders with frontier AI, stronger safeguards, modernized cybersecurity, and more resilient public institutions.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Southeast Asia’s digital economy to hit $368 billion",
+   "url": "https://blog.google/company-news/inside-google/around-the-globe/google-asia/e-conomy-sea-report-2026/",
+   "date": "2026-10-21",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/e-Conomy_SEA_hero.max-600x600.format-webp.webp\">Widespread AI adoption is propelling Southeast Asia's digital economy to a projected $368 billion in 2026 and $1 trillion by 2035.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  },
+  {
+   "title": "How Commerce.com and Cloudflare are getting storefronts ready for AI agents",
+   "url": "https://blog.cloudflare.com/webmcp-commerce/",
+   "date": "2026-10-21",
+   "summary": "Almost 100,000 Commerce.com domains now give AI agents real shopping tools through WebMCP on Cloudflare. Here's how we turned it on across every store at once, while keeping each merchant in control.",
+   "source": "cloudflare-ai",
+   "kind": "vendor"
+  },
+  {
+   "title": "eMudhra Intermediate CA Compromise",
+   "url": "https://simonwillison.net/2026/Oct/20/emudhra-certificates/",
+   "date": "2026-10-20",
+   "summary": "<p><strong><a href=\"https://emudhra.we-have-a-problem.com\">eMudhra Intermediate CA Compromise</a></strong></p> This is very, very bad news:</p> <blockquote> <p>The private keys of eight eMudhra intermediate CA certificates have been compromised. They chain to roots trusted by the Mozilla, Microsoft, Apple and Chrome root programs and by many downstream trust stores.</p> </blockquote> <p>Any softwa",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Battle Drones - a vibe coded RTS with audio-based multiplayer",
+   "url": "https://simonwillison.net/2026/Oct/20/battledrones/",
+   "date": "2026-10-20",
+   "summary": "<p>My latest vibe coded game experiment is a Command &amp; Conquer style RTS (Real Time Strategy) game called <a href=\"https://github.com/simonw/battledrones#readme\">Battle Drones</a> (<a href=\"https://simonw.github.io/battledrones/\">play it here</a>). Unlike <a href=\"https://simonwillison.net/2026/Aug/5/raccoon-heist/\">my previous experiments</a>, this one is <em>actually fun to play</em>. I'm so",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "What’s the ROI of software engineers’ spending on AI?",
+   "url": "https://newsletter.pragmaticengineer.com/p/whats-the-roi-of-software-engineers",
+   "date": "2026-10-20",
+   "summary": "AI spending has greatly increased at most companies this year, but has it actually changed shipping velocity and PR output? We analyse data from 27 companies &#8211; with some interesting findings",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "patch the planet",
+   "url": "https://ghuntley.com/patch/",
+   "date": "2026-10-20",
+   "summary": "I don't know if you've seen this, but a CA just got popped. Their keys got leaked, which means the industry as a whole now has some pretty major problems. It was revealed two hours ago. eMudhra Intermediate CA Compromise eMudhra Intermediate CA Compromise Now you&",
+   "source": "ghuntley",
+   "kind": "person"
+  },
+  {
+   "title": "The Programmable Data Center — Evan Conrad, SF Compute",
+   "url": "https://latent.space/p/sfcompute2/",
+   "date": "2026-10-20",
+   "summary": "From GPU trading to physical settlement, independent markets, and programmable compute",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] not much happened today",
+   "url": "https://latent.space/p/ainews-not-much-happened-today-f09/",
+   "date": "2026-10-20",
+   "summary": "Congrats to DeepSeek V4.1 Flash 1017, MiniMax M3.1 Flash, and Mercury 3 (details below) but they’re not going to be in super wide use just yet.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Franchisee reconciles cash in 94% less time with ChatGPT Work",
+   "url": "https://openai.com/index/ted-taylor-restaurant",
+   "date": "2026-10-20",
+   "summary": "An independent Schlotzsky’s and Cinnabon franchisee cut menu repricing time by 95% and built a workflow that could free up $100K in cash flow.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Terminal X matches senior investor judgment 88.6% with GPT-6.1",
+   "url": "https://openai.com/index/terminal-x",
+   "date": "2026-10-20",
+   "summary": "Terminal X’s Eval Agent grades outputs against a 54-criterion rubric, catching 25% more deviances from a fund’s mandate with GPT-6.1 Sol.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "OpenAI acquires Orchestra Bio",
+   "url": "https://openai.com/index/openai-to-acquire-orchestra-bio",
+   "date": "2026-10-20",
+   "summary": "OpenAI is acquiring Orchestra Bio to bring AI-powered operations to life sciences R&D, helping biopharma teams accelerate drug development and advance new treatments.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "My obituary for programming",
+   "url": "https://simonwillison.net/2026/Oct/19/my-obituary-for-programming/",
+   "date": "2026-10-19",
+   "summary": "<p><strong><a href=\"https://dumbmatter.com/2026/10/programming-obituary/\">My obituary for programming</a></strong></p> Jeremy Scheff poignantly captures the key loss caused by coding agents for career programmers who enjoyed the <em>puzzle</em> of developing code:</p> <blockquote> <p>Programming turned into one of the greatest jobs you could imagine. You got paid to work on tricky little logic puz",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Advancing coding in low‑resource programming languages",
+   "url": "https://openai.com/index/low-resource-programming-languages",
+   "date": "2026-10-19",
+   "summary": "Learn how OpenAI is improving ChatGPT across low-resource programming languages, with new evaluations for software engineering, SQLite, and COBOL migration.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Cutting our inference bill by 68% by being obsessive about optimization",
+   "url": "https://blog.cloudflare.com/obsessive-inference-optimization/",
+   "date": "2026-10-19",
+   "summary": "When our AI code reviewer's cost per run doubled, we dug into the token usage to find out why. Learn how we used prompt caching and intelligent model routing to slash our inference bill by 68% while speeding up reviews.",
+   "source": "cloudflare-ai",
+   "kind": "vendor"
+  },
+  {
+   "title": "Introducing Clairic, a new System One class of extraction models",
+   "url": "https://blog.cloudflare.com/clairic-extraction-model/",
+   "date": "2026-10-19",
+   "summary": "Clairic is a new model from Cloudflare that is a System One extraction modeI, capable of extracting, computing, estimating, and forecasting data from unstructured inputs.",
+   "source": "cloudflare-ai",
+   "kind": "vendor"
+  },
+  {
+   "title": "llm-tools-datasette 0.1.1",
+   "url": "https://simonwillison.net/2026/Oct/18/llm-tools-datasette/",
+   "date": "2026-10-18",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm-tools-datasette/releases/tag/0.1.1\">llm-tools-datasette 0.1.1</a></p> <p>When I switched LLM over to <a href=\"https://github.com/pydantic/httpx2\">httpx2</a> in <a href=\"https://llm.datasette.io/en/stable/changelog.html#v0-33\">LLM 0.33</a> I forget that this would break any plugins which used <code>httpx</code> without directly dep",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "llm-echo 0.5",
+   "url": "https://simonwillison.net/2026/Oct/18/llm-echo/",
+   "date": "2026-10-18",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm-echo/releases/tag/0.5\">llm-echo 0.5</a></p> <p>I'm working towards a new <a href=\"https://llm.datasette.io/\">LLM</a> release, and testing PRs caused me to revisit the <code>llm-echo</code> debug plugin. This plugin provides a \"model\" which doesn't involve an LLM at all - it just repeats back the prompts that have been fed to it. T",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Inline rendering with document​.currentScript",
+   "url": "https://simonwillison.net/2026/Oct/17/document-currentscript/",
+   "date": "2026-10-17",
+   "summary": "<p><strong><a href=\"https://leanrada.com/notes/inline-rendering-currentscript/\">Inline rendering with document​.currentScript</a></strong></p> Lean Rada describes a neat trick that takes advantage of the <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Document/currentScript\">document.currentScript</a> property. You can use that to drop in a tiny inline <code>&lt;script&gt;</code> element",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "web-edit 0.1a2",
+   "url": "https://simonwillison.net/2026/Oct/17/web-edit/",
+   "date": "2026-10-17",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/web-edit/releases/tag/0.1a2\">web-edit 0.1a2</a></p> <p>web-edit (<a href=\"https://simonwillison.net/2026/Oct/12/web-edit/\">previously</a>) is my tiny web app for browsing and editing files in a folder. I mainly built it for editing files on different machines via Tailscale.</p> <p>I added a \"copy to clipboard\" option for both text and",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "pooling OpenAI subscriptions and bypassing regional inference capacity limits",
+   "url": "https://ghuntley.com/underclass/",
+   "date": "2026-10-17",
+   "summary": "by now, most people should be aware that we're in a cost of compute crisis. The cost of CPU and memory is through the roof. There just isn't enough. Meanwhile, there definitely aren't enough GPUs in the world. If you've been using",
+   "source": "ghuntley",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] High Taste Testers Ep. 1",
+   "url": "https://latent.space/p/ainews-high-taste-testers-ep-1/",
+   "date": "2026-10-17",
+   "summary": "a quiet day lets us pilot a new show",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Quoting Addy Osmani, Morgan Westlee Lunt, and Qing Wang",
+   "url": "https://simonwillison.net/2026/Oct/16/code-review/",
+   "date": "2026-10-16",
+   "summary": "<blockquote cite=\"https://claude.dev/blog/solving-code-review-at-anthropic/\"><p>We think \"did a human read the code?\" is an imprecise proxy for \"what could go wrong with this change, and which check—automated or human—is the right one to catch it?\"</p> <p>Asking that question also changed <em>when</em> review happens. Before, review was a gate at the end of the road: write the code, open a PR, wai",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "sparqlite: SPARQL 1.1 inside SQLite, written in Rust",
+   "url": "https://simonwillison.net/2026/Oct/16/sqlite-sparql-rust/",
+   "date": "2026-10-16",
+   "summary": "<p><strong>Research:</strong> <a href=\"https://github.com/simonw/research/tree/main/sqlite-sparql-rust#readme\">sparqlite: SPARQL 1.1 inside SQLite, written in Rust</a></p> <p>This research task is really an experiment in running Claude Code for web in \"Ultracode\" mode, as described in <a href=\"https://code.claude.com/docs/en/workflows\">Orchestrate subagents at scale with dynamic workflows</a> in t",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "state of agentic coding #11: the curiosity test, lisp, and labs that can't fail",
+   "url": "https://ghuntley.com/toronto/",
+   "date": "2026-10-16",
+   "summary": "Armin Ronacher and Ben Vinegar had me on State of Agentic Coding to talk about the curiosity test, DHH coming around, durable agents, a Lisp you program by talking to it, and why the labs cannot afford to fail.",
+   "source": "ghuntley",
+   "kind": "person"
+  },
+  {
+   "title": "revisiting some of my priors about openclaw",
+   "url": "https://ghuntley.com/bot/",
+   "date": "2026-10-16",
+   "summary": "I have to say, Peter Steinberg (aka lobster man) is absolutely brilliant. He was so ahead of his time with OpenClaw. I remember when he first tweeted about it last year, and when it turned into utter lobster madness at the beginning of the year. Heck, I even ran OpenClaw",
+   "source": "ghuntley",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] Agents disprove Polysemanticity; greatly improve Interpretability & Alignment",
+   "url": "https://latent.space/p/ainews-agents-disprove-polysemanticity/",
+   "date": "2026-10-16",
+   "summary": "Nick Cammarata out of nowhere with some major claims!",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "How Itaú is building generative AI for its entire customer base",
+   "url": "https://openai.com/index/itau-generative-ai",
+   "date": "2026-10-16",
+   "summary": "With ia.i, a conversational interface, and the IARA governance platform, Itaú is applying its AI First strategy to customers and employees — in one of Brazil’s most regulated sectors.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Stack Overflow for Agents triples signups with ChatGPT plugin",
+   "url": "https://openai.com/index/stack-overflow-chatgpt-plugin",
+   "date": "2026-10-16",
+   "summary": "Two engineers shipped Stack Overflow for Agents in a few weeks with Codex, and its ChatGPT plugin helped drive up to 10× growth in agent creation.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Benefit Street Partners answers questions faster with Codex",
+   "url": "https://openai.com/index/benefit-street-partners",
+   "date": "2026-10-16",
+   "summary": "Anant Kumar builds tools to compare loan valuations and analyze credit agreements, using Codex for code review and faster follow-ups.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Continuous accountability for Verified bots",
+   "url": "https://blog.cloudflare.com/verified-bots-accountability/",
+   "date": "2026-10-16",
+   "summary": "Identity alone doesn't guarantee a bot will behave responsibly. We are introducing a system to continuously evaluate whether Verified bots honor site preferences, like robots.txt and HTTP 429s, ensuring they remain accountable over time.",
+   "source": "cloudflare-ai",
+   "kind": "vendor"
+  },
+  {
+   "title": "Chirp Pong",
+   "url": "https://simonwillison.net/2026/Oct/15/chirp-pong/",
+   "date": "2026-10-15",
+   "summary": "<p><strong>Tool:</strong> <a href=\"https://tools.simonwillison.net/chirp-pong\">Chirp Pong</a></p> <p>Another game experiment - I wanted to see if it was feasible to have a two player game on two separate phones running in static HTML where the networking code uses chirps sent via the microphone. It seems to work!</p> <blockquote> <p><code>Build a two player competitive pong like game where two pla",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Anthropic tells investors quarterly revenue up nearly 50% to $16.8bn ahead of IPO",
+   "url": "https://simonwillison.net/2026/Oct/15/anthropic-tells-investors/",
+   "date": "2026-10-15",
+   "summary": "<p><strong><a href=\"https://www.ft.com/content/11632d03-358c-454b-af95-d06d4072932b?syn-25a6b1a6=1\">Anthropic tells investors quarterly revenue up nearly 50% to $16.8bn ahead of IPO</a></strong></p> The phrase \"told investors\" appears four times in this FT article, which reports on Anthropic's day of hosting investors on Wednesday. Lots of details in here from \"<a href=\"https://simonwillison.net/2",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "LaTeX renderer",
+   "url": "https://simonwillison.net/2026/Oct/15/latex/",
+   "date": "2026-10-15",
+   "summary": "<p><strong>Tool:</strong> <a href=\"https://tools.simonwillison.net/latex\">LaTeX renderer</a></p> <p>Inspired by Paul Ford and Aboard Foundary's new web app <a href=\"https://tinylittleoffice.com/\">Tiny Little Office</a>, which provides a suite of web app content editors (a Word Processor, Outliner, Presentation Builder, Spreadsheet, Calculator, Drawing Tool, Diagram Maker, Animator, Calendar, and T",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "The Pulse: OpenAI software engineer accused of spying",
+   "url": "https://newsletter.pragmaticengineer.com/p/the-pulse-openai-software-engineer",
+   "date": "2026-10-15",
+   "summary": "Also: insider details on how and why Anthropic moved off Git, a new trend of AI-assisted coding rounds inside of Big Tech, and more",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "[AINews] Modal’s $1B ARR, $16B Series D makes it NYC’s newest AI Infra Decacorn, 3x usage and 3x valuation in 5 months, 15x in 1 yr",
+   "url": "https://latent.space/p/ainews-modals-1b-arr-16b-series-d/",
+   "date": "2026-10-15",
+   "summary": "Sandboxes are all you need.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "When Software Meets Hardware",
+   "url": "https://martinfowler.com/articles/software-meets-hardware.html",
+   "date": "2026-10-15",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/software-meets-hardware.html'><img src = 'https://martinfowler.com/articles/software-meets-hardware/card.png' width = ''></img></a></div> <p>When software meets hardware, engineering principles remain largely the same, but the sensible defaults often change. <b class = 'author'>Kuldeep Singh</b> describes our experience modernizi",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Bringing GPT-Rosalind to academic research labs",
+   "url": "https://openai.com/index/introducing-the-rosalind-academic-plan",
+   "date": "2026-10-15",
+   "summary": "Introducing the Rosalind Academic Plan, offering eligible academic labs sponsored access to GPT-Rosalind and tools to advance life sciences research.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Teaching students to think and learn through questions",
+   "url": "https://openai.com/index/teaching-students-to-think-and-learn-through-questions",
+   "date": "2026-10-15",
+   "summary": "Celebrate Teachers’ Day with AI for Educators in Brazilian Portuguese and see how Study Mode can help teachers support active, step-by-step learning.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Sullivan & Cromwell brings legal expertise into agreement review",
+   "url": "https://openai.com/index/sullivan-cromwell",
+   "date": "2026-10-15",
+   "summary": "In collaboration with OpenAI, Sullivan & Cromwell developed Agreement Analyzer, an AI tool for identifying issues in a draft agreement.",
+   "source": "openai-news",
+   "kind": "vendor"
+  },
+  {
+   "title": "Cloudflare and OpenAI: Making AI discovery better for everyone",
+   "url": "https://blog.cloudflare.com/cloudflare-openai-discovery-agentic-web/",
+   "date": "2026-10-15",
+   "summary": "How Cloudflare and OpenAI are working together to help AI find useful content, keep up with changes, and make fewer wasted requests — making the experience better for users and website owners alike.",
+   "source": "cloudflare-ai",
+   "kind": "vendor"
+  },
+  {
+   "title": "Tree Appreciator",
+   "url": "https://simonwillison.net/2026/Oct/14/tree-appreciator/",
+   "date": "2026-10-14",
+   "summary": "<p><strong>Tool:</strong> <a href=\"https://tools.simonwillison.net/tree-appreciator\">Tree Appreciator</a></p> <p>Another game experiment with Claude. This one used the default Claude iPhone app (chat mode, not Claude Code mode), where I prompted Claude Opus 5.5 Max with:</p> <blockquote> <p><code>Build a three js game called \"Tree appreciator\" - it shows you two algorithmically generated trees and",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "AI is mass decompiling games. That's both awesome and scary.",
+   "url": "https://simonwillison.net/2026/Oct/14/ai-is-mass-decompiling-games/",
+   "date": "2026-10-14",
+   "summary": "<p><strong><a href=\"https://popcar.bearblog.dev/ai-is-mass-decompiling-games-thats-both-awesome-and-scary/\">AI is mass decompiling games. That&#x27;s both awesome and scary.</a></strong></p> Indie game developer Popcar talks about the recent wave of AI-powered decompilation of existing games, enabling weird mashups between existing games, and producing a boom in game preservation projects to get o",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Uber’s AI infra, from the inside",
+   "url": "https://newsletter.pragmaticengineer.com/p/ubers-ai-infra-from-the-inside",
+   "date": "2026-10-14",
+   "summary": "Uber Distinguished Engineer Uday Kiran Medisetty shares how Uber builds internal developer tools, integrates AI agents into engineering workflows, and measures their impact on productivity.",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "a new model for open source: closed to pull requests, open to remix.",
+   "url": "https://ghuntley.com/remix/",
+   "date": "2026-10-14",
+   "summary": "All right, I'm going to open up a history lesson because it's been a couple of generations of software engineers since this essay, and I have to assume not everyone knows what a cathedral is. Everyone knows what a bazaar is because they're using",
+   "source": "ghuntley",
+   "kind": "person"
+  },
+  {
+   "title": "Crossing the Threshold: How OpenAI and Anthropic Approach Autonomy and Safety in Financial Agents",
+   "url": "https://latent.space/p/crossing-the-threshold/",
+   "date": "2026-10-14",
+   "summary": "At AI Engineer New York, frontier labs and financial firms explored how to give agents useful autonomy while keeping consequential decisions under control.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Lab-in-the-Loop at Compute Speed — Ian Quigley, Leash Bio",
+   "url": "https://latent.space/p/lab-in-the-loop-at-compute-speed/",
+   "date": "2026-10-14",
+   "summary": "How Leash Bio tamed DELs, the assay that traumatizes everyone, and used the data to catch cheating models. And why that same data is perfect for AI agents learning to think like chemists.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] AI Engineer NYC: Gemini 4 Argon, Vals AI Benchmarks",
+   "url": "https://latent.space/p/ainews-ai-engineer-nyc-gemini-4-argon/",
+   "date": "2026-10-14",
+   "summary": "Gemini 4 Argon went GA today, but we already gave it title story 2 weeks ago and most benchmarks, like CursorBench, simply independently confirm their claims.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "Build your slide template",
+   "url": "https://martinfowler.com/articles/never-send-slides/build-your-slide-template.html",
+   "date": "2026-10-14",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/never-send-slides/build-your-slide-template.html'><img src = 'https://martinfowler.com/articles/never-send-slides/index/card.png' width = ''></img></a></div> <p>Building a slide template starts with three foundational choices &#x2014; colours, fonts and layouts. <b class = 'author'>Sumeet Gayathri Moghe</b> covers the basics of c",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Redesigning source control at Anthropic",
+   "url": "https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/",
+   "date": "2026-10-13",
+   "summary": "<p><strong><a href=\"https://www.anthropic.com/engineering/redesigning-source-control\">Redesigning source control at Anthropic</a></strong></p> Interesting piece from Anthropic describing why and how they built their own custom alternative to Git, based on the dramatic increase in rate of changes to their code after the past six months.</p> <blockquote> <p>In May 2026, Anthropic averaged around 2,5",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "llm-gemini 0.35",
+   "url": "https://simonwillison.net/2026/Oct/13/llm-gemini/",
+   "date": "2026-10-13",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/llm-gemini/releases/tag/0.35\">llm-gemini 0.35</a></p> <p>I added support to <a href=\"https://github.com/simonw/llm-gemini\">llm-gemini</a> for the <a href=\"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/\">new Gemini 4 Argon</a> model, made available today via the Gemini API and for customers of t",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Quoting Geoffrey Huntley",
+   "url": "https://simonwillison.net/2026/Oct/13/geoffrey-huntley/",
+   "date": "2026-10-13",
+   "summary": "<blockquote cite=\"https://ghuntley.com/agency/\"><p>If the agent isn't using my diagnostics library, I could introspect and update AGENTS.md, but there's still a delta, and it'll drift. Instead, I write a pre-commit hook that checks the git diff for direct calls to observability modules that bypass my diagnostics module. Boom: fail the commit, inject a prompt telling the agent to use the diagnostic",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "web-edit 0.1a1",
+   "url": "https://simonwillison.net/2026/Oct/13/web-edit/",
+   "date": "2026-10-13",
+   "summary": "<p><strong>Release:</strong> <a href=\"https://github.com/simonw/web-edit/releases/tag/0.1a1\">web-edit 0.1a1</a></p> <p>Includes <a href=\"https://github.com/simonw/web-edit/pull/1\">performance optimizations</a> written <a href=\"https://claude.ai/code/session_01LE2R4P74P9GGUbE6yQ5YBt\">by Claude Opus 5.5</a> after I fed it <a href=\"https://simonwillison.net/2026/Oct/12/python-3-15-web-edit-profiling/",
+   "source": "simonw",
+   "kind": "person"
+  },
+  {
+   "title": "Building resilient AI-powered software, and planning for when things go wrong",
+   "url": "https://newsletter.pragmaticengineer.com/p/building-resilient-systems",
+   "date": "2026-10-13",
+   "summary": "How to handle uncertainty with AI vendors and disaster recovery (DR) approaches to consider. An excerpt from the book Building Resilient Distributed Systems by Sam Newman",
+   "source": "pragmatic-engineer",
+   "kind": "person"
+  },
+  {
+   "title": "Visual Studio Copilot and SSMS Remote Code Execution (CVE-2026-103572)",
+   "url": "https://embracethered.com/blog/posts/2026/visual-studio-copilot-remote-code-execution/",
+   "date": "2026-10-13",
+   "summary": "<p><strong>A <code>.</code> is all you need!</strong></p>&#xA;<p>Today Microsoft <a href=&#34;https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-103572&#34;>shipped the patch</a> for a vulnerability in Visual Studio Copilot that I reported in August. Microsoft classified it as <code>Important</code> severity <code>Remote Code Execution</code> vulnerability.</p>&#xA;<p><a href=&#34;http",
+   "source": "embrace-the-red",
+   "kind": "research"
+  },
+  {
+   "title": "nobody should type code by hand anymore. here's what's left.",
+   "url": "https://ghuntley.com/agency/",
+   "date": "2026-10-13",
+   "summary": "Josh Wulf and I talked loop engineering for four episodes. The models stopped being the constraint a long time ago; what's left is vision, verification and agency. Delete your skill packs, put the whole system under test, and revisit everything that used to be hard.",
+   "source": "ghuntley",
+   "kind": "person"
+  },
+  {
+   "title": "Dyna-2: General Purpose Physical Agents with Hour-Long Autonomy — Jason Ma, Dyna Robotics",
+   "url": "https://latent.space/p/dyna/",
+   "date": "2026-10-13",
+   "summary": "Our first robotics pod with Dyna’s Chief Scientist on their big bet on World Action Models & the Next Frontier of Physical AI",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "[AINews] Meta Muse Wonder & Wonder Full: MSL’s Claude 5.5-tier Frontier Model",
+   "url": "https://latent.space/p/ainews-meta-muse-wonder-and-wonder/",
+   "date": "2026-10-13",
+   "summary": "MSL’s emergence as a frontier lab is finally complete.",
+   "source": "latent-space",
+   "kind": "publication"
+  },
+  {
+   "title": "The Craft of Practitioner Voice",
+   "url": "https://martinfowler.com/articles/practitioner-voice.html#TheCraftOfPractitionerVoice",
+   "date": "2026-10-13",
+   "summary": "<p>A couple of months ago <b class = 'author'>Jim Highsmith</b> explained how practitioners writing for each other forms a distinct style of writing. He now adds a section to the article with more detail on the craft of how we write in this style. How the writer shows up in the prose, its four principles, the role of story, how to sensibly use AI, three levels of editing, and clarity of the audien",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Are Harnesses Worth the Cost?",
+   "url": "https://martinfowler.com/articles/are-harnesses-worth-the-cost.html",
+   "date": "2026-10-13",
+   "summary": "<div class = 'img-link'><a href = 'https://martinfowler.com/articles/are-harnesses-worth-the-cost.html'><img src = 'https://martinfowler.com/articles/exploring-gen-ai/donkey-card.png' width = ''></img></a></div> <p><b class = 'author'>Naresh Jain</b> compares coding agents building the same API service with and without a behavioral harness. A frontier model, GPT-6 Sol, passed every external evalua",
+   "source": "martin-fowler",
+   "kind": "publication"
+  },
+  {
+   "title": "Gemini 4 Argon: Built to solve your hardest problems",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+   "date": "2026-10-13",
+   "summary": "<img src=\"https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-argon__blog-header__27.max-600x600.format-webp.webp\">We’re giving developers, enterprises, scientists, and consumers access to Gemini 4 Argon, our latest frontier model.",
+   "source": "google-ai-blog",
+   "kind": "vendor"
+  }
+ ]
+}

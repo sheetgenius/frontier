@@ -6,7 +6,7 @@ owner: OpenClaw
 source_contract: sources/openclaw.yml
 homepage: https://openclaw.ai
 docs: https://docs.openclaw.ai/
-tagline: "OpenClaw lets owners request configuration and credential changes through chat."
+tagline: "OpenClaw makes learned procedures reversible, but moves review after the edit."
 compared_with: []
 x:
   project: openclaw
@@ -17,8 +17,8 @@ repo: https://github.com/openclaw/openclaw
 surface_class: open_source_commits
 evidence_floor: release_note
 status: active_watch
-last_updated: 2026-10-13
-last_full_review: 2026-10-13
+last_updated: 2026-10-24
+last_full_review: 2026-10-24
 claims:
   - id: exec-fix-stable
     finding_id: 2026-09-21-openclaw-the-approved-exec-fix-is-now-in-stable-but-not-on-extended-stable
@@ -50,12 +50,12 @@ claims:
     status: retired
   - id: subagent-security-boundary-docs
     finding_id: 2026-05-07-openclaw-everyday-agent-surfaces
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: per-agent-message-restrictions
     finding_id: 2026-05-12-openclaw-agent-permissions-and-onboarding
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: skill-archive-upload-gated
     finding_id: 2026-05-12-openclaw-agent-permissions-and-onboarding
     last_verified: 2026-10-13
@@ -74,7 +74,7 @@ claims:
     status: retired
   - id: per-sender-tool-policies
     finding_id: 2026-05-13-openclaw-per-sender-tool-policies
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: memory-wiki-scope-tightening
     finding_id: 2026-05-13-openclaw-per-sender-tool-policies
@@ -134,12 +134,12 @@ claims:
     status: retired
   - id: defaults-widened-reach
     finding_id: 2026-09-21-openclaw-defaults-widened-agent-reach-several-times-each-on-a-named-stable
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: operation-bound-grants
     finding_id: 2026-09-21-openclaw-approval-ux-grant-once-bind-to-the-operation-revoke-later
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: release-gates-waived
     finding_id: 2026-09-21-openclaw-seven-stables-in-20-days-with-release-gates-visibly-waived
     last_verified: 2026-10-13
@@ -154,36 +154,36 @@ claims:
     status: retired
   - id: extended-stable-august-fixes
     finding_id: 2026-10-13-openclaw-extended-stable-carries-the-august-approval-and-sandbox-fixes-with-narrower-defaults
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: bot-input-default-on
     finding_id: 2026-10-13-openclaw-discord-and-slack-accept-bot-authored-messages-by-default-from-2026-9
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: chat-setup-permission-mode
     finding_id: 2026-10-13-openclaw-chat-driven-configuration-follows-the-requesting-run-s-permission-mode
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: hook-binding-beta-only
     finding_id: 2026-10-13-openclaw-hooks-can-rewrite-approved-arguments-on-stable-binding-is-fixed-only-in-beta
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: qualification-and-node-updates
     finding_id: 2026-10-13-openclaw-seven-main-line-stables-shipped-with-distinct-release-qualification-omissions
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: desktop-tool-search-and-compaction
     finding_id: 2026-10-13-openclaw-desktop-sharing-and-provider-compaction-remove-setup-and-summary-work
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: workshop-autonomous-mode
     finding_id: 2026-10-13-openclaw-autonomous-workshop-maintenance-requires-its-own-approval-setting
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: authority-inspection-and-chat-approvals
     finding_id: 2026-10-13-openclaw-authority-inspection-and-in-chat-approvals-became-easier-to-use
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: published-beta-public-ingress
     finding_id: 2026-10-13-openclaw-published-beta-3-adds-an-x-channel-and-plugin-browsing-beyond-stable
     last_verified: 2026-10-13
@@ -194,12 +194,12 @@ claims:
     status: retired
   - id: stable-10-3-repair-target
     finding_id: 2026-10-13-openclaw-stable-2026-10-3-repairs-credentials-memory-and-post-compaction-turns
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: telegram-replay-beta-repair
     finding_id: 2026-10-13-openclaw-beta-3-prevents-stale-telegram-spool-imports-becoming-fresh-owner-turns
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: device-join-service-consent
     finding_id: 2026-10-13-openclaw-beta-device-join-commands-offer-a-persistent-session-host
     last_verified: 2026-10-13
@@ -210,123 +210,230 @@ claims:
     status: retired
   - id: incognito-diagnostic-boundary
     finding_id: 2026-10-13-openclaw-incognito-content-is-excluded-from-four-diagnostic-writers-after-9
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: memory-turn-tool-isolation
     finding_id: 2026-10-13-openclaw-memory-saving-turns-retain-their-persistence-only-tool-boundary
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: advisory-artifact-mapping
     finding_id: 2026-10-13-openclaw-wider-advisory-databases-published-older-openclaw-issues-during-the-window
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: stable-security-repair-coverage
     finding_id: 2026-10-13-openclaw-stable-repaired-sandbox-revocation-and-credential-output-gaps-without-new-advisories
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
   - id: workspace-operation-time-coverage
     finding_id: 2026-10-13-openclaw-workspace-file-tools-use-root-handles-while-residual-raw-path-migration-stays-open
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: quick-start-consent-scope
     finding_id: 2026-10-13-openclaw-quick-start-shortens-consent-while-usable-ai-access-remains-a-prerequisite
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
+    status: active
+  - id: october-node-runtime
+    finding_id: 2026-10-24-openclaw-stable-now-requires-the-october-patched-node-runtime
+    last_verified: 2026-10-24
+    status: active
+  - id: final-argument-approval-stable
+    finding_id: 2026-10-24-openclaw-final-argument-approval-binding-reached-both-stable-lines
+    last_verified: 2026-10-24
+    status: active
+  - id: telegram-import-rejection-stable
+    finding_id: 2026-10-24-openclaw-stable-rejects-old-telegram-imports-instead-of-replaying-them-as-fresh-work
+    last_verified: 2026-10-24
+    status: active
+  - id: versioned-workshop-learning
+    finding_id: 2026-10-24-openclaw-workshop-replaces-proposal-review-with-direct-edits-and-bounded-undo-history
+    last_verified: 2026-10-24
+    status: active
+  - id: compaction-explicit-opt-ins
+    finding_id: 2026-10-24-openclaw-the-new-stable-train-no-longer-enables-the-profile-s-native-compaction-defaults
+    last_verified: 2026-10-24
+    status: active
+  - id: extended-september-defaults
+    finding_id: 2026-10-24-openclaw-extended-stable-advanced-to-september-and-lost-its-narrower-default-distinction
+    last_verified: 2026-10-24
+    status: active
+  - id: windows-update-recovery
+    finding_id: 2026-10-24-openclaw-windows-update-repairs-shipped-but-the-original-updater-can-still-be-the-obstacle
+    last_verified: 2026-10-24
+    status: active
+  - id: cli-catalog-invalidation
+    finding_id: 2026-10-24-openclaw-cli-tool-catalog-changes-now-invalidate-stale-native-sessions
+    last_verified: 2026-10-24
+    status: active
+  - id: send-only-collaboration
+    finding_id: 2026-10-24-openclaw-directed-sends-no-longer-require-direct-access-to-another-agent-s-transcript
+    last_verified: 2026-10-24
+    status: active
+  - id: stable-x-public-sharing
+    finding_id: 2026-10-24-openclaw-x-mentions-and-normal-public-thread-links-reached-stable
+    last_verified: 2026-10-24
+    status: active
+  - id: provider-discovery-worker-routing
+    finding_id: 2026-10-24-openclaw-model-discovery-and-worker-inference-reduce-manually-maintained-provider-wiring
+    last_verified: 2026-10-24
+    status: active
+  - id: room-policy-binding-beta
+    finding_id: 2026-10-24-openclaw-slack-and-discord-room-policy-binding-is-fixed-in-beta-not-stable-10
+    last_verified: 2026-10-24
+    status: active
+  - id: cloud-worker-review-main
+    finding_id: 2026-10-24-openclaw-main-adds-gateway-owned-exec-review-for-cloud-workers
+    last_verified: 2026-10-24
+    status: active
+  - id: predicate-allowlist-gap
+    finding_id: 2026-10-24-openclaw-bash-predicates-still-bypass-exec-allowlist-review-on-all-three-published-channels
+    last_verified: 2026-10-24
+    status: active
+  - id: host-cli-sandbox-gap
+    finding_id: 2026-10-24-openclaw-sandboxed-cron-and-delegated-children-need-api-models-until-host-cli-guards-ship
+    last_verified: 2026-10-24
+    status: active
+  - id: headless-policy-hook-dispatch
+    finding_id: 2026-10-24-openclaw-headless-agent-exec-dispatches-blocking-policy-hooks-from-stable-10
+    last_verified: 2026-10-24
+    status: active
+  - id: private-browser-bootstrap
+    finding_id: 2026-10-24-openclaw-browser-pairing-uses-a-private-file-instead-of-credential-bearing-process-arguments
+    last_verified: 2026-10-24
+    status: active
+  - id: external-codex-runtime-floor
+    finding_id: 2026-10-24-openclaw-known-incompatible-external-codex-runtime-plugins-are-refused-before-serving-turns
+    last_verified: 2026-10-24
+    status: active
+  - id: same-conversation-continuations
+    finding_id: 2026-10-24-openclaw-same-conversation-scheduled-continuations-re-admit-the-original-operator-authority
+    last_verified: 2026-10-24
+    status: active
+  - id: mutable-sender-policy-warning
+    finding_id: 2026-10-24-openclaw-main-warns-when-mutable-sender-names-select-privileged-tool-policies
+    last_verified: 2026-10-24
+    status: active
+  - id: workshop-proposal-backup-retirement
+    finding_id: 2026-10-24-openclaw-workshop-retirement-requires-manual-migration-of-proposal-integrations-and-old-backups
+    last_verified: 2026-10-24
+    status: active
+  - id: visitor-welcome-main
+    finding_id: 2026-10-24-openclaw-main-adds-an-invitation-bound-guest-welcome-endpoint-without-a-model-run
+    last_verified: 2026-10-24
+    status: active
+  - id: install-channel-snapshot
+    finding_id: 2026-10-24-openclaw-stable-package-and-linux-delivery-now-both-select-2026-10
+    last_verified: 2026-10-24
     status: active
 posture_basis:
   capability:
-    - 2026-10-13-openclaw-chat-driven-configuration-follows-the-requesting-run-s-permission-mode
-    - 2026-10-13-openclaw-desktop-sharing-and-provider-compaction-remove-setup-and-summary-work
-    - 2026-10-13-openclaw-stable-2026-10-3-repairs-credentials-memory-and-post-compaction-turns
-    - 2026-10-13-openclaw-memory-saving-turns-retain-their-persistence-only-tool-boundary
+    - 2026-10-24-openclaw-workshop-replaces-proposal-review-with-direct-edits-and-bounded-undo-history
+    - 2026-10-24-openclaw-cli-tool-catalog-changes-now-invalidate-stale-native-sessions
+    - 2026-10-24-openclaw-directed-sends-no-longer-require-direct-access-to-another-agent-s-transcript
+    - 2026-10-24-openclaw-model-discovery-and-worker-inference-reduce-manually-maintained-provider-wiring
+    - 2026-10-24-openclaw-same-conversation-scheduled-continuations-re-admit-the-original-operator-authority
   accessibility:
-    - 2026-10-13-openclaw-chat-driven-configuration-follows-the-requesting-run-s-permission-mode
-    - 2026-10-13-openclaw-authority-inspection-and-in-chat-approvals-became-easier-to-use
     - 2026-10-13-openclaw-quick-start-shortens-consent-while-usable-ai-access-remains-a-prerequisite
+    - 2026-10-24-openclaw-x-mentions-and-normal-public-thread-links-reached-stable
+    - 2026-10-24-openclaw-browser-pairing-uses-a-private-file-instead-of-credential-bearing-process-arguments
+    - 2026-10-24-openclaw-main-adds-an-invitation-bound-guest-welcome-endpoint-without-a-model-run
+    - 2026-10-24-openclaw-stable-package-and-linux-delivery-now-both-select-2026-10
   governance:
     - 2026-09-21-openclaw-defaults-widened-agent-reach-several-times-each-on-a-named-stable
-    - 2026-09-21-openclaw-approval-ux-grant-once-bind-to-the-operation-revoke-later
-    - 2026-10-13-openclaw-extended-stable-carries-the-august-approval-and-sandbox-fixes-with-narrower-defaults
     - 2026-10-13-openclaw-discord-and-slack-accept-bot-authored-messages-by-default-from-2026-9
-    - 2026-10-13-openclaw-hooks-can-rewrite-approved-arguments-on-stable-binding-is-fixed-only-in-beta
-    - 2026-10-13-openclaw-seven-main-line-stables-shipped-with-distinct-release-qualification-omissions
-    - 2026-10-13-openclaw-autonomous-workshop-maintenance-requires-its-own-approval-setting
-    - 2026-10-13-openclaw-incognito-content-is-excluded-from-four-diagnostic-writers-after-9
-    - 2026-10-13-openclaw-memory-saving-turns-retain-their-persistence-only-tool-boundary
-    - 2026-10-13-openclaw-wider-advisory-databases-published-older-openclaw-issues-during-the-window
-    - 2026-10-13-openclaw-stable-repaired-sandbox-revocation-and-credential-output-gaps-without-new-advisories
     - 2026-10-13-openclaw-workspace-file-tools-use-root-handles-while-residual-raw-path-migration-stays-open
-    - 2026-10-13-openclaw-beta-3-prevents-stale-telegram-spool-imports-becoming-fresh-owner-turns
+    - 2026-10-24-openclaw-stable-now-requires-the-october-patched-node-runtime
+    - 2026-10-24-openclaw-final-argument-approval-binding-reached-both-stable-lines
+    - 2026-10-24-openclaw-stable-rejects-old-telegram-imports-instead-of-replaying-them-as-fresh-work
+    - 2026-10-24-openclaw-the-new-stable-train-no-longer-enables-the-profile-s-native-compaction-defaults
+    - 2026-10-24-openclaw-extended-stable-advanced-to-september-and-lost-its-narrower-default-distinction
+    - 2026-10-24-openclaw-slack-and-discord-room-policy-binding-is-fixed-in-beta-not-stable-10
+    - 2026-10-24-openclaw-main-adds-gateway-owned-exec-review-for-cloud-workers
+    - 2026-10-24-openclaw-bash-predicates-still-bypass-exec-allowlist-review-on-all-three-published-channels
+    - 2026-10-24-openclaw-sandboxed-cron-and-delegated-children-need-api-models-until-host-cli-guards-ship
+    - 2026-10-24-openclaw-headless-agent-exec-dispatches-blocking-policy-hooks-from-stable-10
+    - 2026-10-24-openclaw-known-incompatible-external-codex-runtime-plugins-are-refused-before-serving-turns
+    - 2026-10-24-openclaw-main-warns-when-mutable-sender-names-select-privileged-tool-policies
+    - 2026-10-24-openclaw-workshop-retirement-requires-manual-migration-of-proposal-integrations-and-old-backups
 stance:
-  use_for: '<a href="#release-choice">Owner-operated agent work through a self-hosted chat Gateway.</a>'
-  avoid_for: '<a href="#authority">Unrelated tenants sharing one Gateway.</a>'
-  watch_next: '<a href="#what-is-unresolved">A stable tag containing the repair that makes approval cover plugin-rewritten tool arguments and the repair that stops old imported Telegram instructions from running as fresh work.</a>'
+  use_for: '<a href="#learning">Owner-operated chat agent work with reversible procedures and selected specialist handoffs.</a>'
+  avoid_for: '<a href="#execution-boundary">Sandbox-dependent work routed through host CLIs, unchecked POSIX exec, or unrelated tenants sharing a Gateway.</a>'
+  watch_next: '<a href="#what-is-unresolved">Published exec and placement repairs, stable room-ID binding, and recorded worker approval and guest invitation trials.</a>'
 ---
 
 # OpenClaw
 
-## What OpenClaw lets owners do
+In stable 2026.10.7, [Workshop edits learned procedures immediately instead of staging proposals for approval](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/tools/skill-workshop.md). [Versioned Undo lets the owner reverse an edit](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/tools/skill-workshop.md); it does not put review back before a procedure can guide a new session.
 
-[OpenClaw is a self-hosted service that connects chats to agents and their tools; that service is called the Gateway](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/index.md).
+OpenClaw's [self-hosted Gateway connects chats to agents and their tools](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/start/getting-started.md).
 
-[OpenClaw stable 2026.9.7 lets owners request configuration, credential storage and owned-skill changes in chat](https://github.com/openclaw/openclaw/blob/v2026.9.7/CHANGELOG/2026.9.7.md). [Full Access applies delegated changes automatically; restricted messaging runs return approval to the requesting chat](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/cli/openclaw.md#L120-L143). The owner can delegate setup navigation while deciding which runs may change the Gateway.
+## Where it stands, 2026-10-24
 
-## Where it stands, 2026-10-13
+Upgrade priorities: [check the service's Node runtime](https://github.com/openclaw/openclaw/blob/v2026.10.7/package.json), [review Workshop's switch to immediate edits](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/tools/skill-workshop.md), and select API-backed models for [sandboxed scheduled](https://github.com/openclaw/openclaw/commit/7abbf8507aa2fc52952621a497ece0e019b2748e) or [delegated work](https://github.com/openclaw/openclaw/commit/a19f1bf9eb6e5b22343c144a387a945d2cbc3525). [Legacy Workshop proposal and curator integrations need migration](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/tools/skill-workshop.md#L245-L260); [provider compaction settings](https://github.com/openclaw/openclaw/blob/v2026.10.7/packages/ai/src/transports/anthropic-payload-policy.ts#L67-L107) need [explicit review](https://github.com/openclaw/openclaw/blob/v2026.10.7/packages/ai/src/transports/openai-responses-payload-policy.ts#L204-L225).
 
-<a id="release-choice"></a>
+**Channel snapshot.** Install [stable 2026.10.7](https://github.com/openclaw/openclaw/releases/tag/v2026.10.7) with `npm i -g openclaw@2026.10.7`. Check the service's Node runtime against [`>=24.22.1 <25 || >=26.12.1`](https://github.com/openclaw/openclaw/blob/v2026.10.7/package.json), not just the shell's runtime. At 10:38 UTC on 24 October 2026, [npm's beta selected 2026.10.10-beta.3 and extended-stable selected 2026.9.33](https://registry.npmjs.org/-/package/openclaw/dist-tags). The [exec and placement limits below](#execution-boundary) still matter after updating.
 
-### Release choice
+Release boundaries: [Slack room-ID binding](https://github.com/openclaw/openclaw/commit/803744916a8f168a7c82e346bf6d37065a04780f) and [Discord room-ID binding](https://github.com/openclaw/openclaw/commit/68c3f3fb660c5dd808231199b0fe265ea26086f2) repairs are [beta-only](https://github.com/openclaw/openclaw/releases/tag/v2026.10.10-beta.3). [Predicate exec repairs](https://github.com/openclaw/openclaw/commit/69cd9c5edb96b5bd990e97030a45c01f9f8c10a8), [host-CLI placement](https://github.com/openclaw/openclaw/commit/7abbf8507aa2fc52952621a497ece0e019b2748e) [guards](https://github.com/openclaw/openclaw/commit/a19f1bf9eb6e5b22343c144a387a945d2cbc3525), [cloud-worker exec review](https://github.com/openclaw/openclaw/commit/db38f86b6d086631347af055d2bc87a653b7e8c8), [guest welcome sessions](https://github.com/openclaw/openclaw/commit/280c7c7d494a796cc870fbd794088b84df1e53dc), and [the Windows restore-startup timeout repair](https://github.com/openclaw/openclaw/commit/071f27c2b58ce383e1a70f71b6fec66461261cb8) remain only on main, the development branch. [X guest admission and automatic work-session publication are off by default](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/channels/x.md); [Anthropic server compaction](https://github.com/openclaw/openclaw/blob/v2026.10.7/packages/ai/src/transports/anthropic-payload-policy.ts#L67-L107) and [manual OpenAI endpoint compaction require opt-in](https://github.com/openclaw/openclaw/blob/v2026.10.7/packages/ai/src/transports/openai-responses-payload-policy.ts#L204-L225).
 
-**Pin stable 2026.10.3 for an owner-operated production Gateway.** Install the [13 October 2026 stable release](https://github.com/openclaw/openclaw/releases/tag/v2026.10.3) with `npm i -g openclaw@2026.10.3`, after checking [Node `>=24.16.0 <25 || >=26.1.0`](https://github.com/openclaw/openclaw/blob/v2026.10.3/package.json). This [self-hosted Gateway](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/start/getting-started.md) now [protects valid OAuth profiles during legacy-store cleanup, refuses lossy rewrites of malformed UTF-8 root memory and repairs the next turn after native compaction](https://github.com/openclaw/openclaw/blob/v2026.10.3/CHANGELOG/2026.10.3.md).
+<a id="execution-boundary"></a>
 
-The same release retains fixes for [required HTTP sandboxing being skipped on new sessions](https://github.com/openclaw/openclaw/commit/fa92bd54c449b71a2104c292af5c2fe1ce112567), [registered Guest work surviving access revocation](https://github.com/openclaw/openclaw/commit/08f5fb80f301d8236cadb8acc853d95566fd7f10) and [credentials escaping masking across output chunks](https://github.com/openclaw/openclaw/blob/v2026.10.2/CHANGELOG/2026.10.2.md). [Memory-saving turns keep persistence-only tools through final assembly](https://github.com/openclaw/openclaw/commit/1a4c6b4d1a429ce152cb3ced1d87454ac19630b8), preventing housekeeping from regaining unrelated execution or MCP tools. Update for these repairs even when the advisory feed is quiet.
+**Restrict shell execution: [some Bash tests can run commands without approval](https://github.com/openclaw/openclaw/commit/69cd9c5edb96b5bd990e97030a45c01f9f8c10a8).** [Stable 2026.10.7 still treats argument-blind predicates as safe builtins](https://github.com/openclaw/openclaw/blob/v2026.10.7/src/infra/exec-safe-builtins.ts): [command substitution inside a quoted `test -v` operand can run without its allowlist match or on-miss approval](https://github.com/openclaw/openclaw/commit/69cd9c5edb96b5bd990e97030a45c01f9f8c10a8). The [repair is main-only](https://github.com/openclaw/openclaw/commit/69cd9c5edb96b5bd990e97030a45c01f9f8c10a8); [beta 2026.10.10-beta.3](https://github.com/openclaw/openclaw/blob/v2026.10.10-beta.3/src/infra/exec-safe-builtins.ts) and [extended 2026.9.33](https://github.com/openclaw/openclaw/blob/v2026.9.33/src/infra/exec-safe-builtins.ts) retain the gap. Exclude those forms from admitted work and restrict exec or host exposure. Asking adversarial input to behave is not enforcement.
 
-**Choose August extended-stable when narrower collaboration defaults matter.** Install [2026.8.35](https://github.com/openclaw/openclaw/releases/tag/v2026.8.35) with `npm i -g openclaw@2026.8.35`. It documents [agent-to-agent messaging off and session visibility limited to the agent](https://github.com/openclaw/openclaw/blob/v2026.8.35/src/config/types.tools.ts#L505-L524). It inherits the [byte-bound exec approval](https://github.com/openclaw/openclaw/compare/ab5611f0...v2026.8.35), [symlink-then-`..` validation](https://github.com/openclaw/openclaw/compare/cc027149...v2026.8.35) and [child-tree termination](https://github.com/openclaw/openclaw/compare/fd8326c5...v2026.8.35) repairs. Before choosing it, [check later repair coverage](#what-is-unresolved).
+**Select API-backed models for sandboxed delegated work.** [The documented spawn restrictions remain available at 2026.10.7](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/gateway/security/tool-permissions.md#L117-L137). For sandboxed scheduled or delegated work, explicitly select an embedded/API-backed model. Check inherited subagent models, fallbacks, and runtime overrides. Main adds guards against routing that work to a host-executed CLI; [stable 2026.10.7 and beta 2026.10.10-beta.3 do not contain those guards](https://github.com/openclaw/openclaw/commit/a19f1bf9eb6e5b22343c144a387a945d2cbc3525). [A sandbox classification or `sandbox: require` is not proof that these CLI paths run inside the container](https://github.com/openclaw/openclaw/commit/7abbf8507aa2fc52952621a497ece0e019b2748e).
 
-Its [Node range is `>=22.22.3 <23 || >=24.15.0 <25 || >=25.9.0`](https://github.com/openclaw/openclaw/blob/v2026.8.35/package.json). It is [package-only and requires a foreground update](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/install/development-channels.md#L14-L18).
+Check `agents.entries.<id>.subagents.model`, `agents.defaults.subagents.model`, and scheduled payload models, not just the parent's primary model. [Main rejects the incompatible placement rather than containerizing the CLI](https://github.com/openclaw/openclaw/blob/a19f1bf9eb6e5b22343c144a387a945d2cbc3525/src/agents/command/attempt-sandbox-cli-admission.ts).
 
-<a id="beta-only-repairs"></a>
+<a id="learning"></a>
 
-### Beta-only repairs
+**Choose immediate learning or manual initiation.** [Background learning defaults to `auto`, and Workshop retains ten versions per skill](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/tools/skill-workshop.md).
 
-**Remove argument-rewriting plugins you do not control.** [Stable 2026.10.3](https://github.com/openclaw/openclaw/blob/v2026.10.3/src/agents/agent-tools.before-tool-call.policy.ts#L303-L411) and [extended-stable 2026.8.35](https://github.com/openclaw/openclaw/blob/v2026.8.35/src/agents/agent-tools.before-tool-call.policy.ts#L277-L405) allow ordinary `before_tool_call` hooks to replace arguments after trusted inline approval.
+Set [`skills.workshop.autonomous.mode: "off"` when learning must be initiated manually](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/tools/skill-workshop.md). Otherwise, review the change feed, test Undo, and keep backups beyond its bounded history. [Learned skills bypass ordinary per-agent skill allowlists](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/tools/skill-workshop.md); Undo does not decide which procedures deserve to stay.
 
-The [beta fix requires approval for the final replacement parameters or blocks the call](https://github.com/openclaw/openclaw/blob/v2026.10.5-beta.3/src/agents/agent-tools.before-tool-call.policy.ts#L291-L436). Test transforming-hook compatibility on a separate Gateway with the [published prerelease](https://github.com/openclaw/openclaw/releases/tag/v2026.10.5-beta.3): `npm i -g openclaw@2026.10.5-beta.3`.
+**Migrate the old Workshop review machinery.** [Legacy `propose` becomes `off`, approval settings disappear, and old `auto` plus pending approval is not silently disabled](https://github.com/openclaw/openclaw/blob/v2026.10.7/src/commands/doctor/shared/legacy-config-migrations.runtime.skills.ts). Update integrations: [proposal/curator methods return errors, proposal hooks are removed, and exported pending drafts are not loaded automatically](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/tools/skill-workshop.md#L245-L260). Copy needed content from [old collection backups manually](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/tools/skill-workshop.md#L245-L260).
 
-**Review pending Telegram work before recovery.** [Stable 2026.10.3 lacks the legacy-import repair](https://github.com/openclaw/openclaw/blob/v2026.10.3/extensions/telegram/src/telegram-ingress-spool-migration.ts#L69-L125). [Beta.3 marks imports older than 24 hours non-dispatchable](https://github.com/openclaw/openclaw/commit/84e5f5d130867647cf4b3677e778084b69f3b989), stopping old owner instructions from becoming fresh work. [It also forgoes genuinely unprocessed old instructions, and already imported rows remain](https://github.com/openclaw/openclaw/pull/170068). Inspect the queue and migration warning; the update is not a cleanup.
+**Use stable to bind approval to final plugin arguments.** [Stable 2026.10.7 requires renewed approval when a plugin changes already-approved parameters, or blocks the call](https://github.com/openclaw/openclaw/blob/v2026.10.7/src/agents/agent-tools.before-tool-call.policy.ts#L291-L436); [extended 2026.9.33 carries the same repair](https://github.com/openclaw/openclaw/blob/v2026.9.33/src/agents/agent-tools.before-tool-call.policy.ts#L330-L436). Test transforming plugins with their final arguments before continuing to use them.
 
-<a id="authority"></a>
+**Test headless policy separately.** Stable now [initializes blocking plugin hooks under `openclaw agent exec`, where they could previously be skipped](https://github.com/openclaw/openclaw/commit/f33247464b02bd0bd04a215158a24150ac1f003a). Try a harmless denied operation through that command; [a passing Gateway test does not check standalone dispatch](https://github.com/openclaw/openclaw/commit/f33247464b02bd0bd04a215158a24150ac1f003a).
 
-### Authority
+<a id="chat-policy"></a>
 
-**Keep unrelated trust domains on separate Gateways.** In stable, [agent-to-agent messaging and all-session visibility are enabled by default](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/gateway/config-tools/sessions-and-subagents.md#L24-L38). Set [`tools.sessions.visibility` to `"agent"` or `"self"`](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/gateway/config-tools/sessions-and-subagents.md#L24-L38), [sender tool policies](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/gateway/config-tools/tool-policy.md#L230-L248) and [messaging and delegation limits](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/gateway/security/tool-permissions.md#L33-L121). Those controls [govern collaboration within one trust domain and do not isolate hostile tenants](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/gateway/security/trust-model.md#L55-L68).
+**Key privileged chat policy by stable IDs.** Stable still [matches Slack room names](https://github.com/openclaw/openclaw/blob/v2026.10.7/extensions/slack/src/group-policy.ts#L81-L95) and [Discord room names](https://github.com/openclaw/openclaw/blob/v2026.10.7/extensions/discord/src/group-policy.ts#L44-L62). [Slack room-ID binding](https://github.com/openclaw/openclaw/commit/803744916a8f168a7c82e346bf6d37065a04780f) and [Discord room-ID binding](https://github.com/openclaw/openclaw/commit/68c3f3fb660c5dd808231199b0fe265ea26086f2) are repaired in [beta 2026.10.10-beta.3](https://github.com/openclaw/openclaw/releases/tag/v2026.10.10-beta.3). Use channel IDs now. Separately, replace `name:`/`username:` sender overrides with `id:` keys: [a renamed sender can select another person's policy, and main only adds a warning](https://github.com/openclaw/openclaw/commit/16a3787ba105b71a72843941dcdf1c78634b752c). Use stable sender IDs on beta too.
 
-**Set bot admission before updating a shared chat.** [From 2026.9.7, omitted Discord and Slack `allowBots` means `true`, including on upgraded installations](https://github.com/openclaw/openclaw/commit/b078de41c413403542f847ac484c42d904b9fbaf). Choose [`false` to exclude bot turns or `"mentions"` to require a mention](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/channels/discord/troubleshooting.md#L103-L108). [Slack room messages additionally require the bot in the room's allowlist or an explicit owner as a current room member](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/channels/slack/access-control.md#L242-L248). Check the setting yourself: [the audit catalog has no dedicated allowBots check](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/gateway/security/audit-checks.md#L140-L147).
+**Grant specialist handoffs without opening every transcript.** Use [`agents.entries.<agentId>.tools.agentToAgent.send` for selected request-and-reply destinations while session visibility stays `agent`, `tree`, or `self`](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/gateway/config-tools/sessions-and-subagents.md#L33-L103). Set collaboration permissions deliberately: [stable defaults to cross-agent access and all-session visibility](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/gateway/config-tools/sessions-and-subagents.md#L25-L132), and [extended 2026.9.33 has the same broad defaults](https://github.com/openclaw/openclaw/blob/v2026.9.33/docs/gateway/config-tools/sessions-and-subagents.md). Set [`tools.agentToAgent.enabled: false` to block ordinary cross-agent access; owned native/ACP child sessions remain reachable under `tree` or `all` visibility](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/gateway/config-tools/sessions-and-subagents.md#L25-L30). [A privileged recipient can still act or disclose information](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/gateway/config-tools/sessions-and-subagents.md#L99-L103); keep unrelated operators on [separate Gateways and OS boundaries](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/gateway/security/trust-model.md#L55-L69).
 
-**Keep chat setup in restricted runs.** [Use the button or `/approve`; a typed yes cannot authorize the request](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/cli/openclaw.md#L120-L143). [Filesystem, sandbox, tool, route and live-authority checks still apply](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/cli/openclaw.md#L133-L137). Use masked credential setup: [a pasted key already reached the provider and transcript](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/cli/openclaw.md#L168-L184).
+**Try a scoped follow-up instead of another reminder.** [A new scheduled agent turn in its authenticated creator's exact conversation retains that authority and revalidates it on each occurrence](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/automation/cron-jobs/payloads.md#L98-L118). An [`at` continuation can call `next_check` to rearm itself; old jobs, guests, scripts, and other conversations gain no inferred authority](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/automation/cron-jobs/payloads.md#L98-L118). Before replacing the reminder loop, verify the target and revocation. Use the [API-backed placement above](#execution-boundary).
 
-**Put autonomous skill editing behind review.** [Workshop is OpenClaw's skill-maintenance system](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/tools/self-learning.md#L127-L180). Set [`skills.workshop.autonomous.mode: "propose"` or `"off"` alongside `skills.workshop.approvalPolicy: "pending"`](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/tools/skill-workshop/configuration.md#L68-L84). [Pending alone controls proposal decisions](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/tools/skill-workshop/configuration.md#L68-L84). By default, [autonomous `"auto"` edits directly with inherited permissions and no automatic rollback snapshots](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/tools/self-learning.md#L127-L180); back up the Workshop directory if you keep that mode. [`"off"` stops autonomous maintenance while explicit manual skill work remains available](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/tools/self-learning.md#L127-L180). The [autonomous default predates this window](https://github.com/openclaw/openclaw/blob/v2026.9.5/docs/tools/skill-workshop/configuration.md).
+**Review Telegram recovery before reissuing work.** [Stable rejects legacy imports older than 24 hours as `stale-legacy-import`, including genuinely unprocessed old instructions](https://github.com/openclaw/openclaw/blob/v2026.10.7/extensions/telegram/src/telegram-ingress-spool-migration.ts). Decide which old instructions still deserve to run. Inspect migration warnings and pending work: [already-imported rows are not cleaned up](https://github.com/openclaw/openclaw/blob/v2026.10.7/extensions/telegram/src/telegram-ingress-spool-migration.ts#L155-L162).
 
-**Inspect the session before granting routine automation.** Use [`openclaw exec-policy show --agent <id> --session <existing-session-key> --verbose`](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/cli/approvals.md#L210-L273). [Without `--session`, inspection is offline; even a live preview may be cached and does not guarantee execution](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/cli/approvals.md#L210-L273). For Gateway-hosted cron runs, [standing grants bind the exact agent, job definition and operation and are rechecked before spawn](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/tools/exec-approvals.md#L554-L589). Use that scope to avoid repeated approvals without authorizing every later command.
+**Configure provider-side conversation compaction explicitly after upgrading.** [Anthropic server compaction requires `params.anthropicServerCompaction: true`, direct API routing, and non-OAuth authentication](https://github.com/openclaw/openclaw/blob/v2026.10.7/packages/ai/src/transports/anthropic-payload-policy.ts#L67-L107). [Manual OpenAI endpoint compaction requires `params.responsesCompactEndpoint: true`; budget-triggered use of that endpoint remains the default on public OpenAI Responses routes](https://github.com/openclaw/openclaw/blob/v2026.10.7/packages/ai/src/transports/openai-responses-payload-policy.ts#L204-L225).
 
-**Set the fleet's update cadence yourself.** The [2026.10.3 release reports Telegram beta E2E not supplied and Android APK production skipped](https://github.com/openclaw/openclaw/releases/tag/v2026.10.3). Read its qualification block before rollout. Eligible [packaged headless nodes check hourly, apply while idle and allow at least 12 hours between activations](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/nodes/node-host.md#L177-L191). To control updates, [opt out with `nodeHost.autoUpdate.enabled: false` or `OPENCLAW_NO_AUTO_UPDATE=1`; extended-stable is excluded from this automation](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/nodes/node-host.md#L177-L191).
+**Update the external runtime plugin alongside the core.** [OpenClaw refuses known-incompatible versions of its external `@openclaw/codex` runtime](https://github.com/openclaw/openclaw/blob/v2026.10.7/src/plugins/loader-runtime-candidate.ts#L245-L267), whose [OpenClaw plugin compatibility floor is 2026.9.7](https://github.com/openclaw/openclaw/blob/v2026.10.7/src/plugins/official-runtime-plugins.ts#L19-L28). Use [`openclaw update repair` or `openclaw plugins update codex`, then restart the Gateway](https://github.com/openclaw/openclaw/commit/cada1bc0d9ac1c0120f5fbc63829db310648b3e7).
 
-**Review retained Incognito logs if diagnostics were enabled.** The [2026.9.7 repair excludes Incognito model content from cache traces, Anthropic payload logs, raw-stream logs and WebSocket event summaries](https://github.com/openclaw/openclaw/commit/21aa89f744af426d1c9b1d5d7d40960abf1e7465). [Existing logs remain, and the repair does not establish external-provider privacy](https://github.com/openclaw/openclaw/pull/155595). An upgrade cannot replace a retention decision.
+**Retest manual CLI session-reset workarounds.** In 2026.10.7, [a changed tool-name fingerprint invalidates the native CLI binding instead of resuming its stale catalog](https://github.com/openclaw/openclaw/blob/v2026.10.7/src/agents/cli-session.ts#L319-L328). Test the actual restart and tool-change sequence before keeping a workaround that discards useful continuity.
 
-**Match scanner exceptions to the installed package or device.** Wider databases recorded older disclosures, including [channel target-allowlist bypasses](https://github.com/advisories/GHSA-g7fw-3gjp-g5hf) and [attachment reads outside sender policy under a different global GHSA ID](https://github.com/advisories/GHSA-m2g4-5ff5-4cf5). Check the affected package and backported mechanism before waiving an alert. [iOS before 2026.8.11 logged bearer deep-link keys that could authorize forged requests](https://github.com/openclaw/openclaw/security/advisories/GHSA-5j57-84cx-r295). Check the phone version and rotate exposed keys separately from a Gateway update.
+**Record where the Windows update failed.** Stable repairs [Windows junction recovery](https://github.com/openclaw/openclaw/blob/v2026.10.7/src/plugins/plugin-generation-source-lookup.ts#L376-L424) and [scratch retirement](https://github.com/openclaw/openclaw/blob/v2026.10.7/src/infra/backup-scratch.ts#L169-L199), and [2026.10.7 adds activation and recovery repairs](https://github.com/openclaw/openclaw/blob/v2026.10.7/CHANGELOG/2026.10.7.md). Record the installed updater's version and the failed step. [The restore-startup timeout repair is still main-only](https://github.com/openclaw/openclaw/commit/071f27c2b58ce383e1a70f71b6fec66461261cb8); [transient database inspection contention calls for retry guidance](https://github.com/openclaw/openclaw/blob/v2026.10.7/src/state/openclaw-database-preflight.messages.ts#L51-L65), not repeated restoration.
 
-**Before relying on the default, choose which paired desktops may be shared.** [Sharing defaults on but needs an existing node-local RFB server; it does not enable macOS Screen Sharing](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/gateway/config-browser-ui-desktop.md#L336-L355).
+**Upgrade before browser pairing on shared hosts.** Stable [passes a private file path to the browser opener instead of a pairing URL another local OS user could read from process arguments](https://github.com/openclaw/openclaw/commit/fb08d790a901870455c35bc437dae2c9cc9bc523). Keep credential-bearing URLs out of shared logs too.
 
-**Choose which model connections may use provider-side conversation summaries.** [OpenClaw defaults to native compaction for manual `/compact` without focus on public OpenAI Responses routes](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/providers/openai/advanced.md#L337-L341); [focused requests, provider-confirmed overflow and endpoint failures retain client summaries](https://github.com/openclaw/openclaw/commit/6015e98d907837b45058f04f01694eaa7eab3ce4). [OpenClaw enables Anthropic server compaction by default for supported models on direct `api.anthropic.com` API-key routes](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/providers/anthropic.md#L889-L913). Opt out with [`params.responsesCompactEndpoint: false`](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/providers/openai/advanced.md#L337-L341) or [`params.anthropicServerCompaction: false`](https://github.com/openclaw/openclaw/blob/v2026.10.3/docs/providers/anthropic.md#L889-L913) if you need client summaries.
+**Choose desktop downloads separately from the Gateway package.** [Linux has 2026.10.7 AppImage and DEB downloads](https://github.com/openclaw/openclaw/releases/tag/v2026.10.7), and [its updater pointer selected that version at 10:40 UTC on 24 October 2026](https://github.com/openclaw/openclaw/releases/download/v2026.10.7/latest.json). At that read, [2026.10.7 had no macOS DMG or ZIP](https://github.com/openclaw/openclaw/releases/tag/v2026.10.7); [2026.10.6 has macOS downloads](https://github.com/openclaw/openclaw/releases/tag/v2026.10.6).
 
-<a id="what-is-unresolved"></a>
+**Decide what becomes public before enabling X replies.** Stable [supports admitted X mentions and public replies, with guest admission and automatic work-session publication off by default](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/channels/x.md). Inspect admission and API cost limits. [Published thread links expose later user messages and final answers to signed-out readers; redaction is best effort, and saved copies cannot be recalled](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/web/control-ui/sessions-and-sidebar.md#L339-L356). Check the transcript before publishing it.
+
+**Pin model choices when reproducibility matters.** [OpenClaw can discover supported Claude and ChatGPT models without another core release](https://github.com/openclaw/openclaw/blob/v2026.10.7/CHANGELOG/2026.10.5.md). [Its Google API provider now defaults to Gemini 4 Argon](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/providers/google.md#L11-L58). Evaluate the selected route and model before inheriting that default.
+
+**Set shared-chat bot admission yourself.** [Discord admits bot messages by default under normal access and mention rules; `false` disables bot-triggered turns and `mentions` requires a mention](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/channels/discord/troubleshooting.md#L102-L108). [Slack additionally requires the bot in the room's allowlist or an explicit owner ID as a current member](https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/channels/slack/access-control.md#L242-L248).
 
 ## What is unresolved
 
-- For the [beta-only repairs](#beta-only-repairs), wait for a published stable tag and inspect its final-argument approval policy and legacy Telegram importer before rollout.
-- [With workspace-only restrictions enabled, read and edit tools use handles tied to the permitted root; writes also check authority at that root](https://github.com/openclaw/openclaw/blob/v2026.10.3/src/agents/agent-tools.read.ts#L1362-L1495). Coverage beyond those tools remains unverified. Audit and replace [remaining raw-path consumers that rely on `assertSandboxPath` as their final safety boundary](https://github.com/openclaw/openclaw/issues/114382) before relying on complete workspace containment.
-- Later repair coverage remains unverified on extended-stable. In the [2026.8.35 release tree](https://github.com/openclaw/openclaw/tree/v2026.8.35), inspect the code that enforces HTTP sandboxing, stops revoked Guest work and masks credential output. Check the backported behavior rather than requiring the original main-branch commit.
-- To check first-run authority disclosure, record fresh-machine Quick start and Custom flows, including later screens. The specified [Quick start path auto-acknowledges a short warning; Custom retains full confirmation](https://github.com/openclaw/openclaw/blob/v2026.10.3/src/commands/onboard-guided-consent.ts#L50-L75). Choose Custom for that full step; later screens' defaults remain unknown.
+- A published version with the [exec and host-CLI guards](#execution-boundary), followed by recorded refusals on the affected predicate, scheduled, and child-run paths, would resolve those release questions. Stable room binding needs a released tag containing the [beta repairs above](#chat-policy), with rename/thread tests against the installed adapters.
+- [Gateway-owned cloud-worker exec review remains on main](https://github.com/openclaw/openclaw/commit/db38f86b6d086631347af055d2bc87a653b7e8c8). Require a release and a recorded approve/deny/revoke sequence on the intended worker before relying on it. Keep a working placement; do not relax exec policy to force dispatch.
+- [Invitation-bound guest welcome sessions are main-only](https://github.com/openclaw/openclaw/commit/280c7c7d494a796cc870fbd794088b84df1e53dc). A release and a fresh signed-in invitation trial covering role text, expiry, and retry would settle whether the whole flow works. For general onboarding, [Quick start auto-acknowledges a short warning while Custom retains fuller confirmation](https://github.com/openclaw/openclaw/blob/v2026.10.7/src/commands/onboard-guided-consent.ts#L50-L75); record both fresh-machine flows through their later screens.
+- [Workspace-scoped read/write/edit tools use root-bound operations](https://github.com/openclaw/openclaw/blob/v2026.10.7/src/agents/agent-tools.read.ts#L1331-L1481). Complete workspace containment still needs the [residual raw-path audit](https://github.com/openclaw/openclaw/issues/114382) and race tests beyond those tools.
+- To learn whether [direct Workshop learning](#learning) saves owner attention, repeat real tasks. Record completed outcomes, bad procedures, restoration success, and time spent reviewing and correcting them.
 
+## Review date and evidence method
+
+<div hidden aria-hidden="true" data-check-profile-legacy-heading>
 ## Profile hygiene
+</div>
 
-This profile stops at 2026-10-13. See [METHOD.md](https://github.com/sheetgenius/frontier/blob/3d3ecfdbcf2e690470a2d00c218e52b50566e402/METHOD.md) for the evidence contract.
+This profile stops at 2026-10-24. See [METHOD.md](https://github.com/sheetgenius/frontier/blob/3d3ecfdbcf2e690470a2d00c218e52b50566e402/METHOD.md) for the evidence contract.

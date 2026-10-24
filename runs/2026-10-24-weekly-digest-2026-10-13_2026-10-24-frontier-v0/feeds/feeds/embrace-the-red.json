@@ -1,0 +1,14 @@
+{
+ "source": "embrace-the-red",
+ "feed": "https://embracethered.com/blog/index.xml",
+ "swept_on": "2026-10-24",
+ "since": "2026-10-13",
+ "items": [
+  {
+   "title": "Visual Studio Copilot and SSMS Remote Code Execution (CVE-2026-103572)",
+   "url": "https://embracethered.com/blog/posts/2026/visual-studio-copilot-remote-code-execution/",
+   "date": "2026-10-13",
+   "summary": "<p><strong>A <code>.</code> is all you need!</strong></p>&#xA;<p>Today Microsoft <a href=&#34;https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-103572&#34;>shipped the patch</a> for a vulnerability in Visual Studio Copilot that I reported in August. Microsoft classified it as <code>Important</code> severity <code>Remote Code Execution</code> vulnerability.</p>&#xA;<p><a href=&#34;http"
+  }
+ ]
+}

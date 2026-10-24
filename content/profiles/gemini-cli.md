@@ -6,7 +6,7 @@ owner: Google
 source_contract: sources/gemini-cli.yml
 homepage: https://github.com/google-gemini/gemini-cli
 docs: https://google-gemini.github.io/gemini-cli/docs/
-tagline: Headless planning points toward implementation; decide the write boundary before launch.
+tagline: "Gemini CLI 0.65.0 refuses project MCP additions in untrusted folders and lets the agent explore directories itself."
 compared_with: []
 x:
   project: geminicli
@@ -17,8 +17,8 @@ repo: https://github.com/google-gemini/gemini-cli
 surface_class: open_source_commits
 evidence_floor: commit_diff_reviewed
 status: active_watch
-last_updated: 2026-10-13
-last_full_review: 2026-10-13
+last_updated: 2026-10-24
+last_full_review: 2026-10-24
 claims:
   - id: autoedit-and-seatbelt
     finding_id: 2026-09-21-gemini-cli-autoedit-path-check-never-loaded-and-seatbelt-reached-docker-socket
@@ -27,9 +27,9 @@ claims:
     note: Verified historical control omitted from this dated body; the current sandbox claim concerns workdirs and runtime state.
   - id: plugin4shell-unpatched
     finding_id: 2026-09-21-gemini-cli-extension-install-still-checks-out-fetch-head-after-plugin4shell-disclosure
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
-    note: Unchanged installer exposure rechecked at v0.64.0. AIR reports future patch policy; that is not a Google-confirmed product fact.
+    note: "Pin-verification omission rechecked at v0.65.0. Hosted exploit reach and future patch policy remain unverified."
   - id: v0-57-0-carries-august-preview-fixes
     finding_id: 2026-09-21-gemini-cli-v0-57-0-promotes-every-preview-only-item-from-the-previous-brief
     last_verified: 2026-10-13
@@ -78,9 +78,9 @@ claims:
     note: Reached stable in v0.57.0 (c0d192452).
   - id: consumer-service-retired-2026-06-18
     finding_id: 2026-07-01-gemini-cli-consumer-service-retired
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: open_question
-    note: October 13 consumer terms remain unverified; no immutable official notice captured at or before the cutoff was established. The mutable consumer notice does not verify historical availability. The claim identifier is retained for continuity.
+    note: "Current documentation re-read on 2026-10-24; historical October 13 wording and comprehensive route-specific support commitments remain unverified."
   - id: oss-repo-active-enterprise-serving
     finding_id: 2026-07-01-gemini-cli-consumer-service-retired
     last_verified: 2026-10-13
@@ -103,9 +103,9 @@ claims:
     note: Retained in the historical record; dropped from this dated posture. Current decisions use the new release findings.
   - id: workspace-trust-headless-enforcement
     finding_id: 2026-05-11-gemini-subagent-protocol-and-session-portability
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
-    note: Applies when folder trust is enabled; the startup guard returns early when that feature is disabled.
+    note: "Schema and runtime default folder trust on; disabling it bypasses the headless startup guard. The tagged guide remains stale."
   - id: shell-safety-evals
     finding_id: 2026-05-07-gemini-reviewable-memory-and-trust
     last_verified: 2026-10-13
@@ -199,69 +199,79 @@ claims:
     note: Retained in the historical record; dropped from this dated posture. Current decisions use the new release findings.
   - id: code-assist-subscription-sunset
     finding_id: 2026-10-13-gemini-cli-google-stops-selling-new-code-assist-subscriptions
-    last_verified: 2026-10-14
+    last_verified: 2026-10-24
     status: open_question
-    note: Subscription notices were read on 2026-10-14; this records the live-document observation, not verified October 13 terms. No immutable official notice captured at or before the cutoff was established; historical wording and deadlines remain unverified.
+    note: "Current documentation re-read on 2026-10-24; historical October 13 wording and comprehensive route-specific support commitments remain unverified."
   - id: explicit-flash-request-rewrite
     finding_id: 2026-10-13-gemini-cli-stable-v0-61-0-rewrites-explicit-flash-model-ids
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: stable-build-file-tool-gates
     finding_id: 2026-10-13-gemini-cli-build-file-tool-gates-reach-stable-and-override-yolo
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: stable-taint-false-positive-repair
     finding_id: 2026-10-13-gemini-cli-stable-v0-64-0-narrows-untrusted-argument-false-positives
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Verified at v0.65.0; omitted from this refreshed posture or covered by the current channel-specific claim. Retirement does not assert removal of the mechanism."
   - id: headless-plan-autonomous-prompt
     finding_id: 2026-10-13-gemini-cli-headless-plan-mode-now-encourages-autonomous-implementation
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: agent-git-diff-restored
     finding_id: 2026-10-13-gemini-cli-stable-v0-63-0-fixes-agent-git-diff
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Verified at v0.65.0; omitted from this refreshed posture or covered by the current channel-specific claim. Retirement does not assert removal of the mechanism."
   - id: individual-tool-text-cap
     finding_id: 2026-10-13-gemini-cli-tool-text-fields-gain-a-non-configurable-65536-byte-cap
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: mcp-add-settings-loss-preview-fix
     finding_id: 2026-10-13-gemini-cli-mcp-add-can-erase-untrusted-project-settings-until-v0-65-0-preview
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Superseded by stable 0.65.0 refusal; the new stable settings claim replaces preview-only guidance."
   - id: sandbox-workdir-and-runtime-state
     finding_id: 2026-10-13-gemini-cli-sandboxes-reject-sensitive-workdirs-and-seatbelt-changes-its-state-root
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Verified at v0.65.0; the older sandbox settings and storage tour is omitted from this posture. The new bridge claim covers the current decision."
   - id: oauth-issuer-compatibility-and-synthetic-turns
     finding_id: 2026-10-13-gemini-cli-stable-v0-64-0-relaxes-oauth-iss-requirements-and-normalizes-terminal-turns
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Verified at v0.65.0; omitted from this refreshed posture or covered by the current channel-specific claim. Retirement does not assert removal of the mechanism."
   - id: stable-acp-correlation-and-usage
     finding_id: 2026-10-13-gemini-cli-acp-permissions-correlate-with-tools-and-stable-v0-64-0-reports-usage
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Verified at v0.65.0; omitted from this refreshed posture or covered by the current channel-specific claim. Retirement does not assert removal of the mechanism."
   - id: session-patches-and-local-write-locks
     finding_id: 2026-10-13-gemini-cli-stable-v0-64-0-appends-session-patches-and-serializes-local-writes
-    last_verified: 2026-10-13
+    last_verified: 2026-10-24
     status: active
   - id: redirection-and-config-path-hardening
     finding_id: 2026-10-13-gemini-cli-v0-63-0-hardens-redirection-config-paths-reads-and-untrusted-resource-output
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Verified at v0.65.0; omitted from this refreshed posture or covered by the current channel-specific claim. Retirement does not assert removal of the mechanism."
   - id: a2a-nested-settings-migration
     finding_id: 2026-10-13-gemini-cli-a2a-settings-migrate-to-nested-controls-in-memory
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Verified at v0.65.0; omitted from this refreshed posture or covered by the current channel-specific claim. Retirement does not assert removal of the mechanism."
   - id: stable-active-operation-cancellation
     finding_id: 2026-10-13-gemini-cli-ctrl-c-reaches-cancellation-during-active-operations-in-v0-64
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Verified at v0.65.0; omitted from this refreshed posture or covered by the current channel-specific claim. Retirement does not assert removal of the mechanism."
   - id: preview-cancellation-history-repair
     finding_id: 2026-10-13-gemini-cli-rapid-cancellation-history-repair-reaches-v0-65-0-preview
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Superseded by stable 0.65.0 history delivery; newer execution-loop fixes remain nightly."
   - id: diagnostic-file-reference-resolution
     finding_id: 2026-10-13-gemini-cli-file-references-with-line-suffixes-resolve-in-v0-64
     last_verified: 2026-10-13
@@ -269,107 +279,195 @@ claims:
     note: Verified convenience omitted from this posture; file resolution does not establish line-range-only context.
   - id: preview-companion-shutdown-source
     finding_id: 2026-10-13-gemini-cli-ide-companion-shutdown-repair-is-in-v0-65-0-preview-source
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Superseded by stable 0.65.0 source delivery; Marketplace delivery remains unverified."
   - id: stable-and-preview-at-october-close
     finding_id: 2026-10-13-gemini-cli-v0-64-0-stable-and-v0-65-0-preview-ship-before-the-window-closes
-    last_verified: 2026-10-13
-    status: active
+    last_verified: 2026-10-24
+    status: retired
+    note: "Historical snapshot retained; current install guidance is stable 0.65.0, preview 0.66.0-preview.0 and the dated nightly."
   - id: antigravity-plan-review-scope
     finding_id: 2026-10-13-antigravity-dangerously-skip-permissions-stops-auto-approving-plan-plans-in-1-3-2-plan-and-artifact
     last_verified: 2026-10-13
     status: retired
     note: Comparison omitted from this dated body; no current Antigravity behavior is asserted.
+  - id: install-stable-0-65-0
+    finding_id: 2026-10-24-gemini-cli-stable-refuses-project-settings-writes-in-untrusted-workspaces
+    last_verified: 2026-10-24
+    status: active
+  - id: stable-untrusted-settings-refusal
+    finding_id: 2026-10-24-gemini-cli-stable-refuses-project-settings-writes-in-untrusted-workspaces
+    last_verified: 2026-10-24
+    status: active
+  - id: stable-resume-and-exit-history
+    finding_id: 2026-10-24-gemini-cli-stable-repairs-resumed-session-deletion-duplicate-tool-responses-and-rapid-exit-history
+    last_verified: 2026-10-24
+    status: active
+  - id: authenticated-otlp-export
+    finding_id: 2026-10-24-gemini-cli-stable-can-authenticate-telemetry-exports-with-configured-otlp-headers
+    last_verified: 2026-10-24
+    status: active
+  - id: agent-directed-directory-context
+    finding_id: 2026-10-24-gemini-cli-stable-directory-references-stop-eagerly-reading-the-entire-directory
+    last_verified: 2026-10-24
+    status: active
+  - id: current-vendor-access-and-model-warning
+    finding_id: 2026-10-24-gemini-cli-the-readme-stops-promising-obsolete-access-and-warns-about-gemini-4-optimization
+    last_verified: 2026-10-24
+    status: active
+  - id: preview-global-git-and-noninteractive-auth
+    finding_id: 2026-10-24-gemini-cli-preview-restores-user-git-configuration-while-disabling-interactive-credential-prompts
+    last_verified: 2026-10-24
+    status: active
+  - id: preview-private-mcp-oauth
+    finding_id: 2026-10-24-gemini-cli-preview-allows-an-explicit-per-server-private-network-mcp-oauth-exception
+    last_verified: 2026-10-24
+    status: active
+  - id: preview-env-and-nightly-raw-migration
+    finding_id: 2026-10-24-gemini-cli-preview-fixes-env-resolution-order-nightly-preserves-raw-placeholders-during-migration
+    last_verified: 2026-10-24
+    status: active
+  - id: nightly-cancellation-loop
+    finding_id: 2026-10-24-gemini-cli-preview-forwards-parent-signals-nightly-blocks-further-work-after-cancellation
+    last_verified: 2026-10-24
+    status: active
+  - id: nightly-sandbox-ide-bridge
+    finding_id: 2026-10-24-gemini-cli-nightly-bridges-the-host-ide-companion-into-container-sandboxes
+    last_verified: 2026-10-24
+    status: active
+  - id: nightly-file-semantics
+    finding_id: 2026-10-24-gemini-cli-nightly-checks-existing-file-writability-and-preserves-hard-links
+    last_verified: 2026-10-24
+    status: active
+  - id: nightly-scoped-flag-approvals
+    finding_id: 2026-10-24-gemini-cli-nightly-scopes-flag-taint-to-external-output-and-remembers-approved-flags-within-the-sessi
+    last_verified: 2026-10-24
+    status: active
+  - id: nightly-local-model-catalog
+    finding_id: 2026-10-24-gemini-cli-nightly-exposes-a-machine-readable-local-model-catalog
+    last_verified: 2026-10-24
+    status: active
+  - id: portable-skills-and-hook-timeouts
+    finding_id: 2026-10-24-gemini-cli-skill-parsing-and-hook-import-preserve-more-of-portable-configuration
+    last_verified: 2026-10-24
+    status: active
+  - id: stable-extension-download-boundary
+    finding_id: 2026-10-24-gemini-cli-stable-hardens-the-github-extension-json-downloader
+    last_verified: 2026-10-24
+    status: active
+  - id: stable-question-answer-context
+    finding_id: 2026-10-24-gemini-cli-stable-keeps-the-full-ask-user-question-beside-the-answer
+    last_verified: 2026-10-24
+    status: active
 posture_basis:
   capability:
     - 2026-05-11-gemini-subagent-protocol-and-session-portability
     - 2026-10-13-gemini-cli-headless-plan-mode-now-encourages-autonomous-implementation
-    - 2026-10-13-gemini-cli-acp-permissions-correlate-with-tools-and-stable-v0-64-0-reports-usage
     - 2026-10-13-gemini-cli-stable-v0-64-0-appends-session-patches-and-serializes-local-writes
-    - 2026-10-13-gemini-cli-stable-v0-63-0-fixes-agent-git-diff
-    - 2026-10-13-gemini-cli-ctrl-c-reaches-cancellation-during-active-operations-in-v0-64
+    - 2026-10-24-gemini-cli-stable-directory-references-stop-eagerly-reading-the-entire-directory
+    - 2026-10-24-gemini-cli-stable-repairs-resumed-session-deletion-duplicate-tool-responses-and-rapid-exit-history
+    - 2026-10-24-gemini-cli-nightly-bridges-the-host-ide-companion-into-container-sandboxes
+    - 2026-10-24-gemini-cli-nightly-exposes-a-machine-readable-local-model-catalog
+    - 2026-10-24-gemini-cli-skill-parsing-and-hook-import-preserve-more-of-portable-configuration
+    - 2026-10-24-gemini-cli-stable-keeps-the-full-ask-user-question-beside-the-answer
   accessibility:
     - 2026-07-01-gemini-cli-consumer-service-retired
     - 2026-10-13-gemini-cli-google-stops-selling-new-code-assist-subscriptions
-    - 2026-10-13-gemini-cli-v0-64-0-stable-and-v0-65-0-preview-ship-before-the-window-closes
-    - 2026-10-13-gemini-cli-stable-v0-64-0-relaxes-oauth-iss-requirements-and-normalizes-terminal-turns
+    - 2026-10-24-gemini-cli-the-readme-stops-promising-obsolete-access-and-warns-about-gemini-4-optimization
+    - 2026-10-24-gemini-cli-preview-allows-an-explicit-per-server-private-network-mcp-oauth-exception
+    - 2026-10-24-gemini-cli-preview-restores-user-git-configuration-while-disabling-interactive-credential-prompts
   governance:
     - 2026-09-21-gemini-cli-extension-install-still-checks-out-fetch-head-after-plugin4shell-disclosure
     - 2026-10-13-gemini-cli-build-file-tool-gates-reach-stable-and-override-yolo
-    - 2026-10-13-gemini-cli-stable-v0-64-0-narrows-untrusted-argument-false-positives
     - 2026-10-13-gemini-cli-tool-text-fields-gain-a-non-configurable-65536-byte-cap
-    - 2026-10-13-gemini-cli-mcp-add-can-erase-untrusted-project-settings-until-v0-65-0-preview
-    - 2026-10-13-gemini-cli-sandboxes-reject-sensitive-workdirs-and-seatbelt-changes-its-state-root
-    - 2026-10-13-gemini-cli-v0-63-0-hardens-redirection-config-paths-reads-and-untrusted-resource-output
-    - 2026-10-13-gemini-cli-a2a-settings-migrate-to-nested-controls-in-memory
-    - 2026-10-13-gemini-cli-rapid-cancellation-history-repair-reaches-v0-65-0-preview
     - 2026-10-13-gemini-cli-stable-v0-61-0-rewrites-explicit-flash-model-ids
+    - 2026-10-24-gemini-cli-stable-refuses-project-settings-writes-in-untrusted-workspaces
+    - 2026-10-24-gemini-cli-stable-hardens-the-github-extension-json-downloader
+    - 2026-10-24-gemini-cli-stable-can-authenticate-telemetry-exports-with-configured-otlp-headers
+    - 2026-10-24-gemini-cli-preview-fixes-env-resolution-order-nightly-preserves-raw-placeholders-during-migration
+    - 2026-10-24-gemini-cli-preview-forwards-parent-signals-nightly-blocks-further-work-after-cancellation
+    - 2026-10-24-gemini-cli-nightly-scopes-flag-taint-to-external-output-and-remembers-approved-flags-within-the-sessi
+    - 2026-10-24-gemini-cli-nightly-checks-existing-file-writability-and-preserves-hard-links
   succession:
     - 2026-07-01-gemini-cli-consumer-service-retired
     - 2026-10-13-gemini-cli-google-stops-selling-new-code-assist-subscriptions
+    - 2026-10-24-gemini-cli-the-readme-stops-promising-obsolete-access-and-warns-about-gemini-4-optimization
 stance:
-  use_for: Implementation jobs in controlled repositories with working service access; set permitted writes before launch.
-  avoid_for: Plan-only jobs without an enforced write boundary.
-  watch_next: Resolve delivery and service-support questions before extending use.
+  use_for: "Run <a href='https://github.com/google-gemini/gemini-cli/releases/tag/v0.65.0'>controlled implementation jobs on 0.65.0</a> after confirming service access and permitted writes."
+  avoid_for: "Plan-only jobs where <a href='https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/tools/exit-plan-mode.ts#L210-L268'>an allowed plan exit can enter YOLO</a>."
+  watch_next: "A recorded cancellation test with the intended supervisor, piped input and output mode for <a href='https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/nonInteractiveCli.ts'>the nightly headless loop</a>."
 ---
 
 # Gemini CLI
 
-## What changed
+On 20 October 2026, [Gemini CLI 0.65.0 reached stable](https://github.com/google-gemini/gemini-cli/releases/tag/v0.65.0) with [a refusal of project-scoped MCP additions in untrusted folders](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/cli/src/commands/mcp/add.ts#L45-L66), closing the [empty-settings overwrite path](https://github.com/google-gemini/gemini-cli/commit/f41d0bc8f7fe79563d353f97c7580ed4d8fd24d7). The safeguard ships; deciding which repository deserves trust still belongs to you.
 
-In Gemini CLI [0.63.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.63.0), [headless Plan Mode tells the model to finish planning and begin implementation without waiting](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/prompts/snippets.ts#L602-L615); [headless means running without interactive approval prompts](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/policy/policy-engine.ts#L1010-L1012). The [automatic switch to YOLO already existed](https://github.com/google-gemini/gemini-cli/blob/v0.62.0/packages/core/src/tools/exit-plan-mode.ts#L210-L268); the new prompt encourages that route into the post-plan approval mode, which [permits shell redirection](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/policy/policies/yolo.toml#L50-L56) but [still gates some dependency edits](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/policy/policy-engine.ts#L903-L956). For authorized implementation, this removes an instruction to wait and moves the human decision before launch, to permitted writes, tools and exit conditions.
+## Where it stands, 2026-10-24
 
-## Where it stands, 2026-10-13
+**Channel.** Pin [0.65.0 stable, released 20 October 2026](https://github.com/google-gemini/gemini-cli/releases/tag/v0.65.0): [`npm install -g @google/gemini-cli@0.65.0`](https://registry.npmjs.org/@google%2fgemini-cli/0.65.0), with [Node 20 or later](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/package.json). At the [24 October, 10:12:57 UTC npm read](https://registry.npmjs.org/@google%2fgemini-cli), preview selected [0.66.0-preview.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.66.0-preview.0) and nightly selected [0.67.0-nightly.20261024.gcd1b45c2d](https://github.com/google-gemini/gemini-cli/releases/tag/v0.67.0-nightly.20261024.gcd1b45c2d). Choose a prerelease only for a need named below.
 
-**Pin 0.64.0 after checking your service access.** Install [0.64.0 stable, released 13 October 2026](https://github.com/google-gemini/gemini-cli/releases/tag/v0.64.0) with `npm install -g @google/gemini-cli@0.64.0`; it requires [Node 20 or later](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/package.json). Use it in controlled repositories whose policy and sandbox setup you own. Follow [the launch checks below](#launch-boundary) before rollout. For preview tradeoffs, see [project settings](#mcp-settings) and [cancellation](#cancellation). Check [IDE companion delivery](#ide-delivery) separately. The other changes discussed below are in [stable 0.64.0 or earlier](https://github.com/google-gemini/gemini-cli/releases/tag/v0.64.0). Flash model rewrites [depend on feature gates](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/config/models.ts#L68-L164): [enabled for API-key, Vertex and Gateway authentication, with separate experiment flags for Google login](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/config/config.ts#L3585-L3644).
+Preview adds [user Git configuration](https://github.com/google-gemini/gemini-cli/blob/v0.66.0-preview.0/packages/core/src/services/shellExecutionService.ts#L580-L640), [earlier .env loading](https://github.com/google-gemini/gemini-cli/blob/v0.66.0-preview.0/packages/cli/src/config/settings.ts#L1047-L1118) and [a per-server private-network OAuth exception that defaults off](https://github.com/google-gemini/gemini-cli/blob/v0.66.0-preview.0/docs/tools/mcp-server.md#L436-L441). Nightly adds [further cancellation controls](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/nonInteractiveCli.ts), [container editor integration](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/utils/ideBridge.ts), [file-write changes](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/core/src/services/fileSystemService.ts#L57-L164), [model listing](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/commands/models/list.ts) and [hook-timeout conversion](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/commands/hooks/migrate.ts#L65-L105). [None of the inspected changes remains main-only](https://github.com/google-gemini/gemini-cli/compare/cd1b45c2db0a5ea7b7fc3b67c1ba5879601d6005...v0.67.0-nightly.20261024.gcd1b45c2d).
 
-**Confirm service access before rollout.** The [0.64.0 authentication guide recommends consumer Google sign-in](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/docs/get-started/authentication.mdx#L17-L34); that recommendation does not establish availability. Check access and contractual support for the authentication route you intend to run. Consumer and subscription terms at the October 13 cutoff remain unverified.
+**Upgrade before changing project MCP settings.** If the guard refuses, choose user scope or explicitly decide whether to trust the folder. The [guard applies only to settings persistence](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/cli/src/config/settings.ts#L461-L492). Before unattended rollout, [confirm service access](https://github.com/google-gemini/gemini-cli/blob/v0.66.0-preview.0/README.md#L1-L22), [keep folder trust enabled](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/cli/src/utils/userStartupWarnings.ts#L84-L103) and [verify extension checkouts](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/cli/src/config/extensions/github.ts#L32-L80). For plan-only work, [deny `exit_plan_mode` or enforce a read-only filesystem](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/tools/exit-plan-mode.ts#L210-L268).
 
-<a id="launch-boundary"></a>
+**Verify service access before investing in rollout.** Google's [16 October 2026 README update](https://github.com/google-gemini/gemini-cli/commit/21976e977ef833e9a03538119eac933fe89767a7) [says Gemini CLI was replaced for unpaid-tier and Google One users on 18 June 2026, recommends Antigravity for current Gemini models, and warns that this CLI is not optimized for Gemini 4 Argon](https://github.com/google-gemini/gemini-cli/blob/v0.66.0-preview.0/README.md#L1-L22). The [stable authentication guide still recommends consumer sign-in](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/docs/get-started/authentication.mdx#L12-L50). Check the account route and support terms before choosing a deployment, whatever the package version.
 
-**Keep plan-only jobs read-only.** Deny `exit_plan_mode` and verify effective policy, or enforce a read-only filesystem.
+## Repository trust still belongs to you
 
-**YOLO still stops some dependency edits.** [Build-file gates reached stable in 0.61.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.61.0). They cover [recognized edit tools with an extractable target, even in YOLO](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/policy/policy-engine.ts#L903-L956) for files such as [package.json and Makefile](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/utils/buildFileUtils.ts#L14-L71). From [0.63.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.63.0), [final ASK decisions become DENY in headless runs](https://github.com/google-gemini/gemini-cli/commit/2fe7c2d3f065dc40ad573d50b2091116f8a4aa18); [tracked edits also require approval for later recognized build/test commands](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/tools/shell.ts#L272-L325). Run your dependency job with its actual edit tools and build commands to find where it stops for approval. The [YOLO shell rule permits redirection](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/policy/policies/yolo.toml#L50-L56), so an edit-tool gate does not make the file unwritable. Narrow command-prefix rules [need explicit `allowRedirection` from 0.63.0](https://github.com/google-gemini/gemini-cli/commit/2fe7c2d3f065dc40ad573d50b2091116f8a4aa18).
+**Verify extension checkouts during installation.** Stable's [JSON downloader restricts GITHUB_TOKEN to HTTPS github.com and its subdomains, checks destinations and socket DNS results, and adds a 30-second timeout](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/cli/src/config/extensions/github_fetch.ts#L15-L205). The [installer still checks out FETCH_HEAD without comparing resulting HEAD to the requested commit](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/cli/src/config/extensions/github.ts#L32-L80).
 
-**Verify extension checkouts before use.** The [0.64.0 installer checks out FETCH_HEAD without comparing the resulting HEAD to the requested commit](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/cli/src/config/extensions/github.ts#L32-L80). [Git's local-branch precedence can select a different object](https://github.com/git/git/blob/v2.51.1/builtin/checkout.c#L1266-L1280). Install from repositories you control and compare `git rev-parse HEAD` in the extension directory with your pinned commit.
+Upgrade token-authenticated install flows, test redirects and private-host refusals, and compare the installed HEAD with your intended commit.
 
-<a id="mcp-settings"></a>
+**Enforce the boundary for plan-only jobs.** Headless planning [encourages implementation without waiting](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/prompts/snippets.ts#L602-L620), and [policy-allowed exit_plan_mode can select YOLO](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/tools/exit-plan-mode.ts#L210-L268). Deny that tool in effective policy or enforce a read-only filesystem. [Recognized build-file edit gates](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/policy/policy-engine.ts#L903-L956) leave other routes open, including [YOLO shell redirection](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/policy/policies/yolo.toml#L50-L56).
 
-**Back up project settings before adding a [Model Context Protocol (MCP) server](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/docs/tools/mcp-server.md#L1-L4).** Stable 0.64.0 [keeps an empty, writable project-settings object in an untrusted folder](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/cli/src/config/settings.ts#L315-L480); [project-scoped `gemini mcp add` can overwrite existing keys](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/cli/src/commands/mcp/add.ts#L117-L129). Back up `.gemini/settings.json`, use `--scope user`, or deliberately trust the folder first, then inspect the file. Try [0.65.0-preview.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.65.0-preview.0) if you need its [refusal to write project settings in an untrusted workspace](https://github.com/google-gemini/gemini-cli/blob/v0.65.0-preview.0/packages/cli/src/commands/mcp/add.ts#L45-L66).
+**Keep folder trust enabled for unattended launches.** It [defaults on in stable](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/cli/src/config/trustedFolders.ts#L31-L35), despite [the guide's off-default statement](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/docs/cli/trusted-folders.md#L8-L12). Disabling it [bypasses the headless untrusted-workspace rejection](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/cli/src/utils/userStartupWarnings.ts#L84-L103). Check the effective setting before granting unattended work.
 
-**Check the sandbox's effective settings and state paths.** [Sandboxed launches reject sensitive workdirs](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/cli/src/utils/sandbox.ts), [including home](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/cli/src/utils/sandboxUtils.ts#L182-L224); start from a project directory. Docker/Podman/runsc [create a sanitized settings copy](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/cli/src/utils/sandbox.ts#L535-L571) that [strips hooks, custom tool commands and API keys](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/cli/src/utils/sandboxUtils.ts#L245-L267). Recheck integrations that depend on them.
+## Stable makes interrupted work easier to inspect
 
-Seatbelt (`SANDBOX=sandbox-exec`) [moves runtime state, including sessions and tokens, to `~/.cache/.gemini`](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/config/storage.ts#L70-L135). Enable folder trust if headless startup must reject untrusted workspaces: [that guard returns early when folder trust is disabled](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/cli/src/utils/userStartupWarnings.ts#L84-L102).
+**Retest interrupted sessions on stable.** 0.65.0 [deduplicates reconstructed tool responses](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/utils/sessionUtils.ts#L108-L320), [preserves resumed sessions during cleanup](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/services/chatRecordingService.ts#L1327-L1370) and [repairs rapid-exit cancellation bookkeeping](https://github.com/google-gemini/gemini-cli/commit/204db94ae2a33f70afec7400ebf6b78f1b5e2575).
 
-**Retest routine shell jobs on 0.64.0.** It [narrows ordinary-command false alarms from untrusted-output matching](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/utils/untrustedContextTracker.ts). It includes the [0.63.0 repair for broken content diffs](https://github.com/google-gemini/gemini-cli/releases/tag/v0.63.0), which [removes the empty external-diff override](https://github.com/google-gemini/gemini-cli/commit/562f0361fe63952fcf2db793e3e9fc0ae69ec506). After output accumulates, try `ls -la`, `grep -rn` and `git diff` before assigning someone to approve routine commands.
+Resume a multi-call turn, then interrupt and exit quickly. Tools that read session logs must still [apply appended $patch records](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/services/chatRecordingService.ts). Reconcile the interrupted external action before retrying it.
 
-<a id="cancellation"></a>
+**Let the agent explore a referenced directory.** Stable [leaves its path in the query instead of eagerly reading all its files](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/cli/src/ui/hooks/atCommandProcessor.ts), handing file selection to the agent. Name files explicitly if the job needs them immediately.
 
-**Test cancellation and resumed history together.** [0.64.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.64.0) [routes Ctrl+C past input clearing to active-operation cancellation](https://github.com/google-gemini/gemini-cli/commit/5b71659d58eab63f5f249524f157c195be420427). Test whether running work stops in your terminal setup. For quick repeated interrupts and exits, try [0.65.0-preview.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.65.0-preview.0)'s [separate history repair](https://github.com/google-gemini/gemini-cli/commit/204db94ae2a33f70afec7400ebf6b78f1b5e2575), then inspect cancelled-call records and resumed history.
+**Keep the question beside the answer.** Stable's [ask_user result display retains the full question text and multiline formatting beside the answer](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/tools/ask-user.ts#L215-L246). Keep that context in review tools so nobody has to reconstruct what a short answer meant.
 
-**Update session readers before adopting 0.64.0.** It [appends `$patch` records](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/services/chatRecordingService.ts#L1494-L1506); apply them to reconstruct amended tool results. It [inserts synthetic continuation and missing-response turns after interruptions](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/core/geminiChat.ts#L848-L898). Treat synthetic turns as harness bookkeeping, not human authorization or successful execution.
+## Integrations require a deliberate channel choice
 
-**Coordinate separate writer processes yourself.** The 0.64.0 [file-write locks](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/tools/write-file.ts#L381-L418) and [checkpoint locks](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/services/gitService.ts#L198-L218) serialize work within one process. [They do not coordinate separate agents writing the same repository](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/utils/pathMutex.ts#L7-L22).
+**Try native collector authentication before maintaining a header-only proxy.** Stable [passes configured OTLP headers to HTTP and gRPC exporters](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/telemetry/sdk.ts#L282-L345). Inspect effective headers: [comma-separated input can keep valid pairs while skipping malformed ones](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/telemetry/config.ts#L109-L189). Choose what to export before connecting a collector; [the guide defaults prompt logging to on, while telemetry itself defaults off](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/docs/cli/telemetry.md#L40-L48).
 
-**Save complete outputs outside model history.** From [0.63.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.63.0), the truncation path [caps individual handled text fields and saves originals only best-effort](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/scheduler/tool-executor.ts#L320-L405), using a [fixed 65,536-byte limit](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/utils/constants.ts#L18). The [suffix fits inside that budget](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/utils/tool-utils.ts#L153-L179); [separate fields are capped individually, not as an aggregate result](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/utils/tool-utils.ts#L185-L278). Paginate large results; verify any saved path before using it as an audit record.
+**Try preview when Git jobs need user configuration.** 0.66.0-preview.0 [restores global Git configuration while retaining sensitive overrides and disabling system configuration](https://github.com/google-gemini/gemini-cli/blob/v0.66.0-preview.0/packages/core/src/services/shellExecutionService.ts#L580-L640). Its [Git helper disables interactive credential prompts](https://github.com/google-gemini/gemini-cli/blob/v0.66.0-preview.0/packages/core/src/utils/gitUtils.ts#L13-L90). Check identity and URL rewrites; provision authentication before launching unattended jobs.
 
-**Match each editor approval to its pending tool in your adapter.** The [Agent Client Protocol (ACP), used by editor integrations](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/docs/cli/acp-mode.md#L3-L6), provides [tool-linked permission requests and denial completion](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/cli/src/acp/acpSession.ts#L736-L804); stable 0.64.0 adds [token counts](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/cli/src/acp/acpSession.ts#L379-L390) and [turn/context usage notifications](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/cli/src/acp/acpSession.ts#L483-L489). Verify request IDs, denial completion and session identity after resume.
+**Review internal MCP OAuth endpoints before enabling preview's exception.** In 0.66.0-preview.0, [per-server oauth.allowPrivateNetwork defaults off](https://github.com/google-gemini/gemini-cli/blob/v0.66.0-preview.0/docs/tools/mcp-server.md#L436-L441). Enabling it [permits private/internal OAuth endpoints, with HTTPS required away from loopback, resolved-address checks and link-local addresses still blocked](https://github.com/google-gemini/gemini-cli/blob/v0.66.0-preview.0/packages/core/src/mcp/oauth-utils.ts#L54-L171). Check the specific server and DNS before removing a public-endpoint workaround.
 
-**Retry MCP OAuth servers affected by missing-issuer refusal.** In 0.64.0, [with a discovered or configured issuer, callback `iss` is required by default when metadata declares support or no metadata was discovered; any supplied `iss` must match that issuer](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/docs/tools/mcp-server.md#L325-L347). [The `oauth.authorizationResponseIssParameterSupported` setting overrides whether `iss` is required](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/mcp/oauth-provider.ts#L411-L421). Set it to true where you require that response.
+**Choose the right channel for settings migration.** Regular preview [loads eligible .env files before final placeholder expansion](https://github.com/google-gemini/gemini-cli/blob/v0.66.0-preview.0/packages/cli/src/config/settings.ts#L1047-L1118). Preserving literal placeholders when deprecated settings migrate requires [nightly's separate raw-value persistence](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/config/settings.ts). Inspect migration diffs for resolved secrets before committing configuration.
 
-**If you run the [Agent-to-Agent (A2A)](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/docs/core/remote-agents.md#L3-L5) server, inspect its effective controls after upgrading.** The [0.64.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.64.0) server [migrates flat settings to nested fields in memory without rewriting the file](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/a2a-server/src/config/settings.ts#L828-L871). Check `security.folderTrust`, `general.checkpointing`, `tools` and `context.fileFiltering` with your deployment wrapper.
+**Try editor diff review in a container on nightly.** Its [host bridge limits tool calls to openDiff and closeDiff and checks normalized workspace paths lexically](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/utils/ideBridge.ts), while [the companion token stays on the host](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/utils/sandbox.ts). Test workspace mappings, symlink escape and companion compatibility before relying on it.
 
-**Re-baseline Flash evaluations against the outgoing request.** Since [0.61.0](https://github.com/google-gemini/gemini-cli/releases/tag/v0.61.0), with the respective latest-Flash and latest-Flash-Lite gates enabled, [outgoing `gemini-3.5-flash` and `gemini-3-flash` become `gemini-3.8-flash`; `gemini-3.1-flash-lite` becomes `gemini-3.5-flash-lite`](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/config/models.ts#L68-L164). The [client gates are true for API-key, Vertex and Gateway auth; Google login uses separate experiment flags](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/config/config.ts#L3585-L3644). Record configured ID, outgoing request and returned model identifier separately. The mapping [changes outgoing requests](https://github.com/google-gemini/gemini-cli/blob/v0.64.0/packages/core/src/core/modelMappingContentGenerator.ts#L44-L81); it does not establish the served model.
+**Test nightly cancellation with the actual supervisor.** It [checks cancellation before scheduling more tools](https://github.com/google-gemini/gemini-cli/commit/451a02ff03f1d2a8fe870c120fd5342cfd6f9fd1) and [stops continuation after cancellation and suppresses automatic nudges after terminal outcomes](https://github.com/google-gemini/gemini-cli/commit/a3dd9f8c7bcb495a46d0b505b6f179996ccd8332). With piped input and your output mode, check that no new tool starts and already-running work stops.
+
+**Review the first shell approval's scope on nightly.** It [matches unfamiliar low-risk flags against external output and remembers approved flags for the same root commands within the session](https://github.com/google-gemini/gemini-cli/commit/120a39ded6ad7b82e45b574ab54baba451d65fe9). The first yes now has a longer reach. Inspect which flags the same set of root commands can reuse before accepting.
+
+**Test file semantics before sharing a workspace.** Nightly [checks existing-file writability and writes hard-linked files in place](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/core/src/services/fileSystemService.ts#L57-L164), trading atomic replacement for link fidelity. Test permission failures under the real execution identity. Stable's [locks only coordinate within one process](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/utils/pathMutex.ts#L7-L22); coordinate separate agents' writes yourself.
+
+**Use model listing as inventory when building an adapter.** Nightly's [`gemini models list --output-format json` reads local configuration and hard-codes outputTokens=8192](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/commands/models/list.ts). Check service access separately. Stable [rewrites outgoing model IDs](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/core/modelMappingContentGenerator.ts#L44-L81), with [Flash routing enabled for API-key, Vertex and Gateway auth and experiment gates for Google login](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/config/config.ts#L3591-L3649). Record configured, outgoing and returned IDs separately in evaluations.
+
+**Inspect imported Claude hooks before relying on their timing.** The 24 October nightly [converts valid timeout values from seconds to milliseconds](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/commands/hooks/migrate.ts#L65-L105). Audit old imports separately. Test the command's timeout and refusal behavior in Gemini.
+
+**Save complete tool output outside the conversation.** Stable [truncates individual handled text fields/parts, with best-effort output saving](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/scheduler/tool-executor.ts#L320-L405), using a [65,536-byte limit](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/core/src/utils/constants.ts#L18). Paginate large results and check that the saved file is complete before using it as an audit record.
 
 ## What is unresolved
 
-- Stable delivery of the MCP project-write refusal and rapid-exit history repair above. A non-prerelease release whose source contains both implementations settles delivery.
-- Which consumer and subscription terms applied on October 13, and what support Google commits to API-key, Vertex and Gateway access. An immutable official notice captured at or before the cutoff would settle the historical terms. Explicit Google notices naming each authentication route and its support terms would settle continued support.
-- Whether hosted Git accepts the branch name involved in the extension checkout defect above. A hosted reproduction settles exploit reach; a tagged installer that checks resulting HEAD against the requested commit settles the pin defect.
-- <a id="ide-delivery"></a> Marketplace delivery of the [IDE companion shutdown repair in preview source](https://github.com/google-gemini/gemini-cli/blob/v0.65.0-preview.0/packages/vscode-ide-companion/src/ide-server.ts#L423-L475). A Marketplace version mapped to source containing the repair settles delivery; an npm CLI upgrade does not.
+- Continued support for API-key, Vertex and Gateway routes. Explicit Google commitments naming each route would settle it. Check [Google's consumer notice](https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals) and [subscription terms](https://docs.cloud.google.com/gemini/docs/codeassist/sunset) for the account you intend to use.
+- Hosted reach of the [unchecked extension pin path](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/cli/src/config/extensions/github.ts#L32-L80). A hosted branch-acceptance reproduction would establish reach; a tagged resulting-HEAD check would settle installer verification.
+- Marketplace delivery of the [companion shutdown repair now in stable source](https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/vscode-ide-companion/src/ide-server.ts#L423-L475). The [observed package manifest identifies 0.20.0](https://Google.gallerycdn.vsassets.io/extensions/google/gemini-cli-vscode-ide-companion/0.20.0/1765572429008/Microsoft.VisualStudio.Code.Manifest); a package-to-source mapping would establish delivery.
+- Runtime success of the [nightly IDE bridge](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/utils/ideBridge.ts) and [cancellation controls](https://github.com/google-gemini/gemini-cli/blob/v0.67.0-nightly.20261024.gcd1b45c2d/packages/cli/src/nonInteractiveCli.ts). Recorded tests naming the container, companion, supervisor and output mode would settle those deployments.
 
-## Profile date and evidence limits
+## Review date and method
 
-This profile is dated 2026-10-13 and covers 2026-09-21 through 2026-10-13. It does not establish behavior or availability after that date. See [METHOD.md](https://github.com/sheetgenius/frontier/blob/3d3ecfdbcf2e690470a2d00c218e52b50566e402/METHOD.md) for the evidence contract.
+This page describes Gemini CLI as of 24 October 2026. See [METHOD.md](https://github.com/sheetgenius/frontier/blob/3d3ecfdbcf2e690470a2d00c218e52b50566e402/METHOD.md) for the evidence contract.
 
+<template data-legacy-section-label="check-profile.mjs">
 ## Profile hygiene
+</template>
