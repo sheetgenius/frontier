@@ -1,0 +1,81 @@
+schema_version: bitter.frontier_wire.v0
+wire_id: "2026-10-24"
+date: 2026-10-24
+lede: >
+  Five reads from the October 13 to 24, 2026 window: Cloudflare finds where
+  its review tokens went, Huntley proposes a different bargain for maintainers,
+  and Willison offers two small tool updates and a game worth playtesting.
+items:
+  - title: "Cutting our inference bill by 68% by being obsessive about optimization"
+    url: https://blog.cloudflare.com/obsessive-inference-optimization/
+    source: Cloudflare
+    date: 2026-10-19
+    tier: relayed
+    take: >
+      Cloudflare reports an average cost of $0.77 per AI code review, down
+      from $2.43 in its two most expensive weeks before optimization.
+      That figure assumes high effort for its code-quality reviewer.
+      It credits prompt-cache fixes, fewer wasted calls, and model and
+      effort changes. A rising cache-hit rate had masked growing token use.
+      There was a tradeoff: its evaluation found fewer important performance
+      issues at medium effort.
+      If your reviewer is getting expensive, measure tokens and calls per
+      completed review, then compare findings on a fixed sample before
+      accepting the cheaper setup.
+
+  - title: "a new model for open source: closed to pull requests, open to remix."
+    url: https://ghuntley.com/remix/
+    source: Geoffrey Huntley
+    date: 2026-10-14
+    tier: relayed
+    take: >
+      Huntley plans to disable pull requests on code released to GitHub
+      while keeping discussions open, and proposes that users carry
+      adaptations as Nix overlays.
+      The argument is that cheap patches should not create an unlimited
+      claim on a maintainer's time.
+      If agents are filling your contribution queue, state whether you want
+      a patch, a reproducer or an idea, and who will maintain a downstream
+      change.
+
+  - title: "llm-echo 0.5"
+    url: https://simonwillison.net/2026/Oct/18/llm-echo/
+    source: Simon Willison
+    date: 2026-10-18
+    tier: relayed
+    take: >
+      Willison describes llm-echo as an LLM debugging plugin that repeats
+      its inputs without calling a model; version 0.5, the post says, expands its
+      simulated token accounting to cover tool calls, system prompts and
+      reasoning tokens.
+      Use a dummy model like this to inspect what your integration sends and
+      test usage reporting before spending tokens on a live run.
+
+  - title: "llm-tools-datasette 0.1.1"
+    url: https://simonwillison.net/2026/Oct/18/llm-tools-datasette/
+    source: Simon Willison
+    date: 2026-10-18
+    tier: relayed
+    take: >
+      Willison says LLM 0.33's switch to httpx2 exposed a missing direct
+      httpx dependency in llm-tools-datasette, repaired in 0.1.1.
+      If your Datasette tool broke after that upgrade, this is the release
+      to try.
+      For plugin authors, test installation in a fresh environment so a
+      dependency supplied by the host does not quietly become part of your
+      contract.
+
+  - title: "Battle Drones - a vibe coded RTS with audio-based multiplayer"
+    url: https://simonwillison.net/2026/Oct/20/battledrones/
+    source: Simon Willison
+    date: 2026-10-20
+    tier: relayed
+    take: >
+      Willison reports that Battle Drones went from a dull prototype to a
+      game that is fun to play after repeated rounds of asking Claude to improve
+      the fun and playing the results.
+      By the same account, Claude ran over a thousand simulated playtest
+      sessions, while almost none of the code has had a human review.
+      For a low-stakes agent experiment, borrow the feedback loop: keep
+      playable versions and spend your attention trying the result, with a
+      separate code review if the project grows beyond a toy.

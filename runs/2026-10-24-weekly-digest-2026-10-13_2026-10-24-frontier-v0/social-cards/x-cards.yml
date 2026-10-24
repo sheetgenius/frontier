@@ -1,0 +1,428 @@
+schema_version: bitter.frontier_social_cards.v0
+run_id: 2026-10-24-weekly-digest-2026-10-13_2026-10-24-frontier-v0
+note: "Page window 2026-10-13 through 2026-10-24 inclusive, UTC; reporting covers the 11 days strictly after 2026-10-13T23:59:59Z through the 2026-10-24 read, not the end of October 24. captured_on 2026-10-24. 44 available posts were parsed without editing from capture-a.raw.md and capture-b.raw.md; UNAVAILABLE blocks are dropped by the parser (none in this capture). 27 cards retained; 17 available posts excluded with reasons below. Verbatim and display names come only from capture.json; inline excerpts are unique-anchor, contiguous, single-line slices. Unicode escapes preserve all captured characters, including punctuation and non-English text, without translating or expanding t.co links. source_urls lists the captured post first and opened, pinned primary receipts afterward. Documentary checks are not reproduced behavior. A hosted beta, a tagged CLI and an experimental package remain different channels. Archived current posture does not establish its launch date. The earlier Netlify beta article is context, not an in-window launch. No post settles the prior issue's plugin-pin, Grok background-Git or measured Rollouts-savings uncertainties. Drops are editorial scope and evidence decisions, not judgments of authors."
+
+# Excluded available captures (reasons, not judgments of their authors):
+# https://x.com/KowalPrato4o/status/2110633420023795889: A Chinese-language post; this English issue cannot quote it without translation, and translation would retype the capture. The native-versus-mirror point is carried by the primary Origin receipts instead.
+# https://x.com/runes_leo/status/2110636794811130000: The Chinese end-to-end framing is useful but duplicates the native-versus-mirror point carried by the primary Origin receipts and the independent-forge counter-read; no measured completion or intervention results are supplied.
+# https://x.com/VanillaCache/status/2111020861666832651: The personal migration recipe overlaps the native-repository and partner-integration cards. No run trace verifies the PR, rules, Buildkite connection or time saved.
+# https://x.com/cursor_ai/status/2111193957527146711: Cloud-agent canvases are a separate Cursor surface from Origin and add a second product announcement without resolving the chosen repository-authority question.
+# https://x.com/hbthegreat_/status/2111106706956783698: The private fleet's adapter replacement is uninspected and does not date the native primitive to this window. Keep the specific adapter-deletion signal in the primary record instead.
+# https://x.com/Howaboua/status/2113722776469299569: Twenty-three optional components bundle too many capabilities for one useful adjudication; the author explicitly calls them tinkering material and one mode untested. Core Pi recovery and the host boundary are covered more narrowly.
+# https://x.com/badlogicgames/status/2111501246171410731: The token-efficiency reply has no matched tasks, model, tool definitions or measurements. Drop it together with the initiating skeptical post rather than imply a result from either.
+# https://x.com/KingShowen777/status/2113786047108681730: The Japanese capture stops in the middle of the MCP launch-command consequence. Preserve the captured fragment in capture.json; do not complete or guess the missing warning.
+# https://x.com/JackWoth98/status/2113597146758856716: This identity correction concerns a Gemini API wrapper given to another agent, not a new Gemini CLI or Antigravity coding-agent release. It is outside the selected card argument.
+# https://x.com/thdxr/status/2113274143806206109: The source contract does not establish this personal X account's project role, and the reply's unspecified client comparison is not independently identified. Do not infer identity from a matching GitHub handle.
+# https://x.com/trq212/status/2111499591778734394: Code-mode efficiency skepticism is paired with an affirmative reply, but neither has a matched experiment. Omit both rather than present an adjudicated efficiency comparison.
+# https://x.com/DanielGri/status/2111065631046955359: An explicitly experimental self-building toy is not evidence of production restart reliability. Cloudflare supplies a narrower primary-backed positive counterweight to the restart complaint.
+# https://x.com/openclaw/status/2113756870313951480: The categorical enterprise isolation promise lacks a pinned deployed boundary or enforcement test in the opened record. The open-source release cannot prove what a separate hosted control plane prevents.
+# https://x.com/awakecoding/status/2113270794348576972: The Windows/macOS runner constraint concerns GitHub Agentic Workflows versus regular Actions hosting the CLI, a separate platform comparison from the selected Copilot permission changes.
+# https://x.com/gneubig/status/2113643262900662423: A livestream invitation establishes neither a completed demonstration nor shipped factory behavior. Use the independently checked OpenHands delivery in the primary record.
+# https://x.com/fateshelled/status/2113795155056865749: The Japanese post mixes a welcome model variant with freezes, a timeout request and broad permission concerns, without an exact version or trace. It cannot diagnose current OpenCode authority.
+# https://x.com/cristian_le0/status/2113658709981163933: The 87-100% cross-harness figure collapses distinct tests and an older Pi 0.79.0 live test. No matched ranking of current versions follows; omit rather than strain a compact verdict.
+cards:
+  - id: "netlify-origin-beta-pipeline"
+    title: "The forge still needs a deployment partner"
+    kind: "claim"
+    date: "2026-10-15"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["cursor"]
+    authors: ["Netlify"]
+    display_name: "Netlify"
+    source_urls: ["https://x.com/Netlify/status/2110714001369842141","https://web.archive.org/web/20261001190400id_/https://www.netlify.com/blog/cursor-origin-repositories-on-netlify/","https://web.archive.org/web/20261024092934id_/https://cursor.com/docs/origin/apps"]
+    verbatim: "Origin repositories build, preview, and deploy on Netlify the same way GitHub, GitLab, and Bitbucket repos do. Push a commit, and Netlify starts a build. Open a pull request, and the deploy preview link shows up right in the PR.\n\nIt's in beta through Cursor's invite-only Origin program."
+    inline: "Push a commit, and Netlify starts a build. Open a pull request, and the deploy preview link shows up right in the PR."
+    summary: "Netlify describes builds and pull-request previews for Origin repositories, within an invite-only beta."
+    verdict: "Claim, confirmed as a documented beta integration: Netlify's September 10 article describes push-triggered builds and PR preview links, and Cursor's October 24 app catalog still lists Netlify. The October 15 post is not a new launch. We did not run a deployment or establish parity with every supported Git host; independent deployment infrastructure still has a place in this provider-owned forge."
+
+  - id: "yannis-origin-per-agent-authority"
+    title: "Give the worker less authority than its owner"
+    kind: "voice"
+    date: "2026-10-14"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["cursor"]
+    authors: ["yannisbuilds"]
+    display_name: "Yannis"
+    source_urls: ["https://x.com/yannisbuilds/status/2110457439543787860","https://web.archive.org/web/20261024094000id_/https://cursor.com/docs/release-notes/origin.md"]
+    verbatim: "Can Cursor Origin give each cloud agent its own permissions?\n\nI\u2019d like an agent to push fixes and open PRs without being able to merge just because my account can. And I\u2019d want every action linked to the exact agent run."
+    inline: "an agent to push fixes and open PRs without being able to merge just because my account can."
+    summary: "Yannis asks for agent-specific push and merge permissions, with actions attributed to the exact run."
+    verdict: "Voice, a request for separate worker authority and run attribution. Origin's captured notes document Agentic owner decisions and app approvals, but do not establish the requested per-cloud-agent grant or complete run-level audit trail. Human-required paths need human owners without an app alternative; merely choosing Classic does not ensure a person approves."
+
+  - id: "cynthia-open-forge-counter-read"
+    title: "An open forge is still a reason to build"
+    kind: "voice"
+    date: "2026-10-18"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["cursor"]
+    authors: ["ItsCynnamoroll"]
+    display_name: "Cynthia Toporowski"
+    source_urls: ["https://x.com/ItsCynnamoroll/status/2111854527943176240"]
+    verbatim: "I've had a few people ask why I'd ever bother creating Kvarm when solutions like Cursor Origin exist.\n\nIt's simple. We need an open-source git platform for the agentic era. No vendor lock-in."
+    inline: "It's simple. We need an open-source git platform for the agentic era. No vendor lock-in."
+    summary: "Cynthia Toporowski gives openness and avoiding vendor lock-in as reasons to build Kvarm alongside Origin."
+    verdict: "Voice, the case for an independent forge even as Cursor expands its own. This establishes Toporowski's design preference, not Kvarm's delivered feature set or freedom from every switching cost. We did not inspect Kvarm or run a migration. Provider expansion does not settle who should own the repository."
+
+  - id: "sunofdog-origin-team-transfer-gap"
+    title: "A user reports a broken team cutover"
+    kind: "claim"
+    date: "2026-10-23"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["cursor"]
+    authors: ["thesunofdog"]
+    display_name: "Sun of Dog"
+    source_urls: ["https://x.com/thesunofdog/status/2113696242236866585","https://web.archive.org/web/20261024092716id_/https://cursor.com/docs/origin"]
+    verbatim: "A word to the wise if you are on a personal @Grok @bot account and thinking of turning it into a team account: be aware of one thing.\n\nI recently onboarded a colleague to Grok bot and converted to a team account by inviting them from my personal account. Cursor makes it seem easy, and once they accept, you have a team account. I thought it was great\u2014until I realized my personal Origin account with my code repositories did not transfer automatically. That broke my development flow. The bots under the team account can no longer access the codebase still under my personal account.\n\nMy account ID changed, and there is no user-driven way to migrate the codebase. Support confirmed they must handle it manually. With high ticket volume, it will take three to four days. I switched on Wednesday but cannot do production work until they transfer it.\n\nThis is not urgent for me, but it is extremely annoying and poor design. For professional developers it could be disruptive. There was no warning of this risk. If you convert a personal account to a team account and keep your code in Origin, you will likely lose access until support manually transfers it.\n\nYou have been warned."
+    inline: "My account ID changed, and there is no user-driven way to migrate the codebase. Support confirmed they must handle it manually."
+    summary: "An Origin user reports losing their bot's repository access after converting a personal account to a team account."
+    verdict: "Claim about one private account migration, unconfirmed as a reproduced incident. Cursor's October 24 overview distinguishes individual and team namespace owners and restricts namespace changes during early beta; it does not verify this account's changed ID, support ticket or three-to-four-day estimate. The paired reply offers manual help. Neither post establishes deleted repository data or that every team conversion loses access."
+
+  - id: "diane-origin-manual-transfer-offer"
+    title: "A manual way out, not a delivered repair"
+    kind: "voice"
+    date: "2026-10-23"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["cursor"]
+    authors: ["dianeliu21"]
+    display_name: "Diane Liu"
+    source_urls: ["https://x.com/dianeliu21/status/2113718347716309331"]
+    verbatim: "hey! this is a gap in our repo lifecycle that we'll work on fixing ASAP. in the meantime if you DM me your account info or support ticket # i can fix this for you now!"
+    inline: "this is a gap in our repo lifecycle that we'll work on fixing ASAP. in the meantime if you DM me your account info or support ticket # i can fix this for you now!"
+    summary: "Diane Liu acknowledges a repository-lifecycle gap and offers direct help with the reported account transfer."
+    verdict: "Voice, the reply acknowledges the reported lifecycle gap and offers an immediate manual intervention, an essential counterweight to the transfer complaint. We did not see the account repaired or a released self-service migration. The offer narrows the available remedy for this conversation without proving either the original diagnosis or a general fix."
+
+  - id: "claudedevs-code-review-ga-depth"
+    title: "Choose review depth, keep the merge decision"
+    kind: "claim"
+    date: "2026-10-15"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["claude-code"]
+    authors: ["ClaudeDevs"]
+    display_name: "ClaudeDevs"
+    source_urls: ["https://x.com/ClaudeDevs/status/2110866210573386065","https://web.archive.org/web/20261016015421id_/https://claude.dev/blog/solving-code-review-at-anthropic/","https://web.archive.org/web/20261017030656id_/https://code.claude.com/docs/en/code-review"]
+    verbatim: "Code Review is now generally available for Claude Team and Enterprise plans. \n\nReviews are now faster, catch more of the bugs that matter, and admins can pick from Quick, Standard, or Deep review levels for each repo."
+    inline: "Code Review is now generally available for Claude Team and Enterprise plans."
+    summary: "ClaudeDevs announces Team and Enterprise Code Review availability and repository-level review depth."
+    verdict: "Claim, the October 15 Anthropic article confirms GA on Team and Enterprise, and the October 17 guide documents Quick, Standard and Deep. That hosted service comments and posts a check; it never approves or blocks a PR itself. Faster reviews and better bug detection remain unverified vendor performance claims with no published method for this comparison. We did not measure review time, recall or false positives."
+
+  - id: "noah-memory-rule-self-correction"
+    title: "The old instruction was still doing its job"
+    kind: "voice"
+    date: "2026-10-17"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["claude-code","codex"]
+    authors: ["noahreeveshq"]
+    display_name: "Noah"
+    source_urls: ["https://x.com/noahreeveshq/status/2111544480457445781"]
+    verbatim: "I WAS WRONG! I am so sorry. Skill issue. My fault.\n\nIt had a memory saved from earlier this year when I was setting up auth and I told it not to login for me since I needed to test it myself.\n\nIt saved it as a hard rule and I only found it because I had Codex comb through CLAUDE.md and all of Claude Code\u2019s memory files. Once Codex tweaked those memories, it was able to do it.\n\nIt seems a lot of people experienced something similar so I suggest that you audit its memory and see if there are any restrictions it might\u2019ve set on itself to be unintentionally strict.\n\nI am once again humbled by the consequences of my own actions."
+    inline: "It saved it as a hard rule and I only found it because I had Codex comb through CLAUDE.md and all of Claude Code\u2019s memory files."
+    summary: "Noah revises an earlier complaint after finding an old authentication restriction in saved instructions."
+    verdict: "Voice, a self-correction that puts the user's saved rule back into the diagnosis. Noah says editing the memories restored the desired behavior; we have neither those files nor a before-and-after trace. This is a reason to inspect retained instructions before blaming model capability, not proof that other authentication refusals have the same cause."
+
+  - id: "thariq-one-p0"
+    title: "Pick the work that deserves the attention"
+    kind: "voice"
+    date: "2026-10-19"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["claude-code"]
+    authors: ["trq212"]
+    display_name: "Thariq"
+    source_urls: ["https://x.com/trq212/status/2112219173288120531"]
+    verbatim: "I think most people multi-tasking with agents could benefit from slowing down\n\nmost of the stuff you're doing wont really matter- what's your P0? what would it look like if you gave it your full attention?"
+    inline: "what's your P0? what would it look like if you gave it your full attention?"
+    summary: "Thariq questions whether multitasking across agents is more useful than concentrating on one priority."
+    verdict: "Voice, prioritization advice that cuts against treating parallel agent activity as progress. The proposed test is whether the most important work improves with full attention, not how many sessions stay busy. The post supplies no controlled comparison of single-task and multi-agent throughput, and we do not turn the advice into a universal concurrency limit."
+
+  - id: "ayyaz-person-decider-host-boundary"
+    title: "A person-only ask still has a host boundary"
+    kind: "claim"
+    date: "2026-10-20"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["claude-code"]
+    authors: ["ayyazdev"]
+    display_name: "Ayyaz"
+    source_urls: ["https://x.com/ayyazdev/status/2112678467364106340","https://github.com/anthropics/claude-code/releases/tag/v2.1.304"]
+    verbatim: "Claude Code 2.1.304 adds decider: \"person\" to mod tool checks. Only the permission dialog or a host callback can approve that call. With nobody around to ask, it's refused with the mod's reason.\n\nI'd put deploys and prod DB writes behind it and let auto mode handle the rest."
+    inline: "Only the permission dialog or a host callback can approve that call. With nobody around to ask, it's refused with the mod's reason."
+    summary: "Ayyaz points to Claude Code 2.1.304's person decider and suggests using it for consequential writes."
+    verdict: "Claim, the 2.1.304 release explicitly documents decider: person: only a permission dialog or host callback can approve, and an unanswered ask is refused with the mod's reason. A host callback is still an implementation the operator must trust, not proof that a person clicked. We did not test the suggested deploy or production-database policy, or establish that every consequential call reaches this check."
+
+  - id: "claudedevs-mcp-tasks-eligibility"
+    title: "A server job can outlive the client"
+    kind: "claim"
+    date: "2026-10-23"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["claude-code"]
+    authors: ["ClaudeDevs"]
+    display_name: "ClaudeDevs"
+    source_urls: ["https://x.com/ClaudeDevs/status/2113698007892070527","https://web.archive.org/web/20261024085041id_/https://code.claude.com/docs/en/mcp","https://github.com/anthropics/claude-code/releases/tag/v2.1.304"]
+    verbatim: "Tasks and Elicitations are available today in the Claude Code CLI, rolling out to more Claude products soon.\n\nBuilding plugins for Claude? Add Tasks and Elicitations to your MCP server today. \n\n https://code.claude.com/docs/en/mcp#mcp-tasks-for-server-authors\n\nhttps://code.claude.com/docs/en/mcp#respond-to-mcp-elicitation-requests"
+    inline: "Tasks and Elicitations are available today in the Claude Code CLI, rolling out to more Claude products soon."
+    summary: "ClaudeDevs announces MCP Tasks and Elicitations for the CLI, with other Claude products to follow."
+    verdict: "Claim, qualified by the October 24 guide: MCP Tasks is public beta on CLI 2.1.304 or later, with feature-flag eligibility and a supporting protocol-2026-07-28 server. Desktop, VS Code, third-party-provider and telemetry-off sessions are excluded, as are ordinary one-shot prompt runs. Remote tasks can survive client exit; stdio servers may not. We did not execute a task or verify delivery to the other products promised here."
+
+  - id: "mario-durable-phase-restart"
+    title: "The checkpoint tells recovery where to start"
+    kind: "claim"
+    date: "2026-10-20"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["pi-coding-agent"]
+    authors: ["badlogicgames"]
+    display_name: "Mario Zechner"
+    source_urls: ["https://x.com/badlogicgames/status/2112559218649686467","https://github.com/earendil-works/pi/blob/v1.4.0/packages/durable/README.md"]
+    verbatim: "the whole agent is composed of tasks. each task is made of phases. a phase is: store intent durably, execute effect, store result + next phase.\n\nprocess dies. reopen, get all previously live tasks and rerun the last phase they've been in.\n\nno event sourcing. that doesn't work well with long running sessions."
+    inline: "a phase is: store intent durably, execute effect, store result + next phase."
+    summary: "Mario Zechner describes durable tasks as phases that store intent, perform an effect and commit the next state."
+    verdict: "Claim, experimental Pi Durable 1.4's tagged guide confirms checkpointed task state machines and phase restart. Its tool contract adds an important limit: interrupted tools rerun only when declared replay-safe; other calls return an interrupted result, and replay-safe external effects still need idempotency. We did not run a crash test or establish the broader judgment against event sourcing. A saved checkpoint does not prove an external effect happened exactly once."
+
+  - id: "cloudflare-pi-wake-owner"
+    title: "The host supplies the wake-up"
+    kind: "claim"
+    date: "2026-10-23"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["pi-coding-agent"]
+    authors: ["CFchangelog"]
+    display_name: "Cloudflare Changelog"
+    source_urls: ["https://x.com/CFchangelog/status/2113654363109699653","https://github.com/cloudflare/agents/releases/tag/agents%400.30.0","https://github.com/earendil-works/pi/blob/v1.4.0/packages/durable/README.md"]
+    verbatim: "Agents SDK v0.30.0 now supports Pi 1.4 with smarter hibernation and crash recovery. Your harnesses can recover from evictions and storage errors automatically.\n\nhttps://developers.cloudflare.com/changelog/post/2026-10-22-pi-harness-pi-1-4/"
+    inline: "Your harnesses can recover from evictions and storage errors automatically."
+    summary: "Cloudflare announces Agents SDK 0.30.0 support for Pi 1.4 recovery and hibernation."
+    verdict: "Claim, supported for the documented integration by agents@0.30.0, using experimental Pi Durable 1.4: PiHarness retries failed wake steps, reopens after storage errors and passes onWake to the harness factory. The upgrade requires wiring that callback and accepting a SQLite migration Pi 1.3 cannot reopen. Crash-looping tasks can park and need an explicit retry. We did not test a deployment; automatic recovery is not a promise that every failed job completes unattended."
+
+  - id: "lucas-pi-restart-friction"
+    title: "A durable label does not finish the session"
+    kind: "voice"
+    date: "2026-10-16"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["pi-coding-agent"]
+    authors: ["lucasmeijer"]
+    display_name: "Lucas Meijer"
+    source_urls: ["https://x.com/lucasmeijer/status/2111009257835409791"]
+    verbatim: "kind of sad I have a pi durable coding agent with durable subagents,  but I'm not using it because I wanna use opus55,  and its long subagent-using sessions completely crumble on a restart"
+    inline: "kind of sad I have a pi durable coding agent with durable subagents,  but I'm not using it because I wanna use opus55,  and its long subagent-using sessions completely crumble on a restart"
+    summary: "Lucas Meijer says restart trouble with long, subagent-heavy sessions stops Meijer from using a personal Pi Durable setup."
+    verdict: "Voice, a report of friction in Meijer's own October 16 setup, not a reproduced defect in current Pi. The post names neither a Pi version nor a host and gives no failing trace. Cloudflare's later recovery release supplies useful counterweight, but does not prove this session's model, subagent or restart problem was repaired."
+
+  - id: "tibo-cache-forever-claim"
+    title: "Twelve hours and forever are different promises"
+    kind: "claim"
+    date: "2026-10-21"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["codex"]
+    authors: ["thsottiaux"]
+    display_name: "Tibo"
+    source_urls: ["https://x.com/thsottiaux/status/2112712984644784534","https://web.archive.org/web/20261021044950id_/https://developers.openai.com/api/docs/guides/prompt-caching","https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/features/src/feature_configs.rs#L316-L319"]
+    verbatim: "Day 16/\n\nYou can now cache for 12h in the API and for logged in users across Codex & Work we keep cache forever and you don\u2019t have any penalty for coming back to an old conversation or resuming after a few hours and are now guaranteed to hit the cache."
+    inline: "You can now cache for 12h in the API and for logged in users across Codex & Work we keep cache forever and you don\u2019t have any penalty for coming back to an old conversation or resuming after a few hours and are now guaranteed to hit the cache."
+    summary: "Tibo pairs twelve-hour API caching with a promise of indefinite cache reuse for logged-in Codex and Work users."
+    verdict: "Claim, only the API portion is confirmed by the pinned October 21 guide: eligible Responses models support a twelve-hour minimum lifetime. That API contract does not establish perpetual Codex or Work subscription credit. Codex 0.164.0 preserves fork prefixes with a legacy-compaction exception, not a server retention guarantee. The forever and guaranteed-hit language remains an unverified vendor claim with no published method; no account billing or long-gap reuse was tested."
+
+  - id: "kirill-long-gap-cache-counterexample"
+    title: "A cold resume challenges the cache promise"
+    kind: "claim"
+    date: "2026-10-24"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["codex"]
+    authors: ["bra1n_dump"]
+    display_name: "Kirill Dubovitskiy"
+    source_urls: ["https://x.com/bra1n_dump/status/2113854374804086988","https://web.archive.org/web/20261021044950id_/https://developers.openai.com/api/docs/guides/prompt-caching","https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/features/src/feature_configs.rs#L316-L319"]
+    verbatim: "Codex \"cache forever\" isn't working for me. Same thread resumed after 13h: 0% cached.\n\n~94K-token thread, codex exec, ChatGPT login, 6.1 Sol:\n\n2h:   99.8%\n13h: 0%\n25h: 8%  (system prompt probably got cached)\n\nDesktop too: https://github.com/openai/codex/issues/56050"
+    inline: "Same thread resumed after 13h: 0% cached."
+    summary: "Kirill Dubovitskiy reports losing cached-token credit after resuming a logged-in Codex CLI thread."
+    verdict: "Claim about a private measurement, not independently reproduced: the 99.8%, 0% and 8% figures remain the author's observations without request payloads proving an unchanged prefix and cache identity. The pinned API guide describes finite lifetimes, while the tagged Codex client cannot prove subscription-side retention. The linked Desktop report is a separate observation. This challenges a guaranteed hit without establishing a universal Codex cache failure."
+
+  - id: "will-goals-reading-bottleneck"
+    title: "The report can become the next blockage"
+    kind: "voice"
+    date: "2026-10-24"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["codex"]
+    authors: ["willdepue"]
+    display_name: "will depue"
+    source_urls: ["https://x.com/willdepue/status/2113789643275862025"]
+    verbatim: "the models get lost, the app keeps breaking and stalling my goals, they write giant unreadable .txt reports, which i open in this tiny markdown panel which crushes these 5 column tables into 150px. like come on"
+    inline: "they write giant unreadable .txt reports, which i open in this tiny markdown panel which crushes these 5 column tables into 150px. like come on"
+    summary: "Will Depue complains that stalled goals and cramped report rendering make agent work harder to supervise."
+    verdict: "Voice, a complaint about lost progress and the physical work of reading generated reports in a narrow panel. We did not inspect the goal, report, application build or stall trace, so no current-release defect rate follows. Faster production has little value to this user when its output is difficult to inspect; the proposed workaround belongs beside that complaint."
+
+  - id: "eric-goals-manager-workaround"
+    title: "The workaround puts a manager back in the loop"
+    kind: "voice"
+    date: "2026-10-24"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["codex"]
+    authors: ["pvncher"]
+    display_name: "eric provencher"
+    source_urls: ["https://x.com/pvncher/status/2113794328690647521"]
+    verbatim: "Hey I really recommend not using goal.\n\nYou\u2019re much better off with a manager agent paired with a scheduled automation that reminds it to poll progress of different runner agents it starts in separate threads.\n\nMy pro tip after that, is to tell the manager to write all your steers down, and reconcile them against the overall goal before dispatching new work."
+    inline: "My pro tip after that, is to tell the manager to write all your steers down, and reconcile them against the overall goal before dispatching new work."
+    summary: "Eric Provencher recommends a manager agent, scheduled progress polling and written reconciliation of user steers."
+    verdict: "Voice, a concrete alternative to Goals that restores a manager, polling and a written steering record. It is advice, not a released Goals repair or a demonstrated improvement over Depue's setup. We did not run it or measure the extra coordination cost. Keeping this reply preserves the possibility that specialized orchestration still earns its keep."
+
+  - id: "hazem-copilot-local-network-default"
+    title: "The sandbox reaches local services by default"
+    kind: "claim"
+    date: "2026-10-20"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["github-copilot-cli"]
+    authors: ["hazemomier"]
+    display_name: "Hazem Omier"
+    source_urls: ["https://x.com/hazemomier/status/2112527393844060626","https://github.com/github/copilot-cli/releases/tag/v1.0.100","https://github.com/github/copilot-cli/blob/v1.0.103/changelog.md"]
+    verbatim: "Copilot CLI 1.0.100 (Oct 19): its sandbox now lets commands reach localhost and private-network services by default. That's where local MCP servers, dev databases and admin panels live. If you enabled the sandbox to contain the agent, re-check its reach.\nhttps://github.com/github/copilot-cli/releases/tag/v1.0.100"
+    inline: "its sandbox now lets commands reach localhost and private-network services by default."
+    summary: "Hazem Omier flags Copilot CLI 1.0.100's default access to localhost and private-network services."
+    verdict: "Claim, confirmed by the non-prerelease 1.0.100 notes and the tagged changelog: local-network access is allowed by default. That makes the reach of a sandboxed command a separate question from whether sandboxing is enabled. We did not probe any OS or service, and the post does not establish access to every database or admin panel. Inspect configured network rules against the actual services on your machine."
+
+  - id: "ayyaz-copilot-inherited-approvals"
+    title: "Fewer prompts can mean inherited authority"
+    kind: "claim"
+    date: "2026-10-23"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["github-copilot-cli"]
+    authors: ["ayyazdev"]
+    display_name: "Ayyaz"
+    source_urls: ["https://x.com/ayyazdev/status/2113675412538564841","https://github.com/github/copilot-cli/releases/tag/v1.0.102","https://github.com/github/copilot-cli/releases/tag/v1.0.103","https://github.com/github/copilot-cli/blob/v1.0.103/changelog.md"]
+    verbatim: "Copilot CLI 1.0.102: subagents now honor the custom and MCP tool approvals you already gave, so no duplicate permission prompts. 1.0.103 reuses cached local MCP tool snapshots across worktrees in one repo.\n\nGood time to review what you've approved before subagents inherit it."
+    inline: "Copilot CLI 1.0.102: subagents now honor the custom and MCP tool approvals you already gave, so no duplicate permission prompts. 1.0.103 reuses cached local MCP tool snapshots across worktrees in one repo."
+    summary: "Ayyaz distinguishes inherited custom and MCP approvals from reuse of local MCP tool snapshots across worktrees."
+    verdict: "Claim, both changes are recorded in non-prerelease releases: 1.0.102 honors existing custom/MCP approvals in subagents, and 1.0.103 reuses local tool snapshots across registered worktrees in one repository. A cached definition is not itself a new approval. We checked the release contracts, not a nested run; reduced prompting still warrants checking which existing grants the child receives."
+
+  - id: "openclaw-workshop-undo-after-edit"
+    title: "Undo arrives after the edit"
+    kind: "claim"
+    date: "2026-10-19"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["openclaw"]
+    authors: ["openclaw"]
+    display_name: "OpenClaw\ud83e\udd9e"
+    source_urls: ["https://x.com/openclaw/status/2112260434116108528","https://github.com/openclaw/openclaw/releases/tag/v2026.10.5","https://github.com/openclaw/openclaw/blob/v2026.10.5/docs/tools/skill-workshop.md"]
+    verbatim: "\ud83e\udd9e OpenClaw v2026.10.5 is out!\n\n\ud83e\udd16 Sidebar keeps your agents within reach\n\u21a9\ufe0f Skill Workshop 2.0 gets Undo\n\ud83d\udd17 Public conversation links need no sign-in\n\n\ud83c\udf89 2,250 PRs and 637 contributors.\n\nJust the highlights. Much more in the full notes \ud83d\udc47\nhttps://docs.openclaw.ai/releases/2026.10.5"
+    inline: "Skill Workshop 2.0 gets Undo"
+    summary: "OpenClaw's 2026.10.5 announcement highlights Skill Workshop Undo alongside sidebar and public-link changes."
+    verdict: "Claim, the tagged 2026.10.5 Workshop guide confirms immediate skill edits, saved prior versions and Undo, with auto as the background-learning default and ten retained versions per skill. That is recovery after an edit, not approval before it. We did not exercise the sidebar or public-link access. The PR and contributor totals are unverified vendor counts with no published counting method; the release page lists 638 contributors rather than the post's 637."
+
+  - id: "stephen-hermes-handoff-babysitting"
+    title: "Useful work is the handoff test"
+    kind: "voice"
+    date: "2026-10-23"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["hermes-agent"]
+    authors: ["SteveSchoettler"]
+    display_name: "Stephen Schoettler"
+    source_urls: ["https://x.com/SteveSchoettler/status/2113705996984144302"]
+    verbatim: "The last few days with my Hermes setup have been ROUGH. Broken Kanban handbacks left me manually coordinating agents that were supposed to work autonomous. I finally repaired handoffs and an isolated coding pilot. That\u2019s progress, but the real test is whether useful work finishes without me babysitting it. Ugh!"
+    inline: "the real test is whether useful work finishes without me babysitting it."
+    summary: "Stephen Schoettler says broken Kanban handbacks put Schoettler back in charge of coordinating the Hermes agents."
+    verdict: "Voice, an account of custom handoff failures and a partial repair in Schoettler's setup. No version, board integration or execution trace establishes an upstream Hermes regression. The proposed acceptance test is sharper than a count of autonomous agents: does useful work finish without the operator stepping in? The repair claim remains personal, and the simpler-design counter-read is not proof it was fixed."
+
+  - id: "teknium-one-agent-counter-read"
+    title: "Maybe one agent is enough"
+    kind: "voice"
+    date: "2026-10-21"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["hermes-agent"]
+    authors: ["Teknium"]
+    display_name: "Teknium \ud83e\udebd"
+    source_urls: ["https://x.com/Teknium/status/2112986989897351189"]
+    verbatim: "Ya'll could just use one agent, Hermes, and be done with this madness lol"
+    inline: "Ya'll could just use one agent, Hermes, and be done with this madness lol"
+    summary: "Teknium jokes that using one Hermes agent would avoid the surrounding coordination machinery."
+    verdict: "Voice, the simplicity counter-read to fleets and broken handoffs. The joke does not establish that one Hermes agent can do every job, remove the need for supervision or repair Schoettler's Kanban setup. We did not compare architectures. It keeps open a useful question: which coordination work disappears if there is only one worker?"
+
+  - id: "jay-paperclip-subtask-overload"
+    title: "The board can become another job"
+    kind: "voice"
+    date: "2026-10-22"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["paperclip"]
+    authors: ["jayrao"]
+    display_name: "Jay"
+    source_urls: ["https://x.com/jayrao/status/2113121238461657192"]
+    verbatim: "How different is this from @papercliping ? I\u2019ve used it in the past, eventually the agents go crazy with their own sub-tasks and it becomes more complex than it should. How are you guardrailing these?"
+    inline: "eventually the agents go crazy with their own sub-tasks and it becomes more complex than it should."
+    summary: "Jay asks how agent-created subtasks are constrained after finding an earlier Paperclip workflow too complex."
+    verdict: "Voice, a question grounded in the author's prior use, not a reproduced failure of today's Paperclip release. The post supplies neither the installed version nor the task tree, so it cannot establish how often expansion becomes unmanageable. The relevant cost is concrete: agents can create more coordination than the person wanted. Dotta's response must be read as a claimed remedy, not omitted."
+
+  - id: "dotta-subtask-remedy-unconfirmed"
+    title: "Shorter guidance has not yet proved fewer tasks"
+    kind: "claim"
+    date: "2026-10-22"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["paperclip"]
+    authors: ["dotta"]
+    display_name: "dotta \ud83d\udcce"
+    source_urls: ["https://x.com/dotta/status/2113289308954329150","https://github.com/paperclipai/paperclip/blob/v2026.1023.0/doc/plans/2026-10-05-plan-task-guidance.md"]
+    verbatim: "fwiw in the most recent versions of paperclip we've curbed this too-many-subtasks behavior"
+    inline: "fwiw in the most recent versions of paperclip we've curbed this too-many-subtasks behavior"
+    summary: "Dotta says recent Paperclip versions have curbed excessive subtask creation."
+    verdict: "Claim, unconfirmed as a behavioral improvement. Stable 2026.1023.0's planning record describes shorter guidance but explicitly records no completed live comparison; its successful fixture and type checks are not evidence that agents create fewer subtasks. We did not reproduce Jay's workload or establish which version this reply means. The response is useful counterweight, with the claimed reduction still open."
+
+  - id: "andrzej-eve-retired-infrastructure"
+    title: "There is useful infrastructure to stop owning"
+    kind: "voice"
+    date: "2026-10-19"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["eve"]
+    authors: ["ardabrowski"]
+    display_name: "Andrzej D\u0105browski"
+    source_urls: ["https://x.com/ardabrowski/status/2112198926161883515"]
+    verbatim: "I've been building ecommerce agents for a while and tried many AI frameworks along the way. I must say:\n\n@eve is the first one that really clicked.\n\nI told @shardara this recently and he asked me why, so I thought it was worth sharing publicly.\n\nIn my first AI consulting gigs (mostly custom shopping assistants) I was stunned by how much infra work it takes to ship an agent. I'd say 60\u201370% of my time went into infra, and only the rest into the actual AI work: context engineering, data, evals. That was insane tbh, because none of that infra felt custom to me. Most frameworks either didn\u2019t help much with infra, or if they did, they forced clunky abstractions on the AI side, and I kept fighting the framework instead of doing my work.\n\nThat's probably why so many folks say \"don't use a framework, just build from scratch.\" I felt that too (we all have our Claudes and Codexes, right?), but going framework-less never felt right either. There\u2019s so much repeatable stuff, and way too many footguns, to rebuild it every time.\n\nSo for a long time I was looking for something very simple:\n1. Pls pls handle infra for me. Durable execution, sandboxes, streaming, reconnects, subagents, file uploads that land in the sandbox, auth, web search, easy deployment.\n2. LEAVE ME FREEDOM on the AI part. I want to own the harness, not have the framework own it for me.\n\n@eve  is just the first one that ticks all these boxes.\n\nBonus: every production agent quickly needs a UI and often a custom API. A playground, a context view, a domain-specific data viewer (inspired by @HamelHusain, highly recommend). With Eve + Next.js it\u2019s all in a single repo (not even a monorepo!), deployed with one click. Framework-defined Infrastructure at its finest, it really feels good.\n\nbtw, I come from front-end world and I remember exactly how the world looked before and after nextjs. Now it feels like this again, just with AI.\n\nEverything we do at the eCommerce AI Lab at @commerce_ui now runs on Eve: shopping assistants and analytics agents for our clients, plus our own company agent that lives in Slack. It all just works, and a huge amount of custom code just evaporated.\n\nHighly recommend"
+    inline: "and a huge amount of custom code just evaporated."
+    summary: "Andrzej Dabrowski says Eve removed recurring infrastructure work while leaving the team control of agent behavior."
+    verdict: "Voice, a builder's account of code the author's team says it stopped maintaining after adopting Eve. The estimated 60-70% infrastructure share and the claim that everything works have no published measurement method here; we inspected neither the client systems nor the deleted code. This is specific counterweight to blanket framework skepticism, not a proven time saving or a guarantee that every listed primitive fits another team's needs."
+
+  - id: "dmitry-cart-effect-recovery-test"
+    title: "Recovery must remember the cart changed"
+    kind: "voice"
+    date: "2026-10-19"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: ["eve"]
+    authors: ["chaka_kuka"]
+    display_name: "Dmitry Dirin"
+    source_urls: ["https://x.com/chaka_kuka/status/2112299029463765148"]
+    verbatim: "Andrzej, how much control does Eve give you over retries around tool calls? If an 'add to cart' call succeeds just before a worker crashes, resuming the run shouldn't add the item twice."
+    inline: "If an 'add to cart' call succeeds just before a worker crashes, resuming the run shouldn't add the item twice."
+    summary: "Dmitry Dirin asks what happens when a cart update succeeds immediately before the worker crashes."
+    verdict: "Voice, a precise acceptance question for the infrastructure testimonial: after an external cart mutation, can recovery avoid doing it again? The post neither reports a duplicate in Eve nor proves its retry behavior. We have no crash trace or reconciled cart record. Durable execution and exactly-once business effects remain different promises, even when the framework removes substantial plumbing."
+
+  - id: "swyx-colocation-counter-read"
+    title: "Portability can leave performance on the table"
+    kind: "voice"
+    date: "2026-10-17"
+    date_precision: "day"
+    captured_on: "2026-10-24"
+    source_ids: []
+    authors: ["swyx"]
+    display_name: "swyx"
+    source_urls: ["https://x.com/swyx/status/2111559986249859559"]
+    verbatim: "harrison would say that :) you also want to take into account kv cache and dreaming optimizations that only harness-model colocation can achieve. ive had my own career ruined by trying to be switzerland without realizing the costs.\n\ntruth is his advice probably:\n- low end: doesnt matter\n- mid tier: maybe\n- high end: definitely\n\nand most people are not high end (>2T tokens a month)"
+    inline: "you also want to take into account kv cache and dreaming optimizations that only harness-model colocation can achieve."
+    summary: "Swyx argues that harness-model co-design and cache economics can make neutrality costly for some workloads."
+    verdict: "Voice, a direct challenge to assuming a harness-neutral layer always wins. The cache and dreaming advantages are Swyx's argument; the post provides no matched deployment, measured savings or support for the exclusivity of only. The two-trillion-token dividing line is not a tested threshold. We attach no Temporal project identity to this general argument and keep its strategic objection open."
+

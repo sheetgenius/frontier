@@ -1,0 +1,858 @@
+schema_version: bitter.frontier_signals.v0
+run_id: 2026-10-24-weekly-digest-2026-10-13_2026-10-24-frontier-v0
+window:
+  start: 2026-10-13
+  end: 2026-10-24
+note: >
+  This issue covers the 11-day reporting interval after 2026-10-13T23:59:59Z through the
+  source-specific successful reads on 2026-10-24 UTC, not the end of that day. Pi's optional MCP
+  adapter actually removes its interpreter; supported delegation, context selection and continuing
+  jobs give builders other specific pieces of plumbing to stop duplicating. Acceptance does not
+  disappear with them: Origin can delegate ownership review, OpenClaw applies learned edits before
+  review, and Claude adds an explicit person decider that can route through a dialog or host
+  callback. These are different choices about authority, not equivalent safety guarantees. Try the
+  native paths against accepted outcomes, then spend the retained attention on initial grants, wake
+  ownership, unknown effects and compatible upgrades. No supplied measurement establishes a net
+  reduction in human hours. Origin's ownership option is current early-beta posture verified by the
+  2026-10-24 read; its overlapping weekly note does not prove a launch after the previous cutoff.
+
+signals:
+
+  - id: 2026-10-24-pi-coding-agent-adapter-reuses-native-codemode
+    status: accepted
+    section: runtime
+    source: pi-coding-agent
+    channel: tagged-release
+    title: "A third-party Pi MCP adapter drops its interpreter for Pi's native codemode"
+    finding_ids:
+      - 2026-10-24-pi-coding-agent-the-mcp-adapter-removes-its-separate-script-engine-and-routes-approvals-through-real-tool
+    summary: >
+      Optional pi-mcp-adapter 6.0.0, released 2026-10-22, removes QuickJS, mcpScript, jev.evaluate
+      and its scripting skill in favor of Pi codemode. Deferred MCP calls expose their real tool
+      names to permission hooks. Recognized Executor approval pauses request confirmation through
+      Pi's UI; model self-approval is refused, and such a pause fails when no confirmation UI is
+      available. Native MCP predates this window; Pi core did not delete an interpreter here.
+    why_action_bearing:
+      - >
+        Adapter users on current Pi 1.4.0: port script settings and hook matchers before installing
+        adapter 6.0.0, then compare the native composition path with the interpreter or bridge you
+        maintain. A second interpreter is now a concrete maintenance cost that can be removed.
+      - >
+        Test allowed and forbidden calls through proxy, deferred and scripted paths, plus an
+        Executor pause with and without a person present. Recorded tool identities and refusal
+        results would settle the deployed permission boundary; a visible --tools list does not
+        settle it.
+      - >
+        Review project script contents as well as their configuration entries, and reverse the
+        adapter's native-MCP takeover when removing it. Count migration and review time against
+        accepted work before claiming a net attention saving; the author's context benchmark is
+        configuration-specific.
+    accessibility_consequence:
+      what_got_easier: "Adapter users can compose MCP work through Pi's supported scripting primitive."
+      who_can_use_now: "Users of optional pi-mcp-adapter 6.0.0; current Pi CLI stable is 1.4.0."
+      authority_visibility: "Permission hooks see real deferred tool identities; a recognized approval
+        pause requests UI confirmation and fails if that UI is unavailable."
+    security_consequence:
+      threat_blocked_or_opened: "The adapter refuses model self-approval, while configuration approval
+        still does not bind immutable script bytes."
+      attacker_model: "Untrusted tool results or project scripts encountered by an admitted adapter and
+        its MCP servers."
+      enforcement: "Pi tool-call hooks and adapter approval handling; tool presentation is not an
+        execution deny rule."
+      cost_to_operator: "Port settings and matchers, inspect scripts and qualify every calling path."
+      residual: "No runtime denial matrix or matched throughput trial was performed in this cycle."
+    receipts:
+      - url: https://github.com/nicobailon/pi-mcp-adapter/blob/v6.0.0/CHANGELOG.md
+        precision: tagged_commit_file
+      - url: https://github.com/nicobailon/pi-mcp-adapter/blob/v6.0.0/codemode-bridge.ts
+        precision: tagged_commit_file
+      - url: https://github.com/nicobailon/pi-mcp-adapter/blob/v6.0.0/tool-approval.ts
+        precision: tagged_commit_file
+      - url: https://github.com/nicobailon/pi-mcp-adapter/blob/v6.0.0/README.md
+        precision: tagged_commit_file
+      - url: https://github.com/nicobailon/pi-mcp-adapter/releases/tag/v6.0.0
+        precision: github_release
+      - url: https://registry.npmjs.org/pi-mcp-adapter
+        precision: official_docs
+      - url: https://registry.npmjs.org/@earendil-works%2fpi-coding-agent
+        precision: official_docs
+
+  - id: 2026-10-24-cursor-origin-code-owner-review-can-be-delegated
+    status: accepted
+    section: control-plane
+    source: cursor
+    channel: preview-or-beta
+    title: "Origin lets an agent or installed app satisfy code-owner review"
+    finding_ids:
+      - 2026-10-24-cursor-origin-lets-an-agent-s-ownership-decision-or-an-installed-app-s-approval-satisfy-code-owne
+    summary: >
+      Origin's current early-beta web ruleset offers Off, Classic and Agentic code-owner review. In
+      Agentic, Origin's ownership decision can replace the approval count; an installed app named in
+      ORIGIN_CODEOWNERS can satisfy review for its paths. The captured week-of-2026-10-12 note spans
+      the old cutoff and has no established first-publication time. This is newly established
+      current capability, not a proved post-cutoff launch or a guarantee supplied by installing the
+      separate stable Origin CLI.
+    why_action_bearing:
+      - >
+        Origin repository owners: choose Classic and human-owned path entries where a person must
+        approve, and remove app_ alternatives for those paths. Classic requires owner approval but
+        does not itself require a human owner. App installation and path ownership determine who can
+        satisfy that gate.
+      - >
+        Trial Agentic on a scratch repository, recording head, paths, agent decision, human
+        reversals and owner approvals avoided. Published substitution thresholds and a discoverable
+        decision log, corroborated by those tests, would settle which human decisions it can
+        replace.
+      - >
+        Test an app's own and another author's pull requests before treating app review as
+        independent approval. The captured contract does not establish self-review counting. Less
+        owner waiting is possible; teams inherit acceptance-policy and reversal work, with no
+        measured saving.
+    accessibility_consequence:
+      what_got_easier: "An Origin-hosted repository can delegate ownership review to Origin's agent or an
+        installed app."
+      who_can_use_now: "Early-beta Origin teams using the documented web ruleset and installed app
+        ownership contract."
+      authority_visibility: "Classic requires owner approval, which an installed app owner can satisfy;
+        Agentic thresholds and decision-log location remain unpublished in this record."
+    security_consequence:
+      threat_blocked_or_opened: "A machine decision or app approval can satisfy a gate previously assigned to a code owner."
+      attacker_model: "An admitted agent or installed review app handling an untrusted pull request; no
+        bypass exploit was reproduced."
+      enforcement: "Hosted ruleset and namespace installation checks, supported by captured official
+        contracts and compared client fields."
+      cost_to_operator: "Choose paths and review principals deliberately, then sample decisions and human reversals."
+      residual: "Launch timing, substitution thresholds, auditability and app self-review counting remain
+        unestablished."
+    receipts:
+      - url: https://web.archive.org/web/20261024094000id_/https://cursor.com/docs/release-notes/origin.md
+        precision: official_docs
+      - url: https://web.archive.org/web/20261024094330id_/https://cursor.com/docs/api/origin/reference/create-ruleset.md
+        precision: official_docs
+      - url: https://web.archive.org/web/20261024092716/https://cursor.com/docs/origin
+        precision: official_docs
+
+  - id: 2026-10-24-claude-code-journaled-headless-delegation
+    status: accepted
+    section: runtime
+    source: claude-code
+    channel: tagged-release
+    title: "Claude enables headless forks and reuses completed workflow steps"
+    finding_ids:
+      - 2026-10-24-claude-code-forked-delegation-reaches-headless-sessions-while-lifecycle-and-budget-holes-close
+    summary: >
+      Claude Code 2.1.302 makes fork subagents default on specified headless, SDK, Desktop and VS
+      Code paths. Version 2.1.305 serves completed pipeline() and parallel() agents from the
+      workflow journal on resume. Turn and stop repairs reach 2.1.299/2.1.304, and 2.1.309 repairs
+      split-pane tool restriction inheritance. Latest 2.1.310 contains the full set; stable selector
+      2.1.308 lacks the later inheritance repair.
+    why_action_bearing:
+      - >
+        CI and SDK integrators: trial latest 2.1.310 with one workflow resumed after a completed
+        child before keeping custom prompt-copy and restart scaffolding. Compare accepted results
+        and recovery interventions; successful journal reuse would justify removing that duplicate
+        work.
+      - >
+        Test max turns, Stop, ended input and denied child tools, including mods and split panes.
+        Record which steps actually rerun and reconcile any interrupted external write before
+        retrying it; a journal entry does not establish exactly-once effects.
+      - >
+        Set the unattended permission mode explicitly and measure cost and review time.
+        CLAUDE_CODE_FORK_SUBAGENT=0 disables forks; claude mcp serve does not offer them. Native
+        delegation can save context assembly while creating more child output to accept.
+    accessibility_consequence:
+      what_got_easier: "Headless and embedded workflows can share context and reuse completed delegated steps."
+      who_can_use_now: "Named CLI/SDK/Desktop/VS Code paths; use latest 2.1.310 for the complete recorded
+        repair set."
+      authority_visibility: "Journal reuse, child restrictions and the job's explicit permission mode are
+        separate acceptance checks."
+    security_consequence:
+      threat_blocked_or_opened: "Released limit and inheritance repairs narrow ways delegated work can
+        outlive a stop or lose tool restrictions."
+      attacker_model: "Admitted mods and children operating on untrusted task input within a configured job."
+      enforcement: "Published lifecycle, journal and restriction repairs; the closed runtime was not
+        independently exercised."
+      cost_to_operator: "Qualify cancellation, limits, child authority and unknown external outcomes
+        before deleting restart glue."
+      residual: "No matched human-time saving or exactly-once external-effect guarantee is established."
+    receipts:
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.302
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.304
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.305
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.309
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.299
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.308
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.310
+        precision: github_release
+      - url: https://registry.npmjs.org/@anthropic-ai%2fclaude-code
+        precision: official_docs
+
+  - id: 2026-10-24-pi-coding-agent-durable-sleeps-need-a-wake-owner
+    status: accepted
+    section: runtime
+    source: pi-coding-agent
+    channel: tagged-release
+    title: "Pi Durable checkpoints a wait and releases the invocation"
+    finding_ids:
+      - 2026-10-24-pi-coding-agent-durable-1-4-can-hibernate-between-phases-with-a-one-way-sqlite-upgrade
+    summary: >
+      Experimental Pi Durable 1.4.0, released 2026-10-21 in a stable tag, replaces runtime.sleep()
+      with sleepUntil(): a phase commits a sleeping task and releases its invocation. The host must
+      persist a wake and reopen the harness. SQLite automatically moves to schema 2, which 1.3 and
+      older cannot open; older JSONL readers cannot resume the new sleeping state. Updating the
+      ordinary Pi CLI does not create this host machinery.
+    why_action_bearing:
+      - >
+        Durable host builders: back up storage before 1.4 opens it, plan the one-way cutover, split
+        post-wait work into a new phase and supply each document's checkpointWhen predicate. This
+        can replace an invocation kept alive solely to wait.
+      - >
+        Persist the wake outside the dying process. Kill a harmless job around checkpoint commit and
+        alarm registration, then verify it resumes once intended and reconciles any uncertain
+        external effect. Those receipts, not a resumed transcript alone, would establish the host's
+        recovery.
+      - >
+        Measure idle resource use, wake latency and recovery interventions against the old host.
+        Attention moves from supervising live waits to scheduling and storage custody; no current
+        host inherits durable wakes merely by sharing Pi's package family.
+    accessibility_consequence:
+      what_got_easier: "Host builders can release resources during scheduled waits and reopen checkpointed
+        agent work."
+      who_can_use_now: "Embedders of experimental @earendil-works/pi-durable 1.4.0 with a durable wake scheduler."
+      authority_visibility: "The host owns wake delivery, storage compatibility and external-effect reconciliation."
+    security_consequence:
+      threat_blocked_or_opened: "A stored wait can survive invocation loss, while a missing wake owner can
+        strand accepted work."
+      attacker_model: "Process interruption or a faulty host scheduler; this is not a new sandbox or
+        hostile-tool isolation claim."
+      enforcement: "Checkpointed sleeping state and host wake contract, with one-way SQLite compatibility."
+      cost_to_operator: "Back up state, migrate APIs and state handlers, and test the checkpoint-to-alarm handoff."
+      residual: "No host crash test or exactly-once external-effect result was produced by this cycle."
+    receipts:
+      - url: https://github.com/earendil-works/pi/blob/v1.4.0/packages/durable/CHANGELOG.md
+        precision: tagged_commit_file
+      - url: https://github.com/earendil-works/pi/blob/v1.4.0/packages/durable/README.md#L139-L220
+        precision: tagged_commit_file
+      - url: https://github.com/earendil-works/pi/blob/v1.4.0/packages/durable/src/storage/sqlite/migrations.ts
+        precision: tagged_commit_file
+      - url: https://github.com/earendil-works/pi/releases/tag/v1.4.0
+        precision: github_release
+      - url: https://registry.npmjs.org/@earendil-works%2fpi-durable
+        precision: official_docs
+
+  - id: 2026-10-24-hermes-agent-gateway-work-outlives-terminal
+    status: accepted
+    section: runtime
+    source: hermes-agent
+    channel: tagged-release
+    title: "Hermes keeps classic CLI work running after terminal detach"
+    finding_ids:
+      - 2026-10-24-hermes-agent-the-gateway-owns-classic-cli-turns-and-live-revocations-reach-more-request-paths
+    summary: >
+      Stable Hermes 0.22.5's classic chat, chat -q and top-level -z paths attach to gateway-owned
+      execution. EOF or detach leaves the job running; an explicit remote failure does not silently
+      start a local agent. Released revocation repairs synchronize saved allowlist removals with
+      cached permanent allows and check disabled plugins on HTTP requests, new websocket handshakes
+      and other served paths.
+    why_action_bearing:
+      - >
+        CLI wrapper and bot operators: use stable 0.22.5, follow the persisted session identity and
+        completion status, and stop treating terminal exit as cancellation. A continuing gateway can
+        replace a wrapper kept alive only to supervise the chat process.
+      - >
+        Configure agent.run_budget_seconds rather than --run-budget on this path; -z does not itself
+        bypass approvals. Use the documented alternative surfaces for unsupported worktree and image
+        invocations. Record the serving gateway, home and profile alongside the client version.
+      - >
+        Detach from a harmless job, reconnect, cancel it deliberately and remove a saved permanent
+        allow. Separately disable a plugin, then test HTTP requests and new websocket handshakes
+        under each served profile. These checks do not establish termination of an already-open
+        socket. Completion and refusal traces would settle the deployed lifetime and consent
+        behavior. Saved terminal supervision may become gateway administration; no net orchestration
+        saving was measured.
+    accessibility_consequence:
+      what_got_easier: "Classic CLI users can leave and rejoin work owned by a continuing gateway."
+      who_can_use_now: "Supported classic CLI invocations on stable Hermes 0.22.5; standalone Desktop is
+        separately versioned."
+      authority_visibility: "Terminal lifetime no longer defines job lifetime; inspect the gateway's
+        actual home, profile and session."
+    security_consequence:
+      threat_blocked_or_opened: "Revoked allows and disabled plugins reach more live paths, while closing
+        a terminal leaves authority active."
+      attacker_model: "Previously admitted sessions or plugins after consent changes; no new
+        affected-version advisory range was recovered."
+      enforcement: "Gateway revocation and request-path checks in tagged source."
+      cost_to_operator: "Own explicit cancellation, run budgets, service identity and cross-profile
+        revocation tests."
+      residual: "Source behavior is verified; fleet restart, detach and revocation acceptance remain
+        untested."
+    receipts:
+      - url: https://github.com/NousResearch/hermes-agent/blob/v0.22.5/website/docs/developer-guide/gateway-classic-cli.md
+        precision: tagged_commit_file
+      - url: https://github.com/NousResearch/hermes-agent/blob/v0.22.5/hermes_cli/gateway_chat.py
+        precision: tagged_commit_file
+      - url: https://github.com/NousResearch/hermes-agent/commit/eea7c437ebd66e5ffbf9e525abe915f25e17d911
+        precision: commit_diff_reviewed
+      - url: https://github.com/NousResearch/hermes-agent/commit/876e37c07746642da12a59bf2088c3fcfdda6f6c
+        precision: commit_diff_reviewed
+      - url: https://github.com/NousResearch/hermes-agent/releases/tag/v0.22.5
+        precision: github_release
+
+  - id: 2026-10-24-gemini-cli-directory-context-becomes-agent-selected
+    status: accepted
+    section: runtime
+    source: gemini-cli
+    channel: tagged-release
+    title: "Gemini leaves directory references for the agent to explore"
+    finding_ids:
+      - 2026-10-24-gemini-cli-stable-directory-references-stop-eagerly-reading-the-entire-directory
+    summary: >
+      Stable Gemini CLI 0.65.0, released 2026-10-20, removes referenced directories from eager
+      read_many_files input and leaves a resolved directory reference for the agent to explore.
+      Indispensable files are no longer guaranteed to be injected just because their directory was
+      named. Instruction discovery and later explicit reads remain separate.
+    why_action_bearing:
+      - >
+        Users with a working authentication route on 0.65.0: try pointing a fixed task at a
+        repository directory before maintaining an eager directory-packing wrapper. The supported
+        path lets the agent choose what to read instead of assembling every file in advance.
+      - >
+        Name required constraints and files explicitly. Compare files actually read, accepted
+        output, latency, inference spend and human corrections with the old path; those results
+        would settle whether selection saves attention on this repository. No token or task-quality
+        gain was measured.
+    accessibility_consequence:
+      what_got_easier: "A stable CLI user can nominate an area of a large repository without eager
+        whole-directory injection."
+      who_can_use_now: "Authenticated Gemini CLI users on stable 0.65.0; no preview is needed for this path."
+      authority_visibility: "A directory mention is a discovery target, not proof that its constraints
+        entered context or a restriction on later reads."
+    security_consequence:
+      threat_blocked_or_opened: "Less eager input does not remove untrusted files or constrain the agent's
+        later file access."
+      attacker_model: "Repository content selected during an otherwise authorized task."
+      enforcement: "At-command context selection and ignore pruning; existing tool and filesystem policy
+        still governs access."
+      cost_to_operator: "Identify indispensable inputs and sample discovery failures before removing packing code."
+      residual: "No matched quality, cost or exposure reduction has been demonstrated."
+    receipts:
+      - url: https://github.com/google-gemini/gemini-cli/commit/9b6e0265d16bbd29ca51e33c9e0c01dc4cec5e83
+        precision: commit_diff_reviewed
+      - url: https://github.com/google-gemini/gemini-cli/blob/v0.65.0/packages/cli/src/ui/hooks/atCommandProcessor.ts#L535-L549
+        precision: tagged_commit_file
+      - url: https://github.com/google-gemini/gemini-cli/commit/8b5cb8a6491e17b2dd3ba0cfb49fcfe41c48c4a3
+        precision: commit_diff_reviewed
+      - url: https://github.com/google-gemini/gemini-cli/releases/tag/v0.65.0
+        precision: github_release
+      - url: https://registry.npmjs.org/@google%2fgemini-cli
+        precision: official_docs
+
+  - id: 2026-10-24-openhands-mentions-can-start-code-changing-work
+    status: accepted
+    section: platform
+    source: openhands
+    channel: tagged-release
+    title: "OpenHands packages mention-to-code work and a factory setup recipe"
+    finding_ids:
+      - 2026-10-24-openhands-github-mentions-can-request-code-changes-under-a-repository-write-gate
+      - 2026-10-24-openhands-software-factory-guidance-ships-and-becomes-default-enabled
+    summary: >
+      Extensions 0.35.0, bundled from Canvas 1.32.0 and retained in 1.33.0, lets permitted GitHub
+      mentions request branches, commits, pushes and PR updates. Its monitor defaults to
+      repository-write authorization and implement mode. Separately, shipped software-factory
+      guidance assembles issue-to-PR, review and triage stations; guidance is enabled by default for
+      new workspaces but does not start jobs on installation. Specialist operating procedure still
+      has a job.
+    why_action_bearing:
+      - >
+        Repository automation owners: try one bounded repository on Canvas 1.33.0 with its
+        extensions 0.35.0 and matched services. Review the factory's proposed profiles, credentials
+        and jobs before replacing manual request-to-branch coordination or custom onboarding.
+      - >
+        Inspect the deployed monitor, token owner, allowlists and work mode. The poller checks other
+        authors' repository permissions, with explicit bypasses; the fallback template puts
+        authorization and work restrictions in the prompt. Use reply mode for discussion, and avoid
+        anyone plus implement when arbitrary commenters must not start code changes.
+      - >
+        Exercise an authorized request, an unauthorized mention and a request outside the work
+        policy; inspect the branch and token used. Those results and review minutes per accepted PR
+        would establish the deployed benefit. Updating Canvas does not prove saved monitors
+        migrated.
+    accessibility_consequence:
+      what_got_easier: "Repository writers can request code-changing work through a mention, with packaged
+        setup for recurring stations."
+      who_can_use_now: "Configured Canvas 1.33.0 deployments using extensions 0.35.0 and compatible
+        backend services."
+      authority_visibility: "The actual monitor definition and token decide who can start work; prompt
+        restrictions are not mechanical confinement."
+    security_consequence:
+      threat_blocked_or_opened: "An overbroad mention policy can let arbitrary commenters request changes
+        using the automation's token."
+      attacker_model: "An untrusted commenter or repository input reaching an enabled monitor."
+      enforcement: "The poller has repository-permission checks with bypasses; fallback-template
+        authorization is prompt-based."
+      cost_to_operator: "Qualify trigger admission, token scopes, saved bundles and accepted changes
+        before unattended expansion."
+      residual: "No live monitor or factory acceptance run was performed; existing saved monitors need
+        their own migration check."
+    receipts:
+      - url: https://github.com/OpenHands/extensions/blob/v0.35.0/skills/github-repo-monitor/scripts/main.py#L641-L663
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/extensions/blob/v0.35.0/automations/catalog/github-repo-monitor/manifest.json#L78-L114
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/extensions/blob/v0.35.0/skills/software-factory/README.md
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/OpenHands/blob/v1.33.0/package.json
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/extensions/commit/5f0bc702a65b2165e4406227d845b87efd5d445a
+        precision: commit_diff_reviewed
+      - url: https://github.com/OpenHands/OpenHands/blob/v1.32.0/package.json
+        precision: tagged_commit_file
+      - url: https://github.com/OpenHands/extensions/blob/v0.35.0/skills/software-factory/SKILL.md
+        precision: tagged_commit_file
+
+  - id: 2026-10-24-codex-updater-enforces-saved-network-policy
+    status: accepted
+    section: runtime
+    source: codex
+    channel: tagged-release
+    title: "Codex's released updater loads network policy before making requests"
+    finding_ids:
+      - 2026-10-24-codex-stable-updater-requests-now-require-successfully-loaded-network-policy
+    summary: >
+      The daemon-updater repair d570b363 first reaches stable Codex 0.163.0 on 2026-10-15 and
+      remains in current 0.164.0. Its client factory propagates configuration failure and activates
+      network policy instead of falling back to a default HTTP client. Saved network settings govern
+      this process; invoking CLI -c overrides do not reach it. The independently selected daemon
+      still has an experimental lifecycle contract.
+    why_action_bearing:
+      - >
+        Restricted interactive fleets: move to stable 0.164.0 and record the CLI and serving-daemon
+        versions separately. The prior release wait is complete; automatic updates can now be
+        evaluated against the fleet's saved restrictions.
+      - >
+        Before enabling the updater, test a denied destination and invalid configuration using the
+        actual saved policy. Keep updates held until those tests pass. Recorded network refusals and
+        a pinned-install update trace would settle enforcement and update timing in that
+        installation.
+      - >
+        Budget restart and environment administration as well as patching. This replaces waiting for
+        upstream delivery with a bounded deployment check; no daemon was launched, updated or
+        interrupted in this research.
+    accessibility_consequence:
+      what_got_easier: "Managed fleets can qualify automatic service updates without the old
+        default-client fallback."
+      who_can_use_now: "Interactive daemon deployments on stable 0.163.0 or later; current CLI stable is 0.164.0."
+      authority_visibility: "The serving daemon and its saved configuration must be inventoried
+        independently of the launching CLI."
+    security_consequence:
+      threat_blocked_or_opened: "Updater traffic no longer proceeds through a default client after policy-loading failure."
+      attacker_model: "A restricted installation with denied destinations or invalid saved configuration;
+        no remote updater compromise is alleged."
+      enforcement: "Network-policy-enabled updater client factory and propagated configuration errors."
+      cost_to_operator: "Test saved policy, inventory two runtime identities and retain an explicit patch
+        schedule while updates are held."
+      residual: "Fleet enforcement, update timing and interruption costs remain unobserved."
+    receipts:
+      - url: https://github.com/openai/codex/commit/d570b3632b100e36f931797cdbdb8906d0fcafa8
+        precision: commit_diff_reviewed
+      - url: https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/cli/src/main.rs#L2459-L2464
+        precision: tagged_commit_file
+      - url: https://github.com/openai/codex/blob/rust-v0.164.0/codex-rs/app-server-daemon/README.md#L48-L70
+        precision: tagged_commit_file
+      - url: https://github.com/openai/codex/releases/tag/rust-v0.163.0
+        precision: github_release
+      - url: https://github.com/openai/codex/releases/tag/rust-v0.164.0
+        precision: github_release
+      - url: https://registry.npmjs.org/@openai%2fcodex
+        precision: official_docs
+
+  - id: 2026-10-24-claude-code-policy-asks-hold-over-user-mods
+    status: accepted
+    section: control-plane
+    source: claude-code
+    channel: tagged-release
+    title: "Claude's managed guard preserves policy asks over user mods"
+    finding_ids:
+      - 2026-10-24-claude-code-the-published-guard-now-holds-policy-asks-and-environment-pins-over-user-mods
+      - 2026-10-24-claude-code-unconfigured-headless-jobs-revert-from-auto-to-default-in-several-cases
+    summary: >
+      The guard at bf2323b3 ships in 2.1.299 and holds policy-backed asks, denies and pinned
+      environment entries over user mods when loaded. Ordinary mode-owned asks are different, and
+      administrators can relax holds. Version 2.1.304 adds decider: "person", which routes to a
+      permission dialog or host callback rather than auto approval. Version 2.1.302 also returns
+      some unconfigured headless jobs from auto to default. Both stable-selector 2.1.308 and latest
+      2.1.310 contain these changes.
+    why_action_bearing:
+      - >
+        Managed mod and CI owners: use latest 2.1.310 for the complete current repair set, verify
+        the built-in guard is seated, and keep allowManagedModsOnly=true where user code must not
+        join policy. Released delivery ends the old wait; it does not sandbox admitted mods.
+      - >
+        Set the permission mode in each unattended job. Without one, fresh installs, third-party
+        providers and telemetry-disabled headless sessions now use default. A job unable to ask can
+        stop where it formerly used auto, creating a deliberate policy decision before dispatch.
+      - >
+        Test a rule-backed ask against a user-mod allow, an environment-pin change and decider:
+        "person" with neither a dialog nor host callback available. If a human must decide, verify
+        that any host callback actually routes to one. Refusal traces in each deployed mode would
+        settle enforcement; regenerate mod types before using this decider because the public type
+        mirror lags it.
+    accessibility_consequence:
+      what_got_easier: "Organizations can preserve policy-backed approval decisions while allowing
+        admitted mods to customize routine work."
+      who_can_use_now: "Guarded Claude Code sessions from 2.1.299; use latest 2.1.310, with explicit
+        unattended configuration."
+      authority_visibility: "Policy-backed asks, ordinary mode asks and the person decider have different
+        contracts; a host callback is not proof of human involvement."
+    security_consequence:
+      threat_blocked_or_opened: "User mods cannot weaken held policy verdicts or pinned environment
+        entries through the guarded chain."
+      attacker_model: "An admitted user mod attempting to alter tool policy; its own unsandboxed process
+        operations remain trusted code."
+      enforcement: "Loaded sec-default guard, managed admission settings and configured verdict holds."
+      cost_to_operator: "Choose admitted code and explicit job modes, refresh mod types and test each
+        deployed approval path."
+      residual: "No runtime enforcement probe was run; a shipped guard is not universal confinement of
+        plugin code."
+    receipts:
+      - url: https://github.com/anthropics/claude-code/blob/v2.1.310/mods/sec-default/README.md
+        precision: tagged_commit_file
+      - url: https://github.com/anthropics/claude-code/blob/v2.1.310/mods/sec-default/hooks/held-verdict/verdicts/holds-over.ts
+        precision: tagged_commit_file
+      - url: https://github.com/anthropics/claude-code/blob/v2.1.310/mods/sec-default/hooks/policy/pinned-names.ts
+        precision: tagged_commit_file
+      - url: https://github.com/anthropics/claude-code/blob/v2.1.310/CHANGELOG.md
+        precision: tagged_commit_file
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.299
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.302
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/releases/tag/v2.1.304
+        precision: github_release
+      - url: https://github.com/anthropics/claude-code/blob/v2.1.310/mods/types/claude-code.d.ts#L10120-L10140
+        precision: tagged_commit_file
+      - url: https://registry.npmjs.org/@anthropic-ai%2fclaude-code
+        precision: official_docs
+
+  - id: 2026-10-24-openclaw-bash-predicate-repair-remains-on-main
+    status: accepted
+    section: control-plane
+    source: openclaw
+    channel: main-unreleased
+    title: "OpenClaw's Bash predicate repair has not reached a published channel"
+    finding_ids:
+      - 2026-10-24-openclaw-bash-predicates-still-bypass-exec-allowlist-review-on-all-three-published-channels
+      - 2026-10-24-openclaw-final-argument-approval-binding-reached-both-stable-lines
+    summary: >
+      Stable OpenClaw 2026.10.7, beta 2026.10.10-beta.3 and extended-stable 2026.9.34 still classify
+      Bash predicates without inspecting their operands. Bash 4.2 and later can evaluate an array
+      subscript in a quoted test -v operand and execute command substitution without an allowlist
+      match or on-miss approval. The 2026-10-23 repair 69cd9c5e excludes -v predicates from
+      safe-builtin treatment and matches builtin names case-sensitively; it is on main and in none
+      of those published channels.
+    why_action_bearing:
+      - >
+        POSIX Gateway owners relying on exec allowlists: restrict adversarial shell work and host
+        exposure until a published version contains this repair. Enforce any interim predicate
+        restriction outside the affected classifier, with whole-process containment and narrowly
+        scoped credentials where untrusted work must continue.
+      - >
+        Watch for a containing stable tag, then run harmless substitution and case-variant refusal
+        tests through the real approval chain. Tag ancestry plus recorded refusals would settle
+        delivery and deployed enforcement; the maintainer's production-chain probe was not
+        reproduced here.
+      - >
+        The separately released final-hook-argument binding does not repair this shell classifier.
+        Review effort cannot protect a request that the classifier never sends for approval;
+        containment and release tracking now consume the attention that a narrow allowlist was meant
+        to save.
+    accessibility_consequence:
+      what_got_easier: "Main contains a specific classifier repair; no published channel yet supplies it."
+      who_can_use_now: "Source-build evaluators can inspect 69cd9c5e; ordinary stable, beta and
+        extended-stable operators remain affected."
+      authority_visibility: "A safe-builtin classification can skip the allowlist and the person's on-miss approval."
+    security_consequence:
+      threat_blocked_or_opened: "A quoted Bash predicate operand can execute a substituted command without
+        its expected allowlist review."
+      attacker_model: "Untrusted task or tool content inducing a shell request under a POSIX exec allowlist."
+      enforcement: "Main removes unsafe predicate exemptions; published classifiers still have the
+        argument-blind treatment."
+      cost_to_operator: "Restrict untrusted shell work, contain the service and track a tag plus
+        approval-chain regression results."
+      residual: "No exploit was executed in this cycle; a tested patched binary is not established."
+    receipts:
+      - url: https://github.com/openclaw/openclaw/commit/69cd9c5edb96b5bd990e97030a45c01f9f8c10a8
+        precision: commit_diff_reviewed
+      - url: https://github.com/openclaw/openclaw/blob/v2026.10.7/src/infra/exec-safe-builtins.ts
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/blob/v2026.10.10-beta.3/src/infra/exec-safe-builtins.ts
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/blob/v2026.9.33/src/infra/exec-safe-builtins.ts
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/blob/v2026.10.7/src/agents/agent-tools.before-tool-call.policy.ts#L291-L436
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/blob/v2026.9.34/src/infra/exec-safe-builtins.ts
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/releases/tag/v2026.9.34
+        precision: github_release
+      - url: https://registry.npmjs.org/openclaw
+        precision: official_docs
+
+  - id: 2026-10-24-github-copilot-cli-sandbox-local-network-default
+    status: accepted
+    section: runtime
+    source: github-copilot-cli
+    channel: tagged-release
+    title: "Copilot's enabled sandbox now permits local-network access by default"
+    finding_ids:
+      - 2026-10-24-github-copilot-cli-local-network-access-defaults-on-and-macos-gains-a-narrower-localhost-exception
+      - 2026-10-24-github-copilot-cli-acp-honors-saved-sandbox-settings-and-launch-flags-on-new-and-resumed-sessions
+    summary: >
+      Copilot CLI 1.0.100 defaults local/private-network access on inside an enabled sandbox.
+      Version 1.0.101 permits direct macOS localhost TCP when local access is enabled and no host
+      filters apply. Stable 1.0.103 also repairs saved sandbox settings and launch flags in new and
+      resumed ACP sessions. Sandboxing itself remains default-off. Pinned docs still show the older
+      network default, so omission is an unsafe policy choice.
+    why_action_bearing:
+      - >
+        Terminal and ACP fleet owners: install stable 1.0.103 and set sandbox.allowLocalNetwork
+        deliberately. Test a needed development listener and an unintended private service on each
+        host; a functioning local development loop can now replace a workaround while exposing
+        services an operator previously assumed were unreachable.
+      - >
+        Compare new and resumed ACP sessions with saved settings and launch flags, recording the
+        actual server binary. For required containment, verify enabled=true, failIfUnavailable=true
+        and allowBypass=false in managed policy. The 1.0.103 release and package establish delivery
+        even though its final public notes commit is ahead of the source tag.
+      - >
+        Keep host-filter and Windows cases in the test matrix. Platform-specific connection and
+        refusal traces would settle the deployed boundary; the narrow macOS exception does not prove
+        every localhost path works. Use those results to decide whether saved configuration removes
+        per-session repair work.
+    accessibility_consequence:
+      what_got_easier: "Enabled sandboxes can run local-service development loops, and ACP can reuse the
+        saved sandbox configuration."
+      who_can_use_now: "Supported hosts on stable Copilot CLI 1.0.103, with sandboxing explicitly enabled."
+      authority_visibility: "Sandbox enablement, private-network reach and the ACP server identity are
+        separate policy checks."
+    security_consequence:
+      threat_blocked_or_opened: "The local-network default widens reachable services; the ACP repair makes
+        saved containment choices apply."
+      attacker_model: "Injected task instructions attempting to reach local listeners or private services
+        through an authorized command."
+      enforcement: "Supported command sandbox, local-network setting, host filters and managed policy;
+        Windows direct-connection caveats remain."
+      cost_to_operator: "Set an explicit network choice and qualify terminal/new-ACP/resumed-ACP behavior
+        per platform."
+      residual: "Docs conflict with released defaults, and no host connection or refusal test was run here."
+    receipts:
+      - url: https://github.com/github/copilot-cli/releases/tag/v1.0.100
+        precision: github_release
+      - url: https://github.com/github/copilot-cli/releases/tag/v1.0.101
+        precision: github_release
+      - url: https://github.com/github/copilot-cli/releases/tag/v1.0.103
+        precision: github_release
+      - url: https://github.com/github/docs/blob/02c25d16369fe27f9bdb28d1201f6b452f0d21dd/content/copilot/reference/copilot-cli-reference/cli-config-dir-reference.md#L494-L515
+        precision: commit_line_range
+      - url: https://github.com/github/docs/blob/02c25d16369fe27f9bdb28d1201f6b452f0d21dd/content/copilot/reference/enterprise-administrators/enterprise-managed-settings.md
+        precision: git_commit
+      - url: https://registry.npmjs.org/@github%2fcopilot
+        precision: official_docs
+
+  - id: 2026-10-24-openclaw-workshop-edits-before-review
+    status: accepted
+    section: control-plane
+    source: openclaw
+    channel: tagged-release
+    title: "OpenClaw Workshop replaces proposals with immediate versioned edits"
+    finding_ids:
+      - 2026-10-24-openclaw-workshop-replaces-proposal-review-with-direct-edits-and-bounded-undo-history
+      - 2026-10-24-openclaw-workshop-retirement-requires-manual-migration-of-proposal-integrations-and-old-backups
+    summary: >
+      From stable 2026.10.5, Workshop applies learned-procedure edits immediately and retains ten
+      versions per skill plus 500 change entries per agent. Auto remains the default; legacy propose
+      becomes off, but legacy auto plus pending does not. Old proposal methods error, removed hooks
+      no longer fire and old collection backups are not restored automatically. Current 10.7
+      contains this migration; Undo is bounded recovery after use.
+    why_action_bearing:
+      - >
+        Skill-library owners moving to 10.7: use the required patched Node runtime and replace the
+        old proposal recipe. Set skills.workshop.autonomous.mode=off when a person must initiate
+        learning; manual learning remains available. Off is not a new pre-application approval
+        queue.
+      - >
+        If retaining auto, inspect changes already effective, exercise Undo and keep independent
+        backups beyond ten versions. Learned Workshop skills bypass the ordinary per-agent skill
+        allowlist, and background review uses an additional foreground-route model run.
+      - >
+        Port proposal integrations to current Workshop methods and recover needed drafts and old
+        backups manually. A bad-edit/restore test plus correction minutes and review spend would
+        establish whether the removed proposal queue saves attention rather than postpones it.
+    accessibility_consequence:
+      what_got_easier: "Agents can revise reusable procedures directly, with versioned restoration
+        available to operators."
+      who_can_use_now: "Stable OpenClaw 2026.10.5 onward, currently 10.7, after runtime and integration migration."
+      authority_visibility: "The procedure can affect work before review; manual initiation, automatic
+        learning and bounded Undo are different choices."
+    security_consequence:
+      threat_blocked_or_opened: "A bad learned procedure can take effect immediately and survive ordinary
+        skill allowlist expectations."
+      attacker_model: "Untrusted task material influencing an authorized learning run; no
+        persistent-poisoning exploit was reproduced."
+      enforcement: "Current learning/restore authority checks and bounded version history; the old
+        proposal gate no longer exists."
+      cost_to_operator: "Choose initiation policy, port hooks, inspect effective edits and maintain
+        longer-lived backups."
+      residual: "Learning quality, correction burden and review-model spend have not been measured."
+    receipts:
+      - url: https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/tools/skill-workshop.md
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/blob/v2026.10.7/src/skills/workshop/skill-versions.ts
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/blob/v2026.10.7/src/commands/doctor/shared/legacy-config-migrations.runtime.skills.ts
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/blob/v2026.10.7/docs/tools/self-learning.md
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/blob/v2026.10.7/package.json
+        precision: tagged_commit_file
+      - url: https://github.com/openclaw/openclaw/releases/tag/v2026.10.5
+        precision: github_release
+      - url: https://registry.npmjs.org/openclaw
+        precision: official_docs
+
+  - id: 2026-10-24-paperclip-stable-grants-and-accounting-migration
+    status: accepted
+    section: platform
+    source: paperclip
+    channel: tagged-release
+    title: "Paperclip brings Operator grants and durable accounting to stable"
+    finding_ids:
+      - 2026-10-24-paperclip-stable-grants-existing-human-operators-company-editing-and-tool-administration
+      - 2026-10-24-paperclip-stable-makes-cost-receipts-durable-and-can-hold-admission-on-unknown-prices
+    summary: >
+      Stable v2026.1023.0, published on GitHub on 2026-10-24, delivers former-beta changes. Existing
+      active human Operators can receive fourteen default grants through compatibility seeding.
+      Usage receipts now survive until committed settlement, with idempotent accounting and
+      serialized admission. Unpriced usage blocks only under the applicable active, positive-amount
+      hard-stop policy, not as an unconditional ceiling on the provider bill.
+    why_action_bearing:
+      - >
+        Instance administrators: drain old writers and preserve SQLite lock files before upgrading
+        to v2026.1023.0. Inspect human roles and persisted scopes before restart and sign-in; use a
+        narrower role or a verified restrictive stored scope where configuration rights are
+        unwanted, since missing grant rows can be reinserted. Existing scoped rows survive conflict
+        handling.
+      - >
+        Finance and platform owners: retain unsettled receipts, choose the unpriced-usage policy
+        explicitly and reconcile an interrupted/retried run against provider evidence.
+        Persisted-grant comparisons and billed settlement traces would close acceptance; released
+        code alone closes only delivery. Durable records can replace manual cost reconstruction.
+      - >
+        Inventory workers separately: stable's remote Codex range is >=0.149.0 and <0.161.0, so
+        standalone Codex 0.164.0 is outside it. Keep the native call_api parity repair and later
+        review/Stop fixes in their preview lane. A stable platform upgrade does not qualify those
+        workers or fixes.
+    accessibility_consequence:
+      what_got_easier: "Human Operators can configure more company work, and administrators can recover
+        cost evidence after interruptions."
+      who_can_use_now: "Paperclip stable v2026.1023.0, with role migration and compatible selected workers."
+      authority_visibility: "Inspect actual human grants after seeding and distinguish estimated admission
+        from committed spend."
+    security_consequence:
+      threat_blocked_or_opened: "Upgrade can expand existing humans' configuration authority; durable
+        accounting narrows lost or duplicate settlement."
+      attacker_model: "An existing active human Operator receiving unintended grants, or
+        interrupted/retried accounting; no exploit was run."
+      enforcement: "Persisted role grants with insert-missing seeding, idempotent settlement and
+        conditional hard-stop admission."
+      cost_to_operator: "Drain writers, review memberships and scopes, reconcile receipts and qualify the
+        selected worker."
+      residual: "No live grant migration or provider-billed reconciliation was tested; preview parity and
+        review fixes are not stable."
+    receipts:
+      - url: https://github.com/paperclipai/paperclip/releases/tag/v2026.1023.0
+        precision: github_release
+      - url: https://github.com/paperclipai/paperclip/blob/v2026.1023.0/server/src/services/principal-access-compatibility.ts#L17-L135
+        precision: tagged_commit_file
+      - url: https://github.com/paperclipai/paperclip/blob/v2026.1023.0/server/src/services/company-member-roles.ts#L57-L73
+        precision: tagged_commit_file
+      - url: https://github.com/paperclipai/paperclip/blob/v2026.1023.0/server/src/services/run-cost-accounting.ts
+        precision: tagged_commit_file
+      - url: https://github.com/paperclipai/paperclip/blob/v2026.1023.0/server/src/services/budgets.ts#L224-L230
+        precision: tagged_commit_file
+      - url: https://github.com/paperclipai/paperclip/blob/v2026.1023.0/doc/workspace-restore-locks.md#L42-L56
+        precision: tagged_commit_file
+      - url: https://github.com/paperclipai/paperclip/blob/v2026.1023.0/server/src/services/native-runtime/codex-runtime-compatibility.ts
+        precision: tagged_commit_file
+      - url: https://github.com/paperclipai/paperclip/blob/v2026.1023.0/server/src/services/usage-receipts.ts
+        precision: tagged_commit_file
+      - url: https://github.com/paperclipai/paperclip/blob/v2026.1023.0/server/src/services/accounting-transaction.ts
+        precision: tagged_commit_file
+      - url: https://github.com/paperclipai/paperclip/blob/v2026.1023.0/server/src/services/budget-reservations.ts
+        precision: tagged_commit_file
+      - url: https://registry.npmjs.org/paperclipai
+        precision: official_docs
+
+  - id: 2026-10-24-opencode-readable-state-changing-public-contracts
+    status: accepted
+    section: platform
+    source: opencode
+    channel: tagged-release
+    title: "OpenCode 2.1 keeps old sessions readable while changing public APIs"
+    finding_ids:
+      - 2026-10-24-opencode-v2-1-changes-public-replay-and-compaction-fields-while-preserving-legacy-stored-data
+    summary: >
+      OpenCode 2.1.0's 2026-10-20 release consolidates replay fields under native, moves credential
+      setup answers to metadata and removes session.compacted. Storage decoders retain old shapes
+      without a database migration. Current V2 stable is @opencode/cli 2.1.4; the separate
+      opencode-ai package remains V1 1.19.4. Both provide an opencode executable. Readable stored
+      state does not make an old client or plugin compatible.
+    why_action_bearing:
+      - >
+        SDK, event-stream and plugin owners: inventory executable ownership and the running
+        client/server pair, then adapt the 2.1 fields before upgrading the server to 2.1.4. Hold V1
+        deliberately with its own package rather than trusting GitHub's Latest label to select V2.
+      - >
+        Exercise a saved session, tool call/result, compaction and provider/model switch against the
+        exact pair. Native compaction replay depends on provider and model; fallback to original
+        history can change context cost. Successful import alone cannot settle integration
+        compatibility.
+      - >
+        Use recorded API/event results and total migration and review time to decide whether the
+        reusable host replaces custom glue. Independent harnesses supply real operating primitives
+        too; their compatibility bill belongs in the attention calculation, and no matched saving
+        was measured.
+    accessibility_consequence:
+      what_got_easier: "V2 integrators can retain historical session data while adopting the revised
+        reusable host contracts."
+      who_can_use_now: "V2 @opencode/cli 2.1.4 users with adapted integrations; V1 opencode-ai 1.19.4
+        remains a distinct hold."
+      authority_visibility: "The executable, serving process, plugin API and provider replay contract must
+        be identified separately."
+    security_consequence:
+      threat_blocked_or_opened: "A readable session can conceal a broken integration or a changed replay
+        assumption; no new exploit is asserted."
+      attacker_model: "Stale clients/plugins and incompatible provider replay state during an authorized upgrade."
+      enforcement: "Backward-readable storage decoders coexist with intentionally changed public SDK,
+        HTTP/event and plugin fields."
+      cost_to_operator: "Port clients and plugins, run a migration matrix and account for replayed context."
+      residual: "No installed-client migration, runtime policy audit or matched inference-cost test was
+        performed."
+    receipts:
+      - url: https://github.com/anomalyco/opencode/blob/v2.1.4/CHANGELOG.md#breaking-changes
+        precision: tagged_commit_file
+      - url: https://github.com/anomalyco/opencode/commit/acdcdb8dd9f6dcb6f80f268325d9cae2684a67fd
+        precision: commit_diff_reviewed
+      - url: https://github.com/anomalyco/opencode/blob/v2.1.4/services/www/src/docs/content/migrate-v1.mdx
+        precision: tagged_commit_file
+      - url: https://registry.npmjs.org/@opencode%2fcli
+        precision: official_docs
+      - url: https://registry.npmjs.org/opencode-ai
+        precision: official_docs

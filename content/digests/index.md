@@ -1,5 +1,6 @@
 # Bitter Frontier Digests
 
+- [The Owner Can Be an Agent](2026-10-13_2026-10-24-weekly.md) -- 2026-10-13 to 2026-10-24
 - [The Handoff Has an API](2026-09-21_2026-10-13-weekly.md) -- 2026-09-21 to 2026-10-13
 - [Before the First Turn](2026-08-20_2026-09-21-weekly.md) -- 2026-08-20 to 2026-09-21
 - [Approvals Belong to the App](2026-08-17_2026-08-20-weekly.md) -- Bitter Frontier Brief, 2026-08-17 to 2026-08-20

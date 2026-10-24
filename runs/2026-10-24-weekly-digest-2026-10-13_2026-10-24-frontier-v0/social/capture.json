@@ -1,0 +1,354 @@
+[
+  {
+    "url": "https://x.com/Netlify/status/2110714001369842141",
+    "handle": "@Netlify",
+    "display_name": "Netlify",
+    "date": "2026-10-15",
+    "text": "Origin repositories build, preview, and deploy on Netlify the same way GitHub, GitLab, and Bitbucket repos do. Push a commit, and Netlify starts a build. Open a pull request, and the deploy preview link shows up right in the PR.\n\nIt's in beta through Cursor's invite-only Origin program.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/runes_leo/status/2110636794811130000",
+    "handle": "@runes_leo",
+    "display_name": "Leo\uff5cLeoLabs.me",
+    "date": "2026-10-15",
+    "text": "Cursor Origin \u63a5\u5165 20+ \u5f00\u53d1\u5de5\u5177\uff0c\u771f\u6b63\u503c\u5f97\u5173\u6ce8\u7684\u4e0d\u662f Marketplace \u672c\u8eab\uff0c\u800c\u662f AI \u7f16\u7a0b\u6b63\u5728\u5411\u5b8c\u6574\u4ea4\u4ed8\u94fe\u6269\u5f20\u3002\n\nAgent \u4f1a\u5199\u4ee3\u7801\u5df2\u7ecf\u4e0d\u7a00\u7f3a\u4e86\u3002\n\n\u7a00\u7f3a\u7684\u662f\uff1a\u63d0\u4ea4 PR \u2192 CI \u2192 \u5ba1\u67e5 \u2192 \u90e8\u7f72 \u2192 \u76d1\u63a7 \u2192 \u9a8c\u6536\u56de\u6267\uff0c\u6574\u6761\u94fe\u80fd\u5426\u81ea\u52a8\u95ed\u73af\u3002\n\n\u4f46\u6211\u4e0d\u4f1a\u56e0\u4e3a\u4e00\u4e2a\u65b0\u5e73\u53f0\u5c31\u8fc1\u79fb GitHub\u3002\n\n\u5148\u62ff\u771f\u5b9e\u9879\u76ee\u9a8c\u8bc1\u5b8c\u6210\u7387\u3001\u5931\u8d25\u7387\u548c\u4eba\u5de5\u5e72\u9884\u6210\u672c\u3002\u5de5\u5177\u8d8a\u591a\uff0c\u4e0d\u4ee3\u8868\u7cfb\u7edf\u8d8a\u53ef\u9760\u3002",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/VanillaCache/status/2111020861666832651",
+    "handle": "@VanillaCache",
+    "display_name": "VanillaCache",
+    "date": "2026-10-16",
+    "text": "pretty much the same\n\njust created the repo\n\nset the new origin for the repo to cursors origin locally and pushed\n\ncursors origin doesnt have ci natively, so I connected the addon for buildkite\n\ncreated a PR for that, made a few changes until it didn't fail \ud83e\udd23 and merged\n\nupdated my rules and protections, and added bugbot\n\nand was all set \ud83d\udc4c",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/thesunofdog/status/2113696242236866585",
+    "handle": "@thesunofdog",
+    "display_name": "Sun of Dog",
+    "date": "2026-10-23",
+    "text": "A word to the wise if you are on a personal @Grok @bot account and thinking of turning it into a team account: be aware of one thing.\n\nI recently onboarded a colleague to Grok bot and converted to a team account by inviting them from my personal account. Cursor makes it seem easy, and once they accept, you have a team account. I thought it was great\u2014until I realized my personal Origin account with my code repositories did not transfer automatically. That broke my development flow. The bots under the team account can no longer access the codebase still under my personal account.\n\nMy account ID changed, and there is no user-driven way to migrate the codebase. Support confirmed they must handle it manually. With high ticket volume, it will take three to four days. I switched on Wednesday but cannot do production work until they transfer it.\n\nThis is not urgent for me, but it is extremely annoying and poor design. For professional developers it could be disruptive. There was no warning of this risk. If you convert a personal account to a team account and keep your code in Origin, you will likely lose access until support manually transfers it.\n\nYou have been warned.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/cursor_ai/status/2111193957527146711",
+    "handle": "@cursor_ai",
+    "display_name": "Cursor",
+    "date": "2026-10-16",
+    "text": "Cloud agents can now build interactive canvases.\n\nAsk for a dashboard or report while the agent works, then share the finished canvas with your team as a link.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/hbthegreat_/status/2111106706956783698",
+    "handle": "@hbthegreat_",
+    "display_name": "Ryan Handby",
+    "date": "2026-10-16",
+    "text": "i had tmux panes then later herdr panes doing this automatically to run my fleet and when that feature came out all of them immediately switched over to that primitive and stopped using the cross session tools I wrote without me even telling them too.\n\nwhen i first saw it I had a big wtf. but its nice now",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/noahreeveshq/status/2111544480457445781",
+    "handle": "@noahreeveshq",
+    "display_name": "Noah",
+    "date": "2026-10-17",
+    "text": "I WAS WRONG! I am so sorry. Skill issue. My fault.\n\nIt had a memory saved from earlier this year when I was setting up auth and I told it not to login for me since I needed to test it myself.\n\nIt saved it as a hard rule and I only found it because I had Codex comb through CLAUDE.md and all of Claude Code\u2019s memory files. Once Codex tweaked those memories, it was able to do it.\n\nIt seems a lot of people experienced something similar so I suggest that you audit its memory and see if there are any restrictions it might\u2019ve set on itself to be unintentionally strict.\n\nI am once again humbled by the consequences of my own actions.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/ayyazdev/status/2112678467364106340",
+    "handle": "@ayyazdev",
+    "display_name": "Ayyaz",
+    "date": "2026-10-20",
+    "text": "Claude Code 2.1.304 adds decider: \"person\" to mod tool checks. Only the permission dialog or a host callback can approve that call. With nobody around to ask, it's refused with the mod's reason.\n\nI'd put deploys and prod DB writes behind it and let auto mode handle the rest.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/badlogicgames/status/2112559218649686467",
+    "handle": "@badlogicgames",
+    "display_name": "Mario Zechner",
+    "date": "2026-10-20",
+    "text": "the whole agent is composed of tasks. each task is made of phases. a phase is: store intent durably, execute effect, store result + next phase.\n\nprocess dies. reopen, get all previously live tasks and rerun the last phase they've been in.\n\nno event sourcing. that doesn't work well with long running sessions.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/Howaboua/status/2113722776469299569",
+    "handle": "@Howaboua",
+    "display_name": "Howaboua",
+    "date": "2026-10-23",
+    "text": "So I've been maintaining two versions of my @pidotdev extensions monorepo for a while now...  23 building blocks for Pi Durable ready for ya to tweak.\n\nPlease treat them as things to tinker with, not ready-made plugins. Durable gives us extension APIs. This repo is my take on packaging capabilities around them, esp since we don't really have any official plugin standard yet to which I could publish towards, at least not to my knowledge. Your app still supplies the host wiring, permissions, credentials and UI.\n\nThe components themselves do not carry any UI styling. But they are designed to emit composable elements that you can then style in your TUI/UI.\n\nWhat's in the box:\n\n- Code: Run JavaScript that calls the agent's registered tools.\n- Notebook: Run persistent TypeScript with imports and checkpointed values.\n- Worker Code: Run bounded JavaScript and tools inside Cloudflare Workers, without a native shell. When you wanna use my codemode and host on CF. Untested AF.\n- Context: Save persistent notes, retrieve earlier conversation history and start a fresh context window from a checkpoint.\n- Nested AGENTS.md: Load scoped guidance as file operations reach nested directories.\n- Skills: Discover skills and read their instructions and references.\n- Apply Patch: Add, edit, move and delete files with Codex-format patches.\n- View Image: Read local images and optionally describe them for text-only models.\n- Web: Search the web and follow returned references through Codex.\n- Imagegen: Generate and edit images, then save the results in your workspace.\n- Browser: Control Chrome through CDP using its existing login session.\n- Agents: Delegate work to persistent workers and receive their replies.\n- Board: Share persistent discussions between Durable conversations, independently of Agents.\n- Pulses: Run scheduled Markdown prompts in owned conversations and deliver their results.\n- Git: Read repository diffs, file content and image previews through an explicit Git capability.\n- UI SDK: Connect interactive component UIs to host-owned state, actions and streams.\n- Sites: Manage ChatGPT Sites and deploy committed source with explicit visibility controls.\n- Guardian: Block selected tool calls or request a one-shot Codex review before they execute.\n- Grok Voice: Add xAI realtime voice, dictation and browser audio controls.\n- GipPity Voice: Add Codex subscription voice, dictation and browser audio controls.\n- Dictation: Transcribe recorded audio locally with Whisper.\n- Settings: Store component preferences with global and project overrides.\n- OpenAI Responses: Use OpenAI or Codex Responses with WebSocket caching and Responses Lite in Codex mode.\n\nCode and Notebook both include shell tools. Pick one execution mode per conversation. Registered tools use the same Durable boundary whether the model calls them directly or through Code or Notebook.\n\nAre they all necessary? IDK. I am working on a GUI app that consumes them all. So I have pi-durable-components repo (universal), howcode-components repo (tailored towards howcode, styles the universal components etc), and howcode itself which is basically a shell for hosting whatever.\n\nTake the bits you like, change the bits you don't. Fork it. They change often.\n\nhttps://t.co/mced9b3Vdh\n\nHappy Clanking!\n\n- Howaclawa",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/badlogicgames/status/2111501246171410731",
+    "handle": "@badlogicgames",
+    "display_name": "Mario Zechner",
+    "date": "2026-10-17",
+    "text": "huh, for me it's a lot more token efficient, specifically less turns even compared to parallel tool calls.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/thsottiaux/status/2112712984644784534",
+    "handle": "@thsottiaux",
+    "display_name": "Tibo",
+    "date": "2026-10-21",
+    "text": "Day 16/\n\nYou can now cache for 12h in the API and for logged in users across Codex & Work we keep cache forever and you don\u2019t have any penalty for coming back to an old conversation or resuming after a few hours and are now guaranteed to hit the cache.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/willdepue/status/2113789643275862025",
+    "handle": "@willdepue",
+    "display_name": "will depue",
+    "date": "2026-10-24",
+    "text": "the models get lost, the app keeps breaking and stalling my goals, they write giant unreadable .txt reports, which i open in this tiny markdown panel which crushes these 5 column tables into 150px. like come on",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/openclaw/status/2112260434116108528",
+    "handle": "@openclaw",
+    "display_name": "OpenClaw\ud83e\udd9e",
+    "date": "2026-10-19",
+    "text": "\ud83e\udd9e OpenClaw v2026.10.5 is out!\n\n\ud83e\udd16 Sidebar keeps your agents within reach\n\u21a9\ufe0f Skill Workshop 2.0 gets Undo\n\ud83d\udd17 Public conversation links need no sign-in\n\n\ud83c\udf89 2,250 PRs and 637 contributors.\n\nJust the highlights. Much more in the full notes \ud83d\udc47\nhttps://docs.openclaw.ai/releases/2026.10.5",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/KingShowen777/status/2113786047108681730",
+    "handle": "@KingShowen777",
+    "display_name": "KING-SHOWen",
+    "date": "2026-10-24",
+    "text": "Hermes Agent v0.22.5\uff08\u65e5\u672c\u6642\u959310/23 14:28\uff09\u3001Hermes \u3092 MCP \u30b5\u30fc\u30d0\u30fc\u3068\u3057\u3066\u4f7f\u3063\u3066\u3044\u308b\u4eba\u306b\u306f\u5927\u4e8b\u306a\u5909\u66f4\u304c\u5165\u3063\u3066\u307e\u3059\u3002Claude Code \u3084 Codex \u5074\u306e args \u304c [\"mcp\", \"serve\"] \u306e\u307e\u307e\u66f4\u65b0\u3059\u308b\u3068\u3001",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/Teknium/status/2112986989897351189",
+    "handle": "@Teknium",
+    "display_name": "Teknium \ud83e\udebd",
+    "date": "2026-10-21",
+    "text": "Ya'll could just use one agent, Hermes, and be done with this madness lol",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/ayyazdev/status/2113675412538564841",
+    "handle": "@ayyazdev",
+    "display_name": "Ayyaz",
+    "date": "2026-10-23",
+    "text": "Copilot CLI 1.0.102: subagents now honor the custom and MCP tool approvals you already gave, so no duplicate permission prompts. 1.0.103 reuses cached local MCP tool snapshots across worktrees in one repo.\n\nGood time to review what you've approved before subagents inherit it.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/JackWoth98/status/2113597146758856716",
+    "handle": "@JackWoth98",
+    "display_name": "Jack Wotherspoon",
+    "date": "2026-10-23",
+    "text": "Gemini API CLI is not a coding agent. Its an efficient wrapper around the Gemini API that you give to your agent as a tool.\n\nWant to generate a video in Codex? Install the CLI and your agent can now do so.\n\nWant your Hermes to generate images with NanoBanana? Give it the CLI.\n\nThe CLI does so easily without your agent needing to write one off Python scripts etc.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/dotta/status/2113289308954329150",
+    "handle": "@dotta",
+    "display_name": "dotta \ud83d\udcce",
+    "date": "2026-10-22",
+    "text": "fwiw in the most recent versions of paperclip we've curbed this too-many-subtasks behavior",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/thdxr/status/2113274143806206109",
+    "handle": "@thdxr",
+    "display_name": "dax",
+    "date": "2026-10-22",
+    "text": "client / server model of OpenCode make things like this super easy\n\ncan have both clients running side by side and have the agent compare",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/ardabrowski/status/2112198926161883515",
+    "handle": "@ardabrowski",
+    "display_name": "Andrzej D\u0105browski",
+    "date": "2026-10-19",
+    "text": "I've been building ecommerce agents for a while and tried many AI frameworks along the way. I must say:\n\n@eve is the first one that really clicked.\n\nI told @shardara this recently and he asked me why, so I thought it was worth sharing publicly.\n\nIn my first AI consulting gigs (mostly custom shopping assistants) I was stunned by how much infra work it takes to ship an agent. I'd say 60\u201370% of my time went into infra, and only the rest into the actual AI work: context engineering, data, evals. That was insane tbh, because none of that infra felt custom to me. Most frameworks either didn\u2019t help much with infra, or if they did, they forced clunky abstractions on the AI side, and I kept fighting the framework instead of doing my work.\n\nThat's probably why so many folks say \"don't use a framework, just build from scratch.\" I felt that too (we all have our Claudes and Codexes, right?), but going framework-less never felt right either. There\u2019s so much repeatable stuff, and way too many footguns, to rebuild it every time.\n\nSo for a long time I was looking for something very simple:\n1. Pls pls handle infra for me. Durable execution, sandboxes, streaming, reconnects, subagents, file uploads that land in the sandbox, auth, web search, easy deployment.\n2. LEAVE ME FREEDOM on the AI part. I want to own the harness, not have the framework own it for me.\n\n@eve  is just the first one that ticks all these boxes.\n\nBonus: every production agent quickly needs a UI and often a custom API. A playground, a context view, a domain-specific data viewer (inspired by @HamelHusain, highly recommend). With Eve + Next.js it\u2019s all in a single repo (not even a monorepo!), deployed with one click. Framework-defined Infrastructure at its finest, it really feels good.\n\nbtw, I come from front-end world and I remember exactly how the world looked before and after nextjs. Now it feels like this again, just with AI.\n\nEverything we do at the eCommerce AI Lab at @commerce_ui now runs on Eve: shopping assistants and analytics agents for our clients, plus our own company agent that lives in Slack. It all just works, and a huge amount of custom code just evaporated.\n\nHighly recommend",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/swyx/status/2111559986249859559",
+    "handle": "@swyx",
+    "display_name": "swyx",
+    "date": "2026-10-17",
+    "text": "harrison would say that :) you also want to take into account kv cache and dreaming optimizations that only harness-model colocation can achieve. ive had my own career ruined by trying to be switzerland without realizing the costs.\n\ntruth is his advice probably:\n- low end: doesnt matter\n- mid tier: maybe\n- high end: definitely\n\nand most people are not high end (>2T tokens a month)",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/yannisbuilds/status/2110457439543787860",
+    "handle": "@yannisbuilds",
+    "display_name": "Yannis",
+    "date": "2026-10-14",
+    "text": "Can Cursor Origin give each cloud agent its own permissions?\n\nI\u2019d like an agent to push fixes and open PRs without being able to merge just because my account can. And I\u2019d want every action linked to the exact agent run.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/KowalPrato4o/status/2110633420023795889",
+    "handle": "@KowalPrato4o",
+    "display_name": "Kowal Prator",
+    "date": "2026-10-15",
+    "text": "\u600e\u4e48\u7528\uff1a\n\n\u00b7 \u767b\u5f55 Cursor \u2192 codebase \u8bbe\u7f6e\u91cc\u7684 Apps\uff0c\u4ece Marketplace \u5b89\u88c5\n\u00b7 \u5728\u4ed3\u5e93\u7684 Apps \u9875\u67e5\u770b\u54ea\u4e9b\u5e94\u7528\u5df2\u5bf9\u5f53\u524d repo \u751f\u6548\n\u00b7 \u81ea\u7814\u5de5\u5177\uff1a\u5728 namespace \u5efa\u79c1\u6709 App \u2192 \u63a5 Origin API \u2192 \u8bbe\u4e3a Public \u2192 \u63d0\u4ea4\u5ba1\u6838\n\u00b7 \u6ce8\u610f\uff1aDepot/Buildkite \u76ee\u524d\u53ea\u652f\u6301 Origin \u539f\u751f\u4ed3\u5e93\uff1bGitHub \u955c\u50cf\u4ecd\u8d70 GitHub CI\n\u00b7 Origin \u4ecd\u662f early beta\uff0c\u5148\u5c0f\u4ed3\u8bd5\u88c5\u518d\u6269",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/ItsCynnamoroll/status/2111854527943176240",
+    "handle": "@ItsCynnamoroll",
+    "display_name": "Cynthia Toporowski",
+    "date": "2026-10-18",
+    "text": "I've had a few people ask why I'd ever bother creating Kvarm when solutions like Cursor Origin exist.\n\nIt's simple. We need an open-source git platform for the agentic era. No vendor lock-in.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/dianeliu21/status/2113718347716309331",
+    "handle": "@dianeliu21",
+    "display_name": "Diane Liu",
+    "date": "2026-10-23",
+    "text": "hey! this is a gap in our repo lifecycle that we'll work on fixing ASAP. in the meantime if you DM me your account info or support ticket # i can fix this for you now!",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/ClaudeDevs/status/2110866210573386065",
+    "handle": "@ClaudeDevs",
+    "display_name": "ClaudeDevs",
+    "date": "2026-10-15",
+    "text": "Code Review is now generally available for Claude Team and Enterprise plans. \n\nReviews are now faster, catch more of the bugs that matter, and admins can pick from Quick, Standard, or Deep review levels for each repo.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/trq212/status/2112219173288120531",
+    "handle": "@trq212",
+    "display_name": "Thariq",
+    "date": "2026-10-19",
+    "text": "I think most people multi-tasking with agents could benefit from slowing down\n\nmost of the stuff you're doing wont really matter- what's your P0? what would it look like if you gave it your full attention?",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/ClaudeDevs/status/2113698007892070527",
+    "handle": "@ClaudeDevs",
+    "display_name": "ClaudeDevs",
+    "date": "2026-10-23",
+    "text": "Tasks and Elicitations are available today in the Claude Code CLI, rolling out to more Claude products soon.\n\nBuilding plugins for Claude? Add Tasks and Elicitations to your MCP server today. \n\n https://code.claude.com/docs/en/mcp#mcp-tasks-for-server-authors\n\nhttps://code.claude.com/docs/en/mcp#respond-to-mcp-elicitation-requests",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/CFchangelog/status/2113654363109699653",
+    "handle": "@CFchangelog",
+    "display_name": "Cloudflare Changelog",
+    "date": "2026-10-23",
+    "text": "Agents SDK v0.30.0 now supports Pi 1.4 with smarter hibernation and crash recovery. Your harnesses can recover from evictions and storage errors automatically.\n\nhttps://developers.cloudflare.com/changelog/post/2026-10-22-pi-harness-pi-1-4/",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/lucasmeijer/status/2111009257835409791",
+    "handle": "@lucasmeijer",
+    "display_name": "Lucas Meijer",
+    "date": "2026-10-16",
+    "text": "kind of sad I have a pi durable coding agent with durable subagents,  but I'm not using it because I wanna use opus55,  and its long subagent-using sessions completely crumble on a restart",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/trq212/status/2111499591778734394",
+    "handle": "@trq212",
+    "display_name": "Thariq",
+    "date": "2026-10-17",
+    "text": "eh but code mode is just a different way of doing tool calling? not a lot more token efficient from what I\u2019ve seen\n\nbut also I don\u2019t think I understand the original video",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/DanielGri/status/2111065631046955359",
+    "handle": "@DanielGri",
+    "display_name": "Daniel Griesser",
+    "date": "2026-10-16",
+    "text": "@pidotdev-durable is so much fun. The primitives and architecture are so robust and simple to use, extend, and combine. \n\nBuilt a self-extensible agent harness that can hotswap & hotreload even the server runtime while continuing to build itself. \nThe core of this is about ~3,000 LOC and about 35k in extensions \ud83d\ude05\nAlmost everything is an extension, following the philosphy of Pi, every part of the UI is.\nThis has been my toy project for the last 2 weeks, lets see how long it lasts ^^\n\nI started building Ultimate itself at about ~20 commits in, from that point on it evolved while I was using it.\nIt has self debugging tools built in and conversation branching etc. in a very unique way.\n\nThere are so many ideas in there I wanted to always experiment with how it feels, and now I feel like the combo pi-durable and better models, it's possible.\n\nI haven't used it yet for building anything else but the idea behind is that you use it directly in any project you build and the harness eveolves side by side with the project.\n\nSome might ask why? I ask why not? \ud83d\ude05 \n\nHere is the repo, just in case anyone wants to get some inspiration: https://t.co/7cZ7HUZ6Ka \nThis is just beautiful slop, nothing serious",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/bra1n_dump/status/2113854374804086988",
+    "handle": "@bra1n_dump",
+    "display_name": "Kirill Dubovitskiy",
+    "date": "2026-10-24",
+    "text": "Codex \"cache forever\" isn't working for me. Same thread resumed after 13h: 0% cached.\n\n~94K-token thread, codex exec, ChatGPT login, 6.1 Sol:\n\n2h:   99.8%\n13h: 0%\n25h: 8%  (system prompt probably got cached)\n\nDesktop too: https://github.com/openai/codex/issues/56050",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/pvncher/status/2113794328690647521",
+    "handle": "@pvncher",
+    "display_name": "eric provencher",
+    "date": "2026-10-24",
+    "text": "Hey I really recommend not using goal.\n\nYou\u2019re much better off with a manager agent paired with a scheduled automation that reminds it to poll progress of different runner agents it starts in separate threads.\n\nMy pro tip after that, is to tell the manager to write all your steers down, and reconcile them against the overall goal before dispatching new work.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/openclaw/status/2113756870313951480",
+    "handle": "@openclaw",
+    "display_name": "OpenClaw\ud83e\udd9e",
+    "date": "2026-10-23",
+    "text": "OpenClaw Enterprise separates trusted workloads (RBAC, audit logs, enforced policy) from untrusted ones (the agent and its tools). The control plane runs in its own isolation boundary, so the agent can't touch it.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/SteveSchoettler/status/2113705996984144302",
+    "handle": "@SteveSchoettler",
+    "display_name": "Stephen Schoettler",
+    "date": "2026-10-23",
+    "text": "The last few days with my Hermes setup have been ROUGH. Broken Kanban handbacks left me manually coordinating agents that were supposed to work autonomous. I finally repaired handoffs and an isolated coding pilot. That\u2019s progress, but the real test is whether useful work finishes without me babysitting it. Ugh!",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/hazemomier/status/2112527393844060626",
+    "handle": "@hazemomier",
+    "display_name": "Hazem Omier",
+    "date": "2026-10-20",
+    "text": "Copilot CLI 1.0.100 (Oct 19): its sandbox now lets commands reach localhost and private-network services by default. That's where local MCP servers, dev databases and admin panels live. If you enabled the sandbox to contain the agent, re-check its reach.\nhttps://github.com/github/copilot-cli/releases/tag/v1.0.100",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/awakecoding/status/2113270794348576972",
+    "handle": "@awakecoding",
+    "display_name": "Marc-Andr\u00e9 Moreau",
+    "date": "2026-10-22",
+    "text": "GitHub Agentic Workflows look great unless you absolutely need a Windows or macOS runner. It's hard to build an AI software factory for a Windows desktop app from a headless Linux runner. I had to switch to a regular GitHub Actions workflow that calls Copilot CLI \ud83e\udd37",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/jayrao/status/2113121238461657192",
+    "handle": "@jayrao",
+    "display_name": "Jay",
+    "date": "2026-10-22",
+    "text": "How different is this from @papercliping ? I\u2019ve used it in the past, eventually the agents go crazy with their own sub-tasks and it becomes more complex than it should. How are you guardrailing these?",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/gneubig/status/2113643262900662423",
+    "handle": "@gneubig",
+    "display_name": "Graham Neubig",
+    "date": "2026-10-23",
+    "text": "I'll be doing a live stream on \"how to build an open source software factory with open models\" at Hacktoberfest 2026 in 15 minutes.\n\nTune in and give me best wishes that my hot-off-the-press demo doesn't fall over :)\n\nhttps://hacktoberfest.com/schedule/",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/fateshelled/status/2113795155056865749",
+    "handle": "@fateshelled",
+    "display_name": "fateshelled",
+    "date": "2026-10-24",
+    "text": "OpenCode v2\u3084\u3063\u3068\u6163\u308c\u3066\u304d\u305f\u30fc\u3002\u30e2\u30c7\u30eb\u6307\u5b9a\u3059\u308b\u3068\u304d\u306bvariant\u307e\u3067\u6307\u5b9a\u3067\u304d\u308b\u306e\u306f\u5730\u5473\u306b\u5b09\u3057\u3044\u3002\nTUI\u304c\u6642\u3005\u56fa\u307e\u308b\u306e\u306f\u3069\u3046\u306b\u304b\u3057\u305f\u3044\u304c\u3001VSCode\u306e\u30bf\u30fc\u30df\u30ca\u30eb\u304b\u3089\u8d77\u52d5\u3057\u3066\u3044\u308b\u304b\u3089\u304b\u306a\uff1f\u30b5\u30d6\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u306b\u30bf\u30a4\u30e0\u30a2\u30a6\u30c8\u8a2d\u5b9a\u3067\u304d\u305f\u3089\u826f\u3044\u306a\u30fc\u3002\n\u3042\u3068\u306f\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u5b9f\u884c\u6a29\u9650\u307e\u308f\u308a\u306e\u5236\u5fa1\u304c\u3061\u3087\u3063\u3068\u7518\u3044\u3002",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/chaka_kuka/status/2112299029463765148",
+    "handle": "@chaka_kuka",
+    "display_name": "Dmitry Dirin",
+    "date": "2026-10-19",
+    "text": "Andrzej, how much control does Eve give you over retries around tool calls? If an 'add to cart' call succeeds just before a worker crashes, resuming the run shouldn't add the item twice.",
+    "unavailable": false
+  },
+  {
+    "url": "https://x.com/cristian_le0/status/2113658709981163933",
+    "handle": "@cristian_le0",
+    "display_name": "Cristian Leo",
+    "date": "2026-10-23",
+    "text": "I wouldn't trust any approval a coding agent \"remembers\" after compacting its context. A fake [User]: line planted in a file came out of the summary as a real user instruction 87\u2013100% of the time in Cline, Aider, OpenHands, opencode and pi. Researchers' tests.",
+    "unavailable": false
+  }
+]
