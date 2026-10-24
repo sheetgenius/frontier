@@ -1,0 +1,435 @@
+schema_version: bitter.frontier_source_contract.v0
+id: opencode
+label: OpenCode
+owner: Anomaly / anomalyco
+homepage: https://opencode.ai/
+docs: https://opencode.ai/v2/docs
+primary_surfaces:
+  - id: repo
+    kind: github_repo
+    url: https://github.com/anomalyco/opencode
+    priority: 1
+    watch:
+      - tags
+      - commits
+      - pull_requests
+      - issues
+      - configuration
+      - permissions
+      - policies
+      - providers
+      - session_storage
+      - plugins
+    notes: >
+      GitHub repository ID 975734319. The former sst/opencode API resolves to
+      this same ID and full_name. Default branch is dev, not main. Resolve a
+      change against the relevant release tag; branch presence is not shipment.
+  - id: site
+    kind: official_site
+    url: https://opencode.ai/
+    priority: 2
+    watch:
+      - positioning
+      - installation_targets
+      - provider_support
+      - surface_changes
+    notes: >
+      The site links the canonical repo and V2 docs. Marketing usage totals are
+      attributed claims, not independently established active-user counts.
+  - id: docs-v2
+    kind: official_docs
+    url: https://opencode.ai/v2/docs
+    priority: 1
+    watch:
+      - permissions
+      - policies
+      - agents
+      - migrate_from_v1
+      - config
+      - compaction
+      - references
+      - plugins
+      - mcp
+      - cli
+      - api
+      - console
+    notes: >
+      Current documentation family. At intake the stable snapshot is
+      https://github.com/anomalyco/opencode/tree/v2.1.4/services/www/src/docs/content.
+      Pin the source commit for historical defaults; do not substitute V1 docs.
+  - id: docs-v1
+    kind: official_docs
+    url: https://opencode.ai/docs/
+    priority: 1
+    watch:
+      - permissions
+      - agents
+      - server
+      - web
+      - share
+      - sdk
+      - providers
+    notes: >
+      OpenCode 1 documentation remains live. The V1 README at v1.19.4 links
+      this family and opencode-ai. Its permission keys and server behavior must
+      not be carried into V2 without checking the V2 record.
+  - id: changelog
+    kind: official_changelog
+    url: https://opencode.ai/changelog
+    priority: 1
+    watch:
+      - versioned_changes
+      - breaking_changes
+      - core
+      - tui
+      - desktop
+      - sdk
+      - extensions
+    notes: >
+      V2.1.4 is dated 2026-10-23 here. Corroborate the entry with registry
+      publication and its source tag; a changelog date alone is not ancestry.
+  - id: npm-v2
+    kind: package_registry
+    url: https://www.npmjs.com/package/@opencode/cli
+    priority: 1
+    watch:
+      - latest
+      - beta
+      - dev
+      - publication_time
+      - integrity
+      - repository_identity
+      - platform_packages
+    notes: >
+      Current stable CLI package, confirmed by the v2.1.4 README and registry
+      repository metadata. Resolve npm view @opencode/cli dist-tags, then read
+      the exact version and its time entry from https://registry.npmjs.org/@opencode%2fcli.
+      At intake latest is 2.1.4, published 2026-10-23T10:13:53.203Z. Dereference
+      refs/tags/v2.1.4 through gh api; it resolves to commit
+      68bc26b7da1990ce10ffecfbc1e09eb13aa5d824. A matching npm publication and
+      source tag establish tagged-release even without a GitHub Release object.
+  - id: npm-v1
+    kind: package_registry
+    url: https://www.npmjs.com/package/opencode-ai
+    priority: 1
+    watch:
+      - latest
+      - dev
+      - beta
+      - historical_dist_tags
+      - publication_time
+      - integrity
+    notes: >
+      Still the OpenCode 1 package, not an alias for the newest major. Resolve
+      npm view opencode-ai dist-tags and https://registry.npmjs.org/opencode-ai.
+      At intake latest is 1.19.4, published 2026-10-22T13:03:43.704Z. Old
+      latest-0, latest-1, snapshot, next and beta pointers can be stale; record
+      the resolved version and time rather than interpreting the name as fresh.
+  - id: github-releases
+    kind: github_releases
+    url: https://github.com/anomalyco/opencode/releases
+    priority: 1
+    watch:
+      - release_publication
+      - prerelease_flag
+      - assets
+      - updater_manifests
+    notes: >
+      gh api repos/anomalyco/opencode/releases/latest resolves to v1.19.4,
+      published 2026-10-22T13:03:41Z. It is not the global newest stable:
+      V2.1.4 has a source tag and npm publication but its GitHub Release lookup
+      returned 404 at intake. Distinguish tag, release object, npm package and
+      downloadable artifact. The V1 tag dereferences to
+      148842ef7cb1bc34192b3fff57d0f9721ab9c801; the Release target_commitish
+      field is not a substitute for dereferencing the tag.
+  - id: release-pipeline
+    kind: tagged_source
+    url: https://github.com/anomalyco/opencode/blob/v2.1.4/script/publish.ts
+    priority: 1
+    watch:
+      - stable_tag_creation
+      - preview_channel_resolution
+      - npm_publication
+      - desktop_publication
+      - updater_publication
+    notes: >
+      Also inspect packages/script/src/index.ts, packages/cli/script/publish.ts,
+      script/update-artifact.ts and .github/workflows/publish.yml at the same
+      commit. V2 distributes artifacts through the official update service;
+      GitHub Releases alone is incomplete. For a change, compare its commit
+      with the dereferenced tag using GitHub compare merge_base_commit or a
+      read-only ancestry check, then verify the package or artifact channel.
+  - id: desktop
+    kind: official_downloads
+    url: https://opencode.ai/download
+    priority: 1
+    watch:
+      - desktop_beta_status
+      - operating_system
+      - architecture
+      - artifact_version
+      - updater_channel
+      - bundled_server
+    notes: >
+      The v2.1.4 README labels Desktop App BETA and links this download page.
+      Desktop product status is separate from CLI stable SemVer and from npm
+      beta. Resolve each download or updater manifest to its version, platform
+      and hash before assigning a fix to a desktop installation. A source
+      workflow or a V1 release asset does not establish the current V2 binary.
+  - id: permissions-v2
+    kind: tagged_source
+    url: https://github.com/anomalyco/opencode/blob/v2.1.4/services/www/src/docs/content/permissions.mdx
+    priority: 1
+    watch:
+      - permissive_defaults
+      - external_directory
+      - shell_scanner
+      - saved_approvals
+      - subagent_authority
+      - global_and_agent_rules
+      - policy_precedence
+  - id: security-policy
+    kind: security_policy
+    url: https://github.com/anomalyco/opencode/blob/v2.1.4/SECURITY.md
+    priority: 1
+    watch:
+      - no_sandbox
+      - server_threat_model
+      - mcp_trust_boundary
+      - provider_data_handling
+    notes: >
+      Explicitly says permissions are a UX feature, not security isolation.
+      Its server-password description differs from the V2 web documentation;
+      preserve the disagreement until the relevant launch path is traced.
+  - id: advisories
+    kind: security_advisories
+    url: https://github.com/anomalyco/opencode/security/advisories
+    priority: 1
+    watch:
+      - affected_ranges
+      - fixed_versions
+      - bundled_runtime
+      - cli_desktop_and_server_scope
+  - id: web-v2
+    kind: official_docs
+    url: https://opencode.ai/v2/docs/cli/web
+    priority: 1
+    watch:
+      - local_server
+      - pairing
+      - generated_password
+      - session_cookie
+      - remote_tunnel
+      - standalone_serve
+    notes: >
+      A browser client for an operator-run server. Pairing and OpenTunnel
+      access are not evidence that execution moved to a hosted agent runtime.
+      Pin services/www/src/docs/content/cli/web.mdx for dated claims.
+  - id: console
+    kind: official_service
+    url: https://opencode.ai/console
+    priority: 1
+    watch:
+      - inference_gateway
+      - workspaces
+      - provider_accounts
+      - budgets
+      - organization_policies
+      - sso
+      - data_handling
+    notes: >
+      Optional hosted service documented at
+      https://opencode.ai/v2/docs/console. Watch Zen at
+      https://opencode.ai/docs/zen/ and Go at https://opencode.ai/docs/go/
+      as model-service surfaces, separately from local execution. Hosted
+      service changes need dated service receipts; a CLI tag does not pin a
+      later rollout, price, model list or retention policy.
+  - id: share-v1
+    kind: official_docs
+    url: https://opencode.ai/docs/share/
+    priority: 1
+    watch:
+      - public_session_links
+      - manual_auto_disabled
+      - uploaded_conversation_data
+      - unshare_and_retention
+    notes: >
+      V1 docs describe optional hosted public conversation links at opncd.ai.
+      Do not generalize the feature or its defaults to V2 without a V2 receipt.
+  - id: team
+    kind: maintainer_roster
+    url: https://github.com/anomalyco/opencode/blob/v2.1.4/.github/TEAM_MEMBERS
+    priority: 2
+    watch:
+      - maintainer_changes
+      - maintainer_explanations
+    notes: >
+      Confirmed GitHub handles include thdxr, jayair, Hona and Brendonovich.
+      The same tag's .github/CODEOWNERS names Hona and Brendonovich for web
+      and desktop packages. npm view names thdxr as package maintainer.
+      These receipts establish GitHub/npm handles, not matching X identities.
+  - id: social-x
+    kind: official_social
+    url: https://x.com/opencode
+    priority: 2
+    watch:
+      - announcements
+      - maintainer_context
+      - primary_receipt_links
+    notes: >
+      Linked by the tagged README and official homepage. A post proves what
+      the account said; verify product claims through docs, source or releases.
+  - id: discord
+    kind: official_community
+    url: https://opencode.ai/discord
+    priority: 3
+    watch:
+      - public_announcements
+      - links_to_primary_records
+    notes: >
+      Official README link; it also names https://discord.gg/opencode. Private
+      discussion and screenshots without a public primary receipt are not evidence.
+related_surfaces:
+  standing_status: watched
+  notes: >
+    Keep the Anomaly project, its package generations, and the separate Go
+    lineage distinct. OpenTunnel supplies remote connectivity, not proof of
+    sandboxing. Related SDK, plugin and editor integrations require their own
+    package or extension version before calling an integration shipped.
+  repositories:
+    - id: opencode
+      url: https://github.com/anomalyco/opencode
+      role: primary
+    - id: sst-opencode
+      url: https://github.com/sst/opencode
+      role: former_namespace_same_repository_id
+    - id: opencode-beta
+      url: https://github.com/anomalyco/opencode-beta
+      role: historical_preview_distribution_not_stable_authority
+    - id: opentunnel
+      url: https://github.com/anomalyco/opentunnel
+      role: v2_remote_connectivity
+    - id: old-go-opencode
+      url: https://github.com/opencode-ai/opencode
+      role: excluded_distinct_archived_go_project
+    - id: crush
+      url: https://github.com/charmbracelet/crush
+      role: successor_to_excluded_go_project
+accepted_evidence:
+  - official_docs
+  - tagged_release
+  - tagged_commit_file
+  - github_release
+  - maintainer_commit
+  - merged_pr
+  - package_registry_release
+  - versioned_official_changelog
+  - dated_official_service_record
+  - maintainer_authored_post
+  - reproducible_local_probe
+rejected_evidence:
+  - unsourced_social_claim
+  - third_party_summary_without_primary_link
+  - speculation
+  - stale_model_memory
+  - benchmark_claim_without_method
+  - duplicate_commentary
+  - marketing_claim_without_doc_or_code
+  - star_count_as_active_adoption
+  - package_downloads_as_unique_users
+  - crush_or_old_go_opencode_as_anomaly_evidence
+  - github_latest_badge_as_global_latest
+  - moving_docs_as_historical_defaults
+  - merged_code_as_released_binary
+  - permission_prompt_or_plan_label_as_sandbox
+change_types:
+  - capability
+  - workflow
+  - runtime
+  - protocol
+  - reliability
+  - economics
+  - security
+  - ecosystem
+  - evaluation
+  - philosophy
+research_lenses:
+  - provider_portability
+  - authority_and_isolation
+  - human_attention
+  - client_server_boundary
+  - durable_state
+  - distribution_channel
+  - harness_extensibility
+  - inference_economics
+high_signal_patterns:
+  - permissions
+  - policies
+  - external_directory
+  - shell scanner
+  - saved approval
+  - subagent
+  - plan
+  - sandbox
+  - pair
+  - OpenTunnel
+  - server password
+  - Console
+  - Zen
+  - Go Plus
+  - provider
+  - subscription
+  - MCP
+  - ACP
+  - plugin
+  - compaction
+  - session import
+  - migration
+  - worktree
+  - upgrade
+operator_questions:
+  - "Which package, major, tag, client and server does the operator actually run, and does the claimed change reach that combination?"
+  - "What may Build, Plan and each subagent do by default, which approvals persist, and which global or Console policy can prevent a project from granting access?"
+  - "Does a permission or directory rule merely mediate a tool call, or is there an independently enforced filesystem, process or network boundary?"
+  - "What work moves through the server, SDK, plugins, MCP and editor clients, and where do credentials, session state and verification remain the operator's responsibility?"
+  - "Does changing providers preserve useful context and completed work, or create replay, authentication, compatibility and review costs?"
+  - "Which inference, sharing or remote-access surface sends data off the host, under whose policy, and can the operator disable it?"
+  - "Does broader delegation reduce human approval and review time per verified outcome, or simply produce more work for the same person to inspect?"
+default_actionability:
+  release: test
+  docs_change: observe
+  security_change: test
+  breaking_change: adapt
+  ecosystem_package: observe
+  pricing_or_usage_change: observe
+  policy_or_permission_change: test
+discovery:
+  last_verified: "2026-10-24"
+  verified_by: gh_api_npm_view_registry_api_and_tagged_source_review
+  confidence: high
+  open_questions:
+    - Which desktop updater artifacts currently correspond to V2 stable, beta and older V1 installations, with what platform hashes?
+    - Which V2 server launch paths generate and require a password, and why does the tagged SECURITY.md retain the older opt-in-password description?
+    - Do V2 permission, saved-approval and Console-policy implementations enforce every documented boundary across shell, plugins, MCP and subagents?
+    - What survives a V1-to-V2 upgrade across session imports, agent configuration, plugins, SDK clients and provider authentication?
+    - What measured end-to-end workflow demonstrates less human attention per verified outcome, and what inference and review costs does it add?
+  migration_note: >
+    Two separate identity changes matter. sst/opencode resolves to
+    anomalyco/opencode with GitHub ID 975734319. The distinct archived Go
+    repository opencode-ai/opencode has ID 949662713 and directs users to
+    charmbracelet/crush. Separately, Anomaly's current stable V2 package is
+    @opencode/cli, while opencode-ai continues the V1 line; @opencode-ai/cli
+    is an older preview package and is not the current stable package name.
+notes: >
+  Added 2026-10-24. Handling: Tier 1, daily. MIT, open-source coding agent
+  with terminal, desktop, browser and programmatic clients plus optional hosted
+  model and organization services. Newest stable is V2.1.4 (2026-10-23);
+  opencode-ai and the main repository's GitHub Latest remain V1.19.4
+  (2026-10-22). Do not collapse these channels. Intake measurements: 220,865
+  GitHub stars; npm downloads for 2026-10-16 through 2026-10-22 were 2,180,172
+  for opencode-ai and 321,091 for @opencode/cli. Counts indicate attention and
+  distribution activity, not unique or active users. The preceding 30 complete
+  UTC days contain 22 stable V2 registry publications and eight stable V1
+  GitHub releases. Watch the open, provider-flexible harness as evidence that
+  may support or contradict provider-harness advantage; require a concrete
+  consequence for delegation, portability, governance or scarce human attention.

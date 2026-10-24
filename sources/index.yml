@@ -1,5 +1,5 @@
 schema_version: bitter.frontier_source_index.v0
-last_revised: 2026-09-23
+last_revised: 2026-10-24
 sources:
   - id: codex
     contract: sources/codex.yml
@@ -83,11 +83,18 @@ sources:
     contract: sources/heypi.yml
     notes: sources/heypi.notes.md
     tier: 1
-    status: active
-    cadence: weekly
+    status: retired
+    retired_on: 2026-10-24
+    cadence: none
   - id: deepseek-harness
     contract: sources/deepseek-harness.yml
     notes: sources/deepseek-harness.notes.md
+    tier: 1
+    status: active
+    cadence: daily
+  - id: opencode
+    contract: sources/opencode.yml
+    notes: sources/opencode.notes.md
     tier: 1
     status: active
     cadence: daily
@@ -107,8 +114,9 @@ sources:
     contract: sources/agent-flywheel.yml
     notes: sources/agent-flywheel.notes.md
     tier: 2
-    status: active
-    cadence: weekly
+    status: retired
+    retired_on: 2026-10-24
+    cadence: none
   - id: omnigent
     contract: sources/omnigent.yml
     notes: sources/omnigent.notes.md
@@ -125,8 +133,9 @@ sources:
     contract: sources/temporal-agent-harness.yml
     notes: sources/temporal-agent-harness.notes.md
     tier: 2
-    status: active
-    cadence: weekly
+    status: retired
+    retired_on: 2026-10-24
+    cadence: none
   - id: unreal-agent
     contract: sources/unreal-agent.yml
     notes: sources/unreal-agent.notes.md

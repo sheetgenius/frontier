@@ -106,6 +106,11 @@ const profileSections = splitLeadingOperatorRead(profile.body);
     <p class="issue-meta">
       Edited by <a href="/people/ruemic/">Michael Ruescher</a> / reviewed {formatDate(profile.data.last_full_review ?? profile.data.last_updated)}
     </p>
+    {profile.data.status === "retired" && (
+      <p class="profile-retired-note rule mt-4 pt-4">
+        <strong>No longer tracked.</strong> Frontier stopped following {profileLabel} on {formatDate(profile.data.retired_on)}{profile.data.retired_reason ? `: ${profile.data.retired_reason}` : "."} What follows is the last dated posture, from {formatDate(profile.data.last_updated)}; check the project's own release notes for anything newer.
+      </p>
+    )}
 
     {officialLinks.length > 0 && (
       <nav class="profile-links" aria-label="Official links">

@@ -11,7 +11,9 @@ compared_with: []
 repo: https://github.com/temporal-community/temporal-agent-harness
 surface_class: open_source_commits
 evidence_floor: official_docs
-status: active_watch
+status: retired
+retired_on: 2026-10-24
+retired_reason: "a community reference harness with little outside adoption (about 120 GitHub stars at retirement); its durable-execution design remains a useful precedent, but it no longer earns a weekly read."
 last_updated: 2026-10-13
 last_full_review: 2026-10-13
 claims:

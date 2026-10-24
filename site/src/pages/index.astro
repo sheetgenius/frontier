@@ -93,6 +93,9 @@ const watchlist = profiles
     tagline: String(profile.data.tagline ?? "").trim(),
   }))
   .filter((p) => p.tagline);
+// Retired profiles keep their pages but leave the watchlist.
+const retiredSlugs = new Set(profiles.filter((p) => p.data.status === "retired").map((p) => p.slug));
+const activeWatchlist = watchlist.filter((p) => !retiredSlugs.has(p.slug));
 ---
 
 <Base
@@ -288,7 +291,7 @@ const watchlist = profiles
   <section class="measure rule py-8">
     <p class="small-caps eyebrow">The watchlist</p>
     <ul class="watchlist">
-      {watchlist.map((project) => (
+      {activeWatchlist.map((project) => (
         <li>
           <a href={`/profiles/${project.slug}/`} class="watchlist-link">
             <span class="watchlist-name">{project.label}</span>

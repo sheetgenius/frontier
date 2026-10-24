@@ -12,7 +12,9 @@ compared_with:
 repo: https://github.com/hunvreus/heypi
 surface_class: open_source_commits
 evidence_floor: official_docs
-status: active_watch
+status: retired
+retired_on: 2026-10-24
+retired_reason: "no core release since 22 July 2026 and too little adoption to keep a weekly read useful (about 160 GitHub stars at retirement)."
 last_updated: 2026-10-13
 last_full_review: 2026-10-13
 claims:

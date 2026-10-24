@@ -17,7 +17,9 @@ x:
       name: Jeffrey Emanuel
 surface_class: tagged_release_and_official_site
 evidence_floor: tagged_release
-status: active_watch
+status: retired
+retired_on: 2026-10-24
+retired_reason: "a single-maintainer setup script around other agents rather than a harness in its own right, with little outside adoption (about 1,700 GitHub stars at retirement); the agents it installs are tracked directly."
 artifact_version: 6
 first_published: 2026-07-02
 last_updated: 2026-10-13

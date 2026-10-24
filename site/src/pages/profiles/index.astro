@@ -1,13 +1,15 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { formatDate, listProfiles } from "../../lib/frontier";
-const profiles = listProfiles();
+const all = listProfiles();
+const profiles = all.filter((p) => p.data.status !== "retired");
+const retired = all.filter((p) => p.data.status === "retired");
 ---
 
 <Base
   title="AI Coding Agent and Infrastructure Research Profiles"
-  description="Dated, source-backed profiles for Codex, Claude Code, Gemini CLI, Agent Flywheel, OpenHands, and other projects across the coding-agent stack."
-  keywords={["coding agent research profiles", "agent infrastructure research", "Codex", "Claude Code", "Agent Flywheel", "Gemini CLI", "OpenHands"]}
+  description="Dated, source-backed profiles for Codex, Claude Code, Cursor, OpenCode, Pi, OpenHands, and other projects across the coding-agent stack."
+  keywords={["coding agent research profiles", "agent infrastructure research", "Codex", "Claude Code", "Cursor", "OpenCode", "Gemini CLI", "OpenHands"]}
 >
   <section class="measure py-10">
     <p class="small-caps text-muted">Profiles</p>
@@ -30,5 +32,19 @@ const profiles = listProfiles();
           ))
       }
     </div>
+    {retired.length > 0 && (
+      <div class="rule mt-10 pt-6">
+        <p class="small-caps text-muted">No longer tracked</p>
+        <p class="profile-row-dek mt-2">These pages keep their last dated posture; Frontier stopped following the projects on the date shown.</p>
+        <ul class="mt-4 space-y-2">
+          {retired.map((profile) => (
+            <li>
+              <a href={`/profiles/${profile.slug}/`}>{profile.data.label ?? profile.slug}</a>
+              <span class="text-muted"> / last posture {formatDate(profile.data.last_updated)}, retired {formatDate(profile.data.retired_on)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
   </section>
 </Base>
